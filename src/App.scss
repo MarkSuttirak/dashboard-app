@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+@font-face {
+  font-family:Eventpop;
+  src:url(../src/fonts/Eventpop/eventpop-bold.ttf);
+  font-weight:500;
+  unicode-range: 'U+0E00–U+0E7F';
+}
+
+@font-face {
+  font-family:Eventpop;
+  src:url(../src/fonts/Eventpop/eventpop-medium.ttf);
+  font-weight:700;
+  unicode-range: 'U+0E00–U+0E7F';
+}
+
+* {
+  font-family:Inter, Eventpop;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family:Poppins, Eventpop;
+}
+
+.sidebar {
+  width:256px;
+  border-right:1px solid #F4F5F6;
+  position:absolute;
+  z-index:9;
+}
+
+.page-section {
+  margin-left:256px;
+}
+
+.menu-item {
+  padding:8px;
+  border-radius:6px;
+  display:flex;
+  gap:11px;
+  margin-top:8px;
+  &:hover {
+    background-color:#F4F5F6;
+    color:#0077E0;
+  }
+}
