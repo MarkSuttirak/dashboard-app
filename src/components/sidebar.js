@@ -22,7 +22,7 @@ const Sidebar = () => {
     }
 
     return (
-        <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white absolute sidebar h-screen">
+        <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white fixed sidebar h-screen">
         <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
           <div className="flex flex-shrink-0 justify-between items-center px-4">
             <img
