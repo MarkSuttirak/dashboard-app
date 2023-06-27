@@ -4,7 +4,6 @@ import startWorking from "../img/start-working.png";
 import appsMarketplace from "../img/apps-marketplace.png";
 import watchTutorials from "../img/watch-tutorials.png";
 import bolt from "../img/bolt.svg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import finlab from "../img/finlab.svg";
 import uob from "../img/uob.svg";
 import world from "../img/world.svg";
