@@ -3,6 +3,11 @@ import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import startWorking from "../img/start-working.png";
 import appsMarketplace from "../img/apps-marketplace.png";
 import watchTutorials from "../img/watch-tutorials.png";
+import bolt from "../img/bolt.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import finlab from "../img/finlab.svg";
+import uob from "../img/uob.svg";
+import world from "../img/world.svg";
 
 const Dashboard = () => {
     const dashboardInfo = [
@@ -30,7 +35,7 @@ const Dashboard = () => {
         {/* Header Dashboard */}
         <div className="bg-white page-section">
         <div className="relative overflow-hidden">
-          <div className="mx-auto max-w-7xl pb-10 grid grid-cols-2 gap-x-8 px-8">
+          <div className="mx-auto max-w-5xl pb-10 grid grid-cols-2 gap-x-8 px-8">
             <div className="pt-0">
               <div className="mx-auto max-w-2xl">
                 <div className="max-w-lg">
@@ -67,7 +72,7 @@ const Dashboard = () => {
                     </button>
                     <button
                       type="button"
-                      className="ml-3 inline-flex items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-offset-2" style={{backgroundColor:"#0099FF"}}
+                      className="ml-3 inline-flex items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn"
                     >
                       Login
                     </button>
@@ -76,7 +81,7 @@ const Dashboard = () => {
           <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-white sm:h-32" />
         </div>
 
-        <div className="mx-auto max-w-7xl pb-24 grid grid-cols-3 gap-x-8 px-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="mx-auto max-w-5xl pb-24 grid grid-cols-3 gap-x-8 px-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {dashboardInfo.map((info) => (
         <div
           key={info.title}
@@ -91,37 +96,93 @@ const Dashboard = () => {
          ))}
         </div>
 
-        <div className="mx-auto max-w-7xl pb-10 gap-x-8 px-8">
-          <div className="border border-gray-200 bg-white px-4 py-5 sm:px-6">
+        <div className="mx-auto max-w-5xl pb-10 gap-x-8 px-8">
+          <div className="border border-gray-200 bg-white p-10" style={{borderRadius:"20px 20px 0 0"}}>
             <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
                 <div className="ml-4 mt-2">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">Job Postings</h3>
+                  <h3 className="text-lg font-medium leading-6 text-gray-900">แพ็คเกจการใช้งาน</h3>
+                  <h1 className="mt-4 mb-10" style={{fontFamily:"Eventpop",lineHeight:"47.5px",fontSize:"39px"}}>ทดลองใช้<br/>ระบบฟรี 30 วัน</h1>
+
+                  <p>สนับสนุนให้คุณทดลองใช้งานโดย</p>
+                  <div className="flex gap-x-5 mt-4">
+                    <img src={finlab}/>
+                    <img src={uob}/>
+                  </div>
                 </div>
                 <div className="ml-4 mt-2 flex-shrink-0">
                 <button
                     type="button"
-                    className="relative inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    className="relative inline-flex gap-x-2.5 items-center rounded-md border border-transparent bg-black px-4 py-2 text-sm font-medium text-white shadow-md hover:bg-black focus:outline-none focus:ring-offset-2"
                 >
-                    Create new job
+                    <img src={bolt} />
+                    Upgrade to Pro
                 </button>
+                <div className="mt-4">
+                  <h2>เริ่มต้นที่</h2>
+                  <p className="price text-4xl font-bold inline-block mr-2">750 thb</p>
+                  <span className="text-md">/เดือน</span>
+
+                  <p className="text-md mt-2" style={{fontFamily:"Eventpop"}}>9,000 thb / ชำระเป็นรายปี</p>
                 </div>
+              </div>
             </div>
           </div>
-          <div className="border border-gray-200 bg-white px-4 py-5 sm:px-6">
+          <div className="border border-gray-200 bg-white p-10" style={{borderRadius:"0 0 20px 20px",borderTop:"none"}}>
             <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
                 <div className="ml-4 mt-2">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">Job Postings</h3>
+                  <h3 className="text-lg font-medium leading-6 text-gray-900">เข้าใช้งานระบบ</h3>
+
+                  <div className="flex gap-x-2 text-2xl mt-4">
+                    <img src={world} width="16"/>
+                    <h1 className="text-black font-bold">alpgroup.aca.fc.zaviago.com</h1>
+                  </div>
+
+                  <a href="#" className="link-anchor inline-block mt-2">
+                    Change Domain
+                  </a>
                 </div>
                 <div className="ml-4 mt-2 flex-shrink-0">
-                <button
-                    type="button"
-                    className="relative inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                    Create new job
-                </button>
+                  <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-0.5 text-sm font-medium online">
+                    <svg className="-ml-1 mr-1.5 h-2 w-2" fill="#52C41A" viewBox="0 0 8 8">
+                      <circle cx={4} cy={4} r={3} />
+                    </svg>
+                    Online
+                  </span>
                 </div>
             </div>
+            <div className="-ml-4 mt-0 flex flex-wrap items-center justify-between sm:flex-nowrap">
+            <div className="ml-4 mt-2">
+
+                <div className="flex mt-5 gap-x-5 items-center">
+                <button
+                    type="button"
+                    className="inline-flex items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn"
+                >
+                    Login As Admin
+                </button>
+                <a href="#" className="link-anchor">
+                    View Website
+                </a>
+                </div>
+              </div>
+              <div className="ml-4 mt-2 flex-shrink-0 items-center flex">
+                <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-0.5 text-sm font-medium online">
+                <svg className="-ml-1 mr-1.5 h-2 w-2" fill="#52C41A" viewBox="0 0 8 8">
+                    <circle cx={4} cy={4} r={3} />
+                </svg>
+                Online
+                </span>
+              </div>
+            </div>
+
+            <div className="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
+              <div className="flex flex-col justify-center overflow-hidden bg-blue-500" role="progressbar" style={{width:"25%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
           </div>
+        </div>
+
+        <div className="mx-auto max-w-5xl pb-10 gap-x-8 px-8">
+
         </div>
       </div>
       </>

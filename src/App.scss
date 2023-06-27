@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
 
 @font-face {
   font-family:Eventpop;
@@ -29,6 +29,10 @@ h1,h2,h3,h4,h5,h6{
   z-index:9;
 }
 
+.btn {
+  background-color:#0099FF;
+}
+
 .page-section {
   margin-left:256px;
 }
@@ -44,3 +48,15 @@ h1,h2,h3,h4,h5,h6{
     color:#0077E0;
   }
 }
+
+.price {
+  background: linear-gradient(94.15deg, #A749F1 -9.01%, #4FA6F8 132.45%);
+  background-clip:text;
+  color:transparent;
+  letter-spacing:-4%;
+  font-size:38px;
+  font-weight:800
+}
+
+.online {color:#118253}
+.link-anchor{color:#888;text-decoration:underline}
