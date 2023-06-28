@@ -6,6 +6,7 @@ module.exports = {
   theme: {
     fontFamily: {
       inter: ['Inter', 'sans-serif'],
+      SegoeUI: ['Segoe UI', 'Arial', 'sans-serif'],
     },
     extend: {},
   },
