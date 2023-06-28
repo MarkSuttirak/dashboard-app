@@ -51,12 +51,12 @@ const Dashboard = () => {
                 <div className="max-w-lg">
                   <div className="mt-4">
                     <a href="#" className="inline-flex space-x-6">
-                      <span className="rounded-full px-4 py-1 text-sm font-semibold leading-6 text-slate-400 ring-1 ring-inset ring-indigo-600/10">
+                      <span className="rounded-full px-4 font-11 font-semibold leading-6 text-slate-400 ring-1 ring-inset ring-slate-300" style={{fontFamily:"Poppins"}}>
                         Beta
                       </span>
                     </a>
                   </div>
-                  <h1 className="mt-2 text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">
+                  <h1 className="mt-2 text-xl font-semibold tracking-tight text-gray-900">
                     Dream it. Build it. Grow it.🎉
                   </h1>
                   <p className="mt-1 text-sm leading-8 text-gray-600">
@@ -76,13 +76,15 @@ const Dashboard = () => {
                   />
                     <button
                       type="button"
-                      className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-offset-2"
+                      className="inline-flex items-center rounded-lg bg-white text-sm font-semibold text-gray-700 shadow-sm focus:outline-none focus:ring-offset-2 text-xs"
+                      style={{backgroundColor:"#F3F3F3",padding:"7px 10px"}}
                     >
                       Invite
                     </button>
                     <button
                       type="button"
-                      className="ml-3 inline-flex items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn"
+                      className="ml-3 inline-flex items-center rounded-lg border border-transparent text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-13"
+                      style={{padding:"4px 18px"}}
                     >
                       Login
                     </button>

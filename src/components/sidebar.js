@@ -45,7 +45,9 @@ const Sidebar = () => {
             />
             <h1>Test</h1>
           </div>
-          <nav className="mt-5 flex-1 space-y-1 bg-white px-4" aria-label="Sidebar">
+          <nav className="mt-5 flex-1 space-y-1 bg-white px-4 pt-9" aria-label="Sidebar">
+
+            <h4 style={{fontFamily:"Inter"}}>Business Apps</h4>
             {navigation.map((item) => (
               <Link
                 key={item.name}
