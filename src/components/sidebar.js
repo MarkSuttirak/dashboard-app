@@ -50,7 +50,7 @@ const Sidebar = () => {
 
     return (
       <>
-        <div className="w-full h-screen absolute z-40" id="sidebar-overlay" style={{backgroundColor:"#000000"}} onClick={closeSidebar}></div>
+        <div className="w-full h-screen fixed z-40" id="sidebar-overlay" style={{backgroundColor:"#000000"}} onClick={closeSidebar}></div>
         <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white fixed h-screen" id="sidebar">
           <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
             <div className="flex flex-shrink-0 justify-between items-center px-4">
