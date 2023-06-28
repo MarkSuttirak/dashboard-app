@@ -7,6 +7,7 @@ import bolt from "../img/bolt.svg";
 import finlab from "../img/finlab.svg";
 import uob from "../img/uob.svg";
 import world from "../img/world.svg";
+import guideIcon from "../img/guide-icon.svg";
 
 const Dashboard = () => {
     const dashboardInfo = [
@@ -95,6 +96,7 @@ const Dashboard = () => {
          ))}
         </div>
 
+        {/* Packages */}
         <div className="mx-auto max-w-5xl pb-10 gap-x-8 px-8">
           <div className="border border-gray-200 bg-white p-10" style={{borderRadius:"20px 20px 0 0"}}>
             <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
@@ -126,7 +128,7 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <div className="border border-gray-200 bg-white p-10" style={{borderRadius:"0 0 20px 20px",borderTop:"none"}}>
+          <div className="border border-gray-200 bg-white p-10 pb-16" style={{borderRadius:"0 0 20px 20px",borderTop:"none"}}>
             <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
                 <div className="ml-4 mt-2">
                   <h3 className="text-lg font-medium leading-6 text-gray-900">เข้าใช้งานระบบ</h3>
@@ -150,7 +152,7 @@ const Dashboard = () => {
                 </div>
             </div>
             <div className="-ml-4 mt-0 flex flex-wrap items-center justify-between sm:flex-nowrap">
-            <div className="ml-4 mt-2">
+            <div className="ml-4 mt-2 pb-10">
 
                 <div className="flex mt-5 gap-x-5 items-center">
                 <button
@@ -174,14 +176,80 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
-              <div className="flex flex-col justify-center overflow-hidden bg-blue-500" role="progressbar" style={{width:"25%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            {/* Progress Bars */}
+            <div className="flex gap-x-2 items-center mb-4 columns-4">
+              <div className="w-1/4">
+                <p>Customer</p>
+              </div>
+
+              <div className="flex w-1/2 h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
+                <div className="flex flex-col justify-center overflow-hidden bg-blue-500" role="progressbar" style={{width:"25%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+
+              <p>(2.1%)</p>
+
+              <div className="text-right w-1/4">
+                <p>50 / 100 Customer</p>
+              </div>
             </div>
+
+            <div className="flex gap-x-2 items-center mb-4 columns-4">
+              <div className="w-1/4">
+                <p>Database (34.8%)</p>
+              </div>
+
+              <div className="flex w-1/2 h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
+                <div className="flex flex-col justify-center overflow-hidden bg-blue-500" role="progressbar" style={{width:"40%"}} aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+
+              <p>(2.1%)</p>
+
+              <div className="text-right w-1/4">
+                <p>174 MB / 500 MB</p>
+              </div>
+            </div>
+
+            <div className="flex gap-x-2 items-center mb-4 columns-4">
+              <div className="w-1/4">
+                <p>Storage (0.0%)</p>
+              </div>
+
+              <div className="flex w-1/2 h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
+                <div className="flex flex-col justify-center overflow-hidden bg-blue-500" role="progressbar" style={{width:"40%"}} aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+
+              <p>(90.1%)</p>
+
+              <div className="text-right w-1/4">
+                <p>2 MB / 1 GB</p>
+              </div>
+            </div>
+
+            <div className="flex gap-x-2 items-center mb-4 columns-4">
+              <div className="w-1/4">
+                <p>Orders</p>
+              </div>
+
+              <div className="flex w-1/2 h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
+                <div className="flex flex-col justify-center overflow-hidden bg-blue-500" role="progressbar" style={{width:"10%"}} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+
+              <p>(90.1%)</p>
+
+              <div className="text-right w-1/4">
+                <p>30 / 100 Orders</p>
+              </div>
+            </div>
+
+            <a href="#" className="link-anchor float-right">View More</a>
           </div>
         </div>
 
+        {/* Guides */}
         <div className="mx-auto max-w-5xl pb-10 gap-x-8 px-8">
-
+          <div>
+            <img src={guideIcon} />
+          </div>
         </div>
       </div>
       </>

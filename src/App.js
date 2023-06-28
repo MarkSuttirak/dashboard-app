@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.scss';
 import Sidebar from './components/sidebar';
 import Dashboard from './pages/dashboard';
+import AppsPage from './pages/apps';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
         <Sidebar />
         <Routes>
           <Route path="/" element={<Dashboard />}/>
+          <Route path="/apps" element={<AppsPage />}/>
         </Routes>
       </Router>
     </>

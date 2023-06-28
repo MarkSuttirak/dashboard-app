@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../img/logo.svg";
 import dashboardImg from "../img/dashboard.svg";
 import appsImg from "../img/apps.svg";
@@ -9,14 +9,14 @@ import pjob from "../img/pjob.svg";
 
 const Sidebar = () => {
     const navigation = [
-        { name: 'Dashboard', icon: HomeIcon, href: '#', current: true },
-        { name: 'Team', icon: UsersIcon, href: '#', count: 3, current: false },
-        { name: 'Projects', icon: FolderIcon, href: '#', count: 4, current: false },
+        { name: 'Dashboard', icon: HomeIcon, href: '/', current: false},
+        { name: 'Apps', icon: UsersIcon, href: '/apps', count: 3, current: true},
+        { name: 'Projects', icon: FolderIcon, href: '#', count: 4, current: false},
         { name: 'Calendar', icon: CalendarIcon, href: '#', current: false },
         { name: 'Documents', icon: InboxIcon, href: '#', count: 12, current: false },
         { name: 'Reports', icon: ChartBarIcon, href: '#', current: false },
       ]
-      
+
     function classNames(...classes) {
       return classes.filter(Boolean).join(' ')
     }
@@ -34,9 +34,9 @@ const Sidebar = () => {
           </div>
           <nav className="mt-5 flex-1 space-y-1 bg-white px-4" aria-label="Sidebar">
             {navigation.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className={classNames(
                   item.current
                     ? 'bg-gray-100 text-gray-900 hover:text-gray-900 hover:bg-gray-100'
@@ -62,7 +62,7 @@ const Sidebar = () => {
                     {item.count}
                   </span>
                 ) : null}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>
