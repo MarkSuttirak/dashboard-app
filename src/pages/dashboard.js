@@ -45,7 +45,7 @@ const Dashboard = () => {
         {/* Header Dashboard */}
         <div className="bg-white page-section pb-16">
         <div className="relative overflow-hidden">
-          <div className="mx-auto max-w-5xl pb-10 grid grid-cols-2 gap-x-8 px-8">
+          <div className="mx-auto dashboard-container pb-10 grid grid-cols-2 gap-x-8">
             <div className="pt-0">
               <div className="mx-auto max-w-2xl">
                 <div className="max-w-lg">
@@ -91,23 +91,23 @@ const Dashboard = () => {
           <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-white sm:h-32" />
         </div>
 
-        <div className="mx-auto max-w-5xl pb-24 grid grid-cols-3 gap-x-8 px-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="mx-auto dashboard-container pb-10 grid grid-cols-3 gap-x-3 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {dashboardInfo.map((info) => (
         <div
           key={info.title}
-          className="relative flex items-center space-x-3 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400" style={{background:"url(" + info.background + ")",backgroundSize:"100%",backgroundRepeat:"no-repeat",borderRadius:"20px"}}
+          className="relative flex items-center space-x-3 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400" style={{background:"url(" + info.background + ")",backgroundSize:"100%",backgroundRepeat:"no-repeat",borderRadius:"20px"}}
         >
-          <div className="min-w-0 pt-40">
+          <div className="min-w-0 pt-28">
               <span className="absolute inset-0" aria-hidden="true" />
               <h2 className="text-md font-bold text-white">{info.title}</h2>
-              <h3 className="truncate text-sm text-white font-bold">{info.description}</h3>
+              <p className="truncate text-sm font-bold font-13" style={{color:"#FFFFFF99"}}>{info.description}</p>
           </div>
         </div>
          ))}
         </div>
 
         {/* Packages */}
-        <div className="mx-auto max-w-5xl pb-5 gap-x-8 px-8">
+        <div className="mx-auto dashboard-container pb-5 gap-x-8">
           <div className="border border-gray-200 bg-white p-10" style={{borderRadius:"20px 20px 0 0"}}>
             <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
                 <div className="ml-4 mt-2">
@@ -123,7 +123,7 @@ const Dashboard = () => {
                 <div className="ml-4 mt-2 flex-shrink-0">
                 <button
                     type="button"
-                    className="relative inline-flex gap-x-2.5 items-center rounded-md border border-transparent bg-black px-4 py-2 text-sm font-medium text-white shadow-md hover:bg-black focus:outline-none focus:ring-offset-2"
+                    className="relative inline-flex gap-x-2.5 items-center rounded-md border border-transparent bg-black px-4 py-3 text-sm font-medium text-white shadow-md hover:bg-black focus:outline-none focus:ring-offset-2 w-full justify-center"
                 >
                     <img src={bolt} />
                     Upgrade to Pro
@@ -272,7 +272,7 @@ const Dashboard = () => {
         </div>
 
         {/* Guides */}
-        <div className="mx-auto max-w-5xl pb-10 gap-x-8 px-8">
+        <div className="mx-auto dashboard-container pb-10 gap-x-8">
           <div className="border border-gray-200 bg-white p-6" style={{borderRadius:"20px"}}>
             <div className="flex gap-x-2.5 items-center">
               <img src={guideIcon} />
@@ -336,7 +336,7 @@ const Dashboard = () => {
         </div>
 
         {/* App Store */}
-        <div className="mx-auto max-w-5xl pb-10 gap-x-8 px-8">
+        <div className="mx-auto dashboard-container pb-10 gap-x-8">
           <div className="flex justify-between mb-7">
             <div className="float-left">
               <p style={{color:"#111827"}} className="text-xl font-semibold">App Store</p>
