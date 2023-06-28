@@ -13,8 +13,7 @@ function App() {
         <Sidebar />
         <Routes>
           <Route path="/" element={<Dashboard />}/>
-          <Route path="/apps" element={<AppsPage />}/>
-          <Route path="/business" element={<Business />}/>
+          <Route path="/apps" element={<Business />}/>
         </Routes>
       </Router>
     </>
