@@ -1,28 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../img/logo.svg";
 import dashboardImg from "../img/dashboard.svg";
 import appsImg from "../img/apps.svg";
 import teamsImg from "../img/teams.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/24/outline'
 import pjob from "../img/pjob.svg";
 
 const Sidebar = () => {
+    const location = useLocation();
+    const [active, setActive] = useState('');
+
+    const handleMenuClick = (menu) => {
+      setActive(menu);
+    }
+
+    console.log(location);
+
     const navigation = [
-        { name: 'Dashboard', icon: HomeIcon, href: '/', current: false},
-        { name: 'Apps', icon: UsersIcon, href: '/apps', count: 3, current: true},
-        { name: 'Projects', icon: FolderIcon, href: '#', count: 4, current: false},
-        { name: 'Calendar', icon: CalendarIcon, href: '#', current: false },
-        { name: 'Documents', icon: InboxIcon, href: '#', count: 12, current: false },
-        { name: 'Reports', icon: ChartBarIcon, href: '#', current: false },
-      ]
+      { name: 'Dashboard', icon: HomeIcon, href: '/', current: active === '/' ? true : false},
+      { name: 'Apps', icon: UsersIcon, href: '/apps', count: 3, current: active === '/apps' ? true : false},
+      { name: 'Projects', icon: FolderIcon, href: '#', count: 4, current: active === '#' ? true : false},
+      { name: 'Calendar', icon: CalendarIcon, href: '#', current: active === "#" ? true : false, active: active },
+      { name: 'Documents', icon: InboxIcon, href: '#', count: 12, current: active === "#" ? true : false, active: active },
+      { name: 'Reports', icon: ChartBarIcon, href: '#', current: active === "#" ? true : false, active: active },
+    ]
 
     function classNames(...classes) {
       return classes.filter(Boolean).join(' ')
     }
 
+    useEffect(() => {
+      setActive(location.pathname);
+    })
+
     return (
-        <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white fixed sidebar h-screen">
+      <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white fixed sidebar h-screen">
         <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
           <div className="flex flex-shrink-0 justify-between items-center px-4">
             <img
@@ -43,6 +56,7 @@ const Sidebar = () => {
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50',
                   'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
                 )}
+                onClick={() => handleMenuClick(item.href)}
               >
                 <item.icon
                   className={classNames(
