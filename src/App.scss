@@ -23,6 +23,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .sidebar {
+  display: none;
   width:256px;
   border-right:1px solid #F4F5F6;
   z-index:9;
@@ -33,7 +34,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .page-section {
-  margin-left:256px;
+  // margin-left:256px;
 }
 
 .menu-item {
