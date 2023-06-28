@@ -6,6 +6,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### Additional packages
+
+Please install these packages before starting react app.
+
+npm install react-router-dom
+npm install sass (for SCSS)
+
+
 ### `npm start`
 
 Runs the app in the development mode.\
