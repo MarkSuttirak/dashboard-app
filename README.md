@@ -10,7 +10,7 @@ In the project directory, you can run:
 
 Please install these packages before starting react app.
 
-npm install react-router-dom
+npm install react-router-dom\
 npm install sass (for SCSS)
 
 
