@@ -11,10 +11,18 @@ const Sidebar = () => {
     const location = useLocation();
     const [active, setActive] = useState('');
 
-    const [activeSidebar, setActiveSidebar] = useState(false);
+    const openSidebar = () => {
+      const sidebar = document.getElementById('sidebar');
+      const sidebarOverlay = document.getElementById('sidebar-overlay');
+      sidebar.style.animation = "sidebarActive 400ms forwards";
+      sidebarOverlay.style.animation = "sidebarOverlayActive 400ms forwards";
+    }
 
-    const handleSidebar = () => {
-
+    const closeSidebar = () => {
+      const sidebar = document.getElementById('sidebar');
+      const sidebarOverlay = document.getElementById('sidebar-overlay');
+      sidebar.style.animation = "sidebarInactive 300ms forwards";
+      sidebarOverlay.style.animation = "sidebarOverlayInactive 300ms forwards";
     }
 
     const handleMenuClick = (menu) => {
@@ -42,7 +50,7 @@ const Sidebar = () => {
 
     return (
       <>
-        <div className="w-full h-screen opacity-40 absolute z-40" id="sidebar-overlay" style={{backgroundColor:"#000000"}}></div>
+        <div className="w-full h-screen absolute z-40" id="sidebar-overlay" style={{backgroundColor:"#000000"}} onClick={closeSidebar}></div>
         <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white fixed h-screen" id="sidebar">
           <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
             <div className="flex flex-shrink-0 justify-between items-center px-4">
@@ -53,9 +61,9 @@ const Sidebar = () => {
               />
               <h1>Test</h1>
             </div>
-            <nav className="mt-5 flex-1 space-y-1 bg-white px-4 pt-9" aria-label="Sidebar">
+            <nav className="mt-5 flex-1 space-y-1 bg-white px-4 pt-4" aria-label="Sidebar">
 
-              <h4 style={{fontFamily:"Inter"}}>Business Apps</h4>
+              <h4 className="text-sm font-semibold" style={{fontFamily:"Inter",color:"#1F272E"}}>Business Apps</h4>
               {navigation.map((item) => (
                 <Link
                   key={item.name}
@@ -64,7 +72,7 @@ const Sidebar = () => {
                     item.current
                       ? 'bg-gray-100 text-gray-900 hover:bg-gray-100 active'
                       : 'text-gray-600 hover:bg-gray-50',
-                    'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+                    'group flex items-center px-2 py-2 text-xs font-medium rounded-md'
                   )}
                   onClick={() => handleMenuClick(item.href)}
                 >
@@ -108,6 +116,10 @@ const Sidebar = () => {
             </a>
           </div>
         </div>
+        
+        <header className="header-mobile">
+          <h1 onClick={openSidebar}>Test</h1>
+        </header>
       </>
     )
 }

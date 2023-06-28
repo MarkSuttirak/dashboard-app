@@ -61,7 +61,7 @@
     margin-left:256px;
   }
   #sidebar {
-    animation:sidebarActive 400ms forwards;
+    animation:sidebarActive 400ms forwards !important;
   }
 }
 
@@ -124,7 +124,8 @@ h1,h2,h3,h4,h5,h6{
   padding:6.4px 15px;
   border-radius:29px;
   font-size:16px;
-  font-weight:600
+  font-weight:600;
+  margin-bottom:13px;
 }
 
 .app-logo {
@@ -151,9 +152,21 @@ h1,h2,h3,h4,h5,h6{
   box-shadow:0 4px 8px 0 #0099FF33;
 }
 
+.header-mobile {
+  width:80px;
+  height:100%;
+  background-color:white;
+  padding:20px;
+  position:fixed;
+  z-index:10;
+}
+
 @media (max-width:1199px){
   #sidebar {
-    animation:sidebarInactive 400ms forwards;
+    transform:translateX(-300px);
+  }
+  .page-section {
+    margin-left:80px;
   }
 }
 
@@ -172,5 +185,27 @@ h1,h2,h3,h4,h5,h6{
   }
   to {
     transform:translateX(-300px);
+  }
+}
+
+@keyframes sidebarOverlayActive {
+  from {
+    visibility:hidden;
+    opacity:0
+  }
+  to {
+    visibility:visible;
+    opacity:0.4
+  }
+}
+
+@keyframes sidebarOverlayInactive {
+  from {
+    visibility:visible;
+    opacity:0.4
+  }
+  to {
+    visibility:hidden;
+    opacity:0;
   }
 }

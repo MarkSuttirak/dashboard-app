@@ -144,7 +144,7 @@ const Dashboard = () => {
           <div className="border border-gray-200 bg-white p-10 pb-16" style={{borderRadius:"0 0 20px 20px",borderTop:"none"}}>
             <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
                 <div className="ml-4 mt-2">
-                  <h3 className="text-lg font-bold leading-6 text-gray-900">เข้าใช้งานระบบ</h3>
+                  <h3 className="text-sm font-bold leading-6 text-gray-900">เข้าใช้งานระบบ</h3>
 
                   <div className="flex gap-x-2 text-2xl mt-4">
                     <img src={world} width="16"/>
@@ -341,17 +341,19 @@ const Dashboard = () => {
         {/* App Store */}
         <div className="mx-auto dashboard-container pb-10 gap-x-8">
           <div className="flex justify-between mb-7">
-            <div className="float-left">
+            <div className="justify-start">
               <p style={{color:"#111827"}} className="text-xl font-semibold">App Store</p>
               <p className="paras text-sm">You have got much more than just a website. <br/>Build and expand your digital business with application</p>
             </div>
 
-            <div className="float-right">
-              <button className="flex gap-x-2.5 items-center upgrade-btn">
-                <img src={keyLock} />
-                Upgrade
-              </button>
-              <p className="text-right">Upgrade website to unlock <br/>addons application</p>
+            <div className="justify-end">
+              <div className="flex justify-end">
+                <button className="flex gap-x-2.5 items-center upgrade-btn">
+                  <img src={keyLock} />
+                  Upgrade
+                </button>
+              </div>
+              <p className="text-right font-semibold">Upgrade website to unlock <br/>addons application</p>
             </div>
           </div>
 
