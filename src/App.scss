@@ -57,5 +57,34 @@ h1,h2,h3,h4,h5,h6{
   font-weight:800
 }
 
-.online {color:#118253}
+.online{color:#118253;font-size:13px}
 .link-anchor{color:#888;text-decoration:underline}
+.active{color:#0077E0}
+.headings{color:#333333D9}
+.paras{color:#687178}
+.font-11{font-size:11px}
+.font-13{font-size:13px}
+
+.upgrade-btn {
+  background-color:#DBFF00;
+  padding:6.4px 15px;
+  border-radius:29px;
+  font-size:16px;
+  font-weight:600
+}
+
+.app-logo {
+  width:180px;
+  height:180px;
+  padding:28px;
+  box-sizing:border-box;
+  border-radius:12px;
+  margin-bottom:12px
+}
+
+.app-name {
+  color:#344054;
+  font-weight:600;
+  font-size:14px;
+  margin-bottom:7px;
+}

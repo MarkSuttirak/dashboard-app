@@ -8,6 +8,16 @@ import finlab from "../img/finlab.svg";
 import uob from "../img/uob.svg";
 import world from "../img/world.svg";
 import guideIcon from "../img/guide-icon.svg";
+import wrapper from "../img/wrapper.svg";
+import pfyne from "../img/pfyne.svg";
+import person1 from "../img/person1.svg";
+import person2 from "../img/person2.svg";
+import keyLock from "../img/key-lock.svg";
+import google from "../img/google.svg";
+import tiktok from "../img/tiktok.svg";
+import line from "../img/line.svg";
+import meta from "../img/meta.svg";
+import amazon from "../img/amazon.svg";
 
 const Dashboard = () => {
     const dashboardInfo = [
@@ -33,7 +43,7 @@ const Dashboard = () => {
     return (
       <>
         {/* Header Dashboard */}
-        <div className="bg-white page-section">
+        <div className="bg-white page-section pb-16">
         <div className="relative overflow-hidden">
           <div className="mx-auto max-w-5xl pb-10 grid grid-cols-2 gap-x-8 px-8">
             <div className="pt-0">
@@ -97,7 +107,7 @@ const Dashboard = () => {
         </div>
 
         {/* Packages */}
-        <div className="mx-auto max-w-5xl pb-10 gap-x-8 px-8">
+        <div className="mx-auto max-w-5xl pb-5 gap-x-8 px-8">
           <div className="border border-gray-200 bg-white p-10" style={{borderRadius:"20px 20px 0 0"}}>
             <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
                 <div className="ml-4 mt-2">
@@ -138,7 +148,7 @@ const Dashboard = () => {
                     <h1 className="text-black font-bold">alpgroup.aca.fc.zaviago.com</h1>
                   </div>
 
-                  <a href="#" className="link-anchor inline-block mt-2">
+                  <a href="#" className="link-anchor inline-block mt-2 text-xs">
                     Change Domain
                   </a>
                 </div>
@@ -154,101 +164,230 @@ const Dashboard = () => {
             <div className="-ml-4 mt-0 flex flex-wrap items-center justify-between sm:flex-nowrap">
             <div className="ml-4 mt-2 pb-10">
 
-                <div className="flex mt-5 gap-x-5 items-center">
+              <div className="flex mt-5 gap-x-5 items-center">
                 <button
                     type="button"
                     className="inline-flex items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn"
                 >
                     Login As Admin
                 </button>
-                <a href="#" className="link-anchor">
+                <a href="#" className="link-anchor font-11">
                     View Website
                 </a>
                 </div>
-              </div>
-              <div className="ml-4 mt-2 flex-shrink-0 items-center flex">
-                <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-0.5 text-sm font-medium online">
-                <svg className="-ml-1 mr-1.5 h-2 w-2" fill="#52C41A" viewBox="0 0 8 8">
-                    <circle cx={4} cy={4} r={3} />
-                </svg>
-                Online
-                </span>
+            </div>
+              <div className="ml-4 mt-2 flex-shrink-0 items-center flex pb-10">
+                <div className="isolate flex -space-x-1 overflow-hidden">
+                  <img
+                    className="relative z-30 inline-block h-6 w-6 rounded-md ring-2 ring-white"
+                    src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
+                  <img
+                    className="relative z-20 inline-block h-6 w-6 rounded-md ring-2 ring-white"
+                    src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
+                  <img
+                    className="relative z-10 inline-block h-6 w-6 rounded-md ring-2 ring-white"
+                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80"
+                    alt=""
+                  />
+                  <img
+                    className="relative z-0 inline-block h-6 w-6 rounded-md ring-2 ring-white"
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
+                </div>
               </div>
             </div>
 
             {/* Progress Bars */}
             <div className="flex gap-x-2 items-center mb-4 columns-4">
               <div className="w-1/4">
-                <p>Customer</p>
+                <p className="font-13">Customer</p>
               </div>
 
               <div className="flex w-1/2 h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
                 <div className="flex flex-col justify-center overflow-hidden bg-blue-500" role="progressbar" style={{width:"25%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
 
-              <p>(2.1%)</p>
+              <p className="font-13">(2.1%)</p>
 
               <div className="text-right w-1/4">
-                <p>50 / 100 Customer</p>
+                <p className="font-11">50 / 100 Customer</p>
               </div>
             </div>
 
             <div className="flex gap-x-2 items-center mb-4 columns-4">
               <div className="w-1/4">
-                <p>Database (34.8%)</p>
+                <p className="font-13">Database (34.8%)</p>
               </div>
 
               <div className="flex w-1/2 h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
                 <div className="flex flex-col justify-center overflow-hidden bg-blue-500" role="progressbar" style={{width:"40%"}} aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
 
-              <p>(2.1%)</p>
+              <p className="font-13">(2.1%)</p>
 
               <div className="text-right w-1/4">
-                <p>174 MB / 500 MB</p>
+                <p className="font-11">174 MB / 500 MB</p>
               </div>
             </div>
 
             <div className="flex gap-x-2 items-center mb-4 columns-4">
               <div className="w-1/4">
-                <p>Storage (0.0%)</p>
+                <p className="font-13">Storage (0.0%)</p>
               </div>
 
               <div className="flex w-1/2 h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
                 <div className="flex flex-col justify-center overflow-hidden bg-blue-500" role="progressbar" style={{width:"40%"}} aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
 
-              <p>(90.1%)</p>
+              <p className="font-13">(90.1%)</p>
 
               <div className="text-right w-1/4">
-                <p>2 MB / 1 GB</p>
+                <p className="font-11">2 MB / 1 GB</p>
               </div>
             </div>
 
             <div className="flex gap-x-2 items-center mb-4 columns-4">
               <div className="w-1/4">
-                <p>Orders</p>
+                <p className="font-13">Orders</p>
               </div>
 
               <div className="flex w-1/2 h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
                 <div className="flex flex-col justify-center overflow-hidden bg-blue-500" role="progressbar" style={{width:"10%"}} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
 
-              <p>(90.1%)</p>
+              <p className="font-13">(90.1%)</p>
 
               <div className="text-right w-1/4">
-                <p>30 / 100 Orders</p>
+                <p className="font-11">30 / 100 Orders</p>
               </div>
             </div>
 
-            <a href="#" className="link-anchor float-right">View More</a>
+            <a href="#" className="link-anchor float-right font-11">View More</a>
           </div>
         </div>
 
         {/* Guides */}
         <div className="mx-auto max-w-5xl pb-10 gap-x-8 px-8">
-          <div>
-            <img src={guideIcon} />
+          <div className="border border-gray-200 bg-white p-6" style={{borderRadius:"20px"}}>
+            <div className="flex gap-x-2.5 items-center">
+              <img src={guideIcon} />
+              <h1 className="text-xl headings">ไกด์การใช้งาน และ ติดต่อทีมงาน</h1>
+            </div>
+
+            <p className="paras mt-3 font-13">You are on Agency PremiumCare+package: this include, <strong>9am-19am</strong> <br/>live Chat support with LINE OA direct responses to all your issue.</p>
+
+            <div className="btn-group mt-5 lg:columns-5">
+              <button className="flex items-center font-13 headings gap-x-2.5">
+                <img src={wrapper} />
+                แชทกับทีมงาน
+              </button>
+
+              <button className="flex items-center font-13 headings gap-x-2.5">
+                <img src={wrapper} />
+                คู่มือการใช้งาน
+              </button>
+
+              <button className="flex items-center font-13 headings gap-x-2.5">
+                <img src={wrapper} />
+                วิดีโอแนะนำระบบ
+              </button>
+
+              <button className="flex items-center font-13 headings gap-x-2.5">
+                <img src={wrapper} />
+                บริการเปิดระบบ
+              </button>
+
+              <button className="flex items-center font-13 headings gap-x-2.5">
+                <img src={wrapper} />
+                แชทกับทีมงาน
+              </button>
+            </div>
+
+            <div className="flex mt-6 items-center">
+              <div className="flex -space-x-1 overflow-hidden">
+                <img
+                  className="inline-block h-9 w-9 rounded-full ring-2 ring-white"
+                  src={pfyne}
+                  alt=""
+                />
+                <img
+                  className="inline-block h-9 w-9 rounded-full ring-2 ring-white"
+                  src={person1}
+                  alt=""
+                />
+                <img
+                  className="inline-block h-9 w-9 rounded-full ring-2 ring-white"
+                  src={person2}
+                  alt=""
+                />
+              </div>
+
+              <div className="ml-2">
+                <p className="text-sm font-medium">Need help with something?</p>
+                <a href="#" style={{color:"#0066CC",letterSpacing:"-0.224px"}} className="font-13">Ask a Specialist</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* App Store */}
+        <div className="mx-auto max-w-5xl pb-10 gap-x-8 px-8">
+          <div className="flex justify-between mb-7">
+            <div className="float-left">
+              <p style={{color:"#111827"}} className="text-xl font-semibold">App Store</p>
+              <p className="paras text-sm">You have got much more than just a website. <br/>Build and expand your digital business with application</p>
+            </div>
+
+            <div className="float-right">
+              <button className="flex gap-x-2.5 items-center upgrade-btn">
+                <img src={keyLock} />
+                Upgrade
+              </button>
+              <p className="text-right">Upgrade website to unlock <br/>addons application</p>
+            </div>
+          </div>
+
+          <div className="columns-5 flex gap-x-4">
+            <div className="apps">
+              <div className="border flex justify-center app-logo">
+                <img src={google} />
+              </div>
+              <p className="app-name">Google Site</p>
+              <p className="paras text-xs">Connect your website with Google services</p>
+            </div>
+            <div className="apps">
+              <div className="border flex justify-center app-logo">
+                <img src={meta} />
+              </div>
+              <p className="app-name">Facebook & IG</p>
+              <p className="paras text-xs">Bring your products to facebook and instagram.</p>
+            </div>
+            <div className="apps">
+              <div className="border flex justify-center app-logo">
+                <img src={amazon} />
+              </div>
+              <p className="app-name">Amazon Shop</p>
+              <p className="paras text-xs">Loox is a social proof solution.</p>
+            </div>
+            <div className="apps">
+              <div className="border flex justify-center app-logo">
+                <img src={line} />
+              </div>
+              <p className="app-name">Line CRM</p>
+              <p className="paras text-xs">Bring your products to facebook and instagram.</p>
+            </div>
+            <div className="apps">
+              <div className="border flex justify-center app-logo">
+                <img src={tiktok} />
+              </div>
+              <p className="app-name">TikTok Shop</p>
+              <p className="paras text-xs">Connect and sync all order with TikTok Seller</p>
+            </div>
           </div>
         </div>
       </div>
