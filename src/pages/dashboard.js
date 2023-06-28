@@ -45,7 +45,7 @@ const Dashboard = () => {
         {/* Header Dashboard */}
         <div className="bg-white page-section pb-16">
         <div className="relative overflow-hidden">
-          <div className="mx-auto dashboard-container pb-10 grid grid-cols-2 gap-x-8">
+          <div className="mx-auto dashboard-container pb-8 grid grid-cols-2 gap-x-8">
             <div className="pt-0">
               <div className="mx-auto max-w-2xl">
                 <div className="max-w-lg">
@@ -56,10 +56,10 @@ const Dashboard = () => {
                       </span>
                     </a>
                   </div>
-                  <h1 className="mt-2 text-xl font-semibold tracking-tight text-gray-900">
+                  <h1 className="mt-1 text-xl font-semibold tracking-tight text-gray-900">
                     Dream it. Build it. Grow it.🎉
                   </h1>
-                  <p className="mt-1 text-sm leading-8 text-gray-600">
+                  <p className="font-13 leading-8 text-gray-600">
                     Welcome to your <span style={{color:"#006AFF"}} className="font-bold">Zaviago/OS</span> v.1.4.88
                   </p>
                 </div>
@@ -83,7 +83,7 @@ const Dashboard = () => {
                     </button>
                     <button
                       type="button"
-                      className="ml-3 inline-flex items-center rounded-lg border border-transparent text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-13"
+                      className="ml-3 inline-flex items-center rounded-lg border border-transparent text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-13 btn-primary-shadow"
                       style={{padding:"4px 18px"}}
                     >
                       Login
@@ -93,16 +93,16 @@ const Dashboard = () => {
           <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-white sm:h-32" />
         </div>
 
-        <div className="mx-auto dashboard-container pb-10 grid grid-cols-3 gap-x-3 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="mx-auto dashboard-container pb-10 grid grid-cols-3 gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {dashboardInfo.map((info) => (
         <div
           key={info.title}
-          className="relative flex items-center space-x-3 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400" style={{background:"url(" + info.background + ")",backgroundSize:"100%",backgroundRepeat:"no-repeat",borderRadius:"20px"}}
+          className="relative flex items-center space-x-3 bg-white p-4 pb-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400" style={{background:"url(" + info.background + ")",backgroundSize:"100%",backgroundRepeat:"no-repeat",borderRadius:"20px"}}
         >
-          <div className="min-w-0 pt-28">
+          <div className="min-w-0" style={{paddingTop:"8.25rem"}}>
               <span className="absolute inset-0" aria-hidden="true" />
-              <h2 className="text-md font-bold text-white">{info.title}</h2>
-              <p className="truncate text-sm font-bold font-13" style={{color:"#FFFFFF99"}}>{info.description}</p>
+              <h2 className="text-md font-bold text-white leading-5">{info.title}</h2>
+              <p className="truncate font-bold font-13" style={{color:"#FFFFFF99"}}>{info.description}</p>
           </div>
         </div>
          ))}
@@ -111,31 +111,32 @@ const Dashboard = () => {
         {/* Packages */}
         <div className="mx-auto dashboard-container pb-5 gap-x-8">
           <div className="border border-gray-200 bg-white p-10" style={{borderRadius:"20px 20px 0 0"}}>
-            <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
-                <div className="ml-4 mt-2">
-                  <h3 className="text-lg font-medium leading-6 text-gray-900">แพ็คเกจการใช้งาน</h3>
-                  <h1 className="mt-4 mb-10" style={{fontFamily:"Eventpop",lineHeight:"47.5px",fontSize:"39px"}}>ทดลองใช้<br/>ระบบฟรี 30 วัน</h1>
+            <div className="-ml-4 -mt-2 flex flex-wrap justify-between sm:flex-nowrap">
+                <div className="ml-4 mt-3">
+                  <h3 className="text-sm font-bold leading-6 text-gray-900">แพ็คเกจการใช้งาน</h3>
+                  <h1 className="mt-2 mb-7 font-bold" style={{fontFamily:"Eventpop",lineHeight:"47.5px",fontSize:"39px",color:"#1F272E",letterSpacing:"-2.5%"}}>ทดลองใช้<br/>ระบบฟรี 30 วัน</h1>
 
-                  <p>สนับสนุนให้คุณทดลองใช้งานโดย</p>
+                  <p style={{fontFamily:"Sukhumvit Set"}} className="paras text-sm">สนับสนุนให้คุณทดลองใช้งานโดย</p>
                   <div className="flex gap-x-5 mt-4">
                     <img src={finlab}/>
                     <img src={uob}/>
                   </div>
                 </div>
-                <div className="ml-4 mt-2 flex-shrink-0">
+                <div className="mr-2 mt-6 flex-shrink-0">
                 <button
                     type="button"
-                    className="relative inline-flex gap-x-2.5 items-center rounded-md border border-transparent bg-black px-4 py-3 text-sm font-medium text-white shadow-md hover:bg-black focus:outline-none focus:ring-offset-2 w-full justify-center"
+                    className="relative inline-flex gap-x-2.5 items-center rounded-lg border border-transparent bg-black font-15 font-bold text-white shadow-md hover:bg-black focus:outline-none focus:ring-offset-2 w-full justify-center"
+                    style={{padding:"11px 29px"}}
                 >
                     <img src={bolt} />
                     Upgrade to Pro
                 </button>
                 <div className="mt-4">
-                  <h2>เริ่มต้นที่</h2>
-                  <p className="price text-4xl font-bold inline-block mr-2">750 thb</p>
-                  <span className="text-md">/เดือน</span>
+                  <h2 className="sukhumvit paras text-sm">เริ่มต้นที่</h2>
+                  <p className="price text-4xl font-bold inline-block mt-2 mr-2">750 thb</p>
+                  <span className="text-sm paras font-bold">/เดือน</span>
 
-                  <p className="text-md mt-2" style={{fontFamily:"Eventpop"}}>9,000 thb / ชำระเป็นรายปี</p>
+                  <p className="text-sm mt-2 paras" style={{fontFamily:"Eventpop"}}>9,000 thb / ชำระเป็นรายปี</p>
                 </div>
               </div>
             </div>
@@ -143,7 +144,7 @@ const Dashboard = () => {
           <div className="border border-gray-200 bg-white p-10 pb-16" style={{borderRadius:"0 0 20px 20px",borderTop:"none"}}>
             <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
                 <div className="ml-4 mt-2">
-                  <h3 className="text-lg font-medium leading-6 text-gray-900">เข้าใช้งานระบบ</h3>
+                  <h3 className="text-lg font-bold leading-6 text-gray-900">เข้าใช้งานระบบ</h3>
 
                   <div className="flex gap-x-2 text-2xl mt-4">
                     <img src={world} width="16"/>
@@ -169,7 +170,7 @@ const Dashboard = () => {
               <div className="flex mt-5 gap-x-5 items-center">
                 <button
                     type="button"
-                    className="inline-flex items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn"
+                    className="inline-flex items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn btn-primary-shadow"
                 >
                     Login As Admin
                 </button>
@@ -278,7 +279,7 @@ const Dashboard = () => {
           <div className="border border-gray-200 bg-white p-6" style={{borderRadius:"20px"}}>
             <div className="flex gap-x-2.5 items-center">
               <img src={guideIcon} />
-              <h1 className="text-xl headings">ไกด์การใช้งาน และ ติดต่อทีมงาน</h1>
+              <h1 className="text-xl headings font-bold">ไกด์การใช้งาน และ ติดต่อทีมงาน</h1>
             </div>
 
             <p className="paras mt-3 font-13">You are on Agency PremiumCare+package: this include, <strong>9am-19am</strong> <br/>live Chat support with LINE OA direct responses to all your issue.</p>

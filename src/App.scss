@@ -3,15 +3,66 @@
 @font-face {
   font-family:Eventpop;
   src:url(../src/fonts/Eventpop/eventpop-bold.ttf);
-  font-weight:500;
+  font-weight:700;
   unicode-range: 'U+0E00–U+0E7F';
 }
 
 @font-face {
   font-family:Eventpop;
   src:url(../src/fonts/Eventpop/eventpop-medium.ttf);
+  font-weight:500;
+  unicode-range: 'U+0E00–U+0E7F';
+}
+
+@font-face {
+  font-family:Sukhumvit Set;
+  src:url(../src/fonts/Sukhumvit-set/SukhumvitSet-Bold.ttf);
   font-weight:700;
   unicode-range: 'U+0E00–U+0E7F';
+}
+
+@font-face {
+  font-family:Sukhumvit Set;
+  src:url(../src/fonts/Sukhumvit-set/SukhumvitSet-SemiBold.ttf);
+  font-weight:600;
+  unicode-range: 'U+0E00–U+0E7F';
+}
+
+@font-face {
+  font-family:Sukhumvit Set;
+  src:url(../src/fonts/Sukhumvit-set/SukhumvitSet-Medium.ttf);
+  font-weight:500;
+  unicode-range: 'U+0E00–U+0E7F';
+}
+
+@font-face {
+  font-family:Sukhumvit Set;
+  src:url(../src/fonts/Sukhumvit-set/SukhumvitSet-Text.ttf);
+  font-weight:400;
+  unicode-range: 'U+0E00–U+0E7F';
+}
+
+@font-face {
+  font-family:Sukhumvit Set;
+  src:url(../src/fonts/Sukhumvit-set/SukhumvitSet-Light.ttf);
+  font-weight:300;
+  unicode-range: 'U+0E00–U+0E7F';
+}
+
+@font-face {
+  font-family:Sukhumvit Set;
+  src:url(../src/fonts/Sukhumvit-set/SukhumvitSet-Thin.ttf);
+  font-weight:200;
+  unicode-range: 'U+0E00–U+0E7F';
+}
+
+@media (min-width:1200px){
+  .page-section {
+    margin-left:256px;
+  }
+  #sidebar {
+    animation:sidebarActive 400ms forwards;
+  }
 }
 
 * {
@@ -22,18 +73,19 @@ h1,h2,h3,h4,h5,h6{
   font-family:Poppins, Eventpop;
 }
 
-.sidebar {
+#sidebar {
   width:256px;
   border-right:1px solid #F4F5F6;
-  z-index:9;
+  z-index:99;
+}
+
+#sidebar-overlay {
+  visibility:hidden;
+  opacity:0;
 }
 
 .btn {
   background-color:#0099FF;
-}
-
-.page-section {
-  margin-left:256px;
 }
 
 .menu-item {
@@ -64,6 +116,8 @@ h1,h2,h3,h4,h5,h6{
 .paras{color:#687178}
 .font-11{font-size:11px}
 .font-13{font-size:13px}
+.font-15{font-size:15px}
+.sukhumvit{font-family:Sukhumvit Set}
 
 .upgrade-btn {
   background-color:#DBFF00;
@@ -91,4 +145,32 @@ h1,h2,h3,h4,h5,h6{
 
 .dashboard-container{
   max-width:760px;
+}
+
+.btn-primary-shadow {
+  box-shadow:0 4px 8px 0 #0099FF33;
+}
+
+@media (max-width:1199px){
+  #sidebar {
+    animation:sidebarInactive 400ms forwards;
+  }
+}
+
+@keyframes sidebarActive {
+  from {
+    transform:translateX(-300px);
+  }
+  to {
+    transform:translateX(0);
+  }
+}
+
+@keyframes sidebarInactive {
+  from {
+    transform:translateX(0);
+  }
+  to {
+    transform:translateX(-300px);
+  }
 }
