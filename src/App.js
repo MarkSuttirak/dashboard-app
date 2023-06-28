@@ -4,6 +4,7 @@ import Sidebar from './components/sidebar';
 import Dashboard from './pages/dashboard';
 import AppsPage from './pages/apps';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Business from './pages/Business';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard />}/>
           <Route path="/apps" element={<AppsPage />}/>
+          <Route path="/business" element={<Business />}/>
         </Routes>
       </Router>
     </>

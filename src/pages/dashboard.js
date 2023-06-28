@@ -8,7 +8,6 @@ import finlab from "../img/finlab.svg";
 import uob from "../img/uob.svg";
 import world from "../img/world.svg";
 import guideIcon from "../img/guide-icon.svg";
-//the ommit
 
 const Dashboard = () => {
     const dashboardInfo = [
