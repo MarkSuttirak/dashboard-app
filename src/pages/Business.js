@@ -72,10 +72,10 @@ function Business() {
     ]
     return (
         <>
-            <div className="pl-10 pt-10 page-section">
+            <div className="sm:p-10 p-5 page-section">
                 <div className="pt-0">
                     <div className=" max-w-2xl">
-                        <div className="max-w-lg">
+                        <div className="max-w-lg text-center sm:text-left">
                             <h1 className="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">
                                 Dream it. Build it. Grow it.🎉
                             </h1>
@@ -86,7 +86,7 @@ function Business() {
                     </div>
                 </div>
 
-                <div className="border border-[#EFEFEF] h-[305px] w-[92%] block md:flex mt-4 rounded-xl overflow-hidden">
+                <div className="border border-[#EFEFEF] h-[305px] w-full sm:w-[92%] block md:flex mt-4 rounded-xl overflow-hidden">
                     <div className="w-[40%] h-full pl-16 py-12 mr-10">
                         <div className="flex flex-col justify-between h-full w-56">
                             <div className="w-56">
@@ -107,9 +107,9 @@ function Business() {
                     <div>
                         <h3 className="font-inter text-[18px] font-semibold mt-4 text-[#1A1B25]">Guide to get Started</h3>
                     </div>
-                    <div className="grid sm:grid-cols-4 grid-cols-1 rounded-xl">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 grid-cols-1 rounded-xl">
                         {startupGuide.map((info) => (
-                            <div key={info.id} className="w-[285px] p-5 border border-[#EFEFEF] rounded-lg mt-5">
+                            <div key={info.id} className="w-full sm:w-[285px] p-5 border border-[#EFEFEF] rounded-lg mt-5">
                                 <div>
                                     <img src={info.image} className="w-8" alt="" />
                                 </div>
@@ -125,13 +125,13 @@ function Business() {
                             </div>
                         ))}
                     </div>
-                    <div className="mt-5 h-[330px] flex">
-                        <div className="w-[48%] border h-full border-[#EFEFEF] rounded-lg overflow-hidden py-8 flex ">
-                            <div className="w-1/2">
-                                <img src={startupGuideImg} className="h-full" alt="" />
+                    <div className="mt-5 lg:h-[330px] block md:flex">
+                        <div className="w-full lg:w-[48%] border mr-1 h-full border-[#EFEFEF] rounded-lg overflow-hidden lg:py-8 block lg:flex ">
+                            <div className="w-[300px] lg:w-1/2">
+                                <img src={startupGuideImg} className="lg:h-full h-[300px]" alt="" />
                             </div>
-                            <div className="w-1/2 flex justify-center items-center">
-                                <div className="flex flex-col justify-center items-start">
+                            <div className="w-full lg:w-1/2 block lg:flex justify-center items-center p-5">
+                                <div className="block sm:flex flex-col justify-center items-start">
                                     <img src={platformMarketplace} className="w-[37px]" alt="" />
                                     <h4 className="mt-2 font-SegoeUI text-xs font-normal">Zaviago Canva</h4>
                                     <h3 className="mt-1 font-inter text-sm font-semibold text-[#1A1B25]">Create a platform or marketplace</h3>
@@ -143,12 +143,12 @@ function Business() {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-[48%] border h-full border-[#EFEFEF] rounded-lg overflow-hidden flex ml-6">
-                            <div className="w-1/2">
-                                <img src={startupDomains} className="object-cover h-full" alt="" />
+                        <div className="w-full lg:w-[48%] border ml-1 h-full border-[#EFEFEF] rounded-lg overflow-hidden block mt-5 sm:mt-0 lg:flex lg:ml-6">
+                            <div className="w-[300px] lg:w-1/2 ">
+                                <img src={startupDomains} className="lg:object-cover lg:h-full h-[300px]" alt="" />
                             </div>
-                            <div className="w-1/2 flex justify-center items-center">
-                                <div className="flex flex-col justify-center items-start">
+                            <div className="w-full lg:w-1/2 block lg:flex justify-center items-center lg-0 p-5">
+                                <div className="block sm:flex flex-col justify-center items-start">
                                     <img src={startupDomainsIcon} className="w-[37px]" alt="" />
                                     <h4 className="mt-2 font-SegoeUI text-xs font-normal">Zaviago Canva</h4>
                                     <h3 className="mt-1 font-inter text-sm font-semibold text-[#1A1B25]">Create a platform or marketplace</h3>
@@ -171,18 +171,18 @@ function Business() {
                         <div className="mt-4 ">
                             <div className="flex border-b border-[#EBEEF0] pb-4">
                                 <div className="w-1/2 ml-4">
-                                    <p className="font-inter text-[13px] font-medium mt-4 text-[#2490EF]">Report a Problem</p>
+                                    <p className="font-inter text-[11px] sm:text-[13px] font-medium mt-4 text-[#2490EF]">Report a Problem</p>
                                 </div>
                                 <div className="w-1/2 ml-4">
-                                    <p className="font-inter text-[13px] font-medium mt-4 text-[#2490EF]">Guide to the zaviago’s store</p>
+                                    <p className="font-inter text-[11px] sm:text-[13px] font-medium mt-4 text-[#2490EF]">Guide to the zaviago’s store</p>
                                 </div>
                             </div>
                             <div className="flex">
                                 <div className="w-1/2 ml-4">
-                                    <p className="font-inter text-[13px] font-medium mt-4 text-[#2490EF]">Contact support </p>
+                                    <p className="font-inter text-[11px] sm:text-[13px] font-medium mt-4 text-[#2490EF]">Contact support </p>
                                 </div>
                                 <div className="w-1/2 ml-4">
-                                    <p className="font-inter text-[13px] font-medium mt-4 text-[#2490EF]">About Zaviago</p>
+                                    <p className="font-inter text-[11px] sm:text-[13px] font-medium mt-4 text-[#2490EF]">About Zaviago</p>
                                 </div>
                             </div>
                             <div className="mt-10">
