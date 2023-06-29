@@ -166,6 +166,17 @@ h1,h2,h3,h4,h5,h6{
   z-index:10;
 }
 
+.sidebar-btn {
+  width:32px;
+  height:32px;
+  background-color:#F3F3F3;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  border-radius:6px;
+  cursor:pointer;
+}
+
 @media (max-width:1199px){
   #sidebar {
     transform:translateX(-300px);
@@ -173,6 +184,19 @@ h1,h2,h3,h4,h5,h6{
   .page-section {
     margin-left:80px;
   }
+  .header-mobile {
+    h1 {
+      font-size:24px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      background-color:#F3F3F3;
+    }
+  }
+  .close-sidebar-mobile{display:flex}
 }
 
 @keyframes sidebarActive {
