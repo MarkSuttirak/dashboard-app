@@ -200,7 +200,7 @@ const Sidebar = () => {
                             className={({ active }) =>
                               classNames(
                                 'cursor-default select-none rounded-md px-4 py-2',
-                                active && 'bg-indigo-600 text-white'
+                                active && 'bg-[#0099FF] text-white'
                               )
                             }
                           >

@@ -10,6 +10,7 @@ import startupDomains from '../img/startup-dommains.png'
 import startupDomainsIcon from '../img/startup-domain-icon.png'
 import terms from '../img/terms.png'
 import play from '../img/play.png'
+import testVideo from '../img/test.mp4'
 
 function Business() {
     const startupGuide = [
@@ -86,7 +87,7 @@ function Business() {
                     </div>
                 </div>
 
-                <div className="border border-[#EFEFEF] h-[305px] w-full sm:w-[92%] block md:flex mt-4 rounded-xl overflow-hidden">
+                <div className="border border-[#EFEFEF] h-[400px] w-full block md:flex mt-4 rounded-xl overflow-hidden">
                     <div className="w-[40%] h-full pl-16 py-12 mr-10">
                         <div className="flex flex-col justify-between h-full w-56">
                             <div className="w-56">
@@ -99,7 +100,7 @@ function Business() {
                         </div>
                     </div>
                     <div className="relative">
-                        <img src={websiteMade} className="" alt="" />
+                        <img src={websiteMade} className="min-w-[960px] w-full h-full" alt="" />
                         <img src={play} className="w-36 absolute top-[33%] left-[41%]" alt="" />
                     </div>
                 </div>
@@ -125,8 +126,8 @@ function Business() {
                             </div>
                         ))}
                     </div>
-                    <div className="mt-5 lg:h-[330px] block md:flex">
-                        <div className="w-full lg:w-[48%] border mr-1 h-full border-[#EFEFEF] rounded-lg overflow-hidden lg:py-8 block lg:flex ">
+                    <div className="mt-5 lg:h-[330px] block md:grid grid-cols-2 gap-x-[21px]">
+                        <div className="w-full border mr-1 h-full border-[#EFEFEF] rounded-lg overflow-hidden lg:py-8 block lg:flex">
                             <div className="w-[300px] lg:w-1/2">
                                 <img src={startupGuideImg} className="lg:h-full h-[300px]" alt="" />
                             </div>
@@ -143,7 +144,7 @@ function Business() {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-full lg:w-[48%] border ml-1 h-full border-[#EFEFEF] rounded-lg overflow-hidden block mt-5 sm:mt-0 lg:flex lg:ml-6">
+                        <div className="w-full border h-full border-[#EFEFEF] rounded-lg overflow-hidden block mt-5 sm:mt-0 lg:flex">
                             <div className="w-[300px] lg:w-1/2 ">
                                 <img src={startupDomains} className="lg:object-cover lg:h-full h-[300px]" alt="" />
                             </div>
