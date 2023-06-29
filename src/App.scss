@@ -64,6 +64,7 @@
   #sidebar {
     animation:sidebarActive 400ms forwards !important;
   }
+  .close-sidebar-mobile{display:none !important}
 }
 
 * {
@@ -170,7 +171,7 @@ h1,h2,h3,h4,h5,h6{
   width:32px;
   height:32px;
   background-color:#F3F3F3;
-  display:none;
+  display:flex;
   align-items:center;
   justify-content:center;
   border-radius:6px;
