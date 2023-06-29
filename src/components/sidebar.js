@@ -118,7 +118,7 @@ const Sidebar = () => {
         </div>
         
         <header className="header-mobile">
-          <h1 onClick={openSidebar}>Test</h1>
+          <h1 onClick={openSidebar} style={{cursor:"pointer"}}>Test</h1>
         </header>
       </>
     )
