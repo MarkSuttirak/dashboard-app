@@ -11,6 +11,9 @@ import startupDomainsIcon from '../img/startup-domain-icon.png'
 import terms from '../img/terms.png'
 import play from '../img/play.png'
 import testVideo from '../img/test.mp4'
+import blog1 from '../img/blog1.svg'
+import blog2 from '../img/blog2.svg'
+import blog3 from '../img/blog3.svg'
 
 function Business() {
     const startupGuide = [
@@ -71,6 +74,30 @@ function Business() {
             image: connectBusiness
         },
     ]
+
+    const blogs = [
+        {
+          title: 'Guide',
+          description: 'Run effective campaigns with apps that help you identify marketing gaps.',
+          background: blog1,
+          button: 'Optimize with zaviago',
+          colour: 'white'
+        },
+        {
+          title: 'Blog',
+          description: 'So What\'s the plan',
+          background: blog2,
+          button: 'Make project plan',
+          colour: 'white'
+        },
+        {
+          title: 'Guide',
+          description: 'Run effective campaigns with apps',
+          background: blog3,
+          button: 'Optimize with zaviago',
+          colour: 'black'
+        },
+      ]
 
     const openVideo = () => {
         document.getElementById('video-overlay').style.animation = 'openModal 400ms forwards';
@@ -178,34 +205,22 @@ function Business() {
                 </div>
                 <div className="mt-12 mb-44">
                     <div>
-                        <h3 className="font-inter text-[18px] font-semibold mt-4 text-[#1A1B25]">Quick Links</h3>
-                        <p className="mt-1 font-inter text-xs font-normal text-[#687178]">Domains pointing to your site</p>
+                        <h3 className="font-inter text-[18px] font-semibold mt-4 text-[#1A1B25]">Find your people. Sell them stuff they love. Repeat.</h3>
                     </div>
-                    <div>
-                        <div className="mt-4 ">
-                            <div className="flex border-b border-[#EBEEF0] pb-4">
-                                <div className="w-1/2 ml-4">
-                                    <p className="font-inter text-[11px] sm:text-[13px] font-medium mt-4 text-[#2490EF]">Report a Problem</p>
-                                </div>
-                                <div className="w-1/2 ml-4">
-                                    <p className="font-inter text-[11px] sm:text-[13px] font-medium mt-4 text-[#2490EF]">Guide to the zaviago’s store</p>
-                                </div>
-                            </div>
-                            <div className="flex">
-                                <div className="w-1/2 ml-4">
-                                    <p className="font-inter text-[11px] sm:text-[13px] font-medium mt-4 text-[#2490EF]">Contact support </p>
-                                </div>
-                                <div className="w-1/2 ml-4">
-                                    <p className="font-inter text-[11px] sm:text-[13px] font-medium mt-4 text-[#2490EF]">About Zaviago</p>
-                                </div>
-                            </div>
-                            <div className="mt-10">
-                                <div className="flex items-center border-t border-[#EBEEF0] pt-4">
-                                    <p className="ml-4 font-inter text-xs font-medium text-[#8A8E91]">Terms & Conditions</p>
-                                    <img src={terms} className="w-[20px]" alt="" />
-                                </div>
-                            </div>
+                    <div className="mx-auto pb-10 grid grid-cols-3 gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-">
+                        {blogs.map((info) => (
+                          <div
+                            key={info.title}
+                            className="relative flex items-center space-x-3 bg-white p-4 pb-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400" style={{background:"url(" + info.background + ")",backgroundSize:"100%",backgroundRepeat:"no-repeat",borderRadius:"20px"}}
+                          >
+                          <div className="min-w-0 pt-[16rem]">
+                            <span className="absolute inset-0" aria-hidden="true" />
+                            <h2 className="text-md font-bold text-white leading-5 font-inter" style={{color: info.colour}}>{info.title}</h2>
+                            <p className="font-semibold font-[27px] font-inter" style={{color: info.colour}}>{info.description}</p>
+                            <button style={{color: info.colour, textDecoration:"underline"}} className='font-[17px]'>{info.button}</button>
+                          </div>
                         </div>
+                        ))}
                     </div>
                 </div>
             </div>

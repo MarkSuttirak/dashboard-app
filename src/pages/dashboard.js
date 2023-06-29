@@ -21,25 +21,22 @@ import amazon from "../img/amazon.svg";
 
 const Dashboard = () => {
     const dashboardInfo = [
-        {
-          title: 'Start Working',
-          description: 'Go to your business app',
-          background:
-            startWorking,
-        },
-        {
-            title: 'Apps Marketplace',
-            description: 'See more at AppStore',
-            background:
-              appsMarketplace,
-          },
-          {
-            title: 'Watch Tutorials',
-            description: 'Learn Zaviago/OS',
-            background:
-              watchTutorials,
-          },
-      ]
+      {
+        title: 'Start Working',
+        description: 'Go to your business app',
+        background: startWorking,
+      },
+      {
+        title: 'Apps Marketplace',
+        description: 'See more at AppStore',
+        background: appsMarketplace,
+      },
+      {
+        title: 'Watch Tutorials',
+        description: 'Learn Zaviago/OS',
+        background: watchTutorials,
+      },
+    ]
     return (
       <>
         {/* Header Dashboard */}
@@ -94,17 +91,17 @@ const Dashboard = () => {
         </div>
 
         <div className="mx-auto dashboard-container pb-10 grid grid-cols-3 gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {dashboardInfo.map((info) => (
-        <div
-          key={info.title}
-          className="relative flex items-center space-x-3 bg-white p-4 pb-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400" style={{background:"url(" + info.background + ")",backgroundSize:"100%",backgroundRepeat:"no-repeat",borderRadius:"20px"}}
-        >
-          <div className="min-w-0" style={{paddingTop:"8.25rem"}}>
+          {dashboardInfo.map((info) => (
+            <div
+              key={info.title}
+              className="relative flex items-center space-x-3 bg-white p-4 pb-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400" style={{background:"url(" + info.background + ")",backgroundSize:"100%",backgroundRepeat:"no-repeat",borderRadius:"20px"}}
+            >
+            <div className="min-w-0" style={{paddingTop:"8.25rem"}}>
               <span className="absolute inset-0" aria-hidden="true" />
               <h2 className="text-md font-bold text-white leading-5">{info.title}</h2>
               <p className="truncate font-bold font-13" style={{color:"#FFFFFF99"}}>{info.description}</p>
+            </div>
           </div>
-        </div>
          ))}
         </div>
 
@@ -126,12 +123,12 @@ const Dashboard = () => {
                 </div>
                 <div className="mr-2 mt-6 flex-shrink-0">
                 <button
-                    type="button"
-                    className="relative inline-flex gap-x-2.5 items-center rounded-lg border border-transparent bg-black font-15 font-bold text-white shadow-md hover:bg-black focus:outline-none focus:ring-offset-2 w-full justify-center"
-                    style={{padding:"11px 29px"}}
+                  type="button"
+                  className="relative inline-flex gap-x-2.5 items-center rounded-lg border border-transparent bg-black font-15 font-bold text-white shadow-md hover:bg-black focus:outline-none focus:ring-offset-2 w-full justify-center"
+                  style={{padding:"11px 29px"}}
                 >
-                    <img src={bolt} />
-                    Upgrade to Pro
+                  <img src={bolt} />
+                  Upgrade to Pro
                 </button>
                 <div className="mt-4">
                   <h2 className="sukhumvit paras text-sm">เริ่มต้นที่</h2>
