@@ -71,6 +71,19 @@ function Business() {
             image: connectBusiness
         },
     ]
+
+    const openVideo = () => {
+        document.getElementById('video-overlay').style.animation = 'openModal 400ms forwards';
+        document.getElementById('video-apps').style.animation = 'openModal 400ms forwards';
+        document.getElementById('video-opened').play();
+    }
+
+    const closeVideo = () => {
+        document.getElementById('video-overlay').style.animation = 'closeModal 400ms forwards';
+        document.getElementById('video-apps').style.animation = 'closeModal 400ms forwards';
+        document.getElementById('video-opened').pause();
+    }
+
     return (
         <>
             <div className="sm:p-10 p-5 page-section">
@@ -87,8 +100,8 @@ function Business() {
                     </div>
                 </div>
 
-                <div className="border border-[#EFEFEF] h-[400px] w-full block md:flex mt-4 rounded-xl overflow-hidden">
-                    <div className="w-[40%] h-full pl-16 py-12 mr-10">
+                <div className="border border-[#EFEFEF] h-[400px] w-full block md:flex mt-4 rounded-xl overflow-hidden bg-[#DBF0FF] justify-between">
+                    <div className="w-[400px] h-full pl-16 py-12 mr-10">
                         <div className="flex flex-col justify-between h-full w-56">
                             <div className="w-56">
                                 <p className="font-inter text-[13px] font-normal">zaviago 2023</p>
@@ -99,8 +112,8 @@ function Business() {
                             </div>
                         </div>
                     </div>
-                    <div className="relative">
-                        <img src={websiteMade} className="min-w-[960px] w-full h-full" alt="" />
+                    <div className="relative flex justify-end cursor-pointer" onClick={openVideo}>
+                        <img src={websiteMade} className="w-full h-full" alt="" />
                         <img src={play} className="w-36 absolute top-[33%] left-[41%]" alt="" />
                     </div>
                 </div>
@@ -117,7 +130,7 @@ function Business() {
                                 <div>
                                     <h4 className="mt-2 font-SegoeUI text-xs font-normal">{info.subTitle}</h4>
                                     <h3 className="mt-1 font-inter text-sm font-semibold text-[#1A1B25]">{info.title}</h3>
-                                    <h3 className="mt-1 font-inter text-[13px] font-normal">{info.description}</h3>
+                                    <h3 className="mt-1 font-inter text-[13px] font-normal paras">{info.description}</h3>
                                     <div className="flex mt-4">
                                         <button className="bg-[#2490EF] text-white rounded-md w-20 h-7 font-inter text-[13px] font-semibold">+ Install</button>
                                         <button className="w-24 h-8 font-SegoeUI text-sm font-normal flex items-center ml-4"> Learn more <img src={learnMore} className="ml-2" alt="" /></button>
@@ -136,7 +149,7 @@ function Business() {
                                     <img src={platformMarketplace} className="w-[37px]" alt="" />
                                     <h4 className="mt-2 font-SegoeUI text-xs font-normal">Zaviago Canva</h4>
                                     <h3 className="mt-1 font-inter text-sm font-semibold text-[#1A1B25]">Create a platform or marketplace</h3>
-                                    <h3 className="mt-1 font-inter text-[13px] font-normal w-[220px]">Facilitate payments and pay out sellers or service providers.</h3>
+                                    <h3 className="mt-1 font-inter text-[13px] font-normal w-[220px] paras">Facilitate payments and pay out sellers or service providers.</h3>
                                     <div className="flex mt-4">
                                         <button className="bg-[#2490EF] text-white rounded-md w-24 h-8 font-inter text-[13px] font-semibold">+ Install</button>
                                         <button className="w-24 h-8 font-SegoeUI text-sm font-normal flex items-center ml-4"> Learn more <img src={learnMore} className="ml-2" alt="" /></button>
@@ -153,7 +166,7 @@ function Business() {
                                     <img src={startupDomainsIcon} className="w-[37px]" alt="" />
                                     <h4 className="mt-2 font-SegoeUI text-xs font-normal">Zaviago Canva</h4>
                                     <h3 className="mt-1 font-inter text-sm font-semibold text-[#1A1B25]">Create a platform or marketplace</h3>
-                                    <h3 className="mt-1 font-inter text-[13px] font-normal w-[220px]">Facilitate payments and pay out sellers or service providers.</h3>
+                                    <h3 className="mt-1 font-inter text-[13px] font-normal w-[220px] paras">Facilitate payments and pay out sellers or service providers.</h3>
                                     <div className="flex mt-4">
                                         <button className="bg-[#2490EF] text-white rounded-md w-24 h-8 font-inter text-[13px] font-semibold">+ Install</button>
                                         <button className="w-24 h-8 font-SegoeUI text-sm font-normal flex items-center ml-4"> Learn more <img src={learnMore} className="ml-2" alt="" /></button>
@@ -195,6 +208,16 @@ function Business() {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div id="video-overlay" className='w-full h-full bg-gray-500 bg-opacity-75 fixed top-0 z-[99]'></div>
+            <div className='fixed top-0 w-screen h-screen flex items-center justify-center z-[99]' id="video-apps">
+                <div className='fixed top-5 right-5 cursor-pointer' onClick={closeVideo}>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 384 512" fill='white'><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                </div>
+                <video width="60%" height="60%" controls id="video-opened">
+                    <source src={testVideo} type="video/mp4"/>
+                </video>
             </div>
         </>
     )

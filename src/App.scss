@@ -81,7 +81,7 @@ h1,h2,h3,h4,h5,h6{
   z-index:99;
 }
 
-#sidebar-overlay {
+#video-overlay,#video-apps,#sidebar-overlay {
   visibility:hidden;
   opacity:0;
 }
@@ -240,6 +240,28 @@ h1,h2,h3,h4,h5,h6{
   from {
     visibility:visible;
     opacity:0.75
+  }
+  to {
+    visibility:hidden;
+    opacity:0;
+  }
+}
+
+@keyframes openModal {
+  from {
+    visibility:hidden;
+    opacity:0;
+  }
+  to {
+    visibility:visible;
+    opacity:1;
+  }
+}
+
+@keyframes closeModal {
+  from {
+    visibility:visible;
+    opacity:1;
   }
   to {
     visibility:hidden;
