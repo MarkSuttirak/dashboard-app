@@ -107,9 +107,9 @@ function Business() {
                     <div>
                         <h3 className="font-inter text-[18px] font-semibold mt-4 text-[#1A1B25]">Guide to get Started</h3>
                     </div>
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 grid-cols-1 rounded-xl">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 grid-cols-1 rounded-xl gap-x-[21px] started-guide">
                         {startupGuide.map((info) => (
-                            <div key={info.id} className="w-full sm:w-[285px] p-5 border border-[#EFEFEF] rounded-lg mt-5">
+                            <div key={info.id} className="w-full sm:w-full p-5 border border-[#EFEFEF] rounded-lg mt-5">
                                 <div>
                                     <img src={info.image} className="w-8" alt="" />
                                 </div>

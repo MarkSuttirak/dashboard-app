@@ -156,10 +156,11 @@ h1,h2,h3,h4,h5,h6{
 
 .btn-primary-shadow {
   box-shadow:0 4px 8px 0 #0099FF33;
+  cursor:pointer;
 }
 
 .header-mobile {
-  width:80px;
+  width:90px;
   height:100%;
   background-color:white;
   padding:20px;
@@ -178,12 +179,18 @@ h1,h2,h3,h4,h5,h6{
   cursor:pointer;
 }
 
+@media (max-width:1500px) and (min-width:991px){
+  .started-guide {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 @media (max-width:1199px){
   #sidebar {
     transform:translateX(-300px);
   }
   .page-section {
-    margin-left:80px;
+    margin-left:90px;
   }
   .header-mobile {
     h1 {
@@ -225,14 +232,14 @@ h1,h2,h3,h4,h5,h6{
   }
   to {
     visibility:visible;
-    opacity:0.4
+    opacity:0.75
   }
 }
 
 @keyframes sidebarOverlayInactive {
   from {
     visibility:visible;
-    opacity:0.4
+    opacity:0.75
   }
   to {
     visibility:hidden;

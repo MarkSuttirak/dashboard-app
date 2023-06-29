@@ -38,7 +38,7 @@ const Sidebar = () => {
       { name: 'Apps', icon: appsImg, href: '/apps', count: 3, current: active === '/apps' ? true : false},
       { name: 'Teams', icon: teamsImg, href: '#', count: 4, current: active === '#' ? true : false},
       { name: 'Billing', icon: billingImg, href: '#', current: active === "#" ? true : false, active: active },
-      { name: 'Setting', icon: settingsImg, href: '#', count: 12, current: active === "#" ? true : false, active: active },
+      { name: 'Setting', icon: settingsImg, href: '#', count: 12, current: active === "/settings" || active === "/change-domain" ? true : false, active: active },
     ]
 
     function classNames(...classes) {
@@ -51,7 +51,7 @@ const Sidebar = () => {
 
     const searchResults = [
       { name: 'Apps', url: '/apps' },
-      // More people...
+      { name: 'Change Domain', url: '/change-domain' },
     ]
     
     function classNames(...classes) {
@@ -74,7 +74,7 @@ const Sidebar = () => {
     }
     return (
       <>
-        <div className="w-full h-full fixed z-40" id="sidebar-overlay" style={{backgroundColor:"#000000"}} onClick={closeSidebar}></div>
+        <div className="w-full h-full fixed z-40 bg-gray-500" id="sidebar-overlay" onClick={closeSidebar}></div>
         <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white fixed h-screen" id="sidebar">
           <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
             <div className="flex flex-shrink-0 justify-between items-center px-4 columns-2">
