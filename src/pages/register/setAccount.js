@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
-import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import { Listbox, Transition, RadioGroup } from '@headlessui/react'
+import { CheckIcon, ChevronUpDownIcon, CheckCircleIcon } from '@heroicons/react/20/solid'
 import crmApps from "../../img/crm-apps.svg";
 import pmApps from "../../img/pm-apps.svg";
 import insightApps from "../../img/insight-apps.svg";
@@ -9,11 +9,62 @@ import hrApps from "../../img/hr-apps.svg";
 import salesteamApps from "../../img/salesteam-apps.svg";
 import ordersApps from "../../img/orders-apps.svg";
 
+const appsList = [
+  {
+    title: 'CRM',
+    description: 'รวบรวมข้อมูลเกี่ยวกับลูกค้า',
+    img: crmApps,
+    background: '#E5F5FF',
+    shadow: '0 4px 32px 0 #88888833'
+  },
+  {
+    title: 'Project Management',
+    description: 'ควบคุมการทำงานของทีม',
+    img: pmApps,
+    background: '#E5F5FF',
+    shadow: '0 4px 32px 0 #88888833'
+  },
+  {
+    title: 'Insight',
+    description: 'ข้อมูลเชิงลึกทางการตลาด',
+    img: insightApps,
+    background: '#F6F3FF',
+    shadow: '0 4px 32px 0 #88888833'
+  },
+  {
+    title: 'Human Resources',
+    description: 'จัดการการทำงานและรายได้ของบุคคล',
+    img: hrApps,
+    background: '#F7EBFF',
+    shadow: '0 4px 32px 0 #88888833'
+  },
+  {
+    title: 'Sales Team',
+    description: 'ข้อมูลและการจัดการทีมเซลล์',
+    img: salesteamApps,
+    background: '#F7E3F1',
+    shadow: 'none'
+  },
+  {
+    title: 'Orders Management',
+    description: 'ข้อมูลการสั่งซื้อ',
+    img: ordersApps,
+    background: '#FFE5E5',
+    shadow: 'none'
+  },
+]
+
 const Register = () => {
     const [account, setAccount] = useState(true);
     const [tellUs, setTellUs] = useState(false);
     const [site, setSite] = useState(false);
     const [apps, setApps] = useState(false);
+
+    const [selectedApp, setSelectedApp] = useState(appsList[0])
+
+    function classNames(...classes) {
+      return classes.filter(Boolean).join(' ')
+    }    
 
     const handleAccount = () => {
       setAccount(false);
@@ -29,51 +80,6 @@ const Register = () => {
       setSite(false);
       setApps(true);
     }
-
-    const appsList = [
-      {
-        title: 'CRM',
-        description: 'รวบรวมข้อมูลเกี่ยวกับลูกค้า',
-        img: crmApps,
-        background: '#E5F5FF',
-        shadow: '0 4px 32px 0 #88888833'
-      },
-      {
-        title: 'Project Management',
-        description: 'ควบคุมการทำงานของทีม',
-        img: pmApps,
-        background: '#E5F5FF',
-        shadow: '0 4px 32px 0 #88888833'
-      },
-      {
-        title: 'Insight',
-        description: 'ข้อมูลเชิงลึกทางการตลาด',
-        img: insightApps,
-        background: '#F6F3FF',
-        shadow: '0 4px 32px 0 #88888833'
-      },
-      {
-        title: 'Human Resources',
-        description: 'จัดการการทำงานและรายได้ของบุคคล',
-        img: hrApps,
-        background: '#F7EBFF',
-        shadow: '0 4px 32px 0 #88888833'
-      },
-      {
-        title: 'Sales Team',
-        description: 'ข้อมูลและการจัดการทีมเซลล์',
-        img: salesteamApps,
-        background: '#F7E3F1',
-        shadow: 'none'
-      },
-      {
-        title: 'Orders Management',
-        description: 'ข้อมูลการสั่งซื้อ',
-        img: ordersApps,
-        background: '#FFE5E5',
-        shadow: 'none'
-      },
-    ]
 
     const startApp = () => {
       window.location.href = '/'
@@ -268,24 +274,37 @@ const Register = () => {
             <h1 className="text-[#1F272E] font-bold text-[21px] mb-[14px]" style={{fontFamily:"Eventpop"}}>เลือก Apps ที่ต้องการติดตั้ง</h1>
             <p className="text-[#505A62] sukhumvit text-xs">เลือก Apps ที่ต้องการติดตั้งใน Site เริ่มต้นของคุณ ลองเลือกสัก Apps ที่คุณต้องการใช้งานมากที่สุด <br/>ไม่ต้องกังวลไปเพราะคุณสามารถติดตั้ง Apps อื่นๆ เพิ่มเติมได้ในภายหลัง</p>
             <div className="mt-[27px]">
-              <div className="mx-auto grid gap-x-4 grid grid-cols-1 sm:grid-cols-2 gap-4 md:grid-cols-3 m-auto">
-                {appsList.map((item) => (
-                  <div
+              <RadioGroup value={selectedApp} onChange={setSelectedApp}>
+                <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4">
+                  {appsList.map((item) => (
+                    <RadioGroup.Option
                       key={item.title}
-                      className="relative items-center text-center space-x-3 bg-white border border-[#DDDDDD] rounded-lg box-border select-apps"
+                      value={item}
+                      className={({ checked, active }) =>
+                        classNames(
+                          checked ? 'active-app' : 'inactive-app',
+                          active ? 'active-app' : '',
+                          'relative cursor-pointer rounded-lg border bg-white shadow-sm focus:outline-none w-[200px] h-[153px] rounded-lg box-border'
+                        )
+                      }
                     >
-                    <div className="min-w-[200px] w-full h-[153px]" style={{backgroundColor:item.background,borderRadius:"8px"}}>
-                      <div>
-                        <img src={item.img} className="m-auto relative top-[18px]" style={{boxShadow:item.shadow}}/>
-                      </div>
-                      <div className="absolute bottom-0 m-auto w-full py-[10px] desc-apps">
-                        <h2 className="text-sm font-bold leading-5 font-inter text-[#1F272E] mb-1">{item.title}</h2>
-                        <p className="font-bold text-xs text-[#505A62] sukhumvit">{item.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                      {({ checked, active }) => (
+                        <>
+                          <span className="block h-full">
+                            <RadioGroup.Label as="div" className="block text-sm font-medium text-gray-900 w-full h-[90%]" style={{backgroundColor:item.background,borderRadius:"8px 8px 0 0"}}>
+                              <img src={item.img} className="m-auto relative top-[18px]" style={{boxShadow:item.shadow}}/>
+                            </RadioGroup.Label>
+                            <RadioGroup.Description as="div" className="absolute bottom-0 m-auto w-full py-[10px] desc-apps bg-white" style={{borderRadius:"0 0 8px 8px"}}>
+                              <h2 className="text-sm font-bold leading-5 font-inter text-[#1F272E] mb-1">{item.title}</h2>
+                              <p className="font-bold text-xs text-[#505A62] sukhumvit">{item.description}</p>
+                            </RadioGroup.Description>
+                          </span>
+                        </>
+                      )}
+                    </RadioGroup.Option>
+                  ))}
+                </div>
+              </RadioGroup>
               <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg w-[70px] mt-[40px] text-xs m-auto" onClick={startApp}>Start</button>
             </div>
           </div>

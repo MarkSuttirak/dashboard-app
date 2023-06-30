@@ -181,16 +181,23 @@ h1,h2,h3,h4,h5,h6{
 
 .required {color:#FF0000}
 
-.select-apps {
-  cursor:pointer;
+.inactive-app {
+  border:1px solid #E5E5E5;
   .desc-apps {
     background-color:white;
-    border-radius:0 0 8px 8px;
   }
-  &:hover,&:active{
-    border-color:#3996FD;
+
+  &:hover {
+    border-color:#0099FF;
+    .desc-apps {
+      background-color:#F0F8FE;
+    }
   }
-  &:hover .desc-apps,&:active .desc-apps{
+}
+
+.active-app {
+  border-color:#0099FF;
+  .desc-apps {
     background-color:#F0F8FE;
   }
 }
