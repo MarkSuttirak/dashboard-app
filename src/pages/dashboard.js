@@ -18,6 +18,7 @@ import tiktok from "../img/tiktok.svg";
 import line from "../img/line.svg";
 import meta from "../img/meta.svg";
 import amazon from "../img/amazon.svg";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
     const dashboardInfo = [
@@ -68,23 +69,23 @@ const Dashboard = () => {
                 aria-hidden="true"
               />
                 <div
-                    className="mt-4 flex md:mt-0 md:ml-4"
-                    aria-hidden="true"
-                  />
-                    <button
-                      type="button"
-                      className="inline-flex items-center rounded-lg bg-white text-sm font-semibold text-gray-700 shadow-sm focus:outline-none focus:ring-offset-2 text-xs mt-2"
-                      style={{backgroundColor:"#F3F3F3",padding:"7px 10px"}}
-                    >
-                      Invite
-                    </button>
-                    <button
-                      type="button"
-                      className="ml-3 inline-flex items-center rounded-lg border border-transparent text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-13 btn-primary-shadow mt-2"
-                      style={{padding:"4px 18px"}}
-                    >
-                      Login
-                    </button>
+                  className="mt-4 flex md:mt-0 md:ml-4"
+                  aria-hidden="true"
+                />
+                  <button
+                    type="button"
+                    className="inline-flex items-center rounded-lg bg-white text-sm font-semibold text-gray-700 shadow-sm focus:outline-none focus:ring-offset-2 text-xs mt-2"
+                    style={{backgroundColor:"#F3F3F3",padding:"7px 10px"}}
+                  >
+                    Invite
+                  </button>
+                  <button
+                    type="button"
+                    className="ml-3 inline-flex items-center rounded-lg border border-transparent text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-13 btn-primary-shadow mt-2"
+                    style={{padding:"4px 18px"}}
+                  >
+                    Login
+                  </button>
             </div>
           </div>
           <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-white sm:h-32" />
@@ -150,9 +151,9 @@ const Dashboard = () => {
                     <h1 className="text-black font-bold text-[22px]" style={{color:"#333333"}}>alpgroup.aca.fc.zaviago.com</h1>
                   </div>
 
-                  <a href="#" className="link-anchor inline-block mt-2 text-xs">
+                  <Link to="/change-domain" className="link-anchor inline-block mt-2 text-xs">
                     Change Domain
-                  </a>
+                  </Link>
                 </div>
                 <div className="ml-4 mt-2 flex-shrink-0">
                   <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-0.5 text-sm font-medium online">

@@ -104,9 +104,9 @@ const Welcome = () => {
                 <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[15px] w-[304px] text-xs m-auto" onClick={handleFillNum}>ขอรหัส OTP</button>
     
                 <div className="mt-4">
-                <h2 className="sukhumvit text-xs">หมายเลขโทรศัพท์ที่ระบุจะเพิ่มไปยังโปรไฟล์ของคุณ <br/>โปรดศึกษาข้อมูลเพิ่มเติมที่ 
+                  <h2 className="sukhumvit text-xs">หมายเลขโทรศัพท์ที่ระบุจะเพิ่มไปยังโปรไฟล์ของคุณ <br/>โปรดศึกษาข้อมูลเพิ่มเติมที่ 
                     <span className="ml-1 text-[#0066CC] sukhumvit cursor-pointer decoration-solid underline">นโยบายความเป็นส่วนตัว</span>
-                </h2>
+                  </h2>
                 </div>
             </div>
           </div>
@@ -199,9 +199,9 @@ const Welcome = () => {
                 </div>
 
                 <div className="mt-4">
-                <h2 className="sukhumvit text-xs">
+                  <h2 className="sukhumvit text-xs">
                     <span className="ml-1 text-[#0066CC] sukhumvit cursor-pointer decoration-solid underline" onClick={handleChangeNum}>เปลี่ยนเบอร์มือถือ</span>
-                </h2>
+                  </h2>
                 </div>
             </div>
           </div>
