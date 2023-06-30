@@ -28,7 +28,7 @@ const ChangeDomain = () => {
             type="text"
             name="getzaviago-domain"
             id="getzaviago-domain"
-            className="block bg-[#F4F5F6] text-sm p-3 w-full pr-40 w-[500px] focus-within:none"
+            className="block bg-[#F4F5F6] text-sm p-3 pr-40 w-[500px] focus-within:outline-none"
             onChange={typeDomain}
           />
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 bg-[#F4F5F6]">
@@ -43,7 +43,7 @@ const ChangeDomain = () => {
                 type="text"
                 name="own-domain"
                 id="own-domain"
-                className="block bg-[#F4F5F6] text-sm p-3 w-[500px] focus-within:none"
+                className="block bg-[#F4F5F6] text-sm p-3 w-[500px] focus-within:outline-none"
                 placeholder="www.mywebsite.com" disabled
                 onChange={typeDomain}
             />
@@ -125,11 +125,11 @@ const ChangeDomain = () => {
                       </div>
                       <div className="mt-3 text-center sm:mt-5">
                         <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                          กรุณาอัพเกรดเป็น Pro Version
+                          กรุณาอัปเกรดเป็น Pro Version
                         </Dialog.Title>
                         <div className="mt-2">
                           <p className="text-sm text-gray-500">
-                            หากต้องการเปลี่ยนเป็นโดเมนที่คุณเป็นเจ้าของ กรุณาอัพเกรดเป็น Pro Version
+                            หากต้องการเปลี่ยนเป็นโดเมนที่คุณเป็นเจ้าของ กรุณาอัปเกรดเป็น Pro Version
                             ป.ล. กำลังทดลอง Modal เฉยๆ รอปริมมาเช็คอีกที
                           </p>
                         </div>

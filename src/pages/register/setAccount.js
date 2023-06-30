@@ -83,7 +83,7 @@ const Register = () => {
       <div className='flex items-center justify-center h-screen relative z-[101] bg-white'>
         {account && (
           <div className="login-box flex flex-col justify-center px-10 py-[60px] rounded-lg">
-            <h1 className="text-[#1F272E] font-bold text-[21px] mt-8">ตั้งค่าบัญชีของคุณ</h1>
+            <h1 className="text-[#1F272E] font-bold text-[21px]">ตั้งค่าบัญชีของคุณ</h1>
             <div className="mt-[27px]">
               <label htmlFor="firstname" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 text-xs">ชื่อ<span className="required">*</span></label>
               <div className="mt-1">
@@ -94,7 +94,7 @@ const Register = () => {
                 className="block w-[304px] h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 pl-4"
               />
               </div>
-  
+
               <label htmlFor="surname" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-xs">นามสกุล<span className="required">*</span></label>
               <div className="mt-1">
               <input
@@ -104,7 +104,7 @@ const Register = () => {
                 className="block w-[304px] h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 pl-4"
               />
               </div>
-  
+
               <label htmlFor="date" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-xs">วัน-เดือน-ปีเกิด<span className="required">*</span></label>
               <div className="mt-1">
               <input
@@ -114,7 +114,7 @@ const Register = () => {
                 className="block w-[304px] h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 pl-4"
               />
               </div>
-  
+
               <label htmlFor="email" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-xs">อีเมล<span className="required">*</span></label>
               <div className="mt-1">
               <input
@@ -124,17 +124,17 @@ const Register = () => {
                 className="block w-[304px] h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 pl-4"
               />
               </div>
-  
+
               <fieldset className="space-y-5 w-[304px]">
                 <legend className="sr-only">Notifications</legend>
                 <div className="relative flex items-start">
                   <div className="flex h-5 items-center">
                   <input
-                      id="comments"
-                      aria-describedby="comments-description"
-                      name="comments"
-                      type="checkbox"
-                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                    id="comments"
+                    aria-describedby="comments-description"
+                    name="comments"
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                   />
                   </div>
                   <div className="ml-3 text-sm">
@@ -144,7 +144,7 @@ const Register = () => {
                   </div>
                 </div>
               </fieldset>
-  
+
               <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[40px] w-[304px] text-xs m-auto" onClick={handleAccount}>ยืนยัน</button>
             </div>
           </div>
@@ -152,7 +152,7 @@ const Register = () => {
 
         {tellUs && (
           <div className="login-box flex flex-col justify-center px-10 py-[60px] rounded-lg">
-            <h1 className="text-[#1F272E] font-bold text-[21px] mt-8">บอกเราอีกสักนิดเกี่ยวกับธุรกิจของคุณ</h1>
+            <h1 className="text-[#1F272E] font-bold text-[21px]">บอกเราอีกสักนิดเกี่ยวกับธุรกิจของคุณ</h1>
             <p className="sukhumvit text-xs">บอกเราสักเล็กน้อยว่าคุณเป็นใคร เพื่อให้เราสามารถมอบสิ่ง<br/>ดีที่สุดให้กับคุณ</p>
             <div className="mt-[27px]">
               <label htmlFor="companyname" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 text-xs">ชื่อธุรกิจของคุณ<span className="required">*</span></label>
@@ -164,13 +164,13 @@ const Register = () => {
                 className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 pl-4"
               />
               </div>
-  
+
               <label htmlFor="business-type" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-xs">ประเภทธุรกิจสินค้า<span className="required">*</span></label>
               <div className="w-full">
                 <select
-                    id="business-type"
-                    name="business-type"
-                    className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 pl-3 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                  id="business-type"
+                  name="business-type"
+                  className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 pl-3 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
                 >
                   <option>การเกษตร</option>
                   <option>การออกแบบและศิลปะ</option>
@@ -203,9 +203,9 @@ const Register = () => {
               <label htmlFor="num-team" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-xs">จำนวนทีมของคุณ<span className="required">*</span></label>
               <div className="w-full">
                 <select
-                    id="num-team"
-                    name="num-team"
-                    className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 pl-3 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                  id="num-team"
+                  name="num-team"
+                  className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 pl-3 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
                 >
                   <option>แค่ฉันคนเดียว</option>
                   <option>2-9 คน</option>
@@ -218,9 +218,9 @@ const Register = () => {
               <label htmlFor="goal" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-xs">อีเมล<span className="required">*</span></label>
               <div className="w-full">
                 <select
-                    id="goal"
-                    name="goal"
-                    className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 pl-3 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                  id="goal"
+                  name="goal"
+                  className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 pl-3 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
                 >
                   <option>บริหารและจัดการธุรกิจ</option>
                   <option>ขายสินค้า</option>
@@ -234,38 +234,38 @@ const Register = () => {
                   <option>ยังไม่มีเป้าหมายที่ชัดเจน อยากลองใช้ระบบดูก่อน</option>
                 </select>
               </div>
-  
+
               <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[40px] w-full text-xs m-auto" onClick={handleSite}>สร้างบัญชี</button>
             </div>
           </div>
         )}
 
         {site && (
-            <div className="login-box flex flex-col justify-center text-center px-10 py-[60px] rounded-lg">
-            <h1 className="text-[#1F272E] font-bold text-[21px] mt-8 mb-[14px]" style={{fontFamily:"Eventpop"}}>ตั้งชื่อ Site ของคุณ</h1>
+          <div className="login-box flex flex-col justify-center text-center px-10 py-[60px] rounded-lg">
+            <h1 className="text-[#1F272E] font-bold text-[21px] mb-[14px]" style={{fontFamily:"Eventpop"}}>ตั้งชื่อ Site ของคุณ</h1>
             <p className="text-[#505A62] sukhumvit text-xs">ตั้งชื่อ Site ของคุณซึ่งจะเป็นชื่อ URL สำหรับหน้าเว็บไซต์ของคุณ สามารถใช้ A-Z , a-z , 0-9 <br/>และ - ได้เท่านั้น และสามารถเปลี่ยนชื่อ Site ได้ในภายหลัง</p>
             <div className="mt-[27px]">
-  
-              <div className="relative mt-1 rounded-md shadow-sm">
-                <input
-                    type="text"
-                    name="getzaviago-domain"
-                    id="getzaviago-domain"
-                    className="block bg-[#F4F5F6] text-sm p-3 w-full pr-40 w-[500px] focus-within:none"
-                />
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 bg-[#F4F5F6]">
-                        <span className="text-gray-500 sm:text-sm">.aca.fc.zaviago.com</span>
-                    </div>
+
+            <div className="relative mt-1 rounded-md shadow-sm">
+              <input
+                type="text"
+                name="getzaviago-domain"
+                id="getzaviago-domain"
+                className="block bg-[#F4F5F6] text-sm p-3 w-full pr-40 w-[500px] focus-within:outline-none"
+              />
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 bg-[#F4F5F6]">
+                  <span className="text-gray-500 sm:text-sm">.aca.fc.zaviago.com</span>
                 </div>
-    
-                <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg w-[70px] mt-[40px] text-xs m-auto" onClick={handleApps}>Next</button>
-                </div>
+              </div>
+
+              <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg w-[70px] mt-[40px] text-xs m-auto" onClick={handleApps}>Next</button>
+            </div>
           </div>
         )}
 
         {apps && (
           <div className="login-box flex flex-col justify-center px-10 py-[60px] rounded-lg text-center">
-            <h1 className="text-[#1F272E] font-bold text-[21px] mt-8 mb-[14px]">เลือก Apps ที่ต้องการติดตั้ง</h1>
+            <h1 className="text-[#1F272E] font-bold text-[21px] mb-[14px]" style={{fontFamily:"Eventpop"}}>เลือก Apps ที่ต้องการติดตั้ง</h1>
             <p className="text-[#505A62] sukhumvit text-xs">เลือก Apps ที่ต้องการติดตั้งใน Site เริ่มต้นของคุณ ลองเลือกสัก Apps ที่คุณต้องการใช้งานมากที่สุด <br/>ไม่ต้องกังวลไปเพราะคุณสามารถติดตั้ง Apps อื่นๆ เพิ่มเติมได้ในภายหลัง</p>
             <div className="mt-[27px]">
               <div className="mx-auto grid gap-x-4 grid grid-cols-1 sm:grid-cols-2 gap-4 md:grid-cols-3 m-auto">

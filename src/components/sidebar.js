@@ -53,15 +53,15 @@ const Sidebar = () => {
       { name: 'Apps', url: '/apps' },
       { name: 'Change Domain', url: '/change-domain' },
     ]
-    
+
     function classNames(...classes) {
       return classes.filter(Boolean).join(' ')
     }
-    
+
     const [query, setQuery] = useState('')
-    
+
     const [open, setOpen] = useState(false)
-  
+
     const filteredSearch =
       query === ''
         ? []

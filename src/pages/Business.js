@@ -204,20 +204,19 @@ function Business() {
                     </div>
                 </div>
                 <div className="mt-12 mb-44">
-                    <div>
+                    <div className='mb-5'>
                         <h3 className="font-inter text-[18px] font-semibold mt-4 text-[#1A1B25]">Find your people. Sell them stuff they love. Repeat.</h3>
                     </div>
                     <div className="mx-auto pb-10 grid grid-cols-3 gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-">
                         {blogs.map((info) => (
                           <div
                             key={info.title}
-                            className="relative flex items-center space-x-3 bg-white p-4 pb-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400" style={{background:"url(" + info.background + ")",backgroundSize:"100%",backgroundRepeat:"no-repeat",borderRadius:"20px"}}
+                            className="relative flex items-center space-x-3 bg-white p-4 pb-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400 w-full" style={{background:"url(" + info.background + ")",backgroundSize:"100%",backgroundRepeat:"no-repeat",borderRadius:"20px"}}
                           >
-                          <div className="min-w-0 pt-[16rem]">
-                            <span className="absolute inset-0" aria-hidden="true" />
-                            <h2 className="text-md font-bold text-white leading-5 font-inter" style={{color: info.colour}}>{info.title}</h2>
-                            <p className="font-semibold font-[27px] font-inter" style={{color: info.colour}}>{info.description}</p>
-                            <button style={{color: info.colour, textDecoration:"underline"}} className='font-[17px]'>{info.button}</button>
+                          <div className="min-w-0 pt-[10em]">
+                            <h2 className="text-md font-bold text-white leading-5 font-inter text-[20px]" style={{color: info.colour}}>{info.title}</h2>
+                            <p className="font-semibold text-[27px] font-inter mt-[6px] mb-6" style={{color: info.colour,lineHeight:"32px"}}>{info.description}</p>
+                            <button style={{color: info.colour, textDecoration:"underline"}} className='text-[17px] cursor-pointer'>{info.button}</button>
                           </div>
                         </div>
                         ))}
