@@ -6,6 +6,7 @@ const Welcome = () => {
     const [welcome, setWelcome] = useState(true)
     const [fillNum, setFillNum] = useState(false)
     const [fillOTP, setFillOTP] = useState(false)
+    const [warnFillOTP, setWarnFillOTP] = useState(false)
 
     const handleWelcome = () => {
         setWelcome(false)
@@ -23,8 +24,19 @@ const Welcome = () => {
     }
 
     const handleFillOTP = () => {
+      if (document.getElementById("one").value === "" || document.getElementById("two").value === "" || document.getElementById("three").value === "" || document.getElementById("four").value === "" || document.getElementById("five").value === "" || document.getElementById("six").value === ""){
+        setWarnFillOTP(true);
+      } else {
         window.location.href = "/register";
+      }
     }
+
+    const handleWarnFillOTP = () => {
+      if (document.getElementById("one").value !== "" && document.getElementById("two").value !== "" && document.getElementById("three").value !== "" && document.getElementById("four").value !== "" && document.getElementById("five").value !== "" && document.getElementById("six").value !== ""){
+        setWarnFillOTP(false);
+      }
+    }
+
     return (
       <>
         {/* Welcome */}
@@ -112,33 +124,69 @@ const Welcome = () => {
               <p className="text-[#2684FF] sukhumvit text-xs">082-345-6789</p>
                 
                 <div className="flex gap-x-[11px] w-[304px] m-auto mt-6">
-                <div className="w-1/4">
-                    <select
-                    id="location"
-                    name="location"
-                    className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 pl-3 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
-                    defaultValue="+66"
-                    >
-                    <option>+66</option>
-                    <option>+23</option>
-                    <option>+88</option>
-                    </select>
-                </div>
 
-                <div className="w-3/4">
+                <div className="w-full flex gap-x-[18px]">
                     <div className="mt-1">
                     <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 pl-4"
-                        placeholder="123-456-7890"
+                        type="text"
+                        name="one"
+                        id="one"
+                        maxLength={1}
+                        className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 font-bold text-lg text-center focus:ring-indigo-500 bg-[#F4F5F6] py-2" onKeyUp={handleWarnFillOTP} onKeyDown={(e) => e.key !== "Backspace" ? setTimeout(() => document.getElementById("two").focus(), 5) : null}
+                    />
+                    </div>
+                    <div className="mt-1">
+                    <input
+                        type="text"
+                        name="two"
+                        id="two"
+                        maxLength={1}
+                        className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 font-bold text-lg text-center focus:ring-indigo-500 bg-[#F4F5F6] py-2" onKeyUp={handleWarnFillOTP} onKeyDown={(e) => e.key !== "Backspace" ? setTimeout(() => document.getElementById("three").focus(), 5) : setTimeout(() => document.getElementById("one").focus(), 5)}
+                    />
+                    </div>
+                    <div className="mt-1">
+                    <input
+                        type="text"
+                        name="three"
+                        id="three"
+                        maxLength={1}
+                        className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 font-bold text-lg text-center focus:ring-indigo-500 bg-[#F4F5F6] py-2" onKeyUp={handleWarnFillOTP} onKeyDown={(e) => e.key !== "Backspace" ? setTimeout(() => document.getElementById("four").focus(), 5) : setTimeout(() => document.getElementById("two").focus(), 5)}
+                    />
+                    </div>
+                    <div className="mt-1">
+                    <input
+                        type="text"
+                        name="four"
+                        id="four"
+                        maxLength={1}
+                        className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 font-bold text-lg text-center focus:ring-indigo-500 bg-[#F4F5F6] py-2" onKeyUp={handleWarnFillOTP} onKeyDown={(e) => e.key !== "Backspace" ? setTimeout(() => document.getElementById("five").focus(), 5) : setTimeout(() => document.getElementById("three").focus(), 5)}
+                    />
+                    </div>
+                    <div className="mt-1">
+                    <input
+                        type="text"
+                        name="five"
+                        id="five"
+                        maxLength={1}
+                        className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 font-bold text-lg text-center focus:ring-indigo-500 bg-[#F4F5F6] py-2" onKeyUp={handleWarnFillOTP} onKeyDown={(e) => e.key !== "Backspace" ? setTimeout(() => document.getElementById("six").focus(), 5) : setTimeout(() => document.getElementById("four").focus(), 5)}
+                    />
+                    </div>
+                    <div className="mt-1">
+                    <input
+                        type="text"
+                        name="six"
+                        id="six"
+                        maxLength={1}
+                        className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 font-bold text-lg text-center focus:ring-indigo-500 bg-[#F4F5F6] py-2" onKeyUp={handleWarnFillOTP} onKeyDown={(e) => e.key !== "Backspace" ? null : setTimeout(() => document.getElementById("five").focus(), 5)}
                     />
                     </div>
                 </div>
+
                 </div>
 
-                <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[15px] w-[304px] text-xs m-auto" onClick={handleFillOTP}>ยืนยัน OTP</button>
+                {warnFillOTP && (<p className="required text-xs mt-6">กรุณากรอก OTP ให้ครบ</p>)}
+
+                <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[23px] w-[304px] text-xs m-auto" onClick={handleFillOTP}>ยืนยัน OTP</button>
                 <p className="text-[#909090] text-xs font-medium sukhumvit mt-[18px]">ขอรหัส OTP ใหม่อีกครั้งใน 00:30 วินาที</p>
 
                 <div className="relative mt-8">

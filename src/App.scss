@@ -206,6 +206,9 @@ h1,h2,h3,h4,h5,h6{
   .started-guide {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+  .blog-sec {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width:1199px){

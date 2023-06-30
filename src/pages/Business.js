@@ -207,7 +207,7 @@ function Business() {
                     <div className='mb-5'>
                         <h3 className="font-inter text-[18px] font-semibold mt-4 text-[#1A1B25]">Find your people. Sell them stuff they love. Repeat.</h3>
                     </div>
-                    <div className="mx-auto pb-10 grid grid-cols-3 gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-">
+                    <div className="mx-auto pb-10 grid grid-cols-1 gap-x-4 grid grid-cols-1 gap-4 lg:grid-cols-3 blog-sec">
                         {blogs.map((info) => (
                           <div
                             key={info.title}
