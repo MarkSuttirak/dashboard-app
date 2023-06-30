@@ -55,7 +55,7 @@ const Dashboard = () => {
                     </a>
                   </div>
                   <h1 className="mt-1 text-xl font-semibold tracking-tight text-gray-900">
-                    Dream it. Build it. Grow it.🎉
+                    สวัสดี, คุณแอดมิน 👋
                   </h1>
                   <p className="font-13 leading-8 text-gray-600">
                     Welcome to your <span style={{color:"#006AFF"}} className="font-bold">Zaviago/OS</span> v.1.4.88
@@ -348,7 +348,7 @@ const Dashboard = () => {
 
             <div className="justify-end">
               <div className="flex justify-end">
-                <button className="flex gap-x-2.5 items-center upgrade-btn">
+                <button className="flex gap-x-2.5 items-center rounded-lg border border-transparent text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-13 btn-primary-shadow mt-2 px-[15px] py-[6.4px] mb-[13px]">
                   <img src={keyLock} />
                   Upgrade
                 </button>

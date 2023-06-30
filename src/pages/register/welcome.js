@@ -48,7 +48,7 @@ const Welcome = () => {
               </div>
               <h1 className="text-[#1F272E] font-bold text-[21px] mt-8 text-center">ยินดีต้อนรับสู่ zaviago</h1>
               <button className="inline-block bg-[#11C052] py-[10px] text-white rounded-lg mt-8 w-[304px] text-xs m-auto">สมัครสมาชิกผ่าน LINE</button>
-    
+
               <div className="relative mt-8">
                 <div className="absolute inset-0 flex items-center" aria-hidden="true">
                   <div className="w-full border-t border-[#EBEEF0]" />
@@ -57,7 +57,7 @@ const Welcome = () => {
                   <span className="bg-white px-3 text-lg font-medium text-[#333C44] sukhumvit font-11">หรือ</span>
                 </div>
               </div>
-    
+
               <div className="mt-4">
                 <h2 className="sukhumvit text-xs">มีบัญชีแล้ว 
                   <span className="ml-1 text-[#0066CC] sukhumvit cursor-pointer decoration-solid underline" onClick={handleWelcome}>คลิกที่นี่เพื่อเข้าสู่ระบบ</span>

@@ -55,7 +55,7 @@ const ChangeDomain = () => {
     return (
         <div className="page-section">
           <div className="mx-auto dashboard-container pb-5 gap-x-8 pt-16">
-            <h1>โดเมนตั้งค่าเอง</h1>
+            <h1 className="font-bold">โดเมนตั้งค่าเอง</h1>
             <p className="sukhumvit mt-[9px] mb-[31px] text-[#505A62] text-sm">โดเมนคือชื่อของ URL ที่เราต้องการให้แสดงบนลิ้งของเว็บไซต์ <br/>โดยคุณสามารถเปลี่ยนชื่อโดเมนของคุณเองได้</p>
 
             <fieldset>
