@@ -181,6 +181,20 @@ h1,h2,h3,h4,h5,h6{
 
 .required {color:#FF0000}
 
+.select-apps {
+  cursor:pointer;
+  .desc-apps {
+    background-color:white;
+    border-radius:0 0 8px 8px;
+  }
+  &:hover,&:active{
+    border-color:#3996FD;
+  }
+  &:hover .desc-apps,&:active .desc-apps{
+    background-color:#F0F8FE;
+  }
+}
+
 @media (max-width:1500px) and (min-width:991px){
   .started-guide {
     grid-template-columns: repeat(3, minmax(0, 1fr));

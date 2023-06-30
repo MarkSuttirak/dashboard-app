@@ -2,20 +2,81 @@ import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import crmApps from "../../img/crm-apps.svg";
+import pmApps from "../../img/pm-apps.svg";
+import insightApps from "../../img/insight-apps.svg";
+import hrApps from "../../img/hr-apps.svg";
+import salesteamApps from "../../img/salesteam-apps.svg";
+import ordersApps from "../../img/orders-apps.svg";
 
 const Register = () => {
     const [account, setAccount] = useState(true);
     const [tellUs, setTellUs] = useState(false);
     const [site, setSite] = useState(false);
+    const [apps, setApps] = useState(false);
 
     const handleAccount = () => {
-        setAccount(false);
-        setTellUs(true);
+      setAccount(false);
+      setTellUs(true);
     }
 
     const handleSite = () => {
-        setTellUs(false);
-        setSite(true);
+      setTellUs(false);
+      setSite(true);
+    }
+
+    const handleApps = () => {
+      setSite(false);
+      setApps(true);
+    }
+
+    const appsList = [
+      {
+        title: 'CRM',
+        description: 'รวบรวมข้อมูลเกี่ยวกับลูกค้า',
+        img: crmApps,
+        background: '#E5F5FF',
+        shadow: '0 4px 32px 0 #88888833'
+      },
+      {
+        title: 'Project Management',
+        description: 'ควบคุมการทำงานของทีม',
+        img: pmApps,
+        background: '#E5F5FF',
+        shadow: '0 4px 32px 0 #88888833'
+      },
+      {
+        title: 'Insight',
+        description: 'ข้อมูลเชิงลึกทางการตลาด',
+        img: insightApps,
+        background: '#F6F3FF',
+        shadow: '0 4px 32px 0 #88888833'
+      },
+      {
+        title: 'Human Resources',
+        description: 'จัดการการทำงานและรายได้ของบุคคล',
+        img: hrApps,
+        background: '#F7EBFF',
+        shadow: '0 4px 32px 0 #88888833'
+      },
+      {
+        title: 'Sales Team',
+        description: 'ข้อมูลและการจัดการทีมเซลล์',
+        img: salesteamApps,
+        background: '#F7E3F1',
+        shadow: 'none'
+      },
+      {
+        title: 'Orders Management',
+        description: 'ข้อมูลการสั่งซื้อ',
+        img: ordersApps,
+        background: '#FFE5E5',
+        shadow: 'none'
+      },
+    ]
+
+    const startApp = () => {
+      window.location.href = '/'
     }
 
     return (
@@ -197,8 +258,36 @@ const Register = () => {
                     </div>
                 </div>
     
-                <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg w-[70px] mt-[40px] text-xs m-auto">Next</button>
+                <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg w-[70px] mt-[40px] text-xs m-auto" onClick={handleApps}>Next</button>
                 </div>
+          </div>
+        )}
+
+        {apps && (
+          <div className="login-box flex flex-col justify-center px-10 py-[60px] rounded-lg text-center">
+            <h1 className="text-[#1F272E] font-bold text-[21px] mt-8 mb-[14px]">เลือก Apps ที่ต้องการติดตั้ง</h1>
+            <p className="text-[#505A62] sukhumvit text-xs">เลือก Apps ที่ต้องการติดตั้งใน Site เริ่มต้นของคุณ ลองเลือกสัก Apps ที่คุณต้องการใช้งานมากที่สุด <br/>ไม่ต้องกังวลไปเพราะคุณสามารถติดตั้ง Apps อื่นๆ เพิ่มเติมได้ในภายหลัง</p>
+            <div className="mt-[27px]">
+              <div className="mx-auto grid gap-x-4 grid grid-cols-1 sm:grid-cols-2 gap-4 md:grid-cols-3 m-auto">
+                {appsList.map((item) => (
+                  <div
+                      key={item.title}
+                      className="relative items-center text-center space-x-3 bg-white border border-[#DDDDDD] rounded-lg box-border select-apps"
+                    >
+                    <div className="min-w-[200px] w-full h-[153px]" style={{backgroundColor:item.background,borderRadius:"8px"}}>
+                      <div>
+                        <img src={item.img} className="m-auto relative top-[18px]" style={{boxShadow:item.shadow}}/>
+                      </div>
+                      <div className="absolute bottom-0 m-auto w-full py-[10px] desc-apps">
+                        <h2 className="text-sm font-bold leading-5 font-inter text-[#1F272E] mb-1">{item.title}</h2>
+                        <p className="font-bold text-xs text-[#505A62] sukhumvit">{item.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg w-[70px] mt-[40px] text-xs m-auto" onClick={startApp}>Start</button>
+            </div>
           </div>
         )}
       </div>
