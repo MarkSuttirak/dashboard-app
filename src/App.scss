@@ -64,7 +64,7 @@
   #sidebar {
     animation:sidebarActive 400ms forwards !important;
   }
-  .close-sidebar-mobile,.search-btn-sec{display:none !important}
+  .close-sidebar-mobile,.search-btn-mobile{display:none !important}
 }
 
 * {
@@ -243,6 +243,7 @@ h1,h2,h3,h4,h5,h6{
     }
   }
   .close-sidebar-mobile{display:flex}
+  .search-btn{display:none}
 }
 
 @keyframes sidebarActive {
