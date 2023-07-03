@@ -8,6 +8,7 @@ import Welcome from './pages/register/welcome';
 import Register from './pages/register/setAccount';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Business from './pages/Business';
+import BusinessDetail from './pages/BusinessDetail';
 import { useEffect } from 'react';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Sidebar />
         <Routes>
           <Route path="/" element={<Dashboard />}/>
+          <Route path="/appsdetail" element={<BusinessDetail />}/>
           <Route path="/apps" element={<Business />}/>
           <Route path="/change-domain" element={<ChangeDomain />}/>
 
