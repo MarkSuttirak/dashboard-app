@@ -113,7 +113,7 @@ const Welcome = () => {
                   </div>
                 </div>
 
-                {warnFillPhone && (<p className="required text-xs mt-6">กรุณากรอกเบอร์โทรศัพท์</p>)}
+                {warnFillPhone && (<p className="required text-xs mt-6 warn">กรุณากรอกเบอร์โทรศัพท์</p>)}
                 <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[15px] w-[304px] text-xs m-auto" onClick={handleFillNum}>ขอรหัส OTP</button>
     
                 <div className="mt-4">
@@ -197,7 +197,7 @@ const Welcome = () => {
 
                 </div>
 
-                {warnFillOTP && (<p className="required text-xs mt-6">กรุณากรอก OTP ให้ครบ</p>)}
+                {warnFillOTP && (<p className="required text-xs mt-6 warn">กรุณากรอก OTP ให้ครบ</p>)}
 
                 <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[23px] w-[304px] text-xs m-auto" onClick={handleFillOTP}>ยืนยัน OTP</button>
                 <p className="text-[#909090] text-xs font-medium sukhumvit mt-[18px]">ขอรหัส OTP ใหม่อีกครั้งใน 00:30 วินาที</p>

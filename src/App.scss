@@ -210,6 +210,10 @@ h1,h2,h3,h4,h5,h6{
   transition:all 200ms;
 }
 
+.warn {
+  animation:warnAnim 300ms;
+}
+
 @media (max-width:1500px) and (min-width:991px){
   .started-guide {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -300,5 +304,14 @@ h1,h2,h3,h4,h5,h6{
   to {
     visibility:hidden;
     opacity:0;
+  }
+}
+
+@keyframes warnAnim {
+  from {
+    opacity:0
+  }
+  to {
+    opacity:1
   }
 }
