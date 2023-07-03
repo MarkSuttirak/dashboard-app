@@ -36,7 +36,7 @@ const Sidebar = () => {
     const navigation = [
       { name: 'Dashboard', icon: dashboardImg, href: '/', current: active === '/' ? true : false},
       { name: 'Apps', icon: appsImg, href: '/apps', count: 3, current: active === '/apps' ? true : false},
-      { name: 'Teams', icon: teamsImg, href: '#', count: 4, current: active === '#' ? true : false},
+      { name: 'Teams', icon: teamsImg, href: '/teams', count: 4, current: active === '/teams' ? true : false},
       { name: 'Billing', icon: billingImg, href: '#', current: active === "#" ? true : false, active: active },
       { name: 'Setting', icon: settingsImg, href: '#', count: 12, current: active === "/settings" || active === "/change-domain" ? true : false, active: active },
     ]
