@@ -181,25 +181,24 @@ h1,h2,h3,h4,h5,h6{
 
 .required {color:#FF0000}
 
-.inactive-app {
+.select-app-input {
+  display:inline-block;
   border:1px solid #E5E5E5;
-  .desc-apps {
-    background-color:white;
-  }
-
-  &:hover {
-    border-color:#0099FF;
-    .desc-apps {
-      background-color:#F0F8FE;
-    }
-  }
+  border-radius:8px;
 }
 
-.active-app {
+.checkbox-apps:checked + .select-app-input,.checkbox-apps:hover + .select-app-input {
   border-color:#0099FF;
-  .desc-apps {
-    background-color:#F0F8FE;
-  }
+}
+
+.app-desc {
+  background-color:white;
+  width:calc(100% - 2px);
+  bottom:6px;
+}
+
+.checkbox-apps:checked + .select-app-input .app-desc,.checkbox-apps:hover + .select-app-input .app-desc {
+  background-color:#F0F8FE;
 }
 
 .started-guide-card .guide-title{

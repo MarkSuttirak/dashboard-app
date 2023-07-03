@@ -57,7 +57,7 @@ const Welcome = () => {
               <div className="flex justify-center">
                 <img src={logo} width="54px"/>
               </div>
-              <h1 className="text-[#1F272E] font-bold text-[21px] mt-8 text-center">ยินดีต้อนรับสู่ zaviago</h1>
+              <h1 className="text-[#1F272E] font-semibold text-[21px] mt-8 text-center">ยินดีต้อนรับสู่ zaviago</h1>
               <button className="inline-block bg-[#11C052] py-[10px] text-white rounded-lg mt-8 w-[304px] text-xs m-auto">สมัครสมาชิกผ่าน LINE</button>
 
               <div className="relative mt-8">
@@ -83,7 +83,7 @@ const Welcome = () => {
           <div className='flex items-center justify-center h-screen relative z-[101] bg-white'>
             <div className="login-box flex flex-col justify-center px-10 py-[60px] text-center">
               <h1 className="text-[#1F272E] font-bold text-[18px] mt-8 text-center">กรอกเบอร์โทรศัพท์เพื่อรับรหัส OTP</h1>
-                <p className="sukhumvit text-xs">รหัส OTP จะส่งไปยังหมายเลขโทรศัพท์ของคุณ</p>
+                <p className="sukhumvit text-xs mt-3">รหัส OTP จะส่งไปยังหมายเลขโทรศัพท์ของคุณ</p>
                 
                 <div className="flex gap-x-[11px] w-[304px] m-auto mt-6">
                   <div className="w-1/4">
@@ -202,7 +202,7 @@ const Welcome = () => {
                 <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[23px] w-[304px] text-xs m-auto" onClick={handleFillOTP}>ยืนยัน OTP</button>
                 <p className="text-[#909090] text-xs font-medium sukhumvit mt-[18px]">ขอรหัส OTP ใหม่อีกครั้งใน 00:30 วินาที</p>
 
-                <div className="relative mt-8">
+                <div className="relative mt-3">
                   <div className="absolute inset-0 flex items-center" aria-hidden="true">
                     <div className="w-full border-t border-[#EBEEF0]" />
                   </div>
