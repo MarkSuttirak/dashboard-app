@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from "react";
 import logo from '../../img/logo.svg'
+import particle from '../../img/particle.svg'
 import { Link } from "react-router-dom";
 
 const Welcome = () => {
@@ -57,20 +58,20 @@ const Welcome = () => {
               <div className="flex justify-center">
                 <img src={logo} width="54px"/>
               </div>
-              <h1 className="text-[#1F272E] font-semibold text-[21px] mt-8 text-center">ยินดีต้อนรับสู่ zaviago</h1>
-              <button className="inline-block bg-[#11C052] py-[10px] text-white rounded-lg mt-8 w-[304px] text-xs m-auto">สมัครสมาชิกผ่าน LINE</button>
+              <h1 className="text-[#1F272E] font-semibold text-[22px] mt-8 text-center">ยินดีต้อนรับสู่ zaviago</h1>
+              <button className="inline-block bg-[#11C052] py-[10px] text-white rounded-lg mt-8 w-[304px] text-md m-auto">สมัครสมาชิกผ่าน LINE</button>
 
               <div className="relative mt-8">
                 <div className="absolute inset-0 flex items-center" aria-hidden="true">
                   <div className="w-full border-t border-[#EBEEF0]" />
                 </div>
                 <div className="relative flex justify-center">
-                  <span className="bg-white px-3 text-lg font-medium text-[#333C44] sukhumvit font-11">หรือ</span>
+                  <span className="bg-white px-3 text-sm font-medium text-[#333C44] sukhumvit">หรือ</span>
                 </div>
               </div>
 
               <div className="mt-4">
-                <h2 className="sukhumvit text-xs">มีบัญชีแล้ว 
+                <h2 className="sukhumvit text-md">มีบัญชีแล้ว 
                   <span className="ml-1 text-[#0066CC] sukhumvit cursor-pointer decoration-solid underline" onClick={handleWelcome}>คลิกที่นี่เพื่อเข้าสู่ระบบ</span>
                 </h2>
               </div>
@@ -82,8 +83,8 @@ const Welcome = () => {
         {fillNum && (
           <div className='flex items-center justify-center h-screen relative z-[101] bg-white'>
             <div className="login-box flex flex-col justify-center px-10 py-[60px] text-center">
-              <h1 className="text-[#1F272E] font-bold text-[18px] mt-8 text-center">กรอกเบอร์โทรศัพท์เพื่อรับรหัส OTP</h1>
-                <p className="sukhumvit text-xs mt-3">รหัส OTP จะส่งไปยังหมายเลขโทรศัพท์ของคุณ</p>
+              <h1 className="text-[#1F272E] font-bold text-[22px] mt-8 text-center" style={{fontFamily:"Eventpop"}}>กรอกเบอร์โทรศัพท์เพื่อรับรหัส OTP</h1>
+                <p className="sukhumvit text-sm mt-3">รหัส OTP จะส่งไปยังหมายเลขโทรศัพท์ของคุณ</p>
                 
                 <div className="flex gap-x-[11px] w-[304px] m-auto mt-6">
                   <div className="w-1/4">
@@ -113,11 +114,11 @@ const Welcome = () => {
                   </div>
                 </div>
 
-                {warnFillPhone && (<p className="required text-xs mt-6 warn">กรุณากรอกเบอร์โทรศัพท์</p>)}
-                <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[15px] w-[304px] text-xs m-auto" onClick={handleFillNum}>ขอรหัส OTP</button>
+                {warnFillPhone && (<p className="required text-sm mt-3 warn">กรุณากรอกเบอร์โทรศัพท์</p>)}
+                <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[15px] w-[304px] text-md m-auto btn-primary-shadow" onClick={handleFillNum}>ขอรหัส OTP</button>
     
                 <div className="mt-4">
-                  <h2 className="sukhumvit text-xs">หมายเลขโทรศัพท์ที่ระบุจะเพิ่มไปยังโปรไฟล์ของคุณ <br/>โปรดศึกษาข้อมูลเพิ่มเติมที่ 
+                  <h2 className="sukhumvit text-sm text-[#909090]">หมายเลขโทรศัพท์ที่ระบุจะเพิ่มไปยังโปรไฟล์ของคุณ <br/>โปรดศึกษาข้อมูลเพิ่มเติมที่ 
                     <span className="ml-1 text-[#0066CC] sukhumvit cursor-pointer decoration-solid underline">นโยบายความเป็นส่วนตัว</span>
                   </h2>
                 </div>
@@ -130,11 +131,11 @@ const Welcome = () => {
           <div className='flex items-center justify-center h-screen relative z-[101] bg-white'>
             <div className="login-box flex flex-col justify-center px-10 py-[60px] text-center">
               <div className="flex justify-center">
-                <img src={logo} width="54px"/>
+                <img src={particle} width="32px"/>
               </div>
-              <h1 className="text-[#1F272E] font-bold text-[18px] mt-8 text-center mb-[10px]">ยืนยันรหัส OTP</h1>
-              <p className="sukhumvit text-xs">ระบุรหัส 6 หลักที่คุณได้รับทาง SMS ผ่านเบอร์</p>
-              <p className="text-[#2684FF] sukhumvit text-xs">082-345-6789</p>
+              <h1 className="text-[#1F272E] font-semibold text-[22px] mt-[19px] text-center mb-[10px]" style={{fontFamily:"Eventpop"}}>ยืนยันรหัส OTP</h1>
+              <p className="sukhumvit text-sm">ระบุรหัส 6 หลักที่คุณได้รับทาง SMS ผ่านเบอร์</p>
+              <p className="text-[#2684FF] sukhumvit text-sm">082-345-6789</p>
                 
                 <div className="flex gap-x-[11px] w-[304px] m-auto mt-6">
 
@@ -197,22 +198,13 @@ const Welcome = () => {
 
                 </div>
 
-                {warnFillOTP && (<p className="required text-xs mt-6 warn">กรุณากรอก OTP ให้ครบ</p>)}
+                {warnFillOTP && (<p className="required text-sm mt-3 warn">กรุณากรอก OTP ให้ครบ</p>)}
 
-                <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[23px] w-[304px] text-xs m-auto" onClick={handleFillOTP}>ยืนยัน OTP</button>
-                <p className="text-[#909090] text-xs font-medium sukhumvit mt-[18px]">ขอรหัส OTP ใหม่อีกครั้งใน 00:30 วินาที</p>
+                <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[23px] w-[304px] text-md m-auto btn-primary-shadow" onClick={handleFillOTP}>ยืนยัน OTP</button>
+                <p className="text-[#909090] text-md font-medium sukhumvit mt-[42px]">ขอรหัส OTP ใหม่อีกครั้งใน 00:30 วินาที</p>
 
-                <div className="relative mt-3">
-                  <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                    <div className="w-full border-t border-[#EBEEF0]" />
-                  </div>
-                  <div className="relative flex justify-center">
-                    <span className="bg-white px-3 text-lg font-medium text-[#333C44] sukhumvit font-11">หรือ</span>
-                  </div>
-                </div>
-
-                <div className="mt-4">
-                  <h2 className="sukhumvit text-xs">
+                <div className="mt-[54px]">
+                  <h2 className="sukhumvit text-md">
                     <span className="ml-1 text-[#0066CC] sukhumvit cursor-pointer decoration-solid underline" onClick={handleChangeNum}>เปลี่ยนเบอร์มือถือ</span>
                   </h2>
                 </div>
