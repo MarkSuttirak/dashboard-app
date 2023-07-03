@@ -7,6 +7,7 @@ const Welcome = () => {
     const [fillNum, setFillNum] = useState(false)
     const [fillOTP, setFillOTP] = useState(false)
     const [warnFillOTP, setWarnFillOTP] = useState(false)
+    const [warnFillPhone, setWarnFillPhone] = useState(false)
 
     const handleWelcome = () => {
         setWelcome(false)
@@ -14,8 +15,18 @@ const Welcome = () => {
     }
 
     const handleFillNum = () => {
-        setFillNum(false)
-        setFillOTP(true)
+        if (document.getElementById("phone-num").value === ""){
+          setWarnFillPhone(true);
+        } else {
+          setFillNum(false)
+          setFillOTP(true)
+        }
+    }
+
+    const handleWarnFillPhone = () => {
+      if (document.getElementById("phone-num").value !== ""){
+        setWarnFillPhone(false);
+      }
     }
 
     const handleChangeNum = () => {
@@ -91,16 +102,18 @@ const Welcome = () => {
                   <div className="w-3/4">
                     <div className="mt-1">
                       <input
-                        type="email"
-                        name="email"
-                        id="email"
+                        type="tel"
+                        name="phone-num"
+                        id="phone-num"
                         className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 pl-4"
                         placeholder="123-456-7890"
+                        onKeyUp={handleWarnFillPhone}
                       />
                     </div>
                   </div>
                 </div>
 
+                {warnFillPhone && (<p className="required text-xs mt-6">กรุณากรอกเบอร์โทรศัพท์</p>)}
                 <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[15px] w-[304px] text-xs m-auto" onClick={handleFillNum}>ขอรหัส OTP</button>
     
                 <div className="mt-4">
