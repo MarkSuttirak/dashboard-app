@@ -210,6 +210,24 @@ h1,h2,h3,h4,h5,h6{
   transition:all 200ms;
 }
 
+.slick-slide img {
+  display: block;
+  height: 280px;
+  width: 534px !important;
+  padding-left: 13px;
+  margin-left: -10px;
+}
+
+.slick-next{
+  right: -6px !important;
+}
+
+.slick-next:before {
+  font-family: 'Material Icons' !important;
+  content: 'chevron_right' !important;
+  color:#2D94F0 !important; 
+  font-size: 35px !important;
+}
 @media (max-width:1500px) and (min-width:991px){
   .started-guide {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -239,6 +257,12 @@ h1,h2,h3,h4,h5,h6{
     }
   }
   .close-sidebar-mobile{display:flex}
+}
+
+@media screen and (max-width:500px) {
+  .slick-slide img{
+    height: 200px;
+  }
 }
 
 @keyframes sidebarActive {
