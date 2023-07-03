@@ -60,25 +60,75 @@ const Register = () => {
     const [site, setSite] = useState(false);
     const [apps, setApps] = useState(false);
 
+    const [warnFillName, setWarnFillName] = useState(false);
+    const [warnFillSurname, setWarnFillSurname] = useState(false);
+    const [warnFillBirthdate, setWarnFillBirthdate] = useState(false);
+    const [warnFillEmail, setWarnFillEmail] = useState(false);
+    const [warnAccept, setWarnAccept] = useState(false);
+
+    const [warnFillCompany, setWarnFillCompany] = useState(false);
+
+    const [warnFillSite, setWarnFillSite] = useState(false);
+
     const [selectedApp, setSelectedApp] = useState(appsList[0])
 
     function classNames(...classes) {
       return classes.filter(Boolean).join(' ')
-    }    
+    }
 
     const handleAccount = () => {
-      setAccount(false);
-      setTellUs(true);
+      if (document.getElementById('firstname').value === '') {
+        setWarnFillName(true);
+      } else {
+        setWarnFillName(false);
+      }
+      
+      if (document.getElementById('surname').value === '') {
+        setWarnFillSurname(true);
+      } else {
+        setWarnFillSurname(false);
+      }
+
+      if (document.getElementById('date').value === '') {
+        setWarnFillBirthdate(true);
+      } else {
+        setWarnFillBirthdate(false);
+      }
+
+      if (document.getElementById('email').value === ''){
+        setWarnFillEmail(true);
+      } else {
+        setWarnFillEmail(false);
+      }
+
+      if (document.getElementById('accept').checked === false){
+        setWarnAccept(true);
+      } else {
+        setWarnAccept(false);
+      }
+
+      if (document.getElementById('firstname').value !== '' && document.getElementById('surname').value !== '' && document.getElementById('date').value !== '' && document.getElementById('email').value !== '' && document.getElementById('accept').checked === true) {
+        setAccount(false);
+        setTellUs(true);
+      }
     }
 
     const handleSite = () => {
-      setTellUs(false);
-      setSite(true);
+      if (document.getElementById('companyname').value === ''){
+        setWarnFillCompany(true);
+      } else {
+        setTellUs(false);
+        setSite(true);
+      }
     }
 
     const handleApps = () => {
-      setSite(false);
-      setApps(true);
+      if (document.getElementById('getzaviago-domain').value === ''){
+        setWarnFillSite(true);
+      } else {
+        setSite(false);
+        setApps(true);
+      }
     }
 
     const startApp = () => {
@@ -89,94 +139,106 @@ const Register = () => {
       <div className='flex items-center justify-center h-screen relative z-[101] bg-white'>
         {account && (
           <div className="login-box flex flex-col justify-center px-10 py-[60px] rounded-lg">
-            <h1 className="text-[#1F272E] font-bold text-[21px]">ตั้งค่าบัญชีของคุณ</h1>
+            <h1 className="text-[#1F272E] font-bold text-[22px]">ตั้งค่าบัญชีของคุณ</h1>
             <div className="mt-[27px]">
-              <label htmlFor="firstname" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 text-xs">ชื่อ<span className="required">*</span></label>
+              <label htmlFor="firstname" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 text-sm">ชื่อ<span className="required">*</span></label>
               <div className="mt-1">
               <input
                 type="text"
                 name="firstname"
                 id="firstname"
                 className="block w-[304px] h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                onKeyUp={() => setWarnFillName(false)}
               />
               </div>
+              {warnFillName && (<p className="required text-sm mt-3 mb-4 warn">จำเป็นต้องกรอกแบบฟอร์มนี้</p>)}
 
-              <label htmlFor="surname" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-xs">นามสกุล<span className="required">*</span></label>
+              <label htmlFor="surname" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-sm">นามสกุล<span className="required">*</span></label>
               <div className="mt-1">
               <input
                 type="text"
                 name="surname"
                 id="surname"
                 className="block w-[304px] h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                onKeyUp={() => setWarnFillSurname(false)}
               />
               </div>
+              {warnFillSurname && (<p className="required text-sm mt-3 mb-4 warn">จำเป็นต้องกรอกแบบฟอร์มนี้</p>)}
 
-              <label htmlFor="date" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-xs">วัน-เดือน-ปีเกิด<span className="required">*</span></label>
+              <label htmlFor="date" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-sm">วัน-เดือน-ปีเกิด<span className="required">*</span></label>
               <div className="mt-1">
               <input
                 type="date"
                 name="date"
                 id="date"
                 className="block w-[304px] h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                onChange={() => setWarnFillBirthdate(false)}
               />
               </div>
+              {warnFillBirthdate && (<p className="required text-sm mt-3 mb-4 warn">จำเป็นต้องกรอกแบบฟอร์มนี้</p>)}
 
-              <label htmlFor="email" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-xs">อีเมล<span className="required">*</span></label>
+              <label htmlFor="email" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-sm">อีเมล<span className="required">*</span></label>
               <div className="mt-1">
               <input
                 type="email"
                 name="email"
                 id="email"
                 className="block w-[304px] h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                onKeyUp={() => setWarnFillEmail(false)}
               />
               </div>
+              {warnFillEmail && (<p className="required text-sm mt-3 mb-4 warn">จำเป็นต้องกรอกแบบฟอร์มนี้</p>)}
 
               <fieldset className="space-y-5 w-[304px]">
                 <legend className="sr-only">Notifications</legend>
                 <div className="relative flex items-start">
                   <div className="flex h-5 items-center">
                   <input
-                    id="comments"
-                    aria-describedby="comments-description"
-                    name="comments"
+                    id="accept"
+                    aria-describedby="accept"
+                    name="accept"
                     type="checkbox"
                     className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                    onChange={() => setWarnAccept(false)}
                   />
                   </div>
                   <div className="ml-3 text-sm">
-                    <label htmlFor="comments" className="font-medium text-[#1F272E] sukhumvit text-xs">
+                    <label htmlFor="accept" className={`font-medium ${warnAccept ? 'text-[#FF0000]' : 'text-[#1F272E]'} sukhumvit font-13`}>
                       รับทราบและให้ความยอมรับ <span className="text-[#0066CC] sukhumvit cursor-pointer decoration-solid underline">ข้อกำหนดการใช้การบริการ</span> และ <span className="text-[#0066CC] sukhumvit cursor-pointer decoration-solid underline">นโยบายความเป็นส่วนตัว</span>
                     </label>
                   </div>
                 </div>
               </fieldset>
 
-              <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[40px] w-[304px] text-xs m-auto" onClick={handleAccount}>ยืนยัน</button>
+              <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[40px] w-[304px] text-md m-auto btn-primary-shadow" onClick={handleAccount}>ยืนยัน</button>
             </div>
           </div>
         )}
 
         {tellUs && (
           <div className="login-box flex flex-col justify-center px-10 py-[60px] rounded-lg">
-            <h1 className="text-[#1F272E] font-bold text-[21px]">บอกเราอีกสักนิดเกี่ยวกับธุรกิจของคุณ</h1>
-            <p className="sukhumvit text-xs">บอกเราสักเล็กน้อยว่าคุณเป็นใคร เพื่อให้เราสามารถมอบสิ่ง<br/>ดีที่สุดให้กับคุณ</p>
+            <h1 className="text-[#1F272E] font-bold text-[22px]">บอกเราอีกสักนิดเกี่ยวกับธุรกิจของคุณ</h1>
+            <p className="sukhumvit text-sm mt-[14px] text-[#909090]">บอกเราสักเล็กน้อยว่าคุณเป็นใคร เพื่อให้เราสามารถมอบสิ่ง<br/>ดีที่สุดให้กับคุณ</p>
             <div className="mt-[27px]">
-              <label htmlFor="companyname" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 text-xs">ชื่อธุรกิจของคุณ<span className="required">*</span></label>
+              <label htmlFor="companyname" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2">ชื่อธุรกิจของคุณ<span className="required">*</span></label>
               <div className="mt-1">
               <input
                 type="text"
                 name="companyname"
                 id="companyname"
-                className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 pl-4"
+                className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                onKeyUp={() => setWarnFillCompany(false)}
               />
               </div>
+              {warnFillCompany && (<p className="required text-sm mt-3 mb-4 warn">จำเป็นต้องกรอกแบบฟอร์มนี้</p>)}
 
-              <label htmlFor="business-type" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-xs">ประเภทธุรกิจสินค้า<span className="required">*</span></label>
+              <label htmlFor="business-type" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px]">ประเภทธุรกิจสินค้า<span className="required">*</span></label>
               <div className="w-full">
                 <select
                   id="business-type"
                   name="business-type"
-                  className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 pl-3 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                  className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                  defaultValue=''
                 >
                   <option>การเกษตร</option>
                   <option>การออกแบบและศิลปะ</option>
@@ -206,12 +268,12 @@ const Register = () => {
                 </select>
               </div>
   
-              <label htmlFor="num-team" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-xs">จำนวนทีมของคุณ<span className="required">*</span></label>
+              <label htmlFor="num-team" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px]">จำนวนทีมของคุณ<span className="required">*</span></label>
               <div className="w-full">
                 <select
                   id="num-team"
                   name="num-team"
-                  className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 pl-3 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                  className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
                 >
                   <option>แค่ฉันคนเดียว</option>
                   <option>2-9 คน</option>
@@ -221,12 +283,12 @@ const Register = () => {
                 </select>
               </div>
   
-              <label htmlFor="goal" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-xs">เป้าหมายของคุณคืออะไร<span className="required">*</span></label>
+              <label htmlFor="goal" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px]">เป้าหมายของคุณคืออะไร<span className="required">*</span></label>
               <div className="w-full">
                 <select
                   id="goal"
                   name="goal"
-                  className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 pl-3 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                  className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
                 >
                   <option>บริหารและจัดการธุรกิจ</option>
                   <option>ขายสินค้า</option>
@@ -241,15 +303,15 @@ const Register = () => {
                 </select>
               </div>
 
-              <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[40px] w-full text-xs m-auto" onClick={handleSite}>สร้างบัญชี</button>
+              <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[40px] w-full text-md m-auto btn-primary-shadow" onClick={handleSite}>สร้างบัญชี</button>
             </div>
           </div>
         )}
 
         {site && (
           <div className="login-box flex flex-col justify-center text-center px-10 py-[60px] rounded-lg">
-            <h1 className="text-[#1F272E] font-bold text-[21px] mb-[14px]" style={{fontFamily:"Eventpop"}}>ตั้งชื่อ Site ของคุณ</h1>
-            <p className="text-[#505A62] sukhumvit text-xs">ตั้งชื่อ Site ของคุณซึ่งจะเป็นชื่อ URL สำหรับหน้าเว็บไซต์ของคุณ สามารถใช้ A-Z , a-z , 0-9 <br/>และ - ได้เท่านั้น และสามารถเปลี่ยนชื่อ Site ได้ในภายหลัง</p>
+            <h1 className="text-[#1F272E] font-bold text-[22px] mb-[14px]" style={{fontFamily:"Eventpop"}}>ตั้งชื่อ Site ของคุณ</h1>
+            <p className="text-[#505A62] sukhumvit text-sm">ตั้งชื่อ Site ของคุณซึ่งจะเป็นชื่อ URL สำหรับหน้าเว็บไซต์ของคุณ สามารถใช้ A-Z , a-z , 0-9 <br/>และ - ได้เท่านั้น และสามารถเปลี่ยนชื่อ Site ได้ในภายหลัง</p>
             <div className="mt-[27px]">
 
             <div className="relative mt-1 rounded-md shadow-sm">
@@ -258,13 +320,15 @@ const Register = () => {
                 name="getzaviago-domain"
                 id="getzaviago-domain"
                 className="block bg-[#F4F5F6] text-sm p-3 w-full pr-40 w-[500px] focus-within:outline-none"
+                onKeyUp={() => setWarnFillSite(false)}
               />
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 bg-[#F4F5F6]">
                   <span className="text-gray-500 sm:text-sm">.aca.fc.zaviago.com</span>
                 </div>
               </div>
+              {warnFillSite && (<p className="required text-sm mt-3 mb-4 warn">กรุณาตั้งชื่อ Site ของคุณ</p>)}
 
-              <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg w-[70px] mt-[40px] text-xs m-auto" onClick={handleApps}>Next</button>
+              <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg w-[70px] mt-[40px] text-xs m-auto btn-primary-shadow" onClick={handleApps}>Next</button>
             </div>
           </div>
         )}
@@ -331,7 +395,7 @@ const Register = () => {
                   </div>))}
                 </div>
               </fieldset>
-              <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg w-[70px] mt-[40px] text-xs m-auto" onClick={startApp}>Start</button>
+              <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg w-[70px] mt-[40px] text-xs m-auto btn-primary-shadow" onClick={startApp}>Start</button>
             </div>
           </div>
         )}

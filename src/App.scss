@@ -64,7 +64,7 @@
   #sidebar {
     animation:sidebarActive 400ms forwards !important;
   }
-  .close-sidebar-mobile,.search-btn-sec{display:none !important}
+  .close-sidebar-mobile,.search-btn-mobile{display:none !important}
 }
 
 * {
@@ -228,6 +228,10 @@ h1,h2,h3,h4,h5,h6{
   color:#2D94F0 !important; 
   font-size: 35px !important;
 }
+.warn {
+  animation:warnAnim 300ms;
+}
+
 @media (max-width:1500px) and (min-width:991px){
   .started-guide {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -244,19 +248,18 @@ h1,h2,h3,h4,h5,h6{
   .page-section {
     margin-left:90px;
   }
-  .header-mobile {
-    h1 {
-      font-size:24px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width:48px;
-      height:48px;
-      border-radius:50%;
-      background-color:#F3F3F3;
-    }
+  .header-mobile h1{
+    font-size:24px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background-color:#F3F3F3;
   }
   .close-sidebar-mobile{display:flex}
+  .search-btn{display:none}
 }
 
 @media screen and (max-width:500px) {
@@ -324,5 +327,14 @@ h1,h2,h3,h4,h5,h6{
   to {
     visibility:hidden;
     opacity:0;
+  }
+}
+
+@keyframes warnAnim {
+  from {
+    opacity:0
+  }
+  to {
+    opacity:1
   }
 }

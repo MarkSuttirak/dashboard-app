@@ -14,9 +14,9 @@ import startupDomainsIcon from '../img/startup-domain-icon.png'
 import terms from '../img/terms.png'
 import play from '../img/play.png'
 import testVideo from '../img/test.mp4'
-import blog1 from '../img/blog1.svg'
-import blog2 from '../img/blog2.svg'
-import blog3 from '../img/blog3.svg'
+import blog1 from '../img/blog1.png'
+import blog2 from '../img/blog2.png'
+import blog3 from '../img/blog3.png'
 
 function Business() {
     const startupGuide = [
@@ -76,21 +76,21 @@ function Business() {
         description: 'Run effective campaigns with apps that help you identify marketing gaps.',
         background: blog1,
         button: 'Optimize with zaviago',
-        colour: 'white'
+        colour: '#FFFFFF'
       },
       {
         title: 'Blog',
         description: 'So What\'s the plan',
         background: blog2,
         button: 'Make project plan',
-        colour: 'white'
+        colour: '#FFFFFF'
       },
       {
         title: 'Guide',
         description: 'Run effective campaigns with apps',
         background: blog3,
         button: 'Optimize with zaviago',
-        colour: 'black'
+        colour: '#000000'
       },
     ]
 
@@ -175,7 +175,8 @@ function Business() {
                     <h3 className="mt-2 font-inter text-sm font-semibold text-[#1A1B25]">Create a platform or marketplace</h3>
                     <h3 className="mt-1 font-inter text-[13px] font-normal w-[220px] paras">Facilitate payments and pay out sellers or service providers.</h3>
                     <div className="flex mt-[133px]">
-                      <button className="font-inter text-[13px] underline decoration-solid paras flex items-center gap-x-[10px]">Optimize with zaviago
+                      <button className="font-inter text-[13px] paras flex items-center gap-x-[10px]">
+                        <span className='inline-block border-b border-[#687178] leading-[18px]'>Optimize with zaviago</span>
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" fill="#687178" viewBox="0 0 320 512"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/></svg>
                       </button>
                     </div>
@@ -192,7 +193,8 @@ function Business() {
                       <h3 className="mt-2 font-inter text-sm font-semibold text-[#1A1B25]">Create a platform or marketplace</h3>
                       <h3 className="mt-1 font-inter text-[13px] font-normal w-[220px] paras">Facilitate payments and pay out sellers or service providers.</h3>
                       <div className="flex mt-[133px]">
-                        <button className="font-inter text-[13px] underline decoration-solid paras flex items-center gap-x-[10px]">Optimize with zaviago
+                        <button className="font-inter text-[13px] paras flex items-center gap-x-[10px]">
+                          <span className='inline-block border-b border-[#687178] leading-[18px]'>Optimize with zaviago</span>
                           <svg xmlns="http://www.w3.org/2000/svg" height="1em" fill="#687178" viewBox="0 0 320 512"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/></svg>
                         </button>
                       </div>
@@ -214,7 +216,8 @@ function Business() {
                   <div className="min-w-0">
                     <h2 className="text-md font-bold text-white leading-5 font-inter text-[20px]" style={{color: info.colour}}>{info.title}</h2>
                     <p className="font-semibold text-[27px] font-inter mt-[6px] mb-6" style={{color: info.colour,lineHeight:"32px"}}>{info.description}</p>
-                    <button style={{color: info.colour, textDecoration:"underline"}} className='text-[17px] cursor-pointer flex items-center gap-x-[10px]'>{info.button}
+                    <button style={{color: info.colour}} className='text-[17px] cursor-pointer flex items-center gap-x-[10px]'>
+                      <span className={`inline-block border-b border-b-[${info.colour}]`}>{info.button}</span>
                       <svg xmlns="http://www.w3.org/2000/svg" height="1em" fill={info.colour} viewBox="0 0 320 512"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/></svg>
                     </button>
                   </div>

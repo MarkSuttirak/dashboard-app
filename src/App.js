@@ -9,6 +9,7 @@ import Register from './pages/register/setAccount';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Business from './pages/Business';
 import BusinessDetail from './pages/BusinessDetail';
+import TeamsPage from './pages/teams';
 import { useEffect } from 'react';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
 
           <Route path="/welcome" element={<Welcome />}/>
           <Route path="/register" element={<Register />}/>
+          <Route path="/teams" element={<TeamsPage />}/>
         </Routes>
       </Router>
     </>

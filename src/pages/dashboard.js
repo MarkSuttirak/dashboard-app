@@ -74,8 +74,8 @@ const Dashboard = () => {
                 />
                   <button
                     type="button"
-                    className="inline-flex items-center rounded-lg bg-white text-sm font-semibold text-gray-700 shadow-sm focus:outline-none focus:ring-offset-2 text-xs mt-2"
-                    style={{backgroundColor:"#F3F3F3",padding:"7px 10px"}}
+                    className="inline-flex items-center rounded-lg bg-[#F3F3F3] text-sm font-semibold text-gray-700 shadow-sm focus:outline-none focus:ring-offset-2 text-xs mt-2"
+                    style={{padding:"7px 10px"}}
                   >
                     Invite
                   </button>
@@ -84,7 +84,7 @@ const Dashboard = () => {
                     className="ml-3 inline-flex items-center rounded-lg border border-transparent text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-13 btn-primary-shadow mt-2"
                     style={{padding:"4px 18px"}}
                   >
-                    Login
+                    Go to Workspace
                   </button>
             </div>
           </div>
