@@ -26,6 +26,10 @@ const Dashboard = () => {
   const handleInviteClick = () => {
     setIsOpen(!isOpen);
   }
+  const handleInviteClickPopup = () => {
+    setIsOpen(true);
+    console.log('true')
+  }
 
   const dashboardInfo = [
     {
@@ -96,13 +100,16 @@ const Dashboard = () => {
               </button>
             </div>
           </div>
-          {isOpen && (
-            <div className="popup-overlay" onClick={handleInviteClick}>
-              <div  className='w-[511px] h-[363px] bg-white p-3 rounded-2xl popup-container'>
-                <PopUp />
+          {isOpen &&
+            <div>
+              <div className="popup-overlay" onClick={handleInviteClick}></div>
+              <div>
+                <div className='w-[511px] h-[363px] bg-white p-3 rounded-2xl popup-container z-[199] relative' onClick={handleInviteClickPopup}>
+                  <PopUp />
+                </div>
               </div>
             </div>
-          )}
+          }
           <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-white sm:h-32" />
         </div>
 
