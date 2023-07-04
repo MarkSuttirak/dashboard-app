@@ -47,10 +47,22 @@ function BusinessDetail() {
     },
   ];
 
+  const breakIntoLines = (text, wordsPerLine) => {
+    const words = text.split(' ');
+    const lines = [];
+  
+    while (words.length > 0) {
+      const line = words.splice(0, wordsPerLine).join(' ');
+      lines.push(line);
+    }
+  
+    return lines;
+  };
+
   return (
     <>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-      <div className="bg-white page-section pb-16 md:pl-10 md:pt-8 pt-8  w-[80%]">
+      <div className="bg-white page-section pb-16 md:pl-10 md:pt-8 pt-8 w-[80%]">
         <div className="pt-0">
           <div className=" max-w-2xl">
             <div className="max-w-lg text-left">
@@ -63,8 +75,8 @@ function BusinessDetail() {
             </div>
           </div>
         </div>
-        <div className='mt-6 md:flex border-b border-[#DCDFE9] pb-6 md:pb-16'>
-          <div className='lg:w-[27%] sm:w-[50%] w-full pr-5'>
+        <div className='mt-6 md:flex  md:pb-16'>
+          <div className='lg:w-[27%] sm:w-[50%] w-full pr-5 border-b border-[#DCDFE9] pb-6'>
             <div className='flex'>
               <div className='border border-gray-300 w-[80px] h-[80px] mt-1 p-2 rounded-lg flex items-center justify-center'>
                 <img src={Layer} alt="" />
@@ -79,11 +91,11 @@ function BusinessDetail() {
               <button className='text-[#0066CC] font-inter font-normal text-sm mt-3 border-b border-[#0066CC]'>View Website</button>
             </div>
           </div>
-          <div className='lg:w-[65%] sm:w-[50%] w-full mt-7  md:mt-0 md:ml-7'>
+          <div className='lg:w-[65%] sm:w-[50%] w-full mt-7 border-b border-[#DCDFE9] pb-16 md:mt-0 md:pl-7'>
             <Slider images={images} className="w-[50%]" />
           </div>
         </div>
-        <div className='md:flex md:pt-16 pt-6'>
+        <div className='md:flex md:pt-10 pt-6'>
           <div className='md:w-[25%] w-full'>
             <div>
               <h3 className='font-inter font-semibold text-base text-[#1F272E]'>Highlights</h3>
@@ -119,19 +131,20 @@ function BusinessDetail() {
         <div className="rounded-xl mt-16">
           <h2 className='font-inter font-semibold text-2xl text-[#1F272E] mb-5'>Guide to get Started</h2>
           <div className='grid sm:grid-cols-2 lg:grid-cols-4 started-guide grid-cols-1 gap-x-[21px] gap-y-[32px]'>
-            {startupGuide.map((info) => (
-              <div key={info.id} className="w-full sm:w-full rounded-lg mt-2 flex started-guide-card">
-                <div className='inline-block w-[100px] mr-5'>
-                  <img src={info.image} className="w-[85px] h-[85px]" alt="" />
-                </div>
-                <div>
-                  <h3 className="mt-1 font-inter text-sm font-semibold text-[#1A1B25] guide-title">{info.title}</h3>
-                  <h3 className="mt-1 font-inter text-[13px] font-normal paras">{info.description}</h3>
-                  
-                </div>
-                
-              </div>
-            ))}
+          {startupGuide.map((info) => (
+  <div key={info.id} className="w-full sm:w-full rounded-lg mt-2 flex started-guide-card">
+    <div className='inline-block w-[100px] mr-5'>
+      <img src={info.image} className="w-[85px] h-[85px]" alt="" />
+    </div>
+    <div className='w-[320px]'>
+      <h3 className="mt-1 font-inter text-sm font-semibold text-[#1A1B25] guide-title">{info.title}</h3>
+      {breakIntoLines(info.description, 5).map((line, index) => (
+        <h3 className="mt-1 font-inter text-[13px] font-normal paras" key={index}>{line}</h3>
+      ))}
+    </div>
+  </div>
+))}
+
           </div>
         </div>
       </div>
