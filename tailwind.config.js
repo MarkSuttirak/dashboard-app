@@ -7,6 +7,7 @@ module.exports = {
     fontFamily: {
       inter: ['Inter', 'sans-serif'],
       SegoeUI: ['Segoe UI', 'Arial', 'sans-serif'],
+      sukhumvit: ['Sukhumvit Set', 'sans-serif'],
     },
     extend: {},
   },

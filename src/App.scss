@@ -212,7 +212,7 @@ h1,h2,h3,h4,h5,h6{
 
 .slick-slide img {
   display: block;
-  height: 280px;
+  height: 260px;
   width: 534px !important;
   padding-left: 13px;
   margin-left: -10px;
@@ -230,6 +230,46 @@ h1,h2,h3,h4,h5,h6{
 }
 .warn {
   animation:warnAnim 300ms;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-container {
+  background-color: white;
+  padding: 20px;
+  position: fixed;
+  top: 15%;
+}
+
+.list-class:hover h4 {
+  color: white;
+}
+
+.list-class:hover p {
+  color: white;
+}
+
+.selected-li{
+  background: #0099FF;
+}
+
+.selected-li h4{
+  color: white;
+}
+
+.selected-li p{
+  color: white;
 }
 
 @media (max-width:1500px) and (min-width:991px){
@@ -265,6 +305,12 @@ h1,h2,h3,h4,h5,h6{
 @media screen and (max-width:500px) {
   .slick-slide img{
     height: 200px;
+  }
+}
+
+@media only screen and (min-width:1600px) {
+  .business-detail-page{
+    width: 1350px;
   }
 }
 
