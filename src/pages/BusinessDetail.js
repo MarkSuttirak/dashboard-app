@@ -62,7 +62,7 @@ function BusinessDetail() {
   return (
     <>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-      <div className="bg-white page-section pb-16 md:pl-10 md:pt-8 pt-8 w-[80%] business-detail-page">
+      <div className="bg-white page-section pb-16 md:pl-10 md:pt-8 pt-8 business-detail-page">
         <div className="pt-0">
           <div className=" max-w-2xl">
             <div className="max-w-lg text-left">
@@ -76,9 +76,9 @@ function BusinessDetail() {
           </div>
         </div>
         <div className='mt-6 md:flex  md:pb-16'>
-          <div className='lg:w-[27%] sm:w-[50%] w-full pr-5 border-b border-[#DCDFE9] pb-6'>
+          <div className='lg:w-[28%] sm:w-[50%] w-full pr-5 border-b border-[#DCDFE9] pb-6'>
             <div className='flex'>
-              <div className='border border-gray-300 w-[80px] h-[80px] mt-1 p-2 rounded-lg flex items-center justify-center'>
+              <div className='border border-gray-300 w-[80px] h-[80px] mt-1 p-2 aspect-square rounded-lg flex items-center justify-center'>
                 <img src={Layer} alt="" />
               </div>
               <div className='ml-5'>
