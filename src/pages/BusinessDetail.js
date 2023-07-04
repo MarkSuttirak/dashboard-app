@@ -62,7 +62,7 @@ function BusinessDetail() {
   return (
     <>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-      <div className="bg-white page-section pb-16 md:pl-10 md:pt-8 pt-8 w-[80%]">
+      <div className="bg-white page-section pb-16 md:pl-10 md:pt-8 pt-8 w-[80%] business-detail-page">
         <div className="pt-0">
           <div className=" max-w-2xl">
             <div className="max-w-lg text-left">
