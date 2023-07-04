@@ -63,18 +63,6 @@ function BusinessDetail() {
     <>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       <div className="bg-white page-section pb-16 md:pl-10 md:pt-8 pt-8 business-detail-page">
-        <div className="pt-0">
-          <div className=" max-w-2xl">
-            <div className="max-w-lg text-left">
-              <h1 className="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">
-                Dream it. Build it. Grow it.
-              </h1>
-              <p className="mt-1 text-sm leading-8 text-gray-600">
-                This is your business super app
-              </p>
-            </div>
-          </div>
-        </div>
         <div className='mt-6 md:flex  md:pb-16'>
           <div className='lg:w-[28%] sm:w-[50%] w-full pr-5 border-b border-[#DCDFE9] pb-6'>
             <div className='flex'>
