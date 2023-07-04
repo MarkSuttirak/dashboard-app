@@ -11,7 +11,7 @@ import Business from './pages/Business';
 import BusinessDetail from './pages/BusinessDetail';
 import TeamsPage from './pages/teams';
 import { useEffect } from 'react';
-
+ 
 function App() {
   return (
     <>
