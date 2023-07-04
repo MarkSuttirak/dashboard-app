@@ -249,8 +249,27 @@ h1,h2,h3,h4,h5,h6{
   background-color: white;
   padding: 20px;
   position: fixed;
-  top: 25%;
-  right: 30%;
+  top: 15%;
+}
+
+.list-class:hover h4 {
+  color: white;
+}
+
+.list-class:hover p {
+  color: white;
+}
+
+.selected-li{
+  background: #0099FF;
+}
+
+.selected-li h4{
+  color: white;
+}
+
+.selected-li p{
+  color: white;
 }
 
 @media (max-width:1500px) and (min-width:991px){

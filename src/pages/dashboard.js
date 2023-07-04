@@ -104,7 +104,7 @@ const Dashboard = () => {
             <div>
               <div className="popup-overlay" onClick={handleInviteClick}></div>
               <div>
-                <div className='w-[511px] h-[363px] bg-white p-3 rounded-2xl popup-container z-[199] relative' onClick={handleInviteClickPopup}>
+                <div className='sm:w-[511px] w-[40%] h-[363px] bg-white p-3 rounded-2xl sm:right-[30%] sm:left-auto left-0 popup-container z-[199] relative' onClick={handleInviteClickPopup}>
                   <PopUp />
                 </div>
               </div>
