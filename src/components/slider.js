@@ -37,9 +37,9 @@ const SliderComponent = ({ images, className }) => {
   };
 
   const slideTwoNext = () => {
-    const nextSlide = currentSlide + 2; // Calculate the next slide index
+    const nextSlide = currentSlide + 2;
     sliderRef.current.slickGoTo(nextSlide);
-    setCurrentSlide(nextSlide); // Update the current slide index
+    setCurrentSlide(nextSlide);
   };
 
   const handleAfterChange = (slideIndex) => {
@@ -65,9 +65,9 @@ const SliderComponent = ({ images, className }) => {
       <button className='border border-[#DCDFE9] w-[100px] h-[32px] cursor-default rounded-2xl font-inter font-medium text-sm text-[#32325D]'>+ 2 more</button>
     </div> */}
 
-    <div className='text-right mt-2 mr-2'>
+    {/* <div className='text-right mt-2 mr-2'>
       <button className='border border-[#DCDFE9] w-[100px] h-[32px] rounded-2xl font-inter font-medium text-sm text-[#32325D]'>+ 2 more</button>
-    </div>
+    </div> */}
 </>
   );
 };

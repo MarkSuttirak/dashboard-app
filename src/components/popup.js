@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import chevronDown from '../img/chevron-down.png'
 import linkImg from '../img/link.png'
 import frameT from '../img/frameT.png'
+import dot from '../img/dot.png'
+import searchIcon from '../img/searchIcon.png'
+import johnWalker from '../img/johnWalker.png'
+import chom from '../img/chom.png'
+import lemonMemon from '../img/lemonMemon.png'
 function Popup() {
 
     const [isOpen, setIsOpen] = useState(false);
@@ -26,14 +31,14 @@ function Popup() {
     return (
         <>
             <div>
-                <div>
+                <div className='p-5 border-b border-[#e6e2e2]'>
                     <h3 className='font-inter font-semibold text-[#333333] text-base'>เพิ่มสมาชิก</h3>
                     <div className='mt-5'>
                         <p className='font-sukhumvit font-semibold text-[#333333] text-[13px]'> ส่งคำเชิญสมาชิกเข้าทีมผ่านอีเมลหรือลิงก์ </p>
                         <div className='flex justify-between items-end'>
-                            <div className='bg-[#F4F5F6] rounded-md mt-2 flex justify-between items-center px-1 h-[32px] w-full'>
-                                <input type="text" placeholder='กรุณากรอกอีเมลของสมาชิกในทีม' className='py-1 px-2 m-1 focus:outline-none bg-[#F4F5F6]' />
-                                <div className='flex items-center'>
+                            <div className='bg-[#F4F5F6] rounded-md mt-2 flex justify-between items-center px-1 h-[32px] w-[80%]'>
+                                <input type="text" placeholder='กรุณากรอกอีเมลของสมาชิกในทีม' className='bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-gray-500 ml-4 focus:outline-none w-full' />
+                                <div className='flex items-center w-[120px]'>
                                     <div>
                                         <div className='flex items-center cursor-pointer' onClick={handleDropdownList}>
                                             <button className='font-sukhumvit font-medium text-[12px] text-[#687178]'>{selectedList}</button>
@@ -65,12 +70,10 @@ function Popup() {
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <button className='w-[75px] h-[32px] ml-4 bg-[#0099FF] cursor-default text-white rounded font-sukhumvit font-bold text-[13px]'>ส่งคำเชิญ</button>
-                            </div>
+                                <button className='sm:w-[75px] w-[100px] h-[32px] ml-4 bg-[#0099FF] cursor-default text-white rounded font-sukhumvit font-bold text-[13px]'>ส่งคำเชิญ</button>
                         </div>
                     </div>
-                    <div className='mt-5 flex items-center'>
+                    <div className='mt-6 flex items-center'>
                         <div className='w-[40px]'>
                             <img src={frameT} alt="" className='w-[40px] aspect-1 rounded-md' />
                         </div>
@@ -79,9 +82,86 @@ function Popup() {
                                 <h3 className='font-inter font-medium text-[13px] text-[#1F272E]'>กำลังรอการตอบรับ...</h3>
                                 <p className='font-inter font-normal text-[12px] text-[#687178]'>thinkoutthebox@email.com</p>
                             </div>
-                            <div className='flex items-center cursor-pointer' onClick={handleDropdownList}>
+                            <div className='flex items-center cursor-pointer'>
                                 <button className='font-sukhumvit font-medium text-[12px] text-[#687178]'>สมาชิก</button>
                                 <img src={chevronDown} className='w-[6px] h-[6px] ml-2' alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='p-5'>
+                    <div className='flex items-center'>
+                        <p className='font-sukhumvit font-medium text-[13px] text-[#1F272E]'>สมาชิกในทีม</p>
+                        <img src={dot} className='ml-2' alt="" />
+                        <p className='font-sukhumvit font-medium text-[13px] text-[#1F272E] ml-2'>สมาชิก 10 คน</p>
+                    </div>
+                    <div className='flex mt-2 items-center justify-between'>
+                        <div className='bg-[#F4F5F6] flex items-center rounded-md px-3 h-[32px] w-full'>
+                            <img src={searchIcon} className='w-[14px] h-[14px]' alt="" />
+                            <input type="text" placeholder='ค้นหาสมาชิก' className='bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-gray-500 ml-4 focus:outline-none' />
+                        </div>
+                        <button className='font-sukhumvit font-bold text-[13px] text-[#333333] bg-[#F3F3F3] w-[80px] h-[32px] ml-3 rounded-md p-2'>
+                            ตัวกรอง
+                        </button>
+                    </div>
+                    <div>
+                        <div className='mt-7 flex items-center'>
+                            <div className='w-[40px]'>
+                                <img src={johnWalker} alt="" className='w-[40px] aspect-1 rounded-md' />
+                            </div>
+                            <div className='flex justify-between w-full ml-5'>
+                                <div>
+                                    <h3 className='font-inter font-medium text-[13px] text-[#1F272E]'>John walker</h3>
+                                    <p className='font-inter font-normal text-[12px] text-[#687178]'>example@mail.com</p>
+                                </div>
+                                <div className='flex items-center cursor-pointer'>
+                                    <button className='font-sukhumvit font-medium text-[12px] text-[#687178]'>สมาชิก</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='mt-5 flex items-center'>
+                            <div className='w-[40px]'>
+                                <img src={chom} alt="" className='w-[40px] aspect-1 rounded-md' />
+                            </div>
+                            <div className='flex justify-between w-full ml-5'>
+                                <div>
+                                    <h3 className='font-inter font-medium text-[13px] text-[#1F272E]'>Chom Chom</h3>
+                                    <p className='font-inter font-normal text-[12px] text-[#687178]'>example@mail.com</p>
+                                </div>
+                                <div className='flex items-center cursor-pointer'>
+                                    <button className='font-sukhumvit font-medium text-[12px] text-[#687178]'>สมาชิก</button>
+                                    <img src={chevronDown} className='w-[6px] h-[6px] ml-2' alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className='mt-5 flex items-center'>
+                            <div className='w-[40px]'>
+                                <img src={lemonMemon} alt="" className='w-[40px] aspect-1 rounded-md' />
+                            </div>
+                            <div className='flex justify-between w-full ml-5'>
+                                <div>
+                                    <h3 className='font-inter font-medium text-[13px] text-[#1F272E]'>Lemon Memon </h3>
+                                    <p className='font-inter font-normal text-[12px] text-[#687178]'>example@mail.com</p>
+                                </div>
+                                <div className='flex items-center cursor-pointer'>
+                                    <button className='font-sukhumvit font-medium text-[12px] text-[#687178]'>สมาชิก</button>
+                                    <img src={chevronDown} className='w-[6px] h-[6px] ml-2' alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className='mt-5 flex items-center'>
+                            <div className='w-[40px]'>
+                                <img src={lemonMemon} alt="" className='w-[40px] aspect-1 rounded-md' />
+                            </div>
+                            <div className='flex justify-between w-full ml-5'>
+                                <div>
+                                    <h3 className='font-inter font-medium text-[13px] text-[#1F272E]'>Lemon Memon </h3>
+                                    <p className='font-inter font-normal text-[12px] text-[#687178]'>example@mail.com</p>
+                                </div>
+                                <div className='flex items-center cursor-pointer'>
+                                    <button className='font-sukhumvit font-medium text-[12px] text-[#687178]'>สมาชิก</button>
+                                    <img src={chevronDown} className='w-[6px] h-[6px] ml-2' alt="" />
+                                </div>
                             </div>
                         </div>
                     </div>
