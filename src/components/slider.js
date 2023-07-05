@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -7,16 +7,16 @@ const settings = {
   dots: false,
   infinite: true,
   speed: 500,
-  slidesToShow: 2,    
-  slidesToScroll: 2, 
+  slidesToShow: 2,
+  slidesToScroll: 1,
   responsive: [
     {
-      breakpoint: 1000,  
+      breakpoint: 1000,
       settings: {
-        slidesToShow: 1,    
-        slidesToScroll: 1, 
-      }
-    }
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
   ],
   prevArrow: <button className="slick-prev" aria-label="Previous" />,
   nextArrow: <button className="slick-next" aria-label="Next" />,
@@ -27,7 +27,6 @@ const Slide = ({ imageUrl }) => (
     <img src={imageUrl} alt="Slide" />
   </div>
 );
-
 
 const SliderComponent = ({ images, className }) => {
   const sliderRef = useRef(null);
@@ -61,21 +60,17 @@ const SliderComponent = ({ images, className }) => {
       </Slider>
       
     </div>
+<<<<<<< HEAD
     {/* <div className='text-right mt-2 mr-2'>
       <button className='border border-[#DCDFE9] w-[100px] h-[32px] cursor-default rounded-2xl font-inter font-medium text-sm text-[#32325D]'>+ 2 more</button>
     </div> */}
+=======
+    <div className='text-right mt-2 mr-2'>
+      <button className='border border-[#DCDFE9] w-[100px] h-[32px] rounded-2xl font-inter font-medium text-sm text-[#32325D]'>+ 2 more</button>
+    </div>
+>>>>>>> parent of 3e65b04 (Merge pull request #6 from MarkSuttirak/dashboard-app-muzammal)
 </>
   );
 };
-
-const SliderComponent = ({ images, className }) => (
-  <div className={`w-[100%] mx-auto`}>
-    <Slider {...settings}>
-      {images.map((image, index) => (
-        <Slide key={index} imageUrl={image} />
-      ))}
-    </Slider>
-  </div>
-);
 
 export default SliderComponent;
