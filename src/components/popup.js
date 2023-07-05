@@ -38,13 +38,13 @@ function Popup({ closePopUp }) {
             <div>
                 <div className='py-6 px-5 border-b border-[#e6e2e2]'>
                 <div className='flex justify-between'>
-                        <h3 className='font-inter font-bold text-[#333333] text-lg'>เพิ่มสมาชิก</h3>
+                        <h3 className='font-sukhumvit font-bold text-[#333333] text-lg'>เพิ่มสมาชิก</h3>
                         <button onClick={handleClosePopup}> <img src={closeIcon} alt="" /></button>
                     </div>
                 </div>
                 <div className='p-5 border-b border-[#e6e2e2]'>
                     
-                    <div className='mt-'>
+                    <div>
                         <p className='font-sukhumvit font-medium text-[#333333] text-[13px]'> ส่งคำเชิญสมาชิกเข้าทีมผ่านอีเมลหรือลิงก์ </p>
                         <div className='flex justify-between items-end'>
                             <div className='bg-[#F4F5F6] rounded-md mt-2 flex justify-between items-center px-1 h-[32px] w-[80%]'>
