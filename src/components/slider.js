@@ -73,15 +73,4 @@ const SliderComponent = ({ images, className }) => {
   );
 };
 
-// const SliderComponent = ({ images, className }) => (
-//   <div className={`w-[100%] mx-auto`}>
-//     <Slider {...settings}>
-//       {images.map((image, index) => (
-//         <Slide key={index} imageUrl={image} />
-//       ))}
-//     </Slider>
-//   </div>
-// );
-
-
 export default SliderComponent;
