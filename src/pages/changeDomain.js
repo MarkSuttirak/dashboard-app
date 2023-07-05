@@ -60,33 +60,80 @@ const ChangeDomain = () => {
 
             <fieldset>
               <legend className="sr-only">Plan</legend>
-                <div className="space-y-10">
-                  {plans.map((plan) => (
-                  <div key={plan.id} className="relative flex items-start">
-                    <div className="flex h-5 items-center">
-                      <input
-                        id={plan.id}
-                        aria-describedby={`${plan.id}-description`}
-                        name="plan"
-                        type="radio"
-                        defaultChecked={plan.id === 'free'}
-                        className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                        onClick={() => {document.getElementById("pro").checked ? setOpenPro(true) : setOpenPro(false)}}
-                      />
-                    </div>
-                    <div className="ml-3 text-sm">
-                      <label htmlFor={plan.id} className="font-medium text-gray-700">
-                        {plan.name}{plan.pro && <span className="ml-[9px] inline-flex items-center rounded-full bg-[#E5F5FF] px-2.5 py-0.5 text-xs font-medium text-[#0099FF]">
-                          Pro
-                        </span>}
-                      </label>
-                      <p id={`${plan.id}-description`} className="text-gray-500">
-                        <span className="sukhumvit">{plan.description}</span>
-                        {plan.input}
-                      </p>
+                <div className="border border-gray-200 bg-white p-10 border-b-0" style={{ borderRadius: "20px 20px 0 0" }}>
+                  <div className="space-y-10">
+                    <div key='free' className="relative flex items-start">
+                      <div className="flex h-5 items-center">
+                        <input
+                          id='free'
+                          aria-describedby={`free-description`}
+                          name="plan"
+                          type="radio"
+                          defaultChecked={true}
+                          className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                          onClick={() => {document.getElementById("pro").checked ? setOpenPro(true) : setOpenPro(false)}}
+                        />
+                      </div>
+                      <div className="ml-3 text-sm">
+                        <label htmlFor='free' className="font-medium text-gray-700">
+                          <span>
+                          ใช้ .getzaviago โดเมนฟรี
+                          </span>
+                        </label>
+                        <p id={`free-description`} className="text-gray-500">
+                          <span className="sukhumvit">หากเลือกเป็น ส่วนลดส่วนบุคคล จำเป็นต้องเลือกรายชื่อลูกค้าสำหรับมอบส่วนลด</span>
+                          <div className="relative mt-1 rounded-md shadow-sm">
+                            <input
+                              type="text"
+                              name="getzaviago-domain"
+                              id="getzaviago-domain"
+                              className="block bg-[#F4F5F6] text-sm p-3 pr-40 w-[500px] focus-within:outline-none"
+                              onChange={typeDomain}
+                            />
+                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 bg-[#F4F5F6]">
+                              <span className="text-gray-500 sm:text-sm">.aca.fc.zaviago.com</span>
+                            </div>
+                          </div>
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  ))}
+                </div>
+                <div className="border border-gray-200 bg-white p-10" style={{ borderRadius: "0 0 20px 20px" }}>
+                  <div className="space-y-10">
+                    <div key='pro' className="relative flex items-start">
+                      <div className="flex h-5 items-center">
+                        <input
+                          id='pro'
+                          aria-describedby={`pro-description`}
+                          name="plan"
+                          type="radio"
+                          className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                          onClick={() => {document.getElementById("pro").checked ? setOpenPro(true) : setOpenPro(false)}}
+                        />
+                      </div>
+                      <div className="ml-3 text-sm">
+                        <label htmlFor='pro' className="font-medium text-gray-700">
+                        เชื่อมต่อโดเมนที่คุณเป็นเจ้าของ<span className="ml-[9px] inline-flex items-center rounded-full bg-[#E5F5FF] px-2.5 py-0.5 text-xs font-medium text-[#0099FF]">Pro</span>
+                        </label>
+                        <p id={`pro-description`} className="text-gray-500">
+                          <span className="sukhumvit">เชื่อมต่อโดเมนที่คุณเป็นเจ้าของ</span>
+                          <div>
+                            <div className="relative mt-1 rounded-md shadow-sm w-[500px]">
+                            <input
+                              type="text"
+                              name="own-domain"
+                              id="own-domain"
+                              className="block bg-[#F4F5F6] text-sm p-3 w-[500px] focus-within:outline-none"
+                              placeholder="www.mywebsite.com" disabled
+                              onChange={typeDomain}
+                            />
+                            </div>
+                          </div>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <button type="submit" className={isModified ? "w-[540px] bg-[#2490EF] text-white px-5 py-3 rounded-md font-13 mt-[50px] btn-primary-shadow" : "w-[540px] bg-[#F4F5F6] text-[#B0B0B0] px-5 py-3 rounded-md font-13 mt-[50px]"} disabled={isModified ? 'true' : 'false'}>Save</button>
