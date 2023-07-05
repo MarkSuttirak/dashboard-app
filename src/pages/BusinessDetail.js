@@ -67,7 +67,7 @@ function BusinessDetail() {
               </div>
             </div>
             <div className="mt-6 text-center">
-              <button className="bg-[#0099FF] text-white rounded-md w-full h-10 font-inter text-base font-semibold btn-primary-shadow">+ Install</button>
+              <button className="bg-[#0099FF] text-white rounded-md w-full h-10 font-inter text-base font-semibold btn-primary-shadow">Install</button>
               <button className="text-[#0066CC] font-inter font-normal text-sm mt-3 border-b border-[#0066CC]">View Website</button>
             </div>
           </div>
@@ -89,13 +89,13 @@ function BusinessDetail() {
               <p className="font-inter font-normal text-sm text-[#1F272E] mt-5">Categories</p>
               <p className="font-inter font-normal text-sm text-[#8A8E91] mt-1">Marketing and conversion</p>
               <p className="font-inter font-normal text-sm text-[#1F272E] mt-5">Integrates with</p>
-              <p className="font-inter font-normal text-sm text-[#8A8E91] mt-1 md:w-auto  lg:w-[285px]">Facebook Advertising, Recharge, Zendesk,</p>
+              <p className="font-inter font-normal text-sm text-[#8A8E91] mt-1 md:w-auto ">Facebook Advertising, Recharge, Zendesk,</p>
             </div>
           </div>
           <div className="md:w-[70%] w-full md:mt-0 mt-10 md:ml-5 ml-0">
             <h3 className="font-inter font-semibold text-[22px] text-[#1F272E]">Layer</h3>
-            <p className="font-inter font-light text-sm mt-8 text-[#687178] lg:w-[782px] w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exLorem ipsum dolor sit amet,</p>
-            <p className="font-inter font-light text-sm mt-8 text-[#687178] lg:w-[782px] w-full">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex</p>
+            <p className="font-inter font-light text-sm mt-8 text-[#687178] w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exLorem ipsum dolor sit amet,</p>
+            <p className="font-inter font-light text-sm mt-8 text-[#687178] w-full">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex</p>
           </div>
         </div>
         <div className="mt-10">
@@ -118,7 +118,7 @@ function BusinessDetail() {
                     <h3 className="mt-1 font-inter text-[13px] font-normal paras" key={index}>{line}</h3>
                   ))}
                   <div className="flex mt-4">
-                      <button className="bg-[#0099FF] text-white rounded-md w-20 h-6 font-inter text-[13px] font-semibold btn-primary-shadow">+ Install</button>
+                      <button className="bg-[#0099FF] text-white rounded-md w-20 h-6 font-inter text-[13px] font-semibold btn-primary-shadow">Install</button>
                     </div>
                 </div>
               </div>

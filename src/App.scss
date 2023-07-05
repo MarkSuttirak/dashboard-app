@@ -219,15 +219,36 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .slick-next{
-  right: -6px !important;
+  right: 25px !important;
 }
 
 .slick-next:before {
   font-family: 'Material Icons' !important;
   content: 'chevron_right' !important;
-  color:#2D94F0 !important; 
-  font-size: 35px !important;
+  color:hsl(0, 0%, 0%) !important;
+  border-radius: 2px;
+  font-size: 25px !important;
+  padding: 13px 0px;
+  background-color: rgba(252, 251, 251, 0.9);
+
 }
+
+.slick-prev:before {
+  font-family: 'Material Icons' !important;
+  content: 'chevron_left' !important;
+  color:hsl(0, 0%, 0%) !important; 
+  font-size: 25px !important;
+  padding: 13px 0px;
+  border-radius: 2px;
+  background-color: rgba(252, 251, 251, 0.9);
+
+}
+
+.slick-prev{
+  left: 13px !important;
+  z-index: 10;
+}
+
 .warn {
   animation:warnAnim 300ms;
 }
