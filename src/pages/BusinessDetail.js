@@ -54,7 +54,8 @@ function BusinessDetail() {
   return (
     <>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-      <div className="bg-white page-section pb-16 md:pl-10 md:pt-8 pt-8 business-detail-page">
+      <div className="bg-white page-section pb-16 md:pl-10 md:pt-8 pt-8 ">
+        <div className="business-detail-page 2xl:mx-auto">
         <div className="mt-6 md:flex md:pb-16">
           <div className="lg:w-[28%] sm:w-[50%] w-full pr-5 border-b border-[#DCDFE9] pb-6">
             <div className="flex">
@@ -124,6 +125,7 @@ function BusinessDetail() {
               </div>
             ))}
           </div>
+        </div>
         </div>
       </div>
     </>

@@ -345,15 +345,9 @@ h1,h2,h3,h4,h5,h6{
   .search-btn{display:none}
 }
 
-@media screen and (max-width:500px) {
-  .slick-slide img{
-    // height: 200px;
-  }
-}
-
 @media only screen and (min-width:1600px) {
   .business-detail-page{
-    width: 1350px;
+    width: 1250px;
   }
 }
 
