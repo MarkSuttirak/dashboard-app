@@ -89,7 +89,7 @@ function BusinessDetail() {
               <p className="font-inter font-normal text-sm text-[#1F272E] mt-5">Categories</p>
               <p className="font-inter font-normal text-sm text-[#8A8E91] mt-1">Marketing and conversion</p>
               <p className="font-inter font-normal text-sm text-[#1F272E] mt-5">Integrates with</p>
-              <p className="font-inter font-normal text-sm text-[#8A8E91] mt-1 md:w-auto  lg:w-[285px]">Facebook Advertising, Recharge, Zendesk,</p>
+              <p className="font-inter font-normal text-sm text-[#8A8E91] mt-1 md:w-auto ">Facebook Advertising, Recharge, Zendesk,</p>
             </div>
           </div>
           <div className="md:w-[70%] w-full md:mt-0 mt-10 md:ml-5 ml-0">
