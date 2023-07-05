@@ -13,7 +13,10 @@ Please install these packages before starting react app.
 npm install react-router-dom\
 npm install sass (for SCSS)\
 npm install @headlessui/react\
-npm install @heroicons/react
+npm install @heroicons/react\
+npm install react-slick\
+npm install slick-carousel\
+npm install feather-icons
 
 ### `npm start`
 
