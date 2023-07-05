@@ -118,7 +118,7 @@ function BusinessDetail() {
                     <h3 className="mt-1 font-inter text-[13px] font-normal paras" key={index}>{line}</h3>
                   ))}
                   <div className="flex mt-4">
-                      <button className="bg-[#0099FF] text-white rounded-md w-20 h-6 font-inter text-[13px] font-semibold btn-primary-shadow">+ Install</button>
+                      <button className="bg-[#0099FF] text-white rounded-md w-20 h-6 font-inter text-[13px] font-semibold btn-primary-shadow">Install</button>
                     </div>
                 </div>
               </div>
