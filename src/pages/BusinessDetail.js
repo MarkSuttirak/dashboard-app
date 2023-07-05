@@ -67,7 +67,7 @@ function BusinessDetail() {
               </div>
             </div>
             <div className="mt-6 text-center">
-              <button className="bg-[#0099FF] text-white rounded-md w-full h-10 font-inter text-base font-semibold btn-primary-shadow">+ Install</button>
+              <button className="bg-[#0099FF] text-white rounded-md w-full h-10 font-inter text-base font-semibold btn-primary-shadow">Install</button>
               <button className="text-[#0066CC] font-inter font-normal text-sm mt-3 border-b border-[#0066CC]">View Website</button>
             </div>
           </div>
