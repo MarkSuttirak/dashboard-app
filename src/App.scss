@@ -212,7 +212,7 @@ h1,h2,h3,h4,h5,h6{
 
 .slick-slide img {
   display: block;
-  height: 280px;
+  height: auto;
   width: 534px !important;
   padding-left: 13px;
   margin-left: -10px;
@@ -252,7 +252,6 @@ h1,h2,h3,h4,h5,h6{
 .warn {
   animation:warnAnim 300ms;
 }
-
 
 .popup-overlay {
   position: fixed;
@@ -315,7 +314,6 @@ h1,h2,h3,h4,h5,h6{
   
   }
 }
-
 @media (max-width:1500px) and (min-width:991px){
   .started-guide {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -348,7 +346,13 @@ h1,h2,h3,h4,h5,h6{
 
 @media screen and (max-width:500px) {
   .slick-slide img{
-    height: 200px;
+    // height: 200px;
+  }
+}
+
+@media only screen and (min-width:1600px) {
+  .business-detail-page{
+    width: 1350px;
   }
 }
 
