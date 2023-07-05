@@ -64,7 +64,7 @@ function Popup() {
                             </div>
                         </div>
                         <div>
-                            <button className='w-[75px] h-[32px] ml-4 bg-[#0099FF] text-white rounded font-sukhumvit font-bold text-[13px]'>ส่งคำเชิญ</button>
+                            <button className='w-[75px] h-[32px] ml-4 bg-[#0099FF] cursor-default text-white rounded font-sukhumvit font-bold text-[13px]'>ส่งคำเชิญ</button>
                         </div>
                     </div>
                 </div>
