@@ -37,9 +37,9 @@ const SliderComponent = ({ images, className }) => {
   };
 
   const slideTwoNext = () => {
-    const nextSlide = currentSlide + 2; // Calculate the next slide index
+    const nextSlide = currentSlide + 2;
     sliderRef.current.slickGoTo(nextSlide);
-    setCurrentSlide(nextSlide); // Update the current slide index
+    setCurrentSlide(nextSlide);
   };
 
   const handleAfterChange = (slideIndex) => {
