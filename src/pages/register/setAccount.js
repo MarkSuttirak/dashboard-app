@@ -147,11 +147,11 @@ const Register = () => {
                 type="text"
                 name="firstname"
                 id="firstname"
-                className="block w-[304px] h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                className={`block w-[304px] h-[34px] rounded-md shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px] ${warnFillName ? 'border-[#EF4444]' : 'border-gray-300'}`}
                 onKeyUp={() => setWarnFillName(false)}
               />
               </div>
-              {warnFillName && (<p className="required text-sm mt-3 mb-4 warn">จำเป็นต้องกรอกแบบฟอร์มนี้</p>)}
+              {warnFillName && (<p className="required text-xs mt-3 mb-4 warn sukhumvit">จำเป็นต้องกรอกข้อมูล</p>)}
 
               <label htmlFor="surname" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-sm">นามสกุล<span className="required">*</span></label>
               <div className="mt-1">
@@ -159,11 +159,11 @@ const Register = () => {
                 type="text"
                 name="surname"
                 id="surname"
-                className="block w-[304px] h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                className={`block w-[304px] h-[34px] rounded-md shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px] ${warnFillSurname ? 'border-[#EF4444]' : 'border-gray-300'}`}
                 onKeyUp={() => setWarnFillSurname(false)}
               />
               </div>
-              {warnFillSurname && (<p className="required text-sm mt-3 mb-4 warn">จำเป็นต้องกรอกแบบฟอร์มนี้</p>)}
+              {warnFillSurname && (<p className="required text-xs mt-3 mb-4 warn sukhumvit">จำเป็นต้องกรอกข้อมูล</p>)}
 
               <label htmlFor="date" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-sm">วัน-เดือน-ปีเกิด<span className="required">*</span></label>
               <div className="mt-1">
@@ -171,11 +171,11 @@ const Register = () => {
                 type="date"
                 name="date"
                 id="date"
-                className="block w-[304px] h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                className={`block w-[304px] h-[34px] rounded-md shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px] ${warnFillBirthdate ? 'border-[#EF4444]' : 'border-gray-300'}`}
                 onChange={() => setWarnFillBirthdate(false)}
               />
               </div>
-              {warnFillBirthdate && (<p className="required text-sm mt-3 mb-4 warn">จำเป็นต้องกรอกแบบฟอร์มนี้</p>)}
+              {warnFillBirthdate && (<p className="required text-xs mt-3 mb-4 warn sukhumvit">จำเป็นต้องกรอกข้อมูล</p>)}
 
               <label htmlFor="email" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-sm">อีเมล<span className="required">*</span></label>
               <div className="mt-1">
@@ -183,11 +183,11 @@ const Register = () => {
                 type="email"
                 name="email"
                 id="email"
-                className="block w-[304px] h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                className={`block w-[304px] h-[34px] rounded-md shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px] ${warnFillEmail ? 'border-[#EF4444]' : 'border-gray-300'}`}
                 onKeyUp={() => setWarnFillEmail(false)}
               />
               </div>
-              {warnFillEmail && (<p className="required text-sm mt-3 mb-4 warn">จำเป็นต้องกรอกแบบฟอร์มนี้</p>)}
+              {warnFillEmail && (<p className="required text-xs mt-3 mb-4 warn sukhumvit">จำเป็นต้องกรอกข้อมูล</p>)}
 
               <fieldset className="space-y-5 w-[304px]">
                 <legend className="sr-only">Notifications</legend>
@@ -230,7 +230,7 @@ const Register = () => {
                 onKeyUp={() => setWarnFillCompany(false)}
               />
               </div>
-              {warnFillCompany && (<p className="required text-sm mt-3 mb-4 warn">จำเป็นต้องกรอกแบบฟอร์มนี้</p>)}
+              {warnFillCompany && (<p className="required text-xs mt-3 mb-4 warn sukhumvit">จำเป็นต้องกรอกข้อมูล</p>)}
 
               <label htmlFor="business-type" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px]">ประเภทธุรกิจสินค้า<span className="required">*</span></label>
               <div className="w-full">
@@ -238,7 +238,8 @@ const Register = () => {
                   id="business-type"
                   name="business-type"
                   className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
-                  defaultValue=''
+                  placeholder="เลือกประเภทธุรกิจสินค้า"
+                  value={0}
                 >
                   <option>การเกษตร</option>
                   <option>การออกแบบและศิลปะ</option>

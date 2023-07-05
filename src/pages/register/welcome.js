@@ -70,8 +70,8 @@ const Welcome = () => {
                 </div>
               </div>
 
-              <div className="mt-4">
-                <h2 className="sukhumvit text-md">มีบัญชีแล้ว 
+              <div className="mt-5">
+                <h2 className="sukhumvit text-md text-[#909090]">มีบัญชีแล้ว? 
                   <span className="ml-1 text-[#0066CC] sukhumvit cursor-pointer decoration-solid underline" onClick={handleWelcome}>คลิกที่นี่เพื่อเข้าสู่ระบบ</span>
                 </h2>
               </div>
@@ -86,7 +86,7 @@ const Welcome = () => {
               <h1 className="text-[#1F272E] font-bold text-[22px] mt-8 text-center" style={{fontFamily:"Eventpop"}}>กรอกเบอร์โทรศัพท์เพื่อรับรหัส OTP</h1>
                 <p className="sukhumvit text-sm mt-3">รหัส OTP จะส่งไปยังหมายเลขโทรศัพท์ของคุณ</p>
                 
-                <div className="flex gap-x-[11px] w-[304px] m-auto mt-6">
+                <div className="flex gap-x-[11px] w-[304px] m-auto mt-5">
                   <div className="w-1/4">
                     <select
                       id="location"
@@ -115,9 +115,9 @@ const Welcome = () => {
                 </div>
 
                 {warnFillPhone && (<p className="required text-sm mt-3 warn">กรุณากรอกเบอร์โทรศัพท์</p>)}
-                <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[15px] w-[304px] text-md m-auto btn-primary-shadow" onClick={handleFillNum}>ขอรหัส OTP</button>
+                <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[15px] w-[304px] text-md m-auto btn-primary-shadow sukhumvit font-semibold" onClick={handleFillNum}>ขอรหัส OTP</button>
     
-                <div className="mt-4">
+                <div className="mt-5">
                   <h2 className="sukhumvit text-sm text-[#909090]">หมายเลขโทรศัพท์ที่ระบุจะเพิ่มไปยังโปรไฟล์ของคุณ <br/>โปรดศึกษาข้อมูลเพิ่มเติมที่ 
                     <span className="ml-1 text-[#0066CC] sukhumvit cursor-pointer decoration-solid underline">นโยบายความเป็นส่วนตัว</span>
                   </h2>
@@ -200,10 +200,19 @@ const Welcome = () => {
 
                 {warnFillOTP && (<p className="required text-sm mt-3 warn">กรุณากรอก OTP ให้ครบ</p>)}
 
-                <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[23px] w-[304px] text-md m-auto btn-primary-shadow" onClick={handleFillOTP}>ยืนยัน OTP</button>
-                <p className="text-[#909090] text-md font-medium sukhumvit mt-[42px]">ขอรหัส OTP ใหม่อีกครั้งใน 00:30 วินาที</p>
+                <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[39px] w-[304px] text-md m-auto btn-primary-shadow sukhumvit font-semibold" onClick={handleFillOTP}>ยืนยัน OTP</button>
+                <p className="text-[#909090] text-md font-medium sukhumvit mt-[38px]">ขอรหัส OTP ใหม่อีกครั้งใน 00:30 วินาที</p>
 
-                <div className="mt-[54px]">
+                <div className="relative mt-3">
+                  <div className="absolute inset-0 flex items-center" aria-hidden="true">
+                    <div className="w-full border-t border-[#EBEEF0]" />
+                  </div>
+                  <div className="relative flex justify-center">
+                    <span className="bg-white px-3 text-sm font-medium text-[#333C44] sukhumvit">หรือ</span>
+                  </div>
+                </div>
+
+                <div className="mt-[12px]">
                   <h2 className="sukhumvit text-md">
                     <span className="ml-1 text-[#0066CC] sukhumvit cursor-pointer decoration-solid underline" onClick={handleChangeNum}>เปลี่ยนเบอร์มือถือ</span>
                   </h2>
