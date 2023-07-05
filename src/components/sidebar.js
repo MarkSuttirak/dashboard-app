@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useContext} from "react";
 import Logo from "../img/logo.svg";
 import dashboardImg from "../img/dashboard.svg";
 import appsImg from "../img/apps.svg";
@@ -10,7 +10,10 @@ import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon 
 import pjob from "../img/pjob.svg";
 import { Fragment } from 'react'
 import { Combobox, Dialog, Transition } from '@headlessui/react'
-
+import "../css/sidebar-dropdown.css";
+import {switchContext} from '../App'
+// import TeamModal from "../components/switchTeamModal";
+ 
 const Sidebar = () => {
     const location = useLocation();
     const [active, setActive] = useState('');
@@ -41,6 +44,7 @@ const Sidebar = () => {
       { name: 'Setting', icon: settingsImg, href: '#', count: 12, current: active === "/settings" || active === "/change-domain" ? true : false, active: active },
     ]
 
+
     function classNames(...classes) {
       return classes.filter(Boolean).join(' ')
     }
@@ -62,7 +66,8 @@ const Sidebar = () => {
     const [query, setQuery] = useState('')
 
     const [open, setOpen] = useState(false)
-
+    
+    const [showModal, setShowModal] = React.useState(false);
     const filteredSearch =
       query === ''
         ? []
@@ -73,8 +78,17 @@ const Sidebar = () => {
     const openSearch = () => {
       setOpen(true);
     }
+    
+    const [isSwitchModalOpen, setisSwitchModalOpen] = React.useContext(switchContext);
+
+
+    function show_menu ( ){
+      setShowModal(false); 
+    }
+
     return (
       <>
+      
         <div className="w-full h-full fixed z-40 bg-gray-500" id="sidebar-overlay" onClick={closeSidebar}></div>
         <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white fixed h-screen" id="sidebar">
           <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
@@ -147,14 +161,120 @@ const Sidebar = () => {
                     alt=""
                   />
                 </div>
+                
+               
+                {showModal ? (
+                  <>
+                    <div
+                      className="sidebar-options-menu  justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                    >
+                      <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                        {/*content*/}
+                        <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                          {/*header*/}
+                          <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                            <div className="user0in0menu">
+                              <div className="user-image-inside-menu">
+                              <img
+                                  className="inline-block h-9 w-9 rounded-full"
+                                  src={pjob}
+                                  alt=""
+                                />
+                             </div>
+                             <div className="user-name-in-side-menu">
+                                  <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">John Persson</p>
+                                  <p className="user-email text-xs font-medium text-gray-500 group-hover:text-gray-700">john@zaviago.com</p>
+                              </div>
+                            </div>
+                            <button
+                              className=""
+                              onClick={ show_menu }
+                            >
+                             <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          {/*body*/}
+                          <div className="side-menu-ul-container relative p-6 flex-auto">
+                           <ul >
+                              <li 
+                              onClick={() => setisSwitchModalOpen(true)}
+                              > 
+                                <span className="logo-in-menu">
+                                  <img src={require('../img/reverse-arrows.png')}/>
+                                </span> 
+                                <span>Switch Team</span>
+                              </li>
+                              <li>
+                                <span className="logo-in-menu"><img src={require('../img/account-in-menu.png')}/></span> <span>Account</span>
+                              </li>
+                            </ul>
+                            </div>
+                            <div>
+                              <hr className="hr-1"></hr>
+                            </div>
+                            <div className="side-menu-ul-container relative p-6 flex-auto">
+                            <ul >
+                              <li>
+                                <span className="logo-in-menu"><img src={require('../img/ask-support.png')}/></span> <span>Help and support</span>
+                              </li>
+                              <li>
+                                <span className="logo-in-menu"><img src={require('../img/whats-new.png')}/></span> <span>What's new</span>
+                              </li>
+                              <li>
+                                <span className="logo-in-menu"><img src={require('../img/upgrade-to-pro.png')}/></span> <span>Upgrade to pro</span>
+                              </li>
+                            </ul>
+                            </div>
+                            <div>
+                              <hr className="hr-1"></hr>
+                            </div>
+                            <div className="side-menu-ul-container relative p-6 flex-auto">
+                            <ul className="sign-out-ul">
+                              <li>
+                                <span className="logo-in-menu">
+                                 <svg class="svg-icon"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M835.669333 554.666667h-473.173333A42.453333 42.453333 0 0 1 320 512a42.666667 42.666667 0 0 1 42.474667-42.666667h473.173333l-161.813333-161.834666a42.666667 42.666667 0 0 1 60.330666-60.330667l234.666667 234.666667a42.666667 42.666667 0 0 1 0 60.330666l-234.666667 234.666667a42.666667 42.666667 0 0 1-60.330666-60.330667L835.669333 554.666667zM554.666667 42.666667a42.666667 42.666667 0 1 1 0 85.333333H149.525333C137.578667 128 128 137.578667 128 149.482667v725.034666C128 886.4 137.6 896 149.525333 896H554.666667a42.666667 42.666667 0 1 1 0 85.333333H149.525333A106.816 106.816 0 0 1 42.666667 874.517333V149.482667A106.773333 106.773333 0 0 1 149.525333 42.666667H554.666667z" fill="currentColor" /></svg>
+                                </span>
+                                <span>Sign Out</span><br></br>
+                               
+                              </li>
+                            </ul>
+                            <ul className="app-version">
+                              <li> <span>v.1.4.88</span></li>
+                            </ul>
+                          </div>
+                          {/*footer*/}
+                           
+                            <button
+                              className=""
+                              type="button" 
+                              onClick={() => setShowModal(false)}
+                            >
+                             
+                            </button>
+                          
+                        </div>
+                      </div>
+                    </div>
+                    <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                  </>
+                ) : null}
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">John Persson</p>
+                <button
+                  className=""
+                  type="button"
+                  onClick={() => setShowModal(true)}
+                >
+                 <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">John Persson</p>
                   <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">john@zaviago.com</p>
+                </button>
+                  
                 </div>
               </div>
             </a>
           </div>
         </div>
+
+
         
         <header className="header-mobile">
           <h1 onClick={openSidebar} style={{cursor:"pointer"}}>
