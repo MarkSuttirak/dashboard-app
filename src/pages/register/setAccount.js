@@ -168,6 +168,7 @@ const Register = () => {
               <label htmlFor="date" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-sm">วัน-เดือน-ปีเกิด<span className="required">*</span></label>
               <div className="mt-1">
               <input
+                datepicker 
                 type="date"
                 name="date"
                 id="date"
