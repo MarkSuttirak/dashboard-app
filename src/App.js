@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import React, { useState } from "react";
 import './App.scss';
 import Sidebar from './components/sidebar';
 import Dashboard from './pages/dashboard';
@@ -11,12 +12,22 @@ import Business from './pages/Business';
 import BusinessDetail from './pages/BusinessDetail';
 import TeamsPage from './pages/teams';
 import { useEffect } from 'react';
- 
+import TeamModal from "./components/switchTeamModal";
+import {    createContext } from 'react';
+
+
+export  const switchContext = createContext( );
+
 function App() {
+  const [isSwitchModalOpen, setisSwitchModalOpen] = useState(false);
   return (
-    <>
-      <Router>
+    < >
+    <Router>
+    <switchContext.Provider value={[isSwitchModalOpen, setisSwitchModalOpen]}>
+      
         <Sidebar />
+        <TeamModal/>
+    </switchContext.Provider>
         <Routes>
           <Route path="/" element={<Dashboard />}/>
           <Route path="/appsdetail" element={<BusinessDetail />}/>
@@ -27,7 +38,9 @@ function App() {
           <Route path="/register" element={<Register />}/>
           <Route path="/teams" element={<TeamsPage />}/>
         </Routes>
-      </Router>
+      
+    
+    </Router>
     </>
   );
 }

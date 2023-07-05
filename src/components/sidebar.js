@@ -56,6 +56,7 @@ const Sidebar = () => {
     const searchResults = [
       { name: 'Apps', url: '/apps' },
       { name: 'Change Domain', url: '/change-domain' },
+      { name: 'Layer', url: '/appsdetail'}
     ]
 
     function classNames(...classes) {
