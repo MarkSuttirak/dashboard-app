@@ -147,7 +147,7 @@ const Register = () => {
                 type="text"
                 name="firstname"
                 id="firstname"
-                className={`block w-[304px] h-[34px] rounded-md shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px] ${warnFillName ? 'border-[#EF4444]' : 'border-gray-300'}`}
+                className={`block w-[304px] h-[34px] rounded-md shadow-sm focus-within:outline-none text-sm bg-[#F4F5F6] py-2 px-[14px] ${warnFillName ? 'border-[#EF4444] border' : 'border-gray-300'}`}
                 onKeyUp={() => setWarnFillName(false)}
               />
               </div>
@@ -159,7 +159,7 @@ const Register = () => {
                 type="text"
                 name="surname"
                 id="surname"
-                className={`block w-[304px] h-[34px] rounded-md shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px] ${warnFillSurname ? 'border-[#EF4444]' : 'border-gray-300'}`}
+                className={`block w-[304px] h-[34px] rounded-md shadow-sm focus-within:outline-none text-sm bg-[#F4F5F6] py-2 px-[14px] ${warnFillSurname ? 'border-[#EF4444] border' : 'border-gray-300'}`}
                 onKeyUp={() => setWarnFillSurname(false)}
               />
               </div>
@@ -172,7 +172,7 @@ const Register = () => {
                 type="date"
                 name="date"
                 id="date"
-                className={`block w-[304px] h-[34px] rounded-md shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px] ${warnFillBirthdate ? 'border-[#EF4444]' : 'border-gray-300'}`}
+                className={`block w-[304px] h-[34px] rounded-md shadow-sm focus-within:outline-none text-sm bg-[#F4F5F6] py-2 px-[14px] ${warnFillBirthdate ? 'border-[#EF4444] border' : 'border-gray-300'}`}
                 onChange={() => setWarnFillBirthdate(false)}
               />
               </div>
@@ -184,7 +184,7 @@ const Register = () => {
                 type="email"
                 name="email"
                 id="email"
-                className={`block w-[304px] h-[34px] rounded-md shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px] ${warnFillEmail ? 'border-[#EF4444]' : 'border-gray-300'}`}
+                className={`block w-[304px] h-[34px] rounded-md shadow-sm focus-within:outline-none text-sm bg-[#F4F5F6] py-2 px-[14px] ${warnFillEmail ? 'border-[#EF4444] border' : 'border-gray-300'}`}
                 onKeyUp={() => setWarnFillEmail(false)}
               />
               </div>
@@ -227,7 +227,7 @@ const Register = () => {
                 type="text"
                 name="companyname"
                 id="companyname"
-                className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                className={`block w-full h-[34px] rounded-md shadow-sm focus-within:outline-none text-sm bg-[#F4F5F6] py-2 px-[14px] ${warnFillCompany ? 'border-[#EF4444] border' : 'border-gray-300'}`}
                 onKeyUp={() => setWarnFillCompany(false)}
               />
               </div>
@@ -238,7 +238,7 @@ const Register = () => {
                 <select
                   id="business-type"
                   name="business-type"
-                  className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                  className="mt-1 block h-[34px] w-full rounded-md py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
                   placeholder="เลือกประเภทธุรกิจสินค้า"
                   value={0}
                 >
@@ -275,7 +275,7 @@ const Register = () => {
                 <select
                   id="num-team"
                   name="num-team"
-                  className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                  className="mt-1 block h-[34px] w-full rounded-md py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
                 >
                   <option>แค่ฉันคนเดียว</option>
                   <option>2-9 คน</option>
@@ -290,7 +290,7 @@ const Register = () => {
                 <select
                   id="goal"
                   name="goal"
-                  className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                  className="mt-1 block h-[34px] w-full rounded-md py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
                 >
                   <option>บริหารและจัดการธุรกิจ</option>
                   <option>ขายสินค้า</option>
