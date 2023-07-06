@@ -69,6 +69,7 @@ const Register = () => {
 
     const [warnFillCompany, setWarnFillCompany] = useState(false);
 
+
     const [warnFillSite, setWarnFillSite] = useState(false);
 
     const [selectedApp, setSelectedApp] = useState(appsList[0])
@@ -246,34 +247,33 @@ const Register = () => {
                   id="business-type"
                   name="business-type"
                   className="mt-1 block h-[34px] w-full rounded-md py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
-                  placeholder="เลือกประเภทธุรกิจสินค้า"
-                  value={0}
                 >
-                  <option>การเกษตร</option>
-                  <option>การออกแบบและศิลปะ</option>
-                  <option>ยานยนต์</option>
-                  <option>การศึกษา</option>
-                  <option>พลังงานและสาธารณูปโภค</option>
-                  <option>องค์กรหรือสถาบัน</option>
-                  <option>ธุรกิจบริการ</option>
-                  <option>การเงินและการบัญชี</option>
-                  <option>ร้านอาหารและเครื่องดื่ม</option>
-                  <option>องค์กรไม่แสวงหากำไร</option>
-                  <option>ภาครัฐบาลและรัฐวิสาหกิจ</option>
-                  <option>สุขภาพและความงาม</option>
-                  <option>บริการทางธุรกิจ</option>
-                  <option>กฎหมาย</option>
-                  <option>อุตสาหกรรมและการก่อสร้าง</option>
-                  <option>สื่อและธุรกิจบันเทิง</option>
-                  <option>อสังหาริมทรัพย์</option>
-                  <option>ค้าขาย, ร้านค้า</option>
-                  <option>เซลล์และการตลาด</option>
-                  <option>ยาและเวชภัณฑ์</option>
-                  <option>เทคโนโลยีและ IT</option>
-                  <option>การคลังสินค้า</option>
-                  <option>การขนส่งและโลจิสติก</option>
-                  <option>โรงแรมและการท่องเที่ยว</option>
-                  <option>อื่นๆ</option>
+                  <option selected disabled value="default">เลือกประเภทธุรกิจสินค้า</option>
+                  <option value="การเกษตร">การเกษตร</option>
+                  <option value="การออกแบบและศิลปะ">การออกแบบและศิลปะ</option>
+                  <option value="ยานยนต์">ยานยนต์</option>
+                  <option value="การศึกษา">การศึกษา</option>
+                  <option value="พลังงานและสาธารณูปโภค">พลังงานและสาธารณูปโภค</option>
+                  <option value="องค์กรหรือสถาบัน">องค์กรหรือสถาบัน</option>
+                  <option value="ธุรกิจบริการ">ธุรกิจบริการ</option>
+                  <option value="การเงินและการบัญชี">การเงินและการบัญชี</option>
+                  <option value="ร้านอาหารและเครื่องดื่ม">ร้านอาหารและเครื่องดื่ม</option>
+                  <option value="องค์กรไม่แสวงหากำไร">องค์กรไม่แสวงหากำไร</option>
+                  <option value="ภาครัฐบาลและรัฐวิสาหกิจ">ภาครัฐบาลและรัฐวิสาหกิจ</option>
+                  <option value="สุขภาพและความงาม">สุขภาพและความงาม</option>
+                  <option value="บริการทางธุรกิจ">บริการทางธุรกิจ</option>
+                  <option value="กฎหมาย">กฎหมาย</option>
+                  <option value="อุตสาหกรรมและการก่อสร้าง">อุตสาหกรรมและการก่อสร้าง</option>
+                  <option value="สื่อและธุรกิจบันเทิง">สื่อและธุรกิจบันเทิง</option>
+                  <option value="อสังหาริมทรัพย์">อสังหาริมทรัพย์</option>
+                  <option value="ค้าขาย, ร้านค้า">ค้าขาย, ร้านค้า</option>
+                  <option value="เซลล์และการตลาด">เซลล์และการตลาด</option>
+                  <option value="ยาและเวชภัณฑ์">ยาและเวชภัณฑ์</option>
+                  <option value="เทคโนโลยีและ IT">เทคโนโลยีและ IT</option>
+                  <option value="การคลังสินค้า">การคลังสินค้า</option>
+                  <option value="การขนส่งและโลจิสติก">การขนส่งและโลจิสติก</option>
+                  <option value="โรงแรมและการท่องเที่ยว">โรงแรมและการท่องเที่ยว</option>
+                  <option value="อื่นๆ">อื่นๆ</option>
                 </select>
               </div>
   
