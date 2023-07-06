@@ -7,7 +7,8 @@ import searchIcon from '../img/searchIcon.png'
 import johnWalker from '../img/johnWalker.png'
 import chom from '../img/chom.png'
 import lemonMemon from '../img/lemonMemon.png'
-function Popup() {
+import closeIcon from '../img/closeIcon.png'
+function Popup({ closePopUp }) {
 
     const [isOpen, setIsOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(0);
@@ -28,16 +29,26 @@ function Popup() {
         setIsOpen(!isOpen)
     }
 
+    const handleClosePopup = () => {
+        closePopUp()
+    }
+
     return (
         <>
             <div>
+                <div className='py-6 px-5 border-b border-[#e6e2e2]'>
+                <div className='flex justify-between'>
+                        <h3 className='font-sukhumvit font-bold text-[#333333] text-lg'>เพิ่มสมาชิก</h3>
+                        <button onClick={handleClosePopup}> <img src={closeIcon} alt="" /></button>
+                    </div>
+                </div>
                 <div className='p-5 border-b border-[#e6e2e2]'>
-                    <h3 className='font-inter font-semibold text-[#333333] text-base'>เพิ่มสมาชิก</h3>
-                    <div className='mt-5'>
-                        <p className='font-sukhumvit font-semibold text-[#333333] text-[13px]'> ส่งคำเชิญสมาชิกเข้าทีมผ่านอีเมลหรือลิงก์ </p>
+                    
+                    <div>
+                        <p className='font-sukhumvit font-medium text-[#333333] text-[13px]'> ส่งคำเชิญสมาชิกเข้าทีมผ่านอีเมลหรือลิงก์ </p>
                         <div className='flex justify-between items-end'>
                             <div className='bg-[#F4F5F6] rounded-md mt-2 flex justify-between items-center px-1 h-[32px] w-[80%]'>
-                                <input type="text" placeholder='กรุณากรอกอีเมลของสมาชิกในทีม' className='bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-gray-500 ml-4 focus:outline-none w-full' />
+                                <input type="email" placeholder='กรุณากรอกอีเมลของสมาชิกในทีม' className='bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-gray-500 ml-4 focus:outline-none w-full' />
                                 <div className='flex items-center w-[120px]'>
                                     <div>
                                         <div className='flex items-center cursor-pointer' onClick={handleDropdownList}>
@@ -70,7 +81,7 @@ function Popup() {
                                     </div>
                                 </div>
                             </div>
-                                <button className='sm:w-[75px] w-[100px] h-[32px] ml-4 bg-[#0099FF] cursor-default text-white rounded font-sukhumvit font-bold text-[13px]'>ส่งคำเชิญ</button>
+                            <button className='sm:w-[75px] w-[100px] h-[32px] ml-4 bg-[#0099FF] cursor-default text-white rounded-md shadow-md font-sukhumvit font-bold text-[13px]'>ส่งคำเชิญ</button>
                         </div>
                     </div>
                     <div className='mt-6 flex items-center'>
@@ -79,7 +90,7 @@ function Popup() {
                         </div>
                         <div className='flex justify-between w-full ml-5'>
                             <div>
-                                <h3 className='font-inter font-medium text-[13px] text-[#1F272E]'>กำลังรอการตอบรับ...</h3>
+                                <h3 className='font-sukhumvit font-medium text-[13px] text-[#1F272E]'>กำลังรอการตอบรับ...</h3>
                                 <p className='font-inter font-normal text-[12px] text-[#687178]'>thinkoutthebox@email.com</p>
                             </div>
                             <div className='flex items-center cursor-pointer'>
@@ -100,8 +111,9 @@ function Popup() {
                             <img src={searchIcon} className='w-[14px] h-[14px]' alt="" />
                             <input type="text" placeholder='ค้นหาสมาชิก' className='bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-gray-500 ml-4 focus:outline-none' />
                         </div>
-                        <button className='font-sukhumvit font-bold text-[13px] text-[#333333] bg-[#F3F3F3] w-[80px] h-[32px] ml-3 rounded-md p-2'>
-                            ตัวกรอง
+                        <button className='flex justify-between items-center bg-[#F3F3F3] w-[90px] h-[32px] ml-3 rounded-md p-2'>
+                            <span className='font-sukhumvit font-bold text-[13px] text-[#333333]'>ตัวกรอง</span>
+                            <img src={chevronDown} className='w-[8px]' alt="" />
                         </button>
                     </div>
                     <div>

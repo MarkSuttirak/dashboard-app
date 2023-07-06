@@ -26,9 +26,13 @@ const Dashboard = () => {
   const handleInviteClick = () => {
     setIsOpen(!isOpen);
   }
-  const handleInviteClickPopup = () => {
-    setIsOpen(true);
-    console.log('true')
+  // const handleInviteClickPopup = () => {
+  //   setIsOpen(true);
+  //   console.log('true')
+  // }
+  const closePopUp = ()=>{
+    setIsOpen(false);
+    console.log('false')
   }
 
   const dashboardInfo = [
@@ -102,10 +106,10 @@ const Dashboard = () => {
           </div>
           {isOpen &&
             <div>
-              <div className="popup-overlay" onClick={handleInviteClick}></div>
+              <div className="popup-overlay"></div>
               <div>
-                <div className='sm:w-[511px] w-[40%]  bg-white rounded-2xl sm:right-[30%]  sm:left-auto left-[2%] popup-container z-[199] relative' onClick={handleInviteClickPopup}>
-                  <PopUp />
+                <div className='sm:w-[511px] w-[40%]  bg-white rounded-2xl sm:right-[30%]  sm:left-auto left-[2%] popup-container z-[199] relative'>
+                  <PopUp closePopUp={closePopUp}/>
                 </div>
               </div>
             </div>
@@ -233,8 +237,8 @@ const Dashboard = () => {
                 <p className="font-13">Customer</p>
               </div>
 
-              <div class="w-1/2 bg-gray-200 rounded-full h-2 dark:bg-gray-700">
-                <div class="bg-blue-600 h-2 rounded-full dark:bg-blue-500" style={{ width: "40%" }}></div>
+              <div className="w-1/2 bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                <div className="bg-blue-600 h-2 rounded-full dark:bg-blue-500" style={{ width: "40%" }}></div>
               </div>
 
               <p className="font-13">(2.1%)</p>
@@ -249,8 +253,8 @@ const Dashboard = () => {
                 <p className="font-13">Database (34.8%)</p>
               </div>
 
-              <div class="w-1/2 bg-gray-200 rounded-full h-2 dark:bg-gray-700">
-                <div class="bg-blue-600 h-2 rounded-full dark:bg-blue-500" style={{ width: "60%" }}></div>
+              <div className="w-1/2 bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                <div className="bg-blue-600 h-2 rounded-full dark:bg-blue-500" style={{ width: "60%" }}></div>
               </div>
 
               <p className="font-13">(2.1%)</p>
@@ -265,8 +269,8 @@ const Dashboard = () => {
                 <p className="font-13">Storage (0.0%)</p>
               </div>
 
-              <div class="w-1/2 bg-gray-200 rounded-full h-2 dark:bg-gray-700">
-                <div class="bg-blue-600 h-2 rounded-full dark:bg-blue-500" style={{ width: "85%" }}></div>
+              <div className="w-1/2 bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                <div className="bg-blue-600 h-2 rounded-full dark:bg-blue-500" style={{ width: "85%" }}></div>
               </div>
 
               <p className="font-13">(90.1%)</p>
@@ -281,8 +285,8 @@ const Dashboard = () => {
                 <p className="font-13">Orders</p>
               </div>
 
-              <div class="w-1/2 bg-gray-200 rounded-full h-2 dark:bg-gray-700">
-                <div class="bg-blue-600 h-2 rounded-full dark:bg-blue-500" style={{ width: "20%" }}></div>
+              <div className="w-1/2 bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                <div className="bg-blue-600 h-2 rounded-full dark:bg-blue-500" style={{ width: "20%" }}></div>
               </div>
 
               <p className="font-13">(90.1%)</p>
