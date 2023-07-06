@@ -13,6 +13,7 @@ function Popup({ closePopUp }) {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(0);
     const [selectedList, SetSelectedList] = useState('สมาชิก');
+    const [email, setEmail] = useState('');
 
     const handleClick = (index, title) => {
         setSelectedItem(index);
@@ -33,6 +34,15 @@ function Popup({ closePopUp }) {
         closePopUp()
     }
 
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+        if (!emailPattern.test(email)) {
+          console.log('Please enter a valid email address.')
+        }
+      };
+
     return (
         <>
             <div>
@@ -48,7 +58,7 @@ function Popup({ closePopUp }) {
                         <p className='font-sukhumvit font-medium text-[#333333] text-[13px]'> ส่งคำเชิญสมาชิกเข้าทีมผ่านอีเมลหรือลิงก์ </p>
                         <div className='flex justify-between items-end'>
                             <div className='bg-[#F4F5F6] rounded-md mt-2 flex justify-between items-center px-1 h-[32px] w-[80%]'>
-                                <input type="email" placeholder='กรุณากรอกอีเมลของสมาชิกในทีม' className='bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-gray-500 ml-4 focus:outline-none w-full' />
+                                <input type="email" placeholder='กรุณากรอกอีเมลของสมาชิกในทีม' onChange={handleEmailChange} className='bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-gray-500 ml-4 focus:outline-none w-full' />
                                 <div className='flex items-center w-[120px]'>
                                     <div>
                                         <div className='flex items-center cursor-pointer' onClick={handleDropdownList}>
