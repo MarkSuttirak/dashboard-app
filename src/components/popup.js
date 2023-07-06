@@ -53,7 +53,7 @@ function Popup({ closePopUp }) {
                                     <div>
                                         <div className='flex items-center cursor-pointer' onClick={handleDropdownList}>
                                             <button className='font-sukhumvit font-medium text-[12px] text-[#687178]'>{selectedList}</button>
-                                            <img src={chevronDown} className='w-[7px] h-[7px] ml-2' alt="" />
+                                            <img src={chevronDown} className='w-[7px] ml-2' alt="" />
                                         </div>
                                         {isOpen && (
                                             <div className='w-[160px] absolute right-[10%] bg-white border border-[#F2F2F2] rounded-md p-1 mt-4'>
