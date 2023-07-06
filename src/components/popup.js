@@ -53,13 +53,17 @@ function Popup({ closePopUp }) {
           return;
         }else{
             setBorderColor('#afacac');
+            setError('');
         }
       };
     
       const handleEmailFocus = () => {
-        if(error !== ''){
-            setBorderColor('#EF4444');
-        }else{
+        console.log(error.length)
+        if(error.length > 0){
+            setBorderColor('#afacac');
+        } else if(email.length === ''){
+            setBorderColor('none');
+        } else{
         setBorderColor('#afacac');}
         setError('');
       };
@@ -87,7 +91,7 @@ function Popup({ closePopUp }) {
                                 <input type="email" placeholder='กรุณากรอกอีเมลของสมาชิกในทีม' onBlur={handleEmailBlur} onFocus={handleEmailFocus} onChange={handleEmailChange} className={`bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-gray-500 ml-4 focus:outline-none w-full`} />
                                 
                                 </div>
-                                <div className='flex items-center w-[120px]'>
+                                <div className='flex items-center w-[120px] justify-end'>
                                     <div>
                                         <div className='flex items-center cursor-pointer' onClick={handleDropdownList}>
                                             <button className='font-sukhumvit font-medium text-[12px] text-[#687178]'>{selectedList}</button>
