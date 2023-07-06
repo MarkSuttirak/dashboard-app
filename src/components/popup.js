@@ -13,6 +13,9 @@ function Popup({ closePopUp }) {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(0);
     const [selectedList, SetSelectedList] = useState('สมาชิก');
+    const [email, setEmail] = useState('');
+    const [error, setError] = useState('');
+    const [borderColor, setBorderColor] = useState('none');
 
     const handleClick = (index, title) => {
         setSelectedItem(index);
@@ -33,6 +36,42 @@ function Popup({ closePopUp }) {
         closePopUp()
     }
 
+    const handleEmailChange = (event) => {
+        const { value } = event.target;
+        setEmail(value);
+        setError('');
+      };
+    
+      const handleFormSubmit = (event) => {
+        event.preventDefault();
+    
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+        if (!emailPattern.test(email)) {
+          setError('กรุณากรอกอีเมลที่ถูกต้อง');
+          setBorderColor('#EF4444');
+          return;
+        }else{
+            setBorderColor('#afacac');
+            setError('');
+        }
+      };
+    
+      const handleEmailFocus = () => {
+        console.log(error.length)
+        if(error.length > 0){
+            setBorderColor('#afacac');
+        } else if(email.length === ''){
+            setBorderColor('none');
+        } else{
+        setBorderColor('#afacac');}
+        setError('');
+      };
+
+      const handleEmailBlur = () => {
+        setBorderColor('#F4F5F6');
+      };
+
     return (
         <>
             <div>
@@ -47,16 +86,19 @@ function Popup({ closePopUp }) {
                     <div>
                         <p className='font-sukhumvit font-medium text-[#333333] text-[13px]'> ส่งคำเชิญสมาชิกเข้าทีมผ่านอีเมลหรือลิงก์ </p>
                         <div className='flex justify-between items-end'>
-                            <div className='bg-[#F4F5F6] rounded-md mt-2 flex justify-between items-center px-1 h-[32px] w-[80%]'>
-                                <input type="email" placeholder='กรุณากรอกอีเมลของสมาชิกในทีม' className='bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-gray-500 ml-4 focus:outline-none w-full' />
-                                <div className='flex items-center w-[120px]'>
+                            <div style={{border:`1px solid ${borderColor}`}} className={`bg-[#F4F5F6] border border-[${borderColor}] rounded-md mt-2 flex justify-between items-center px-1 h-[32px] w-[80%]`}>
+                                <div>
+                                <input type="email" placeholder='กรุณากรอกอีเมลของสมาชิกในทีม' onBlur={handleEmailBlur} onFocus={handleEmailFocus} onChange={handleEmailChange} className={`bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-gray-500 ml-4 focus:outline-none w-full`} />
+                                
+                                </div>
+                                <div className='flex items-center w-[120px] justify-end'>
                                     <div>
                                         <div className='flex items-center cursor-pointer' onClick={handleDropdownList}>
                                             <button className='font-sukhumvit font-medium text-[12px] text-[#687178]'>{selectedList}</button>
-                                            <img src={chevronDown} className='w-[7px] h-[7px] ml-2' alt="" />
+                                            <img src={chevronDown} className='w-[7px] ml-2' alt="" />
                                         </div>
                                         {isOpen && (
-                                            <div className='w-[160px] absolute right-[10%] border border-[#F2F2F2] rounded-md p-1 mt-4'>
+                                            <div className='w-[160px] absolute right-[10%] bg-white border border-[#F2F2F2] rounded-md p-1 mt-4'>
                                                 <ul className='space-y-1'>
                                                     {listItems.map((item, index) => (
                                                         <li
@@ -81,9 +123,10 @@ function Popup({ closePopUp }) {
                                     </div>
                                 </div>
                             </div>
-                            <button className='sm:w-[75px] w-[100px] h-[32px] ml-4 bg-[#0099FF] cursor-default text-white rounded-md shadow-md font-sukhumvit font-bold text-[13px]'>ส่งคำเชิญ</button>
+                            <button onClick={handleFormSubmit} className='sm:w-[75px] w-[100px] h-[32px] ml-4 bg-[#0099FF] cursor-default text-white rounded-md shadow-md font-sukhumvit font-bold text-[13px]'>ส่งคำเชิญ</button>
                         </div>
                     </div>
+                    {error && ( <p className='font-normal text-[10px] mt-1 font-inter text-[#EF4444]'> {error} </p> )}
                     <div className='mt-6 flex items-center'>
                         <div className='w-[40px]'>
                             <img src={frameT} alt="" className='w-[40px] aspect-1 rounded-md' />
@@ -95,7 +138,7 @@ function Popup({ closePopUp }) {
                             </div>
                             <div className='flex items-center cursor-pointer'>
                                 <button className='font-sukhumvit font-medium text-[12px] text-[#687178]'>สมาชิก</button>
-                                <img src={chevronDown} className='w-[6px] h-[6px] ml-2' alt="" />
+                                <img src={chevronDown} className='w-[6px] ml-2' alt="" />
                             </div>
                         </div>
                     </div>

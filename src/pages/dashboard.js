@@ -20,20 +20,27 @@ import meta from "../img/meta.svg";
 import amazon from "../img/amazon.svg";
 import { Link } from "react-router-dom";
 import PopUp from '../components/popup'
+import CompanyPopup from "../components/companyPopup";
 
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
   const handleInviteClick = () => {
     setIsOpen(!isOpen);
   }
-  // const handleInviteClickPopup = () => {
-  //   setIsOpen(true);
-  //   console.log('true')
-  // }
   const closePopUp = ()=>{
     setIsOpen(false);
     console.log('false')
   }
+
+  const [isOpen2, setIsOpen2] = useState(false);
+  const handleInviteClick2 = () => {
+    setIsOpen2(!isOpen2);
+  }
+  const closePopUp2 = ()=>{
+    setIsOpen2(false);
+    console.log('false')
+  }
+
 
   const dashboardInfo = [
     {
@@ -99,6 +106,7 @@ const Dashboard = () => {
                 type="button"
                 className="ml-3 inline-flex items-center rounded-lg border border-transparent text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-13 btn-primary-shadow mt-2"
                 style={{ padding: "4px 18px" }}
+                 
               >
                 Go to Workspace
               </button>
@@ -110,6 +118,16 @@ const Dashboard = () => {
               <div>
                 <div className='sm:w-[511px] w-[40%]  bg-white rounded-2xl sm:right-[30%]  sm:left-auto left-[2%] popup-container z-[199] relative'>
                   <PopUp closePopUp={closePopUp}/>
+                </div>
+              </div>
+            </div>
+          }
+          {isOpen2 &&
+            <div>
+              <div className="popup-overlay"></div>
+              <div>
+                <div className='sm:w-[511px] w-[40%]  bg-white rounded-2xl sm:right-[30%]  sm:left-auto left-[2%] popup-container z-[199] relative'>
+                  <CompanyPopup closePopUp2={closePopUp2}/>
                 </div>
               </div>
             </div>
