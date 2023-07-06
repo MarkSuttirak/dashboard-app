@@ -15,6 +15,7 @@ function Popup({ closePopUp }) {
     const [selectedList, SetSelectedList] = useState('สมาชิก');
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
+    const [borderColor, setBorderColor] = useState('none');
 
     const handleClick = (index, title) => {
         setSelectedItem(index);
@@ -48,8 +49,23 @@ function Popup({ closePopUp }) {
     
         if (!emailPattern.test(email)) {
           setError('กรุณากรอกอีเมลที่ถูกต้อง');
+          setBorderColor('#EF4444');
           return;
+        }else{
+            setBorderColor('#afacac');
         }
+      };
+    
+      const handleEmailFocus = () => {
+        if(error !== ''){
+            setBorderColor('#EF4444');
+        }else{
+        setBorderColor('#afacac');}
+        setError('');
+      };
+
+      const handleEmailBlur = () => {
+        setBorderColor('none');
       };
 
     return (
@@ -66,10 +82,10 @@ function Popup({ closePopUp }) {
                     <div>
                         <p className='font-sukhumvit font-medium text-[#333333] text-[13px]'> ส่งคำเชิญสมาชิกเข้าทีมผ่านอีเมลหรือลิงก์ </p>
                         <div className='flex justify-between items-end'>
-                            <div className='bg-[#F4F5F6] rounded-md mt-2 flex justify-between items-center px-1 h-[32px] w-[80%]'>
+                            <div style={{border:`1px solid ${borderColor}`}} className={`bg-[#F4F5F6] border border-[${borderColor}] rounded-md mt-2 flex justify-between items-center px-1 h-[32px] w-[80%]`}>
                                 <div>
-                                <input type="email" placeholder='กรุณากรอกอีเมลของสมาชิกในทีม' onChange={handleEmailChange} className='bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-gray-500 ml-4 focus:border focus:border-gray-400rey focus:outline-none w-full' />
-                                {error && ( <p className='font-normal text-[10px] font-inter text-[#EF4444]'> {error} </p> )}
+                                <input type="email" placeholder='กรุณากรอกอีเมลของสมาชิกในทีม' onBlur={handleEmailBlur} onFocus={handleEmailFocus} onChange={handleEmailChange} className={`bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-gray-500 ml-4 focus:outline-none w-full`} />
+                                
                                 </div>
                                 <div className='flex items-center w-[120px]'>
                                     <div>
@@ -106,6 +122,7 @@ function Popup({ closePopUp }) {
                             <button onClick={handleFormSubmit} className='sm:w-[75px] w-[100px] h-[32px] ml-4 bg-[#0099FF] cursor-default text-white rounded-md shadow-md font-sukhumvit font-bold text-[13px]'>ส่งคำเชิญ</button>
                         </div>
                     </div>
+                    {error && ( <p className='font-normal text-[10px] font-inter text-[#EF4444]'> {error} </p> )}
                     <div className='mt-6 flex items-center'>
                         <div className='w-[40px]'>
                             <img src={frameT} alt="" className='w-[40px] aspect-1 rounded-md' />
