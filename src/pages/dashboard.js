@@ -106,7 +106,7 @@ const Dashboard = () => {
                 type="button"
                 className="ml-3 inline-flex items-center rounded-lg border border-transparent text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-13 btn-primary-shadow mt-2"
                 style={{ padding: "4px 18px" }}
-                
+                 
               >
                 Go to Workspace
               </button>
