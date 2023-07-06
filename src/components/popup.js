@@ -14,6 +14,7 @@ function Popup({ closePopUp }) {
     const [selectedItem, setSelectedItem] = useState(0);
     const [selectedList, SetSelectedList] = useState('สมาชิก');
     const [email, setEmail] = useState('');
+    const [error, setError] = useState('');
 
     const handleClick = (index, title) => {
         setSelectedItem(index);
@@ -35,11 +36,19 @@ function Popup({ closePopUp }) {
     }
 
     const handleEmailChange = (event) => {
-        setEmail(event.target.value);
+        const { value } = event.target;
+        setEmail(value);
+        setError('');
+      };
+    
+      const handleFormSubmit = (event) => {
+        event.preventDefault();
+    
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     
         if (!emailPattern.test(email)) {
-          console.log('Please enter a valid email address.')
+          setError('กรุณากรอกอีเมลที่ถูกต้อง');
+          return;
         }
       };
 
@@ -58,7 +67,10 @@ function Popup({ closePopUp }) {
                         <p className='font-sukhumvit font-medium text-[#333333] text-[13px]'> ส่งคำเชิญสมาชิกเข้าทีมผ่านอีเมลหรือลิงก์ </p>
                         <div className='flex justify-between items-end'>
                             <div className='bg-[#F4F5F6] rounded-md mt-2 flex justify-between items-center px-1 h-[32px] w-[80%]'>
-                                <input type="email" placeholder='กรุณากรอกอีเมลของสมาชิกในทีม' onChange={handleEmailChange} className='bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-gray-500 ml-4 focus:outline-none w-full' />
+                                <div>
+                                <input type="email" placeholder='กรุณากรอกอีเมลของสมาชิกในทีม' onChange={handleEmailChange} className='bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-gray-500 ml-4 focus:border focus:border-gray-400rey focus:outline-none w-full' />
+                                {error && ( <p className='font-normal text-[10px] font-inter text-[#EF4444]'> {error} </p> )}
+                                </div>
                                 <div className='flex items-center w-[120px]'>
                                     <div>
                                         <div className='flex items-center cursor-pointer' onClick={handleDropdownList}>
@@ -91,7 +103,7 @@ function Popup({ closePopUp }) {
                                     </div>
                                 </div>
                             </div>
-                            <button className='sm:w-[75px] w-[100px] h-[32px] ml-4 bg-[#0099FF] cursor-default text-white rounded-md shadow-md font-sukhumvit font-bold text-[13px]'>ส่งคำเชิญ</button>
+                            <button onClick={handleFormSubmit} className='sm:w-[75px] w-[100px] h-[32px] ml-4 bg-[#0099FF] cursor-default text-white rounded-md shadow-md font-sukhumvit font-bold text-[13px]'>ส่งคำเชิญ</button>
                         </div>
                     </div>
                     <div className='mt-6 flex items-center'>
