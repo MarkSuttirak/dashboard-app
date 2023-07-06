@@ -56,7 +56,7 @@ function Popup({ closePopUp }) {
                                             <img src={chevronDown} className='w-[7px] h-[7px] ml-2' alt="" />
                                         </div>
                                         {isOpen && (
-                                            <div className='w-[160px] absolute right-[10%] border border-[#F2F2F2] rounded-md p-1 mt-4'>
+                                            <div className='w-[160px] absolute right-[10%] bg-white border border-[#F2F2F2] rounded-md p-1 mt-4'>
                                                 <ul className='space-y-1'>
                                                     {listItems.map((item, index) => (
                                                         <li
