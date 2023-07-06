@@ -64,6 +64,7 @@ const Register = () => {
     const [warnFillSurname, setWarnFillSurname] = useState(false);
     const [warnFillBirthdate, setWarnFillBirthdate] = useState(false);
     const [warnFillEmail, setWarnFillEmail] = useState(false);
+    const [warnFillEmailText, setWarnFillEmailText] = useState('จำเป็นต้องกรอกข้อมูล');
     const [warnAccept, setWarnAccept] = useState(false);
 
     const [warnFillCompany, setWarnFillCompany] = useState(false);
@@ -97,8 +98,14 @@ const Register = () => {
 
       if (document.getElementById('email').value === ''){
         setWarnFillEmail(true);
+        setWarnFillEmailText('จำเป็นต้องกรอกข้อมูล');
       } else {
-        setWarnFillEmail(false);
+        if (document.getElementById('email').value.includes('@') === false || document.getElementById('email').value.includes('@.') === true || document.getElementById('email').value[0].includes('@')){
+          setWarnFillEmail(true);
+          setWarnFillEmailText('รูปแบบอีเมลไม่ถูกต้อง');
+        } else {
+          setWarnFillEmail(false);
+        }
       }
 
       if (document.getElementById('accept').checked === false){
@@ -151,7 +158,7 @@ const Register = () => {
                 onKeyUp={() => setWarnFillName(false)}
               />
               </div>
-              {warnFillName && (<p className="required text-xs mt-3 mb-4 warn sukhumvit">จำเป็นต้องกรอกข้อมูล</p>)}
+              {warnFillName && (<p className="required text-xs mt-[10px] mb-4 warn sukhumvit">จำเป็นต้องกรอกข้อมูล</p>)}
 
               <label htmlFor="surname" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-sm">นามสกุล<span className="required">*</span></label>
               <div className="mt-1">
@@ -163,7 +170,7 @@ const Register = () => {
                 onKeyUp={() => setWarnFillSurname(false)}
               />
               </div>
-              {warnFillSurname && (<p className="required text-xs mt-3 mb-4 warn sukhumvit">จำเป็นต้องกรอกข้อมูล</p>)}
+              {warnFillSurname && (<p className="required text-xs mt-[10px] mb-4 warn sukhumvit">จำเป็นต้องกรอกข้อมูล</p>)}
 
               <label htmlFor="date" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-sm">วัน-เดือน-ปีเกิด<span className="required">*</span></label>
               <div className="mt-1">
@@ -176,7 +183,7 @@ const Register = () => {
                 onChange={() => setWarnFillBirthdate(false)}
               />
               </div>
-              {warnFillBirthdate && (<p className="required text-xs mt-3 mb-4 warn sukhumvit">จำเป็นต้องกรอกข้อมูล</p>)}
+              {warnFillBirthdate && (<p className="required text-xs mt-[10px] mb-4 warn sukhumvit">จำเป็นต้องกรอกข้อมูล</p>)}
 
               <label htmlFor="email" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px] text-sm">อีเมล<span className="required">*</span></label>
               <div className="mt-1">
@@ -188,7 +195,7 @@ const Register = () => {
                 onKeyUp={() => setWarnFillEmail(false)}
               />
               </div>
-              {warnFillEmail && (<p className="required text-xs mt-3 mb-4 warn sukhumvit">จำเป็นต้องกรอกข้อมูล</p>)}
+              {warnFillEmail && (<p className="required text-xs mt-[10px] mb-4 warn sukhumvit">{warnFillEmailText}</p>)}
 
               <fieldset className="space-y-5 w-[304px]">
                 <legend className="sr-only">Notifications</legend>
@@ -205,7 +212,7 @@ const Register = () => {
                   </div>
                   <div className="ml-3 text-sm">
                     <label htmlFor="accept" className={`font-medium ${warnAccept ? 'text-[#FF0000]' : 'text-[#1F272E]'} sukhumvit font-13`}>
-                      รับทราบและให้ความยอมรับ <span className="text-[#0066CC] sukhumvit cursor-pointer decoration-solid underline">ข้อกำหนดการใช้การบริการ</span> และ <span className="text-[#0066CC] sukhumvit cursor-pointer decoration-solid underline">นโยบายความเป็นส่วนตัว</span>
+                      รับทราบและให้ความยอมรับ <span className="sukhumvit cursor-pointer decoration-solid underline">ข้อกำหนดการใช้การบริการ</span> และ <span className="sukhumvit cursor-pointer decoration-solid underline">นโยบายความเป็นส่วนตัว</span>
                     </label>
                   </div>
                 </div>
@@ -231,7 +238,7 @@ const Register = () => {
                 onKeyUp={() => setWarnFillCompany(false)}
               />
               </div>
-              {warnFillCompany && (<p className="required text-xs mt-3 mb-4 warn sukhumvit">จำเป็นต้องกรอกข้อมูล</p>)}
+              {warnFillCompany && (<p className="required text-xs mt-[10px] mb-4 warn sukhumvit">จำเป็นต้องกรอกข้อมูล</p>)}
 
               <label htmlFor="business-type" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px]">ประเภทธุรกิจสินค้า<span className="required">*</span></label>
               <div className="w-full">
