@@ -1,7 +1,9 @@
 import React, { useState, Fragment } from "react";
 import copyBtn from '../img/copy-btn.svg';
+import editIcon from '../img/editIcon.png';
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
+import CompanyPopup from "../components/companyPopup";
 
 const publishingOptions = [
   { title: 'Inviting', description: 'waiting for response', current: true },
@@ -31,7 +33,16 @@ const TeamsPage = () => {
     {id: '1', name: 'John walker', email: 'walktothemoon@email.com', img: ''},
     {id: '2', name: 'Chom Chom', email: 'Chomchom001@email.com', img: ''},
     {id: '3', name: 'Lemon Memon', email: 'lemonmemon@email.com', img: ''}
-  ]
+  ];
+
+  const [isOpen2, setIsOpen2] = useState(false);
+  const handleInviteClick2 = () => {
+    setIsOpen2(!isOpen2);
+  }
+  const closePopUp2 = ()=>{
+    setIsOpen2(false);
+    console.log('false')
+  }
 
   return (
     <div className="page-section">
@@ -42,7 +53,10 @@ const TeamsPage = () => {
           <div className="flex items-center">
             <div className="w-[48px] h-[48px] bg-[#0788FF] text-white flex items-center justify-center rounded-md text-[23px] font-semibold">{accountName[0].name[0]}</div>
             <div className="relative flex flex-col ml-[15px]">
-              <h1 className="font-inter text-[#1F272E] font-semibold">{accountName[0].name}</h1>
+              <div className="flex">
+                <h1 className="font-inter text-[#1F272E] font-semibold">{accountName[0].name}</h1>
+                <button onClick={handleInviteClick2} className="ml-3"> <img src={editIcon} className="w-[11px]" alt="" /> </button>
+              </div>
               <p className="paras text-sm">{accountName[0].email}
                 <ul className="inline-block list-disc ml-7">
                   <li>Member since : May 20, 2023</li>
@@ -50,6 +64,17 @@ const TeamsPage = () => {
               </p>
             </div>
           </div>
+
+          {isOpen2 &&
+            <div>
+              <div className="popup-overlay"></div>
+              <div>
+                <div className='sm:w-[511px] w-[40%]  bg-white rounded-2xl sm:right-[30%]  sm:left-auto left-[2%] popup-container z-[199] relative'>
+                  <CompanyPopup closePopUp2={closePopUp2}/>
+                </div>
+              </div>
+            </div>
+          }
 
           <div className="mt-[30px] font-13">
             <label htmlFor="invite-members" className="block text-sm font-medium text-gray-700">

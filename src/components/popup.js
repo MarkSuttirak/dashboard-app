@@ -69,7 +69,7 @@ function Popup({ closePopUp }) {
       };
 
       const handleEmailBlur = () => {
-        setBorderColor('none');
+        setBorderColor('#F4F5F6');
       };
 
     return (
