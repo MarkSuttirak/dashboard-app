@@ -126,7 +126,7 @@ function Popup({ closePopUp }) {
                             <button onClick={handleFormSubmit} className='sm:w-[75px] w-[100px] h-[32px] ml-4 bg-[#0099FF] cursor-default text-white rounded-md shadow-md font-sukhumvit font-bold text-[13px]'>ส่งคำเชิญ</button>
                         </div>
                     </div>
-                    {error && ( <p className='font-normal text-[10px] font-inter text-[#EF4444]'> {error} </p> )}
+                    {error && ( <p className='font-normal text-[10px] mt-1 font-inter text-[#EF4444]'> {error} </p> )}
                     <div className='mt-6 flex items-center'>
                         <div className='w-[40px]'>
                             <img src={frameT} alt="" className='w-[40px] aspect-1 rounded-md' />
