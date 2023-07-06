@@ -95,7 +95,7 @@ function Popup({ closePopUp }) {
                             </div>
                             <div className='flex items-center cursor-pointer'>
                                 <button className='font-sukhumvit font-medium text-[12px] text-[#687178]'>สมาชิก</button>
-                                <img src={chevronDown} className='w-[6px] h-[6px] ml-2' alt="" />
+                                <img src={chevronDown} className='w-[6px] ml-2' alt="" />
                             </div>
                         </div>
                     </div>
