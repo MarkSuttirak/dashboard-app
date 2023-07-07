@@ -246,7 +246,7 @@ const Register = () => {
                 <select
                   id="business-type"
                   name="business-type"
-                  className="mt-1 block h-[34px] w-full rounded-md py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                  className={`mt-1 block h-[34px] w-full rounded-md py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]`}
                 >
                   <option selected disabled value="default">เลือกประเภทธุรกิจสินค้า</option>
                   <option value="การเกษตร">การเกษตร</option>
@@ -282,8 +282,9 @@ const Register = () => {
                 <select
                   id="num-team"
                   name="num-team"
-                  className="mt-1 block h-[34px] w-full rounded-md py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                  className={`mt-1 block h-[34px] w-full rounded-md py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]`}
                 >
+                  <option selected disabled value="default">ระบุจำนวนทีมของคุณ</option>
                   <option value="แค่ฉันคนเดียว">แค่ฉันคนเดียว</option>
                   <option value="2-9 คน">2-9 คน</option>
                   <option value="10-99 คน">10-99 คน</option>
@@ -297,8 +298,9 @@ const Register = () => {
                 <select
                   id="goal"
                   name="goal"
-                  className="mt-1 block h-[34px] w-full rounded-md py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                  className={`mt-1 block h-[34px] w-full rounded-md py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]`}
                 >
+                  <option selected disabled value="default">เลือกเป้าหมายการใช้งาน</option>
                   <option value="บริหารและจัดการธุรกิจ">บริหารและจัดการธุรกิจ</option>
                   <option value="ขายสินค้า">ขายสินค้า</option>
                   <option value="รวบรวมยอดขายและสร้างรีพอร์ตประจำเดือน">รวบรวมยอดขายและสร้างรีพอร์ตประจำเดือน</option>
