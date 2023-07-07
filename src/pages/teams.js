@@ -99,7 +99,8 @@ const TeamsPage = () => {
                   <option>Admin</option>
                 </select>
 
-                <div className="flex bg-white basis-7 h-[26px] rounded-[5px] items-center justify-center">
+                <div className="flex bg-white basis-7 h-[26px] rounded-[5px] items-center justify-center relative tooltipButton">
+                <span className="tooltip">คัดลอก</span>
                   <button>
                     <img src={copyBtn} />
                   </button>

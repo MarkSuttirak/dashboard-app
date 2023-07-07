@@ -93,7 +93,8 @@ function Popup({ closePopUp }) {
                                 </div>
                                 <div className='flex items-center w-[120px] justify-end'>
                                     <div>
-                                        <div className='flex items-center cursor-pointer' onClick={handleDropdownList}>
+                                        <div className='flex items-center cursor-pointer ' onClick={handleDropdownList}>
+                                        
                                             <button className='font-sukhumvit font-medium text-[12px] text-[#687178]'>{selectedList}</button>
                                             <img src={chevronDown} className='w-[7px] ml-2' alt="" />
                                         </div>
@@ -118,7 +119,8 @@ function Popup({ closePopUp }) {
                                             </div>
                                         )}
                                     </div>
-                                    <div className='bg-white w-[26px] h-[26px] rounded-[5px] flex justify-center items-center ml-3'>
+                                    <div className='bg-white w-[26px] h-[26px] rounded-[5px] flex justify-center items-center ml-3 relative tooltipButton'>
+                                    <span className="tooltip">คัดลอก</span>
                                         <img src={linkImg} className='w-[17px] h-[13px]' alt="" />
                                     </div>
                                 </div>
