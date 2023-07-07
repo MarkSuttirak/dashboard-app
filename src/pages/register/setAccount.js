@@ -84,7 +84,7 @@ const Register = () => {
       } else {
         setWarnFillName(false);
       }
-      
+
       if (document.getElementById('surname').value === '') {
         setWarnFillSurname(true);
       } else {
@@ -284,11 +284,11 @@ const Register = () => {
                   name="num-team"
                   className="mt-1 block h-[34px] w-full rounded-md py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
                 >
-                  <option>แค่ฉันคนเดียว</option>
-                  <option>2-9 คน</option>
-                  <option>10-99 คน</option>
-                  <option>100-500 คน</option>
-                  <option>มากกว่า 500 คน</option>
+                  <option value="แค่ฉันคนเดียว">แค่ฉันคนเดียว</option>
+                  <option value="2-9 คน">2-9 คน</option>
+                  <option value="10-99 คน">10-99 คน</option>
+                  <option value="100-500 คน">100-500 คน</option>
+                  <option value="มากกว่า 500 คน">มากกว่า 500 คน</option>
                 </select>
               </div>
   
@@ -299,16 +299,16 @@ const Register = () => {
                   name="goal"
                   className="mt-1 block h-[34px] w-full rounded-md py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
                 >
-                  <option>บริหารและจัดการธุรกิจ</option>
-                  <option>ขายสินค้า</option>
-                  <option>รวบรวมยอดขายและสร้างรีฟอร์ตประจำเดือน</option>
-                  <option>รวบรวมข้อมูลลูกค้าสำหรับทำ CRM</option>
-                  <option>เผยแพร่ความรู้และประสบการณ์</option>
-                  <option>เครื่องมือสำหรับทำโปรเจค</option>
-                  <option>โปรโมตธุรกิจ</option>
-                  <option>เก็บแบบฟอร์มสำหรับการทำวิจัย</option>
-                  <option>นำเสนอผลงานสุดเจ๋งของตัวเอง</option>
-                  <option>ยังไม่มีเป้าหมายที่ชัดเจน อยากลองใช้ระบบดูก่อน</option>
+                  <option value="บริหารและจัดการธุรกิจ">บริหารและจัดการธุรกิจ</option>
+                  <option value="ขายสินค้า">ขายสินค้า</option>
+                  <option value="รวบรวมยอดขายและสร้างรีพอร์ตประจำเดือน">รวบรวมยอดขายและสร้างรีพอร์ตประจำเดือน</option>
+                  <option value="รวบรวมข้อมูลลูกค้าสำหรับทำ CRM">รวบรวมข้อมูลลูกค้าสำหรับทำ CRM</option>
+                  <option value="เผยแพร่ความรู้และประสบการณ์">เผยแพร่ความรู้และประสบการณ์</option>
+                  <option value="เครื่องมือสำหรับทำโปรเจค">เครื่องมือสำหรับทำโปรเจค</option>
+                  <option value="โปรโมตธุรกิจ">โปรโมตธุรกิจ</option>
+                  <option value="เก็บแบบฟอร์มสำหรับการทำวิจัย">เก็บแบบฟอร์มสำหรับการทำวิจัย</option>
+                  <option value="นำเสนอผลงานสุดเจ๋งของตัวเอง">นำเสนอผลงานสุดเจ๋งของตัวเอง</option>
+                  <option value="ยังไม่มีเป้าหมายที่ชัดเจน อยากลองใช้ระบบดูก่อน">ยังไม่มีเป้าหมายที่ชัดเจน อยากลองใช้ระบบดูก่อน</option>
                 </select>
               </div>
 
@@ -328,14 +328,14 @@ const Register = () => {
                 type="text"
                 name="getzaviago-domain"
                 id="getzaviago-domain"
-                className="block bg-[#F4F5F6] text-sm p-3 w-full pr-40 w-[500px] focus-within:outline-none"
+                className={`block bg-[#F4F5F6] text-sm p-3 rounded-md w-full pr-40 w-[500px] focus-within:outline-none ${warnFillSite ? 'border-[#EF4444] border' : 'border-gray-300'}`}
                 onKeyUp={() => setWarnFillSite(false)}
               />
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 bg-[#F4F5F6]">
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 bg-[#F4F5F6] m-[1px] rounded-md">
                   <span className="text-gray-500 sm:text-sm">.aca.fc.zaviago.com</span>
                 </div>
               </div>
-              {warnFillSite && (<p className="required text-sm mt-3 mb-4 warn">กรุณาตั้งชื่อ Site ของคุณ</p>)}
+              {warnFillSite && (<p className="required text-xs mt-[10px] mb-4 warn sukhumvit">กรุณาตั้งชื่อ Site ของคุณ</p>)}
 
               <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg w-[70px] mt-[40px] text-xs m-auto btn-primary-shadow" onClick={handleApps}>Next</button>
             </div>
