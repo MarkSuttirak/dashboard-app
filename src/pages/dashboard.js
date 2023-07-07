@@ -20,7 +20,7 @@ import meta from "../img/meta.svg";
 import amazon from "../img/amazon.svg";
 import { Link } from "react-router-dom";
 import PopUp from '../components/popup'
-import CompanyPopup from "../components/companyPopup";
+import UserViewPopup from "../components/userViewPopup";
 
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -106,7 +106,7 @@ const Dashboard = () => {
                 type="button"
                 className="ml-3 inline-flex items-center rounded-lg border border-transparent text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-13 btn-primary-shadow mt-2"
                 style={{ padding: "4px 18px" }}
-                 
+                 onClick={handleInviteClick2}
               >
                 Go to Workspace
               </button>
@@ -127,7 +127,7 @@ const Dashboard = () => {
               <div className="popup-overlay"></div>
               <div>
                 <div className='sm:w-[511px] w-[40%]  bg-white rounded-2xl sm:right-[30%]  sm:left-auto left-[2%] popup-container z-[199] relative'>
-                  <CompanyPopup closePopUp2={closePopUp2}/>
+                  <UserViewPopup closePopUp2={closePopUp2}/>
                 </div>
               </div>
             </div>
