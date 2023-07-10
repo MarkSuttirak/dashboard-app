@@ -270,7 +270,9 @@ h1,h2,h3,h4,h5,h6{
   background-color: white;
   // padding: 20px;
   position: fixed;
-  top: 15%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .list-class:hover h4 {
@@ -326,6 +328,34 @@ h1,h2,h3,h4,h5,h6{
   visibility: visible;
   opacity: 1;
 }
+
+.scrollbarDiv::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scrollbarDiv::-webkit-scrollbar-thumb {
+  background-color: #D9D9D9;
+  border-radius: 4px;
+}
+
+.scrollbarDiv::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.8);
+}
+
+.scrollbarDiv::-webkit-scrollbar-track {
+  background-color: #f0f0f085;
+  border-radius: 50px;
+}
+
+.scrollbarDiv::-webkit-scrollbar-track:hover {
+  background-color: rgba(156, 163, 175, 0.1);
+}
+
+.scrollbarDiv::-webkit-scrollbar-track:active {
+  background-color: rgba(156, 163, 175, 0.15);
+}
+
 
 
 @media screen and (max-width:1025px){
