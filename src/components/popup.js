@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import chevronDown from '../img/chevron-down.png'
 import linkImg from '../img/link.png'
 import frameT from '../img/frameT.png'
-import dot from '../img/dot.png'
-import searchIcon from '../img/searchIcon.png'
+import dot from '../img/dot.svg'
+import searchIcon from '../img/searchIcon.svg'
 import johnWalker from '../img/johnWalker.png'
 import chom from '../img/chom.png'
 import lemonMemon from '../img/lemonMemon.png'
-import closeIcon from '../img/closeIcon.png'
+import closeIcon from '../img/closeIcon.svg'
 function Popup({ closePopUp }) {
 
     const [isOpen, setIsOpen] = useState(false);
+    const [isOpenPending, setIsOpenPending] = useState(false);
+    const [isOpenFilter, setIsOpenFilter] = useState(false);
     const [selectedItem, setSelectedItem] = useState(0);
     const [selectedList, SetSelectedList] = useState('สมาชิก');
     const [email, setEmail] = useState('');
@@ -20,15 +22,38 @@ function Popup({ closePopUp }) {
     const handleClick = (index, title) => {
         setSelectedItem(index);
         SetSelectedList(title)
+        
         setIsOpen(!isOpen)
     };
+
+    const handlePandingDropdonw = () => {
+        setIsOpen(false)
+        setIsOpenPending(!isOpenPending)
+    }
+
+    const handleFilterDropdown = () => {
+        setIsOpen(false)
+        setIsOpenPending(false)
+        setIsOpenFilter(!isOpenFilter)
+    }
 
     const listItems = [
         { title: 'สมาชิก', description: 'ไม่สามารถเข้าส่วนตั้งค่าระบบได้' },
         { title: 'ผู้ดูแล', description: 'สามารถทำทุกอย่างได้เหมือนคุณ' }
     ];
 
+    const pendingList = [
+        { title: 'ยกเลิกคำเชิญ', description: 'ยกเลิกการเชิญเข้าร่วมทีม' }
+    ];
+
+    const filterList = [
+        { title: 'ทั้งหมด'},
+        { title: 'แอดมิน'},
+        { title: 'สมาชิก'},
+    ];
+
     const handleDropdownList = () => {
+        setIsOpenPending(false)
         setIsOpen(!isOpen)
     }
 
@@ -52,7 +77,7 @@ function Popup({ closePopUp }) {
             setBorderColor('#EF4444');
             return;
         } else {
-            setBorderColor('#afacac');
+            setBorderColor('#DDDDDD');
             setError('');
         }
     };
@@ -60,11 +85,11 @@ function Popup({ closePopUp }) {
     const handleEmailFocus = () => {
         console.log(error.length)
         if (error.length > 0) {
-            setBorderColor('#afacac');
+            setBorderColor('#DDDDDD');
         } else if (email.length === '') {
             setBorderColor('none');
         } else {
-            setBorderColor('#afacac');
+            setBorderColor('#DDDDDD');
         }
         setError('');
     };
@@ -72,6 +97,29 @@ function Popup({ closePopUp }) {
     const handleEmailBlur = () => {
         setBorderColor('#F4F5F6');
     };
+
+    const members = [
+        {
+            image: johnWalker,
+            name: 'John Walker',
+            email: 'example@mail.com',
+        },
+        {
+            image: chom,
+            name: 'Chom Chom',
+            email: 'example@mail.com',
+        },
+        {
+            image: lemonMemon,
+            name: 'Lemon Memon',
+            email: 'example@mail.com',
+        },
+        {
+            image: lemonMemon,
+            name: 'Lemon Memon',
+            email: 'example@mail.com',
+        },
+    ];
 
     return (
         <>
@@ -138,10 +186,30 @@ function Popup({ closePopUp }) {
                                 <h3 className='font-sukhumvit font-medium text-[13px] text-[#1F272E]'>กำลังรอการตอบรับ...</h3>
                                 <p className='font-inter font-normal text-[12px] text-[#687178]'>thinkoutthebox@email.com</p>
                             </div>
-                            <div className='flex items-center cursor-pointer'>
+                            <div className='flex items-center cursor-pointer' onClick={handlePandingDropdonw}>
                                 <button className='font-sukhumvit font-medium text-[12px] text-[#687178]'>สมาชิก</button>
                                 <img src={chevronDown} className='w-[6px] ml-2' alt="" />
                             </div>
+                            {isOpenPending && (
+                                <div className='w-[160px] absolute right-[10px] bg-white border border-[#F2F2F2] rounded-md p-1 mt-8'>
+                                    <ul className='space-y-1'>
+                                        {pendingList.map((item, index) => (
+                                            <li
+                                                key={index}
+                                                className={`hover:bg-[#0099FF] hover:cursor-pointer py-2 px-1 rounded-md list-class list-none 
+                                                                }`}
+                                                onClick={() => handleClick(index, item.title)}
+                                            >
+                                                <h4 className='font-inter font-normal text-xs text-black'>
+                                                    <span className="list-class">{item.title}</span>
+                                                </h4>
+                                                <p className='font-sukhumvit font-normal text-[10px] text-black'>{item.description}</p>
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -156,71 +224,31 @@ function Popup({ closePopUp }) {
                             <img src={searchIcon} className='w-[14px] h-[14px]' alt="" />
                             <input type="text" placeholder='ค้นหาสมาชิก' className='bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-[#9CA3AF] ml-4 focus:outline-none' />
                         </div>
-                        <button className='flex justify-between items-center bg-[#F3F3F3] w-[90px] h-[32px] ml-3 rounded-md p-2'>
+                        <button className='flex justify-between items-center bg-[#F3F3F3] w-[90px] h-[32px] ml-3 rounded-md p-2' onClick={handleFilterDropdown}>
                             <span className='font-sukhumvit font-bold text-[13px] text-[#333333]'>ตัวกรอง</span>
                             <img src={chevronDown} className='w-[8px]' alt="" />
                         </button>
                     </div>
                     <div>
-                        <div className='mt-7 flex items-center'>
-                            <div className='w-[40px]'>
-                                <img src={johnWalker} alt="" className='w-[40px] aspect-1 rounded-md' />
-                            </div>
-                            <div className='flex justify-between w-full ml-5'>
-                                <div>
-                                    <h3 className='font-inter font-medium text-[13px] text-[#1F272E]'>John walker</h3>
-                                    <p className='font-inter font-normal text-[12px] text-[#687178]'>example@mail.com</p>
+                        {members.map((member, index) => (
+                            <div className="mt-5 flex items-center" key={index}>
+                                <div className="w-[40px]">
+                                    <img src={member.image} alt="" className="w-[40px] aspect-1 rounded-md" />
                                 </div>
-                                <div className='flex items-center cursor-pointer'>
-                                    <button className='font-sukhumvit font-medium text-[12px] text-[#687178]'>เจ้าของ</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='mt-5 flex items-center'>
-                            <div className='w-[40px]'>
-                                <img src={chom} alt="" className='w-[40px] aspect-1 rounded-md' />
-                            </div>
-                            <div className='flex justify-between w-full ml-5'>
-                                <div>
-                                    <h3 className='font-inter font-medium text-[13px] text-[#1F272E]'>Chom Chom</h3>
-                                    <p className='font-inter font-normal text-[12px] text-[#687178]'>example@mail.com</p>
-                                </div>
-                                <div className='flex items-center cursor-pointer'>
-                                    <button className='font-sukhumvit font-medium text-[12px] text-[#687178]'>เจ้าของ</button>
-                                    <img src={chevronDown} className='w-[6px] h-[6px] ml-2' alt="" />
+                                <div className="flex justify-between w-full ml-5">
+                                    <div>
+                                        <h3 className="font-inter font-medium text-[13px] text-[#1F272E]">{member.name}</h3>
+                                        <p className="font-inter font-normal text-[12px] text-[#687178]">{member.email}</p>
+                                    </div>
+                                    <div className="flex items-center cursor-pointer">
+                                        <button className="font-sukhumvit font-medium text-[12px] text-[#687178]">เจ้าของ</button>
+                                        <img src={chevronDown} className="w-[6px] h-[6px] ml-2" alt="" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className='mt-5 flex items-center'>
-                            <div className='w-[40px]'>
-                                <img src={lemonMemon} alt="" className='w-[40px] aspect-1 rounded-md' />
-                            </div>
-                            <div className='flex justify-between w-full ml-5'>
-                                <div>
-                                    <h3 className='font-inter font-medium text-[13px] text-[#1F272E]'>Lemon Memon </h3>
-                                    <p className='font-inter font-normal text-[12px] text-[#687178]'>example@mail.com</p>
-                                </div>
-                                <div className='flex items-center cursor-pointer'>
-                                    <button className='font-sukhumvit font-medium text-[12px] text-[#687178]'>เจ้าของ</button>
-                                    <img src={chevronDown} className='w-[6px] h-[6px] ml-2' alt="" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className='mt-5 flex items-center'>
-                            <div className='w-[40px]'>
-                                <img src={lemonMemon} alt="" className='w-[40px] aspect-1 rounded-md' />
-                            </div>
-                            <div className='flex justify-between w-full ml-5'>
-                                <div>
-                                    <h3 className='font-inter font-medium text-[13px] text-[#1F272E]'>Lemon Memon </h3>
-                                    <p className='font-inter font-normal text-[12px] text-[#687178]'>example@mail.com</p>
-                                </div>
-                                <div className='flex items-center cursor-pointer'>
-                                    <button className='font-sukhumvit font-medium text-[12px] text-[#687178]'>เจ้าของ</button>
-                                    <img src={chevronDown} className='w-[6px] h-[6px] ml-2' alt="" />
-                                </div>
-                            </div>
-                        </div>
+                        ))}
+
+
                     </div>
                 </div>
             </div>
