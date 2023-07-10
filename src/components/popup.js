@@ -21,7 +21,7 @@ function Popup({ closePopUp }) {
     const [selectedRoleList, setSelectedRoleList] = useState('ตัวกรอง');
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
-    const [borderColor, setBorderColor] = useState('none');
+    const [borderColor, setBorderColor] = useState('#F4F5F6');
     const [members, setMembers] = useState([
         {
         image: johnWalker,
@@ -198,7 +198,7 @@ function Popup({ closePopUp }) {
                     <div>
                         <p className='font-sukhumvit font-medium text-[#333333] text-[13px]'> ส่งคำเชิญสมาชิกเข้าทีมผ่านอีเมลหรือลิงก์ </p>
                         <div className='flex justify-between items-end'>
-                            <div style={{ border: `1px solid ${borderColor}` }} className={`bg-[#F4F5F6] border border-[${borderColor}] rounded-md mt-2 flex justify-between items-center px-1 h-[32px] w-[80%]`}>
+                            <div style={{ border: `2px solid ${borderColor}` }} className={`bg-[#F4F5F6] border border-[${borderColor}] rounded-md mt-2 flex justify-between items-center px-1 h-[32px] w-[80%]`}>
                                 <input type="email" placeholder='กรุณากรอกอีเมลของสมาชิกในทีม' onBlur={handleEmailBlur} onFocus={handleEmailFocus} onChange={handleEmailChange} className={`bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-[#9CA3AF] ml-4 focus:outline-none w-full`} />
                                 <div className='flex items-center w-[120px] justify-end'>
                                     <div>
@@ -229,7 +229,7 @@ function Popup({ closePopUp }) {
                                         )}
                                     </div>
                                     <div className='bg-white w-[26px] h-[26px] rounded-[5px] flex justify-center items-center ml-3 relative tooltipButton'>
-                                        <span className="tooltip">คัดลอก</span>
+                                        <span className="tooltip">copy link</span>
                                         <img src={linkImg} className='w-[17px] h-[13px]' alt="" />
                                     </div>
                                 </div>
