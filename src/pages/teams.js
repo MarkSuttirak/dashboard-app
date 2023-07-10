@@ -1,6 +1,9 @@
 import React, { useState, Fragment } from "react";
 import copyBtn from '../img/copy-btn.svg';
 import editIcon from '../img/editIcon.png';
+import johnWalker from '../img/johnWalker.png'
+import lemonMemon from '../img/lemonMemon.png'
+import chom from '../img/chom.png'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
 import CompanyPopup from "../components/companyPopup";
@@ -26,13 +29,13 @@ const TeamsPage = () => {
 
   const [accountName, setAccountName] = useState([
     {name: 'Zaviago', id: '1', email: 'www.zaviago.co.th'},
-    {name: 'Pending...', id: '2', email: 'thinkoutthebox@email.com'},
+    {name: 'กำลังรอการตอบรับ...', id: '2', email: 'thinkoutthebox@email.com'},
   ]);
 
   const users = [
-    {id: '1', name: 'John walker', email: 'walktothemoon@email.com', img: ''},
-    {id: '2', name: 'Chom Chom', email: 'Chomchom001@email.com', img: ''},
-    {id: '3', name: 'Lemon Memon', email: 'lemonmemon@email.com', img: ''}
+    {id: '1', name: 'John walker', email: 'walktothemoon@email.com', img: johnWalker},
+    {id: '2', name: 'Chom Chom', email: 'Chomchom001@email.com', img: chom},
+    {id: '3', name: 'Lemon Memon', email: 'lemonmemon@email.com', img: lemonMemon}
   ];
 
   const [isOpen2, setIsOpen2] = useState(false);
@@ -44,20 +47,60 @@ const TeamsPage = () => {
     console.log('false')
   }
 
+  const [email, setEmail] = useState('');
+  const [borderColor, setBorderColor] = useState('#F4F5F6');
+  const [error, setError] = useState('');
+  const handleEmailChange = (event) => {
+      const { value } = event.target;
+      setEmail(value);
+      setError('');
+  };
+
+  const handleFormSubmit = (event) => {
+      event.preventDefault();
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailPattern.test(email)) {
+          setError('กรุณากรอกอีเมลที่ถูกต้อง');
+          setBorderColor('#EF4444');
+          return;
+      } else {
+          setBorderColor('#DDDDDD');
+          setError('');
+      }
+  };
+
+  const handleEmailFocus = () => {
+      console.log(error.length)
+      if (error.length > 0) {
+          setBorderColor('#DDDDDD');
+      } else if (email.length === '') {
+          setBorderColor('none');
+      } else {
+          setBorderColor('#DDDDDD');
+      }
+      setError('');
+  };
+
+  const handleEmailBlur = () => {
+      setBorderColor('#F4F5F6');
+  };
+
   return (
     <div className="page-section">
       <div className="mx-auto dashboard-container pb-5 gap-x-8 pt-16">
         <h1 className="font-bold text-[20px]">ทีมและสมาชิก</h1>
-        <p className="mt-[9px] sukhumvit font-medium text-sm text-[#505A62]">โดยจะแสดงทีมของและสมาชิกที่คุณได้เข้าร่วม โดยสามารถเปลี่ยนหน้าการตั้งค่าทีมได้จาก<br/>ปุ่ม Account --{'>'} Switch Team เพื่อเปลี่ยนทีมที่ต้องการแสดง</p>
-        <div className="border border-[#F2F2F2] p-[34px] mt-7 rounded-t-[20px]">
+        <p className="mt-[9px] sukhumvit font-medium text-[13px] text-[#505A62]">โดยจะแสดงทีมของและสมาชิกที่คุณได้เข้าร่วม โดยสามารถเปลี่ยนหน้าการตั้งค่าทีมได้จาก<br/>ปุ่ม Account --{'>'} Switch Team เพื่อเปลี่ยนทีมที่ต้องการแสดง</p>
+        <div className="border border-[#F2F2F2] p-[40px] mt-7 rounded-t-[20px]">
           <div className="flex items-center">
             <div className="w-[48px] h-[48px] bg-[#0788FF] text-white flex items-center justify-center rounded-md text-[23px] font-semibold">{accountName[0].name[0]}</div>
             <div className="relative flex flex-col ml-[15px]">
               <div className="flex">
-                <h1 className="font-inter text-[#1F272E] font-semibold">{accountName[0].name}</h1>
+                <h1 className="font-inter text-[#1F272E] text-lg font-semibold">{accountName[0].name}</h1>
                 <button onClick={handleInviteClick2} className="ml-3"> <img src={editIcon} className="w-[11px]" alt="" /> </button>
               </div>
-              <p className="paras text-sm">{accountName[0].email}
+              <p className="paras text-xs">{accountName[0].email}
                 <ul className="inline-block list-disc ml-7">
                   <li>Member since : May 20, 2023</li>
                 </ul>
@@ -77,29 +120,33 @@ const TeamsPage = () => {
           }
 
           <div className="mt-[30px] font-13">
-            <label htmlFor="invite-members" className="block text-sm font-medium text-gray-700">
-              Invite members
+            
+            <label htmlFor="invite-members" className="block text-[13px] font-sukhumvit font-medium text-gray-700">
+            ส่งคำเชิญสมาชิกเข้าทีมผ่านอีเมลหรือลิงก์
             </label>
             <div className="relative mt-[6px] flex items-center">
               <input
                 type="text"
                 name="invite-members"
                 id="invite-members"
-                className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm text-sm bg-[#F4F5F6] py-2 px-[14px]"
-                placeholder="Email or select role and copy link"
+                value={email} onBlur={handleEmailBlur} onFocus={handleEmailFocus} onChange={handleEmailChange}
+                className="block w-full h-[34px] focus-visible:outline-none rounded-md border-gray-300 font-sukhumvit shadow-sm text-xs bg-[#F4F5F6] py-2 px-[14px]"
+                placeholder="เฉพาะเจ้าของเท่านั้นที่สามารถส่งคำเชิญได้"
+                style={{ border: `2px solid ${borderColor}` }}
               />
               <div className="absolute right-[90px] inset-y-0 flex items-center">
                 <select
                   id="members-role"
                   name="members-role"
-                  className="block w-[75%] py-2 mr-4 text-base focus:outline-none sm:text-sm bg-transparent paras"
+                  className="block w-[75%] py-2 mr-4 text-xs focus:outline-none sm:text-xs bg-transparent paras"
                   defaultValue="Members"
                 >
                   <option>Members</option>
                   <option>Admin</option>
                 </select>
 
-                <div className="flex bg-white basis-7 h-[26px] rounded-[5px] items-center justify-center">
+                <div className="flex bg-white basis-7 h-[26px] rounded-[5px] items-center justify-center relative tooltipButton">
+                <span className="tooltip">คัดลอก</span>
                   <button>
                     <img src={copyBtn} />
                   </button>
@@ -107,21 +154,30 @@ const TeamsPage = () => {
               </div>
               <button
                 type="button"
-                className="ml-3 inline-flex items-center rounded-lg border border-transparent text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-13 btn-primary-shadow h-[34px]"
+                className="ml-3 inline-flex items-center rounded-lg border  border-transparent text-[13px] font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-13 btn-primary-shadow h-[34px]"
                 style={{padding:"4px 18px"}}
+                onClick={handleFormSubmit}
               >
                 Invite
               </button>
             </div>
           </div>
+          {error && (<p className='font-normal text-[12px] mt-2 font-sukhumvit text-[#EF4444]'> {error} </p>)}
 
           <div className="mt-10">
+          <div className="flex mb-2">
+            <h1 className=" text-[#1F272E] font-medium font-sukhumvit text-[13px]">กำลังเชิญ
+              <ul className="inline-block list-disc ml-7">
+                <li className="font-sukhumvit font-medium">สมาชิก 1 คน</li>
+              </ul>
+            </h1>
+          </div>
             <div className="flex items-center justify-between">
               <div className="flex">
                 <div className="w-[48px] h-[48px] bg-[#0788FF] text-white flex items-center justify-center rounded-md text-[23px] font-semibold">{accountName[1].email[0]}</div>
                 <div className="relative flex flex-col ml-[15px]">
-                  <h1 className="font-inter text-[#1F272E] font-semibold">{accountName[1].name}</h1>
-                  <p className="paras text-sm">{accountName[1].email}</p>
+                  <h1 className="font-inter text-[#1F272E] text-[13px] font-semibold">{accountName[1].name}</h1>
+                  <p className="paras text-xs">{accountName[1].email}</p>
                 </div>
               </div>
 
@@ -133,7 +189,7 @@ const TeamsPage = () => {
                       <div className="inline-flex rounded-md">
                       <div className="inline-flex rounded-md">
                         <div className="inline-flex items-center rounded-l-md py-2 pl-3 paras">
-                          <p className="ml-2.5 text-sm font-medium">{selected.title}</p>
+                          <p className="ml-2.5 text-xs font-medium">{selected.title}</p>
                         </div>
                         <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md p-2 text-sm font-medium paras">
                           <span className="sr-only">Invite</span>
@@ -184,9 +240,9 @@ const TeamsPage = () => {
 
         <div className="border border-[#F2F2F2] p-[34px] rounded-b-[20px] border-t-0">
           <div className="flex">
-            <h1 className="font-inter text-[#1F272E] font-medium">Team Member
+            <h1 className=" text-[#1F272E] font-medium font-sukhumvit text-[13px]">กำลังเชิญ
               <ul className="inline-block list-disc ml-7">
-                <li>3 Members</li>
+                <li className="font-sukhumvit font-medium">สมาชิก 3 คน</li>
               </ul>
             </h1>
           </div>
@@ -200,8 +256,8 @@ const TeamsPage = () => {
                 type="text"
                 name="invite-members"
                 id="invite-members"
-                className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm text-sm bg-[#F4F5F6] py-2 px-[14px] pl-9"
-                placeholder="Search for members"
+                className="block w-full font-sukhumvit h-[34px] rounded-md border-gray-300 shadow-sm text-sm bg-[#F4F5F6] py-2 px-[14px] pl-9"
+                placeholder="ค้นหาสมาชิก"
               />
               <button
                 type="button"
@@ -218,12 +274,12 @@ const TeamsPage = () => {
                 {users.map((user) => (
                 <div className="flex justify-between w-full">
                     <div className="flex" key={user.id}>
-                      <div className="w-[48px] h-[48px] bg-[#0788FF] text-white flex items-center justify-center rounded-md text-[23px] font-semibold">
-                        {user.img === '' ? user.name[0] : <img src={user.img} alt={user.img}/>}
+                      <div className="text-white flex items-center justify-center rounded-md text-[23px] font-semibold">
+                        {user.img === '' ? user.name[0] : <img src={user.img} className="w-[48px] h-[48px] rounded-md" alt={user.img}/>}
                       </div>
                       <div className="relative flex flex-col ml-[15px]">
-                        <h1 className="font-inter text-[#1F272E] font-semibold">{user.name}</h1>
-                        <p className="paras text-sm">{user.email}</p>
+                        <h1 className="font-sukhumvit text-[#1F272E] text-[13px] font-semibold">{user.name}</h1>
+                        <p className="paras text-xs">{user.email}</p>
                       </div>
                     </div>
 
@@ -235,7 +291,7 @@ const TeamsPage = () => {
                       <div className="inline-flex rounded-md">
                       <div className="inline-flex rounded-md">
                         <div className="inline-flex items-center rounded-l-md py-2 pl-3 paras">
-                          <p className="ml-2.5 text-sm font-medium">{selectedMember.title}</p>
+                          <p className="ml-2.5 text-xs font-medium">{selectedMember.title}</p>
                         </div>
                         <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md p-2 text-sm font-medium paras">
                           <span className="sr-only">Invite</span>
