@@ -31,11 +31,7 @@ function Popup({ closePopUp }) {
         setIsOpenPending(!isOpenPending)
     }
 
-    const handleFilterDropdown = () => {
-        setIsOpen(false)
-        setIsOpenPending(false)
-        setIsOpenFilter(!isOpenFilter)
-    }
+    
 
     const listItems = [
         { title: 'สมาชิก', description: 'ไม่สามารถเข้าส่วนตั้งค่าระบบได้' },
@@ -44,12 +40,6 @@ function Popup({ closePopUp }) {
 
     const pendingList = [
         { title: 'ยกเลิกคำเชิญ', description: 'ยกเลิกการเชิญเข้าร่วมทีม' }
-    ];
-
-    const filterList = [
-        { title: 'ทั้งหมด'},
-        { title: 'แอดมิน'},
-        { title: 'สมาชิก'},
     ];
 
     const handleDropdownList = () => {
@@ -224,7 +214,7 @@ function Popup({ closePopUp }) {
                             <img src={searchIcon} className='w-[14px] h-[14px]' alt="" />
                             <input type="text" placeholder='ค้นหาสมาชิก' className='bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-[#9CA3AF] ml-4 focus:outline-none' />
                         </div>
-                        <button className='flex justify-between items-center bg-[#F3F3F3] w-[90px] h-[32px] ml-3 rounded-md p-2' onClick={handleFilterDropdown}>
+                        <button className='flex justify-between items-center bg-[#F3F3F3] w-[90px] h-[32px] ml-3 rounded-md p-2'>
                             <span className='font-sukhumvit font-bold text-[13px] text-[#333333]'>ตัวกรอง</span>
                             <img src={chevronDown} className='w-[8px]' alt="" />
                         </button>
