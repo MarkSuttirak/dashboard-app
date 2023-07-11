@@ -289,7 +289,7 @@ const TeamsPage = () => {
 
                   </div>
                 )}
-                <div className="flex bg-white basis-7 h-[26px] p-[4px] rounded-[5px] items-center justify-center relative tooltipButton">
+                <div className="flex bg-white basis-7 h-[26px] w-[26px] p-[4px] rounded-[5px] items-center justify-center relative tooltipButton">
                   <span className="tooltip font-sukhumvit">คัดลอก</span>
                   <button>
                     <img src={copyBtn} />
@@ -298,8 +298,8 @@ const TeamsPage = () => {
               </div>
               <button
                 type="button"
-                className="ml-3 inline-flex items-center rounded-lg border  border-transparent text-[13px] font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-sukhumvit font-13 btn-primary-shadow h-[34px]"
-                style={{ padding: "4px 18px" }}
+                className="ml-3 block items-center rounded-lg border text-center w-[80px] border-transparent text-[13px] font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-sukhumvit font-13 btn-primary-shadow h-[34px]"
+                style={{ padding: "4px 0px" }}
                 onClick={handleFormSubmit}
               >
                 ส่งคำเชิญ
