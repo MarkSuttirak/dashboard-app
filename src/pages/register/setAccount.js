@@ -206,6 +206,7 @@ const Register = () => {
               <div className="relative flex items-start">
                 <div className="flex h-5 items-center">
                   <input
+                    id="accept"
                     aria-describedby="accept"
                     name="accept"
                     type="checkbox"

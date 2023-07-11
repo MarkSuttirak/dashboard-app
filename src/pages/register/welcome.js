@@ -71,8 +71,8 @@ const Welcome = () => {
               </div>
 
               <div className="mt-4">
-                <h2 className="sukhumvit text-[14px] text-[#909090]">มีบัญชีแล้ว 
-                  <span className="ml-1 text-[#909090] sukhumvit cursor-pointer decoration-solid underline" onClick={handleWelcome}>คลิกที่นี่เพื่อเข้าสู่ระบบ</span>
+                <h2 className="sukhumvit text-md">มีบัญชีแล้ว 
+                  <span className="ml-1 text-[#0066CC] sukhumvit cursor-pointer decoration-solid underline" onClick={handleWelcome}>คลิกที่นี่เพื่อเข้าสู่ระบบ</span>
                 </h2>
               </div>
             </div>
