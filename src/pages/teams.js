@@ -28,21 +28,21 @@ const TeamsPage = () => {
   const [selectedMember, setSelectedMember] = useState(memberOptions[0])
 
   const [accountName, setAccountName] = useState([
-    {name: 'Zaviago', id: '1', email: 'www.zaviago.co.th'},
-    {name: 'กำลังรอการตอบรับ...', id: '2', email: 'thinkoutthebox@email.com'},
+    { name: 'Zaviago', id: '1', email: 'www.zaviago.co.th' },
+    { name: 'กำลังรอการตอบรับ...', id: '2', email: 'thinkoutthebox@email.com' },
   ]);
 
   const users = [
-    {id: '1', name: 'John walker', email: 'walktothemoon@email.com', img: johnWalker},
-    {id: '2', name: 'Chom Chom', email: 'Chomchom001@email.com', img: chom},
-    {id: '3', name: 'Lemon Memon', email: 'lemonmemon@email.com', img: lemonMemon}
+    { id: '1', name: 'John walker', email: 'walktothemoon@email.com', img: johnWalker },
+    { id: '2', name: 'Chom Chom', email: 'Chomchom001@email.com', img: chom },
+    { id: '3', name: 'Lemon Memon', email: 'lemonmemon@email.com', img: lemonMemon }
   ];
 
   const [isOpen2, setIsOpen2] = useState(false);
   const handleInviteClick2 = () => {
     setIsOpen2(!isOpen2);
   }
-  const closePopUp2 = ()=>{
+  const closePopUp2 = () => {
     setIsOpen2(false);
     console.log('false')
   }
@@ -51,47 +51,73 @@ const TeamsPage = () => {
   const [borderColor, setBorderColor] = useState('#F4F5F6');
   const [error, setError] = useState('');
   const handleEmailChange = (event) => {
-      const { value } = event.target;
-      setEmail(value);
-      setError('');
+    const { value } = event.target;
+    setEmail(value);
+    setError('');
   };
 
   const handleFormSubmit = (event) => {
-      event.preventDefault();
+    event.preventDefault();
 
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      if (!emailPattern.test(email)) {
-          setError('กรุณากรอกอีเมลที่ถูกต้อง');
-          setBorderColor('#EF4444');
-          return;
-      } else {
-          setBorderColor('#DDDDDD');
-          setError('');
-      }
+    if (!emailPattern.test(email)) {
+      setError('กรุณากรอกอีเมลที่ถูกต้อง');
+      setBorderColor('#EF4444');
+      return;
+    } else {
+      setBorderColor('#DDDDDD');
+      setError('');
+    }
   };
 
   const handleEmailFocus = () => {
-      console.log(error.length)
-      if (error.length > 0) {
-          setBorderColor('#DDDDDD');
-      } else if (email.length === '') {
-          setBorderColor('none');
-      } else {
-          setBorderColor('#DDDDDD');
-      }
-      setError('');
+    console.log(error.length)
+    if (error.length > 0) {
+      setBorderColor('#DDDDDD');
+    } else if (email.length === '') {
+      setBorderColor('none');
+    } else {
+      setBorderColor('#DDDDDD');
+    }
+    setError('');
   };
 
   const handleEmailBlur = () => {
-      setBorderColor('#F4F5F6');
+    setBorderColor('#F4F5F6');
   };
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedList, SetSelectedList] = useState('สมาชิก');
+  const [selectedItem, setSelectedItem] = useState(0);
+  const handleInviteClickDrop = () => {
+    setIsOpen(!isOpen);
+  }
+  const memberItems =[
+    {
+      title:'สมาชิก',
+      description:'ไม่สามารถเข้าส่วนตั้งค่าระบบได้'
+    },
+    {
+      title:'แอดมิน',
+      description:'สามารถทำทุกอย่างได้เหมือนคุณ'
+    },
+    {
+      title:'ยกเลิกคำเชิญ',
+      description:'ยกเลิกการเชิญเข้าร่วมทีม'
+    },
+  ];
+  const handleClick = (index, title) => {
+    setSelectedItem(index);
+    SetSelectedList(title)
+    setIsOpen(!isOpen)
+};
 
   return (
     <div className="page-section">
       <div className="mx-auto dashboard-container pb-5 gap-x-8 pt-16">
         <h1 className="font-bold text-[20px]">ทีมและสมาชิก</h1>
-        <p className="mt-[9px] sukhumvit font-medium text-[13px] text-[#505A62]">โดยจะแสดงทีมของและสมาชิกที่คุณได้เข้าร่วม โดยสามารถเปลี่ยนหน้าการตั้งค่าทีมได้จาก<br/>ปุ่ม Account --{'>'} Switch Team เพื่อเปลี่ยนทีมที่ต้องการแสดง</p>
+        <p className="mt-[9px] sukhumvit font-medium text-[13px] text-[#505A62]">โดยจะแสดงทีมของและสมาชิกที่คุณได้เข้าร่วม โดยสามารถเปลี่ยนหน้าการตั้งค่าทีมได้จาก<br />ปุ่ม Account --{'>'} Switch Team เพื่อเปลี่ยนทีมที่ต้องการแสดง</p>
         <div className="border border-[#F2F2F2] p-[40px] mt-7 rounded-t-[20px]">
           <div className="flex items-center">
             <div className="w-[48px] h-[48px] bg-[#0788FF] text-white flex items-center justify-center rounded-md text-[23px] font-semibold">{accountName[0].name[0]}</div>
@@ -113,16 +139,16 @@ const TeamsPage = () => {
               <div className="popup-overlay"></div>
               <div>
                 <div className='sm:w-[511px] w-[40%]  bg-white rounded-2xl sm:right-[30%]  sm:left-auto left-[2%] popup-container z-[199] relative'>
-                  <CompanyPopup closePopUp2={closePopUp2}/>
+                  <CompanyPopup closePopUp2={closePopUp2} />
                 </div>
               </div>
             </div>
           }
 
           <div className="mt-[30px] font-13">
-            
+
             <label htmlFor="invite-members" className="block text-[13px] font-sukhumvit font-medium text-gray-700">
-            ส่งคำเชิญสมาชิกเข้าทีมผ่านอีเมลหรือลิงก์
+              ส่งคำเชิญสมาชิกเข้าทีมผ่านอีเมลหรือลิงก์
             </label>
             <div className="relative mt-[6px] flex items-center">
               <input
@@ -134,19 +160,37 @@ const TeamsPage = () => {
                 placeholder="เฉพาะเจ้าของเท่านั้นที่สามารถส่งคำเชิญได้"
                 style={{ border: `2px solid ${borderColor}` }}
               />
-              <div className="absolute right-[90px] inset-y-0 flex items-center">
-                <select
+              <div className="absolute right-[90px] inset-y-0 flex items-center" onClick={handleInviteClickDrop}>
+                <p
                   id="members-role"
                   name="members-role"
-                  className="block w-[75%] py-2 mr-4 text-xs focus:outline-none sm:text-xs bg-transparent paras"
+                  className="block w-[100%] py-2 mr-4 text-xs focus:outline-none sm:text-xs bg-transparent paras cursor-pointer"
                   defaultValue="Members"
                 >
-                  <option>Members</option>
-                  <option>Admin</option>
-                </select>
+                  {selectedList}
+                </p>
+                {isOpen && (
+                  <div className='w-[160px] absolute mt-[210px] right-[10%] bg-white border border-[#F2F2F2] rounded-md p-1'>
+                    <ul className='space-y-1'>
+                      {memberItems.map((item, index) => (
+                        <li
+                          key={index}
+                          className={`hover:bg-[#0099FF] hover:cursor-pointer py-2 px-1 rounded-md list-class list-none ${selectedItem == index ? 'selected-li' : ''
+                            }`}
+                          onClick={() => handleClick(index, item.title)}
+                        >
+                          <h4 className='font-inter font-normal text-xs text-black'>
+                            <span className="list-class">{item.title}</span>
+                          </h4>
+                          <p className='font-sukhumvit font-normal text-[10px] text-black'>{item.description}</p>
+                        </li>
+                      ))}
+                    </ul>
 
-                <div className="flex bg-white basis-7 h-[26px] rounded-[5px] items-center justify-center relative tooltipButton">
-                <span className="tooltip">คัดลอก</span>
+                  </div>
+                )}
+                <div className="flex bg-white basis-7 h-[26px] p-[4px] rounded-[5px] items-center justify-center relative tooltipButton">
+                  <span className="tooltip">คัดลอก</span>
                   <button>
                     <img src={copyBtn} />
                   </button>
@@ -155,7 +199,7 @@ const TeamsPage = () => {
               <button
                 type="button"
                 className="ml-3 inline-flex items-center rounded-lg border  border-transparent text-[13px] font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-13 btn-primary-shadow h-[34px]"
-                style={{padding:"4px 18px"}}
+                style={{ padding: "4px 18px" }}
                 onClick={handleFormSubmit}
               >
                 Invite
@@ -165,13 +209,13 @@ const TeamsPage = () => {
           {error && (<p className='font-normal text-[12px] mt-2 font-sukhumvit text-[#EF4444]'> {error} </p>)}
 
           <div className="mt-10">
-          <div className="flex mb-2">
-            <h1 className=" text-[#1F272E] font-medium font-sukhumvit text-[13px]">กำลังเชิญ
-              <ul className="inline-block list-disc ml-7">
-                <li className="font-sukhumvit font-medium">สมาชิก 1 คน</li>
-              </ul>
-            </h1>
-          </div>
+            <div className="flex mb-2">
+              <h1 className=" text-[#1F272E] font-medium font-sukhumvit text-[13px]">กำลังเชิญ
+                <ul className="inline-block list-disc ml-7">
+                  <li className="font-sukhumvit font-medium">สมาชิก 1 คน</li>
+                </ul>
+              </h1>
+            </div>
             <div className="flex items-center justify-between">
               <div className="flex">
                 <div className="w-[48px] h-[48px] bg-[#0788FF] text-white flex items-center justify-center rounded-md text-[23px] font-semibold">{accountName[1].email[0]}</div>
@@ -181,42 +225,42 @@ const TeamsPage = () => {
                 </div>
               </div>
 
-            <Listbox value={selected} onChange={setSelected}>
+              <Listbox value={selected} onChange={setSelected}>
                 {({ open }) => (
                   <>
                     <Listbox.Label className="sr-only"> Invite </Listbox.Label>
                     <div className="relative">
                       <div className="inline-flex rounded-md">
-                      <div className="inline-flex rounded-md">
-                        <div className="inline-flex items-center rounded-l-md py-2 pl-3 paras">
-                          <p className="ml-2.5 text-xs font-medium">{selected.title}</p>
+                        <div className="inline-flex rounded-md">
+                          <div className="inline-flex items-center rounded-l-md py-2 pl-3 paras">
+                            <p className="ml-2.5 text-xs font-medium">{selected.title}</p>
+                          </div>
+                          <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md p-2 text-sm font-medium paras">
+                            <span className="sr-only">Invite</span>
+                            <ChevronDownIcon className="h-5 w-5 paras" aria-hidden="true" />
+                          </Listbox.Button>
                         </div>
-                        <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md p-2 text-sm font-medium paras">
-                          <span className="sr-only">Invite</span>
-                          <ChevronDownIcon className="h-5 w-5 paras" aria-hidden="true" />
-                        </Listbox.Button>
                       </div>
-                    </div>
-                        <Transition
+                      <Transition
                         show={open}
                         as={Fragment}
                         leave="transition ease-in duration-100"
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
-                        >
+                      >
                         <Listbox.Options className="absolute right-0 z-10 mt-1 w-72 origin-top-right overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            {publishingOptions.map((option) => (
+                          {publishingOptions.map((option) => (
                             <Listbox.Option
-                                key={option.title}
-                                className={({ active }) =>
+                              key={option.title}
+                              className={({ active }) =>
                                 classNames(
-                                    active ? 'text-white bg-[#0099FF]' : 'text-gray-900',
-                                    'cursor-default select-none p-4 text-sm m-2 rounded-[3px]'
+                                  active ? 'text-white bg-[#0099FF]' : 'text-gray-900',
+                                  'cursor-default select-none p-4 text-sm m-2 rounded-[3px]'
                                 )
-                                }
-                                value={option}
+                              }
+                              value={option}
                             >
-                                {({ selected, active }) => (
+                              {({ selected, active }) => (
                                 <div className="flex flex-col">
                                   <div className="flex justify-between">
                                     <p className={selected ? 'font-semibold' : 'font-normal'}>{option.title}</p>
@@ -225,16 +269,16 @@ const TeamsPage = () => {
                                     {option.description}
                                   </p>
                                 </div>
-                                )}
+                              )}
                             </Listbox.Option>
-                            ))}
+                          ))}
                         </Listbox.Options>
-                        </Transition>
+                      </Transition>
                     </div>
-                    </>
+                  </>
                 )}
-                </Listbox>
-              </div>
+              </Listbox>
+            </div>
           </div>
         </div>
 
@@ -250,7 +294,7 @@ const TeamsPage = () => {
           <div className="mt-[30px] font-13">
             <div className="relative mt-[6px] flex items-center">
               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="#545556"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="#545556"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" /></svg>
               </div>
               <input
                 type="text"
@@ -262,7 +306,7 @@ const TeamsPage = () => {
               <button
                 type="button"
                 className="ml-3 inline-flex items-center rounded-lg border border-transparent text-sm font-medium shadow-sm focus:outline-none focus:ring-offset-2 font-13 h-[34px] bg-[#F3F3F3] text-gray-700"
-                style={{padding:"4px 18px"}}
+                style={{ padding: "4px 18px" }}
               >
                 Filter
               </button>
@@ -271,75 +315,75 @@ const TeamsPage = () => {
 
           <div className="mt-10">
             <div className="flex flex-col items-center justify-between gap-y-[24px]">
-                {users.map((user) => (
+              {users.map((user) => (
                 <div className="flex justify-between w-full">
-                    <div className="flex" key={user.id}>
-                      <div className="text-white flex items-center justify-center rounded-md text-[23px] font-semibold">
-                        {user.img === '' ? user.name[0] : <img src={user.img} className="w-[48px] h-[48px] rounded-md" alt={user.img}/>}
-                      </div>
-                      <div className="relative flex flex-col ml-[15px]">
-                        <h1 className="font-sukhumvit text-[#1F272E] text-[13px] font-semibold">{user.name}</h1>
-                        <p className="paras text-xs">{user.email}</p>
-                      </div>
+                  <div className="flex" key={user.id}>
+                    <div className="text-white flex items-center justify-center rounded-md text-[23px] font-semibold">
+                      {user.img === '' ? user.name[0] : <img src={user.img} className="w-[48px] h-[48px] rounded-md" alt={user.img} />}
                     </div>
-
-                    <Listbox value={selectedMember} onChange={setSelectedMember}>
-                {({ open }) => (
-                  <>
-                    <Listbox.Label className="sr-only"> Invite </Listbox.Label>
-                    <div className="relative">
-                      <div className="inline-flex rounded-md">
-                      <div className="inline-flex rounded-md">
-                        <div className="inline-flex items-center rounded-l-md py-2 pl-3 paras">
-                          <p className="ml-2.5 text-xs font-medium">{selectedMember.title}</p>
-                        </div>
-                        <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md p-2 text-sm font-medium paras">
-                          <span className="sr-only">Invite</span>
-                          <ChevronDownIcon className="h-5 w-5 paras" aria-hidden="true" />
-                        </Listbox.Button>
-                      </div>
+                    <div className="relative flex flex-col ml-[15px]">
+                      <h1 className="font-sukhumvit text-[#1F272E] text-[13px] font-semibold">{user.name}</h1>
+                      <p className="paras text-xs">{user.email}</p>
                     </div>
-                        <Transition
-                        show={open}
-                        as={Fragment}
-                        leave="transition ease-in duration-100"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                        >
-                        <Listbox.Options className="absolute right-0 z-10 mt-1 w-72 origin-top-right overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            {memberOptions.map((option) => (
-                            <Listbox.Option
-                                key={option.title}
-                                className={({ active }) =>
-                                classNames(
-                                    active ? 'text-white bg-[#0099FF]' : 'text-gray-900',
-                                    'cursor-default select-none p-4 text-sm m-2 rounded-[3px]'
-                                )
-                                }
-                                value={option}
-                            >
-                                {({ selected, active }) => (
-                                <div className="flex flex-col">
-                                  <div className="flex justify-between">
-                                    <p className={selected ? 'font-semibold' : 'font-normal'}>{option.title}</p>
-                                  </div>
-                                  <p className={classNames(active ? 'text-white' : 'text-[#777777]', 'mt-2')}>
-                                    {option.description}
-                                  </p>
-                                </div>
-                                )}
-                            </Listbox.Option>
-                            ))}
-                        </Listbox.Options>
-                        </Transition>
-                    </div>
-                    </>
-                )}
-                </Listbox>
                   </div>
-                ))}
 
-              </div>
+                  <Listbox value={selectedMember} onChange={setSelectedMember}>
+                    {({ open }) => (
+                      <>
+                        <Listbox.Label className="sr-only"> Invite </Listbox.Label>
+                        <div className="relative">
+                          <div className="inline-flex rounded-md">
+                            <div className="inline-flex rounded-md">
+                              <div className="inline-flex items-center rounded-l-md py-2 pl-3 paras">
+                                <p className="ml-2.5 text-xs font-medium">{selectedMember.title}</p>
+                              </div>
+                              <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md p-2 text-sm font-medium paras">
+                                <span className="sr-only">Invite</span>
+                                <ChevronDownIcon className="h-5 w-5 paras" aria-hidden="true" />
+                              </Listbox.Button>
+                            </div>
+                          </div>
+                          <Transition
+                            show={open}
+                            as={Fragment}
+                            leave="transition ease-in duration-100"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                          >
+                            <Listbox.Options className="absolute right-0 z-10 mt-1 w-72 origin-top-right overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                              {memberOptions.map((option) => (
+                                <Listbox.Option
+                                  key={option.title}
+                                  className={({ active }) =>
+                                    classNames(
+                                      active ? 'text-white bg-[#0099FF]' : 'text-gray-900',
+                                      'cursor-default select-none p-4 text-sm m-2 rounded-[3px]'
+                                    )
+                                  }
+                                  value={option}
+                                >
+                                  {({ selected, active }) => (
+                                    <div className="flex flex-col">
+                                      <div className="flex justify-between">
+                                        <p className={selected ? 'font-semibold' : 'font-normal'}>{option.title}</p>
+                                      </div>
+                                      <p className={classNames(active ? 'text-white' : 'text-[#777777]', 'mt-2')}>
+                                        {option.description}
+                                      </p>
+                                    </div>
+                                  )}
+                                </Listbox.Option>
+                              ))}
+                            </Listbox.Options>
+                          </Transition>
+                        </div>
+                      </>
+                    )}
+                  </Listbox>
+                </div>
+              ))}
+
+            </div>
           </div>
         </div>
       </div>
