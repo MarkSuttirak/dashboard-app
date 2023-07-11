@@ -24,47 +24,48 @@ function Popup({ closePopUp }) {
     const [borderColor, setBorderColor] = useState('#F4F5F6');
     const [members, setMembers] = useState([
         {
-        image: johnWalker,
-        name: 'John Walker',
-        email: 'example@mail.com',
-        role: '',
-    },
-    {
-        image: chom,
-        name: 'Chom Chom',
-        email: 'example@mail.com',
-        role: '',
-    },
-    {
-        image: lemonMemon,
-        name: 'Lemon Memon',
-        email: 'example@mail.com',
-        role: '',
-    },
-    {
-        image: lemonMemon,
-        name: 'Lemon Memon',
-        email: 'example@mail.com',
-        role: '',
-    },
-    {
-        image: lemonMemon,
-        name: 'Lemon Memon',
-        email: 'example@mail.com',
-        role: '',
-    },
-    {
-        image: johnWalker,
-        name: 'John Walker',
-        email: 'example@mail.com',
-        role: '',
-    },
-    {
-        image: lemonMemon,
-        name: 'Lemon Memon',
-        email: 'example@mail.com',
-        role: '',
-    },]);
+            image: johnWalker,
+            name: 'John Walker',
+            email: 'example@mail.com',
+            isOwner: true,
+            role: 'แอดมิน',
+        },
+        {
+            image: chom,
+            name: 'Chom Chom',
+            email: 'example@mail.com',
+            role: 'สมาชิก',
+        },
+        {
+            image: lemonMemon,
+            name: 'Lemon Memon',
+            email: 'example@mail.com',
+            role: 'สมาชิก',
+        },
+        {
+            image: lemonMemon,
+            name: 'Lemon Memon',
+            email: 'example@mail.com',
+            role: 'สมาชิก',
+        },
+        {
+            image: lemonMemon,
+            name: 'Lemon Memon',
+            email: 'example@mail.com',
+            role: 'สมาชิก',
+        },
+        {
+            image: johnWalker,
+            name: 'John Walker',
+            email: 'example@mail.com',
+            role: 'สมาชิก',
+        },
+        {
+            image: lemonMemon,
+            name: 'Lemon Memon',
+            email: 'example@mail.com',
+            role: 'สมาชิก',
+        },]);
 
     const [isOpenRole, setIsOpenRole] = useState(new Array(members.length).fill(false));
     const roleList = [
@@ -198,7 +199,7 @@ function Popup({ closePopUp }) {
                     <div>
                         <p className='font-sukhumvit font-medium text-[#333333] text-[13px]'> ส่งคำเชิญสมาชิกเข้าทีมผ่านอีเมลหรือลิงก์ </p>
                         <div className='flex justify-between items-end'>
-                            <div style={{ border: `2px solid ${borderColor}` }} className={`bg-[#F4F5F6] border border-[${borderColor}] rounded-md mt-2 flex justify-between items-center px-1 h-[32px] w-[80%]`}>
+                            <div style={{ border: `1px solid ${borderColor}` }} className={`bg-[#F4F5F6] border border-[${borderColor}] rounded-md mt-2 flex justify-between items-center px-1 h-[32px] w-[80%]`}>
                                 <input type="email" placeholder='กรุณากรอกอีเมลของสมาชิกในทีม' onBlur={handleEmailBlur} onFocus={handleEmailFocus} onChange={handleEmailChange} className={`bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-[#9CA3AF] ml-4 focus:outline-none w-full`} />
                                 <div className='flex items-center w-[120px] justify-end'>
                                     <div>
@@ -277,86 +278,93 @@ function Popup({ closePopUp }) {
                 </div>
                 <div className='p-6 pr-0'>
                     <div className='pr-6'>
-                    <div className='flex items-center'>
-                        <p className='font-sukhumvit font-medium text-[13px] text-[#1F272E]'>สมาชิกในทีม</p>
-                        <img src={dot} className='ml-2' alt="" />
-                        <p className='font-sukhumvit font-medium text-[13px] text-[#1F272E] ml-2'>สมาชิก 10 คน</p>
-                    </div>
-                    <div className='flex mt-2 items-center justify-between'>
-                        <div className='bg-[#F4F5F6] flex items-center rounded-md px-3 h-[32px] w-full'>
-                            <img src={searchIcon} className='w-[14px] h-[14px]' alt="" />
-                            <input type="text" placeholder='ค้นหาสมาชิก' className='bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-[#9CA3AF] ml-4 focus:outline-none' />
+                        <div className='flex items-center'>
+                            <p className='font-sukhumvit font-medium text-[13px] text-[#1F272E]'>สมาชิกในทีม</p>
+                            <img src={dot} className='ml-2' alt="" />
+                            <p className='font-sukhumvit font-medium text-[13px] text-[#1F272E] ml-2'>สมาชิก 10 คน</p>
                         </div>
-                        <div>
-                            <button
-                                className="flex justify-between items-center bg-[#F3F3F3] w-[90px] h-[32px] ml-3 rounded-md p-2"
-                                onClick={handleFilterDropdown}
-                            >
-                                <span className="font-sukhumvit font-bold text-[13px] text-[#333333]">{selectedFilterList}</span>
-                                <img src={chevronDown} className="w-[8px]" alt="" />
-                            </button>
-                            {isOpenFilter && (
-                                <div className="w-[160px] absolute right-[10px] bg-white border border-[#F2F2F2] rounded-md p-1 mt-3">
-                                    <ul className="space-y-1">
-                                        {filterList.map((item, index) => (
-                                            <li
-                                                key={index}
-                                                className={`hover:bg-[#0099FF] hover:cursor-pointer py-2 px-1 rounded-md list-class list-none ${selectedFilter === index ? 'selected-li' : ''
-                                                    }`}
-                                                onClick={() => handleFilterClick(index, item.title)}
-                                            >
-                                                <h4 className="font-inter font-normal text-xs text-black">
-                                                    <span className="list-class">{item.title}</span>
-                                                </h4>
-                                                <p className="font-sukhumvit font-normal text-[10px] text-black">{item.description}</p>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
+                        <div className='flex mt-2 items-center justify-between'>
+                            <div style={{ border: `1px solid ${borderColor}` }} className='bg-[#F4F5F6] flex items-center rounded-md px-3 h-[32px] w-full'>
+                                <img src={searchIcon} className='w-[14px] h-[14px]' alt="" />
+                                <input type="text" onBlur={handleEmailBlur} onFocus={handleFilterFocus} onChange={handleEmailChange} placeholder='ค้นหาสมาชิก' className='bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-[#9CA3AF] ml-4 focus:outline-none' />
+                            </div>
+                            <div>
+                                <button
+                                    className="flex justify-between items-center bg-[#F3F3F3] w-[90px] h-[32px] ml-3 rounded-md p-2"
+                                    onClick={handleFilterDropdown}
+                                >
+                                    <span className="font-sukhumvit font-bold text-[13px] text-[#333333]">{selectedFilterList}</span>
+                                    <img src={chevronDown} className="w-[8px]" alt="" />
+                                </button>
+                                {isOpenFilter && (
+                                    <div className="w-[160px] absolute right-[10px] bg-white border border-[#F2F2F2] rounded-md p-1 mt-3">
+                                        <ul className="space-y-1">
+                                            {filterList.map((item, index) => (
+                                                <li
+                                                    key={index}
+                                                    className={`hover:bg-[#0099FF] hover:cursor-pointer py-2 px-1 rounded-md list-class list-none ${selectedFilter === index ? 'selected-li' : ''
+                                                        }`}
+                                                    onClick={() => handleFilterClick(index, item.title)}
+                                                >
+                                                    <h4 className="font-inter font-normal text-xs text-black">
+                                                        <span className="list-class">{item.title}</span>
+                                                    </h4>
+                                                    <p className="font-sukhumvit font-normal text-[10px] text-black">{item.description}</p>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                    </div>
                     </div>
                     <div className='h-[200px] overflow-auto scrollbarDiv mt-5 space-y-4'>
-                    {members.map((member, index) => (
-  <div className="flex items-center pr-6" key={index}>
-    <div className="w-[40px]">
-      <img src={member.image} alt="" className="w-[40px] aspect-1 rounded-md" />
-    </div>
-    <div className="flex justify-between w-full ml-5">
-      <div>
-        <h3 className="font-inter font-medium text-[13px] text-[#1F272E]">{member.name}</h3>
-        <p className="font-inter font-normal text-[12px] text-[#687178]">{member.email}</p>
-      </div>
-      <div className="relative">
-        <div className="flex items-center cursor-pointer" onClick={() => handleRoleDropdown(index)}>
-          <button className="font-sukhumvit font-medium text-[12px] text-[#687178]">
-            {member.role || "ตัวกรอง"}
-          </button>
-          <img src={chevronDown} className="w-[6px] ml-2" alt="" />
-        </div>
-        {isOpenRole[index] && (
-          <div className="absolute mt-1 w-[160px] bg-white z-10 right-[0%] border border-[#F2F2F2] rounded-md p-1">
-            <ul className="space-y-1">
-              {roleList.map((item, i) => (
-                <li
-                  key={i}
-                  className={`hover:bg-[#0099FF] hover:cursor-pointer py-2 px-1 rounded-md list-class list-none`}
-                  onClick={() => handleRoleClick(index, item.title)}
-                >
-                  <h4 className="font-inter font-normal text-xs text-black">
-                    <span className="list-class">{item.title}</span>
-                  </h4>
-                  <p className="font-sukhumvit font-normal text-[10px] text-black">{item.description}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-    </div>
-  </div>
-))}
+                        {members.map((member, index) => (
+                            <div className="flex items-center pr-6" key={index}>
+                                <div className="w-[40px]">
+                                    <img src={member.image} alt="" className="w-[40px] aspect-1 rounded-md" />
+                                </div>
+                                <div className="flex justify-between w-full ml-5">
+                                    <div>
+                                        <h3 className="font-inter font-medium text-[13px] text-[#1F272E]">{member.name}</h3>
+                                        <p className="font-inter font-normal text-[12px] text-[#687178]">{member.email}</p>
+                                    </div>
+                                    {member.isOwner ? (
+                                        <div>
+                                            <p className="font-sukhumvit font-medium text-[12px] text-[#687178]">เจ้าของ</p>
+                                        </div>
+                                    ) : (
+                                        <div className="relative">
+                                            <div className="flex items-center cursor-pointer" onClick={() => handleRoleDropdown(index)}>
+                                                <button className="font-sukhumvit font-medium text-[12px] text-[#687178]">
+                                                    {member.role || "ตัวกรอง"}
+                                                </button>
+                                                <img src={chevronDown} className="w-[6px] ml-2" alt="" />
+                                            </div>
+                                            {isOpenRole[index] && (
+                                                <div className="absolute mt-1 w-[160px] bg-white z-10 right-[0%] border border-[#F2F2F2] rounded-md p-1">
+                                                    <ul className="space-y-1">
+                                                        {roleList.map((item, i) => (
+                                                            <li
+                                                                key={i}
+                                                                className={`hover:bg-[#0099FF] hover:cursor-pointer py-2 px-1 rounded-md list-class list-none`}
+                                                                onClick={() => handleRoleClick(index, item.title)}
+                                                            >
+                                                                <h4 className="font-inter font-normal text-xs text-black">
+                                                                    <span className="list-class">{item.title}</span>
+                                                                </h4>
+                                                                <p className="font-sukhumvit font-normal text-[10px] text-black">{item.description}</p>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+
                     </div>
                 </div>
             </div>
