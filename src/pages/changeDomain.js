@@ -3,7 +3,8 @@ import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
 
 const ChangeDomain = () => {
-    const [isModified, setIsModified] = useState(false);
+    const [isModifiedFree, setIsModifiedFree] = useState(false);
+    const [isModifiedPro, setIsModifiedPro] = useState(false);
     const [openPro, setOpenPro] = useState(false)
 
     const cancelButtonRef = useRef(null)
@@ -15,9 +16,9 @@ const ChangeDomain = () => {
 
     const typeDomain = () => {
       if (document.getElementById("free").value === ""){
-        setIsModified(false);
+        setIsModifiedFree(false);
       } else {
-        setIsModified(true);
+        setIsModifiedFree(true);
       }
     }
 
@@ -55,41 +56,92 @@ const ChangeDomain = () => {
     return (
         <div className="page-section">
           <div className="mx-auto dashboard-container pb-5 gap-x-8 pt-16">
-            <h1 className="font-bold">โดเมนตั้งค่าเอง</h1>
+            <h1 className="font-bold text-[20px] text-[#1F272E]">โดเมนตั้งค่าเอง</h1>
             <p className="sukhumvit mt-[9px] mb-[31px] text-[#505A62] text-sm">โดเมนคือชื่อของ URL ที่เราต้องการให้แสดงบนลิ้งของเว็บไซต์ <br/>โดยคุณสามารถเปลี่ยนชื่อโดเมนของคุณเองได้</p>
 
             <fieldset>
               <legend className="sr-only">Plan</legend>
-                <div className="space-y-10">
-                  {plans.map((plan) => (
-                  <div key={plan.id} className="relative flex items-start">
-                    <div className="flex h-5 items-center">
-                      <input
-                        id={plan.id}
-                        aria-describedby={`${plan.id}-description`}
-                        name="plan"
-                        type="radio"
-                        defaultChecked={plan.id === 'free'}
-                        className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                        onClick={() => {document.getElementById("pro").checked ? setOpenPro(true) : setOpenPro(false)}}
-                      />
-                    </div>
-                    <div className="ml-3 text-sm">
-                      <label htmlFor={plan.id} className="font-medium text-gray-700">
-                        {plan.name}{plan.pro && <span className="ml-[9px] inline-flex items-center rounded-full bg-[#E5F5FF] px-2.5 py-0.5 text-xs font-medium text-[#0099FF]">
-                          Pro
-                        </span>}
-                      </label>
-                      <p id={`${plan.id}-description`} className="text-gray-500">
-                        <span className="sukhumvit">{plan.description}</span>
-                        {plan.input}
-                      </p>
+                <div className="border border-gray-200 bg-white p-10 border-b-0" style={{ borderRadius: "20px 20px 0 0" }}>
+                  <div className="space-y-10">
+                    <div key='free' className="relative flex items-start">
+                      <div className="flex h-5 items-center">
+                        <input
+                          id='free'
+                          aria-describedby={`free-description`}
+                          name="plan"
+                          type="radio"
+                          defaultChecked={true}
+                          className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                          onClick={() => {document.getElementById("pro").checked ? setOpenPro(true) : setOpenPro(false)}}
+                        />
+                      </div>
+                      <div className="ml-3 text-sm">
+                        <label htmlFor='free' className="font-medium text-gray-700 text-[18px]">
+                          <span style={{fontFamily:"Eventpop"}}>
+                          ใช้ .getzaviago โดเมนฟรี
+                          </span>
+                        </label>
+                        <p id={`free-description`} className="text-gray-500">
+                          <span className="sukhumvit mt-[10px] mb-4 inline-block">สามารถใช้ A-Z, a-z, 0-9 และ - ได้เท่านั้น</span>
+                          <div className="flex items-center m-auto">
+                            <div className="relative mt-1 rounded-md">
+                              <input
+                                type="text"
+                                name="getzaviago-domain"
+                                id="getzaviago-domain"
+                                className="block bg-[#F4F5F6] text-sm p-3 pr-40 w-[500px] focus-within:outline-none rounded-md"
+                                onChange={typeDomain}
+                              />
+                              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 bg-[#F4F5F6] rounded-md">
+                                <span className="text-gray-500 sm:text-sm">.aca.fc.zaviago.com</span>
+                              </div>
+                            </div>
+                            <button type="submit" className={isModifiedFree ? "bg-[#2490EF] text-white px-5 py-3 rounded-md font-13 btn-primary-shadow mt-1 ml-4" : "bg-[#F4F5F6] text-[#B0B0B0] px-5 py-3 rounded-md font-13 mt-1 ml-4"} disabled={isModifiedFree ? 'true' : 'false'}>ตรวจสอบ</button>
+                          </div>
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  ))}
                 </div>
-
-                <button type="submit" className={isModified ? "w-[540px] bg-[#2490EF] text-white px-5 py-3 rounded-md font-13 mt-[50px] btn-primary-shadow" : "w-[540px] bg-[#F4F5F6] text-[#B0B0B0] px-5 py-3 rounded-md font-13 mt-[50px]"} disabled={isModified ? 'true' : 'false'}>Save</button>
+                <div className="border border-gray-200 bg-white p-10" style={{ borderRadius: "0 0 20px 20px" }}>
+                  <div className="space-y-10">
+                    <div key='pro' className="relative flex items-start">
+                      <div className="flex h-5 items-center">
+                        <input
+                          id='pro'
+                          aria-describedby={`pro-description`}
+                          name="plan"
+                          type="radio"
+                          className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                          onClick={() => {document.getElementById("pro").checked ? setOpenPro(true) : setOpenPro(false)}}
+                        />
+                      </div>
+                      <div className="ml-3 text-sm">
+                        <label htmlFor='pro' className="font-medium text-gray-700 text-[18px]" style={{fontFamily:"Eventpop"}}>
+                        ใช้โดเมนที่คุณเป็นเจ้าของ<span className="ml-[9px] inline-flex items-center rounded-full bg-[#E5F5FF] px-2.5 py-0.5 text-xs font-medium text-[#0099FF]">Pro</span>
+                        </label>
+                        <p id={`pro-description`} className="text-gray-500">
+                          <span className="sukhumvit mt-[10px] mb-4 inline-block">คุณสามารถใช้ชื่อโดเมนที่คุณเป็นเจ้าของแทนโดเมนของเราได้</span>
+                          <div className="flex items-center m-auto">
+                            <div>
+                              <div className="relative mt-1 rounded-md w-[500px]">
+                              <input
+                                type="text"
+                                name="own-domain"
+                                id="own-domain"
+                                className="block bg-[#F4F5F6] text-sm p-3 w-[500px] focus-within:outline-none rounded-md"
+                                placeholder="www.mywebsite.com" disabled
+                                onChange={typeDomain}
+                              />
+                              </div>
+                            </div>
+                            <button type="submit" className={isModifiedPro ? "bg-[#2490EF] text-white px-5 py-3 rounded-md font-13 btn-primary-shadow mt-1 ml-4" : "bg-[#F4F5F6] text-[#B0B0B0] px-5 py-3 rounded-md font-13 mt-1 ml-4"} disabled={isModifiedPro ? 'true' : 'false'}>ตรวจสอบ</button>
+                          </div>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </fieldset>
           </div>
 
@@ -108,7 +160,7 @@ const ChangeDomain = () => {
               </Transition.Child>
 
               <div className="fixed inset-0 z-10 overflow-y-auto">
-                <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div className="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
                   <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"
@@ -118,47 +170,43 @@ const ChangeDomain = () => {
                     leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                     leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                   >
-                  <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+                  <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 max-w-lg p-6">
                     <div>
-                      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-                        <CheckIcon className="h-6 w-6 text-green-600" aria-hidden="true" />
-                      </div>
-                      <div className="mt-3 text-center sm:mt-5">
-                        <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                          กรุณาอัปเกรดเป็น Pro Version
+                      <div className="mt-3 text-center">
+                        <Dialog.Title as="h3" className="text-lg font-bold leading-6 text-[#333333] sukhumvit">
+                          ใช้โดเมนที่คุณเป็นเจ้าของ
                         </Dialog.Title>
                         <div className="mt-2">
-                          <p className="text-sm text-gray-500">
-                            หากต้องการเปลี่ยนเป็นโดเมนที่คุณเป็นเจ้าของ กรุณาอัปเกรดเป็น Pro Version
-                            ป.ล. กำลังทดลอง Modal เฉยๆ รอปริมมาเช็คอีกที
+                          <p className="text-md paras sukhumvit">
+                          อัปเดตแพ็กเกจ <span className="inline-flex items-center rounded-full bg-[#E5F5FF] px-2.5 py-0.5 text-xs font-medium text-[#0099FF]">Pro</span> <br/>เพื่อเปิดใช้งานฟังก์ชันนี้
                           </p>
                         </div>
                       </div>
                     </div>
-                    <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
-                        <button
-                            type="button"
-                            className="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:col-start-2 sm:text-sm"
-                            onClick={backToFree}
-                        >
-                            ยืนยัน
-                        </button>
-                        <button
-                            type="button"
-                            className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:col-start-1 sm:mt-0 sm:text-sm"
-                            onClick={backToFree}
-                            ref={cancelButtonRef}
-                        >
-                            ยกเลิก
-                        </button>
-                        </div>
-                    </Dialog.Panel>
-                    </Transition.Child>
-                </div>
-                </div>
-            </Dialog>
-            </Transition.Root>
-        </div>
+                    <div className="flex justify-center mt-[30px]">
+                      <button
+                        type="button"
+                        className="bg-[#F4F5F6] text-[#B0B0B0] px-5 py-3 rounded-md font-13"
+                        onClick={backToFree}
+                        ref={cancelButtonRef}
+                      >
+                        ยกเลิก
+                      </button>
+                      <button
+                        type="button"
+                        className="bg-[#2490EF] text-white px-5 py-3 rounded-md font-13 btn-primary-shadow mt-1 ml-4"
+                        onClick={backToFree}
+                      >
+                        อัปเดตแพ็กเกจ
+                      </button>
+                    </div>
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
+            </div>
+          </Dialog>
+        </Transition.Root>
+      </div>
     )
 }
 
