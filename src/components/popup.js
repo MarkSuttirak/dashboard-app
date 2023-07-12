@@ -301,14 +301,14 @@ function Popup({ closePopUp }) {
                             </div>
                             <div>
                                 <button
-                                    className="flex justify-between items-center bg-[#F3F3F3] w-[90px] h-[32px] ml-3 rounded-md p-2"
+                                    className="flex justify-between items-center bg-[#F3F3F3] w-[75px] h-[32px] ml-4 rounded-md p-2"
                                     onClick={handleFilterDropdown}
                                 >
                                     <span className="font-sukhumvit font-bold text-[13px] text-[#333333]">{selectedFilterList}</span>
                                     <img src={chevronDown} className="w-[8px]" alt="" />
                                 </button>
                                 {isOpenFilter && (
-                                    <div className=" shadow-md w-[160px] absolute right-[10px] bg-white border border-[#F2F2F2] rounded-md p-1 mt-3">
+                                    <div className=" shadow-md w-[160px] z-10 absolute right-[10px] bg-white border border-[#F2F2F2] rounded-md p-1 mt-3">
                                         <ul className="space-y-1">
                                             {filterList.map((item, index) => (
                                                 <li
@@ -330,52 +330,52 @@ function Popup({ closePopUp }) {
                         </div>
                     </div>
                     <div className='h-[200px] overflow-auto scrollbarDiv mt-5 space-y-4'>
-  {members.map((member, index) => (
-    <div className="flex items-center pr-6" key={index}>
-      <div className="w-[40px]">
-        <img src={member.image} alt="" className="w-[40px] aspect-1 rounded-md" />
-      </div>
-      <div className="flex justify-between w-full ml-5">
-        <div>
-          <h3 className="font-inter font-medium text-[13px] text-[#1F272E]">{member.name}</h3>
-          <p className="font-inter font-normal text-[12px] text-[#687178]">{member.email}</p>
-        </div>
-        {member.isOwner ? (
-          <div>
-            <p className="font-sukhumvit font-medium text-[12px] text-[#687178]">เจ้าของ</p>
-          </div>
-        ) : (
-          <div className="relative">
-            <div className="flex items-center cursor-pointer" onClick={() => handleRoleDropdown(index)}>
-              <button className="font-sukhumvit font-medium text-[12px] text-[#687178]">
-                {member.role || "ตัวกรอง"}
-              </button>
-              <img src={chevronDown} className="w-[6px] ml-2" alt="" />
-            </div>
-            {isOpenRole[index] && (
-              <div className="absolute mt-[10px] w-[160px] bg-white z-20 right-0 border border-[#F2F2F2] rounded-md p-1">
-                <ul className="space-y-1">
-                  {roleList.map((item, i) => (
-                    <li
-                      key={i}
-                      className={`hover:bg-[#0099FF] hover:cursor-pointer py-2 px-1 rounded-md list-class list-none`}
-                      onClick={() => handleRoleClick(index, item.title)}
-                    >
-                      <h4 className="font-inter font-normal text-xs text-black">
-                        <span className="list-class">{item.title}</span>
-                      </h4>
-                      <p className="font-sukhumvit font-normal text-[10px] text-black">{item.description}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-    </div>
-  ))}
-</div>
+                        {members.map((member, index) => (
+                            <div className="flex items-center pr-6" key={index}>
+                                <div className="w-[40px]">
+                                    <img src={member.image} alt="" className="w-[40px] aspect-1 rounded-md" />
+                                </div>
+                                <div className="flex justify-between w-full ml-5">
+                                    <div>
+                                        <h3 className="font-inter font-medium text-[13px] text-[#1F272E]">{member.name}</h3>
+                                        <p className="font-inter font-normal text-[12px] text-[#687178]">{member.email}</p>
+                                    </div>
+                                    {member.isOwner ? (
+                                        <div>
+                                            <p className="font-sukhumvit font-medium text-[12px] text-[#687178]">เจ้าของ</p>
+                                        </div>
+                                    ) : (
+                                        <div className="relative">
+                                            <div className="flex items-center cursor-pointer" onClick={() => handleRoleDropdown(index)}>
+                                                <button className="font-sukhumvit font-medium text-[12px] text-[#687178]">
+                                                    {member.role || "ตัวกรอง"}
+                                                </button>
+                                                <img src={chevronDown} className="w-[6px] ml-2" alt="" />
+                                            </div>
+                                            {isOpenRole[index] && (
+                                                <div className="absolute mt-[10px] w-[160px] bg-white z-20 right-0 border border-[#F2F2F2] rounded-md p-1">
+                                                    <ul className="space-y-1">
+                                                        {roleList.map((item, i) => (
+                                                            <li
+                                                                key={i}
+                                                                className={`hover:bg-[#0099FF] hover:cursor-pointer py-2 px-1 rounded-md list-class list-none`}
+                                                                onClick={() => handleRoleClick(index, item.title)}
+                                                            >
+                                                                <h4 className="font-inter font-normal text-xs text-black">
+                                                                    <span className="list-class">{item.title}</span>
+                                                                </h4>
+                                                                <p className="font-sukhumvit font-normal text-[10px] text-black">{item.description}</p>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
 
 
                 </div>
