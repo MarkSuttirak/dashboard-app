@@ -76,13 +76,13 @@ function Popup({ closePopUp }) {
 
     const handleRoleDropdown = (index) => {
         setIsOpenRole((prevIsOpenRole) => {
-          const updatedState = prevIsOpenRole.map((isOpen, i) => (i === index ? !isOpen : false));
-          return updatedState;
+            const updatedState = prevIsOpenRole.map((isOpen, i) => (i === index ? !isOpen : false));
+            return updatedState;
         });
         setIsOpen(false);
         setIsOpenPending(false);
         setIsOpenFilter(false);
-      };
+    };
 
     const handleRoleClick = (index, title) => {
         const updatedMembers = [...members];
@@ -123,7 +123,7 @@ function Popup({ closePopUp }) {
         setIsOpen(false);
         setIsOpenPending(false);
         setIsOpenRole(new Array(members.length).fill(false));
-      };
+    };
 
     const listItems = [
         { title: 'สมาชิก', description: 'ไม่สามารถเข้าส่วนตั้งค่าระบบได้' },
@@ -241,7 +241,7 @@ function Popup({ closePopUp }) {
                                         )}
                                     </div>
                                     <div className='bg-white w-[26px] h-[26px] rounded-[5px] flex justify-center items-center ml-3 relative tooltipButton'>
-                                        <th className="tooltip">copy link</th>
+                                        <th className="tooltip  font-sukhumvit">คัดลอก</th>
                                         <img src={linkImg} className='w-[17px] h-[13px]' alt="" />
                                     </div>
                                 </div>
@@ -308,7 +308,7 @@ function Popup({ closePopUp }) {
                                     <img src={chevronDown} className="w-[8px]" alt="" />
                                 </button>
                                 {isOpenFilter && (
-                                    <div className=" shadow-md w-[160px] absolute right-[10px] bg-white z-10 border border-[#F2F2F2] rounded-md p-1 mt-3">
+                                    <div className=" shadow-md w-[160px] absolute right-[10px] bg-white border border-[#F2F2F2] rounded-md p-1 mt-3">
                                         <ul className="space-y-1">
                                             {filterList.map((item, index) => (
                                                 <li
@@ -353,7 +353,7 @@ function Popup({ closePopUp }) {
               <img src={chevronDown} className="w-[6px] ml-2" alt="" />
             </div>
             {isOpenRole[index] && (
-              <div className="absolute mt-[22px] w-[160px] bg-white z-20 right-0 border border-[#F2F2F2] rounded-md p-1 overflow-visible">
+              <div className="absolute mt-[10px] w-[160px] bg-white z-20 right-0 border border-[#F2F2F2] rounded-md p-1">
                 <ul className="space-y-1">
                   {roleList.map((item, i) => (
                     <li
@@ -376,6 +376,7 @@ function Popup({ closePopUp }) {
     </div>
   ))}
 </div>
+
 
                 </div>
             </div>
