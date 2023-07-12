@@ -92,7 +92,7 @@ const Sidebar = () => {
   const [loadingLogo, setLoadingLogo] = useState(true);
   const timeout = setTimeout(() => {
     setLoadingLogo(false);
-  }, 1300);
+  }, 1800);
   useEffect(() => {
     return () => clearTimeout(timeout);
   }, []);

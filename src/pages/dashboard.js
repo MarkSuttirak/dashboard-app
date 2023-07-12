@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import startWorking from "../img/start-working.png";
 import appsMarketplace from "../img/apps-marketplace.png";
@@ -30,7 +30,7 @@ const Dashboard = () => {
   const handleInviteClick = () => {
     setIsOpen(!isOpen);
   }
-  const closePopUp = ()=>{
+  const closePopUp = () => {
     setIsOpen(false);
     console.log('false')
   }
@@ -39,7 +39,7 @@ const Dashboard = () => {
   const handleInviteClick2 = () => {
     setIsOpen2(!isOpen2);
   }
-  const closePopUp2 = ()=>{
+  const closePopUp2 = () => {
     setIsOpen2(false);
     console.log('false')
   }
@@ -61,7 +61,21 @@ const Dashboard = () => {
       description: 'Learn Zaviago/OS',
       background: watchTutorials,
     },
-  ]
+  ];
+
+  const [loadingLogo, setLoadingLogo] = useState(true);
+  const timeout = setTimeout(() => {
+    setLoadingLogo(false);
+  }, 760);
+  useEffect(() => {
+    return () => clearTimeout(timeout);
+  }, []);
+  const handleContentLoad = () => {
+    clearTimeout(timeout);
+    setLoadingLogo(false);
+  };
+
+
   return (
     <>
       {/* Header Dashboard */}
@@ -74,17 +88,33 @@ const Dashboard = () => {
                 <div className="max-w-lg">
                   <div className="mt-4">
                     <a href="#" className="inline-flex space-x-6">
-                      <span className="rounded-full px-4 font-11 font-semibold leading-6 text-slate-400 ring-1 ring-inset ring-slate-300" style={{ fontFamily: "Poppins" }}>
-                        Beta
-                      </span>
+                      {!loadingLogo ? (
+                        <span className="rounded-full px-4 font-11 font-semibold leading-6 text-slate-400 ring-1 ring-inset ring-slate-300" style={{ fontFamily: "Poppins" }}>
+                          Beta
+                        </span>
+                      ) : (
+                        <div className="animate-pulse">
+                          <div className="bg-[#F3F3F3] w-[58px] h-[24px] aspect-square rounded-full"></div>
+                        </div>
+                      )}
+
                     </a>
                   </div>
-                  <h1 className="mt-1 text-xl font-semibold tracking-tight text-gray-900">
-                    สวัสดี, คุณแอดมิน 👋
-                  </h1>
-                  <p className="font-13 leading-8 text-gray-600">
-                    Welcome to your <span style={{ color: "#006AFF" }} className="font-bold">Zaviago/OS</span> v.1.4.88
-                  </p>
+                  {!loadingLogo ? (
+                    <div>
+                      <h1 className="mt-1 text-xl font-semibold tracking-tight text-gray-900">
+                        สวัสดี, คุณแอดมิน 👋
+                      </h1>
+                      <p className="font-13 leading-8 text-gray-600">
+                        Welcome to your <span style={{ color: "#006AFF" }} className="font-bold">Zaviago/OS</span> v.1.4.88
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="animate-pulse mt-2">
+                      <div className="bg-[#F3F3F3] w-[200px] h-[24px] aspect-square rounded-lg"></div>
+                      <div className="bg-[#F3F3F3] w-[280px] h-[15px] aspect-square rounded-lg mt-2"></div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -94,25 +124,35 @@ const Dashboard = () => {
                 aria-hidden="true"
               />
               <div
-                className="mt-4 flex md:mt-0 md:ml-4"
-                aria-hidden="true"
+
               />
-              <button
-                type="button"
-                className="inline-flex items-center rounded-lg bg-[#F3F3F3] text-sm font-semibold text-gray-700 shadow-sm focus:outline-none focus:ring-offset-2 text-xs mt-2"
-                style={{ padding: "7px 10px" }}
-                onClick={handleInviteClick}
-              >
-                Invite
-              </button>
-              <button
-                type="button"
-                className="ml-3 inline-flex items-center rounded-lg border border-transparent text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-13 btn-primary-shadow mt-2"
-                style={{ padding: "4px 18px" }}
-                 onClick={handleInviteClick2}
-              >
-                Go to Workspace
-              </button>
+              {!loadingLogo ? (
+                <div className="mt-4 flex md:mt-0 md:ml-4"
+                  aria-hidden="true">
+                  <button
+                    type="button"
+                    className="inline-flex items-center rounded-lg bg-[#F3F3F3] text-sm font-semibold text-gray-700 shadow-sm focus:outline-none focus:ring-offset-2 text-xs mt-2"
+                    style={{ padding: "7px 10px" }}
+                    onClick={handleInviteClick}
+                  >
+                    Invite
+                  </button>
+                  <button
+                    type="button"
+                    className="ml-3 inline-flex items-center rounded-lg border border-transparent text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-13 btn-primary-shadow mt-2"
+                    style={{ padding: "4px 18px" }}
+                    onClick={handleInviteClick2}
+                  >
+                    Go to Workspace
+                  </button>
+                </div>
+              ) : (
+                <div className="animate-pulse flex">
+                  <div className="bg-[#F3F3F3] w-[52px] h-[30px] aspect-square rounded-lg"></div>
+                  <div className="bg-[#F3F3F3] w-[144px] h-[30px] aspect-square rounded-lg ml-3"></div>
+                </div>
+              )}
+
             </div>
           </div>
           {isOpen &&
@@ -120,7 +160,7 @@ const Dashboard = () => {
               <div className="popup-overlay"></div>
               <div>
                 <div className='sm:w-[511px] w-[40%]  bg-white rounded-2xl sm:right-[30%]  sm:left-auto left-[2%] popup-container z-[199] relative'>
-                  <PopUp closePopUp={closePopUp}/>
+                  <PopUp closePopUp={closePopUp} />
                 </div>
               </div>
             </div>
@@ -130,7 +170,7 @@ const Dashboard = () => {
               <div className="popup-overlay"></div>
               <div>
                 <div className='sm:w-[511px] w-[40%]  bg-white rounded-2xl sm:right-[30%]  sm:left-auto left-[2%] popup-container z-[199] relative'>
-                  <UserViewPopup closePopUp2={closePopUp2}/>
+                  <UserViewPopup closePopUp2={closePopUp2} />
                 </div>
               </div>
             </div>
