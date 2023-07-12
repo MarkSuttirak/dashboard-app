@@ -24,6 +24,9 @@ import UserViewPopup from "../components/userViewPopup";
 
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+
+
   const handleInviteClick = () => {
     setIsOpen(!isOpen);
   }
