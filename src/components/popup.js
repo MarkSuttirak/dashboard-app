@@ -297,7 +297,7 @@ function Popup({ closePopUp }) {
                         <div className='flex mt-2 items-center justify-between'>
                             <div style={{ border: `1px solid ${filterBorderColor}` }} className='bg-[#F4F5F6] flex items-center rounded-md px-3 h-[32px] w-full'>
                                 <img src={searchIcon} className='w-[14px] h-[14px]' alt="" />
-                                <input type="text" onBlur={handleEmailBlur} onFocus={handleFilterFocus} onChange={handleEmailChange} placeholder='ค้นหาสมาชิก' className='bg-[#F4F5F6] font-sukhumvit font-medium text-[12px] placeholder-[#9CA3AF] ml-4 focus:outline-none' />
+                                <input type="text" onBlur={handleEmailBlur} onFocus={handleFilterFocus} onChange={handleEmailChange} placeholder='ค้นหาสมาชิก' className='bg-[#F4F5F6] w-full font-sukhumvit font-medium text-[12px] placeholder-[#9CA3AF] ml-4 focus:outline-none' />
                             </div>
                             <div>
                                 <button
