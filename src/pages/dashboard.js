@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 import PopUp from '../components/popup'
 import UserViewPopup from "../components/userViewPopup";
 
-const Dashboard = () => {
+const Dashboard = ({ loadingLogo }) => {
   const [isOpen, setIsOpen] = useState(false);
 
 
@@ -63,17 +63,10 @@ const Dashboard = () => {
     },
   ];
 
-  const [loadingLogo, setLoadingLogo] = useState(true);
-  const timeout = setTimeout(() => {
-    setLoadingLogo(false);
-  }, 950);
-  useEffect(() => {
-    return () => clearTimeout(timeout);
-  }, []);
-  const handleContentLoad = () => {
-    clearTimeout(timeout);
-    setLoadingLogo(false);
-  };
+  // const [loadingLogo, setLoadingLogo] = useState(true);
+  // const timeout = setTimeout(() => {
+  //   console.log(loadingLogo)
+  // }, 950);
 
 
   return (
@@ -572,8 +565,8 @@ const Dashboard = () => {
             <div className="mx-auto dashboard-container pb-10 gap-x-8">
               <div className="border border-gray-200 bg-white px-6 pt-4 pb-7" style={{ borderRadius: "20px" }}>
                 <div className="flex gap-x-2.5 items-center">
-                <div className="bg-[#F3F3F3] w-[40px] h-[40px] aspect-square rounded-lg mt-1"></div>
-                <div className="bg-[#F3F3F3] w-[224px] h-[24px] aspect-square rounded-lg mt-1"></div>
+                  <div className="bg-[#F3F3F3] w-[40px] h-[40px] aspect-square rounded-lg mt-1"></div>
+                  <div className="bg-[#F3F3F3] w-[224px] h-[24px] aspect-square rounded-lg mt-1"></div>
                 </div>
 
                 <div className="bg-[#F3F3F3] w-[420px] h-[12px] aspect-square rounded-lg mt-2"></div>
@@ -581,202 +574,203 @@ const Dashboard = () => {
 
                 <div className="btn-group mt-5 columns-5">
                   <button className="flex items-center font-13 headings gap-x-2.5">
-                  <div className="bg-[#F3F3F3] w-[14px] h-[14px] aspect-square rounded-lg"></div>
-                  <div className="bg-[#F3F3F3] w-[80px] h-[12px] aspect-square rounded-lg"></div>
+                    <div className="bg-[#F3F3F3] w-[14px] h-[14px] aspect-square rounded-lg"></div>
+                    <div className="bg-[#F3F3F3] w-[80px] h-[12px] aspect-square rounded-lg"></div>
                   </button>
 
                   <button className="flex items-center font-13 headings gap-x-2.5">
-                  <div className="bg-[#F3F3F3] w-[14px] h-[14px] aspect-square rounded-lg"></div>
-                  <div className="bg-[#F3F3F3] w-[80px] h-[12px] aspect-square rounded-lg"></div>
+                    <div className="bg-[#F3F3F3] w-[14px] h-[14px] aspect-square rounded-lg"></div>
+                    <div className="bg-[#F3F3F3] w-[80px] h-[12px] aspect-square rounded-lg"></div>
                   </button>
 
                   <button className="flex items-center font-13 headings gap-x-2.5">
-                  <div className="bg-[#F3F3F3] w-[14px] h-[14px] aspect-square rounded-lg"></div>
-                  <div className="bg-[#F3F3F3] w-[80px] h-[12px] aspect-square rounded-lg"></div>
+                    <div className="bg-[#F3F3F3] w-[14px] h-[14px] aspect-square rounded-lg"></div>
+                    <div className="bg-[#F3F3F3] w-[80px] h-[12px] aspect-square rounded-lg"></div>
                   </button>
 
                   <button className="flex items-center font-13 headings gap-x-2.5">
-                  <div className="bg-[#F3F3F3] w-[14px] h-[14px] aspect-square rounded-lg"></div>
-                  <div className="bg-[#F3F3F3] w-[80px] h-[12px] aspect-square rounded-lg"></div>
+                    <div className="bg-[#F3F3F3] w-[14px] h-[14px] aspect-square rounded-lg"></div>
+                    <div className="bg-[#F3F3F3] w-[80px] h-[12px] aspect-square rounded-lg"></div>
                   </button>
 
                   <button className="flex items-center font-13 headings gap-x-2.5">
-                  <div className="bg-[#F3F3F3] w-[14px] h-[14px] aspect-square rounded-lg"></div>
-                  <div className="bg-[#F3F3F3] w-[80px] h-[12px] aspect-square rounded-lg"></div>
+                    <div className="bg-[#F3F3F3] w-[14px] h-[14px] aspect-square rounded-lg"></div>
+                    <div className="bg-[#F3F3F3] w-[80px] h-[12px] aspect-square rounded-lg"></div>
                   </button>
                 </div>
 
                 <div className="flex mt-6 items-center">
                   <div className="flex -space-x-4 overflow-hidden">
-                    <img
-                      className="inline-block h-[35px] w-[35px] rounded-full"
-                      src={pfyne}
-                      alt=""
-                    />
-                    <img
-                      className="inline-block h-[35px] w-[35px] rounded-full"
-                      src={person1}
-                      alt=""
-                    />
-                    <img
-                      className="inline-block h-[35px] w-[35px] rounded-full"
-                      src={person2}
-                      alt=""
-                    />
+                    <div className="bg-[#F3F3F3] w-[35px] h-[35px] aspect-square rounded-full"></div>
+                    <div className="bg-[#F3F3F3] w-[35px] h-[35px] aspect-square rounded-full -ml-1"></div>
+                    <div className="bg-[#F3F3F3] w-[35px] h-[35px] aspect-square rounded-full -ml-1"></div>
                   </div>
 
                   <div className="ml-2">
-                    <p className="text-xs font-medium">Need help with something?</p>
-                    <a href="#" style={{ color: "#0066CC", letterSpacing: "-0.224px" }} className="font-13">Ask a Specialist</a>
+                    <div className="bg-[#F3F3F3] w-[156px] h-[12px] aspect-square rounded-lg"></div>
+                    <div className="bg-[#F3F3F3] w-[92px] h-[12px] aspect-square rounded-lg mt-2"></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         )}
-        {/* Guides */}
-        <div className="mx-auto dashboard-container pb-10 gap-x-8">
-          <div className="border border-gray-200 bg-white px-6 pt-4 pb-7" style={{ borderRadius: "20px" }}>
-            <div className="flex gap-x-2.5 items-center">
-              <img src={guideIcon} />
-              <h1 className="text-md headings font-bold">ไกด์การใช้งาน และ ติดต่อทีมงาน</h1>
-            </div>
 
-            <p className="paras mt-3 font-13">You are on Agency PremiumCare+package: this include, <strong>9am-19am</strong> <br />live Chat support with LINE OA direct responses to all your issue.</p>
 
-            <div className="btn-group mt-5 columns-5">
-              <button className="flex items-center font-13 headings gap-x-2.5">
-                <img src={wrapper} />
-                แชทกับทีมงาน
-              </button>
+        {!loadingLogo ? (
+          <div className="mx-auto dashboard-container pb-10 gap-x-8">
+            <div className="mx-auto dashboard-container pb-10 gap-x-8">
+              <div className="flex justify-between mb-7">
+                <div className="justify-start">
+                  <p style={{ color: "#111827", letterSpacing: "-1px" }} className="text-xl font-semibold">App Store</p>
+                  <p className="paras text-sm">You have got much more than just a website. <br />Build and expand your digital business with application</p>
+                </div>
 
-              <button className="flex items-center font-13 headings gap-x-2.5">
-                <img src={wrapper} />
-                คู่มือการใช้งาน
-              </button>
-
-              <button className="flex items-center font-13 headings gap-x-2.5">
-                <img src={wrapper} />
-                วิดีโอแนะนำระบบ
-              </button>
-
-              <button className="flex items-center font-13 headings gap-x-2.5">
-                <img src={wrapper} />
-                บริการเปิดระบบ
-              </button>
-
-              <button className="flex items-center font-13 headings gap-x-2.5">
-                <img src={wrapper} />
-                แชทกับทีมงาน
-              </button>
-            </div>
-
-            <div className="flex mt-6 items-center">
-              <div className="flex -space-x-4 overflow-hidden">
-                <img
-                  className="inline-block h-[35px] w-[35px] rounded-full"
-                  src={pfyne}
-                  alt=""
-                />
-                <img
-                  className="inline-block h-[35px] w-[35px] rounded-full"
-                  src={person1}
-                  alt=""
-                />
-                <img
-                  className="inline-block h-[35px] w-[35px] rounded-full"
-                  src={person2}
-                  alt=""
-                />
+                <div className="justify-end">
+                  <div className="flex justify-end">
+                    <button className="flex gap-x-2.5 items-center rounded-lg border border-transparent text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-13 btn-primary-shadow mt-2 px-[15px] py-[6.4px] mb-[13px]">
+                      <img src={keyLock} />
+                      Upgrade
+                    </button>
+                  </div>
+                  <p className="text-right font-semibold" style={{ letterSpacing: "-1px" }}>Upgrade website to unlock <br />addons application</p>
+                </div>
               </div>
 
-              <div className="ml-2">
-                <p className="text-xs font-medium">Need help with something?</p>
-                <a href="#" style={{ color: "#0066CC", letterSpacing: "-0.224px" }} className="font-13">Ask a Specialist</a>
+              <div className="columns-5 flex gap-x-4">
+                <div className="apps">
+                  <div className="border flex justify-center app-logo">
+                    <img src={google} />
+                  </div>
+                  <p className="app-name">Google Site</p>
+                  <p className="paras text-xs">Connect your website with Google services</p>
+
+                  <div className="mt-2 flex-shrink-0">
+                    <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-0.5 text-sm font-medium online">
+                      <svg className="-ml-1 mr-1.5 h-2 w-2" fill="#52C41A" viewBox="0 0 8 8">
+                        <circle cx={4} cy={4} r={3} />
+                      </svg>
+                      Connected
+                    </span>
+                  </div>
+                </div>
+
+                <div className="apps">
+                  <div className="border flex justify-center app-logo">
+                    <img src={meta} />
+                  </div>
+                  <p className="app-name">Facebook & IG</p>
+                  <p className="paras text-xs">Bring your products to facebook and instagram.</p>
+                </div>
+
+                <div className="apps">
+                  <div className="border flex justify-center app-logo">
+                    <img src={amazon} />
+                  </div>
+                  <p className="app-name">Amazon Shop</p>
+                  <p className="paras text-xs">Loox is a social proof solution.</p>
+                </div>
+
+                <div className="apps">
+                  <div className="border flex justify-center app-logo">
+                    <img src={line} />
+                  </div>
+                  <p className="app-name">Line CRM</p>
+                  <p className="paras text-xs">Bring your products to facebook and instagram.</p>
+
+                  <div className="mt-2 flex-shrink-0">
+                    <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-0.5 text-sm font-medium online">
+                      <svg className="-ml-1 mr-1.5 h-2 w-2" fill="#52C41A" viewBox="0 0 8 8">
+                        <circle cx={4} cy={4} r={3} />
+                      </svg>
+                      Connected
+                    </span>
+                  </div>
+                </div>
+
+                <div className="apps">
+                  <div className="border flex justify-center app-logo">
+                    <img src={tiktok} />
+                  </div>
+                  <p className="app-name">TikTok Shop</p>
+                  <p className="paras text-xs">Connect and sync all order with TikTok Seller</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="animate-pulse">
+            <div className="mx-auto dashboard-container pb-10 gap-x-8">
+              <div className="flex justify-between mb-7">
+                <div className="justify-start">
+                  <div className="bg-[#F3F3F3] w-[150px] h-[22px] aspect-square rounded-lg"></div>
+                  <div className="bg-[#F3F3F3] w-[365px] h-[35px] aspect-square rounded-lg mt-2"></div>
+                </div>
+
+                <div className="justify-end">
+                  <div className="flex justify-end">
+                    <div className="bg-[#F3F3F3] w-[115px] h-[33px] aspect-square rounded-lg"></div>
+                  </div>
+                  <div className="bg-[#F3F3F3] w-[180px] h-[48px] aspect-square rounded-lg mt-2"></div>
+                </div>
+              </div>
+
+              <div className="columns-5 flex gap-x-4">
+                <div className="apps">
+                  <div className="bg-[#F3F3F3] rounded-lg border flex justify-center app-logo"></div>
+                  <div className="bg-[#F3F3F3] w-[120px] h-[12px] aspect-square rounded-lg mt-2"></div>
+                  <div className="bg-[#F3F3F3] w-[140px] h-[32px] aspect-square rounded-lg mt-2"></div>
+
+                  <div className="mt-2 flex-shrink-0">
+                    <div className="bg-[#F3F3F3] w-[100px] h-[14px] aspect-square rounded-full"></div>
+                  </div>
+                </div>
+
+                <div className="apps">
+                  <div className="bg-[#F3F3F3] rounded-lg border flex justify-center app-logo"></div>
+                  <div className="bg-[#F3F3F3] w-[120px] h-[12px] aspect-square rounded-lg mt-2"></div>
+                  <div className="bg-[#F3F3F3] w-[140px] h-[32px] aspect-square rounded-lg mt-2"></div>
+
+                  <div className="mt-2 flex-shrink-0">
+                    <div className="bg-[#F3F3F3] w-[100px] h-[14px] aspect-square rounded-full"></div>
+                  </div>
+                </div>
+                <div className="apps">
+                  <div className="bg-[#F3F3F3] rounded-lg border flex justify-center app-logo"></div>
+                  <div className="bg-[#F3F3F3] w-[120px] h-[12px] aspect-square rounded-lg mt-2"></div>
+                  <div className="bg-[#F3F3F3] w-[140px] h-[32px] aspect-square rounded-lg mt-2"></div>
+
+                  <div className="mt-2 flex-shrink-0">
+                    <div className="bg-[#F3F3F3] w-[100px] h-[14px] aspect-square rounded-full"></div>
+                  </div>
+                </div>
+                <div className="apps">
+                  <div className="bg-[#F3F3F3] rounded-lg border flex justify-center app-logo"></div>
+                  <div className="bg-[#F3F3F3] w-[120px] h-[12px] aspect-square rounded-lg mt-2"></div>
+                  <div className="bg-[#F3F3F3] w-[140px] h-[32px] aspect-square rounded-lg mt-2"></div>
+
+                  <div className="mt-2 flex-shrink-0">
+                    <div className="bg-[#F3F3F3] w-[100px] h-[14px] aspect-square rounded-full"></div>
+                  </div>
+                </div>
+
+                <div className="apps">
+                  <div className="bg-[#F3F3F3] rounded-lg border flex justify-center app-logo"></div>
+                  <div className="bg-[#F3F3F3] w-[120px] h-[12px] aspect-square rounded-lg mt-2"></div>
+                  <div className="bg-[#F3F3F3] w-[140px] h-[32px] aspect-square rounded-lg mt-2"></div>
+
+                  <div className="mt-2 flex-shrink-0">
+                    <div className="bg-[#F3F3F3] w-[100px] h-[14px] aspect-square rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
 
         {/* App Store */}
-        <div className="mx-auto dashboard-container pb-10 gap-x-8">
-          <div className="flex justify-between mb-7">
-            <div className="justify-start">
-              <p style={{ color: "#111827", letterSpacing: "-1px" }} className="text-xl font-semibold">App Store</p>
-              <p className="paras text-sm">You have got much more than just a website. <br />Build and expand your digital business with application</p>
-            </div>
 
-            <div className="justify-end">
-              <div className="flex justify-end">
-                <button className="flex gap-x-2.5 items-center rounded-lg border border-transparent text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-13 btn-primary-shadow mt-2 px-[15px] py-[6.4px] mb-[13px]">
-                  <img src={keyLock} />
-                  Upgrade
-                </button>
-              </div>
-              <p className="text-right font-semibold" style={{ letterSpacing: "-1px" }}>Upgrade website to unlock <br />addons application</p>
-            </div>
-          </div>
-
-          <div className="columns-5 flex gap-x-4">
-            <div className="apps">
-              <div className="border flex justify-center app-logo">
-                <img src={google} />
-              </div>
-              <p className="app-name">Google Site</p>
-              <p className="paras text-xs">Connect your website with Google services</p>
-
-              <div className="mt-2 flex-shrink-0">
-                <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-0.5 text-sm font-medium online">
-                  <svg className="-ml-1 mr-1.5 h-2 w-2" fill="#52C41A" viewBox="0 0 8 8">
-                    <circle cx={4} cy={4} r={3} />
-                  </svg>
-                  Connected
-                </span>
-              </div>
-            </div>
-
-            <div className="apps">
-              <div className="border flex justify-center app-logo">
-                <img src={meta} />
-              </div>
-              <p className="app-name">Facebook & IG</p>
-              <p className="paras text-xs">Bring your products to facebook and instagram.</p>
-            </div>
-
-            <div className="apps">
-              <div className="border flex justify-center app-logo">
-                <img src={amazon} />
-              </div>
-              <p className="app-name">Amazon Shop</p>
-              <p className="paras text-xs">Loox is a social proof solution.</p>
-            </div>
-
-            <div className="apps">
-              <div className="border flex justify-center app-logo">
-                <img src={line} />
-              </div>
-              <p className="app-name">Line CRM</p>
-              <p className="paras text-xs">Bring your products to facebook and instagram.</p>
-
-              <div className="mt-2 flex-shrink-0">
-                <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-0.5 text-sm font-medium online">
-                  <svg className="-ml-1 mr-1.5 h-2 w-2" fill="#52C41A" viewBox="0 0 8 8">
-                    <circle cx={4} cy={4} r={3} />
-                  </svg>
-                  Connected
-                </span>
-              </div>
-            </div>
-
-            <div className="apps">
-              <div className="border flex justify-center app-logo">
-                <img src={tiktok} />
-              </div>
-              <p className="app-name">TikTok Shop</p>
-              <p className="paras text-xs">Connect and sync all order with TikTok Seller</p>
-            </div>
-          </div>
-        </div>
       </div>
     </>
   )
