@@ -14,7 +14,7 @@ import "../css/sidebar-dropdown.css";
 import { switchContext } from '../App'
 // import TeamModal from "../components/switchTeamModal";
 
-const Sidebar = () => {
+const Sidebar = ({ loadingLogo }) => {
   const location = useLocation();
   const [active, setActive] = useState('');
 
@@ -89,17 +89,17 @@ const Sidebar = () => {
     setShowModal(false);
   }
 
-  const [loadingLogo, setLoadingLogo] = useState(true);
-  const timeout = setTimeout(() => {
-    setLoadingLogo(false);
-  }, 1800);
-  useEffect(() => {
-    return () => clearTimeout(timeout);
-  }, []);
-  const handleContentLoad = () => {
-    clearTimeout(timeout);
-    setLoadingLogo(false);
-  };
+  // const [loadingLogo, setLoadingLogo] = useState(true);
+  // const timeout = setTimeout(() => {
+  //   setLoadingLogo(false);
+  // }, 1800);
+  // useEffect(() => {
+  //   return () => clearTimeout(timeout);
+  // }, []);
+  // const handleContentLoad = () => {
+  //   clearTimeout(timeout);
+  //   setLoadingLogo(false);
+  // };
 
 
   return (
@@ -114,7 +114,6 @@ const Sidebar = () => {
                 className="w-auto"
                 src={Logo}
                 alt="Your Company"
-                onLoad={handleContentLoad}
               />
             ) : (
               <div className="animate-pulse">
@@ -146,7 +145,7 @@ const Sidebar = () => {
           </div>
 
           {!loadingLogo ? (
-              <nav className="mt-5 flex-1 space-y-1 bg-white px-4 pt-4" aria-label="Sidebar">
+            <nav className="mt-5 flex-1 space-y-1 bg-white px-4 pt-4" aria-label="Sidebar">
               <h4 className="text-sm font-semibold" style={{ fontFamily: "Inter", color: "#1F272E" }}>Business Apps</h4>
               {navigation.map((item) => (
                 <Link
@@ -175,28 +174,28 @@ const Sidebar = () => {
                 </Link>
               ))}
             </nav>
-            ) : (
-              <div className="animate-pulse space-y-3">
-                <div className="aspect-square rounded-md">
+          ) : (
+            <div className="animate-pulse space-y-3">
+              <div className="aspect-square rounded-md">
                 <nav className="mt-5 flex-1 space-y-1 bg-white px-4 pt-4" aria-label="Sidebar">
-              <h4 className="w-full h-[28px] bg-[#F3F3F3] block rounded-md"></h4>
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className='flex' style={{marginTop:'10px'}}>
-                    <div className="w-[15%] h-[28px] bg-[#F3F3F3] block rounded-lg mr-4">
+                  <h4 className="w-full h-[28px] bg-[#F3F3F3] block rounded-md"></h4>
+                  {navigation.map((item) => (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className='flex' style={{ marginTop: '10px' }}>
+                      <div className="w-[15%] h-[28px] bg-[#F3F3F3] block rounded-lg mr-4">
 
-                    </div>
-                    <div className="w-[80%] h-[28px] bg-[#F3F3F3] block rounded-lg"></div>
-                </Link>
-              ))}
-            </nav>
-                </div>
+                      </div>
+                      <div className="w-[80%] h-[28px] bg-[#F3F3F3] block rounded-lg"></div>
+                    </Link>
+                  ))}
+                </nav>
               </div>
-            )}
+            </div>
+          )}
 
-          
+
         </div>
         <div className="flex flex-shrink-0 p-4 bg-[#F5F5F5] m-4 rounded-md">
           <a href="#" className="group block w-full flex-shrink-0">

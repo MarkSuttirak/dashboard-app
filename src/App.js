@@ -13,34 +13,41 @@ import BusinessDetail from './pages/BusinessDetail';
 import TeamsPage from './pages/teams';
 import { useEffect } from 'react';
 import TeamModal from "./components/switchTeamModal";
-import {    createContext } from 'react';
+import { createContext } from 'react';
 
 
-export  const switchContext = createContext( );
+export const switchContext = createContext();
 
 function App() {
   const [isSwitchModalOpen, setisSwitchModalOpen] = useState(false);
+  const [loadingLogo, setLoadingLogo] = useState(true);
+  const timeout = setTimeout(() => {
+    setLoadingLogo(false);
+  }, 1000);
+  useEffect(() => {
+    return () => clearTimeout(timeout);
+  }, []);
   return (
     < >
-    <Router>
-    <switchContext.Provider value={[isSwitchModalOpen, setisSwitchModalOpen]}>
-      
-        <Sidebar />
-        <TeamModal/>
-    </switchContext.Provider>
-        <Routes>
-          <Route path="/" element={<Dashboard />}/>
-          <Route path="/appsdetail" element={<BusinessDetail />}/>
-          <Route path="/apps" element={<Business />}/>
-          <Route path="/change-domain" element={<ChangeDomain />}/>
+      <Router>
+        <switchContext.Provider value={[isSwitchModalOpen, setisSwitchModalOpen]}>
 
-          <Route path="/welcome" element={<Welcome />}/>
-          <Route path="/register" element={<Register />}/>
-          <Route path="/teams" element={<TeamsPage />}/>
+          <Sidebar loadingLogo={loadingLogo} />
+          <TeamModal />
+        </switchContext.Provider>
+        <Routes>
+          <Route path="/" element={<Dashboard loadingLogo={loadingLogo} />} />
+          <Route path="/appsdetail" element={<BusinessDetail />} />
+          <Route path="/apps" element={<Business />} />
+          <Route path="/change-domain" element={<ChangeDomain />} />
+
+          <Route path="/welcome" element={<Welcome />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/teams" element={<TeamsPage />} />
         </Routes>
-      
-    
-    </Router>
+
+
+      </Router>
     </>
   );
 }
