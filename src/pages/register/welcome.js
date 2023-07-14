@@ -54,11 +54,11 @@ const Welcome = () => {
         {/* Welcome */}
         {welcome && (
           <div className='flex items-center justify-center h-screen relative z-[101] bg-white'>
-            <div className="login-box flex flex-col justify-center px-10 py-[60px] text-center rounded-lg" style={{border:"1px solid #F2F2F2",boxShadow:"0 0px 39px 0 #00000008"}}>
+            <div className="login-box flex flex-col justify-center px-10 py-[60px] text-center rounded-lg" style={{border:"1p solid #F2F2F2",boxShadow:"0 0px 39px 0 #00000008"}}>
               <div className="flex justify-center">
                 <img src={logo} width="54px"/>
               </div>
-              <h1 className="text-[#1F272E] font-bold text-[21px] mt-8 text-center">ยินดีต้อนรับสู่ zaviago</h1>
+              <h1 className="text-[#1F272E] font-bold text-[21px] mt-8 text-center font-semibold">ยินดีต้อนรับสู่  <span className="font-bold">zaviago</span></h1>
               <button className="inline-block bg-[#11C052] py-[10px] text-white rounded-lg mt-8 w-[304px] text-[13px] m-auto">สมัครสมาชิกผ่าน LINE</button>
 
               <div className="relative mt-8">
@@ -72,7 +72,7 @@ const Welcome = () => {
 
               <div className="mt-4">
                 <h2 className="sukhumvit text-xs text-[#909090]">มีบัญชีแล้ว 
-                  <span className="ml-1 text-[#909090] sukhumvit cursor-pointer decoration-solid underline" onClick={handleWelcome}>คลิกที่นี่เพื่อเข้าสู่ระบบ</span>
+                  <span className="ml-1 text-[#909090] sukhumvit text-xs font-medium cursor-pointer decoration-solid underline" onClick={handleWelcome}>คลิกที่นี่เพื่อเข้าสู่ระบบ</span>
                 </h2>
               </div>
             </div>
@@ -83,8 +83,9 @@ const Welcome = () => {
         {fillNum && (
           <div className='flex items-center justify-center h-screen relative z-[101] bg-white'>
             <div className="login-box flex flex-col justify-center px-10 py-[60px] text-center">
-              <h1 className="text-[#1F272E] font-bold text-[22px] mt-8 text-center" style={{fontFamily:"Eventpop"}}>กรอกเบอร์โทรศัพท์เพื่อรับรหัส OTP</h1>
-                <p className="sukhumvit text-sm mt-3">รหัส OTP จะส่งไปยังหมายเลขโทรศัพท์ของคุณ</p>
+              <h1 className="text-[#1F272E] font-bold text-[18px] mt-8 text-center" style={{fontFamily:"Eventpop"}}>กรอกเบอร์โทรศัพท์เพื่อรับรหัส OTP</h1>
+                <p className="sukhumvit text-sm mt-[10px] w-[270px] mx-auto">รหัส OTP จะส่งไปยังหมายเลขโทรศัพท์ของคุณ 
+เพื่อทำการยืนยันตัวตน</p>
                 
                 <div className="flex gap-x-[11px] w-[304px] m-auto mt-6">
                   <div className="w-1/4">
@@ -115,11 +116,11 @@ const Welcome = () => {
                 </div>
 
                 {warnFillPhone && (<p className="required text-sm mt-3 warn">กรุณากรอกเบอร์โทรศัพท์</p>)}
-                <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[15px] w-[304px] text-md m-auto btn-primary-shadow" onClick={handleFillNum}>ขอรหัส OTP</button>
+                <button className="inline-block bg-[#0099FF] text-white rounded-lg mt-[11px] w-[304px] h-[30px] text-md m-auto btn-primary-shadow" onClick={handleFillNum}>ขอรหัส OTP</button>
     
-                <div className="mt-4">
+                <div className="mt-5">
                   <h2 className="sukhumvit text-sm text-[#909090]">หมายเลขโทรศัพท์ที่ระบุจะเพิ่มไปยังโปรไฟล์ของคุณ <br/>โปรดศึกษาข้อมูลเพิ่มเติมที่ 
-                    <span className="ml-1 text-[#0066CC] sukhumvit cursor-pointer decoration-solid underline">นโยบายความเป็นส่วนตัว</span>
+                    <span className="ml-1 text-[#909090] sukhumvit cursor-pointer decoration-solid underline">นโยบายความเป็นส่วนตัว</span>
                   </h2>
                 </div>
             </div>
