@@ -134,7 +134,7 @@ const Welcome = () => {
               <div className="flex justify-center">
                 <img src={particle} width="32px"/>
               </div>
-              <h1 className="text-[#1F272E] font-semibold text-[22px] mt-[19px] text-center mb-[10px]" style={{fontFamily:"Eventpop"}}>ยืนยันรหัส OTP</h1>
+              <h1 className="text-[#1F272E] font-bold text-[18px] mt-[19px] text-center mb-[10px]" style={{fontFamily:"Eventpop"}}>ยืนยันรหัส OTP</h1>
               <p className="sukhumvit text-sm">ระบุรหัส 6 หลักที่คุณได้รับทาง SMS ผ่านเบอร์</p>
               <p className="text-[#2684FF] sukhumvit text-sm">082-345-6789</p>
                 
