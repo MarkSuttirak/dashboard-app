@@ -23,7 +23,7 @@ function App() {
   const [loadingLogo, setLoadingLogo] = useState(true);
   const timeout = setTimeout(() => {
     setLoadingLogo(false);
-  }, 2000);
+  }, 2020);
   useEffect(() => {
     return () => clearTimeout(timeout);
   }, []);
