@@ -72,7 +72,17 @@ const Dashboard = ({ loadingLogo }) => {
   return (
     <>
       {/* Header Dashboard */}
+
+     
+      {!loadingLogo ? (
+                        <></>
+                      ) : (
+                        <div class="fixed z-[999] top-0 left-0 w-full h-1">
+        <div class="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-gradient"></div>
+      </div>
+                      )}
       <div className="bg-white page-section pb-16">
+
 
         <div className="relative overflow-hidden">
           <div className="mx-auto dashboard-container pb-8 grid grid-cols-2 gap-x-8">

@@ -135,21 +135,33 @@ const Register = () => {
     window.location.href = '/'
   }
 
+  const [inputValue, setInputValue] = useState('');
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+
+    const sanitizedValue = value.replace(/[^a-zA-Z0-9-]/g, '');
+
+    const limitedValue = sanitizedValue.slice(0, 25);
+
+    setInputValue(limitedValue);
+  };
+
   return (
     <div className='flex items-center justify-center h-screen relative z-[101] bg-white'>
       {account && (
         <div className="login-box flex flex-col justify-center  rounded-lg">
-          <h1 className="text-[#1F272E] font-bold text-[18px]">ตั้งค่าบัญชีของคุณ</h1>
-          <div className="mt-[27px]">
+          <h1 className="text-[#1F272E] font-bold text-[18px]" style={{ fontFamily: "Eventpop" }}>ตั้งค่าบัญชีของคุณ</h1>
+          <div className="mt-[20px]">
             <div>
-              <label htmlFor="firstname" className="block font-medium text-[#505A62] font-sukhumvit mb-2 text-[13px]">ชื่อ<span className="required">*</span></label>
+              <label htmlFor="firstname" className="block font-medium text-[#505A62] font-sukhumvit text-[13px]">ชื่อ<span className="required">*</span></label>
               <div className="mt-2">
                 <input
                   type="text"
                   name="firstname"
                   id="firstname"
-                  placeholder="ชื่อของคุณ"
-                  className="block w-[304px] h-[34px]  focus:border-[#DDDDDD] focus:border focus:outline-none rounded-md border-gray-300 shadow-sm  text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                  placeholder="ชื่อธุรกิจของคุณ"
+                  className="block w-[304px] h-[28px]  focus:border-[#DDDDDD] focus:border focus:outline-none rounded-md border-gray-300 shadow-sm  text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
                   onKeyUp={() => setWarnFillName(false)}
                 />
               </div>
@@ -157,14 +169,14 @@ const Register = () => {
             </div>
 
             <div className="mt-[17px]">
-              <label htmlFor="surname" className="block font-medium text-[#505A62] font-sukhumvit mb-2 text-[13px]">นามสกุล<span className="required">*</span></label>
+              <label htmlFor="surname" className="block font-medium text-[#505A62] font-sukhumvit text-[13px]">นามสกุล<span className="required">*</span></label>
               <div className="mt-2">
                 <input
                   type="text"
                   name="surname"
                   id="surname"
                   placeholder="นามสกุลของคุณ"
-                  className="block w-[304px] h-[34px]  focus:border-[#DDDDDD] focus:border focus:outline-none rounded-md border-gray-300 shadow-sm  text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                  className="block w-[304px] h-[28px]  focus:border-[#DDDDDD] focus:border focus:outline-none rounded-md border-gray-300 shadow-sm  text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
                   onKeyUp={() => setWarnFillSurname(false)}
                 />
               </div>
@@ -172,14 +184,14 @@ const Register = () => {
             </div>
 
             <div className="mt-[17px]">
-              <label htmlFor="date" className="block font-medium text-[#505A62] font-sukhumvit mb-2 text-[13px]">วัน-เดือน-ปีเกิด<span className="required">*</span></label>
+              <label htmlFor="date" className="block font-medium text-[#505A62] font-sukhumvit text-[13px]">วัน-เดือน-ปีเกิด<span className="required">*</span></label>
               <div className="mt-2">
                 <input
                   type="date"
                   name="date"
                   id="date"
                   placeholder="DD-MM-YYYY"
-                  className="block w-[304px] h-[34px]  focus:border-[#DDDDDD] focus:border focus:outline-none rounded-md border-gray-300 shadow-sm  text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                  className="block w-[304px] h-[28px]  focus:border-[#DDDDDD] focus:border focus:outline-none rounded-md border-gray-300 shadow-sm  text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
                   onChange={() => setWarnFillBirthdate(false)}
                 />
               </div>
@@ -187,14 +199,14 @@ const Register = () => {
             </div>
 
             <div className="mt-[17px]">
-              <label htmlFor="email" className="block font-medium text-[#505A62] font-sukhumvit mb-2 text-[13px]">อีเมล<span className="required">*</span></label>
+              <label htmlFor="email" className="block font-medium text-[#505A62] font-sukhumvit text-[13px]">อีเมล<span className="required">*</span></label>
               <div className="mt-2">
                 <input
                   type="email"
                   name="email"
                   id="email"
                   placeholder="customer@mail.com"
-                  className="block w-[304px] h-[34px]  focus:border-[#DDDDDD] focus:border focus:outline-none rounded-md border-gray-300 shadow-sm  text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                  className="block w-[304px] h-[28px]  focus:border-[#DDDDDD] focus:border focus:outline-none rounded-md border-gray-300 shadow-sm  text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
                   onKeyUp={() => setWarnFillEmail(false)}
                 />
               </div>
@@ -215,41 +227,42 @@ const Register = () => {
                   />
                 </div>
                 <div className="ml-3 text-sm">
-                  <label htmlFor="accept" className={`font-medium ${warnAccept ? 'text-[#FF0000]' : 'text-[#1F272E]'} font-sukhumvit font-xs`}>
+                  <label htmlFor="accept" className={`font-medium ${warnAccept ? 'text-[#FF0000]' : 'text-[#1F272E]'} font-sukhumvit font-medium text-[12px] leading-[21px]`}>
                     รับทราบและให้ความยอมรับ <span className=" sukhumvit cursor-pointer decoration-solid underline">ข้อกำหนดการใช้การบริการ</span> และ <span className=" sukhumvit cursor-pointer decoration-solid underline">นโยบายความเป็นส่วนตัว</span>
                   </label>
                 </div>
               </div>
             </fieldset>
 
-            <button className="inline-block bg-[#0099FF] py-[5px] text-white rounded-lg mt-[40px] w-[304px] text-md m-auto btn-primary-shadow" onClick={handleAccount}>ยืนยัน</button>
+            <button className="inline-block bg-[#0099FF] h-[30px] text-white rounded-lg mt-[40px] w-[304px] text-[13px] font-bold m-auto btn-primary-shadow font-sukhumvit" onClick={handleAccount}>ยืนยัน</button>
           </div>
         </div>
       )}
 
       {tellUs && (
-        <div className="login-box flex flex-col justify-center px-10 py-[60px] rounded-lg">
+        <div className="login-box flex flex-col justify-center w-[320px] py-[60px] rounded-lg">
           <h1 className="text-[#1F272E] font-bold text-[22px]">บอกเราอีกสักนิดเกี่ยวกับธุรกิจของคุณ</h1>
-          <p className="sukhumvit text-sm mt-[14px] text-[#909090]">บอกเราสักเล็กน้อยว่าคุณเป็นใคร เพื่อให้เราสามารถมอบสิ่ง<br />ดีที่สุดให้กับคุณ</p>
-          <div className="mt-[27px]">
-            <label htmlFor="companyname" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2">ชื่อธุรกิจของคุณ<span className="required">*</span></label>
+          <p className="sukhumvit text-sm mt-[10px] text-[#909090]">บอกเราสักเล็กน้อยว่าคุณเป็นใคร เพื่อให้เราสามารถมอบสิ่ง<br />ดีที่สุดให้กับคุณ</p>
+          <div className="mt-[20px]">
+            <label htmlFor="companyname" className="block text-sm font-medium text-[#505A62] sukhumvit">ชื่อธุร6จของคุณ<span className="required">*</span></label>
             <div className="mt-1">
               <input
                 type="text"
                 name="companyname"
                 id="companyname"
-                className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                placeholder="ชื่อธุรกิจของคุณ"
+                className="block w-full h-[28px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
                 onKeyUp={() => setWarnFillCompany(false)}
               />
             </div>
             {warnFillCompany && (<p className="required text-[10px] mt-[10px] mb-4 warn">จำเป็นต้องกรอกแบบฟอร์มนี้</p>)}
 
-            <label htmlFor="business-type" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px]">ประเภทธุรกิจสินค้า<span className="required">*</span></label>
+            <label htmlFor="business-type" className="block text-sm font-medium text-[#505A62] sukhumvit mt-[16px]">ประเภทธุรกิจสินค้า<span className="required">*</span></label>
             <div className="w-full">
               <select
                 id="business-type"
                 name="business-type"
-                className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                className="mt-1 block h-[30px] w-full rounded-md border-gray-300 py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
                 defaultValue=''
               >
                 <option>การเกษตร</option>
@@ -280,12 +293,12 @@ const Register = () => {
               </select>
             </div>
 
-            <label htmlFor="num-team" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px]">จำนวนทีมของคุณ<span className="required">*</span></label>
+            <label htmlFor="num-team" className="block text-sm font-medium text-[#505A62] sukhumvit mt-[16px]">จำนวนทีมของคุณ<span className="required">*</span></label>
             <div className="w-full">
               <select
                 id="num-team"
                 name="num-team"
-                className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                className="mt-1 block h-[30px] w-full rounded-md border-gray-300 py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
               >
                 <option>แค่ฉันคนเดียว</option>
                 <option>2-9 คน</option>
@@ -295,12 +308,12 @@ const Register = () => {
               </select>
             </div>
 
-            <label htmlFor="goal" className="block text-sm font-medium text-[#505A62] sukhumvit mb-2 mt-[10px]">เป้าหมายของคุณคืออะไร<span className="required">*</span></label>
+            <label htmlFor="goal" className="block text-sm font-medium text-[#505A62] sukhumvit mt-[16px]">เป้าหมายของคุณคืออะไร<span className="required">*</span></label>
             <div className="w-full">
               <select
                 id="goal"
                 name="goal"
-                className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                className="mt-1 block h-[30px] w-full rounded-md border-gray-300 py-2 px-[14px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
               >
                 <option>บริหารและจัดการธุรกิจ</option>
                 <option>ขายสินค้า</option>
@@ -315,24 +328,26 @@ const Register = () => {
               </select>
             </div>
 
-            <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg mt-[40px] w-full text-md m-auto btn-primary-shadow" onClick={handleSite}>สร้างบัญชี</button>
+            <button className="inline-block bg-[#0099FF] h-[30px] text-white rounded-lg mt-[40px] w-full text-md m-auto btn-primary-shadow" onClick={handleSite}>สร้างบัญชี</button>
           </div>
         </div>
       )}
 
       {site && (
         <div className="login-box flex flex-col justify-center text-center px-10 py-[60px] rounded-lg">
-          <h1 className="text-[#1F272E] font-bold text-[22px] mb-[14px]" style={{ fontFamily: "Eventpop" }}>ตั้งชื่อ Site ของคุณ</h1>
-          <p className="text-[#505A62] sukhumvit text-sm">ตั้งชื่อ Site ของคุณซึ่งจะเป็นชื่อ URL สำหรับหน้าเว็บไซต์ของคุณ สามารถใช้ A-Z , a-z , 0-9 <br />และ - ได้เท่านั้น และสามารถเปลี่ยนชื่อ Site ได้ในภายหลัง</p>
-          <div className="mt-[27px]">
+          <h1 className="text-[#1F272E] font-bold text-[18px] mb-[10px]" style={{ fontFamily: "Eventpop" }}>ตั้งชื่อ Site ของคุณ</h1>
+          <p className="text-[#505A62] sukhumvit text-xs">ตั้งชื่อ Site ของคุณซึ่งจะเป็นชื่อ URL สำหรับหน้าเว็บไซต์ของคุณ สามารถใช้ A-Z , a-z , 0-9 <br />และ - ได้เท่านั้น และสามารถเปลี่ยนชื่อ Site ได้ในภายหลัง</p>
+          <div className="mt-[24px]">
 
             <div className="relative mt-1 rounded-md shadow-sm">
               <input
                 type="text"
                 name="getzaviago-domain"
                 id="getzaviago-domain"
-                className="block bg-[#F4F5F6] text-sm p-3 w-full pr-40 w-[500px] focus-within:outline-none"
+                className="block bg-[#F4F5F6] text-sm p-3 pr-40 w-[440px] h-[30px] focus-within:outline-none"
                 onKeyUp={() => setWarnFillSite(false)}
+                value={inputValue}
+                onChange={handleInputChange}
               />
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 bg-[#F4F5F6]">
                 <span className="text-gray-500 sm:text-sm">.aca.fc.zaviago.com</span>
@@ -340,16 +355,16 @@ const Register = () => {
             </div>
             {warnFillSite && (<p className="required text-[10px] mt-[10px] mb-4 warn">กรุณาตั้งชื่อ Site ของคุณ</p>)}
 
-            <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg w-[70px] mt-[40px] text-xs m-auto btn-primary-shadow" onClick={handleApps}>Next</button>
+            <button className="inline-block bg-[#0099FF] h-[30px] text-white rounded-lg w-[440px] mt-[40px] text-xs m-auto btn-primary-shadow" onClick={handleApps}>ตรวจสอบ</button>
           </div>
         </div>
       )}
 
       {apps && (
         <div className="login-box flex flex-col justify-center px-10 py-[60px] rounded-lg text-center">
-          <h1 className="text-[#1F272E] font-bold text-[21px] mb-[14px]" style={{ fontFamily: "Eventpop" }}>เลือก Apps ที่ต้องการติดตั้ง</h1>
+          <h1 className="text-[#1F272E] font-bold text-[21px] mb-[10px]" style={{ fontFamily: "Eventpop" }}>เลือก Apps ที่ต้องการติดตั้ง</h1>
           <p className="text-[#505A62] sukhumvit text-xs">เลือก Apps ที่ต้องการติดตั้งใน Site เริ่มต้นของคุณ ลองเลือกสัก Apps ที่คุณต้องการใช้งานมากที่สุด <br />ไม่ต้องกังวลไปเพราะคุณสามารถติดตั้ง Apps อื่นๆ เพิ่มเติมได้ในภายหลัง</p>
-          <div className="mt-[27px]">
+          <div className="mt-[30px]">
             {/* <RadioGroup value={selectedApp} onChange={setSelectedApp}>
                 <div className="mt-4 grid grid-cols-2 gap-y-6 sm:grid-cols-2 md:grid-cols-3 sm:gap-x-4 place-items-center">
                   {appsList.map((item) => (
@@ -385,7 +400,7 @@ const Register = () => {
               <legend className="sr-only">Apps</legend>
               <div className="mt-4 grid grid-cols-2 gap-y-6 sm:grid-cols-2 md:grid-cols-3 sm:gap-x-4 place-items-center">
                 {appsList.map((item) => (
-                  <div className="relative block h-full">
+                  <div className="relative block ">
                     <div className="text-sm">
                       <input
                         id={item.title}
@@ -394,7 +409,7 @@ const Register = () => {
                         type="checkbox"
                         className="rounded text-indigo-600 focus:ring-indigo-500 checkbox-apps hidden"
                       />
-                      <label htmlFor={item.title} className="font-medium select-app-input block h-[153px] cursor-pointer w-[200px] shadow-sm focus:outline-none">
+                      <label htmlFor={item.title} className="font-medium select-app-input block w-[187px] h-[167px] cursor-pointer shadow-sm focus:outline-none">
                         <div className="block text-sm font-medium w-full h-[90%] box-border" style={{ backgroundColor: item.background, borderRadius: "8px 8px 0 0" }}>
                           <img src={item.img} className="m-auto relative top-[18px]" style={{ boxShadow: item.shadow }} />
                         </div>
@@ -407,7 +422,7 @@ const Register = () => {
                   </div>))}
               </div>
             </fieldset>
-            <button className="inline-block bg-[#0099FF] py-[10px] text-white rounded-lg w-[70px] mt-[40px] text-xs m-auto btn-primary-shadow" onClick={startApp}>Start</button>
+            <button className="inline-block bg-[#0099FF] h-[30px] text-white rounded-lg w-[584px] mt-[40px] text-xs m-auto btn-primary-shadow" onClick={startApp}>เริ่มต้นการใช้งาน</button>
           </div>
         </div>
       )}
