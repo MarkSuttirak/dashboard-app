@@ -313,6 +313,27 @@ h1,h2,h3,h4,h5,h6{
   z-index: 1;
 }
 
+select#location {
+  padding-left: 20px;
+  padding-right: 20px;
+  appearance: none;
+  background-image: url('./img/chevron.right.png');
+  background-repeat: no-repeat;
+  background-size: 5px;
+  background-position: 90% 13px;
+}
+
+select#business-type, select#num-team, select#goal {
+  padding-left: 20px;
+  padding-right: 20px;
+  appearance: none;
+  background-image: url('./img/chevron-down.png');
+  background-repeat: no-repeat;
+  background-size: 10px;
+  background-position: 96% 13px;
+  padding: 0px 20px;
+}
+
 .tooltip::after {
   content: "";
   position: absolute;
