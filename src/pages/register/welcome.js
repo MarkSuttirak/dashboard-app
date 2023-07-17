@@ -10,6 +10,7 @@ const Welcome = () => {
   const [warnFillOTP, setWarnFillOTP] = useState(false)
   const [countdown, setCountdown] = useState(30);
   const [warnFillPhone, setWarnFillPhone] = useState(false)
+  const [errorPhoneBorder, setErrorPhoneBorder] = useState('#F4F5F6')
 
   const handleWelcome = () => {
     setWelcome(false)
@@ -17,25 +18,33 @@ const Welcome = () => {
   }
 
   const handleFillNum = () => {
-    if (document.getElementById("phone-num").value === "") {
+    const isValid = /^(8|9|6)[0-9]{8,9}$/.test(phoneNumValue) && phoneNumValue.length >= 9 && phoneNumValue.length <= 10;
+    if (!isValid) {
       setWarnFillPhone(true);
+      setErrorPhoneBorder('#EF4444')
     } else {
       setFillNum(false)
       setFillOTP(true)
     }
 
-      const timer = setInterval(() => {
-        setCountdown(prevCountdown => {
-          if (prevCountdown === 0) {
-            clearInterval(timer);
-            return prevCountdown;
-          } else {
-            return prevCountdown - 1;
-          }
-        });
-      }, 1000);
-      return () => clearInterval(timer);
+    const timer = setInterval(() => {
+      setCountdown(prevCountdown => {
+        if (prevCountdown === 0) {
+          clearInterval(timer);
+          return prevCountdown;
+        } else {
+          return prevCountdown - 1;
+        }
+      });
+    }, 1000);
+    return () => clearInterval(timer);
 
+  }
+
+
+  const [phoneNumValue, setPhoneNumValue] = useState();
+  const handleChangePhoneInput = (e)=>{
+    setPhoneNumValue(e.target.value)
   }
 
   const handleWarnFillPhone = () => {
@@ -74,7 +83,7 @@ const Welcome = () => {
             <div className="flex justify-center">
               <img src={logo} width="54px" />
             </div>
-            <h1 className="text-[#1F272E] text-[21px] mt-8 text-center font-semibold">ยินดีต้อนรับสู่  <span className="font-bold" style={{ fontFamily: 'Poppins'}}>zaviago</span></h1>
+            <h1 className="text-[#1F272E] text-[21px] mt-8 text-center font-semibold">ยินดีต้อนรับสู่  <span className="font-bold" style={{ fontFamily: 'Poppins' }}>zaviago</span></h1>
             <button className="inline-block bg-[#11C052] py-[10px] font-sukhumvit font-semibold text-white rounded-lg mt-8 w-[304px] text-[13px] m-auto">สมัครสมาชิกผ่าน LINE</button>
 
             <div className="relative mt-8">
@@ -100,7 +109,7 @@ const Welcome = () => {
         <div className='flex items-center justify-center h-screen relative z-[101] bg-white'>
           <div className="login-box flex flex-col justify-center px-10 py-[60px] text-center">
             <h1 className="text-[#1F272E] font-bold text-[18px] mt-8 text-center" style={{ fontFamily: "Eventpop" }}>กรอกเบอร์โทรศัพท์เพื่อรับรหัส OTP</h1>
-            <p className="sukhumvit text-sm mt-[10px] w-[270px] mx-auto">รหัส OTP จะส่งไปยังหมายเลขโทรศัพท์ของคุณ
+            <p className="font-sukhumvit text-[#1F272E] text-xs font-normal mt-[10px] w-[270px] mx-auto">รหัส OTP จะส่งไปยังหมายเลขโทรศัพท์ของคุณ
               เพื่อทำการยืนยันตัวตน</p>
 
             <div className="flex gap-x-[11px] w-[304px] m-auto mt-6">
@@ -108,7 +117,7 @@ const Welcome = () => {
                 <select
                   id="location"
                   name="location"
-                  className="mt-1 block h-[38px] w-full rounded-md border-gray-300 py-2 pl-3 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                  className="mt-1 block h-[38px] w-[63px] rounded-md border-gray-300 py-2 px-[10px] text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
                   defaultValue="+66"
                 >
                   <option>+66</option>
@@ -117,25 +126,28 @@ const Welcome = () => {
                 </select>
               </div>
 
-              <div className="w-3/4">
+              <div className="w-[230px]">
                 <div className="mt-1">
                   <input
                     type="tel"
                     name="phone-num"
                     id="phone-num"
-                    className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 pl-4"
+                    className="block w-full h-[38px] rounded-md shadow-sm focus:outline-none focus:border focus:border-[#DDDDDD] text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 pl-4"
                     placeholder="123-456-7890"
-                    onKeyUp={handleWarnFillPhone}
+                    onChange={handleChangePhoneInput}
+                    value={phoneNumValue}
+                    style={warnFillPhone ? { border: `1px solid ${errorPhoneBorder}` } : {}}
                   />
+                  {warnFillPhone && (<p className="required text-left font-sukhumvit font-medium text-[10px] mt-[10px] warn">หมายเลขไม่ถูกต้อง</p>)}
                 </div>
               </div>
             </div>
 
-            {warnFillPhone && (<p className="required text-sm mt-3 warn">กรุณากรอกเบอร์โทรศัพท์</p>)}
-            <button className="inline-block bg-[#0099FF] text-white rounded-lg mt-[11px] w-[304px] h-[30px] text-md m-auto btn-primary-shadow" onClick={handleFillNum}>ขอรหัส OTP</button>
+            
+            <button className="inline-block font-sukhumvit font-bold bg-[#0099FF] text-white leading-[20px] rounded-lg mt-[11px] w-[304px] h-[30px] text-[13px] m-auto btn-primary-shadow" onClick={handleFillNum}>ขอรหัส OTP</button>
 
             <div className="mt-5">
-              <h2 className="sukhumvit text-sm text-[#909090]">หมายเลขโทรศัพท์ที่ระบุจะเพิ่มไปยังโปรไฟล์ของคุณ <br />โปรดศึกษาข้อมูลเพิ่มเติมที่
+              <h2 className="font-sukhumvit text-xs font-medium leading-[19.5px] text-[#909090]">หมายเลขโทรศัพท์ที่ระบุจะเพิ่มไปยังโปรไฟล์ของคุณ <br />โปรดศึกษาข้อมูลเพิ่มเติมที่
                 <span className="ml-1 text-[#909090] sukhumvit cursor-pointer decoration-solid underline">นโยบายความเป็นส่วนตัว</span>
               </h2>
             </div>
@@ -220,7 +232,7 @@ const Welcome = () => {
             <button className="inline-block bg-[#0099FF] text-white rounded-lg mt-[11px] w-[304px]  h-[30px] text-[13px] font-bold m-auto btn-primary-shadow" onClick={handleFillOTP}>ยืนยัน OTP</button>
             <p className="text-[#909090] text-md font-medium sukhumvit mt-[21px]">ขอรหัส OTP ใหม่อีกครั้งใน 00:{countdown} วินาที</p>
 
-            <div className="relative mt-8">
+            <div className="relative mt-[15px]">
               <div className="absolute inset-0 flex items-center" aria-hidden="true">
                 <div className="w-full border-t border-[#EBEEF0]" />
               </div>
