@@ -72,7 +72,6 @@ const Dashboard = ({ loadingLogo }) => {
   return (
     <>
       {/* Header Dashboard */}
-
       {!loadingLogo ? (
         <></>
       ) : (
