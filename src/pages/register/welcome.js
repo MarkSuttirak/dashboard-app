@@ -11,6 +11,8 @@ const Welcome = () => {
   const [countdown, setCountdown] = useState(30);
   const [warnFillPhone, setWarnFillPhone] = useState(false)
   const [errorPhoneBorder, setErrorPhoneBorder] = useState('#F4F5F6')
+  const [errorOtpBorder, setErrorOtpBorder] = useState('#F4F5F6')
+  const [resendOtpButton, setResendOtpButton] = useState(false)
 
   const handleWelcome = () => {
     setWelcome(false)
@@ -25,25 +27,27 @@ const Welcome = () => {
     } else {
       setFillNum(false)
       setFillOTP(true)
+      const timer = setInterval(() => {
+        setCountdown(prevCountdown => {
+          if (prevCountdown === 0) {
+            clearInterval(timer);
+            setResendOtpButton(true)
+            return prevCountdown;
+          } else {
+            return prevCountdown - 1;
+          }
+        });
+      }, 1000);
+      return () => clearInterval(timer);
     }
 
-    const timer = setInterval(() => {
-      setCountdown(prevCountdown => {
-        if (prevCountdown === 0) {
-          clearInterval(timer);
-          return prevCountdown;
-        } else {
-          return prevCountdown - 1;
-        }
-      });
-    }, 1000);
-    return () => clearInterval(timer);
+
 
   }
 
 
-  const [phoneNumValue, setPhoneNumValue] = useState();
-  const handleChangePhoneInput = (e)=>{
+  const [phoneNumValue, setPhoneNumValue] = useState("");
+  const handleChangePhoneInput = (e) => {
     setPhoneNumValue(e.target.value)
   }
 
@@ -61,6 +65,7 @@ const Welcome = () => {
   const handleFillOTP = () => {
     if (document.getElementById("one").value === "" || document.getElementById("two").value === "" || document.getElementById("three").value === "" || document.getElementById("four").value === "" || document.getElementById("five").value === "" || document.getElementById("six").value === "") {
       setWarnFillOTP(true);
+      setErrorOtpBorder('#EF4444')
     } else {
       window.location.href = "/register";
     }
@@ -136,14 +141,16 @@ const Welcome = () => {
                     placeholder="123-456-7890"
                     onChange={handleChangePhoneInput}
                     value={phoneNumValue}
+                    autoComplete="off"
                     style={warnFillPhone ? { border: `1px solid ${errorPhoneBorder}` } : {}}
+
                   />
                   {warnFillPhone && (<p className="required text-left font-sukhumvit font-medium text-[10px] mt-[10px] warn">หมายเลขไม่ถูกต้อง</p>)}
                 </div>
               </div>
             </div>
 
-            
+
             <button className="inline-block font-sukhumvit font-bold bg-[#0099FF] text-white leading-[20px] rounded-lg mt-[11px] w-[304px] h-[30px] text-[13px] m-auto btn-primary-shadow" onClick={handleFillNum}>ขอรหัส OTP</button>
 
             <div className="mt-5">
@@ -175,7 +182,8 @@ const Welcome = () => {
                     name="one"
                     id="one"
                     maxLength={1}
-                    className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 font-bold text-lg text-center focus:ring-indigo-500 bg-[#F4F5F6] py-2" onKeyUp={handleWarnFillOTP} onKeyDown={(e) => e.key !== "Backspace" ? setTimeout(() => document.getElementById("two").focus(), 5) : null}
+                    className="block w-full h-[34px] rounded-md focus:outline-none focus:border shadow-sm focus:border-[#DDDDDD] font-bold text-lg text-center focus:ring-indigo-500 bg-[#F4F5F6] py-2" onKeyUp={handleWarnFillOTP} onKeyDown={(e) => e.key !== "Backspace" ? setTimeout(() => document.getElementById("two").focus(), 5) : null}
+                    style={warnFillOTP ? { border: `1px solid ${errorOtpBorder}` } : {}}
                   />
                 </div>
                 <div className="mt-1">
@@ -184,7 +192,8 @@ const Welcome = () => {
                     name="two"
                     id="two"
                     maxLength={1}
-                    className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 font-bold text-lg text-center focus:ring-indigo-500 bg-[#F4F5F6] py-2" onKeyUp={handleWarnFillOTP} onKeyDown={(e) => e.key !== "Backspace" ? setTimeout(() => document.getElementById("three").focus(), 5) : setTimeout(() => document.getElementById("one").focus(), 5)}
+                    className="block w-full h-[34px] rounded-md focus:outline-none focus:border shadow-sm focus:border-[#DDDDDD] font-bold text-lg text-center focus:ring-indigo-500 bg-[#F4F5F6] py-2" onKeyUp={handleWarnFillOTP} onKeyDown={(e) => e.key !== "Backspace" ? setTimeout(() => document.getElementById("three").focus(), 5) : setTimeout(() => document.getElementById("one").focus(), 5)}
+                    style={warnFillOTP ? { border: `1px solid ${errorOtpBorder}` } : {}}
                   />
                 </div>
                 <div className="mt-1">
@@ -193,7 +202,8 @@ const Welcome = () => {
                     name="three"
                     id="three"
                     maxLength={1}
-                    className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 font-bold text-lg text-center focus:ring-indigo-500 bg-[#F4F5F6] py-2" onKeyUp={handleWarnFillOTP} onKeyDown={(e) => e.key !== "Backspace" ? setTimeout(() => document.getElementById("four").focus(), 5) : setTimeout(() => document.getElementById("two").focus(), 5)}
+                    className="block w-full h-[34px] rounded-md focus:outline-none focus:border shadow-sm focus:border-[#DDDDDD] font-bold text-lg text-center focus:ring-indigo-500 bg-[#F4F5F6] py-2" onKeyUp={handleWarnFillOTP} onKeyDown={(e) => e.key !== "Backspace" ? setTimeout(() => document.getElementById("four").focus(), 5) : setTimeout(() => document.getElementById("two").focus(), 5)}
+                    style={warnFillOTP ? { border: `1px solid ${errorOtpBorder}` } : {}}
                   />
                 </div>
                 <div className="mt-1">
@@ -202,7 +212,8 @@ const Welcome = () => {
                     name="four"
                     id="four"
                     maxLength={1}
-                    className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 font-bold text-lg text-center focus:ring-indigo-500 bg-[#F4F5F6] py-2" onKeyUp={handleWarnFillOTP} onKeyDown={(e) => e.key !== "Backspace" ? setTimeout(() => document.getElementById("five").focus(), 5) : setTimeout(() => document.getElementById("three").focus(), 5)}
+                    className="block w-full h-[34px] rounded-md focus:outline-none focus:border shadow-sm focus:border-[#DDDDDD] font-bold text-lg text-center focus:ring-indigo-500 bg-[#F4F5F6] py-2" onKeyUp={handleWarnFillOTP} onKeyDown={(e) => e.key !== "Backspace" ? setTimeout(() => document.getElementById("five").focus(), 5) : setTimeout(() => document.getElementById("three").focus(), 5)}
+                    style={warnFillOTP ? { border: `1px solid ${errorOtpBorder}` } : {}}
                   />
                 </div>
                 <div className="mt-1">
@@ -211,7 +222,8 @@ const Welcome = () => {
                     name="five"
                     id="five"
                     maxLength={1}
-                    className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 font-bold text-lg text-center focus:ring-indigo-500 bg-[#F4F5F6] py-2" onKeyUp={handleWarnFillOTP} onKeyDown={(e) => e.key !== "Backspace" ? setTimeout(() => document.getElementById("six").focus(), 5) : setTimeout(() => document.getElementById("four").focus(), 5)}
+                    className="block w-full h-[34px] rounded-md focus:outline-none focus:border shadow-sm focus:border-[#DDDDDD] font-bold text-lg text-center focus:ring-indigo-500 bg-[#F4F5F6] py-2" onKeyUp={handleWarnFillOTP} onKeyDown={(e) => e.key !== "Backspace" ? setTimeout(() => document.getElementById("six").focus(), 5) : setTimeout(() => document.getElementById("four").focus(), 5)}
+                    style={warnFillOTP ? { border: `1px solid ${errorOtpBorder}` } : {}}
                   />
                 </div>
                 <div className="mt-1">
@@ -220,17 +232,24 @@ const Welcome = () => {
                     name="six"
                     id="six"
                     maxLength={1}
-                    className="block w-full h-[34px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 font-bold text-lg text-center focus:ring-indigo-500 bg-[#F4F5F6] py-2" onKeyUp={handleWarnFillOTP} onKeyDown={(e) => e.key !== "Backspace" ? null : setTimeout(() => document.getElementById("five").focus(), 5)}
+                    className="block w-full h-[34px] rounded-md focus:outline-none focus:border shadow-sm focus:border-[#DDDDDD] font-bold text-lg text-center focus:ring-indigo-500 bg-[#F4F5F6] py-2" onKeyUp={handleWarnFillOTP} onKeyDown={(e) => e.key !== "Backspace" ? null : setTimeout(() => document.getElementById("five").focus(), 5)}
+                    style={warnFillOTP ? { border: `1px solid ${errorOtpBorder}` } : {}}
                   />
                 </div>
               </div>
 
             </div>
 
-            {warnFillOTP && (<p className="required text-sm mt-3 warn">กรุณากรอก OTP ให้ครบ</p>)}
+            {warnFillOTP && (<p className="required text-left font-sukhumvit font-medium text-[10px] mt-[10px] warn">กรุณากรอก OTP ให้ครบ</p>)}
 
             <button className="inline-block bg-[#0099FF] text-white rounded-lg mt-[11px] w-[304px]  h-[30px] text-[13px] font-bold m-auto btn-primary-shadow" onClick={handleFillOTP}>ยืนยัน OTP</button>
-            <p className="text-[#909090] text-md font-medium sukhumvit mt-[21px]">ขอรหัส OTP ใหม่อีกครั้งใน 00:{countdown} วินาที</p>
+            <p className="text-[#909090] text-xs leading-[19.5px] font-medium font-sukhumvit mt-[21px]">
+              ขอรหัส OTP ใหม่อีกครั้งใน {' '}
+              {resendOtpButton ? (
+                <button className="ml-2">Resend</button>
+              ) : (`00:${countdown} วินาที`)}
+            </p>
+
 
             <div className="relative mt-[15px]">
               <div className="absolute inset-0 flex items-center" aria-hidden="true">
@@ -241,9 +260,9 @@ const Welcome = () => {
               </div>
             </div>
 
-            <div className="mt-[30px]">
+            <div className="mt-[15px]">
               <h2 className="sukhumvit text-md">
-                <span className="ml-1 text-[#0066CC] sukhumvit cursor-pointer decoration-solid underline" onClick={handleChangeNum}>เปลี่ยนเบอร์มือถือ</span>
+                <span className="ml-1 text-[#909090] font-sukhumvit text-xs leading-[19.5px] font-medium cursor-pointer decoration-solid underline" onClick={handleChangeNum}>เปลี่ยนเบอร์มือถือ</span>
               </h2>
             </div>
           </div>
