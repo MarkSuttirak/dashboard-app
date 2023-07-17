@@ -56,6 +56,13 @@
   unicode-range: 'U+0E00–U+0E7F';
 }
 
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+}
+
 @media (min-width:1200px){
   .page-section {
     margin-left:256px;

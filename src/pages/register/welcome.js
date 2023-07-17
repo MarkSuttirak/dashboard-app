@@ -74,7 +74,7 @@ const Welcome = () => {
             <div className="flex justify-center">
               <img src={logo} width="54px" />
             </div>
-            <h1 className="text-[#1F272E] text-[21px] mt-8 text-center font-semibold">ยินดีต้อนรับสู่  <span className="font-bold">zaviago</span></h1>
+            <h1 className="text-[#1F272E] text-[21px] mt-8 text-center font-semibold">ยินดีต้อนรับสู่  <span className="font-bold" style={{ fontFamily: 'Poppins'}}>zaviago</span></h1>
             <button className="inline-block bg-[#11C052] py-[10px] text-white rounded-lg mt-8 w-[304px] text-[13px] m-auto">สมัครสมาชิกผ่าน LINE</button>
 
             <div className="relative mt-8">

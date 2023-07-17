@@ -8,6 +8,7 @@ module.exports = {
       inter: ['Inter', 'sans-serif'],
       SegoeUI: ['Segoe UI', 'Arial', 'sans-serif'],
       sukhumvit: ['Sukhumvit Set', 'sans-serif'],
+      poppins: ['Poppins', 'sans-serif'],
     },
     extend: {},
   },
