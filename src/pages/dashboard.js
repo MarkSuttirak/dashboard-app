@@ -72,12 +72,11 @@ const Dashboard = ({ loadingLogo }) => {
   return (
     <>
       {/* Header Dashboard */}
-      
       {!loadingLogo ? (
         <></>
       ) : (
         <div class="marquee-container h-[3px]">
-          <div class="marquee-content bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 h-[3px] absolute rounded-full">
+          <div class="marquee-content h-[3px] absolute rounded-full">
           </div>
         </div>
       )}
