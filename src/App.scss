@@ -321,13 +321,13 @@ h1,h2,h3,h4,h5,h6{
 }
 
 select#location {
-  padding-left: 20px;
-  padding-right: 20px;
+  // padding-left: 20px;
+  // padding-right: 20px;
   appearance: none;
   background-image: url('./img/chevron.right.png');
   background-repeat: no-repeat;
   background-size: 5px;
-  background-position: 90% 13px;
+  background-position: 85% 13px;
 }
 
 @keyframes gradient {

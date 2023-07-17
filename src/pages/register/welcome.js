@@ -70,12 +70,12 @@ const Welcome = () => {
       {/* Welcome */}
       {welcome && (
         <div className='flex items-center justify-center h-screen relative z-[101] bg-white'>
-          <div className="login-box flex flex-col justify-center px-10 py-[60px] text-center rounded-lg" style={{ border: "1p solid #F2F2F2", boxShadow: "0 0px 39px 0 #00000008" }}>
+          <div className="login-box flex flex-col justify-center border border-[#F2F2F2] px-10 py-[60px] text-center rounded-lg" style={{ border: "1p solid #F2F2F2", boxShadow: "0 0px 39px 0 #00000008" }}>
             <div className="flex justify-center">
               <img src={logo} width="54px" />
             </div>
             <h1 className="text-[#1F272E] text-[21px] mt-8 text-center font-semibold">ยินดีต้อนรับสู่  <span className="font-bold" style={{ fontFamily: 'Poppins'}}>zaviago</span></h1>
-            <button className="inline-block bg-[#11C052] py-[10px] text-white rounded-lg mt-8 w-[304px] text-[13px] m-auto">สมัครสมาชิกผ่าน LINE</button>
+            <button className="inline-block bg-[#11C052] py-[10px] font-sukhumvit font-semibold text-white rounded-lg mt-8 w-[304px] text-[13px] m-auto">สมัครสมาชิกผ่าน LINE</button>
 
             <div className="relative mt-8">
               <div className="absolute inset-0 flex items-center" aria-hidden="true">
@@ -108,7 +108,7 @@ const Welcome = () => {
                 <select
                   id="location"
                   name="location"
-                  className="mt-1 block h-[34px] w-full rounded-md border-gray-300 py-2 pl-3 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                  className="mt-1 block h-[38px] w-full rounded-md border-gray-300 py-2 pl-3 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
                   defaultValue="+66"
                 >
                   <option>+66</option>
