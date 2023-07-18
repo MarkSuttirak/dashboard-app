@@ -72,7 +72,7 @@ const Dashboard = ({ loadingLogo }) => {
   return (
     <>
       {/* Header Dashboard */}
-      {!loadingLogo ? (
+       {!loadingLogo ? (
         <></>
       ) : (
         <div class="moving-line"></div>
