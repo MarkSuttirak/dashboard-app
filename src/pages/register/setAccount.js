@@ -119,6 +119,9 @@ const Register = () => {
   const handleSite = () => {
     if (document.getElementById('companyname').value === '') {
       setWarnFillCompany(true);
+    }else if(selectedValueBusiness == 'เลือกประเภทธุรกิจและสินค้า' || selectedValueNum=='เลือกจำนวนทีมของคุณ' || selectedValueGoal == 'เลือกเป้าหมายการใช้งาน'){
+      setTellUs(true);
+      setSite(false);
     } else {
       setTellUs(false);
       setSite(true);
@@ -273,7 +276,7 @@ const Register = () => {
                 name="companyname"
                 id="companyname"
                 placeholder="ชื่อธุรกิจของคุณ"
-                className="block w-[304px] h-[28px] rounded-md shadow-sm focus:border focus:brder-[#EF4444] focus:outline-none text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                className="block w-[304px] h-[28px] font-sukhumvit font-xs font-normal rounded-md shadow-sm focus:border focus:brder-[#EF4444] focus:outline-none text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
                 onKeyUp={() => setWarnFillCompany(false)}
               />
             </div>
@@ -377,10 +380,11 @@ const Register = () => {
                 type="text"
                 name="getzaviago-domain"
                 id="getzaviago-domain"
-                className="block bg-[#F4F5F6] text-[#9CA3AF] text-xs font-sukhumvit font-normal p-3 pr-40 w-[440px] h-[30px] focus-within:outline-none"
+                className="block bg-[#F4F5F6] text-[#1F272E] font-inter placeholder:text-[#9CA3AF] placeholder:font-sukhumvit text-xs font-normal p-3 pr-40 w-[440px] h-[30px] focus-within:outline-none"
                 onKeyUp={() => setWarnFillSite(false)}
                 value={inputValue}
                 onChange={handleInputChange}
+                placeholder="mywebsite-name"
               />
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 bg-[#F4F5F6]">
                 <span className="text-[#1F272E] font-sukhumvit text-[13px] font-normal">.aca.fc.zaviago.com</span>
@@ -388,7 +392,7 @@ const Register = () => {
             </div>
             {warnFillSite && (<p className="required text-[10px] mt-[10px] mx-auto mb-4 warn">กรุณาตั้งชื่อ Site ของคุณ</p>)}
 
-            <button className="inline-block bg-[#0099FF] h-[30px] text-white rounded-lg w-[440px] mt-[40px] text-xs m-auto btn-primary-shadow" onClick={handleApps}>ตรวจสอบ</button>
+            <button className="inline-block bg-[#0099FF] h-[30px] text-white rounded-lg text-[13px] font-bold font-sukhumvit w-[440px] mt-[40px] text-xs m-auto btn-primary-shadow" onClick={handleApps}>ตรวจสอบ</button>
           </div>
         </div>
       )}
