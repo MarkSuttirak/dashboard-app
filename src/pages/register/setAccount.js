@@ -8,6 +8,7 @@ import insightApps from "../../img/insight-apps.svg";
 import hrApps from "../../img/hr-apps.svg";
 import salesteamApps from "../../img/salesteam-apps.svg";
 import ordersApps from "../../img/orders-apps.svg";
+import loadingGif from '../../img/loading.gif'
 
 const appsList = [
   {
@@ -119,12 +120,14 @@ const Register = () => {
   const handleSite = () => {
     if (document.getElementById('companyname').value === '') {
       setWarnFillCompany(true);
+      setErrorOtpBorder('#EF4444')
     }else if(selectedValueBusiness == 'เลือกประเภทธุรกิจและสินค้า' || selectedValueNum=='เลือกจำนวนทีมของคุณ' || selectedValueGoal == 'เลือกเป้าหมายการใช้งาน'){
       setTellUs(true);
       setSite(false);
     } else {
       setTellUs(false);
       setSite(true);
+      setErrorOtpBorder('#F4F5F6')
     }
   }
 
@@ -132,8 +135,12 @@ const Register = () => {
     if (document.getElementById('getzaviago-domain').value === '') {
       setWarnFillSite(true);
     } else {
-      setSite(false);
-      setApps(true);
+      setDomainValidateButton(false);
+      setTimeout(() => {
+        setDomainValidateButton(true);
+        setSite(false);
+        setApps(true);
+      }, 3000);
     }
   }
 
@@ -142,14 +149,11 @@ const Register = () => {
   }
 
   const [inputValue, setInputValue] = useState('');
-
+  const [domainValidateButton, setDomainValidateButton] = useState('true');
   const handleInputChange = (e) => {
     const value = e.target.value;
-
     const sanitizedValue = value.replace(/[^a-zA-Z0-9-]/g, '');
-
     const limitedValue = sanitizedValue.slice(0, 25);
-
     setInputValue(limitedValue);
   };
   
@@ -167,6 +171,9 @@ const Register = () => {
   const handleChangeGoal = (event) => {
     setSelectedValueGoal(event.target.value);
   };
+
+
+  const [errorOtpBorder, setErrorOtpBorder] = useState('#F4F5F6')
 
   return (
     <div className='flex items-center justify-center h-screen relative z-[101] bg-white'>
@@ -278,6 +285,7 @@ const Register = () => {
                 placeholder="ชื่อธุรกิจของคุณ"
                 className="block w-[304px] h-[28px] font-sukhumvit font-xs font-normal rounded-md shadow-sm focus:border focus:brder-[#EF4444] focus:outline-none text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
                 onKeyUp={() => setWarnFillCompany(false)}
+                style={warnFillCompany ? { border: `1px solid ${errorOtpBorder}` } : {}}
               />
             </div>
             {warnFillCompany && (<p className="required text-[10px] mt-[10px] mb-4 warn">จำเป็นต้องกรอกข้อมูล</p>)}
@@ -390,9 +398,18 @@ const Register = () => {
                 <span className="text-[#1F272E] font-sukhumvit text-[13px] font-normal">.aca.fc.zaviago.com</span>
               </div>
             </div>
-            {warnFillSite && (<p className="required text-[10px] mt-[10px] mx-auto mb-4 warn">กรุณาตั้งชื่อ Site ของคุณ</p>)}
-
-            <button className="inline-block bg-[#0099FF] h-[30px] text-white rounded-lg text-[13px] font-bold font-sukhumvit w-[440px] mt-[40px] text-xs m-auto btn-primary-shadow" onClick={handleApps}>ตรวจสอบ</button>
+            {warnFillSite && (<p className="required text-[10px] mt-[10px] mx-auto warn">กรุณาตั้งชื่อ Site ของคุณ</p>)}
+           <div className="mt-8">
+           {!domainValidateButton  && <img src={loadingGif} className="w-[20px] mb-2 mx-auto"/> }
+           <button
+        className="inline-block bg-[#0099FF] h-[30px] text-white rounded-lg text-[13px] font-bold font-sukhumvit w-[440px] text-xs m-auto btn-primary-shadow"
+        disabled={!domainValidateButton}
+        onClick={handleApps}
+        style={{ opacity: domainValidateButton ? 1 : 0.5 }} 
+      >
+        ตรวจสอบ
+      </button>
+           </div>
           </div>
         </div>
       )}
