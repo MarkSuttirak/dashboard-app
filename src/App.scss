@@ -245,15 +245,15 @@ h6 {
   }
 
   100% {
-    transform: translateX(100%);
+    transform: translateX(80%);
   }
 }
 
 .marquee-content {
   display: inline-block;
   white-space: nowrap;
-  animation: marquee 4s linear infinite;
-  width: 130%;
+  animation: marquee 3s linear infinite;
+  width: 160%;
   background: linear-gradient(to right, #006AFF 0%, #0094FF 30%, #dad3d336 55%, #C293FF 60%);
 }
 
