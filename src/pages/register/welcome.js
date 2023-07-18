@@ -240,7 +240,7 @@ const Welcome = () => {
 
             </div>
 
-            {warnFillOTP && (<p className="required text-left font-sukhumvit font-medium text-[10px] mt-[10px] warn">กรุณากรอก OTP ให้ครบ</p>)}
+            {warnFillOTP && (<p className="required text-left font-sukhumvit font-medium text-[10px] mt-[10px] warn">รหัส OTP ไม่ถูกต้อง</p>)}
 
             <button className="inline-block bg-[#0099FF] text-white rounded-lg mt-[11px] w-[304px]  h-[30px] text-[13px] font-bold m-auto btn-primary-shadow" onClick={handleFillOTP}>ยืนยัน OTP</button>
             <p className="text-[#909090] text-xs leading-[19.5px] font-medium font-sukhumvit mt-[21px]">

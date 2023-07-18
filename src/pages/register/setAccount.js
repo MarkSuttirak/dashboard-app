@@ -149,6 +149,21 @@ const Register = () => {
 
     setInputValue(limitedValue);
   };
+  
+  const [selectedValueBusiness, setSelectedValueBusiness] = useState('เลือกประเภทธุรกิจและสินค้า');
+  const handleChangeBusiness = (event) => {
+    setSelectedValueBusiness(event.target.value);
+  };
+
+  const [selectedValueNum, setSelectedValueNum] = useState('เลือกจำนวนทีมของคุณ');
+  const handleChangeNum = (event) => {
+    setSelectedValueNum(event.target.value);
+  };
+
+  const [selectedValueGoal, setSelectedValueGoal] = useState('เลือกเป้าหมายการใช้งาน');
+  const handleChangeGoal = (event) => {
+    setSelectedValueGoal(event.target.value);
+  };
 
   return (
     <div className='flex items-center justify-center h-screen relative z-[101] bg-white'>
@@ -269,8 +284,10 @@ const Register = () => {
               <select
                 id="business-type"
                 name="business-type"
-                className="mt-1 font-sukhumvit text-[#9CA3AF] text-xs block h-[30px] w-full rounded-md border-gray-300 py-2 px-[14px] font-medium focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
-                defaultValue='เลือกประเภทธุรกิจและสินค้า'
+                className="mt-1 font-sukhumvit text-xs block h-[30px] w-full rounded-md border-gray-300 py-2 px-[14px] font-medium focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                style={{ color: selectedValueBusiness == 'เลือกประเภทธุรกิจและสินค้า' ? '#9CA3AF' : '#000' }}
+                onChange={handleChangeBusiness}
+                value={selectedValueBusiness}
               >
                 <option selected disabled>เลือกประเภทธุรกิจและสินค้า</option>
                 <option>การเกษตร</option>
@@ -307,6 +324,9 @@ const Register = () => {
                 id="num-team"
                 name="num-team"
                 className="mt-1 font-sukhumvit text-[#9CA3AF] text-xs block h-[30px] w-full rounded-md border-gray-300 py-2 px-[14px] font-medium focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                style={{ color: selectedValueNum == 'เลือกจำนวนทีมของคุณ' ? '#9CA3AF' : '#000' }}
+                onChange={handleChangeNum}
+                value={selectedValueNum}
               >
                 <option selected disabled>เลือกจำนวนทีมของคุณ</option>
                 <option>แค่ฉันคนเดียว</option>
@@ -323,6 +343,9 @@ const Register = () => {
                 id="goal"
                 name="goal"
                 className="mt-1 font-sukhumvit text-[#9CA3AF] text-xs block h-[30px] w-full rounded-md border-gray-300 py-2 px-[14px] font-medium focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                style={{ color: selectedValueGoal == 'เลือกเป้าหมายการใช้งาน' ? '#9CA3AF' : '#000' }}
+                onChange={handleChangeGoal}
+                value={selectedValueGoal}
               >
                 <option selected disabled>เลือกเป้าหมายการใช้งาน</option>
                 <option>บริหารและจัดการธุรกิจ</option>
@@ -363,7 +386,7 @@ const Register = () => {
                 <span className="text-[#1F272E] font-sukhumvit text-[13px] font-normal">.aca.fc.zaviago.com</span>
               </div>
             </div>
-            {warnFillSite && (<p className="required text-[10px] mt-[10px] mb-4 warn">กรุณาตั้งชื่อ Site ของคุณ</p>)}
+            {warnFillSite && (<p className="required text-[10px] mt-[10px] mx-auto mb-4 warn">กรุณาตั้งชื่อ Site ของคุณ</p>)}
 
             <button className="inline-block bg-[#0099FF] h-[30px] text-white rounded-lg w-[440px] mt-[40px] text-xs m-auto btn-primary-shadow" onClick={handleApps}>ตรวจสอบ</button>
           </div>
@@ -425,14 +448,14 @@ const Register = () => {
                         </div>
                         <div className="absolute bottom-0 m-auto w-full py-[10px] app-desc min-h-[77px]" style={{ borderRadius: "0 0 8px 8px" }}>
                           <h2 className="text-sm font-bold leading-5 font-inter text-[#1F272E] mb-1">{item.title}</h2>
-                          <p className="font-normal text-xs text-[#505A62] sukhumvit">{item.description}</p>
+                          <p className="font-normal text-xs text-[#505A62] sukhumvit px-3">{item.description}</p>
                         </div>
                       </label>
                     </div>
                   </div>))}
               </div>
             </fieldset>
-            <button className="inline-block bg-[#0099FF] h-[30px] text-white rounded-lg w-[584px] mt-[40px] text-[13px] m-auto btn-primary-shadow" onClick={startApp}>เริ่มต้นการใช้งาน</button>
+            <button className="inline-block bg-[#0099FF] font-sukhumvit font-bold h-[30px] text-white rounded-lg w-[584px] mt-[40px] text-[13px] m-auto btn-primary-shadow" onClick={startApp}>เริ่มต้นการใช้งาน</button>
           </div>
         </div>
       )}
