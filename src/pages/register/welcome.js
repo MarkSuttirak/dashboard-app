@@ -100,7 +100,7 @@ const Welcome = () => {
               </div>
             </div>
 
-            <div className="mt-4">
+            <div className="mt-8">
               <h2 className="sukhumvit text-xs text-[#909090]">มีบัญชีแล้ว? 
                 <span className="ml-1 text-[#909090] sukhumvit text-xs font-medium cursor-pointer decoration-solid underline" onClick={handleWelcome}>คลิกที่นี่เพื่อเข้าสู่ระบบ</span>
               </h2>
