@@ -258,6 +258,33 @@ h6 {
 }
 
 
+
+.moving-line {
+  height: 5px;
+  width: 100%;
+  background-color: red;
+  position: absolute;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  animation: moving-line 1s linear infinite;
+  background: linear-gradient(to right, #006AFF 0%, #0094FF 30%, #dad3d336 55%, #C293FF 60%); /* Replace red with your line color */
+  background-size: 200% 100%;
+  background-position: 100% 0;
+}
+
+@keyframes moving-line {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+
+
+
 .required {
   color: #EF4444
 }
