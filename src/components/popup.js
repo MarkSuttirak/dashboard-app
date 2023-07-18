@@ -240,7 +240,7 @@ function Popup({ closePopUp }) {
                                             </div>
                                         )}
                                     </div>
-                                    <div className='bg-white w-[26px] h-[26px] rounded-[5px] flex justify-center items-center ml-3 relative tooltipButton'>
+                                    <div className='bg-white w-[22px] h-[21px] mr-[1px] rounded-[5px] flex justify-center items-center ml-3 relative tooltipButton'>
                                         <th className="tooltip  font-sukhumvit">คัดลอก</th>
                                         <img src={linkImg} className='w-[17px] h-[13px]' alt="" />
                                     </div>

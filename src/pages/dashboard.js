@@ -75,8 +75,8 @@ const Dashboard = ({ loadingLogo }) => {
       {!loadingLogo ? (
         <></>
       ) : (
-        <div class="marquee-container h-[3px]">
-          <div class="marquee-content h-[3px] absolute rounded-full">
+        <div class="marquee-container h-[7px]">
+          <div class="marquee-content h-[7px] absolute rounded-full">
           </div>
         </div>
       )}

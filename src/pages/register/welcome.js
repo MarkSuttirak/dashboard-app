@@ -20,7 +20,7 @@ const Welcome = () => {
   }
 
   const handleFillNum = () => {
-    const isValid = /^(8|9|6)[0-9]{8,9}$/.test(phoneNumValue) && phoneNumValue.length >= 9 && phoneNumValue.length <= 10;
+    const isValid = /^(8|9|6|0)[0-9]{8,9}$/.test(phoneNumValue) && phoneNumValue.length >= 9 && phoneNumValue.length <= 10;
     if (!isValid) {
       setWarnFillPhone(true);
       setErrorPhoneBorder('#EF4444')
@@ -100,8 +100,8 @@ const Welcome = () => {
               </div>
             </div>
 
-            <div className="mt-4">
-              <h2 className="sukhumvit text-xs text-[#909090]">มีบัญชีแล้ว
+            <div className="mt-8">
+              <h2 className="sukhumvit text-xs text-[#909090]">มีบัญชีแล้ว? 
                 <span className="ml-1 text-[#909090] sukhumvit text-xs font-medium cursor-pointer decoration-solid underline" onClick={handleWelcome}>คลิกที่นี่เพื่อเข้าสู่ระบบ</span>
               </h2>
             </div>
@@ -169,14 +169,14 @@ const Welcome = () => {
             <div className="flex justify-center">
               <img src={particle} width="32px" />
             </div>
-            <h1 className="text-[#1F272E] font-bold text-[18px] mt-[19px] text-center mb-[19px]" style={{ fontFamily: "Eventpop" }}>ยืนยันรหัส OTP</h1>
+            <h1 className="text-[#1F272E] font-bold text-[18px] mt-[20px] text-center mb-[19px]" style={{ fontFamily: "Eventpop" }}>ยืนยันรหัส OTP</h1>
             <p className="sukhumvit text-xs font-medium">ระบุรหัส 6 หลักที่คุณได้รับทาง SMS ผ่านเบอร์</p>
             <p className="text-[#1F272E] sukhumvit text-xs font-medium">082-345-6789</p>
 
-            <div className="flex gap-x-[11px] w-[304px] m-auto mt-[10px]">
+            <div className="flex gap-x-[11px] w-[304px] m-auto mt-[24px]">
 
               <div className="w-full flex gap-x-[18px]">
-                <div className="mt-1">
+                <div className="">
                   <input
                     type="text"
                     name="one"
@@ -240,7 +240,7 @@ const Welcome = () => {
 
             </div>
 
-            {warnFillOTP && (<p className="required text-left font-sukhumvit font-medium text-[10px] mt-[10px] warn">กรุณากรอก OTP ให้ครบ</p>)}
+            {warnFillOTP && (<p className="required text-left font-sukhumvit font-medium text-[10px] mt-[10px] warn">รหัส OTP ไม่ถูกต้อง</p>)}
 
             <button className="inline-block bg-[#0099FF] text-white rounded-lg mt-[11px] w-[304px]  h-[30px] text-[13px] font-bold m-auto btn-primary-shadow" onClick={handleFillOTP}>ยืนยัน OTP</button>
             <p className="text-[#909090] text-xs leading-[19.5px] font-medium font-sukhumvit mt-[21px]">
