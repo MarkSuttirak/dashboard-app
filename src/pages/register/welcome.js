@@ -176,7 +176,7 @@ const Welcome = () => {
             <div className="flex gap-x-[11px] w-[304px] m-auto mt-[24px]">
 
               <div className="w-full flex gap-x-[18px]">
-                <div className="">
+                <div className="mt-1">
                   <input
                     type="text"
                     name="one"

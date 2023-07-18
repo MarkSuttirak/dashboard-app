@@ -182,7 +182,7 @@ const Register = () => {
                   name="firstname"
                   id="firstname"
                   placeholder="ชื่อของคุณ"
-                  className="block w-[304px] h-[28px]  focus:border-[#DDDDDD] focus:border focus:outline-none rounded-md font-sukhumvit border-gray-300 shadow-sm  text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                  className="block w-[304px] h-[28px]  focus:border-[#DDDDDD] focus:border focus:outline-none rounded-md text-xs font-normal text-[#1F272E] font-sukhumvit border-gray-300 shadow-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
                   onKeyUp={() => setWarnFillName(false)}
                   style={warnFillName ? { border: `1px solid ${errorInputBorder}` } : {}}
                 />
@@ -198,7 +198,7 @@ const Register = () => {
                   name="surname"
                   id="surname"
                   placeholder="นามสกุลของคุณ"
-                  className="block w-[304px] h-[28px]  focus:border-[#DDDDDD] focus:border focus:outline-none rounded-md font-sukhumvit border-gray-300 shadow-sm  text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                  className="block w-[304px] h-[28px]  focus:border-[#DDDDDD] focus:border focus:outline-none rounded-md text-xs font-normal text-[#1F272E] font-sukhumvit border-gray-300 shadow-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
                   onKeyUp={() => setWarnFillSurname(false)}
                   style={warnFillSurname ? { border: `1px solid ${errorInputBorder}` } : {}}
                 />
@@ -214,7 +214,7 @@ const Register = () => {
                   name="date"
                   id="date"
                   placeholder="DD-MM-YYYY"
-                  className="block w-[304px] h-[28px]  focus:border-[#DDDDDD] focus:border focus:outline-none rounded-md font-sukhumvit border-gray-300 shadow-sm  text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                  className="block w-[304px] h-[28px]  focus:border-[#DDDDDD] focus:border focus:outline-none rounded-md text-xs font-normal text-[#1F272E] font-sukhumvit border-gray-300 shadow-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
                   onChange={() => setWarnFillBirthdate(false)}
                   style={warnFillBirthdate ? { border: `1px solid ${errorInputBorder}` } : {}}
                 />
@@ -230,7 +230,7 @@ const Register = () => {
                   name="email"
                   id="email"
                   placeholder="customer@mail.com"
-                  className="block w-[304px] h-[28px]  focus:border-[#DDDDDD] focus:border focus:outline-none rounded-md font-sukhumvit border-gray-300 shadow-sm  text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                  className="block w-[304px] h-[28px]  focus:border-[#DDDDDD] focus:border focus:outline-none rounded-md text-xs font-normal text-[#1F272E] font-sukhumvit border-gray-300 shadow-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
                   onKeyUp={() => setWarnFillEmail(false)}
                   style={warnFillEmail ? { border: `1px solid ${errorInputBorder}` } : {}}
                 />
