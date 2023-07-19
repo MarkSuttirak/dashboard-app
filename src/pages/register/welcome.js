@@ -20,7 +20,7 @@ const Welcome = () => {
   }
 
   const handleFillNum = () => {
-    const isValid = /^(8|9|6|0)[0-9]{8,9}$/.test(phoneNumValue) && phoneNumValue.length >= 9 && phoneNumValue.length <= 10;
+    const isValid = /^(8|9|6|0(?=[689]))[0-9]{8,9}$/.test(phoneNumValue) && phoneNumValue.length >= 9 && phoneNumValue.length <= 10;
     if (!isValid) {
       setWarnFillPhone(true);
       setErrorPhoneBorder('#EF4444')
