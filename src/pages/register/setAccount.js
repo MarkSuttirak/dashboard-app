@@ -490,7 +490,7 @@ const Register = () => {
                         type="checkbox"
                         className="rounded text-indigo-600 focus:ring-indigo-500 checkbox-apps hidden"
                       />
-                      <label htmlFor={item.title} className="font-medium select-app-input block w-[187px] h-[167px] cursor-pointer shadow-sm focus:outline-none">
+                      <label htmlFor={item.title} className="font-medium select-app-input block w-[187px] h-[167px] cursor-pointer focus:outline-none">
                         <div className="block text-sm font-medium w-full h-[90%] box-border" style={{ backgroundColor: item.background, borderRadius: "8px 8px 0 0" }}>
                           <img src={item.img} className="m-auto relative top-[18px]" style={{ boxShadow: item.shadow }} />
                         </div>
