@@ -79,7 +79,16 @@ const Register = () => {
     return classes.filter(Boolean).join(' ')
   }
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const [isValidEmail, setIsValidEmail] = useState(false);
   const handleAccount = () => {
+
+    setIsValidEmail(validateEmail(document.getElementById('email').value));
+
     if (document.getElementById('firstname').value === '') {
       setWarnFillName(true);
       setErrorInputBorder('#EF4444')
@@ -100,6 +109,12 @@ const Register = () => {
     }
 
     if (document.getElementById('email').value === '') {
+      setWarnFillEmail(true);
+    } else {
+      setWarnFillEmail(false);
+    }
+
+    if (!isValidEmail) {
       setWarnFillEmail(true);
     } else {
       setWarnFillEmail(false);
