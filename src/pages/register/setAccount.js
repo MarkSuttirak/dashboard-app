@@ -117,14 +117,38 @@ const Register = () => {
     }
   }
 
+  const [warnBusiness, setWarnBusiness] = useState(false);
+  const [warnNum, setWarnNum] = useState(false)
+  const [warnGoal, setWarnGoal] = useState(false)
   const handleSite = () => {
     if (document.getElementById('companyname').value === '') {
       setWarnFillCompany(true);
+      
       setErrorOtpBorder('#EF4444')
-    }else if(selectedValueBusiness == 'เลือกประเภทธุรกิจและสินค้า' || selectedValueNum=='เลือกจำนวนทีมของคุณ' || selectedValueGoal == 'เลือกเป้าหมายการใช้งาน'){
+    }
+    
+     if(selectedValueBusiness == 'เลือกประเภทธุรกิจและสินค้า'){
       setTellUs(true);
+      setWarnBusiness(true)
       setSite(false);
-    } else {
+    }else{
+      setWarnBusiness(false);
+    }
+    
+    if(selectedValueNum=='เลือกจำนวนทีมของคุณ'){
+      setWarnNum(true)
+    }else{
+      setWarnNum(false)
+    }
+    
+    if(selectedValueGoal == 'เลือกเป้าหมายการใช้งาน'){
+      setWarnGoal(true)
+    }else{
+      setWarnGoal(false)
+    }
+
+
+    if(selectedValueBusiness != 'เลือกประเภทธุรกิจและสินค้า' && selectedValueNum!='เลือกจำนวนทีมของคุณ' && selectedValueGoal != 'เลือกเป้าหมายการใช้งาน'){
       setTellUs(false);
       setSite(true);
       setErrorOtpBorder('#F4F5F6')
@@ -296,9 +320,9 @@ const Register = () => {
                 id="business-type"
                 name="business-type"
                 className="mt-1 font-sukhumvit text-xs block h-[30px] w-full rounded-md border-gray-300 py-2 px-[14px] font-medium focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
-                style={{ color: selectedValueBusiness == 'เลือกประเภทธุรกิจและสินค้า' ? '#9CA3AF' : '#000' }}
                 onChange={handleChangeBusiness}
                 value={selectedValueBusiness}
+                style={{ color: selectedValueBusiness === 'เลือกประเภทธุรกิจและสินค้า' ? '#9CA3AF' : '#000', ...(warnBusiness ? { border: `1px solid ${errorOtpBorder}` } : {}) }}
               >
                 <option selected disabled>เลือกประเภทธุรกิจและสินค้า</option>
                 <option>การเกษตร</option>
@@ -327,15 +351,16 @@ const Register = () => {
                 <option>โรงแรมและการท่องเที่ยว</option>
                 <option>อื่นๆ</option>
               </select>
+            {warnBusiness && (<p className="required text-[10px] mt-[10px] mb-5 warn">จำเป็นต้องเลือกคำตอบ</p>)}
             </div>
 
-            <label htmlFor="num-team" className="block text-sm font-medium text-[#505A62] sukhumvit mt-[16px]">จำนวนทีมของคุณ<span className="required">*</span></label>
+            <label htmlFor="num-team" className="block text-sm font-medium text-[#505A62] sukhumvit mt-[30px]">จำนวนทีมของคุณ<span className="required">*</span></label>
             <div className="w-[304px] h-[28px]">
               <select
                 id="num-team"
                 name="num-team"
                 className="mt-1 font-sukhumvit text-[#9CA3AF] text-xs block h-[30px] w-full rounded-md border-gray-300 py-2 px-[14px] font-medium focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
-                style={{ color: selectedValueNum == 'เลือกจำนวนทีมของคุณ' ? '#9CA3AF' : '#000' }}
+                style={{ color: selectedValueNum == 'เลือกจำนวนทีมของคุณ' ? '#9CA3AF' : '#000',  ...(warnNum ? { border: `1px solid ${errorOtpBorder}` } : {})  }}
                 onChange={handleChangeNum}
                 value={selectedValueNum}
               >
@@ -346,15 +371,16 @@ const Register = () => {
                 <option>100-500 คน</option>
                 <option>มากกว่า 500 คน</option>
               </select>
-            </div>
+              {warnNum && (<p className="required text-[10px] mt-[10px] mb-5 warn">จำเป็นต้องเลือกคำตอบ</p>)}
+</div>
 
-            <label htmlFor="goal" className="block text-sm font-medium text-[#505A62] sukhumvit mt-[16px]">เป้าหมายของคุณคืออะไร<span className="required">*</span></label>
+            <label htmlFor="goal" className="block text-sm font-medium text-[#505A62] sukhumvit mt-[30px]">เป้าหมายของคุณคืออะไร<span className="required">*</span></label>
             <div className="w-[304px] h-[28px]">
               <select
                 id="goal"
                 name="goal"
                 className="mt-1 font-sukhumvit text-[#9CA3AF] text-xs block h-[30px] w-full rounded-md border-gray-300 py-2 px-[14px] font-medium focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
-                style={{ color: selectedValueGoal == 'เลือกเป้าหมายการใช้งาน' ? '#9CA3AF' : '#000' }}
+                style={{ color: selectedValueGoal == 'เลือกเป้าหมายการใช้งาน' ? '#9CA3AF' : '#000',  ...(warnGoal ? { border: `1px solid ${errorOtpBorder}` } : {})  }}
                 onChange={handleChangeGoal}
                 value={selectedValueGoal}
               >
@@ -370,6 +396,7 @@ const Register = () => {
                 <option>นำเสนอผลงานสุดเจ๋งของตัวเอง</option>
                 <option>ยังไม่มีเป้าหมายที่ชัดเจน อยากลองใช้ระบบดูก่อน</option>
               </select>
+              {warnGoal && (<p className="required text-[10px] mt-[10px] mb-5 warn">จำเป็นต้องเลือกคำตอบ</p>)}
             </div>
 
             <button className="inline-block font-sukhumvit bg-[#0099FF] text-white rounded-lg mt-[40px] font-bold w-[304px] h-[30px] text-[13px] m-auto btn-primary-shadow" onClick={handleSite}>สร้างบัญชี</button>

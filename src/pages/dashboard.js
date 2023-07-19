@@ -82,8 +82,6 @@ const Dashboard = ({ loadingLogo }) => {
         // </div>
       )}
       <div className="bg-white page-section pb-16">
-
-
         <div className="relative overflow-hidden">
           <div className="mx-auto dashboard-container pb-8 grid grid-cols-2 gap-x-8">
             <div className="pt-0">
