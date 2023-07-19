@@ -117,14 +117,38 @@ const Register = () => {
     }
   }
 
+  const [warnBusiness, setWarnBusiness] = useState(false);
+  const [warnNum, setWarnNum] = useState(false)
+  const [warnGoal, setWarnGoal] = useState(false)
   const handleSite = () => {
     if (document.getElementById('companyname').value === '') {
       setWarnFillCompany(true);
+      
       setErrorOtpBorder('#EF4444')
-    }else if(selectedValueBusiness == 'เลือกประเภทธุรกิจและสินค้า' || selectedValueNum=='เลือกจำนวนทีมของคุณ' || selectedValueGoal == 'เลือกเป้าหมายการใช้งาน'){
+    }
+    
+     if(selectedValueBusiness == 'เลือกประเภทธุรกิจและสินค้า'){
       setTellUs(true);
+      setWarnBusiness(true)
       setSite(false);
-    } else {
+    }else{
+      setWarnBusiness(false);
+    }
+    
+    if(selectedValueNum=='เลือกจำนวนทีมของคุณ'){
+      setWarnNum(true)
+    }else{
+      setWarnNum(false)
+    }
+    
+    if(selectedValueGoal == 'เลือกเป้าหมายการใช้งาน'){
+      setWarnGoal(true)
+    }else{
+      setWarnGoal(false)
+    }
+
+
+    if(selectedValueBusiness != 'เลือกประเภทธุรกิจและสินค้า' && selectedValueNum!='เลือกจำนวนทีมของคุณ' && selectedValueGoal != 'เลือกเป้าหมายการใช้งาน'){
       setTellUs(false);
       setSite(true);
       setErrorOtpBorder('#F4F5F6')
@@ -189,7 +213,7 @@ const Register = () => {
                   name="firstname"
                   id="firstname"
                   placeholder="ชื่อของคุณ"
-                  className="block w-[304px] h-[28px]  focus:border-[#DDDDDD] focus:border focus:outline-none rounded-md text-xs font-normal text-[#1F272E] font-sukhumvit border-gray-300 shadow-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                  className="block w-[304px] h-[28px]  focus:border-[#DDDDDD] focus:border focus:outline-none rounded-md text-xs font-normal text-[#1F272E] font-sukhumvit border-gray-300 shadow-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[12px]"
                   onKeyUp={() => setWarnFillName(false)}
                   style={warnFillName ? { border: `1px solid ${errorInputBorder}` } : {}}
                 />
@@ -274,16 +298,16 @@ const Register = () => {
       {tellUs && (
         <div className="login-box flex flex-col justify-center w-[320px] py-[60px] rounded-lg">
           <h1 className="text-[#1F272E] font-bold leading-[21px] text-[18px]" style={{ fontFamily: "Eventpop" }}>บอกเราอีกสักนิดเกี่ยวกับธุรกิจของคุณ</h1>
-          <p className="font-sukhumvit text-xs font-medium leading-[19px] mt-[10px] text-[#909090]">บอกเราสักเล็กน้อยว่าคุณเป็นใคร เพื่อให้เราสามารถมอบสิ่ง<br />ดีที่สุดให้กับคุณ</p>
+          <p className="font-sukhumvit text-xs font-medium leading-[19px] mt-[10px] text-[#505A62]">บอกเราสักเล็กน้อยว่าคุณเป็นใคร เพื่อให้เราสามารถมอบ<br />ดีที่สุดให้กับคุณ</p>
           <div className="mt-[20px]">
-            <label htmlFor="companyname" className="block text-sm font-medium text-[#505A62] sukhumvit">ชื่อธุร6จของคุณ<span className="required">*</span></label>
+            <label htmlFor="companyname" className="block text-sm font-medium text-[#505A62] sukhumvit">ชื่อธุรกิจของคุณ<span className="required">*</span></label>
             <div className="mt-1">
               <input
                 type="text"
                 name="companyname"
                 id="companyname"
                 placeholder="ชื่อธุรกิจของคุณ"
-                className="block w-[304px] h-[28px] font-sukhumvit font-xs font-normal rounded-md shadow-sm focus:border focus:brder-[#EF4444] focus:outline-none text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
+                className="block w-[304px] h-[28px] font-sukhumvit font-xs font-normal rounded-md shadow-sm focus:border focus:brder-[#EF4444] focus:outline-none text-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[12px]"
                 onKeyUp={() => setWarnFillCompany(false)}
                 style={warnFillCompany ? { border: `1px solid ${errorOtpBorder}` } : {}}
               />
@@ -295,10 +319,10 @@ const Register = () => {
               <select
                 id="business-type"
                 name="business-type"
-                className="mt-1 font-sukhumvit text-xs block h-[30px] w-full rounded-md border-gray-300 py-2 px-[14px] font-medium focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
-                style={{ color: selectedValueBusiness == 'เลือกประเภทธุรกิจและสินค้า' ? '#9CA3AF' : '#000' }}
+                className="mt-1 font-sukhumvit text-xs block h-[30px] w-full rounded-md border-gray-300 py-2 px-[12px] font-medium focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
                 onChange={handleChangeBusiness}
                 value={selectedValueBusiness}
+                style={{ color: selectedValueBusiness === 'เลือกประเภทธุรกิจและสินค้า' ? '#9CA3AF' : '#000', ...(warnBusiness ? { border: `1px solid ${errorOtpBorder}` } : {}) }}
               >
                 <option selected disabled>เลือกประเภทธุรกิจและสินค้า</option>
                 <option>การเกษตร</option>
@@ -327,15 +351,16 @@ const Register = () => {
                 <option>โรงแรมและการท่องเที่ยว</option>
                 <option>อื่นๆ</option>
               </select>
+            {warnBusiness && (<p className="required text-[10px] mt-[10px] mb-5 warn">จำเป็นต้องเลือกคำตอบ</p>)}
             </div>
 
-            <label htmlFor="num-team" className="block text-sm font-medium text-[#505A62] sukhumvit mt-[16px]">จำนวนทีมของคุณ<span className="required">*</span></label>
+            <label htmlFor="num-team" className="block text-sm font-medium text-[#505A62] sukhumvit mt-[30px]">จำนวนทีมของคุณ<span className="required">*</span></label>
             <div className="w-[304px] h-[28px]">
               <select
                 id="num-team"
                 name="num-team"
-                className="mt-1 font-sukhumvit text-[#9CA3AF] text-xs block h-[30px] w-full rounded-md border-gray-300 py-2 px-[14px] font-medium focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
-                style={{ color: selectedValueNum == 'เลือกจำนวนทีมของคุณ' ? '#9CA3AF' : '#000' }}
+                className="mt-1 font-sukhumvit text-[#9CA3AF] text-xs block h-[30px] w-full rounded-md border-gray-300 py-2 px-[12px] font-medium focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                style={{ color: selectedValueNum == 'เลือกจำนวนทีมของคุณ' ? '#9CA3AF' : '#000',  ...(warnNum ? { border: `1px solid ${errorOtpBorder}` } : {})  }}
                 onChange={handleChangeNum}
                 value={selectedValueNum}
               >
@@ -346,15 +371,16 @@ const Register = () => {
                 <option>100-500 คน</option>
                 <option>มากกว่า 500 คน</option>
               </select>
-            </div>
+              {warnNum && (<p className="required text-[10px] mt-[10px] mb-5 warn">จำเป็นต้องเลือกคำตอบ</p>)}
+</div>
 
-            <label htmlFor="goal" className="block text-sm font-medium text-[#505A62] sukhumvit mt-[16px]">เป้าหมายของคุณคืออะไร<span className="required">*</span></label>
+            <label htmlFor="goal" className="block text-sm font-medium text-[#505A62] sukhumvit mt-[30px]">เป้าหมายของคุณคืออะไร<span className="required">*</span></label>
             <div className="w-[304px] h-[28px]">
               <select
                 id="goal"
                 name="goal"
-                className="mt-1 font-sukhumvit text-[#9CA3AF] text-xs block h-[30px] w-full rounded-md border-gray-300 py-2 px-[14px] font-medium focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
-                style={{ color: selectedValueGoal == 'เลือกเป้าหมายการใช้งาน' ? '#9CA3AF' : '#000' }}
+                className="mt-1 font-sukhumvit text-[#9CA3AF] text-xs block h-[30px] w-full rounded-md border-gray-300 py-2 px-[12px] font-medium focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
+                style={{ color: selectedValueGoal == 'เลือกเป้าหมายการใช้งาน' ? '#9CA3AF' : '#000',  ...(warnGoal ? { border: `1px solid ${errorOtpBorder}` } : {})  }}
                 onChange={handleChangeGoal}
                 value={selectedValueGoal}
               >
@@ -370,6 +396,7 @@ const Register = () => {
                 <option>นำเสนอผลงานสุดเจ๋งของตัวเอง</option>
                 <option>ยังไม่มีเป้าหมายที่ชัดเจน อยากลองใช้ระบบดูก่อน</option>
               </select>
+              {warnGoal && (<p className="required text-[10px] mt-[10px] mb-5 warn">จำเป็นต้องเลือกคำตอบ</p>)}
             </div>
 
             <button className="inline-block font-sukhumvit bg-[#0099FF] text-white rounded-lg mt-[40px] font-bold w-[304px] h-[30px] text-[13px] m-auto btn-primary-shadow" onClick={handleSite}>สร้างบัญชี</button>
@@ -463,7 +490,7 @@ const Register = () => {
                         type="checkbox"
                         className="rounded text-indigo-600 focus:ring-indigo-500 checkbox-apps hidden"
                       />
-                      <label htmlFor={item.title} className="font-medium select-app-input block w-[187px] h-[167px] cursor-pointer shadow-sm focus:outline-none">
+                      <label htmlFor={item.title} className="font-medium select-app-input block w-[187px] h-[167px] cursor-pointer focus:outline-none">
                         <div className="block text-sm font-medium w-full h-[90%] box-border" style={{ backgroundColor: item.background, borderRadius: "8px 8px 0 0" }}>
                           <img src={item.img} className="m-auto relative top-[18px]" style={{ boxShadow: item.shadow }} />
                         </div>
