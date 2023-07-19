@@ -298,7 +298,7 @@ const Register = () => {
       {tellUs && (
         <div className="login-box flex flex-col justify-center w-[320px] py-[60px] rounded-lg">
           <h1 className="text-[#1F272E] font-bold leading-[21px] text-[18px]" style={{ fontFamily: "Eventpop" }}>บอกเราอีกสักนิดเกี่ยวกับธุรกิจของคุณ</h1>
-          <p className="font-sukhumvit text-xs font-medium leading-[19px] mt-[10px] text-[#505A62]">บอกเราสักเล็กน้อยว่าคุณเป็นใคร เพื่อให้เราสามารถมอบสิ่ง<br />ดีที่สุดให้กับคุณ</p>
+          <p className="font-sukhumvit text-xs font-medium leading-[19px] mt-[10px] text-[#505A62]">บอกเราสักเล็กน้อยว่าคุณเป็นใคร เพื่อให้เราสามารถมอบ<br />ดีที่สุดให้กับคุณ</p>
           <div className="mt-[20px]">
             <label htmlFor="companyname" className="block text-sm font-medium text-[#505A62] sukhumvit">ชื่อธุรกิจของคุณ<span className="required">*</span></label>
             <div className="mt-1">
