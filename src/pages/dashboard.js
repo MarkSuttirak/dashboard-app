@@ -15,6 +15,8 @@ import person2 from "../img/person2.svg";
 import keyLock from "../img/key-lock.svg";
 import google from "../img/google.svg";
 import tiktok from "../img/tiktok.svg";
+import freeTrial from "../img/free-trial.png";
+import freeTrialLogo from "../img/free-trial-logo.png";
 import line from "../img/line.svg";
 import meta from "../img/meta.svg";
 import amazon from "../img/amazon.svg";
@@ -209,73 +211,13 @@ const Dashboard = ({ loadingLogo }) => {
         )}
 
         {/* Packages */}
-        <div className="mx-auto dashboard-container pb-5 gap-x-8">
-          <div className="border border-gray-200 bg-white p-10" style={{ borderRadius: "20px 20px 0 0" }}>
-            <div className="-ml-4 -mt-2 flex flex-wrap justify-between sm:flex-nowrap">
-              <div className="ml-4 mt-3">
-                {!loadingLogo ? (
-                  <div>
-                    <h3 className="text-sm font-bold leading-6 text-gray-900">แพ็คเกจการใช้งาน</h3>
-                    <h1 className="mt-2 mb-7 font-bold" style={{ fontFamily: "Eventpop", lineHeight: "47.5px", fontSize: "39px", color: "#1F272E", letterSpacing: "-1px" }}>ทดลองใช้<br />ระบบฟรี 30 วัน</h1>
-                    <div className="ml-1">
-                      <p style={{ fontFamily: "Sukhumvit Set" }} className="paras text-sm">สนับสนุนให้คุณทดลองใช้งานโดย</p>
-                      <div className="flex gap-x-[21px] mt-[10px]">
-                        <img src={finlab} />
-                        <img src={uob} />
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="animate-pulse mt-2">
-                    <div className="mb-7">
-                      <div className="bg-[#F3F3F3] w-[115px] h-[13px] aspect-square rounded-lg"></div>
-                      <div className="bg-[#F3F3F3] w-[198px] h-[37px] aspect-square rounded-lg mt-[14px]"></div>
-                      <div className="bg-[#F3F3F3] w-[260px] h-[37px] aspect-square rounded-lg mt-[14px]"></div>
-                    </div>
-                    <div>
-                      <div className="bg-[#F3F3F3] w-[240px] h-[13px] aspect-square rounded-lg"></div>
-                      <div className="flex mt-4">
-                        <div className="bg-[#F3F3F3] w-[50px] aspect-square rounded-lg"></div>
-                        <div className="bg-[#F3F3F3] w-[50px] aspect-square rounded-lg ml-3"></div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-
-
-              </div>
-
-              {!loadingLogo ? (
-                <div className="mr-2 mt-6 flex-shrink-0">
-                  <button
-                    type="button"
-                    className="relative inline-flex gap-x-2.5 items-center rounded-lg border border-transparent bg-black font-15 font-bold text-white shadow-md hover:bg-black focus:outline-none focus:ring-offset-2 w-full justify-center"
-                    style={{ padding: "11px 29px" }}
-                  >
-                    <img src={bolt} />
-                    Upgrade to Pro
-                  </button>
-                  <div className="mt-4">
-                    <h2 className="sukhumvit paras text-sm">เริ่มต้นที่</h2>
-                    <p className="price text-4xl font-bold inline-block mt-2 mr-2" style={{ letterSpacing: "-1px" }}>750 thb</p>
-                    <span className="text-sm paras font-bold">/เดือน</span>
-
-                    <p className="text-sm mt-2 paras" style={{ fontFamily: "Eventpop" }}>9,000 thb / ชำระเป็นรายปี</p>
-                  </div>
-                </div>
-              ) : (
-                <div className="animate-pulse mt-2">
-                  <div className="mr-2 mt-6 flex-shrink-0">
-                    <div className="bg-[#F3F3F3] ml-auto w-[192px] h-[46px] aspect-square rounded-lg"></div>
-                    <div className="bg-[#F3F3F3] w-[80px] h-[15px] aspect-square rounded-lg mt-3"></div>
-                    <div className="bg-[#F3F3F3] w-[180px] h-[50px] aspect-square rounded-lg mt-3"></div>
-                    <div className="bg-[#F3F3F3] w-[160px] h-[15px] aspect-square rounded-lg mt-3"></div>
-                  </div>
-                </div>
-              )}
-            </div>
+        <div className="border border-gray-200 bg-[#F3F4F6] p-10 mx-auto dashboard-container pb-5" style={{ borderRadius: "20px 20px 20px 20px" }}>
+            {/* <div></div> */}
+            <p className="text-[#1F272E] font-bold " style={{fontFamily:'Eventpop'}}>แพ็กเกจที่คุณใช้อยู่</p>
+            <div className="flex text-center"> <img src={freeTrialLogo} alt="" /> <h2 className="ml-6 text-[48px] font-semibold text-[#1F272E] font-calSans">free trial package.</h2> </div>
           </div>
+        <div className="mx-auto dashboard-container pb-5 gap-x-8">
+          
 
           {!loadingLogo ? (
             <div className="border border-gray-200 bg-white pt-9 p-12 pb-16" style={{ borderRadius: "0 0 20px 20px", borderTop: "none" }}>

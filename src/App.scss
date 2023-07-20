@@ -63,6 +63,14 @@
   src: url('./fonts/Poppins/Poppins-Bold.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Cal Sans';
+  src: url('./fonts/Cal sans/CalSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+
 @media (min-width:1200px) {
   .page-section {
     margin-left: 256px;
