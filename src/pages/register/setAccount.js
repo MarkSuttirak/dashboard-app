@@ -9,6 +9,7 @@ import hrApps from "../../img/hr-apps.svg";
 import salesteamApps from "../../img/salesteam-apps.svg";
 import ordersApps from "../../img/orders-apps.svg";
 import loadingGif from '../../img/loading.gif'
+import checked from '../../img/circle-check.png'
 
 const appsList = [
   {
@@ -79,7 +80,16 @@ const Register = () => {
     return classes.filter(Boolean).join(' ')
   }
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const [isValidEmail, setIsValidEmail] = useState(false);
   const handleAccount = () => {
+
+    setIsValidEmail(validateEmail(document.getElementById('email').value));
+
     if (document.getElementById('firstname').value === '') {
       setWarnFillName(true);
       setErrorInputBorder('#EF4444')
@@ -105,13 +115,19 @@ const Register = () => {
       setWarnFillEmail(false);
     }
 
+    if (!isValidEmail) {
+      setWarnFillEmail(true);
+    } else {
+      setWarnFillEmail(false);
+    }
+
     if (document.getElementById('accept').checked === false) {
       setWarnAccept(true);
     } else {
       setWarnAccept(false);
     }
 
-    if (document.getElementById('firstname').value !== '' && document.getElementById('surname').value !== '' && document.getElementById('date').value !== '' && document.getElementById('email').value !== '' && document.getElementById('accept').checked === true) {
+    if (document.getElementById('firstname').value !== '' && document.getElementById('surname').value !== '' && document.getElementById('date').value !== '' && document.getElementById('email').value !== '' && document.getElementById('accept').checked === true && isValidEmail == true) {
       setAccount(false);
       setTellUs(true);
     }
@@ -155,6 +171,7 @@ const Register = () => {
     }
   }
 
+  const [domainChecked, setDomainChecked] = useState(false);
   const handleApps = () => {
     if (document.getElementById('getzaviago-domain').value === '') {
       setWarnFillSite(true);
@@ -162,11 +179,18 @@ const Register = () => {
       setDomainValidateButton(false);
       setTimeout(() => {
         setDomainValidateButton(true);
-        setSite(false);
-        setApps(true);
+        setDomainChecked(true);
+        
+        // setSite(false);
+        // setApps(true);
       }, 3000);
     }
   }
+
+const moveToApps = ()=>{
+  setSite(false);
+        setApps(true);
+}
 
   const startApp = () => {
     window.location.href = '/'
@@ -195,6 +219,7 @@ const Register = () => {
   const handleChangeGoal = (event) => {
     setSelectedValueGoal(event.target.value);
   };
+
 
 
   const [errorOtpBorder, setErrorOtpBorder] = useState('#F4F5F6')
@@ -314,7 +339,10 @@ const Register = () => {
             </div>
             {warnFillCompany && (<p className="required text-[10px] mt-[10px] mb-4 warn">จำเป็นต้องกรอกข้อมูล</p>)}
 
-            <label htmlFor="business-type" className="block text-sm font-medium text-[#505A62] sukhumvit mt-[16px]">ประเภทธุรกิจและสินค้า<span className="required">*</span></label>
+            <label htmlFor="business-type" className="block text-sm font-medium text-[#505A62] sukhumvit mt-[16px]"
+            // style={{...(warnBusiness ? { border: `1px solid ${errorOtpBorder}` } : {}) }}
+            
+            >ประเภทธุรกิจและสินค้า<span className="required">*</span></label>
             <div className="w-[304px] h-[28px]">
               <select
                 id="business-type"
@@ -354,7 +382,9 @@ const Register = () => {
             {warnBusiness && (<p className="required text-[10px] mt-[10px] mb-5 warn">จำเป็นต้องเลือกคำตอบ</p>)}
             </div>
 
-            <label htmlFor="num-team" className="block text-sm font-medium text-[#505A62] sukhumvit mt-[30px]">จำนวนทีมของคุณ<span className="required">*</span></label>
+            <label htmlFor="num-team" className="block text-sm font-medium text-[#505A62] sukhumvit"
+            style={{...(warnBusiness ? { marginTop: `30px` } : {marginTop: `16px`}) }}
+            >จำนวนทีมของคุณ<span className="required">*</span></label>
             <div className="w-[304px] h-[28px]">
               <select
                 id="num-team"
@@ -374,7 +404,9 @@ const Register = () => {
               {warnNum && (<p className="required text-[10px] mt-[10px] mb-5 warn">จำเป็นต้องเลือกคำตอบ</p>)}
 </div>
 
-            <label htmlFor="goal" className="block text-sm font-medium text-[#505A62] sukhumvit mt-[30px]">เป้าหมายของคุณคืออะไร<span className="required">*</span></label>
+            <label htmlFor="goal" className="block text-sm font-medium text-[#505A62] sukhumvit"
+            style={{...(warnNum ? { marginTop: `30px` } : {marginTop: `16px`}) }}
+            >เป้าหมายของคุณคืออะไร<span className="required">*</span></label>
             <div className="w-[304px] h-[28px]">
               <select
                 id="goal"
@@ -415,25 +447,26 @@ const Register = () => {
                 type="text"
                 name="getzaviago-domain"
                 id="getzaviago-domain"
-                className="block bg-[#F4F5F6] text-[#1F272E] font-inter placeholder:text-[#9CA3AF] placeholder:font-sukhumvit text-xs font-normal p-3 pr-40 w-[440px] h-[30px] focus-within:outline-none"
+                className="block bg-[#F4F5F6] rounded-md text-[#1F272E] font-inter placeholder:text-[#9CA3AF] placeholder:font-sukhumvit text-xs font-normal p-3 pr-40 w-[440px] h-[30px] focus-within:outline-none"
                 onKeyUp={() => setWarnFillSite(false)}
                 value={inputValue}
                 onChange={handleInputChange}
                 placeholder="mywebsite-name"
               />
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 bg-[#F4F5F6]">
-                <span className="text-[#1F272E] font-sukhumvit text-[13px] font-normal">.aca.fc.zaviago.com</span>
+              <div className="pointer-events-none rounded-md absolute inset-y-0 right-0 flex items-center pr-3 bg-[#F4F5F6]">
+                <span className="text-[#1F272E] font-sukhumvit text-[13px] font-normal">{!domainChecked ? '.aca.fc.zaviago.com' : <img src={checked} />}</span>
               </div>
             </div>
-            {warnFillSite && (<p className="required text-[10px] mt-[10px] mx-auto warn">กรุณาตั้งชื่อ Site ของคุณ</p>)}
+            {warnFillSite && (<p className="required text-[10px] mt-[10px] warn">กรุณาตั้งชื่อ Site ของคุณ</p>)}
            <div className="mt-8">
-           {!domainValidateButton  && <img src={loadingGif} className="w-[20px] mb-2 mx-auto"/> }
            <button
-        className="inline-block bg-[#0099FF] h-[30px] text-white rounded-lg text-[13px] font-bold font-sukhumvit w-[440px] text-xs m-auto btn-primary-shadow"
+        className=" bg-[#0099FF] flex justify-center items-center h-[30px] text-white rounded-lg text-[13px] font-bold font-sukhumvit w-[440px] text-xs m-auto btn-primary-shadow"
         disabled={!domainValidateButton}
-        onClick={handleApps}
+        onClick={ !domainChecked ? handleApps: moveToApps}
         style={{ opacity: domainValidateButton ? 1 : 0.5 }} 
+
       >
+        {!domainValidateButton  && <img src={loadingGif} className="w-[20px] mr-2"/> }
         ตรวจสอบ
       </button>
            </div>
@@ -446,37 +479,6 @@ const Register = () => {
           <h1 className="text-[#1F272E] font-bold text-[18px] mb-[10px]" style={{ fontFamily: "Eventpop" }}>เลือก Apps ที่ต้องการติดตั้ง</h1>
           <p className="text-[#505A62] sukhumvit text-xs">เลือก Apps ที่ต้องการติดตั้งใน Site เริ่มต้นของคุณ ลองเลือกสัก Apps ที่คุณต้องการใช้งานมากที่สุด <br />ไม่ต้องกังวลไปเพราะคุณสามารถติดตั้ง Apps อื่นๆ เพิ่มเติมได้ในภายหลัง</p>
           <div className="mt-[30px]">
-            {/* <RadioGroup value={selectedApp} onChange={setSelectedApp}>
-                <div className="mt-4 grid grid-cols-2 gap-y-6 sm:grid-cols-2 md:grid-cols-3 sm:gap-x-4 place-items-center">
-                  {appsList.map((item) => (
-                    <RadioGroup.Option
-                      key={item.title}
-                      value={item}
-                      className={({ checked, active }) =>
-                        classNames(
-                          checked ? 'active-app' : 'inactive-app',
-                          active ? 'active-app' : '',
-                          'relative cursor-pointer rounded-lg border bg-white shadow-sm focus:outline-none w-[200px] h-[153px] rounded-lg box-border'
-                        )
-                      }
-                    >
-                      {({ checked, active }) => (
-                        <>
-                          <span className="block h-full">
-                            <RadioGroup.Label as="div" className="block text-sm font-medium text-gray-900 w-full h-[90%]" style={{backgroundColor:item.background,borderRadius:"8px 8px 0 0"}}>
-                              <img src={item.img} className="m-auto relative top-[18px]" style={{boxShadow:item.shadow}}/>
-                            </RadioGroup.Label>
-                            <RadioGroup.Description as="div" className="absolute bottom-0 m-auto w-full py-[10px] desc-apps bg-white" style={{borderRadius:"0 0 8px 8px"}}>
-                              <h2 className="text-sm font-bold leading-5 font-inter text-[#1F272E] mb-1">{item.title}</h2>
-                              <p className="font-bold text-xs text-[#505A62] sukhumvit">{item.description}</p>
-                            </RadioGroup.Description>
-                          </span>
-                        </>
-                      )}
-                    </RadioGroup.Option>
-                  ))}
-                </div>
-              </RadioGroup> */}
             <fieldset className="space-y-5">
               <legend className="sr-only">Apps</legend>
               <div className="mt-4 grid grid-cols-2 gap-y-6 sm:grid-cols-2 md:grid-cols-3 sm:gap-x-4 place-items-center">
