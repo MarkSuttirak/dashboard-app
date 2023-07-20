@@ -13,12 +13,15 @@ import pfyne from "../img/pfyne.svg";
 import person1 from "../img/person1.svg";
 import person2 from "../img/person2.svg";
 import keyLock from "../img/key-lock.svg";
+import finlabLogo from "../img/finlab-logo.svg";
+import UOBLogo from "../img/uob.svg";
 import google from "../img/google.svg";
 import tiktok from "../img/tiktok.svg";
 import freeTrial from "../img/free-trial.png";
 import freeTrialLogo from "../img/free-trial-logo.png";
 import line from "../img/line.svg";
 import meta from "../img/meta.svg";
+import workSpaceLogo from "../img/workspace-logo.png";
 import upgradeicon from "../img/upgrade-icon.png";
 import amazon from "../img/amazon.svg";
 import { Link } from "react-router-dom";
@@ -185,7 +188,7 @@ const Dashboard = ({ loadingLogo }) => {
 
 
         {!loadingLogo ? (
-          <div className="mx-auto dashboard-container pb-10 grid grid-cols-3 gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div className="mx-auto dashboard-container pb-10 gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {dashboardInfo.map((info) => (
               <div
                 key={info.title}
@@ -200,7 +203,7 @@ const Dashboard = ({ loadingLogo }) => {
             ))}
           </div>
         ) : (
-          <div className="animate-pulse mx-auto dashboard-container pb-10 grid grid-cols-3 gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div className="animate-pulse mx-auto dashboard-container pb-10 gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {dashboardInfo.map((info) => (
               <div
                 key={info.title}
@@ -211,43 +214,76 @@ const Dashboard = ({ loadingLogo }) => {
           </div>
         )}
 
-        {/* Packages */}
-        <div className="border border-gray-200 bg-[#F3F4F6] p-10 mx-auto dashboard-container pb-5" style={{ borderRadius: "20px 20px 20px 20px" }}>
-          <p className="text-[#1F272E] font-bold " style={{ fontFamily: 'Eventpop' }}>แพ็กเกจที่คุณใช้อยู่</p>
-          <div className="flex items-center mt-[15px]"> <img src={freeTrialLogo} className="w-[45px] h-[45px]" alt="" /> <h2 className="ml-6 text-[48px] font-semibold text-[#1F272E] font-calSans">free trial package.</h2> </div>
-          <div className="flex items-center mt-5">
-            <button className="bg-[#000000] text-white flex py-[10px] px-[18px] rounded-lg items-center " style={{ boxShadow: '0px 4px 8px 0px #00000033' }}><img src={upgradeicon} className="w-[14px] h-[14px] mr-[11px] " />  Upgrade to Pro</button>
-            <button className="text-[#1F272E] font-inter font-semibold text-base ml-5">Talk with support</button>
+
+
+        {!loadingLogo ? (
+          <div className="border border-gray-200 bg-[#F3F4F6] py-10 sm:pt-2 pl-5 sm:pl-10 sm:pb-6 mx-auto dashboard-container sm:flex justify-between items-center" style={{ borderRadius: "20px 20px 20px 20px" }}>
+            <div>
+              <p className="text-[#1F272E] font-bold" style={{ fontFamily: 'Eventpop' }}>แพ็กเกจที่คุณใช้อยู่</p>
+              <div className="flex items-center mt-[15px]"> <img src={freeTrialLogo} className="w-[45px] h-[45px]" alt="" /> <h2 className="ml-6 sm:leading-10 leading-8 text-[30px] sm:text-[48px] font-semibold text-[#1F272E] font-calSans">free trial package.</h2> </div>
+              <div className="flex items-center mt-5">
+                <button className="bg-[#000000] text-white text-xs sm:text-base flex py-[13px] px-[8px] sm:py-[10px] sm:px-[18px] rounded-lg items-center " style={{ boxShadow: '0px 4px 8px 0px #00000033' }}><img src={upgradeicon} className="w-[14px] h-[14px] mr-[5px] sm:mr-[11px] " />  Upgrade to Pro</button>
+                <button className="text-[#1F272E] font-inter font-semibold text-base sm:ml-4 ml-1">Talk with support</button>
+              </div>
+            </div>
+            <div>
+              <img src={freeTrial} className="w-[200px] h-[272px] sm:mt-0 mt-4" alt="" />
+            </div>
           </div>
-        </div>
-        <div className="mx-auto dashboard-container pb-5 gap-x-8">
+        ) : (
+          <div className="border animate-pulse border-gray-200 bg-[#F3F4F6] py-20 pl-10 mx-auto dashboard-container flex justify-between items-center" style={{ borderRadius: "20px 20px 20px 20px" }}>
+            <div>
+              <div className="bg-[#c9ccd1] w-[130px] h-[15px] aspect-square rounded-md"></div>
+              <div className="flex items-center mt-[15px]"> <div className="bg-[#c9ccd1] w-[45px] h-[45px] aspect-square rounded-md"></div> <div className="bg-[#c9ccd1] ml-6 w-[370px] h-[50px] rounded-md"></div> </div>
+              <div className="flex items-center mt-5">
+                <div className="bg-[#c9ccd1] w-[170px] h-[44px] rounded-md"></div>
+                <div className="bg-[#c9ccd1] ml-5 w-[170px] h-[44px] rounded-md"></div>
+              </div>
+            </div>
+          </div>
+        )}
+
+
+
+
+        {/* Packages */}
+
+        <div className="mx-auto dashboard-container pb-5 gap-x-8 mt-[50px]">
 
 
           {!loadingLogo ? (
-            <div className="border border-gray-200 bg-white pt-9 p-12 pb-16" style={{ borderRadius: "0 0 20px 20px", borderTop: "none" }}>
-              <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
-                <div className="ml-4 mt-2">
-                  <h3 className="text-sm font-bold leading-6 text-gray-900">เข้าใช้งานระบบ</h3>
 
-                  <div className="flex gap-x-2 text-2xl mt-2">
-                    <img src={world} width="12" />
-                    <h1 className="text-black font-bold text-[22px]" style={{ color: "#333333" }}>alpgroup.aca.fc.zaviago.com</h1>
+            <div className=" bg-white">
+              <div className="sm:flex justify-between items-center">
+                <div className="flex items-center">
+                  <img src={workSpaceLogo} className="h-[22px] w-[22px] " alt="" />
+                  <p className="font-calSans text-[15px] font-semibold ml-2">Your Workspace</p>
+                  <div className="ml-5 flex-shrink-0">
+                    <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-0.5 text-sm font-medium online">
+                      <svg className="-ml-1 mr-1.5 h-2 w-2" fill="#52C41A" viewBox="0 0 8 8">
+                        <circle cx={4} cy={4} r={3} />
+                      </svg>
+                      Online
+                    </span>
                   </div>
-
+                </div>
+                <p className="font-calSans text-xs font-semibold">Powered by</p>
+              </div>
+              <div className="mt-5 flex flex-wrap items-center justify-between sm:flex-nowrap">
+                <div className="">
+                  <div className="flex gap-x-2 text-2xl">
+                    <h1 className="text-black font-calSans font-semibold text-[22px]" style={{ color: "#333333" }}>alpgroup.aca.fc.zaviago.com</h1>
+                  </div>
                   <Link to="/change-domain" className="link-anchor inline-block mt-2 text-xs">
                     Change Domain
                   </Link>
                 </div>
-                <div className="ml-4 mt-2 flex-shrink-0">
-                  <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-0.5 text-sm font-medium online">
-                    <svg className="-ml-1 mr-1.5 h-2 w-2" fill="#52C41A" viewBox="0 0 8 8">
-                      <circle cx={4} cy={4} r={3} />
-                    </svg>
-                    Online
-                  </span>
+                <div className="flex ">
+                  <img src={finlabLogo} alt="" />
+                  <img src={UOBLogo} className="ml-4" alt="" />
                 </div>
               </div>
-              <div className="-ml-4 mt-0 flex flex-wrap items-center justify-between sm:flex-nowrap">
+              <div className="-ml-4 mt-5 flex flex-wrap items-center justify-between sm:flex-nowrap">
                 <div className="ml-4 mt-2 pb-10">
 
                   <div className="flex mt-2 gap-x-5 items-center">
@@ -358,95 +394,91 @@ const Dashboard = ({ loadingLogo }) => {
               <a href="#" className="link-anchor float-right font-11">View More</a>
             </div>
           ) : (
-            <div className="animate-pulse mt-2">            <div className="border border-gray-200 bg-white pt-9 p-12 pb-16" style={{ borderRadius: "0 0 20px 20px", borderTop: "none" }}>
-              <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
-                <div className="ml-4 mt-2">
-                  <div className="bg-[#F3F3F3] w-[160px] h-[20px] aspect-square rounded-lg"></div>
-
-                  <div className="flex items-center gap-x-2 text-2xl mt-2">
-                    <div className="bg-[#F3F3F3] w-[20px] h-[20px] aspect-square rounded-lg"></div>
-                    <div className="bg-[#F3F3F3] w-[334px] h-[30px] aspect-square rounded-lg mt-2"></div>
+            <div className="animate-pulse mt-2">
+              <div className="">
+                <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center">
+                      <div className="bg-[#F3F3F3] w-[22px] h-[22px] rounded-lg"></div>
+                      <div className="bg-[#F3F3F3] ml-2 w-[80px] h-[15px] rounded-lg"></div>
+                    </div>
+                    <div className="bg-[#F3F3F3] w-[100px] h-[20px] ml-2 rounded-full"></div>
                   </div>
-
-                  <Link to="/change-domain" className="link-anchor inline-block mt-2 text-xs">
-                    <div className="bg-[#F3F3F3] w-[90px] h-[15px] aspect-square rounded-lg"></div>
-                  </Link>
-                </div>
-                <div className="ml-4 mt-2 flex-shrink-0">
-                  <div className="bg-[#F3F3F3] w-[75px] h-[22px] aspect-square rounded-lg"></div>
-                </div>
-              </div>
-              <div className="-ml-4 mt-0 flex flex-wrap items-center justify-between sm:flex-nowrap">
-                <div className="ml-4 mt-2 pb-10">
-
-                  <div className="flex mt-2 gap-x-5 items-center">
-                    <div className="bg-[#F3F3F3] w-[130px] h-[30px] aspect-square rounded-lg"></div>
-                    <div className="bg-[#F3F3F3] w-[70px] h-[15px] aspect-square rounded-lg"></div>
+                  <div className="ml-4 mt-2 flex-shrink-0">
+                    <div className="bg-[#F3F3F3] w-[75px] h-[22px] aspect-square rounded-lg"></div>
                   </div>
                 </div>
-                <div className="ml-4 mt-2 flex-shrink-0 items-center flex pb-10">
-                  <div className="isolate flex -space-x-1 overflow-hidden">
-                    <div className="bg-[#F3F3F3] w-[20px] h-[20px] aspect-square rounded-lg"></div>
-                    <div className="bg-[#F3F3F3] w-[20px] h-[20px] aspect-square rounded-lg -ml-1"></div>
-                    <div className="bg-[#F3F3F3] w-[20px] h-[20px] aspect-square rounded-lg -ml-1"></div>
-                    <div className="bg-[#F3F3F3] w-[20px] h-[20px] aspect-square rounded-lg -ml-1"></div>
+                <div className="-ml-4 mt-0 flex flex-wrap items-center justify-between sm:flex-nowrap">
+                  <div className="ml-4 mt-2 pb-10">
+
+                    <div className="flex mt-2 gap-x-5 items-center">
+                      <div className="bg-[#F3F3F3] w-[130px] h-[30px] aspect-square rounded-lg"></div>
+                      <div className="bg-[#F3F3F3] w-[70px] h-[15px] aspect-square rounded-lg"></div>
+                    </div>
+                  </div>
+                  <div className="ml-4 mt-2 flex-shrink-0 items-center flex pb-10">
+                    <div className="isolate flex -space-x-1 overflow-hidden">
+                      <div className="bg-[#F3F3F3] w-[20px] h-[20px] aspect-square rounded-lg"></div>
+                      <div className="bg-[#F3F3F3] w-[20px] h-[20px] aspect-square rounded-lg -ml-1"></div>
+                      <div className="bg-[#F3F3F3] w-[20px] h-[20px] aspect-square rounded-lg -ml-1"></div>
+                      <div className="bg-[#F3F3F3] w-[20px] h-[20px] aspect-square rounded-lg -ml-1"></div>
+                    </div>
                   </div>
                 </div>
+
+
+
+                {/* Progress Bars */}
+                <div className="flex gap-x-2 items-center mb-4 columns-4">
+                  <div className="w-[30%]">
+                    <div className="bg-[#F3F3F3] w-[150px] h-[12px] aspect-square rounded-lg mt-1"></div>
+                  </div>
+
+                  <div className="bg-[#F3F3F3] w-[50%] h-[12px] aspect-square rounded-lg mt-1"></div>
+
+                  <div className="text-right flex justify-end w-1/4">
+                    <div className="bg-[#F3F3F3] w-[120px] h-[12px] aspect-square rounded-lg mt-1"></div>
+                  </div>
+                </div>
+
+                <div className="flex gap-x-2 items-center mb-4 columns-4">
+                  <div className="w-[30%]">
+                    <div className="bg-[#F3F3F3] w-[150px] h-[12px] aspect-square rounded-lg mt-1"></div>
+                  </div>
+
+                  <div className="bg-[#F3F3F3] w-[50%] h-[12px] aspect-square rounded-lg mt-1"></div>
+
+                  <div className="text-right flex justify-end w-1/4">
+                    <div className="bg-[#F3F3F3] w-[120px] h-[12px] aspect-square rounded-lg mt-1"></div>
+                  </div>
+                </div>
+
+                <div className="flex gap-x-2 items-center mb-4 columns-4">
+                  <div className="w-[30%]">
+                    <div className="bg-[#F3F3F3] w-[150px] h-[12px] aspect-square rounded-lg mt-1"></div>
+                  </div>
+
+                  <div className="bg-[#F3F3F3] w-[50%] h-[12px] aspect-square rounded-lg mt-1"></div>
+
+                  <div className="text-right flex justify-end w-1/4">
+                    <div className="bg-[#F3F3F3] w-[120px] h-[12px] aspect-square rounded-lg mt-1"></div>
+                  </div>
+                </div>
+
+                <div className="flex gap-x-2 items-center mb-4 columns-4">
+                  <div className="w-[30%]">
+                    <div className="bg-[#F3F3F3] w-[150px] h-[12px] aspect-square rounded-lg mt-1"></div>
+                  </div>
+
+                  <div className="bg-[#F3F3F3] w-[50%] h-[12px] aspect-square rounded-lg mt-1"></div>
+
+                  <div className="text-right flex justify-end w-1/4">
+                    <div className="bg-[#F3F3F3] w-[120px] h-[12px] aspect-square rounded-lg mt-1"></div>
+                  </div>
+                </div>
+
+                <div className="bg-[#F3F3F3] w-[55px] h-[12px] aspect-square rounded-lg mt-1"></div>
               </div>
-
-
-
-              {/* Progress Bars */}
-              <div className="flex gap-x-2 items-center mb-4 columns-4">
-                <div className="w-[30%]">
-                  <div className="bg-[#F3F3F3] w-[150px] h-[12px] aspect-square rounded-lg mt-1"></div>
-                </div>
-
-                <div className="bg-[#F3F3F3] w-[50%] h-[12px] aspect-square rounded-lg mt-1"></div>
-
-                <div className="text-right flex justify-end w-1/4">
-                  <div className="bg-[#F3F3F3] w-[120px] h-[12px] aspect-square rounded-lg mt-1"></div>
-                </div>
-              </div>
-
-              <div className="flex gap-x-2 items-center mb-4 columns-4">
-                <div className="w-[30%]">
-                  <div className="bg-[#F3F3F3] w-[150px] h-[12px] aspect-square rounded-lg mt-1"></div>
-                </div>
-
-                <div className="bg-[#F3F3F3] w-[50%] h-[12px] aspect-square rounded-lg mt-1"></div>
-
-                <div className="text-right flex justify-end w-1/4">
-                  <div className="bg-[#F3F3F3] w-[120px] h-[12px] aspect-square rounded-lg mt-1"></div>
-                </div>
-              </div>
-
-              <div className="flex gap-x-2 items-center mb-4 columns-4">
-                <div className="w-[30%]">
-                  <div className="bg-[#F3F3F3] w-[150px] h-[12px] aspect-square rounded-lg mt-1"></div>
-                </div>
-
-                <div className="bg-[#F3F3F3] w-[50%] h-[12px] aspect-square rounded-lg mt-1"></div>
-
-                <div className="text-right flex justify-end w-1/4">
-                  <div className="bg-[#F3F3F3] w-[120px] h-[12px] aspect-square rounded-lg mt-1"></div>
-                </div>
-              </div>
-
-              <div className="flex gap-x-2 items-center mb-4 columns-4">
-                <div className="w-[30%]">
-                  <div className="bg-[#F3F3F3] w-[150px] h-[12px] aspect-square rounded-lg mt-1"></div>
-                </div>
-
-                <div className="bg-[#F3F3F3] w-[50%] h-[12px] aspect-square rounded-lg mt-1"></div>
-
-                <div className="text-right flex justify-end w-1/4">
-                  <div className="bg-[#F3F3F3] w-[120px] h-[12px] aspect-square rounded-lg mt-1"></div>
-                </div>
-              </div>
-
-              <div className="bg-[#F3F3F3] w-[55px] h-[12px] aspect-square rounded-lg mt-1"></div>
-            </div>
             </div>
           )}
 
@@ -461,7 +493,7 @@ const Dashboard = ({ loadingLogo }) => {
 
               <p className="paras mt-3 font-13">You are on Agency PremiumCare+package: this include, <strong>9am-19am</strong> <br />live Chat support with LINE OA direct responses to all your issue.</p>
 
-              <div className="btn-group mt-5 columns-5">
+              <div className="btn-group mt-5 flex justify-between flex-wrap">
                 <button className="flex items-center font-13 headings gap-x-2.5">
                   <img src={wrapper} />
                   แชทกับทีมงาน
@@ -571,7 +603,7 @@ const Dashboard = ({ loadingLogo }) => {
         )}
 
 
-        {!loadingLogo ? (
+        {/* {!loadingLogo ? (
           <div className="mx-auto dashboard-container pb-10 gap-x-8">
             <div className="mx-auto dashboard-container pb-10 gap-x-8">
               <div className="flex justify-between mb-7">
@@ -720,7 +752,7 @@ const Dashboard = ({ loadingLogo }) => {
               </div>
             </div>
           </div>
-        )}
+        )} */}
 
 
         {/* App Store */}
