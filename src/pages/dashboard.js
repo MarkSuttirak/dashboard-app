@@ -19,6 +19,7 @@ import freeTrial from "../img/free-trial.png";
 import freeTrialLogo from "../img/free-trial-logo.png";
 import line from "../img/line.svg";
 import meta from "../img/meta.svg";
+import upgradeicon from "../img/upgrade-icon.png";
 import amazon from "../img/amazon.svg";
 import { Link } from "react-router-dom";
 import PopUp from '../components/popup'
@@ -74,7 +75,7 @@ const Dashboard = ({ loadingLogo }) => {
   return (
     <>
       {/* Header Dashboard */}
-       {!loadingLogo ? (
+      {!loadingLogo ? (
         <></>
       ) : (
         <div class="moving-line"></div>
@@ -106,7 +107,7 @@ const Dashboard = ({ loadingLogo }) => {
                   {!loadingLogo ? (
                     <div>
                       <h1 className="mt-1 text-xl font-semibold tracking-tight text-gray-900">
-                      Sawadee, Chutiphol  🙏
+                        Sawadee, Chutiphol  🙏
                       </h1>
                       <p className="font-13 leading-8 text-gray-600">
                         Welcome to your <span style={{ color: "#006AFF" }} className="font-bold">Zaviago/OS</span> v.1.4.88
@@ -212,12 +213,15 @@ const Dashboard = ({ loadingLogo }) => {
 
         {/* Packages */}
         <div className="border border-gray-200 bg-[#F3F4F6] p-10 mx-auto dashboard-container pb-5" style={{ borderRadius: "20px 20px 20px 20px" }}>
-            {/* <div></div> */}
-            <p className="text-[#1F272E] font-bold " style={{fontFamily:'Eventpop'}}>แพ็กเกจที่คุณใช้อยู่</p>
-            <div className="flex text-center"> <img src={freeTrialLogo} alt="" /> <h2 className="ml-6 text-[48px] font-semibold text-[#1F272E] font-calSans">free trial package.</h2> </div>
+          <p className="text-[#1F272E] font-bold " style={{ fontFamily: 'Eventpop' }}>แพ็กเกจที่คุณใช้อยู่</p>
+          <div className="flex items-center mt-[15px]"> <img src={freeTrialLogo} className="w-[45px] h-[45px]" alt="" /> <h2 className="ml-6 text-[48px] font-semibold text-[#1F272E] font-calSans">free trial package.</h2> </div>
+          <div className="flex items-center mt-5">
+            <button className="bg-[#000000] text-white flex py-[10px] px-[18px] rounded-lg items-center " style={{ boxShadow: '0px 4px 8px 0px #00000033' }}><img src={upgradeicon} className="w-[14px] h-[14px] mr-[11px] " />  Upgrade to Pro</button>
+            <button className="text-[#1F272E] font-inter font-semibold text-base ml-5">Talk with support</button>
           </div>
+        </div>
         <div className="mx-auto dashboard-container pb-5 gap-x-8">
-          
+
 
           {!loadingLogo ? (
             <div className="border border-gray-200 bg-white pt-9 p-12 pb-16" style={{ borderRadius: "0 0 20px 20px", borderTop: "none" }}>
