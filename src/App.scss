@@ -511,6 +511,19 @@ select#goal {
   background-color: rgba(156, 163, 175, 0.15);
 }
 
+.appBanner{
+  background-image: url('./img/appsBanner.png');
+  height: 310px;
+  background-size: cover;
+  width: 750px;
+  border-radius: 16px, 16px, 0px, 0px;
+  padding: 27px 45px;
+}
+
+.section-container{
+  width: 750px;
+}
+
 
 
 @media screen and (max-width:1025px) {
