@@ -1,6 +1,6 @@
 import React from 'react'
 import websiteMade from '../img/website-made.png'
-import businessIntelligent from '../img/business-intelligent.svg'
+// import businessIntelligent from '../img/business-intelligent.svg'
 import appsMarketplace from '../img/app-marketplace.svg'
 import connectBusiness from '../img/connect-business.svg'
 import purpleRhombus from '../img/purple-rhombus.svg'
@@ -22,6 +22,12 @@ import blog3 from '../img/blog3.png'
 import POSLogo from '../img/POSLogo.png'
 import star from '../img/star.png'
 import instagramLogo from '../img/instagram.png'
+import businessIntelligent from '../img/bussiness-intelligent.png'
+import translationImg from '../img/translation.png'
+import payPalLogo from '../img/payPal.png'
+import applicationName from '../img/applicationName.png'
+import applicationName1 from '../img/applicationName1.png'
+
 
 function Business() {
   const popularApps = [
@@ -29,7 +35,7 @@ function Business() {
       id: 1,
       title: 'Connect Business',
       description: 'Facilitate payments and pay out sellers or service providers.',
-      image: instagramLogo,
+      image: businessIntelligent,
       rating: 4.5,
     },
     {
@@ -43,28 +49,28 @@ function Business() {
       id: 3,
       title: 'Connect Business Intelligent',
       description: 'Facilitate payments and pay out sellers or service providers.',
-      image: instagramLogo,
+      image: translationImg,
       rating: 4.5,
     },
     {
       id: 4,
       title: 'Connect Business Intelligent',
       description: 'Facilitate payments and pay out sellers or service providers.',
-      image: instagramLogo,
+      image: payPalLogo,
       rating: 4.5,
     },
     {
       id: 5,
       title: 'Connect Business Intelligent',
       description: 'Facilitate payments and pay out sellers or service providers.',
-      image: instagramLogo,
+      image: applicationName,
       rating: 4.5,
     },
     {
       id: 6,
       title: 'Connect Business',
       description: 'Facilitate payments and pay out sellers or service providers.',
-      image: instagramLogo,
+      image: applicationName1,
       rating: 4.5,
     },
   ]
@@ -85,7 +91,7 @@ function Business() {
               <img src={finlabLogo} alt="" />
               <img src={UOBLogo} className="ml-4" alt="" />
             </div>
-          </div>
+          </div> 
         </div>
 
         <div className='section-container mx-auto mt-[30px] rounded-b-[16px]' style={{ boxShadow: '0px 4px 70px 0px #72727240' }}>
@@ -113,7 +119,7 @@ function Business() {
           <div className='grid grid-cols-2 mt-[37px]'>
             {popularApps.map((item =>
               <div className='flex mb-[25px]'>
-                <div><img src={item.image} alt="" style={{boxShadow: '0px 4px 15px 0px #00000026'}} /></div>
+                <div><img src={item.image} alt="" className='rounded-xl' style={{boxShadow: '0px 4px 15px 0px #00000026'}} /></div>
                 <div className='ml-5'>
                   <h3 className='font-inter font-semibold text-sm'>{item.title}</h3>
                   <p className='font-inter font-normal text-[13px] text-[#687178] mt-1'>{item.description}</p>
