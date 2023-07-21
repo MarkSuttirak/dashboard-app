@@ -9,7 +9,7 @@ import hrApps from "../../img/hr-apps.svg";
 import salesteamApps from "../../img/salesteam-apps.svg";
 import ordersApps from "../../img/orders-apps.svg";
 import loadingGif from '../../img/loading.gif'
-import checked from '../../img/circle-check.png'
+import checked from '../../img/circle-check.svg'
 
 const appsList = [
   {
@@ -75,6 +75,8 @@ const Register = () => {
   const [selectedApp, setSelectedApp] = useState(appsList[0])
 
   const [errorInputBorder, setErrorInputBorder] = useState('#F4F5F6')
+
+  // const [errordomainBorder, setE]
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -337,10 +339,9 @@ const moveToApps = ()=>{
                 style={warnFillCompany ? { border: `1px solid ${errorOtpBorder}` } : {}}
               />
             </div>
-            {warnFillCompany && (<p className="required text-[10px] mt-[10px] mb-4 warn">จำเป็นต้องกรอกข้อมูล</p>)}
+            {warnFillCompany && (<p className="required text-[10px] mt-[10px] warn">จำเป็นต้องกรอกข้อมูล</p>)}
 
             <label htmlFor="business-type" className="block text-sm font-medium text-[#505A62] sukhumvit mt-[16px]"
-            // style={{...(warnBusiness ? { border: `1px solid ${errorOtpBorder}` } : {}) }}
             
             >ประเภทธุรกิจและสินค้า<span className="required">*</span></label>
             <div className="w-[304px] h-[28px]">
@@ -383,7 +384,7 @@ const moveToApps = ()=>{
             </div>
 
             <label htmlFor="num-team" className="block text-sm font-medium text-[#505A62] sukhumvit"
-            style={{...(warnBusiness ? { marginTop: `30px` } : {marginTop: `16px`}) }}
+            style={{...(warnBusiness ? { marginTop: `40px` } : {marginTop: `16px`}) }}
             >จำนวนทีมของคุณ<span className="required">*</span></label>
             <div className="w-[304px] h-[28px]">
               <select
@@ -405,7 +406,7 @@ const moveToApps = ()=>{
 </div>
 
             <label htmlFor="goal" className="block text-sm font-medium text-[#505A62] sukhumvit"
-            style={{...(warnNum ? { marginTop: `30px` } : {marginTop: `16px`}) }}
+            style={{...(warnNum ? { marginTop: `40px` } : {marginTop: `16px`}) }}
             >เป้าหมายของคุณคืออะไร<span className="required">*</span></label>
             <div className="w-[304px] h-[28px]">
               <select
@@ -442,7 +443,7 @@ const moveToApps = ()=>{
           <p className="text-[#505A62] sukhumvit text-xs">ตั้งชื่อ Site ของคุณซึ่งจะเป็นชื่อ URL สำหรับหน้าเว็บไซต์ของคุณ สามารถใช้ A-Z , a-z , 0-9 <br />และ - ได้เท่านั้น และสามารถเปลี่ยนชื่อ Site ได้ในภายหลัง</p>
           <div className="mt-[24px] w-[441px]">
 
-            <div className="relative mt-1 rounded-md shadow-sm">
+            <div className="relative mt-1 rounded-md shadow-sm" style={warnFillSite ? { border: `1px solid #EF4444` } : {}}>
               <input
                 type="text"
                 name="getzaviago-domain"
@@ -467,7 +468,7 @@ const moveToApps = ()=>{
 
       >
         {!domainValidateButton  && <img src={loadingGif} className="w-[20px] mr-2"/> }
-        ตรวจสอบ
+        ต่อไป
       </button>
            </div>
           </div>
