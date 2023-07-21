@@ -40,7 +40,7 @@ const appsList = [
   },
   {
     title: 'Human Resources',
-    description: 'จัดการการทำงานและรายได้ของบุคคล',
+    description: 'จัดการการทำงานและ<br>รายได้ของบุคคล',
     img: hrApps,
     background: '#F7EBFF',
     shadow: '0 4px 32px 0 #88888833'
@@ -500,31 +500,33 @@ const Register = () => {
         <div className="login-box flex flex-col justify-center px-10 py-[60px] rounded-lg text-center">
           <h1 className="text-[#1F272E] font-bold text-[18px] mb-[10px]" style={{ fontFamily: "Eventpop" }}>เลือก Apps ที่ต้องการติดตั้ง</h1>
           <p className="text-[#505A62] sukhumvit text-xs">เลือก Apps ที่ต้องการติดตั้งใน Site เริ่มต้นของคุณ ลองเลือกสัก Apps ที่คุณต้องการใช้งานมากที่สุด <br />ไม่ต้องกังวลไปเพราะคุณสามารถติดตั้ง Apps อื่นๆ เพิ่มเติมได้ในภายหลัง</p>
-          <div className="mt-[30px]">
+          <div className="mt-[20px]">
             <fieldset className="space-y-5">
               <legend className="sr-only">Apps</legend>
               <div className="mt-4 grid grid-cols-2 gap-y-6 sm:grid-cols-2 md:grid-cols-3 sm:gap-x-4 place-items-center">
-                {appsList.map((item) => (
-                  <div className="relative block ">
-                    <div className="text-sm">
-                      <input
-                        id={item.title}
-                        aria-describedby={item.description}
-                        name="apps"
-                        type="checkbox"
-                        className="rounded text-indigo-600 focus:ring-indigo-500 checkbox-apps hidden"
-                      />
-                      <label htmlFor={item.title} className="font-medium select-app-input block w-[187px] h-[167px] cursor-pointer focus:outline-none">
-                        <div className="block text-sm font-medium w-full h-[90%] box-border" style={{ backgroundColor: item.background, borderRadius: "8px 8px 0 0" }}>
-                          <img src={item.img} className="m-auto relative top-[18px]" style={{ boxShadow: item.shadow }} />
-                        </div>
-                        <div className="absolute bottom-0 m-auto w-full py-[10px] app-desc min-h-[77px]" style={{ borderRadius: "0 0 8px 8px" }}>
-                          <h2 className="text-sm font-bold leading-5 font-inter text-[#1F272E] mb-1">{item.title}</h2>
-                          <p className="font-normal text-xs text-[#505A62] sukhumvit px-3">{item.description}</p>
-                        </div>
-                      </label>
-                    </div>
-                  </div>))}
+              {appsList.map((item) => (
+  <div className="relative block" key={item.title}>
+    <div className="text-sm">
+      <input
+        id={item.title}
+        aria-describedby={item.description}
+        name="apps"
+        type="checkbox"
+        className="rounded text-indigo-600 focus:ring-indigo-500 checkbox-apps hidden"
+      />
+      <label htmlFor={item.title} className="font-medium select-app-input block w-[187px] h-[167px] cursor-pointer focus:outline-none">
+        <div className="block text-sm font-medium w-full h-[90%] box-border" style={{ backgroundColor: item.background, borderRadius: "7px 7px 0 0" }}>
+          <img src={item.img} className="m-auto relative top-[18px]" style={{ boxShadow: item.shadow }} />
+        </div>
+        <div className="absolute bottom-0 m-auto w-full py-[10px] app-desc min-h-[77px]" style={{ borderRadius: "0 0 8px 8px" }}>
+          <h2 className="text-sm font-bold leading-5 font-inter text-[#1F272E] mb-1">{item.title}</h2>
+          <p className="font-normal text-xs text-[#505A62] sukhumvit px-3" dangerouslySetInnerHTML={{ __html: item.description }} />
+        </div>
+      </label>
+    </div>
+  </div>
+))}
+
               </div>
             </fieldset>
             <button className="inline-block bg-[#0099FF] font-sukhumvit font-bold h-[30px] text-white rounded-lg w-[584px] mt-[40px] text-[13px] m-auto btn-primary-shadow" onClick={startApp}>เริ่มต้นการใช้งาน</button>
