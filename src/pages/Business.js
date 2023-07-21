@@ -20,94 +20,54 @@ import blog1 from '../img/blog1.png'
 import blog2 from '../img/blog2.png'
 import blog3 from '../img/blog3.png'
 import POSLogo from '../img/POSLogo.png'
+import star from '../img/star.png'
+import instagramLogo from '../img/instagram.png'
 
 function Business() {
-  const startupGuide = [
+  const popularApps = [
     {
       id: 1,
       title: 'Connect Business',
       description: 'Facilitate payments and pay out sellers or service providers.',
-      image: businessIntelligent
+      image: instagramLogo,
+      rating: 4.5,
     },
     {
       id: 2,
       title: 'Connect Business Intelligent',
       description: 'Facilitate payments and pay out sellers or service providers.',
-      image: appsMarketplace
+      image: instagramLogo,
+      rating: 4.5,
     },
     {
       id: 3,
       title: 'Connect Business Intelligent',
       description: 'Facilitate payments and pay out sellers or service providers.',
-      image: purpleRhombus
+      image: instagramLogo,
+      rating: 4.5,
     },
     {
       id: 4,
       title: 'Connect Business Intelligent',
       description: 'Facilitate payments and pay out sellers or service providers.',
-      image: redLightning
+      image: instagramLogo,
+      rating: 4.5,
     },
     {
       id: 5,
       title: 'Connect Business Intelligent',
       description: 'Facilitate payments and pay out sellers or service providers.',
-      image: appsMarketplace
+      image: instagramLogo,
+      rating: 4.5,
     },
     {
       id: 6,
       title: 'Connect Business',
       description: 'Facilitate payments and pay out sellers or service providers.',
-      image: connectBusiness
-    },
-    {
-      id: 7,
-      title: 'Connect Business Intelligent',
-      description: 'Facilitate payments and pay out sellers or service providers.',
-      image: businessIntelligent
-    },
-    {
-      id: 8,
-      title: 'Connect Business Intelligent',
-      description: 'Facilitate payments and pay out sellers or service providers.',
-      image: blueCircles
+      image: instagramLogo,
+      rating: 4.5,
     },
   ]
-
-  const blogs = [
-    {
-      title: 'Guide',
-      description: 'Run effective campaigns with apps that help you identify marketing gaps.',
-      background: blog1,
-      button: 'Optimize with zaviago',
-      colour: '#FFFFFF'
-    },
-    {
-      title: 'Blog',
-      description: 'So What\'s the plan',
-      background: blog2,
-      button: 'Make project plan',
-      colour: '#FFFFFF'
-    },
-    {
-      title: 'Guide',
-      description: 'Run effective campaigns with apps',
-      background: blog3,
-      button: 'Optimize with zaviago',
-      colour: '#000000'
-    },
-  ]
-
-  const openVideo = () => {
-    document.getElementById('video-overlay').style.animation = 'openModal 400ms forwards';
-    document.getElementById('video-apps').style.animation = 'openModal 400ms forwards';
-    document.getElementById('video-opened').play();
-  }
-
-  const closeVideo = () => {
-    document.getElementById('video-overlay').style.animation = 'closeModal 400ms forwards';
-    document.getElementById('video-apps').style.animation = 'closeModal 400ms forwards';
-    document.getElementById('video-opened').pause();
-  }
 
   return (
     <>
@@ -133,7 +93,7 @@ function Business() {
             <p className='font-inter font-medium text-[#FFFFFF] text-[13px] mt-1'>Choose professional solutions to power your business</p>
             <h2 className='font-inter text-[32px] font-bold sm:w-[390px] text-[#ffffff] leading-[38.73px] mt-[14px]'>Get the POS system for your store.</h2>
           </div>
-          <div className='py-[16px] px-[23px]'>
+          <div className='py-[16px] px-[23px] flex justify-between items-center'>
             <div className='flex items-center'>
               <img src={POSLogo} className='w-[68px] h-[68px] mr-5' alt="" />
               <div>
@@ -142,7 +102,25 @@ function Business() {
               </div>
             </div>
             <div>
+              <button className='bg-[#0099FF] font-semibold font-inter text-sm rounded-lg py-2 px-[14px] text-white' style={{ boxShadow: '0px 4px 8px 0px #0099FF33' }}>Get it</button>
             </div>
+          </div>
+        </div>
+
+        <div className='section-container mx-auto mt-[50px]'>
+          <h3 className='text-[#1F272E] font-calSans font-semibold font-sm'>Most popular apps</h3>
+          <p className='font-inter font-normal text-[13px] text-[#687178] mt-1'>Explore the apps that a wide range of merchants rely on.</p>
+          <div className='grid grid-cols-2 mt-[37px]'>
+            {popularApps.map((item =>
+              <div className='flex mb-[25px]'>
+                <div><img src={item.image} alt="" style={{boxShadow: '0px 4px 15px 0px #00000026'}} /></div>
+                <div className='ml-5'>
+                  <h3 className='font-inter font-semibold text-sm'>{item.title}</h3>
+                  <p className='font-inter font-normal text-[13px] text-[#687178] mt-1'>{item.description}</p>
+                  <div className='flex items-center  mt-1'><img src={star} className='w-[18px] h-[18px]' alt="" /><p className='ml-3 font-inter font-semibold text-xs text-[#1A1B25]'>{item.rating}</p></div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
