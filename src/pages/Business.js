@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import websiteMade from '../img/website-made.png'
 // import businessIntelligent from '../img/business-intelligent.svg'
 import appsMarketplace from '../img/app-marketplace.svg'
@@ -27,7 +27,16 @@ import translationImg from '../img/translation.png'
 import payPalLogo from '../img/payPal.png'
 import applicationName from '../img/applicationName.png'
 import applicationName1 from '../img/applicationName1.png'
+import connectBusinessLogo from '../img/connectBusinessLogo.png'
 
+import freedlyLogo from '../img/freedlyLogo.png'
+import bulbYello from '../img/bulbYello.png'
+import googleLogo from '../img/googleLogo.png'
+import flipIconPlus from '../img/flipIconPlus.png'
+import dropboxLogo from '../img/drpBoxLogo.png'
+import FlipBox from '../components/flipBox'
+import flipIconMinus from '../img/flipIconMinus.png'
+import flipBoxLogos from '../img/flipBoxLogos.png'
 
 function Business() {
   const popularApps = [
@@ -73,7 +82,44 @@ function Business() {
       image: applicationName1,
       rating: 4.5,
     },
-  ]
+  ];
+
+  const mostPopularApps = [
+    {
+      id: 1,
+      title: 'Application name here',
+      description: 'Facilitate payments and pay out sellers or service providers.',
+      image: freedlyLogo,
+      rating: 5.0,
+    },
+    {
+      id: 2,
+      title: 'Application name here Intelligent',
+      description: 'Facilitate payments and pay out sellers or service providers.',
+      image: bulbYello,
+      rating: 4.9,
+    },
+    {
+      id: 3,
+      title: 'Application name here Intelligent',
+      description: 'Facilitate payments and pay out sellers or service providers.',
+      image: googleLogo,
+      rating: 4.7,
+    },
+    {
+      id: 4,
+      title: 'Application name here Intelligent',
+      description: 'Facilitate payments and pay out sellers or service providers.',
+      image: dropboxLogo,
+      rating: 4.9
+    },
+  ];
+
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  const handleFlip = () => {
+    setIsFlipped(!isFlipped);
+  };
 
   return (
     <>
@@ -91,7 +137,7 @@ function Business() {
               <img src={finlabLogo} alt="" />
               <img src={UOBLogo} className="ml-4" alt="" />
             </div>
-          </div> 
+          </div>
         </div>
 
         <div className='section-container mx-auto mt-[30px] rounded-b-[16px]' style={{ boxShadow: '0px 4px 70px 0px #72727240' }}>
@@ -117,16 +163,109 @@ function Business() {
           <h3 className='text-[#1F272E] font-calSans font-semibold font-sm'>Most popular apps</h3>
           <p className='font-inter font-normal text-[13px] text-[#687178] mt-1'>Explore the apps that a wide range of merchants rely on.</p>
           <div className='grid grid-cols-2 mt-[37px]'>
-            {popularApps.map((item =>
-              <div className='flex mb-[25px]'>
-                <div><img src={item.image} alt="" className='rounded-xl' style={{boxShadow: '0px 4px 15px 0px #00000026'}} /></div>
+            {popularApps.map((item, index) =>
+              <div className='flex mb-[25px]' key={index}>
+                <div><img src={item.image} alt="" className='rounded-xl' style={{ boxShadow: '0px 4px 15px 0px #00000026' }} /></div>
                 <div className='ml-5'>
                   <h3 className='font-inter font-semibold text-sm'>{item.title}</h3>
                   <p className='font-inter font-normal text-[13px] text-[#687178] mt-1'>{item.description}</p>
                   <div className='flex items-center  mt-1'><img src={star} className='w-[18px] h-[18px]' alt="" /><p className='ml-3 font-inter font-semibold text-xs text-[#1A1B25]'>{item.rating}</p></div>
                 </div>
               </div>
-            ))}
+            )}
+          </div>
+        </div>
+
+        <div className='section-container mx-auto mt-[60px] flex gap-[14px]'>
+          <div className='sm:w-1/2 rounded-[16px]' style={{ boxShadow: '0px 4px 70px 0px #72727240' }}>
+            <div className='connectBusiness1 flex items-end h-full  p-6'>
+              <h3 className='text-white font-inter font-bold text-[32px] leading-[38.73px]' style={{ boxShadow: '0px 4px 4px 0px #00000040', }}>Sync all sides of your business.</h3>
+            </div>
+            <div className='bg-white py-[27px] px-[23px] rounded-b-[16px]'>
+              <h3 className='font-inter font-semibold text-[13px] text-[#1A1B25]'>Connect Business Intelligent</h3>
+              <p className='font-inter font-normall text-[13px] text-[#687178]'>Facilitate payments and pay out sellers or service providers.</p>
+            </div>
+          </div>
+          <div className='sm:w-1/2 rounded-[16px]' style={{ boxShadow: '0px 4px 70px 0px #72727240' }}>
+            <div className='connectBusiness2 flex items-start h-full  p-6'>
+              <h3 className='text-white font-inter font-bold text-[32px] leading-[38.73px] sm:w-[190px]' style={{ boxShadow: '0px 4px 4px 0px #00000040', }}>Get the POS system for your store.</h3>
+            </div>
+            <div className='bg-white py-[27px] px-[23px] rounded-b-[16px]'>
+              <h3 className='font-inter font-semibold text-[13px] text-[#1A1B25]'>Connect Business Intelligent</h3>
+              <p className='font-inter font-normall text-[13px] text-[#687178]'>Facilitate payments and pay out sellers or service providers.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className='section-container mx-auto mt-[27px] rounded-b-[16px]' style={{ boxShadow: '0px 4px 70px 0px #72727240' }}>
+          <div className='appConnectBusiness flex flex-col items-end text-right justify-end'>
+            <p className='font-inter font-medium text-[#FFFFFF] text-[13px] mt-1'>Building your offline business</p>
+            <h2 className='font-inter text-[32px] font-bold sm:w-[390px] text-[#ffffff] leading-[38.73px] mt-[14px]'>Get the POS system for your store.</h2>
+          </div>
+          <div className='py-[16px] px-[23px] flex justify-between items-center'>
+            <div className='flex items-center'>
+              <img src={connectBusinessLogo} className='w-[68px] h-[68px] mr-5' alt="" />
+              <div>
+                <h4 className='font-inter font-semibold text-sm text-[#1A1B25]'>POS software for business</h4>
+                <p className='font-inter font-normal text-[13px] text-[#687178] sm:w-[268px]'>Facilitate payments and pay out sellers or service providers.</p>
+              </div>
+            </div>
+            <div>
+              <button className='bg-[#0099FF] font-semibold font-inter text-sm rounded-lg py-2 px-[14px] text-white' style={{ boxShadow: '0px 4px 8px 0px #0099FF33' }}>Login </button>
+            </div>
+          </div>
+        </div>
+
+        <div className='section-container mx-auto mt-[80px]'>
+          <h3 className='text-[#1F272E] font-calSans font-semibold font-sm'>Most popular apps</h3>
+          <p className='font-inter font-normal text-[13px] text-[#687178] mt-1'>Explore the apps that a wide range of merchants rely on.</p>
+          <div className='grid grid-cols-2 mt-[50px]'>
+            {mostPopularApps.map((item, index) =>
+              <div className='flex mb-[30px]' key={index}>
+                <div><img src={item.image} alt="" className='rounded-xl' style={{ boxShadow: '0px 4px 15px 0px #00000026' }} /></div>
+                <div className='ml-5'>
+                  <h3 className='font-inter font-semibold text-sm'>{item.title}</h3>
+                  <p className='font-inter font-normal text-[13px] text-[#687178] mt-1'>{item.description}</p>
+                  <div className='flex items-center  mt-1'><img src={star} className='w-[18px] h-[18px]' alt="" /><p className='ml-3 font-inter font-semibold text-xs text-[#1A1B25]'>{item.rating}</p></div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className='section-container mx-auto mt-[60px] flex items-center'>
+          <div className="flipBoxSection">
+            <div>
+              <div className={`flip-box ${isFlipped ? "rotate-y-180" : ""} flip-box-inner`}>
+                <div className="flip-box-front">
+                  <div className='h-[60%]'>
+                    <h2 className='font-inter font-bold text-[48px] text-white sm:w-[257px] leading-[58.09px] text-left'>Get 2% Daily Cash back</h2>
+                    <p className='font-inter font-medium text-[17px] leading-[21.06px] mt-3 sm:w-[190px] text-left text-white'>when you use your iPhone or Apple watch to pay with Apple Card.</p>
+                  </div>
+                  <div className='h-[40%] flex justify-end items-end'>
+                    <img src={flipIconPlus} alt="" className='w-[30px] h-[30px]' onClick={handleFlip} />
+                  </div>
+                </div>
+                <div className="flip-box-back">
+                  <div className='h-[60%]'>
+                    <h2 className='font-inter font-bold text-[48px] sm:w-[290px] leading-[58.09px] text-left'>Shop with select merchants and get even more Daily Cash.</h2>
+                    <img src={flipBoxLogos} className='mt-[30px]' alt="" />
+                  </div>
+                  <div className='h-[40%] flex justify-end items-end'>
+                    <img src={flipIconMinus} alt="" className='w-[30px] h-[30px]' onClick={handleFlip} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='sm:w-[432px] rounded-[16px] -ml-[10px]' style={{ boxShadow: '0px 4px 70px 0px #72727240' }}>
+            <div className='flip2 flex rounded-t-[16px] h-full  py-10 px-[29px]'>
+              <h3 className='text-white font-inter font-bold text-[32px] leading-[38.73px] sm:w-[190px]' style={{ boxShadow: '0px 4px 4px 0px #00000040', }}>Get the POS system for your store.</h3>
+            </div>
+            <div className='bg-white rounded-b-[16px] py-10 px-[29px]'>
+              <h3 className='font-inter font-semibold text-[13px] text-[#1A1B25]'>Connect Business Intelligent</h3>
+              <p className='font-inter font-normall text-[13px] text-[#687178]'>Facilitate payments and pay out sellers or service providers.</p>
+            </div>
           </div>
         </div>
 

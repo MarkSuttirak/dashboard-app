@@ -515,15 +515,101 @@ select#goal {
   background-image: url('./img/appsBanner.png');
   height: 310px;
   background-size: cover;
-  width: 750px;
   border-radius: 16px, 16px, 0px, 0px;
   padding: 27px 45px;
+}
+
+.appConnectBusiness{
+  background-image: url('./img/appConnectBusiness.png');
+  height: 310px;
+  background-size: cover;
+  border-radius: 16px, 16px, 0px, 0px;
+  padding: 33px 23px;
 }
 
 .section-container{
   width: 750px;
 }
 
+.connectBusiness1{
+  background-image: url('./img/syncBusiness.png');
+  height: 310px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 16px, 16px, 0px, 0px;
+}
+
+.connectBusiness2{
+  background-image: url('./img/POSStore.png');
+  height: 310px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.flip2{
+  background-image: url('./img/flip2.png');
+  height: 310px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+// .flipBoxSection .rotate-y-180 {
+//   transform: rotateY(180deg);
+// }
+
+.flipBoxSection .flip-box {
+  background-color: transparent;
+  width: 398px;
+  height: 598px;
+  perspective: 1000px;
+}
+
+.flipBoxSection .flip-box-inner {
+  position: relative;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+ .flipBoxSection .flip-box-inner.rotate-y-180{
+  transform: rotateY(180deg);
+} 
+
+.flipBoxSection .flip-box-front,
+.flip-box-back {
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flipBoxSection .flip-box-front {
+  background-image: url('./img/flipBox1.png');
+  width: 398px;
+  height: 598px;
+  color: black;
+  padding: 36px 30px;
+}
+
+.flipBoxSection .flip-box-back {
+ background: white;
+ border-radius: 30px;
+ box-shadow: 0px -4px 48px 0px #0000001A;
+  width: 398px;
+  height: 598px;
+  color: black;
+  transform: rotateY(180deg);
+  padding: 36px 23px;
+}
+
+.flipBoxSection .flip-box-back h2{
+  background: linear-gradient(95.78deg, #81D3C0 -21.09%, #B8E33A 100.46%);
+  -webkit-background-clip: text; /* For Safari and older browsers */
+  background-clip: text;
+  color: transparent;
+  font-size: 48px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
 
 
 @media screen and (max-width:1025px) {
