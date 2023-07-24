@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Listbox, Transition, RadioGroup } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon, CheckCircleIcon } from '@heroicons/react/20/solid'
@@ -9,7 +9,12 @@ import hrApps from "../../img/hr-apps.svg";
 import salesteamApps from "../../img/salesteam-apps.svg";
 import ordersApps from "../../img/orders-apps.svg";
 import loadingGif from '../../img/loading.gif'
-import checked from '../../img/circle-check.png'
+import checked from '../../img/circle-check.svg'
+
+const validateEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
 
 const appsList = [
   {
@@ -35,7 +40,7 @@ const appsList = [
   },
   {
     title: 'Human Resources',
-    description: 'จัดการการทำงานและรายได้ของบุคคล',
+    description: 'จัดการการทำงานและ<br>รายได้ของบุคคล',
     img: hrApps,
     background: '#F7EBFF',
     shadow: '0 4px 32px 0 #88888833'
@@ -76,6 +81,8 @@ const Register = () => {
 
   const [errorInputBorder, setErrorInputBorder] = useState('#F4F5F6')
 
+  // const [errordomainBorder, setE]
+
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
@@ -86,10 +93,14 @@ const Register = () => {
   };
 
   const [isValidEmail, setIsValidEmail] = useState(false);
+  const [inputEmailValue, setInputEmailValue] = useState('');
+  useEffect(() => {
+    setIsValidEmail(validateEmail(inputEmailValue));
+  }, [inputEmailValue]);
+
   const handleAccount = () => {
-
-    setIsValidEmail(validateEmail(document.getElementById('email').value));
-
+    setIsValidEmail(validateEmail(inputEmailValue));
+    console.log(isValidEmail)
     if (document.getElementById('firstname').value === '') {
       setWarnFillName(true);
       setErrorInputBorder('#EF4444')
@@ -127,7 +138,16 @@ const Register = () => {
       setWarnAccept(false);
     }
 
-    if (document.getElementById('firstname').value !== '' && document.getElementById('surname').value !== '' && document.getElementById('date').value !== '' && document.getElementById('email').value !== '' && document.getElementById('accept').checked === true && isValidEmail == true) {
+    setWarnFillEmail(!isValidEmail);
+
+    if (
+      document.getElementById('firstname').value !== '' &&
+      document.getElementById('surname').value !== '' &&
+      document.getElementById('date').value !== '' &&
+      document.getElementById('email').value !== '' &&
+      document.getElementById('accept').checked === true &&
+      isValidEmail
+    ) {
       setAccount(false);
       setTellUs(true);
     }
@@ -139,32 +159,32 @@ const Register = () => {
   const handleSite = () => {
     if (document.getElementById('companyname').value === '') {
       setWarnFillCompany(true);
-      
+
       setErrorOtpBorder('#EF4444')
     }
-    
-     if(selectedValueBusiness == 'เลือกประเภทธุรกิจและสินค้า'){
+
+    if (selectedValueBusiness == 'เลือกประเภทธุรกิจและสินค้า') {
       setTellUs(true);
       setWarnBusiness(true)
       setSite(false);
-    }else{
+    } else {
       setWarnBusiness(false);
     }
-    
-    if(selectedValueNum=='เลือกจำนวนทีมของคุณ'){
+
+    if (selectedValueNum == 'เลือกจำนวนทีมของคุณ') {
       setWarnNum(true)
-    }else{
+    } else {
       setWarnNum(false)
     }
-    
-    if(selectedValueGoal == 'เลือกเป้าหมายการใช้งาน'){
+
+    if (selectedValueGoal == 'เลือกเป้าหมายการใช้งาน') {
       setWarnGoal(true)
-    }else{
+    } else {
       setWarnGoal(false)
     }
 
 
-    if(selectedValueBusiness != 'เลือกประเภทธุรกิจและสินค้า' && selectedValueNum!='เลือกจำนวนทีมของคุณ' && selectedValueGoal != 'เลือกเป้าหมายการใช้งาน'){
+    if (selectedValueBusiness != 'เลือกประเภทธุรกิจและสินค้า' && selectedValueNum != 'เลือกจำนวนทีมของคุณ' && selectedValueGoal != 'เลือกเป้าหมายการใช้งาน') {
       setTellUs(false);
       setSite(true);
       setErrorOtpBorder('#F4F5F6')
@@ -180,17 +200,17 @@ const Register = () => {
       setTimeout(() => {
         setDomainValidateButton(true);
         setDomainChecked(true);
-        
+
         // setSite(false);
         // setApps(true);
       }, 3000);
     }
   }
 
-const moveToApps = ()=>{
-  setSite(false);
-        setApps(true);
-}
+  const moveToApps = () => {
+    setSite(false);
+    setApps(true);
+  }
 
   const startApp = () => {
     window.location.href = '/'
@@ -204,7 +224,7 @@ const moveToApps = ()=>{
     const limitedValue = sanitizedValue.slice(0, 25);
     setInputValue(limitedValue);
   };
-  
+
   const [selectedValueBusiness, setSelectedValueBusiness] = useState('เลือกประเภทธุรกิจและสินค้า');
   const handleChangeBusiness = (event) => {
     setSelectedValueBusiness(event.target.value);
@@ -287,7 +307,10 @@ const moveToApps = ()=>{
                   id="email"
                   placeholder="customer@mail.com"
                   className="block w-[304px] h-[28px]  focus:border-[#DDDDDD] focus:border focus:outline-none rounded-md text-xs font-normal text-[#1F272E] font-sukhumvit border-gray-300 shadow-sm focus:ring-indigo-500 bg-[#F4F5F6] py-2 px-[14px]"
-                  onKeyUp={() => setWarnFillEmail(false)}
+                  onKeyUp={(e) => {
+                    setWarnFillEmail(false);
+                    setInputEmailValue(e.target.value);
+                  }}
                   style={warnFillEmail ? { border: `1px solid ${errorInputBorder}` } : {}}
                 />
               </div>
@@ -337,11 +360,10 @@ const moveToApps = ()=>{
                 style={warnFillCompany ? { border: `1px solid ${errorOtpBorder}` } : {}}
               />
             </div>
-            {warnFillCompany && (<p className="required text-[10px] mt-[10px] mb-4 warn">จำเป็นต้องกรอกข้อมูล</p>)}
+            {warnFillCompany && (<p className="required text-[10px] mt-[10px] warn">จำเป็นต้องกรอกข้อมูล</p>)}
 
             <label htmlFor="business-type" className="block text-sm font-medium text-[#505A62] sukhumvit mt-[16px]"
-            // style={{...(warnBusiness ? { border: `1px solid ${errorOtpBorder}` } : {}) }}
-            
+
             >ประเภทธุรกิจและสินค้า<span className="required">*</span></label>
             <div className="w-[304px] h-[28px]">
               <select
@@ -379,18 +401,18 @@ const moveToApps = ()=>{
                 <option>โรงแรมและการท่องเที่ยว</option>
                 <option>อื่นๆ</option>
               </select>
-            {warnBusiness && (<p className="required text-[10px] mt-[10px] mb-5 warn">จำเป็นต้องเลือกคำตอบ</p>)}
+              {warnBusiness && (<p className="required text-[10px] mt-[10px] mb-5 warn">จำเป็นต้องเลือกคำตอบ</p>)}
             </div>
 
             <label htmlFor="num-team" className="block text-sm font-medium text-[#505A62] sukhumvit"
-            style={{...(warnBusiness ? { marginTop: `30px` } : {marginTop: `16px`}) }}
+              style={{ ...(warnBusiness ? { marginTop: `40px` } : { marginTop: `16px` }) }}
             >จำนวนทีมของคุณ<span className="required">*</span></label>
             <div className="w-[304px] h-[28px]">
               <select
                 id="num-team"
                 name="num-team"
                 className="mt-1 font-sukhumvit text-[#9CA3AF] text-xs block h-[30px] w-full rounded-md border-gray-300 py-2 px-[12px] font-medium focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
-                style={{ color: selectedValueNum == 'เลือกจำนวนทีมของคุณ' ? '#9CA3AF' : '#000',  ...(warnNum ? { border: `1px solid ${errorOtpBorder}` } : {})  }}
+                style={{ color: selectedValueNum == 'เลือกจำนวนทีมของคุณ' ? '#9CA3AF' : '#000', ...(warnNum ? { border: `1px solid ${errorOtpBorder}` } : {}) }}
                 onChange={handleChangeNum}
                 value={selectedValueNum}
               >
@@ -402,17 +424,17 @@ const moveToApps = ()=>{
                 <option>มากกว่า 500 คน</option>
               </select>
               {warnNum && (<p className="required text-[10px] mt-[10px] mb-5 warn">จำเป็นต้องเลือกคำตอบ</p>)}
-</div>
+            </div>
 
             <label htmlFor="goal" className="block text-sm font-medium text-[#505A62] sukhumvit"
-            style={{...(warnNum ? { marginTop: `30px` } : {marginTop: `16px`}) }}
+              style={{ ...(warnNum ? { marginTop: `40px` } : { marginTop: `16px` }) }}
             >เป้าหมายของคุณคืออะไร<span className="required">*</span></label>
             <div className="w-[304px] h-[28px]">
               <select
                 id="goal"
                 name="goal"
                 className="mt-1 font-sukhumvit text-[#9CA3AF] text-xs block h-[30px] w-full rounded-md border-gray-300 py-2 px-[12px] font-medium focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm bg-[#F4F5F6]"
-                style={{ color: selectedValueGoal == 'เลือกเป้าหมายการใช้งาน' ? '#9CA3AF' : '#000',  ...(warnGoal ? { border: `1px solid ${errorOtpBorder}` } : {})  }}
+                style={{ color: selectedValueGoal == 'เลือกเป้าหมายการใช้งาน' ? '#9CA3AF' : '#000', ...(warnGoal ? { border: `1px solid ${errorOtpBorder}` } : {}) }}
                 onChange={handleChangeGoal}
                 value={selectedValueGoal}
               >
@@ -442,7 +464,7 @@ const moveToApps = ()=>{
           <p className="text-[#505A62] sukhumvit text-xs">ตั้งชื่อ Site ของคุณซึ่งจะเป็นชื่อ URL สำหรับหน้าเว็บไซต์ของคุณ สามารถใช้ A-Z , a-z , 0-9 <br />และ - ได้เท่านั้น และสามารถเปลี่ยนชื่อ Site ได้ในภายหลัง</p>
           <div className="mt-[24px] w-[441px]">
 
-            <div className="relative mt-1 rounded-md shadow-sm">
+            <div className="relative mt-1 rounded-md shadow-sm" style={warnFillSite ? { border: `1px solid #EF4444` } : {}}>
               <input
                 type="text"
                 name="getzaviago-domain"
@@ -458,18 +480,18 @@ const moveToApps = ()=>{
               </div>
             </div>
             {warnFillSite && (<p className="required text-[10px] mt-[10px] warn">กรุณาตั้งชื่อ Site ของคุณ</p>)}
-           <div className="mt-8">
-           <button
-        className=" bg-[#0099FF] flex justify-center items-center h-[30px] text-white rounded-lg text-[13px] font-bold font-sukhumvit w-[440px] text-xs m-auto btn-primary-shadow"
-        disabled={!domainValidateButton}
-        onClick={ !domainChecked ? handleApps: moveToApps}
-        style={{ opacity: domainValidateButton ? 1 : 0.5 }} 
+            <div className="mt-8">
+              <button
+                className=" bg-[#0099FF] flex justify-center items-center h-[30px] text-white rounded-lg text-[13px] font-bold font-sukhumvit w-[440px] text-xs m-auto btn-primary-shadow"
+                disabled={!domainValidateButton}
+                onClick={!domainChecked ? handleApps : moveToApps}
+                style={{ opacity: domainValidateButton ? 1 : 0.5 }}
 
-      >
-        {!domainValidateButton  && <img src={loadingGif} className="w-[20px] mr-2"/> }
-        ตรวจสอบ
-      </button>
-           </div>
+              >
+                {!domainValidateButton && <img src={loadingGif} className="w-[20px] mr-2" />}
+                ต่อไป
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -478,31 +500,33 @@ const moveToApps = ()=>{
         <div className="login-box flex flex-col justify-center px-10 py-[60px] rounded-lg text-center">
           <h1 className="text-[#1F272E] font-bold text-[18px] mb-[10px]" style={{ fontFamily: "Eventpop" }}>เลือก Apps ที่ต้องการติดตั้ง</h1>
           <p className="text-[#505A62] sukhumvit text-xs">เลือก Apps ที่ต้องการติดตั้งใน Site เริ่มต้นของคุณ ลองเลือกสัก Apps ที่คุณต้องการใช้งานมากที่สุด <br />ไม่ต้องกังวลไปเพราะคุณสามารถติดตั้ง Apps อื่นๆ เพิ่มเติมได้ในภายหลัง</p>
-          <div className="mt-[30px]">
+          <div className="mt-[20px]">
             <fieldset className="space-y-5">
               <legend className="sr-only">Apps</legend>
               <div className="mt-4 grid grid-cols-2 gap-y-6 sm:grid-cols-2 md:grid-cols-3 sm:gap-x-4 place-items-center">
-                {appsList.map((item) => (
-                  <div className="relative block ">
-                    <div className="text-sm">
-                      <input
-                        id={item.title}
-                        aria-describedby={item.description}
-                        name="apps"
-                        type="checkbox"
-                        className="rounded text-indigo-600 focus:ring-indigo-500 checkbox-apps hidden"
-                      />
-                      <label htmlFor={item.title} className="font-medium select-app-input block w-[187px] h-[167px] cursor-pointer focus:outline-none">
-                        <div className="block text-sm font-medium w-full h-[90%] box-border" style={{ backgroundColor: item.background, borderRadius: "8px 8px 0 0" }}>
-                          <img src={item.img} className="m-auto relative top-[18px]" style={{ boxShadow: item.shadow }} />
-                        </div>
-                        <div className="absolute bottom-0 m-auto w-full py-[10px] app-desc min-h-[77px]" style={{ borderRadius: "0 0 8px 8px" }}>
-                          <h2 className="text-sm font-bold leading-5 font-inter text-[#1F272E] mb-1">{item.title}</h2>
-                          <p className="font-normal text-xs text-[#505A62] sukhumvit px-3">{item.description}</p>
-                        </div>
-                      </label>
-                    </div>
-                  </div>))}
+              {appsList.map((item) => (
+  <div className="relative block" key={item.title}>
+    <div className="text-sm">
+      <input
+        id={item.title}
+        aria-describedby={item.description}
+        name="apps"
+        type="checkbox"
+        className="rounded text-indigo-600 focus:ring-indigo-500 checkbox-apps hidden"
+      />
+      <label htmlFor={item.title} className="font-medium select-app-input block w-[187px] h-[167px] cursor-pointer focus:outline-none">
+        <div className="block text-sm font-medium w-full h-[90%] box-border" style={{ backgroundColor: item.background, borderRadius: "7px 7px 0 0" }}>
+          <img src={item.img} className="m-auto relative top-[18px]" style={{ boxShadow: item.shadow }} />
+        </div>
+        <div className="absolute bottom-0 m-auto w-full py-[10px] app-desc min-h-[77px]" style={{ borderRadius: "0 0 8px 8px" }}>
+          <h2 className="text-sm font-bold leading-5 font-inter text-[#1F272E] mb-1">{item.title}</h2>
+          <p className="font-normal text-xs text-[#505A62] sukhumvit px-3" dangerouslySetInnerHTML={{ __html: item.description }} />
+        </div>
+      </label>
+    </div>
+  </div>
+))}
+
               </div>
             </fieldset>
             <button className="inline-block bg-[#0099FF] font-sukhumvit font-bold h-[30px] text-white rounded-lg w-[584px] mt-[40px] text-[13px] m-auto btn-primary-shadow" onClick={startApp}>เริ่มต้นการใช้งาน</button>
