@@ -504,28 +504,28 @@ const Register = () => {
             <fieldset className="space-y-5">
               <legend className="sr-only">Apps</legend>
               <div className="mt-4 grid grid-cols-2 gap-y-6 sm:grid-cols-2 md:grid-cols-3 sm:gap-x-4 place-items-center">
-              {appsList.map((item) => (
-  <div className="relative block" key={item.title}>
-    <div className="text-sm">
-      <input
-        id={item.title}
-        aria-describedby={item.description}
-        name="apps"
-        type="checkbox"
-        className="rounded text-indigo-600 focus:ring-indigo-500 checkbox-apps hidden"
-      />
-      <label htmlFor={item.title} className="font-medium select-app-input block w-[187px] h-[167px] cursor-pointer focus:outline-none">
-        <div className="block text-sm font-medium w-full h-[90%] box-border" style={{ backgroundColor: item.background, borderRadius: "7px 7px 0 0" }}>
-          <img src={item.img} className="m-auto relative top-[18px]" style={{ boxShadow: item.shadow }} />
-        </div>
-        <div className="absolute bottom-0 m-auto w-full py-[10px] app-desc min-h-[77px]" style={{ borderRadius: "0 0 8px 8px" }}>
-          <h2 className="text-sm font-bold leading-5 font-inter text-[#1F272E] mb-1">{item.title}</h2>
-          <p className="font-normal text-xs text-[#505A62] sukhumvit px-3" dangerouslySetInnerHTML={{ __html: item.description }} />
-        </div>
-      </label>
-    </div>
-  </div>
-))}
+                {appsList.map((item) => (
+                  <div className="relative block" key={item.title}>
+                    <div className="text-sm">
+                      <input
+                        id={item.title}
+                        aria-describedby={item.description}
+                        name="apps"
+                        type="checkbox"
+                        className="rounded text-indigo-600 focus:ring-indigo-500 checkbox-apps hidden"
+                      />
+                      <label htmlFor={item.title} className="font-medium select-app-input block w-[187px] h-[167px] cursor-pointer focus:outline-none">
+                        <div className="block text-sm font-medium w-full h-[90%] box-border" style={{ backgroundColor: item.background, borderRadius: "7px 7px 0 0" }}>
+                          <img src={item.img} className="m-auto relative top-[18px]" style={{ boxShadow: item.shadow }} />
+                        </div>
+                        <div className="absolute bottom-0 m-auto w-full py-[10px] app-desc min-h-[77px]" style={{ borderRadius: "0 0 8px 8px" }}>
+                          <h2 className="text-sm font-bold leading-5 font-inter text-[#1F272E] mb-1">{item.title}</h2>
+                          <p className="font-normal text-xs text-[#505A62] sukhumvit px-3" dangerouslySetInnerHTML={{ __html: item.description }} />
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                ))}
 
               </div>
             </fieldset>

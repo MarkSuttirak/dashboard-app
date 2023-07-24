@@ -14,6 +14,7 @@ import TeamsPage from './pages/teams';
 import { useEffect } from 'react';
 import TeamModal from "./components/switchTeamModal";
 import { createContext } from 'react';
+import SingleAppPage from './pages/SingleAppPage';
 
 
 export const switchContext = createContext();
@@ -39,6 +40,7 @@ function App() {
           <Route path="/" element={<Dashboard loadingLogo={loadingLogo} />} />
           <Route path="/appsdetail" element={<BusinessDetail />} />
           <Route path="/apps" element={<Business />} />
+          <Route path="/singleAppPage" element={<SingleAppPage />} />
           <Route path="/change-domain" element={<ChangeDomain />} />
 
           <Route path="/welcome" element={<Welcome />} />
