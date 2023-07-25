@@ -527,10 +527,6 @@ select#goal {
   padding: 33px 23px;
 }
 
-.section-container{
-  width: 750px;
-}
-
 .connectBusiness1{
   background-image: url('./img/syncBusiness.png');
   height: 310px;
@@ -544,6 +540,12 @@ select#goal {
   height: 310px;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.install-addons{
+  background-image: url('./img/install-addons-bg.png');
+  background-repeat: no-repeat;
+  background-position: top right;
 }
 
 .flip2{
@@ -610,6 +612,14 @@ select#goal {
   font-weight: bold;
   font-family: Arial, sans-serif;
 }
+
+
+@media screen and (min-width: 800px){
+  .section-container{
+    width: 750px;
+  }
+}
+
 
 
 @media screen and (max-width:1025px) {
