@@ -9,6 +9,8 @@ const ChangeDomain = ({ loadingLogo }) => {
     const [isModifiedPro, setIsModifiedPro] = useState(false);
     const [openPro, setOpenPro] = useState(false)
 
+    const [domain, setDomain] = useState("yourcompanyname")
+
     const cancelButtonRef = useRef(null)
 
     const backToFree = () => {
@@ -122,22 +124,19 @@ const ChangeDomain = ({ loadingLogo }) => {
                       name="name"
                       id="name"
                       className="block w-full rounded-full border-gray-300 px-4 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm h-[32px]"
+                      defaultValue={domain}
+                      onChange={(e) => setDomain(e.target.value)}
                     />
                   </td>
                   <td>
                     <div className="w-[40px] m-auto flex justify-center">
-                      <div className="h-[32px] border border-[#5F6368] border-[1px] rotate-[21.04deg]"></div>
+                      <div className="h-[32px] border-r border-[#5F6368] border-r-[1px] rotate-[21.04deg]"></div>
                     </div>
                   </td>
                   <td>
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      className="block w-full rounded-full border-gray-300 px-4 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm h-[32px]"
-                      value="/ac.fc.zaviago.com"
-                      disabled
-                    />
+                    <div className="px-[16px] py-[7px] bg-[#F4F5F6] rounded-[6px]">
+                      <p className="text-[#8A8E91]">.ac.fc.zaviago.com</p>
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -149,7 +148,7 @@ const ChangeDomain = ({ loadingLogo }) => {
 
             <div className="relative">
               <p className="absolute top-[14px] left-[168px]">your company name</p>
-              <p className="absolute top-[50px] left-[238px]">yourcompanyname.ac.fc.zaviago.com</p>
+              <p className="absolute top-[50px] left-[238px]">{domain}.ac.fc.zaviago.com</p>
               <img src={BrowserPreview} />
             </div>
           </div>
