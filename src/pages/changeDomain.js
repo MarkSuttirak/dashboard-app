@@ -7,6 +7,7 @@ import domainLock from '../img/lock.svg'
 import particleTwo from '../img/particle-two.svg'
 import circleModal from '../img/circle-modal.png'
 import BrowserControlsTwo from '../img/browser-controls-two.svg'
+import warningIcon from '../img/warning.svg'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -25,6 +26,8 @@ const ChangeDomain = ({ loadingLogo }) => {
     const [isProVersion, setIsProVersion] = useState(true);
     const [openChangeDomain, setOpenChangeDomain] = useState(false)
     const [openChangeDomainPro, setOpenChangeDomainPro] = useState(false)
+
+    const [changeDomainError, setChangeDomainError] = useState(false)
 
     const [changingDomain, setChangingDomain] = useState(false)
     const [changingDomainPro, setChangingDomainPro] = useState(false)
@@ -620,6 +623,73 @@ const ChangeDomain = ({ loadingLogo }) => {
                         Warning: you can only change your name once. By changing domain <br/>name you accept its <span className="text-[#0066CC]">Privacy Policy</span> and <span className="text-[#0066CC]">Terms of Service</span>.
                       </div>
                     )}
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
+            </div>
+          </Dialog>
+        </Transition.Root>
+
+        <Transition.Root show={changeDomainError} as={Fragment}>
+            <Dialog as="div" className="relative z-[99]" initialFocus={cancelButtonRef} onClose={() => setChangeDomainError(false)}>
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+                >
+                <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+              </Transition.Child>
+
+              <div className="fixed inset-0 z-10 overflow-y-auto">
+                <div className="flex min-h-full justify-center text-center items-center">
+                  <Transition.Child
+                    as={Fragment}
+                    enter="ease-out duration-300"
+                    enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    enterTo="opacity-100 translate-y-0 sm:scale-100"
+                    leave="ease-in duration-200"
+                    leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                    leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                  >
+                  <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all p-[100px] max-w-[700px]">
+                    <div className="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
+                      <button
+                        type="button"
+                        className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        onClick={() => setOpenChangeDomainPro(false)}
+                      >
+                        <span className="sr-only">Close</span>
+                        <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                      </button>
+                    </div>
+
+                    <div className="mt-3 w-full text-center flex flex-col justify-center">
+                      <img src={warningIcon} width="48" className="m-auto mb-4"/>
+                      <h1 className="mb-1 text-[#1F272E] font-bold">เกิดข้อผิดพลาดบางอย่าง...</h1>
+                      <p className="text-sm paras">ไม่สามารถยืนยันโดเมนของคุณได้ <br/>กรุณาตรวจสอบข้อมูลและยืนยันโดเมนอีกครั้ง <br/>หากยังพบปัญหาเกิดขึ้น กรุณาติดต่อทีมช่วยเหลือของเรา</p>
+                    </div>
+
+                    <div className="flex justify-center mt-[30px]">
+                      <button
+                        type="button"
+                        className="bg-black text-white px-5 py-3 rounded-md font-13 shadow-md"
+                        // onClick={clickToChangeDomainPro}
+                      >
+                      ติดต่อทีมช่วยเหลือ
+                      </button>
+                      <button
+                        type="button"
+                        className="bg-transparent text-black px-5 py-3 rounded-md font-13 mt-1 ml-4"
+                        onClick={() => setChangeDomainError(false)}
+                        ref={cancelButtonRef}
+                      >
+                      ยืนยันภายหลัง
+                      </button>
+                    </div>
                   </Dialog.Panel>
                 </Transition.Child>
               </div>
