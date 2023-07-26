@@ -432,7 +432,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                                 id="name"
                                 className="block w-full mt-1 rounded-[9px] px-4 outline-none bg-[#F4F5F6] h-[40px] text-[#1D1D1F] font-15"
                                 defaultValue={domain}
-                                onChange={(e) => setDomainAboutToChange(e.target.value)}
+                                // onChange={(e) => setDomainAboutToChange(e.target.value)}
                               />
                             </td>
                             <td>
@@ -441,8 +441,8 @@ const ChangeDomain = ({ loadingLogo }) => {
                                 name="data"
                                 id="data"
                                 className="block w-full mt-1 rounded-[9px] px-4 outline-none bg-[#F4F5F6] h-[40px] text-[#1D1D1F] font-15"
-                                defaultValue={domain}
-                                onChange={(e) => setDomainAboutToChange(e.target.value)}
+                                defaultValue={`${domain}.ac.fc.zaviago.com`}
+                                // onChange={(e) => setDomainAboutToChange(e.target.value)}
                               />
                             </td>
                           </tr>
