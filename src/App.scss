@@ -84,8 +84,7 @@
     animation: sidebarActive 400ms forwards !important;
   }
 
-  .close-sidebar-mobile,
-  .search-btn-mobile {
+  .close-sidebar-mobile {
     display: none !important
   }
 }
@@ -105,6 +104,10 @@ h6 {
 
 .eventpop {
   font-family:Eventpop;
+}
+
+.calsans {
+  font-family:'Cal Sans'
 }
 
 #sidebar {
@@ -680,10 +683,6 @@ select#goal {
 
   .close-sidebar-mobile {
     display: flex
-  }
-
-  .search-btn {
-    display: none
   }
 }
 
