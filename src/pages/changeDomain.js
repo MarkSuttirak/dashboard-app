@@ -1,6 +1,6 @@
 import React, { Fragment, useRef, useState } from "react";
-import { Dialog, Transition } from '@headlessui/react'
-import { CheckIcon } from '@heroicons/react/24/outline'
+import { Dialog, Transition, Listbox } from '@headlessui/react'
+import { CheckIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 import BrowserControls from '../img/browser-controls.svg'
 import BrowserPreview from '../img/browser-preview.svg'
 import domainLock from '../img/lock.svg'
@@ -8,10 +8,14 @@ import particleTwo from '../img/particle-two.svg'
 import circleModal from '../img/circle-modal.png'
 import BrowserControlsTwo from '../img/browser-controls-two.svg'
 
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+
 const ChangeDomain = ({ loadingLogo }) => {
     const [isModifiedFree, setIsModifiedFree] = useState(false);
     const [isModifiedPro, setIsModifiedPro] = useState(false);
-    const [isProVersion, setIsProVersion] = useState(true);
+    const [isProVersion, setIsProVersion] = useState(false);
     const [openChangeDomain, setOpenChangeDomain] = useState(false)
     const [openChangeDomainPro, setOpenChangeDomainPro] = useState(false)
 
@@ -36,6 +40,10 @@ const ChangeDomain = ({ loadingLogo }) => {
       setTimeout(changedToDomain, 10000)
     }
 
+    const clickToChangeDomainPro = () => {
+      setChangingDomainPro(true);
+    }
+
     const clickToCancel = () => {
       setOpenChangeDomain(false);
       setTimeout(() => {
@@ -45,6 +53,19 @@ const ChangeDomain = ({ loadingLogo }) => {
         }
       }, 200)
     }
+
+    const clickToCancelPro = () => {
+      setOpenChangeDomainPro(false);
+    }
+
+    const domainOptions = [
+      { title: '.com', current: true },
+      { title: '.co.th', current: false },
+      { title: '.org', current: false },
+      { title: '.net', current: false },
+    ]
+
+    const [selected, setSelected] = useState(domainOptions[0])
 
     return (
         <div className="page-section">
@@ -84,9 +105,6 @@ const ChangeDomain = ({ loadingLogo }) => {
               </div>
             </div>
             <div className="mx-auto flex items-center justify-end w-full">
-              <div
-
-              />
               {!loadingLogo ? (
                 <div className="mt-4 flex md:mt-0 md:ml-4"
                   aria-hidden="true">
@@ -115,7 +133,11 @@ const ChangeDomain = ({ loadingLogo }) => {
                   <th></th>
                   <th className="text-left text-[#8A8E91] font-normal">เปลี่ยนชื่อโดเมน</th>
                   <th></th>
-                  <th className="text-left text-[#505A62] font-normal">ลบ <span className="text-[#1D1D1F] eventpop">/ac.fc zaviago.com</span> ออกจากลิงก์</th>
+                  {isProVersion ? (
+                    <th className="text-left text-[#505A62] font-normal"></th>
+                  ) : (
+                    <th className="text-left text-[#505A62] font-normal">ลบ <span className="text-[#1D1D1F] eventpop">/ac.fc zaviago.com</span> ออกจากลิงก์</th>
+                  )}
                 </tr>
               </thead>
               <tbody>
@@ -143,8 +165,8 @@ const ChangeDomain = ({ loadingLogo }) => {
                     </div>
                   </td>
                   <td>
-                    <div className="px-[16px] py-[7px] bg-[#F4F5F6] rounded-[6px] flex justify-between">
-                      <p className="text-[#8A8E91]">.ac.fc.zaviago.com</p>
+                    <div className="px-[16px] py-[7px] bg-[#F4F5F6] rounded-[6px] flex justify-between w-[240px]">
+                      {isProVersion ? (<p className="text-[#8A8E91]">{selected.title}</p>) : (<p className="text-[#8A8E91]">.ac.fc.zaviago.com</p>)}
                       <span className="inline-flex items-center rounded-full bg-[#E5F5FF] px-2.5 py-0.5 text-xs font-medium text-[#0099FF]">Pro</span>
                     </div>
                   </td>
@@ -161,8 +183,8 @@ const ChangeDomain = ({ loadingLogo }) => {
             </div>
 
             <div className="relative">
-              <p className="absolute top-[15px] left-[114px] text-[#36373A] text-xs font-medium" style={{fontFamily:"Manrope"}}>your company name</p>
-              <p className="absolute top-[52px] left-[188px] text-xs font-medium" style={{fontFamily:"Manrope"}}>{domain}.ac.fc.zaviago.com</p>
+              <p className="absolute top-[5%] left-[15%] text-[#36373A] text-xs font-medium" style={{fontFamily:"Manrope"}}>your company name</p>
+              <p className="absolute top-[16%] left-[25%] text-xs font-medium" style={{fontFamily:"Manrope"}}>{domain}{isProVersion ? ".com" : ".ac.fc.zaviago.com"}</p>
               <img src={BrowserPreview} />
             </div>
           </div>
@@ -177,7 +199,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                 leave="ease-in duration-200"
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
-                >
+              >
                 <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
               </Transition.Child>
 
@@ -192,7 +214,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                     leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                     leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                   >
-                  <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all px-[60px] py-[100px] max-w-[700px]" style={{backgroundImage:`url("${circleModal}")`,backgroundRepeat:"no-repeat"}}>
+                  <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all px-[60px] py-[100px] max-w-[700px]" style={{backgroundImage:`url("${circleModal}")`,backgroundRepeat:"no-repeat",backgroundPosition:"80% 0"}}>
                     <div>
                       <div className="mt-3 text-center">
                         <Dialog.Title as="h3" className="text-[29px] font-bold leading-6 text-[#1F272E] eventpop mb-[19px]">
@@ -326,7 +348,7 @@ const ChangeDomain = ({ loadingLogo }) => {
         </Transition.Root>
 
         <Transition.Root show={openChangeDomainPro} as={Fragment}>
-            <Dialog as="div" className="relative z-[99]" initialFocus={cancelButtonRef} onClose={clickToCancel}>
+            <Dialog as="div" className="relative z-[99]" initialFocus={cancelButtonRef} onClose={clickToCancelPro}>
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -350,7 +372,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                     leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                     leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                   >
-                  <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all px-[60px] py-[100px] max-w-[700px]" style={{backgroundImage:`url("${circleModal}")`,backgroundRepeat:"no-repeat"}}>
+                  <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all px-[60px] py-[100px] max-w-[700px]" style={{backgroundImage:`url("${circleModal}")`,backgroundRepeat:"no-repeat",backgroundPosition:"80% 0"}}>
                     <div>
                       <div className="mt-3 text-center">
                         <Dialog.Title as="h3" className="text-[29px] font-bold leading-6 text-[#1F272E] eventpop mb-[19px] flex items-center justify-center gap-x-4">
@@ -414,7 +436,58 @@ const ChangeDomain = ({ loadingLogo }) => {
                                 </div>
                               </td>
                               <td>
-                                <p className="text-[#8A8E91]">.ac.fc.zaviago.com</p>
+                              <Listbox value={selected} onChange={setSelected}>
+                                {({ open }) => (
+                                  <>
+                                    <Listbox.Label className="sr-only"></Listbox.Label>
+                                    <div className="relative">
+                                      <div className="inline-flex rounded-[99px]">
+                                        <div className="inline-flex rounded-[99px] bg-[#F4F5F6] h-[40px]">
+                                          <Listbox.Button className={`inline-flex items-center rounded-[99px] p-2 text-sm font-medium text-white focus:outline-none ${open ? 'border border-[#2684FF] border-1 bg-white' : "border border-1 border-[#F4F5F6]"}`}>
+                                            <p className="ml-2.5 text-sm font-medium text-black">{selected.title}</p>
+                                          </Listbox.Button>
+                                        </div>
+                                      </div>
+
+                                      <Transition
+                                        show={open}
+                                        as={Fragment}
+                                        leave="transition ease-in duration-100"
+                                        leaveFrom="opacity-100"
+                                        leaveTo="opacity-0"
+                                      >
+                                        <Listbox.Options className="absolute right-0 z-10 mt-2 w-[92px] origin-top-right overflow-hidden rounded-md bg-white shadow-md focus:outline-none">
+                                          {domainOptions.map((option) => (
+                                            <Listbox.Option
+                                              key={option.title}
+                                              className={({ active }) =>
+                                                classNames(
+                                                  active ? 'text-black bg-[#F9FAFB]' : 'text-gray-900',
+                                                  'cursor-default select-none p-4 text-sm'
+                                                )
+                                              }
+                                              value={option}
+                                            >
+                                              {({ selected, active }) => (
+                                                <div className="flex flex-col">
+                                                  <div className="flex justify-between">
+                                                    <p className={selected ? 'font-semibold' : 'font-normal'}>{option.title}</p>
+                                                    {selected ? (
+                                                      <span className={active ? 'text-white' : 'text-[#2684FF]'}>
+                                                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                      </span>
+                                                    ) : null}
+                                                  </div>
+                                                </div>
+                                              )}
+                                            </Listbox.Option>
+                                          ))}
+                                        </Listbox.Options>
+                                      </Transition>
+                                    </div>
+                                  </>
+                                )}
+                              </Listbox>
                               </td>
                             </tr>
                             <tr>
@@ -465,7 +538,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                           <button
                             type="button"
                             className="bg-transparent text-black px-5 py-3 rounded-md font-13 mt-1 ml-4"
-                            onClick={clickToCancel}
+                            onClick={clickToCancelPro}
                             ref={cancelButtonRef}
                           >
                           ยกเลิก
