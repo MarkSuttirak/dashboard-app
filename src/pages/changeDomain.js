@@ -1,6 +1,6 @@
 import React, { Fragment, useRef, useState } from "react";
 import { Dialog, Transition, Listbox } from '@headlessui/react'
-import { CheckIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
+import { CheckIcon, ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import BrowserControls from '../img/browser-controls.svg'
 import BrowserPreview from '../img/browser-preview.svg'
 import domainLock from '../img/lock.svg'
@@ -12,10 +12,17 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+const domainOptions = [
+  { title: '.com', current: true },
+  { title: '.co.th', current: false },
+  { title: '.org', current: false },
+  { title: '.net', current: false },
+]
+
 const ChangeDomain = ({ loadingLogo }) => {
     const [isModifiedFree, setIsModifiedFree] = useState(false);
     const [isModifiedPro, setIsModifiedPro] = useState(false);
-    const [isProVersion, setIsProVersion] = useState(false);
+    const [isProVersion, setIsProVersion] = useState(true);
     const [openChangeDomain, setOpenChangeDomain] = useState(false)
     const [openChangeDomainPro, setOpenChangeDomainPro] = useState(false)
 
@@ -56,14 +63,18 @@ const ChangeDomain = ({ loadingLogo }) => {
 
     const clickToCancelPro = () => {
       setOpenChangeDomainPro(false);
+      setTimeout(() => {
+        if (changingDomainPro || domainVerifiedPro){
+          setChangingDomainPro(false);
+          setDomainVerifiedPro(false);
+        }
+      }, 200)
     }
 
-    const domainOptions = [
-      { title: '.com', current: true },
-      { title: '.co.th', current: false },
-      { title: '.org', current: false },
-      { title: '.net', current: false },
-    ]
+    const clickToVerifyDomain = () => {
+      setChangingDomainPro(false);
+      setDomainVerifiedPro(true);
+    }
 
     const [selected, setSelected] = useState(domainOptions[0])
 
@@ -146,7 +157,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                     <img src={BrowserControls} alt="" />
                   </td>
                   <td>
-                    <div className="flex items-center bg-[#F4F5F6] rounded-full px-[16px] py-[7px] gap-x-[14px] border border-[1px] border-[#2684FF]" onClick={() => {
+                    <div className="flex items-center bg-[#F4F5F6] rounded-full px-[16px] py-[7px] gap-x-[14px] border border-[1px] border-[#2684FF] cursor-text" onClick={() => {
                       if (isProVersion){
                         setOpenChangeDomainPro(true)
                       } else {
@@ -215,6 +226,16 @@ const ChangeDomain = ({ loadingLogo }) => {
                     leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                   >
                   <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all px-[60px] py-[100px] max-w-[700px]" style={{backgroundImage:`url("${circleModal}")`,backgroundRepeat:"no-repeat",backgroundPosition:"80% 0"}}>
+                    <div className="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
+                      <button
+                        type="button"
+                        className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        onClick={() => setOpenChangeDomain(false)}
+                      >
+                        <span className="sr-only">Close</span>
+                        <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                      </button>
+                    </div>
                     <div>
                       <div className="mt-3 text-center">
                         <Dialog.Title as="h3" className="text-[29px] font-bold leading-6 text-[#1F272E] eventpop mb-[19px]">
@@ -373,6 +394,16 @@ const ChangeDomain = ({ loadingLogo }) => {
                     leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                   >
                   <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all px-[60px] py-[100px] max-w-[700px]" style={{backgroundImage:`url("${circleModal}")`,backgroundRepeat:"no-repeat",backgroundPosition:"80% 0"}}>
+                    <div className="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
+                      <button
+                        type="button"
+                        className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        onClick={() => setOpenChangeDomainPro(false)}
+                      >
+                        <span className="sr-only">Close</span>
+                        <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                      </button>
+                    </div>
                     <div>
                       <div className="mt-3 text-center">
                         <Dialog.Title as="h3" className="text-[29px] font-bold leading-6 text-[#1F272E] eventpop mb-[19px] flex items-center justify-center gap-x-4">
@@ -380,32 +411,39 @@ const ChangeDomain = ({ loadingLogo }) => {
                           <span className="rounded-full bg-[#E5F5FF] px-2.5 py-0.5 text-xs font-medium text-[#0099FF]">Pro</span>
                         </Dialog.Title>
                         <div className="mt-2">
-                          <p className="text-md paras eventpop">
-                            {changingDomain ? (<>ระบบกำลังเปลี่ยนชื่อโดเมนให้กับเว็บไซต์ของคุณ <br/>กรุณารอสักครู่...</>) : domainChanged ? (<>เปลี่ยนโดเมนเรียบร้อยแล้ว <br/>คุณสามารถแชร์ลิงก์ของเว็บไซต์ให้ลูกค้าหรือทีมของคุณเพื่อเข้าใช้งานได้ทันที</>) : (<>โดเมนคือชื่อของเว็บไซต์ที่อยู่หลัง www.<br/>ซึ่งคุณสามารถเปลี่ยนชื่อโดเมนของคุณหรือใช้โดเมนที่คุณเป็นเจ้าของอยู่แล้วได้</>)}
+                          <p className="text-md paras">
+                            {changingDomainPro ? (<>Go to your domain provider setting, add CNAME <strong>{domain}</strong> and<br/> point data to <strong>{domain}.ac.fc.zaviago.com</strong> Then save and<br/> comeback here to click verify. </>) : domainVerifiedPro ? (<>โดเมนของคุณได้รับการยืนยันแล้ว <br/>คุณสามารถแชร์ลิงก์ของเว็บไซต์ให้ลูกค้าหรือทีมของคุณเพื่อเข้าใช้งานได้ทันที</>) : (<>โดเมนคือชื่อของเว็บไซต์ที่อยู่หลัง www.<br/>ซึ่งคุณสามารถเปลี่ยนชื่อโดเมนของคุณหรือใช้โดเมนที่คุณเป็นเจ้าของอยู่แล้วได้</>)}
                           </p>
                         </div>
                       </div>
-                      <table className="mt-[74px]">
-                        {changingDomain || domainChanged ? (
+                      {!domainVerifiedPro ? (
+                        <table className="mt-[74px]">
+                        {changingDomainPro ? (
                           <tbody>
+                          <tr>
+                            <td>Name</td>
+                            <td>Data</td>
+                          </tr>
                           <tr className="translate-y-0">
-                            <td className="pr-[20px]">
-                              <img src={BrowserControls} alt="" />
+                            <td className="w-[40%] pr-[16px]">
+                              <input
+                                type="text"
+                                name="name"
+                                id="name"
+                                className="block w-full mt-1 rounded-[9px] px-4 outline-none bg-[#F4F5F6] h-[40px] text-[#1D1D1F] font-15"
+                                defaultValue={domain}
+                                onChange={(e) => setDomainAboutToChange(e.target.value)}
+                              />
                             </td>
                             <td>
-                              <div className="flex items-center bg-[#F4F5F6] rounded-full px-[16px] py-[7px] gap-x-[14px] border border-[1px] border-[#F4F5F6]" onClick={() => setOpenChangeDomain(true)}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M10 6V7H6V6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6ZM5 7V6C5 4.34315 6.34315 3 8 3C9.65685 3 11 4.34315 11 6V7C11.5523 7 12 7.44772 12 8V13C12 13.5523 11.5523 14 11 14H5C4.44772 14 4 13.5523 4 13V8C4 7.44772 4.44772 7 5 7Z" fill="#8B8A8D"/>
-                                </svg>
-                                <p className="text-[15px]">{domainAboutToChange}</p>
-                                <p className="text-[#8A8E91] text-[15px]">/.ac.fc.zaviago.com</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3621 5.84008L9.96896 5.54563L8.64395 2.4259C8.40559 1.85803 7.59236 1.85803 7.35399 2.4259L6.02898 5.55264L2.64285 5.84008C2.02591 5.88915 1.77353 6.66032 2.24324 7.06694L4.81614 9.29632L4.04497 12.6053C3.90476 13.2083 4.55675 13.685 5.08956 13.3625L7.99897 11.6098L10.9084 13.3695C11.4412 13.692 12.0932 13.2153 11.953 12.6124L11.1818 9.29632L13.7547 7.06694C14.2244 6.66032 13.979 5.88915 13.3621 5.84008V5.84008ZM7.99897 10.2988L5.36297 11.8903L6.06404 8.8897L3.73651 6.87064L6.80716 6.60424L7.99897 3.77895L9.19779 6.61125L12.2685 6.87765L9.94092 8.89672L10.642 11.8973L7.99897 10.2988Z" fill="#5F6368"/>
-                                </svg>
-                              </div>
-                            </td>
-                            <td className="pl-[20px]">
-                              <img src={BrowserControlsTwo} alt="" />
+                              <input
+                                type="text"
+                                name="data"
+                                id="data"
+                                className="block w-full mt-1 rounded-[9px] px-4 outline-none bg-[#F4F5F6] h-[40px] text-[#1D1D1F] font-15"
+                                defaultValue={domain}
+                                onChange={(e) => setDomainAboutToChange(e.target.value)}
+                              />
                             </td>
                           </tr>
                         </tbody>
@@ -473,7 +511,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                                                   <div className="flex justify-between">
                                                     <p className={selected ? 'font-semibold' : 'font-normal'}>{option.title}</p>
                                                     {selected ? (
-                                                      <span className={active ? 'text-white' : 'text-[#2684FF]'}>
+                                                      <span className='text-[#2684FF]'>
                                                         <CheckIcon className="h-5 w-5" aria-hidden="true" />
                                                       </span>
                                                     ) : null}
@@ -497,30 +535,56 @@ const ChangeDomain = ({ loadingLogo }) => {
                           </tbody>
                         )}
                       </table>
+                      ) : (
+                        <div className="mt-9 relative">
+                          <p className="absolute top-[5%] left-[19%] text-[#36373A] text-xs font-medium" style={{fontFamily:"Manrope"}}>your company name</p>
+                          <p className="absolute top-[16%] left-[32%] text-xs font-medium" style={{fontFamily:"Manrope"}}>{domain}{isProVersion ? ".com" : ".ac.fc.zaviago.com"}</p>
+                          <img src={BrowserPreview} style={{maxWidth:"120%"}}/>
+                        </div>
+                      )}
                     </div>
-                    {changingDomain || domainChanged ? (
-                      <div className="mt-[30px] text-[#687178] text-[13px] text-center eventpop">
-                        หากคุณไม่ต้องการใช้โดเมนฟรีจาก zaviago <span className="font-bold eventpop">(.ac.fc.zaviago.com)</span><br/>
-                        ‘เพียงสมัคร Pro Package เริ่มต้นเพียงเดือนละ 750 บาท’ <br/>คุณก็สามารถใช้ชื่อโดเมนที่คุณต้องการได้ทันที<br/>
-                        ติดต่อทีมงานเพื่อสอบถามรายละเอียดเพิ่มเติม
+                    {changingDomainPro ? (
+                      <div className="mt-[30px] text-[#687178] text-[13px] eventpop flex flex-col gap-y-1">
+                        <p className="leading-[140%]">See guide for <strong>Google domain</strong> <a href="https://support.google.com/domains/answer/3453651" target="_blank" className="text-[#0066CC]">here</a></p>
+                        <p className="leading-[140%]">See guide for <strong>Host Never Die</strong> <a href="https://support.hostneverdie.com/index.php/knowledgebase/125/%E0%B8%A7%E0%B8%98%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%94%E0%B9%82%E0%B8%94%E0%B9%80%E0%B8%A1%E0%B8%99%E0%B9%83%E0%B8%AB%E0%B8%A1-%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%A5%E0%B8%B0%E0%B9%80%E0%B8%AD%E0%B8%A2%E0%B8%94.html" target="_blank" className="text-[#0066CC]">here</a></p>
+                        <p className="leading-[140%]">See guide for <strong>Cloudflare</strong> <a href="#" className="text-[#0066CC]">here</a></p>
+                        <p className="leading-[140%]">See guide for <strong>Cloudflare</strong> <a href="#" className="text-[#0066CC]">here</a></p>
                       </div>
                     ) : (
                       <></>
                     )}
                     <div className="flex justify-center mt-[30px]">
-                      {changingDomain || domainChanged ? (
+                      {changingDomainPro ? (
                         <>
                           <button
                             type="button"
                             className="bg-black text-white px-5 py-3 rounded-md font-13 shadow-md"
-                            onClick={() => setOpenChangeDomain(false)}
+                            onClick={clickToVerifyDomain}
+                          >
+                          ยืนยันโดเมน
+                          </button>
+                          <button
+                            type="button"
+                            className="bg-transparent text-black px-5 py-3 rounded-md font-13 mt-1 ml-4"
+                            onClick={clickToCancelPro}
+                            ref={cancelButtonRef}
+                          >
+                          ยืนยันภายหลัง
+                          </button>
+                        </>
+                      ) : domainVerifiedPro ? (
+                        <>
+                          <button
+                            type="button"
+                            className="bg-black text-white px-5 py-3 rounded-md font-13 shadow-md"
+                            onClick={clickToChangeDomainPro}
                           >
                           แชร์ลิงก์เว็บไซต์ใหม่
                           </button>
                           <button
                             type="button"
                             className="bg-transparent text-black px-5 py-3 rounded-md font-13 mt-1 ml-4"
-                            onClick={() => setOpenChangeDomain(false)}
+                            onClick={clickToCancelPro}
                             ref={cancelButtonRef}
                           >
                           ออกจากหน้านี้
@@ -531,7 +595,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                           <button
                             type="button"
                             className="bg-black text-white px-5 py-3 rounded-md font-13 shadow-md"
-                            onClick={clickToChangeDomain}
+                            onClick={clickToChangeDomainPro}
                           >
                           ยืนยันการใช้ชื่อโดเมนนี้
                           </button>
@@ -547,9 +611,15 @@ const ChangeDomain = ({ loadingLogo }) => {
                       )}
                     </div>
 
-                    <div className="text-center text-[#687178] text-xs mt-[30px]">
-                      Warning: you can only change your name once. By changing domain <br/>name you accept its <span className="text-[#0066CC]">Privacy Policy</span> and <span className="text-[#0066CC]">Terms of Service</span>.
-                    </div>
+                    {changingDomainPro ? (
+                      <div className="mt-[63px] text-center">
+                        <a href="#" className="text-xs text-[#888888]">คลิกที่นี่เพื่อติดต่อทีมช่วยเหลือ</a>
+                      </div>
+                    ) : (
+                      <div className="text-center text-[#687178] text-xs mt-[30px]">
+                        Warning: you can only change your name once. By changing domain <br/>name you accept its <span className="text-[#0066CC]">Privacy Policy</span> and <span className="text-[#0066CC]">Terms of Service</span>.
+                      </div>
+                    )}
                   </Dialog.Panel>
                 </Transition.Child>
               </div>
