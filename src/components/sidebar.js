@@ -95,10 +95,6 @@ const Sidebar = ({ loadingLogo }) => {
 
   const [isSwitchModalOpen, setisSwitchModalOpen] = React.useContext(switchContext);
 
-
-
-
-
   function show_menu() {
     setShowModal(false);
   }
@@ -122,16 +118,16 @@ const Sidebar = ({ loadingLogo }) => {
       <div className="w-full h-full fixed z-40 bg-gray-500" id="sidebar-overlay" onClick={closeSidebar}></div>
       <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white fixed h-screen" id="sidebar">
         <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
-          <div className="flex flex-shrink-0 items-center px-4 columns-2 gap-x-3">
+          <div className="flex flex-shrink-0 items-center px-4 columns-2 justify-between">
             {!loadingLogo ? (
-              <>
+              <div className="flex gap-x-3">
                 <img
                   className="w-auto"
                   src={Logo}
                   alt="Your Company"
                 />
                 <h1 className="calsans text-[#1D2D35] text-[19px]">zaviago<span className="text-xs calsans">.com</span></h1>
-              </>
+              </div>
             ) : (
               <div className="animate-pulse">
                 <div className="bg-[#F3F3F3] w-[54px] aspect-square rounded-lg"></div>
@@ -161,7 +157,7 @@ const Sidebar = ({ loadingLogo }) => {
                     item.current
                       ? 'bg-gray-100 text-[#0077E0] hover:bg-[#F5F5F5] active'
                       : 'text-gray-600 hover:bg-[#F5F5F5] hover:text-[#0077E0]',
-                    'group flex items-center px-2 py-[6px] text-[13px] font-normal rounded-md'
+                    'group flex items-center px-2 py-2 text-[13px] font-normal rounded-md'
                   )}
                   onClick={() => handleMenuClick(item.href)}
                 >
@@ -233,6 +229,7 @@ const Sidebar = ({ loadingLogo }) => {
                 src={pjob}
                 alt=""
               />
+
 
               {showModal ? (
                 <>
@@ -306,6 +303,7 @@ const Sidebar = ({ loadingLogo }) => {
                                 <svg class="svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M835.669333 554.666667h-473.173333A42.453333 42.453333 0 0 1 320 512a42.666667 42.666667 0 0 1 42.474667-42.666667h473.173333l-161.813333-161.834666a42.666667 42.666667 0 0 1 60.330666-60.330667l234.666667 234.666667a42.666667 42.666667 0 0 1 0 60.330666l-234.666667 234.666667a42.666667 42.666667 0 0 1-60.330666-60.330667L835.669333 554.666667zM554.666667 42.666667a42.666667 42.666667 0 1 1 0 85.333333H149.525333C137.578667 128 128 137.578667 128 149.482667v725.034666C128 886.4 137.6 896 149.525333 896H554.666667a42.666667 42.666667 0 1 1 0 85.333333H149.525333A106.816 106.816 0 0 1 42.666667 874.517333V149.482667A106.773333 106.773333 0 0 1 149.525333 42.666667H554.666667z" fill="currentColor" /></svg>
                               </span>
                               <span>Sign Out</span><br></br>
+
                             </li>
                           </ul>
                           <ul className="app-version">
@@ -330,7 +328,7 @@ const Sidebar = ({ loadingLogo }) => {
               ) : null}
               <div className="ml-3">
                 <button
-                  className="flex gap-x-10"
+                  className="flex gap-x-9"
                   type="button"
                   onClick={() => setShowModal(true)}
                 >
