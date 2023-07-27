@@ -175,17 +175,15 @@ const Sidebar = ({ loadingLogo }) => {
               ))}
               <h2 className="text-xs font-bold text-[#6B7280] pt-5 pl-2">ทีมของคุณ</h2>
               {teamMembers.map((member) => (
-                <div className="flex items-center pr-2 pl-4 py-2 text-xs font-semibold rounded-md">
+                <div className="flex items-center pr-2 team-members py-2 text-xs font-semibold rounded-md">
                   <img src={member.avatar} className="mr-3 flex-shrink-0 h-5 w-5" alt="" />
-                  <span className="flex-1">{member.name}</span>
+                  <span className="flex-1 item-name">{member.name}</span>
                 </div>
               ))}
 
-              <div className="flex items-center pr-2 pl-4 py-2 text-xs font-semibold rounded-md">
-                <div className="w-5 h-5 bg-[#D6E6FE] rounded-full mr-3">
-                  <PlusIcon color="#2684FF"/>
-                </div>
-                <span className="flex-1 text-[#2684FF]">เชิญสมาชิกเข้าทีม</span>
+              <div className="flex items-center pr-2 team-members py-2 text-xs font-semibold rounded-md">
+                <PlusIcon color="#2684FF" className="w-5 h-5 bg-[#D6E6FE] rounded-full mr-3"/>
+                <span className="flex-1 text-[#2684FF] item-name">เชิญสมาชิกเข้าทีม</span>
               </div>
             </nav>
           ) : (
