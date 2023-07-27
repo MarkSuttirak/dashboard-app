@@ -111,22 +111,20 @@ const Sidebar = ({ loadingLogo }) => {
   //   setLoadingLogo(false);
   // };
 
-
   return (
     <>
-
       <div className="w-full h-full fixed z-40 bg-gray-500" id="sidebar-overlay" onClick={closeSidebar}></div>
       <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white fixed h-screen" id="sidebar">
         <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
           <div className="flex flex-shrink-0 items-center px-4 columns-2 justify-between">
             {!loadingLogo ? (
-              <div className="flex gap-x-3">
+              <div className="flex gap-x-3 p-1">
                 <img
                   className="w-auto"
                   src={Logo}
                   alt="Your Company"
                 />
-                <h1 className="calsans text-[#1D2D35] text-[19px]">zaviago<span className="text-xs calsans">.com</span></h1>
+                <h1 className="calsans text-[#1D2D35] text-[19px] item-name">zaviago<span className="text-xs calsans">.com</span></h1>
               </div>
             ) : (
               <div className="animate-pulse">
@@ -135,7 +133,7 @@ const Sidebar = ({ loadingLogo }) => {
             )}
 
             {!loadingLogo ? (
-              <div>
+              <div className="item-name">
                 <h1 className="sidebar-btn close-sidebar-mobile" onClick={closeSidebar}>
                   <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg>
                 </h1>
@@ -162,7 +160,7 @@ const Sidebar = ({ loadingLogo }) => {
                   onClick={() => handleMenuClick(item.href)}
                 >
                   <img src={item.icon} className="mr-3 flex-shrink-0 h-6 w-6" alt="" />
-                  <span className="flex-1">{item.name}</span>
+                  <span className="flex-1 item-name">{item.name}</span>
                   {item.count ? (
                     <span
                       className={classNames(
@@ -210,7 +208,7 @@ const Sidebar = ({ loadingLogo }) => {
                   <div className="h-[16px] w-[20%] bg-[#F3F3F3] rounded-md block"></div>
                   {teamMembers.map((member) => (
                     <div className="flex">
-                      <div className="w-[15%] h-[28px] bg-[#F3F3F3] block rounded-lg mr-4">
+                      <div className="w-[15%] h-[28px] bg-[#F3F3F3] block rounded-lg mr-4 item-name">
                       </div>
                       <div className="w-[80%] h-[28px] bg-[#F3F3F3] block rounded-lg"></div>
                     </div>
@@ -229,7 +227,6 @@ const Sidebar = ({ loadingLogo }) => {
                 src={pjob}
                 alt=""
               />
-
 
               {showModal ? (
                 <>
@@ -326,7 +323,7 @@ const Sidebar = ({ loadingLogo }) => {
                   <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
                 </>
               ) : null}
-              <div className="ml-3">
+              <div className="ml-3 item-name">
                 <button
                   className="flex gap-x-9"
                   type="button"

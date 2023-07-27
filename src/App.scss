@@ -297,20 +297,8 @@ h6 {
   }
 }
 
-@keyframes warningAnim {
-  from {
-    opacity:0;
-    transform:translateY(2px)
-  }
-  to {
-    opacity:1;
-    transform:translateY(0)
-  }
-}
 
-.warning-anim {
-  animation:warningAnim 200ms;
-}
+
 
 .required {
   color: #EF4444
@@ -780,4 +768,19 @@ select#goal {
   to {
     opacity: 1
   }
+}
+
+@keyframes warningAnim {
+  from {
+    opacity:0;
+    transform:translateY(2px)
+  }
+  to {
+    opacity:1;
+    transform:translateY(0)
+  }
+}
+
+.warning-anim {
+  animation:warningAnim 200ms;
 }
