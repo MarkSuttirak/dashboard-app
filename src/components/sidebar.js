@@ -161,7 +161,7 @@ const Sidebar = ({ loadingLogo }) => {
                     item.current
                       ? 'bg-gray-100 text-[#0077E0] hover:bg-[#F5F5F5] active'
                       : 'text-gray-600 hover:bg-[#F5F5F5] hover:text-[#0077E0]',
-                    'group flex items-center px-2 py-2 text-[13px] font-normal rounded-md'
+                    'group flex items-center px-2 py-[6px] text-[13px] font-normal rounded-md'
                   )}
                   onClick={() => handleMenuClick(item.href)}
                 >
@@ -330,9 +330,9 @@ const Sidebar = ({ loadingLogo }) => {
                   <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
                 </>
               ) : null}
-              <div className="ml-3 flex">
+              <div className="ml-3">
                 <button
-                  className=""
+                  className="flex gap-x-10"
                   type="button"
                   onClick={() => setShowModal(true)}
                 >
