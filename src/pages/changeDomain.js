@@ -23,7 +23,7 @@ const domainOptions = [
 const ChangeDomain = ({ loadingLogo }) => {
     const [isModifiedFree, setIsModifiedFree] = useState(false);
     const [isModifiedPro, setIsModifiedPro] = useState(false);
-    const [isProVersion, setIsProVersion] = useState(false);
+    const [isProVersion, setIsProVersion] = useState(true);
     const [openChangeDomain, setOpenChangeDomain] = useState(false)
     const [openChangeDomainPro, setOpenChangeDomainPro] = useState(false)
 
@@ -476,8 +476,8 @@ const ChangeDomain = ({ loadingLogo }) => {
                           <span className="rounded-full bg-[#E5F5FF] px-2.5 py-0.5 text-xs font-medium text-[#0099FF]">Pro</span>
                         </Dialog.Title>
                         <div className="mt-2">
-                          <p className="text-md paras">
-                            {changingDomainPro ? (<>Go to your domain provider setting, add CNAME <strong>{domain}</strong> and<br/> point data to <strong>{domain}.ac.fc.zaviago.com</strong> Then save and<br/> comeback here to click verify. </>) : domainVerifiedPro ? (<>โดเมนของคุณได้รับการยืนยันแล้ว <br/>คุณสามารถแชร์ลิงก์ของเว็บไซต์ให้ลูกค้าหรือทีมของคุณเพื่อเข้าใช้งานได้ทันที</>) : (<>โดเมนคือชื่อของเว็บไซต์ที่อยู่หลัง www.<br/>ซึ่งคุณสามารถเปลี่ยนชื่อโดเมนของคุณหรือใช้โดเมนที่คุณเป็นเจ้าของอยู่แล้วได้</>)}
+                          <p className="text-sm paras">
+                            {changingDomainPro ? (<>ก่อนอื่นไปยังการตั้งค่าของผู้ให้บริการโดเมนของคุณ เพิ่ม NAME <strong>{domain}</strong> และ point ข้อมูลไปที่ <strong>{domain}.ac.fc.zaviago.com</strong> จากนั้นบันทึกการแก้ไข และกลับมายังหน้าต่างนี้และคลิกปุ่ม ‘ยืนยันโดเมน’ เพื่อดำเนินการต่อ</>) : domainVerifiedPro ? (<>โดเมนของคุณได้รับการยืนยันแล้ว <br/>คุณสามารถแชร์ลิงก์ของเว็บไซต์ให้ลูกค้าหรือทีมของคุณเพื่อเข้าใช้งานได้ทันที</>) : (<>โดเมนคือชื่อของเว็บไซต์ที่อยู่หลัง www.<br/>ซึ่งคุณสามารถเปลี่ยนชื่อโดเมนของคุณหรือใช้โดเมนที่คุณเป็นเจ้าของอยู่แล้วได้</>)}
                           </p>
                         </div>
                       </div>
@@ -514,6 +514,10 @@ const ChangeDomain = ({ loadingLogo }) => {
                         </tbody>
                         ) : (
                           <tbody>
+                            <tr>
+                              <td></td>
+                              <td className={`text-[#AA0000] text-[13px] ${warningDomain ? "warning-anim" : "invisible"}`}>{warningText}</td>
+                            </tr>
                             <tr className="translate-y-0">
                               <td className="pr-[20px]">
                                 <img src={BrowserControls} alt="" />
@@ -521,15 +525,60 @@ const ChangeDomain = ({ loadingLogo }) => {
                               <td>
                                 <div className="mt-1 relative flex items-center">
                                   <div className="pointer-events-none absolute inset-y-1 left-0 flex items-center pl-[15px]">
-                                    <img src={domainLock} />
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M10 6V7H6V6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6ZM5 7V6C5 4.34315 6.34315 3 8 3C9.65685 3 11 4.34315 11 6V7C11.5523 7 12 7.44772 12 8V13C12 13.5523 11.5523 14 11 14H5C4.44772 14 4 13.5523 4 13V8C4 7.44772 4.44772 7 5 7Z" fill={`${warningDomain ? "#AA0000" : "#8B8A8D"}`}/>
+                                    </svg>
                                   </div>
                                   <input
                                     type="text"
                                     name="name"
                                     id="name"
-                                    className="block w-full rounded-full border border-[#2684FF] px-4 outline-none bg-[#F4F5F6] h-[40px] text-[#1D1D1F] font-15 pl-[40px]"
+                                    className={`block w-full rounded-full border ${warningDomain ? "border-[#AA0000] text-[#AA0000]" : "border-[#2684FF] text-[#1D1D1F]"} px-4 outline-none bg-[#F4F5F6] h-[40px] font-15 pl-[40px]`}
                                     defaultValue={domain}
                                     onChange={(e) => setDomainAboutToChange(e.target.value)}
+                                    onInput={(e) => {
+                                      if (e.target.value.includes("@") || 
+                                          e.target.value.includes("*") ||
+                                          e.target.value.includes("+") ||
+                                          e.target.value.includes("(") ||
+                                          e.target.value.includes(")") ||
+                                          e.target.value.includes("/") ||
+                                          e.target.value.includes("!") ||
+                                          e.target.value.includes(".") ||
+                                          e.target.value.includes(",") ||
+                                          e.target.value.includes("&") ||
+                                          e.target.value.includes("?") ||
+                                          e.target.value.includes("%") ||
+                                          e.target.value.includes("$") ||
+                                          e.target.value.includes("#") ||
+                                          e.target.value.includes("^") ||
+                                          e.target.value.includes("=") ||
+                                          e.target.value.includes("|") ||
+                                          e.target.value.includes("\\") ||
+                                          e.target.value.includes(":") ||
+                                          e.target.value.includes(";") ||
+                                          e.target.value.includes("[") ||
+                                          e.target.value.includes("]") ||
+                                          e.target.value.includes("{") ||
+                                          e.target.value.includes("}") ||
+                                          e.target.value.includes("'") ||
+                                          e.target.value.includes('"') ||
+                                          e.target.value.includes("`") ||
+                                          e.target.value.includes("~") ||
+                                          e.target.value.includes("<") ||
+                                          e.target.value.includes(">") ||
+                                          e.target.value.includes("_") ||
+                                          e.target.value.includes("฿")
+                                      ){
+                                        setWarningDomain(true);
+                                        setWarningText("ไม่สามารถใช้ชื่อนี้ได้ 😔")
+                                      } else if (e.target.value.includes("ก")){
+                                        setWarningDomain(true);
+                                        setWarningText("รูปแบบไม่ถูกต้อง 😔")
+                                      } else {
+                                        setWarningDomain(false);
+                                      }
+                                    }}
                                   />
                                 </div>
                               </td>
@@ -595,7 +644,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                             </tr>
                             <tr>
                               <td></td>
-                              <td className="text-[13px] text-[#8A8E91]">สามารถใช้ A-Z, a-z, 0-9 และ - ได้เท่านั้น</td>
+                              <td className={`text-[13px] ${warningDomain ? "text-[#AA0000]" : "text-[#8A8E91]"}`}>สามารถใช้ A-Z, a-z, 0-9 และ - ได้เท่านั้น</td>
                             </tr>
                           </tbody>
                         )}
@@ -661,6 +710,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                             type="button"
                             className="bg-black text-white px-5 py-3 rounded-md font-13 shadow-md"
                             onClick={clickToChangeDomainPro}
+                            {...(warningDomain ? { disabled: true } : {})}
                           >
                           ยืนยันการใช้ชื่อโดเมนนี้
                           </button>
