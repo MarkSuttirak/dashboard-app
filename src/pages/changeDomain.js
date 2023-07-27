@@ -23,13 +23,14 @@ const domainOptions = [
 const ChangeDomain = ({ loadingLogo }) => {
     const [isModifiedFree, setIsModifiedFree] = useState(false);
     const [isModifiedPro, setIsModifiedPro] = useState(false);
-    const [isProVersion, setIsProVersion] = useState(true);
+    const [isProVersion, setIsProVersion] = useState(false);
     const [openChangeDomain, setOpenChangeDomain] = useState(false)
     const [openChangeDomainPro, setOpenChangeDomainPro] = useState(false)
 
     const [changeDomainError, setChangeDomainError] = useState(false)
 
-    const [warningDomain, setWarningDomain] = useState(true)
+    const [warningDomain, setWarningDomain] = useState(false)
+    const [warningDomainAnim, setWarningDomainAnim] = useState(false)
     const [warningText, setWarningText] = useState("ไม่สามารถใช้ชื่อนี้ได้ 😔")
 
     const [changingDomain, setChangingDomain] = useState(false)
@@ -49,8 +50,15 @@ const ChangeDomain = ({ loadingLogo }) => {
     }
 
     const clickToChangeDomain = () => {
-      setChangingDomain(true);
-      setTimeout(changedToDomain, 10000)
+      if (!warningDomain){
+        setChangingDomain(true);
+        setTimeout(changedToDomain, 10000)
+      } else {
+        setWarningDomainAnim(true);
+        setTimeout(() => {
+          setWarningDomainAnim(false);
+        }, 300)
+      }
     }
 
     const clickToChangeDomainPro = () => {
@@ -127,10 +135,10 @@ const ChangeDomain = ({ loadingLogo }) => {
                   aria-hidden="true">
                   <button
                     type="button"
-                    className="inline-flex items-center rounded-lg bg-[#F3F3F3] text-sm font-semibold font-inter text-[#333333] shadow-sm focus:outline-none focus:ring-offset-2 mt-2 eventpop"
-                    style={{ padding: "7px 10px" }}
+                    className="inline-flex items-center rounded-lg bg-[#F3F3F3] text-sm font-semibold font-inter text-[#333333] shadow-sm focus:outline-none focus:ring-offset-2 mt-2"
+                    style={{ padding: "8px 14px" }}
                   >
-                    ติดต่อทีมช่วยเหลือ
+                    Help Support
                   </button>
                 </div>
               ) : (
@@ -148,12 +156,12 @@ const ChangeDomain = ({ loadingLogo }) => {
               <thead>
                 <tr>
                   <th></th>
-                  <th className="text-left text-[#8A8E91] font-normal">เปลี่ยนชื่อโดเมน</th>
+                  <th className="text-left text-[#8A8E91] font-normal text-[13px]">เปลี่ยนชื่อโดเมน</th>
                   <th></th>
                   {isProVersion ? (
                     <th className="text-left text-[#505A62] font-normal"></th>
                   ) : (
-                    <th className="text-left text-[#505A62] font-normal">ลบ <span className="text-[#1D1D1F] eventpop">/ac.fc zaviago.com</span> ออกจากลิงก์</th>
+                    <th className="text-left text-[#505A62] font-normal text-[13px]">ลบ <span className="text-[#1D1D1F] eventpop">/ac.fc zaviago.com</span> ออกจากลิงก์</th>
                   )}
                 </tr>
               </thead>
@@ -200,9 +208,9 @@ const ChangeDomain = ({ loadingLogo }) => {
             </div>
 
             <div className="relative">
-              <p className="absolute top-[5%] left-[15%] text-[#36373A] text-xs font-medium" style={{fontFamily:"Manrope"}}>your company name</p>
-              <p className="absolute top-[16%] left-[25%] text-xs font-medium" style={{fontFamily:"Manrope"}}>{domain}{isProVersion ? ".com" : ".ac.fc.zaviago.com"}</p>
-              <img src={BrowserPreview} />
+              <p className="absolute top-[5%] left-[16%] text-[#36373A] text-xs font-medium" style={{fontFamily:"Manrope"}}>your company name</p>
+              <p className="absolute top-[16%] left-[26%] text-xs font-medium" style={{fontFamily:"Manrope"}}>{domain}{isProVersion ? ".com" : ".ac.fc.zaviago.com"}</p>
+              <img src={BrowserPreview} width="100%"/>
             </div>
           </div>
 
@@ -248,7 +256,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                           {changingDomain ? (<p>กำลังเปลี่ยนชื่อโดเมน 🛠</p>) : domainChanged ? (<p>เปลี่ยนชื่อโดเมนแล้ว 🎉</p>) : (<p>เปลี่ยนชื่อโดเมน</p>)}
                         </Dialog.Title>
                         <div className="mt-2">
-                          <p className="text-md paras eventpop">
+                          <p className="text-md paras eventpop text-[13px]">
                             {changingDomain ? (<>ระบบกำลังเปลี่ยนชื่อโดเมนให้กับเว็บไซต์ของคุณ <br/>กรุณารอสักครู่...</>) : domainChanged ? (<>เปลี่ยนโดเมนเรียบร้อยแล้ว <br/>คุณสามารถแชร์ลิงก์ของเว็บไซต์ให้ลูกค้าหรือทีมของคุณเพื่อเข้าใช้งานได้ทันที</>) : (<>โดเมนคือชื่อของเว็บไซต์ที่อยู่หลัง www.<br/>ซึ่งคุณสามารถเปลี่ยนชื่อโดเมนของคุณหรือใช้โดเมนที่คุณเป็นเจ้าของอยู่แล้วได้</>)}
                           </p>
                         </div>
@@ -281,7 +289,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                           <tbody>
                             <tr>
                               <td></td>
-                              <td className="text-[#AA0000] text-[13px]">{warningDomain && warningText}</td>
+                              <td className={`text-[#AA0000] text-[13px] ${warningDomain ? "warning" : "invisible"} ${warningDomainAnim ? "warning-anim" : ""}`}>{warningText}</td>
                             </tr>
                             <tr className="translate-y-0">
                               <td className="pr-[20px]">
@@ -301,6 +309,29 @@ const ChangeDomain = ({ loadingLogo }) => {
                                     className={`block w-full rounded-full border ${warningDomain ? "text-[#AA0000] border-[#AA0000]" : "border-[#2684FF] text-[#1D1D1F]"} px-4 outline-none bg-[#F4F5F6] h-[40px] font-15 pl-[40px]`}
                                     defaultValue={domain}
                                     onChange={(e) => setDomainAboutToChange(e.target.value)}
+                                    onInput={(e) => {
+                                      if (e.target.value.includes("@") || 
+                                          e.target.value.includes("*") ||
+                                          e.target.value.includes("+") ||
+                                          e.target.value.includes("(") ||
+                                          e.target.value.includes(")") ||
+                                          e.target.value.includes("/") ||
+                                          e.target.value.includes("!") ||
+                                          e.target.value.includes(".") ||
+                                          e.target.value.includes(",") ||
+                                          e.target.value.includes("&") ||
+                                          e.target.value.includes("?") ||
+                                          e.target.value.includes("%")
+                                      ){
+                                        setWarningDomain(true);
+                                        setWarningText("ไม่สามารถใช้ชื่อนี้ได้ 😔")
+                                      } else if (e.target.value.includes("ก")){
+                                        setWarningDomain(true);
+                                        setWarningText("รูปแบบไม่ถูกต้อง 😔")
+                                      } else {
+                                        setWarningDomain(false);
+                                      }
+                                    }}
                                   />
                                 </div>
                               </td>
