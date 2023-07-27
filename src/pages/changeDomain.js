@@ -29,6 +29,9 @@ const ChangeDomain = ({ loadingLogo }) => {
 
     const [changeDomainError, setChangeDomainError] = useState(false)
 
+    const [warningDomain, setWarningDomain] = useState(true)
+    const [warningText, setWarningText] = useState("ไม่สามารถใช้ชื่อนี้ได้ 😔")
+
     const [changingDomain, setChangingDomain] = useState(false)
     const [changingDomainPro, setChangingDomainPro] = useState(false)
     const [domainChanged, setDomainChanged] = useState(false)
@@ -276,6 +279,10 @@ const ChangeDomain = ({ loadingLogo }) => {
                         </tbody>
                         ) : (
                           <tbody>
+                            <tr>
+                              <td></td>
+                              <td className="text-[#AA0000] text-[13px]">{warningDomain && warningText}</td>
+                            </tr>
                             <tr className="translate-y-0">
                               <td className="pr-[20px]">
                                 <img src={BrowserControls} alt="" />
@@ -283,13 +290,15 @@ const ChangeDomain = ({ loadingLogo }) => {
                               <td>
                                 <div className="mt-1 relative flex items-center">
                                   <div className="pointer-events-none absolute inset-y-1 left-0 flex items-center pl-[15px]">
-                                    <img src={domainLock} />
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M10 6V7H6V6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6ZM5 7V6C5 4.34315 6.34315 3 8 3C9.65685 3 11 4.34315 11 6V7C11.5523 7 12 7.44772 12 8V13C12 13.5523 11.5523 14 11 14H5C4.44772 14 4 13.5523 4 13V8C4 7.44772 4.44772 7 5 7Z" fill={`${warningDomain ? "#AA0000" : "#8B8A8D"}`}/>
+                                    </svg>
                                   </div>
                                   <input
                                     type="text"
                                     name="name"
                                     id="name"
-                                    className="block w-full rounded-full border border-[#2684FF] px-4 outline-none bg-[#F4F5F6] h-[40px] text-[#1D1D1F] font-15 pl-[40px]"
+                                    className={`block w-full rounded-full border ${warningDomain ? "text-[#AA0000] border-[#AA0000]" : "border-[#2684FF] text-[#1D1D1F]"} px-4 outline-none bg-[#F4F5F6] h-[40px] font-15 pl-[40px]`}
                                     defaultValue={domain}
                                     onChange={(e) => setDomainAboutToChange(e.target.value)}
                                   />
@@ -306,7 +315,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                             </tr>
                             <tr>
                               <td></td>
-                              <td className="text-[13px] text-[#8A8E91]">สามารถใช้ A-Z, a-z, 0-9 และ - ได้เท่านั้น</td>
+                              <td className={`text-[13px] ${warningDomain ? "text-[#AA0000]" : "text-[#8A8E91]"}`}>สามารถใช้ A-Z, a-z, 0-9 และ - ได้เท่านั้น</td>
                             </tr>
                           </tbody>
                         )}
