@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
 import Logo from "../img/Copilot.svg";
 import dashboardImg from "../img/dashboard.svg";
-import appsImg from "../img/apps.svg";
-import teamsImg from "../img/teams.svg";
+import appsImg from "../img/buildings.svg";
+import teamsImg from "../img/usersIcon.svg";
 import giftImg from "../img/giftImg.svg";
 import billingImg from "../img/billingImg.svg";
 import settingsImg from "../img/settingsImg.svg";
+import integrationIcon from "../img/integrationIcon.svg"
+import mock1 from "../img/mock1.svg";
+import mock2 from "../img/mock2.svg";
+import mock3 from "../img/mock3.svg";
+import switchuser from "../img/switchuser.svg";
 import { Link, useLocation } from "react-router-dom";
 import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/24/outline'
 import pjob from "../img/pjob.svg";
@@ -13,6 +18,7 @@ import { Fragment } from 'react'
 import { Combobox, Dialog, Transition } from '@headlessui/react'
 import "../css/sidebar-dropdown.css";
 import { switchContext } from '../App'
+import { PlusIcon } from "@heroicons/react/20/solid";
 // import TeamModal from "../components/switchTeamModal";
 
 const Sidebar = ({ loadingLogo }) => {
@@ -39,13 +45,19 @@ const Sidebar = ({ loadingLogo }) => {
 
   const navigation = [
     { name: 'Dashboard', icon: dashboardImg, href: '/', current: active === '/' ? true : false },
-    { name: 'Apps', icon: appsImg, href: '/apps', count: 3, current: active === '/apps' ? true : false },
     { name: 'Teams', icon: teamsImg, href: '/teams', count: 4, current: active === '/teams' ? true : false },
+    { name: 'Apps', icon: appsImg, href: '/apps', count: 3, current: active === '/apps' ? true : false },
+    { name: 'Integration', icon: integrationIcon, href: '/integration', count: 4, current: active === '/integration' ? true : false },
     { name: 'Gift & Privilege', icon: giftImg, href: '#', current: active === "#" ? true : false, active: active },
-    { name: 'Billing', icon: billingImg, href: '#', current: active === "#" ? true : false, active: active },
-    { name: 'Setting', icon: settingsImg, href: '#', count: 12, current: active === "/settings" || active === "/change-domain" ? true : false, active: active },
+    { name: 'การเรียกเก็บเงิน', icon: billingImg, href: '#', current: active === "#" ? true : false, active: active },
+    { name: 'ตั้งค่า', icon: settingsImg, href: '#', count: 12, current: active === "/settings" || active === "/change-domain" ? true : false, active: active },
   ]
 
+  const teamMembers = [
+    { avatar: mock1, name: 'Sebastian Rindom'},
+    { avatar: mock2, name: 'Oliver Windall Juhl'},
+    { avatar: mock3, name: 'Ludvig Rask'},
+  ]
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -149,7 +161,7 @@ const Sidebar = ({ loadingLogo }) => {
                     item.current
                       ? 'bg-gray-100 text-[#0077E0] hover:bg-[#F5F5F5] active'
                       : 'text-gray-600 hover:bg-[#F5F5F5] hover:text-[#0077E0]',
-                    'group flex items-center px-2 py-2 text-xs font-semibold rounded-md'
+                    'group flex items-center px-2 py-2 text-[13px] font-normal rounded-md'
                   )}
                   onClick={() => handleMenuClick(item.href)}
                 >
@@ -167,6 +179,20 @@ const Sidebar = ({ loadingLogo }) => {
                   ) : null}
                 </Link>
               ))}
+              <h2 className="text-xs font-bold text-[#6B7280] pt-5 pl-2">ทีมของคุณ</h2>
+              {teamMembers.map((member) => (
+                <div className="flex items-center pr-2 pl-4 py-2 text-xs font-semibold rounded-md">
+                  <img src={member.avatar} className="mr-3 flex-shrink-0 h-5 w-5" alt="" />
+                  <span className="flex-1">{member.name}</span>
+                </div>
+              ))}
+
+              <div className="flex items-center pr-2 pl-4 py-2 text-xs font-semibold rounded-md">
+                <div className="w-5 h-5 bg-[#D6E6FE] rounded-full mr-3">
+                  <PlusIcon color="#2684FF"/>
+                </div>
+                <span className="flex-1 text-[#2684FF]">เชิญสมาชิกเข้าทีม</span>
+              </div>
             </nav>
           ) : (
             <div className="animate-pulse space-y-3">
@@ -184,29 +210,35 @@ const Sidebar = ({ loadingLogo }) => {
                       <div className="w-[80%] h-[28px] bg-[#F3F3F3] block rounded-lg"></div>
                     </Link>
                   ))}
+
+                  <div className="h-[16px] w-[20%] bg-[#F3F3F3] rounded-md block"></div>
+                  {teamMembers.map((member) => (
+                    <div className="flex">
+                      <div className="w-[15%] h-[28px] bg-[#F3F3F3] block rounded-lg mr-4">
+                      </div>
+                      <div className="w-[80%] h-[28px] bg-[#F3F3F3] block rounded-lg"></div>
+                    </div>
+                  ))}
                 </nav>
               </div>
             </div>
           )}
 
-
         </div>
         <div className="flex flex-shrink-0 p-4 bg-[#F5F5F5] m-4 rounded-md">
           <a href="#" className="group block w-full flex-shrink-0">
             <div className="flex items-center">
-              <div>
-                <img
-                  className="inline-block h-9 w-9 rounded-full"
-                  src={pjob}
-                  alt=""
-                />
-              </div>
+              <img
+                className="inline-block h-9 w-9 rounded-full"
+                src={pjob}
+                alt=""
+              />
 
 
               {showModal ? (
                 <>
                   <div
-                    className="sidebar-options-menu  justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                    className="sidebar-options-menu justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
                   >
                     <div className="relative w-auto my-6 mx-auto max-w-3xl">
                       {/*content*/}
@@ -298,14 +330,15 @@ const Sidebar = ({ loadingLogo }) => {
                   <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
                 </>
               ) : null}
-              <div className="ml-3">
+              <div className="ml-3 flex">
                 <button
                   className=""
                   type="button"
                   onClick={() => setShowModal(true)}
                 >
-                  <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">John Persson</p>
-                  <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">john@zaviago.com</p>
+                  <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900 calsans">John Persson</p>
+                  {/* <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">john@zaviago.com</p> */}
+                  <img src={switchuser} />
                 </button>
 
               </div>

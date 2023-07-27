@@ -261,7 +261,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                           </p>
                         </div>
                       </div>
-                      <table className="mt-[74px]">
+                      <table className="mt-[54px]">
                         {changingDomain || domainChanged ? (
                           <tbody>
                           <tr className="translate-y-0">
@@ -289,7 +289,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                           <tbody>
                             <tr>
                               <td></td>
-                              <td className={`text-[#AA0000] text-[13px] ${warningDomain ? "warning" : "invisible"} ${warningDomainAnim ? "warning-anim" : ""}`}>{warningText}</td>
+                              <td className={`text-[#AA0000] text-[13px] ${warningDomain ? "warning-anim" : "invisible"}`}>{warningText}</td>
                             </tr>
                             <tr className="translate-y-0">
                               <td className="pr-[20px]">
@@ -321,7 +321,27 @@ const ChangeDomain = ({ loadingLogo }) => {
                                           e.target.value.includes(",") ||
                                           e.target.value.includes("&") ||
                                           e.target.value.includes("?") ||
-                                          e.target.value.includes("%")
+                                          e.target.value.includes("%") ||
+                                          e.target.value.includes("$") ||
+                                          e.target.value.includes("#") ||
+                                          e.target.value.includes("^") ||
+                                          e.target.value.includes("=") ||
+                                          e.target.value.includes("|") ||
+                                          e.target.value.includes("\\") ||
+                                          e.target.value.includes(":") ||
+                                          e.target.value.includes(";") ||
+                                          e.target.value.includes("[") ||
+                                          e.target.value.includes("]") ||
+                                          e.target.value.includes("{") ||
+                                          e.target.value.includes("}") ||
+                                          e.target.value.includes("'") ||
+                                          e.target.value.includes('"') ||
+                                          e.target.value.includes("`") ||
+                                          e.target.value.includes("~") ||
+                                          e.target.value.includes("<") ||
+                                          e.target.value.includes(">") ||
+                                          e.target.value.includes("_") ||
+                                          e.target.value.includes("฿")
                                       ){
                                         setWarningDomain(true);
                                         setWarningText("ไม่สามารถใช้ชื่อนี้ได้ 😔")
@@ -368,6 +388,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                             type="button"
                             className="bg-black text-white px-5 py-3 rounded-md font-13 shadow-md"
                             onClick={() => setOpenChangeDomain(false)}
+                            {...(!domainChanged ? { disabled: true } : {})}
                           >
                           แชร์ลิงก์เว็บไซต์ใหม่
                           </button>
@@ -386,6 +407,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                             type="button"
                             className="bg-black text-white px-5 py-3 rounded-md font-13 shadow-md"
                             onClick={clickToChangeDomain}
+                            {...(warningDomain ? { disabled: true } : {})}
                           >
                           ยืนยันการใช้ชื่อโดเมนนี้
                           </button>
@@ -460,7 +482,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                         </div>
                       </div>
                       {!domainVerifiedPro ? (
-                        <table className="mt-[74px]">
+                        <table className="mt-[54px]">
                         {changingDomainPro ? (
                           <tbody>
                           <tr>

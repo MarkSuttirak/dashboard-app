@@ -298,24 +298,6 @@ h6 {
 }
 
 @keyframes warningAnim {
-  0% {
-    transform:translateX(0);
-  }
-  25% {
-    transform:translateX(-5px);
-  }
-  50% {
-    transform:translateX(0);
-  }
-  75% {
-    transform:translateX(-5px);
-  }
-  100% {
-    transform:translateX(0)
-  }
-}
-
-@keyframes warning {
   from {
     opacity:0;
     transform:translateY(5px)
@@ -326,12 +308,8 @@ h6 {
   }
 }
 
-.warning {
-  animation:warning 200ms;
-}
-
 .warning-anim {
-  animation:warningAnim 300ms;
+  animation:warningAnim 200ms;
 }
 
 .required {
