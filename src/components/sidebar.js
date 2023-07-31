@@ -163,6 +163,8 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                     <img src={item.icon} className="mr-3 flex-shrink-0 h-6 w-6" alt=""/>
                     <span className="flex-1 item-name">{item.name}</span>
                     {item.count ? (
+                      <>
+                      {/* Desktop Version */}
                       <span
                         className={classNames(
                           item.current ? 'bg-white' : 'bg-gray-100 group-hover:bg-gray-200',
@@ -171,6 +173,17 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                       >
                         {item.count}
                       </span>
+
+                      {/* Responsive Version */}
+                      <span
+                        className={classNames(
+                          item.current ? 'bg-white' : 'bg-gray-100 group-hover:bg-gray-200',
+                          'flex items-center justify-center w-[20px] h-[20px] text-xs font-medium rounded-full absolute left-[40px] translate-y-[12px] item-name-res'
+                        )}
+                      >
+                        {item.count}
+                      </span>
+                      </>
                     ) : null}
                   </Link>
                   <div id={`tooltip-${item.id}`} role="tooltip" className="tooltip-menu absolute invisible opacity-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg left-[60px] text-xs translate-y-[-120%] whitespace-pre shadow-sm dark:bg-gray-700">

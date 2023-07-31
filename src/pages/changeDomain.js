@@ -23,7 +23,7 @@ const domainOptions = [
 const ChangeDomain = ({ loadingLogo }) => {
     const [isModifiedFree, setIsModifiedFree] = useState(false);
     const [isModifiedPro, setIsModifiedPro] = useState(false);
-    const [isProVersion, setIsProVersion] = useState(true);
+    const [isProVersion, setIsProVersion] = useState(false);
     const [openChangeDomain, setOpenChangeDomain] = useState(false)
     const [openChangeDomainPro, setOpenChangeDomainPro] = useState(false)
 
