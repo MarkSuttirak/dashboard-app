@@ -647,6 +647,10 @@ select#goal {
   opacity:0;
 }
 
+.item-name-res {
+  display:none;
+}
+
 @media (max-width:1500px) and (min-width:991px) {
   .started-guide {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -667,6 +671,10 @@ select#goal {
   .tooltip-menu {
     display:block;
     transition:all 300ms;
+  }
+
+  .item-name-res {
+    display:flex;
   }
 
   .your-team {
