@@ -148,8 +148,17 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                         : 'text-gray-600 hover:bg-[#F5F5F5] hover:text-[#0077E0]',
                       'group flex items-center px-2 py-2 text-[13px] font-normal rounded-md'
                     )}
-                    title={item.name}
                     onClick={() => handleMenuClick(item.href)}
+                    onMouseEnter={() => {
+                      const tooltip = document.getElementById(`tooltip-${item.id}`);
+                      tooltip.classList.remove('opacity-0');
+                      tooltip.classList.remove('invisible');
+                    }}
+                    onMouseLeave={() => {
+                      const tooltip = document.getElementById(`tooltip-${item.id}`);
+                      tooltip.classList.add('opacity-0');
+                      tooltip.classList.add('invisible');
+                    }}
                   >
                     <img src={item.icon} className="mr-3 flex-shrink-0 h-6 w-6" alt=""/>
                     <span className="flex-1 item-name">{item.name}</span>
@@ -164,22 +173,52 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                       </span>
                     ) : null}
                   </Link>
-                  <div id={`tooltip-${item.id}`} role="tooltip" className="absolute z-10 invisible opacity-0 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg left-[60px] text-xs translate-y-[-120%] whitespace-pre shadow-sm dark:bg-gray-700 group-hover:visible group-hover:opacity-100">
+                  <div id={`tooltip-${item.id}`} role="tooltip" className="tooltip-menu absolute invisible opacity-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg left-[60px] text-xs translate-y-[-120%] whitespace-pre shadow-sm dark:bg-gray-700">
                     {item.name}
                   </div>
                 </>
               ))}
-              <h2 className="text-xs font-bold text-[#6B7280] pt-5 pl-2">ทีมของคุณ</h2>
+              <h2 className="text-xs font-bold text-[#6B7280] pt-5 pl-2 your-team">ทีมของคุณ</h2>
+              <hr className="line-your-team"/>
               {teamMembers.map((member) => (
-                <div className="flex items-center pr-2 team-members py-2 text-xs font-semibold rounded-md" title={member.name}>
-                  <img src={member.avatar} className="mr-3 flex-shrink-0 h-5 w-5" alt="" />
-                  <span className="flex-1 item-name">{member.name}</span>
-                </div>
+                <>
+                  <div className="flex items-center pr-2 team-members py-2 text-xs font-semibold rounded-md"
+                    onMouseEnter={() => {
+                      const memberList = document.getElementById(`tooltip-${member.name}`);
+                      memberList.classList.remove('opacity-0');
+                      memberList.classList.remove('invisible');
+                    }}
+                    onMouseLeave={() => {
+                      const memberList = document.getElementById(`tooltip-${member.name}`);
+                      memberList.classList.add('opacity-0');
+                      memberList.classList.add('invisible');
+                    }}>
+                    <img src={member.avatar} className="mr-3 flex-shrink-0 h-5 w-5" alt="" />
+                    <span className="flex-1 item-name">{member.name}</span>
+                  </div>
+                  <div id={`tooltip-${member.name}`} role="tooltip" className="tooltip-menu absolute invisible opacity-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity translate-y-[-120%] duration-300 bg-gray-900 rounded-lg left-[60px] text-xs whitespace-pre shadow-sm dark:bg-gray-700">
+                    {member.name}
+                  </div>
+                </>
               ))}
 
-              <div className="flex items-center pr-2 team-members py-2 text-xs font-semibold rounded-md">
+              <div className="flex items-center pr-2 team-members py-2 text-xs font-semibold rounded-md" 
+                onMouseEnter={() => {
+                  const invite = document.getElementById("tooltip-invite");
+                  invite.classList.remove('opacity-0');
+                  invite.classList.remove('invisible');
+                }}
+                onMouseLeave={() => {
+                  const invite = document.getElementById("tooltip-invite");
+                  invite.classList.add('opacity-0');
+                  invite.classList.add('invisible');
+                }}
+              >
                 <PlusIcon color="#2684FF" className="min-h-[20px] min-w-[20px] w-5 h-5 bg-[#D6E6FE] rounded-full mr-3"/>
                 <span className="flex-1 text-[#2684FF] item-name">เชิญสมาชิกเข้าทีม</span>
+              </div>
+              <div id="tooltip-invite" role="tooltip" className="tooltip-menu absolute invisible opacity-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity translate-y-[-120%] duration-300 bg-gray-900 rounded-lg left-[60px] text-xs whitespace-pre shadow-sm dark:bg-gray-700">
+                เชิญสมาชิกเข้าทีม
               </div>
             </nav>
           ) : (
@@ -213,7 +252,21 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
           )}
 
         </div>
-        <div className="flex flex-shrink-0 bg-[#F5F5F5] m-4 rounded-md avatar-user">
+        <div className="flex flex-shrink-0 bg-[#F5F5F5] m-4 rounded-md avatar-user"
+          onMouseEnter={() => {
+            const user = document.getElementById("tooltip-avatar-user");
+            user.classList.remove('opacity-0');
+            user.classList.remove('invisible');
+          }}
+          onMouseLeave={() => {
+            const user = document.getElementById("tooltip-avatar-user");
+            user.classList.add('opacity-0');
+            user.classList.add('invisible');
+          }}
+        >
+          <div id="tooltip-avatar-user" role="tooltip" className="tooltip-menu absolute invisible opacity-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg left-[60px] text-xs whitespace-pre shadow-sm dark:bg-gray-700">
+            John Persson
+          </div>
           <a href="#" className="group block w-full flex-shrink-0">
             <div className="flex items-center">
               <img
