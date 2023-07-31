@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import Logo from "../img/Copilot.svg";
 import dashboardImg from "../img/dashboard.svg";
 import appsImg from "../img/buildings.svg";
@@ -21,7 +21,7 @@ import { switchContext } from '../App'
 import { PlusIcon } from "@heroicons/react/20/solid";
 // import TeamModal from "../components/switchTeamModal";
 
-const Sidebar = ({ loadingLogo }) => {
+const Sidebar = ({ loadingLogo, tooltip }) => {
   const location = useLocation();
   const [active, setActive] = useState('');
 
@@ -31,6 +31,9 @@ const Sidebar = ({ loadingLogo }) => {
     sidebar.style.animation = "sidebarActive 400ms forwards";
     sidebarOverlay.style.animation = "sidebarOverlayActive 400ms forwards";
   }
+
+  const tooltipRef = useRef(null);
+  const containerRef = useRef(null);
 
   const closeSidebar = () => {
     const sidebar = document.getElementById('sidebar');
@@ -44,13 +47,13 @@ const Sidebar = ({ loadingLogo }) => {
   }
 
   const navigation = [
-    { name: 'Dashboard', icon: dashboardImg, href: '/', current: active === '/' ? true : false },
-    { name: 'Teams', icon: teamsImg, href: '/teams', count: 4, current: active === '/teams' ? true : false },
-    { name: 'Apps', icon: appsImg, href: '/apps', count: 3, current: active === '/apps' ? true : false },
-    { name: 'Integration', icon: integrationIcon, href: '/integration', count: 4, current: active === '/integration' ? true : false },
-    { name: 'Gift & Privilege', icon: giftImg, href: '#', current: active === "#" ? true : false, active: active },
-    { name: 'การเรียกเก็บเงิน', icon: billingImg, href: '#', current: active === "#" ? true : false, active: active },
-    { name: 'ตั้งค่า', icon: settingsImg, href: '#', count: 12, current: active === "/settings" || active === "/change-domain" ? true : false, active: active },
+    { name: 'Dashboard', icon: dashboardImg, href: '/', current: active === '/' ? true : false, id: 'dashboard' },
+    { name: 'Teams', icon: teamsImg, href: '/teams', count: 4, current: active === '/teams' ? true : false, id: 'teams' },
+    { name: 'Apps', icon: appsImg, href: '/apps', count: 3, current: active === '/apps' ? true : false, id: 'apps' },
+    { name: 'Integration', icon: integrationIcon, href: '/integration', count: 4, current: active === '/integration' ? true : false, id: 'integration' },
+    { name: 'Gift & Privilege', icon: giftImg, href: '#', current: active === "#" ? true : false, active: active, id: 'gift' },
+    { name: 'การเรียกเก็บเงิน', icon: billingImg, href: '#', current: active === "#" ? true : false, active: active, id: 'billing' },
+    { name: 'ตั้งค่า', icon: settingsImg, href: '#', count: 12, current: active === "/settings" || active === "/change-domain" ? true : false, active: active, id: 'settings' },
   ]
 
   const teamMembers = [
@@ -113,9 +116,8 @@ const Sidebar = ({ loadingLogo }) => {
 
   return (
     <>
-      <div className="w-full h-full fixed z-40 bg-gray-500" id="sidebar-overlay" onClick={closeSidebar}></div>
       <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white fixed h-screen" id="sidebar">
-        <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
+        <div className="flex flex-1 flex-col pt-5 pb-4">
           <div className="flex flex-shrink-0 items-center px-4 columns-2 justify-between">
             {!loadingLogo ? (
               <div className="flex gap-x-3 p-1">
@@ -131,58 +133,52 @@ const Sidebar = ({ loadingLogo }) => {
                 <div className="bg-[#F3F3F3] w-[54px] aspect-square rounded-lg"></div>
               </div>
             )}
-
-            {!loadingLogo ? (
-              <div className="item-name">
-                <h1 className="sidebar-btn close-sidebar-mobile" onClick={closeSidebar}>
-                  <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg>
-                </h1>
-              </div>
-            ) : (
-              <div className="animate-pulse">
-                <div className="bg-[#F3F3F3] w-[32px] aspect-square rounded-lg"></div>
-              </div>
-            )}
           </div>
 
           {!loadingLogo ? (
             <nav className="mt-5 flex-1 space-y-1 bg-white px-4 pt-4" aria-label="Sidebar">
               {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={classNames(
-                    item.current
-                      ? 'bg-gray-100 text-[#0077E0] hover:bg-[#F5F5F5] active'
-                      : 'text-gray-600 hover:bg-[#F5F5F5] hover:text-[#0077E0]',
-                    'group flex items-center px-2 py-2 text-[13px] font-normal rounded-md'
-                  )}
-                  onClick={() => handleMenuClick(item.href)}
-                >
-                  <img src={item.icon} className="mr-3 flex-shrink-0 h-6 w-6" alt="" />
-                  <span className="flex-1 item-name">{item.name}</span>
-                  {item.count ? (
-                    <span
-                      className={classNames(
-                        item.current ? 'bg-white' : 'bg-gray-100 group-hover:bg-gray-200',
-                        'ml-3 inline-block py-0.5 px-3 text-xs font-medium rounded-full'
-                      )}
-                    >
-                      {item.count}
-                    </span>
-                  ) : null}
-                </Link>
+                <>
+                  <Link
+                    key={item.id}
+                    to={item.href}
+                    className={classNames(
+                      item.current
+                        ? 'bg-gray-100 text-[#0077E0] hover:bg-[#F5F5F5] active'
+                        : 'text-gray-600 hover:bg-[#F5F5F5] hover:text-[#0077E0]',
+                      'group flex items-center px-2 py-2 text-[13px] font-normal rounded-md'
+                    )}
+                    title={item.name}
+                    onClick={() => handleMenuClick(item.href)}
+                  >
+                    <img src={item.icon} className="mr-3 flex-shrink-0 h-6 w-6" alt=""/>
+                    <span className="flex-1 item-name">{item.name}</span>
+                    {item.count ? (
+                      <span
+                        className={classNames(
+                          item.current ? 'bg-white' : 'bg-gray-100 group-hover:bg-gray-200',
+                          'ml-3 inline-block py-0.5 px-3 text-xs font-medium rounded-full item-name'
+                        )}
+                      >
+                        {item.count}
+                      </span>
+                    ) : null}
+                  </Link>
+                  <div id={`tooltip-${item.id}`} role="tooltip" className="absolute z-10 invisible opacity-0 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg left-[60px] text-xs translate-y-[-120%] whitespace-pre shadow-sm dark:bg-gray-700 group-hover:visible group-hover:opacity-100">
+                    {item.name}
+                  </div>
+                </>
               ))}
               <h2 className="text-xs font-bold text-[#6B7280] pt-5 pl-2">ทีมของคุณ</h2>
               {teamMembers.map((member) => (
-                <div className="flex items-center pr-2 team-members py-2 text-xs font-semibold rounded-md">
+                <div className="flex items-center pr-2 team-members py-2 text-xs font-semibold rounded-md" title={member.name}>
                   <img src={member.avatar} className="mr-3 flex-shrink-0 h-5 w-5" alt="" />
                   <span className="flex-1 item-name">{member.name}</span>
                 </div>
               ))}
 
               <div className="flex items-center pr-2 team-members py-2 text-xs font-semibold rounded-md">
-                <PlusIcon color="#2684FF" className="w-5 h-5 bg-[#D6E6FE] rounded-full mr-3"/>
+                <PlusIcon color="#2684FF" className="min-h-[20px] min-w-[20px] w-5 h-5 bg-[#D6E6FE] rounded-full mr-3"/>
                 <span className="flex-1 text-[#2684FF] item-name">เชิญสมาชิกเข้าทีม</span>
               </div>
             </nav>
@@ -217,7 +213,7 @@ const Sidebar = ({ loadingLogo }) => {
           )}
 
         </div>
-        <div className="flex flex-shrink-0 p-4 bg-[#F5F5F5] m-4 rounded-md">
+        <div className="flex flex-shrink-0 bg-[#F5F5F5] m-4 rounded-md avatar-user">
           <a href="#" className="group block w-full flex-shrink-0">
             <div className="flex items-center">
               <img
@@ -298,7 +294,6 @@ const Sidebar = ({ loadingLogo }) => {
                                 <svg class="svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M835.669333 554.666667h-473.173333A42.453333 42.453333 0 0 1 320 512a42.666667 42.666667 0 0 1 42.474667-42.666667h473.173333l-161.813333-161.834666a42.666667 42.666667 0 0 1 60.330666-60.330667l234.666667 234.666667a42.666667 42.666667 0 0 1 0 60.330666l-234.666667 234.666667a42.666667 42.666667 0 0 1-60.330666-60.330667L835.669333 554.666667zM554.666667 42.666667a42.666667 42.666667 0 1 1 0 85.333333H149.525333C137.578667 128 128 137.578667 128 149.482667v725.034666C128 886.4 137.6 896 149.525333 896H554.666667a42.666667 42.666667 0 1 1 0 85.333333H149.525333A106.816 106.816 0 0 1 42.666667 874.517333V149.482667A106.773333 106.773333 0 0 1 149.525333 42.666667H554.666667z" fill="currentColor" /></svg>
                               </span>
                               <span>Sign Out</span><br></br>
-
                             </li>
                           </ul>
                           <ul className="app-version">

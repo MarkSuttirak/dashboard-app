@@ -110,7 +110,7 @@ h6 {
   width: 256px;
   border-right: 1px solid #F4F5F6;
   z-index: 99;
-  transition:width 300ms
+  transition:width 300ms;
 }
 
 .team-members {
@@ -247,33 +247,26 @@ h6 {
 }
 
 /* Set up the container to hide the overflowing content */
-.marquee-container {
-  overflow: hidden;
-  width: 100%;
-  position: absolute;
-  top: 0px;
-  z-index: 99;
+.marquee-container{
+  overflow:hidden;
+  width:100%;
+  position:absolute;
+  top:0;
+  z-index:99;
 }
 
-@keyframes marquee {
-  0% {
-    transform: translateX(-100%);
-  }
-
-  100% {
-    transform: translateX(80%);
-  }
+@keyframes marquee{
+  0%{transform:translateX(-100%)}
+  100%{transform:translateX(80%)}
 }
 
-.marquee-content {
-  display: inline-block;
-  white-space: nowrap;
-  animation: marquee 3s linear infinite;
-  width: 160%;
-  background: linear-gradient(to right, #006AFF 0%, #0094FF 30%, #dad3d336 55%, #C293FF 60%);
+.marquee-content{
+  display:inline-block;
+  white-space:nowrap;
+  animation:marquee 3s linear infinite;
+  width:160%;
+  background:linear-gradient(to right, #006AFF 0%, #0094FF 30%, #dad3d336 55%, #C293FF 60%);
 }
-
-
 
 .moving-line {
   height: 5px;
@@ -298,33 +291,33 @@ h6 {
   }
 }
 
-
-
-
-.required {
-  color: #EF4444
+.avatar-user {
+  padding:16px;
+  transition:all 300ms;
 }
 
-.select-app-input {
-  display: inline-block;
-  border: 1px solid #F4F5F6;
-  border-radius: 8px;
+.required{color:#EF4444}
+
+.select-app-input{
+  display:inline-block;
+  border:1px solid #F4F5F6;
+  border-radius:8px;
 }
 
 .checkbox-apps:checked+.select-app-input,
-.checkbox-apps:hover+.select-app-input {
-  border-color: #0099FF;
+.checkbox-apps:hover+.select-app-input{
+  border-color:#0099FF;
 }
 
-.app-desc {
-  background-color: white;
-  width: calc(100% - 2px);
-  bottom: 6px;
+.app-desc{
+  background-color:white;
+  width:calc(100% - 2px);
+  bottom:6px;
 }
 
 .checkbox-apps:checked+.select-app-input .app-desc,
 .checkbox-apps:hover+.select-app-input .app-desc {
-  background-color: #F0F8FE;
+  background-color:#F0F8FE;
 }
 
 .started-guide-card .guide-title {
@@ -401,24 +394,13 @@ h6 {
   transform: translate(-50%, -50%);
 }
 
-.list-class:hover h4 {
-  color: white;
+.list-class:hover{
+  h4,p{color:white}
 }
 
-.list-class:hover p {
-  color: white;
-}
-
-.selected-li {
-  background: #0099FF;
-}
-
-.selected-li h4 {
-  color: white;
-}
-
-.selected-li p {
-  color: white;
+.selected-li{
+  background:#0099FF;
+  h4,p{color:white}
 }
 
 .tooltip {
@@ -531,7 +513,7 @@ select#goal {
   background-image: url('./img/appConnectBusiness.png');
   height: 310px;
   background-size: cover;
-  border-radius: 16px, 16px, 0px, 0px;
+  border-radius: 16px 16px 0 0;
   padding: 33px 23px;
 }
 
@@ -540,7 +522,7 @@ select#goal {
   height: 310px;
   background-repeat: no-repeat;
   background-size: cover;
-  border-radius: 16px, 16px, 0px, 0px;
+  border-radius: 16px 16px 0 0;
 }
 
 .connectBusiness2{
@@ -601,9 +583,9 @@ select#goal {
 }
 
 .flipBoxSection .flip-box-back {
- background: white;
- border-radius: 30px;
- box-shadow: 0px -4px 48px 0px #0000001A;
+  background: white;
+  border-radius: 30px;
+  box-shadow: 0 -4px 48px 0 #0000001A;
   width: 398px;
   height: 598px;
   color: black;
@@ -621,14 +603,11 @@ select#goal {
   font-family: Arial, sans-serif;
 }
 
-
 @media screen and (min-width: 800px){
   .section-container{
     width: 750px;
   }
 }
-
-
 
 @media screen and (max-width:1025px) {
   .slick-next {
@@ -648,8 +627,24 @@ select#goal {
   .slick-prev:before {
     font-size: 15px !important;
     padding: 10px 0px;
-
   }
+}
+
+.tooltip-menu {
+  visibility:hidden;
+  opacity:0;
+  transition:opacity 200ms;
+  background-color:#EAEAEA;
+  color:#333333;
+  padding:3px 10px;
+  border-radius:50px;
+  font-weight:500;
+  position:absolute;
+  font-size:10px;
+  left:80%;
+  transform:translateY(-150%);
+  white-space:nowrap;
+  z-index:1;
 }
 
 .item-name {
@@ -672,7 +667,7 @@ select#goal {
 
 @media (max-width:1199px) {
   #sidebar {
-    width:72px;
+    width:73px;
     transition:all 300ms;
     transition-delay:300ms
   }
@@ -684,6 +679,11 @@ select#goal {
     transition:all 200ms;
   }
 
+  .avatar-user {
+    padding:4px 8px;
+    transition:all 300ms;
+  }
+
   .team-members {
     padding-left:8px;
     transition:all 300ms;
@@ -691,7 +691,7 @@ select#goal {
   }
 
   .page-section {
-    margin-left: 90px;
+    margin-left: 73px;
   }
 
   .header-mobile h1 {
