@@ -22,7 +22,9 @@ import freeTrialLogo from "../img/free-trial-logo.png";
 import line from "../img/line.svg";
 import meta from "../img/meta.svg";
 import workSpaceLogo from "../img/workspace-logo.png";
+import specialistIcon from "../img/specialist-icon.png";
 import upgradeicon from "../img/upgrade-icon.png";
+import addIcon from "../img/add-icon.png";
 import amazon from "../img/amazon.svg";
 import { Link } from "react-router-dom";
 import PopUp from '../components/popup'
@@ -112,14 +114,10 @@ const Dashboard = ({ loadingLogo }) => {
                       <h1 className="mt-1 text-xl font-semibold tracking-tight text-gray-900">
                         Sawadee, Chutiphol  🙏
                       </h1>
-                      <p className="font-13 leading-8 text-gray-600">
-                        Welcome to your <span style={{ color: "#006AFF" }} className="font-bold">Zaviago/OS</span> v.1.4.88
-                      </p>
                     </div>
                   ) : (
                     <div className="animate-pulse mt-2">
                       <div className="bg-[#F3F3F3] w-[200px] h-[24px] aspect-square rounded-lg"></div>
-                      <div className="bg-[#F3F3F3] w-[280px] h-[15px] aspect-square rounded-lg mt-2"></div>
                     </div>
                   )}
                 </div>
@@ -144,14 +142,6 @@ const Dashboard = ({ loadingLogo }) => {
                   >
                     Invite your team
                   </button>
-                  {/* <button
-                    type="button"
-                    className="ml-3 inline-flex items-center rounded-lg border border-transparent text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-13 btn-primary-shadow mt-2"
-                    style={{ padding: "4px 18px" }}
-                    onClick={handleInviteClick2}
-                  >
-                    Go to Workspace
-                  </button> */}
                 </div>
               ) : (
                 <div className="animate-pulse flex">
@@ -192,7 +182,7 @@ const Dashboard = ({ loadingLogo }) => {
             {dashboardInfo.map((info) => (
               <div
                 key={info.title}
-                className="relative flex items-center space-x-3 bg-white p-4 pb-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400" style={{ background: "url(" + info.background + ")", backgroundSize: "100%", backgroundRepeat: "no-repeat", borderRadius: "20px" }}
+                className="relative flex items-center space-x-3 bg-white p-4 pb-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400" style={{ background: "url(" + info.background + ")", backgroundSize: "100%", backgroundRepeat: "no-repeat", borderRadius: "20px", boxShadow: '0px 5px 23px 8px #0000001A' }}
               >
                 <div className="min-w-0" style={{ paddingTop: "8.25rem" }}>
                   <span className="absolute inset-0" aria-hidden="true" />
@@ -217,12 +207,12 @@ const Dashboard = ({ loadingLogo }) => {
 
 
         {!loadingLogo ? (
-          <div className="border border-gray-200 bg-[#F3F4F6] py-10 sm:pt-2 pl-5 sm:pl-10 sm:pb-6 mx-auto dashboard-container sm:flex justify-between items-center" style={{ borderRadius: "20px 20px 20px 20px" }}>
+          <div className="h-[315px] bg-[#F3F4F6] py-10 sm:pt-2 pl-5 sm:pl-10 sm:pb-6 mx-auto dashboard-container sm:flex justify-between items-center" style={{ borderRadius: "20px 20px 20px 20px" }}>
             <div>
               <p className="text-[#1F272E] font-bold" style={{ fontFamily: 'Eventpop' }}>แพ็กเกจที่คุณใช้อยู่</p>
               <div className="flex items-center mt-[15px]"> <img src={freeTrialLogo} className="w-[45px] h-[45px]" alt="" /> <h2 className="ml-6 sm:leading-10 leading-8 text-[30px] sm:text-[48px] font-semibold text-[#1F272E] font-calSans">free trial package.</h2> </div>
               <div className="flex items-center mt-5">
-                <button className="bg-[#000000] text-white text-xs sm:text-base flex py-[13px] px-[8px] sm:py-[10px] sm:px-[18px] rounded-lg items-center " style={{ boxShadow: '0px 4px 8px 0px #00000033' }}><img src={upgradeicon} className="w-[14px] h-[14px] mr-[5px] sm:mr-[11px] " />  Upgrade to Pro</button>
+                <button className="bg-[#000000] text-white text-xs sm:text-base font-semibold flex py-[13px] px-[8px] sm:py-[10px] sm:px-[18px] rounded-lg items-center " style={{ boxShadow: '0px 4px 8px 0px #00000033' }}><img src={upgradeicon} className="w-[14px] h-[14px] mr-[5px] sm:mr-[11px] " />  Upgrade to Pro</button>
                 <button className="text-[#1F272E] font-inter font-semibold text-base sm:ml-4 ml-1">Talk with support</button>
               </div>
             </div>
@@ -267,7 +257,7 @@ const Dashboard = ({ loadingLogo }) => {
                     </span>
                   </div>
                 </div>
-                <p className="font-calSans text-xs font-semibold">Powered by</p>
+                <p className="font-calSans text-xs font-semibold sm:w-[125px] text-left">Powered by</p>
               </div>
               <div className="mt-5 flex flex-wrap items-center justify-between sm:flex-nowrap">
                 <div className="">
@@ -289,7 +279,7 @@ const Dashboard = ({ loadingLogo }) => {
                   <div className="flex mt-2 gap-x-5 items-center">
                     <button
                       type="button"
-                      className="inline-flex items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn btn-primary-shadow text-xs"
+                      className="inline-flex font-inter font-semibold items-center rounded-md border border-transparent px-4 py-2 text-sm text-white shadow-sm focus:outline-none focus:ring-offset-2 btn btn-primary-shadow"
                     >
                       Login As Admin
                     </button>
@@ -301,23 +291,29 @@ const Dashboard = ({ loadingLogo }) => {
                 <div className="ml-4 mt-2 flex-shrink-0 items-center flex pb-10">
                   <div className="isolate flex -space-x-1 overflow-hidden">
                     <img
-                      className="relative z-30 inline-block h-5 w-5 rounded-md ring-2 ring-white"
+                      className="relative z-0 inline-block h-6 w-6 rounded-full ring-2 ring-white"
                       src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                       alt=""
                     />
                     <img
-                      className="relative z-20 inline-block h-5 w-5 rounded-md ring-2 ring-white"
+                      className="relative z-10 inline-block h-6 w-6 rounded-full ring-2 ring-white"
                       src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                       alt=""
                     />
                     <img
-                      className="relative z-10 inline-block h-5 w-5 rounded-md ring-2 ring-white"
+                      className="relative z-20 inline-block h-6 w-6 rounded-full ring-2 ring-white"
                       src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80"
                       alt=""
                     />
                     <img
-                      className="relative z-0 inline-block h-5 w-5 rounded-md ring-2 ring-white"
+                      className="relative z-30 inline-block h-6 w-6 rounded-full ring-2 ring-white"
                       src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      alt=""
+                    />
+                    <img
+                      className="relative z-0 inline-block h-6 w-6 rounded-full ring-2 ring-white"
+                      style={{marginLeft: '12px'}}
+                      src={addIcon}
                       alt=""
                     />
                   </div>
@@ -333,7 +329,7 @@ const Dashboard = ({ loadingLogo }) => {
                 </div>
 
                 <div className="w-1/2 bg-gray-200 rounded-full h-2 dark:bg-gray-700">
-                  <div className="bg-blue-600 h-2 rounded-full dark:bg-blue-500" style={{ width: "40%" }}></div>
+                  <div className="bg-[#2684FF] h-2 rounded-full dark:bg-blue-500" style={{ width: "40%" }}></div>
                 </div>
 
                 <p className="font-13">(2.1%)</p>
@@ -349,7 +345,7 @@ const Dashboard = ({ loadingLogo }) => {
                 </div>
 
                 <div className="w-1/2 bg-gray-200 rounded-full h-2 dark:bg-gray-700">
-                  <div className="bg-blue-600 h-2 rounded-full dark:bg-blue-500" style={{ width: "60%" }}></div>
+                  <div className="bg-[#2684FF] h-2 rounded-full dark:bg-blue-500" style={{ width: "60%" }}></div>
                 </div>
 
                 <p className="font-13">(2.1%)</p>
@@ -365,7 +361,7 @@ const Dashboard = ({ loadingLogo }) => {
                 </div>
 
                 <div className="w-1/2 bg-gray-200 rounded-full h-2 dark:bg-gray-700">
-                  <div className="bg-blue-600 h-2 rounded-full dark:bg-blue-500" style={{ width: "85%" }}></div>
+                  <div className="bg-[#2684FF] h-2 rounded-full dark:bg-blue-500" style={{ width: "85%" }}></div>
                 </div>
 
                 <p className="font-13">(90.1%)</p>
@@ -381,7 +377,7 @@ const Dashboard = ({ loadingLogo }) => {
                 </div>
 
                 <div className="w-1/2 bg-gray-200 rounded-full h-2 dark:bg-gray-700">
-                  <div className="bg-blue-600 h-2 rounded-full dark:bg-blue-500" style={{ width: "20%" }}></div>
+                  <div className="bg-[#2684FF] h-2 rounded-full dark:bg-blue-500" style={{ width: "20%" }}></div>
                 </div>
 
                 <p className="font-13">(90.1%)</p>
@@ -484,10 +480,10 @@ const Dashboard = ({ loadingLogo }) => {
 
         </div>
         {!loadingLogo ? (
-          <div className="mx-auto dashboard-container pb-10 gap-x-8">
+          <div className="mx-auto dashboard-container pb-10 gap-x-8 mt-[39px]">
             <div className="border border-gray-200 bg-white px-6 pt-4 pb-7" style={{ borderRadius: "20px" }}>
               <div className="flex gap-x-2.5 items-center">
-                <img src={guideIcon} />
+                <img src={specialistIcon} />
                 <h1 className="text-md headings font-bold">ไกด์การใช้งาน และ ติดต่อทีมงาน</h1>
               </div>
 
@@ -1015,22 +1011,22 @@ const Dashboard = ({ loadingLogo }) => {
     //             <div className="ml-4 mt-2 flex-shrink-0 items-center flex pb-10">
     //               <div className="isolate flex -space-x-1 overflow-hidden">
     //                 <img
-    //                   className="relative z-30 inline-block h-5 w-5 rounded-md ring-2 ring-white"
+    //                   className="relative z-30 inline-block h-6 w-6 rounded-full ring-2 ring-white"
     //                   src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
     //                   alt=""
     //                 />
     //                 <img
-    //                   className="relative z-20 inline-block h-5 w-5 rounded-md ring-2 ring-white"
+    //                   className="relative z-20 inline-block h-6 w-6 rounded-full ring-2 ring-white"
     //                   src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
     //                   alt=""
     //                 />
     //                 <img
-    //                   className="relative z-10 inline-block h-5 w-5 rounded-md ring-2 ring-white"
+    //                   className="relative z-10 inline-block h-6 w-6 rounded-full ring-2 ring-white"
     //                   src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80"
     //                   alt=""
     //                 />
     //                 <img
-    //                   className="relative z-0 inline-block h-5 w-5 rounded-md ring-2 ring-white"
+    //                   className="relative z-0 inline-block h-6 w-6 rounded-full ring-2 ring-white"
     //                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
     //                   alt=""
     //                 />
@@ -1047,7 +1043,7 @@ const Dashboard = ({ loadingLogo }) => {
     //             </div>
 
     //             <div className="w-1/2 bg-gray-200 rounded-full h-2 dark:bg-gray-700">
-    //               <div className="bg-blue-600 h-2 rounded-full dark:bg-blue-500" style={{ width: "40%" }}></div>
+    //               <div className="bg-[#2684FF] h-2 rounded-full dark:bg-blue-500" style={{ width: "40%" }}></div>
     //             </div>
 
     //             <p className="font-13">(2.1%)</p>
@@ -1063,7 +1059,7 @@ const Dashboard = ({ loadingLogo }) => {
     //             </div>
 
     //             <div className="w-1/2 bg-gray-200 rounded-full h-2 dark:bg-gray-700">
-    //               <div className="bg-blue-600 h-2 rounded-full dark:bg-blue-500" style={{ width: "60%" }}></div>
+    //               <div className="bg-[#2684FF] h-2 rounded-full dark:bg-blue-500" style={{ width: "60%" }}></div>
     //             </div>
 
     //             <p className="font-13">(2.1%)</p>
@@ -1079,7 +1075,7 @@ const Dashboard = ({ loadingLogo }) => {
     //             </div>
 
     //             <div className="w-1/2 bg-gray-200 rounded-full h-2 dark:bg-gray-700">
-    //               <div className="bg-blue-600 h-2 rounded-full dark:bg-blue-500" style={{ width: "85%" }}></div>
+    //               <div className="bg-[#2684FF] h-2 rounded-full dark:bg-blue-500" style={{ width: "85%" }}></div>
     //             </div>
 
     //             <p className="font-13">(90.1%)</p>
@@ -1095,7 +1091,7 @@ const Dashboard = ({ loadingLogo }) => {
     //             </div>
 
     //             <div className="w-1/2 bg-gray-200 rounded-full h-2 dark:bg-gray-700">
-    //               <div className="bg-blue-600 h-2 rounded-full dark:bg-blue-500" style={{ width: "20%" }}></div>
+    //               <div className="bg-[#2684FF] h-2 rounded-full dark:bg-blue-500" style={{ width: "20%" }}></div>
     //             </div>
 
     //             <p className="font-13">(90.1%)</p>

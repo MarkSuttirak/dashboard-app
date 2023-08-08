@@ -5,7 +5,7 @@ import instagramStore from '../img/instagram-store.png'
 function InstallAddons(props) {
 
     return (
-        <></>
+       <></>
     )
 }
 

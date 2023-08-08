@@ -32,7 +32,6 @@ function App() {
     < >
       <Router>
         <switchContext.Provider value={[isSwitchModalOpen, setisSwitchModalOpen]}>
-
           <Sidebar loadingLogo={loadingLogo} />
           <TeamModal />
         </switchContext.Provider>
