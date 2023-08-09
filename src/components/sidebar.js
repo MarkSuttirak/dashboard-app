@@ -6,14 +6,22 @@ import teamsImg from "../img/usersIcon.svg";
 import giftImg from "../img/giftImg.svg";
 import billingImg from "../img/billingImg.svg";
 import settingsImg from "../img/settingsImg.svg";
-import integrationIcon from "../img/integrationIcon.svg"
-import mock1 from "../img/mock1.svg";
-import mock2 from "../img/mock2.svg";
-import mock3 from "../img/mock3.svg";
-import switchuser from "../img/switchuser.svg";
+import userProfileIcon from "../img/userProfileIcon.svg";
+import usersProfileIcon from "../img/usersProfileIcon.svg";
+import userPlusIcon from "../img/user-plusIcon.svg";
+import layersIcon from "../img/2-layersIcon.svg";
+import slackIcon from "../img/slackIcon.svg";
+import helpIcon from "../img/help-circleIcon.svg";
+import logoutIcon from "../img/log-outIcon.svg";
+import integrationIcon from "../img/integrationIcon.svg";
+import mock1 from '../img/mock1.svg';
+import mock2 from '../img/mock2.svg';
+import mock3 from '../img/mock3.svg';
+import switchuser from '../img/switchuser.svg';
 import { Link, useLocation } from "react-router-dom";
 import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/24/outline'
 import pjob from "../img/pjob.svg";
+import pjobActive from "../img/pJobAcrtive.png";
 import { Fragment } from 'react'
 import { Combobox, Dialog, Transition } from '@headlessui/react'
 import "../css/sidebar-dropdown.css";
@@ -138,58 +146,30 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
           {!loadingLogo ? (
             <nav className="mt-5 flex-1 space-y-1 bg-white px-4 pt-4" aria-label="Sidebar">
               {navigation.map((item) => (
-                <>
-                  <Link
-                    key={item.id}
-                    to={item.href}
-                    className={classNames(
-                      item.current
-                        ? 'bg-gray-100 text-[#0077E0] hover:bg-[#F5F5F5] active'
-                        : 'text-gray-600 hover:bg-[#F5F5F5] hover:text-[#0077E0]',
-                      'group flex items-center px-2 py-2 text-[13px] font-normal rounded-md'
-                    )}
-                    onClick={() => handleMenuClick(item.href)}
-                    onMouseEnter={() => {
-                      const tooltip = document.getElementById(`tooltip-${item.id}`);
-                      tooltip.classList.remove('opacity-0');
-                      tooltip.classList.remove('invisible');
-                    }}
-                    onMouseLeave={() => {
-                      const tooltip = document.getElementById(`tooltip-${item.id}`);
-                      tooltip.classList.add('opacity-0');
-                      tooltip.classList.add('invisible');
-                    }}
-                  >
-                    <img src={item.icon} className="mr-3 flex-shrink-0 h-6 w-6" alt=""/>
-                    <span className="flex-1 item-name">{item.name}</span>
-                    {item.count ? (
-                      <>
-                      {/* Desktop Version */}
-                      <span
-                        className={classNames(
-                          item.current ? 'bg-white' : 'bg-gray-100 group-hover:bg-gray-200',
-                          'ml-3 inline-block py-0.5 px-3 text-xs font-medium rounded-full item-name'
-                        )}
-                      >
-                        {item.count}
-                      </span>
-
-                      {/* Responsive Version */}
-                      <span
-                        className={classNames(
-                          item.current ? 'bg-white' : 'bg-gray-100 group-hover:bg-gray-200',
-                          'flex items-center justify-center w-[20px] h-[20px] text-xs font-medium rounded-full absolute left-[40px] translate-y-[12px] item-name-res'
-                        )}
-                      >
-                        {item.count}
-                      </span>
-                      </>
-                    ) : null}
-                  </Link>
-                  <div id={`tooltip-${item.id}`} role="tooltip" className="tooltip-menu absolute invisible opacity-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg left-[60px] text-xs translate-y-[-120%] whitespace-pre shadow-sm dark:bg-gray-700">
-                    {item.name}
-                  </div>
-                </>
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={classNames(
+                    item.current
+                      ? 'bg-gray-100 text-[#0077E0] hover:bg-[#F5F5F5] active'
+                      : 'text-gray-600 hover:bg-[#F5F5F5] hover:text-[#0077E0]',
+                    'group flex items-center px-2 py-2 text-xs font-semibold rounded-md'
+                  )}
+                  onClick={() => handleMenuClick(item.href)}
+                >
+                  <img src={item.icon} className="mr-3 flex-shrink-0 h-6 w-6" alt="" />
+                  <span className="flex-1">{item.name}</span>
+                  {/* {item.count ? (
+                    <span
+                      className={classNames(
+                        item.current ? 'bg-white' : 'bg-gray-100 group-hover:bg-gray-200',
+                        'ml-3 inline-block py-0.5 px-3 text-xs font-medium rounded-full'
+                      )}
+                    >
+                      {item.count}
+                    </span>
+                  ) : null} */}
+                </Link>
               ))}
               <h2 className="text-xs font-bold text-[#6B7280] pt-5 pl-2 your-team">ทีมของคุณ</h2>
               <hr className="line-your-team"/>
@@ -265,105 +245,102 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
           )}
 
         </div>
-        <div className="flex flex-shrink-0 bg-[#F5F5F5] m-4 rounded-md avatar-user"
-          onMouseEnter={() => {
-            const user = document.getElementById("tooltip-avatar-user");
-            user.classList.remove('opacity-0');
-            user.classList.remove('invisible');
-          }}
-          onMouseLeave={() => {
-            const user = document.getElementById("tooltip-avatar-user");
-            user.classList.add('opacity-0');
-            user.classList.add('invisible');
-          }}
-        >
-          <div id="tooltip-avatar-user" role="tooltip" className="tooltip-menu absolute invisible opacity-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg left-[60px] text-xs whitespace-pre shadow-sm dark:bg-gray-700">
-            John Persson
-          </div>
+
+        <div className="flex flex-shrink-0 p-4 bg-[#F5F5F5] m-4 rounded-[11px]">
           <a href="#" className="group block w-full flex-shrink-0">
             <div className="flex items-center">
-              <img
-                className="inline-block h-9 w-9 rounded-full"
-                src={pjob}
-                alt=""
-              />
+              <div>
+                <img
+                  className="inline-block h-8 w-8 rounded-full"
+                  src={pjob}
+                  alt=""
+                  onClick={() => {setShowModal(!showModal); console.log(showModal)}}
+                />
+              </div>
 
               {showModal ? (
                 <>
                   <div
-                    className="sidebar-options-menu justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                    className="sidebar-options-menu  justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 h-fit top-[30.5%] z-1 outline-none focus:outline-none"
                   >
-                    <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                    <div className="relative w-full mb-1 border border-[#F2F4F7] rounded-lg">
                       {/*content*/}
-                      <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                      <div className="border border-[#F2F4F7] rounded-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                         {/*header*/}
                         <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                           <div className="user0in0menu">
-                            <div className="user-image-inside-menu">
+                            <div className="user-image-inside-menu h-10 w-10">
                               <img
-                                className="inline-block h-9 w-9 rounded-full"
-                                src={pjob}
+                                className="inline-block w-full object-cover"
+                                src={pjobActive}
                                 alt=""
                               />
                             </div>
-                            <div className="user-name-in-side-menu">
-                              <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">John Persson</p>
-                              <p className="user-email text-xs font-medium text-gray-500 group-hover:text-gray-700">john@zaviago.com</p>
+                            <div className="user-name-in-side-menu ml-12">
+                              <p className="text-sm font-medium text-[#344054] group-hover:text-gray-900">John Persson</p>
+                              <p className="user-email leading-[1.5] text-sm font-normal text-[#667085] group-hover:text-gray-700">john@zaviago.com</p>
                             </div>
                           </div>
-                          <button
-                            className=""
-                            onClick={show_menu}
-                          >
-                            <span aria-hidden="true">&times;</span>
-                          </button>
                         </div>
                         {/*body*/}
-                        <div className="side-menu-ul-container relative p-6 flex-auto">
+                        <div className="side-menu-ul-container relative pl-4 py-6 flex-auto">
                           <ul >
                             <li
                               onClick={() => setisSwitchModalOpen(true)}
                             >
                               <span className="logo-in-menu">
-                                <img src={require('../img/reverse-arrows.png')} />
+                                <img src={userProfileIcon} />
                               </span>
-                              <span>Switch Team</span>
-                            </li>
-                            <li>
-                              <span className="logo-in-menu"><img src={require('../img/account-in-menu.png')} /></span> <span>Account</span>
+                              <span>โปรไฟล์</span>
                             </li>
                           </ul>
                         </div>
                         <div>
                           <hr className="hr-1"></hr>
                         </div>
-                        <div className="side-menu-ul-container relative p-6 flex-auto">
+                        <div className="side-menu-ul-container relative pl-4 py-6 flex-auto">
                           <ul >
                             <li>
-                              <span className="logo-in-menu"><img src={require('../img/ask-support.png')} /></span> <span>Help and support</span>
+                              <span className="logo-in-menu">
+                                <img src={usersProfileIcon} />
+                              </span>
+                              <span>เปลี่ยนทีม</span>
                             </li>
                             <li>
-                              <span className="logo-in-menu"><img src={require('../img/whats-new.png')} /></span> <span>What's new</span>
-                            </li>
-                            <li>
-                              <span className="logo-in-menu"><img src={require('../img/upgrade-to-pro.png')} /></span> <span>Upgrade to pro</span>
+                              <span className="logo-in-menu">
+                                <img src={userPlusIcon} />
+                              </span>
+                              <span>เชิญสมาชิกเข้าทีม</span>
                             </li>
                           </ul>
                         </div>
                         <div>
                           <hr className="hr-1"></hr>
                         </div>
-                        <div className="side-menu-ul-container relative p-6 flex-auto">
-                          <ul className="sign-out-ul">
+                        <div className="side-menu-ul-container relative pl-4 py-6 flex-auto">
+                          <ul >
                             <li>
-                              <span className="logo-in-menu">
-                                <svg class="svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M835.669333 554.666667h-473.173333A42.453333 42.453333 0 0 1 320 512a42.666667 42.666667 0 0 1 42.474667-42.666667h473.173333l-161.813333-161.834666a42.666667 42.666667 0 0 1 60.330666-60.330667l234.666667 234.666667a42.666667 42.666667 0 0 1 0 60.330666l-234.666667 234.666667a42.666667 42.666667 0 0 1-60.330666-60.330667L835.669333 554.666667zM554.666667 42.666667a42.666667 42.666667 0 1 1 0 85.333333H149.525333C137.578667 128 128 137.578667 128 149.482667v725.034666C128 886.4 137.6 896 149.525333 896H554.666667a42.666667 42.666667 0 1 1 0 85.333333H149.525333A106.816 106.816 0 0 1 42.666667 874.517333V149.482667A106.773333 106.773333 0 0 1 149.525333 42.666667H554.666667z" fill="currentColor" /></svg>
-                              </span>
-                              <span>Sign Out</span><br></br>
+                              <span className="logo-in-menu"><img src={layersIcon} /></span> <span>ประวัติการเปลี่ยนแปลง</span>
+                            </li>
+                            <li>
+                              <span className="logo-in-menu"><img src={slackIcon} /></span> <span>Zaviago Slack Community</span>
+                            </li>
+                            <li>
+                              <span className="logo-in-menu"><img src={helpIcon} /></span> <span>ศูนย์ช่วยเหลือ</span>
                             </li>
                           </ul>
-                          <ul className="app-version">
-                            <li> <span>v.1.4.88</span></li>
+                        </div>
+                        <div>
+                          <hr className="hr-1"></hr>
+                        </div>
+                        <div>
+                          <hr className="hr-1"></hr>
+                        </div>
+                        <div className="side-menu-ul-container relative pl-4 py-6 flex-auto">
+                          <ul >
+                            <li>
+                              <span className="logo-in-menu"><img src={logoutIcon} /></span> <span>ออกจากระบบ</span>
+                            </li>
                           </ul>
                         </div>
                         {/*footer*/}
@@ -379,14 +356,14 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                  {/* <div className="opacity-25 fixed inset-0 z-40 bg-black"></div> */}
                 </>
               ) : null}
               <div className="ml-3 item-name">
                 <button
                   className="flex gap-x-9"
                   type="button"
-                  onClick={() => setShowModal(true)}
+                  
                 >
                   <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900 calsans">John Persson</p>
                   {/* <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">john@zaviago.com</p> */}
