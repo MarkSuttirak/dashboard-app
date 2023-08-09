@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
-import Logo from "../img/Copilot.svg";
+import React, { useState, useEffect, useContext } from "react";
+import Logo from "../img/logo.svg";
 import dashboardImg from "../img/dashboard.svg";
-import appsImg from "../img/buildings.svg";
-import teamsImg from "../img/usersIcon.svg";
-import giftImg from "../img/giftImg.svg";
+import appsImg from "../img/apps.svg";
+import teamsImg from "../img/teams.svg";
 import billingImg from "../img/billingImg.svg";
 import settingsImg from "../img/settingsImg.svg";
 import userProfileIcon from "../img/userProfileIcon.svg";
@@ -13,20 +12,21 @@ import layersIcon from "../img/2-layersIcon.svg";
 import slackIcon from "../img/slackIcon.svg";
 import helpIcon from "../img/help-circleIcon.svg";
 import logoutIcon from "../img/log-outIcon.svg";
-import mock1 from '../img/mock1.svg'
-import mock2 from '../img/mock2.svg'
-import mock3 from '../img/mock3.svg'
+import integrationIcon from "../img/integrationIcon.svg";
+import mock1 from '../img/mock1.svg';
+import mock2 from '../img/mock2.svg';
+import mock3 from '../img/mock3.svg';
+import switchuser from '../img/switchuser.svg';
 import { Link, useLocation } from "react-router-dom";
 import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/24/outline'
 import pjob from "../img/pjob.svg";
-import pjobActive from "../img/pJobAcrtive.png";
 import { Fragment } from 'react'
 import { Combobox, Dialog, Transition } from '@headlessui/react'
 import "../css/sidebar-dropdown.css";
 import { switchContext } from '../App'
 import { PlusIcon } from "@heroicons/react/20/solid";
 
-const Sidebar = ({ loadingLogo, tooltip }) => {
+const Sidebar = ({ loadingLogo }) => {
   const location = useLocation();
   const [active, setActive] = useState('');
 
@@ -36,9 +36,6 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
     sidebar.style.animation = "sidebarActive 400ms forwards";
     sidebarOverlay.style.animation = "sidebarOverlayActive 400ms forwards";
   }
-
-  const tooltipRef = useRef(null);
-  const containerRef = useRef(null);
 
   const closeSidebar = () => {
     const sidebar = document.getElementById('sidebar');
@@ -61,11 +58,6 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
     { name: 'ตั้งค่า', icon: settingsImg, href: '#', count: 12, current: active === "/settings" || active === "/change-domain" ? true : false, active: active, id: 'settings' },
   ]
 
-  const teamMembers = [
-    { avatar: mock1, name: 'Sebastian Rindom'},
-    { avatar: mock2, name: 'Oliver Windall Juhl'},
-    { avatar: mock3, name: 'Ludvig Rask'},
-  ]
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -103,6 +95,10 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
 
   const [isSwitchModalOpen, setisSwitchModalOpen] = React.useContext(switchContext);
 
+
+
+
+
   function show_menu() {
     setShowModal(false);
   }
@@ -119,29 +115,52 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
   //   setLoadingLogo(false);
   // };
 
+
   return (
     <>
+
+      <div className="w-full h-full fixed z-40 bg-gray-500" id="sidebar-overlay" onClick={closeSidebar}></div>
       <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white fixed h-screen" id="sidebar">
-        <div className="flex flex-1 flex-col pt-5 pb-4">
-          <div className="flex flex-shrink-0 items-center px-4 columns-2 justify-between">
+        <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
+          <div className="flex flex-shrink-0 justify-between items-center px-4 columns-2">
             {!loadingLogo ? (
-              <div className="flex gap-x-3 p-1">
-                <img
-                  className="w-auto"
-                  src={Logo}
-                  alt="Your Company"
-                />
-                <h1 className="calsans text-[#1D2D35] text-[19px] item-name">zaviago<span className="text-xs calsans">.com</span></h1>
-              </div>
+              <img
+                className="w-auto"
+                src={Logo}
+                alt="Your Company"
+              />
             ) : (
               <div className="animate-pulse">
                 <div className="bg-[#F3F3F3] w-[54px] aspect-square rounded-lg"></div>
               </div>
             )}
+
+            {!loadingLogo ? (
+              <div>
+                <h1 className="sidebar-btn search-btn" onClick={openSearch}>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" /></svg>
+                </h1>
+
+                <h1 className="sidebar-btn close-sidebar-mobile" onClick={closeSidebar}>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg>
+                </h1>
+              </div>
+            ) : (
+              <div className="animate-pulse">
+                <div className="bg-[#F3F3F3] w-[32px] aspect-square rounded-lg"></div>
+              </div>
+            )}
+          </div>
+
+          <div className="flex flex-shrink-0 justify-between items-center px-4 columns-2 search-btn-sec mt-4 -mb-2">
+            <h1 className="sidebar-btn search-btn-mobile" onClick={openSearch}>
+              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" /></svg>
+            </h1>
           </div>
 
           {!loadingLogo ? (
             <nav className="mt-5 flex-1 space-y-1 bg-white px-4 pt-4" aria-label="Sidebar">
+              <h4 className="text-sm font-semibold" style={{ fontFamily: "Inter", color: "#1F272E" }}>Business Apps</h4>
               {navigation.map((item) => (
                 <Link
                   key={item.name}
@@ -156,7 +175,7 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                 >
                   <img src={item.icon} className="mr-3 flex-shrink-0 h-6 w-6" alt="" />
                   <span className="flex-1">{item.name}</span>
-                  {/* {item.count ? (
+                  {item.count ? (
                     <span
                       className={classNames(
                         item.current ? 'bg-white' : 'bg-gray-100 group-hover:bg-gray-200',
@@ -165,51 +184,9 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                     >
                       {item.count}
                     </span>
-                  ) : null} */}
+                  ) : null}
                 </Link>
               ))}
-              <h2 className="text-xs font-bold text-[#6B7280] pt-5 pl-2 your-team">ทีมของคุณ</h2>
-              <hr className="line-your-team"/>
-              {teamMembers.map((member) => (
-                <>
-                  <div className="flex items-center pr-2 team-members py-2 text-xs font-semibold rounded-md"
-                    onMouseEnter={() => {
-                      const memberList = document.getElementById(`tooltip-${member.name}`);
-                      memberList.classList.remove('opacity-0');
-                      memberList.classList.remove('invisible');
-                    }}
-                    onMouseLeave={() => {
-                      const memberList = document.getElementById(`tooltip-${member.name}`);
-                      memberList.classList.add('opacity-0');
-                      memberList.classList.add('invisible');
-                    }}>
-                    <img src={member.avatar} className="mr-3 flex-shrink-0 h-5 w-5" alt="" />
-                    <span className="flex-1 item-name">{member.name}</span>
-                  </div>
-                  <div id={`tooltip-${member.name}`} role="tooltip" className="tooltip-menu absolute invisible opacity-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity translate-y-[-120%] duration-300 bg-gray-900 rounded-lg left-[60px] text-xs whitespace-pre shadow-sm dark:bg-gray-700">
-                    {member.name}
-                  </div>
-                </>
-              ))}
-
-              <div className="flex items-center pr-2 team-members py-2 text-xs font-semibold rounded-md" 
-                onMouseEnter={() => {
-                  const invite = document.getElementById("tooltip-invite");
-                  invite.classList.remove('opacity-0');
-                  invite.classList.remove('invisible');
-                }}
-                onMouseLeave={() => {
-                  const invite = document.getElementById("tooltip-invite");
-                  invite.classList.add('opacity-0');
-                  invite.classList.add('invisible');
-                }}
-              >
-                <PlusIcon color="#2684FF" className="min-h-[20px] min-w-[20px] w-5 h-5 bg-[#D6E6FE] rounded-full mr-3"/>
-                <span className="flex-1 text-[#2684FF] item-name">เชิญสมาชิกเข้าทีม</span>
-              </div>
-              <div id="tooltip-invite" role="tooltip" className="tooltip-menu absolute invisible opacity-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity translate-y-[-120%] duration-300 bg-gray-900 rounded-lg left-[60px] text-xs whitespace-pre shadow-sm dark:bg-gray-700">
-                เชิญสมาชิกเข้าทีม
-              </div>
             </nav>
           ) : (
             <div className="animate-pulse space-y-3">
@@ -227,22 +204,13 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                       <div className="w-[80%] h-[28px] bg-[#F3F3F3] block rounded-lg"></div>
                     </Link>
                   ))}
-
-                  <div className="h-[16px] w-[20%] bg-[#F3F3F3] rounded-md block"></div>
-                  {teamMembers.map((member) => (
-                    <div className="flex">
-                      <div className="w-[15%] h-[28px] bg-[#F3F3F3] block rounded-lg mr-4 item-name">
-                      </div>
-                      <div className="w-[80%] h-[28px] bg-[#F3F3F3] block rounded-lg"></div>
-                    </div>
-                  ))}
                 </nav>
               </div>
             </div>
           )}
 
-        </div>
 
+        </div>
         <div className="flex flex-shrink-0 p-4 bg-[#F5F5F5] m-4 rounded-[11px]">
           <a href="#" className="group block w-full flex-shrink-0">
             <div className="flex items-center">
@@ -255,21 +223,22 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                 />
               </div>
 
+
               {showModal ? (
                 <>
                   <div
                     className="sidebar-options-menu  justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
                   >
-                    <div className="relative w-full mb-1 border border-[#F2F4F7] rounded-lg">
+                    <div className="relative w-auto my-6 mx-auto max-w-3xl">
                       {/*content*/}
-                      <div className="border border-[#F2F4F7] rounded-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                      <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                         {/*header*/}
                         <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                           <div className="user0in0menu">
-                            <div className="user-image-inside-menu h-10 w-10">
+                            <div className="user-image-inside-menu">
                               <img
-                                className="inline-block w-full object-cover"
-                                src={pjobActive}
+                                className="inline-block h-9 w-9 rounded-full"
+                                src={pjob}
                                 alt=""
                               />
                             </div>
@@ -278,66 +247,60 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                               <p className="user-email leading-[1] text-sm font-normal text-[#667085] group-hover:text-gray-700">john@zaviago.com</p>
                             </div>
                           </div>
+                          <button
+                            className=""
+                            onClick={show_menu}
+                          >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
                         </div>
                         {/*body*/}
-                        <div className="side-menu-ul-container relative pl-4 py-6 flex-auto">
+                        <div className="side-menu-ul-container relative p-6 flex-auto">
                           <ul >
                             <li
                               onClick={() => setisSwitchModalOpen(true)}
                             >
                               <span className="logo-in-menu">
-                                <img src={userProfileIcon} />
+                                <img src={require('../img/reverse-arrows.png')} />
                               </span>
-                              <span>โปรไฟล์</span>
+                              <span>Switch Team</span>
+                            </li>
+                            <li>
+                              <span className="logo-in-menu"><img src={require('../img/account-in-menu.png')} /></span> <span>Account</span>
                             </li>
                           </ul>
                         </div>
                         <div>
                           <hr className="hr-1"></hr>
                         </div>
-                        <div className="side-menu-ul-container relative pl-4 py-6 flex-auto">
+                        <div className="side-menu-ul-container relative p-6 flex-auto">
                           <ul >
+                            <li>
+                              <span className="logo-in-menu"><img src={require('../img/ask-support.png')} /></span> <span>Help and support</span>
+                            </li>
+                            <li>
+                              <span className="logo-in-menu"><img src={require('../img/whats-new.png')} /></span> <span>What's new</span>
+                            </li>
+                            <li>
+                              <span className="logo-in-menu"><img src={require('../img/upgrade-to-pro.png')} /></span> <span>Upgrade to pro</span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div>
+                          <hr className="hr-1"></hr>
+                        </div>
+                        <div className="side-menu-ul-container relative p-6 flex-auto">
+                          <ul className="sign-out-ul">
                             <li>
                               <span className="logo-in-menu">
-                                <img src={usersProfileIcon} />
+                                <svg class="svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M835.669333 554.666667h-473.173333A42.453333 42.453333 0 0 1 320 512a42.666667 42.666667 0 0 1 42.474667-42.666667h473.173333l-161.813333-161.834666a42.666667 42.666667 0 0 1 60.330666-60.330667l234.666667 234.666667a42.666667 42.666667 0 0 1 0 60.330666l-234.666667 234.666667a42.666667 42.666667 0 0 1-60.330666-60.330667L835.669333 554.666667zM554.666667 42.666667a42.666667 42.666667 0 1 1 0 85.333333H149.525333C137.578667 128 128 137.578667 128 149.482667v725.034666C128 886.4 137.6 896 149.525333 896H554.666667a42.666667 42.666667 0 1 1 0 85.333333H149.525333A106.816 106.816 0 0 1 42.666667 874.517333V149.482667A106.773333 106.773333 0 0 1 149.525333 42.666667H554.666667z" fill="currentColor" /></svg>
                               </span>
-                              <span>เปลี่ยนทีม</span>
-                            </li>
-                            <li>
-                              <span className="logo-in-menu">
-                                <img src={userPlusIcon} />
-                              </span>
-                              <span>เชิญสมาชิกเข้าทีม</span>
+                              <span>Sign Out</span><br></br>
+
                             </li>
                           </ul>
-                        </div>
-                        <div>
-                          <hr className="hr-1"></hr>
-                        </div>
-                        <div className="side-menu-ul-container relative pl-4 py-6 flex-auto">
-                          <ul >
-                            <li>
-                              <span className="logo-in-menu"><img src={layersIcon} /></span> <span>ประวัติการเปลี่ยนแปลง</span>
-                            </li>
-                            <li>
-                              <span className="logo-in-menu"><img src={slackIcon} /></span> <span>Zaviago Slack Community</span>
-                            </li>
-                            <li>
-                              <span className="logo-in-menu"><img src={helpIcon} /></span> <span>ศูนย์ช่วยเหลือ</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div>
-                          <hr className="hr-1"></hr>
-                        </div>
-                        <div>
-                          <hr className="hr-1"></hr>
-                        </div>
-                        <div className="side-menu-ul-container relative pl-4 py-6 flex-auto">
-                          <ul >
-                            <li>
-                              <span className="logo-in-menu"><img src={logoutIcon} /></span> <span>ออกจากระบบ</span>
-                            </li>
+                          <ul className="app-version">
+                            <li> <span>v.1.4.88</span></li>
                           </ul>
                         </div>
                         {/*footer*/}
@@ -353,12 +316,12 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                       </div>
                     </div>
                   </div>
-                  {/* <div className="opacity-25 fixed inset-0 z-40 bg-black"></div> */}
+                  <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
                 </>
               ) : null}
-              <div className="ml-3 item-name">
+              <div className="ml-3">
                 <button
-                  className="flex gap-x-9"
+                  className=""
                   type="button"
                   
                 >
