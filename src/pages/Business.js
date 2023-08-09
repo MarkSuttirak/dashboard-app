@@ -145,7 +145,7 @@ function Business() {
             <p className='font-inter font-medium text-[#FFFFFF] text-[13px] mt-1'>Choose professional solutions to power your business</p>
             <h2 className='font-inter text-[32px] font-bold sm:w-[390px] text-[#ffffff] leading-[38.73px] mt-[14px]'>Get the POS system for your store.</h2>
           </div>
-          <div className='py-[16px] px-[23px] sm:flex justify-between items-center'>
+          <div className='py-[16px] px-[23px] flex justify-between items-center'>
             <div className='flex items-center'>
               <img src={POSLogo} className='w-[68px] h-[68px] mr-5' alt="" />
               <div>
@@ -162,7 +162,7 @@ function Business() {
         <div className='section-container mx-auto mt-[50px]'>
           <h3 className='text-[#1F272E] font-calSans font-semibold font-sm'>Most popular apps</h3>
           <p className='font-inter font-normal text-[13px] text-[#687178] mt-1'>Explore the apps that a wide range of merchants rely on.</p>
-          <div className='grid sm:grid-cols-2 grid-cols-1 mt-[37px]'>
+          <div className='grid grid-cols-2 mt-[37px]'>
             {popularApps.map((item, index) =>
               <div className='flex mb-[25px]' key={index}>
                 <div><img src={item.image} alt="" className='rounded-xl' style={{ boxShadow: '0px 4px 15px 0px #00000026' }} /></div>
@@ -176,7 +176,7 @@ function Business() {
           </div>
         </div>
 
-        <div className='section-container mx-auto mt-[60px] sm:flex gap-[14px]'>
+        <div className='section-container mx-auto mt-[60px] flex gap-[14px]'>
           <div className='sm:w-1/2 rounded-[16px]' style={{ boxShadow: '0px 4px 70px 0px #72727240' }}>
             <div className='connectBusiness1 flex items-end h-full  p-6'>
               <h3 className='text-white font-inter font-bold text-[32px] leading-[38.73px]' style={{ boxShadow: '0px 4px 4px 0px #00000040', }}>Sync all sides of your business.</h3>
@@ -186,7 +186,7 @@ function Business() {
               <p className='font-inter font-normall text-[13px] text-[#687178]'>Facilitate payments and pay out sellers or service providers.</p>
             </div>
           </div>
-          <div className='sm:w-1/2 rounded-[16px] sm:mt-0 mt-5' style={{ boxShadow: '0px 4px 70px 0px #72727240' }}>
+          <div className='sm:w-1/2 rounded-[16px]' style={{ boxShadow: '0px 4px 70px 0px #72727240' }}>
             <div className='connectBusiness2 flex items-start h-full  p-6'>
               <h3 className='text-white font-inter font-bold text-[32px] leading-[38.73px] sm:w-[190px]' style={{ boxShadow: '0px 4px 4px 0px #00000040', }}>Get the POS system for your store.</h3>
             </div>
@@ -219,7 +219,7 @@ function Business() {
         <div className='section-container mx-auto mt-[80px]'>
           <h3 className='text-[#1F272E] font-calSans font-semibold font-sm'>Most popular apps</h3>
           <p className='font-inter font-normal text-[13px] text-[#687178] mt-1'>Explore the apps that a wide range of merchants rely on.</p>
-          <div className='grid sm:grid-cols-2 grid-cols-1 mt-[50px]'>
+          <div className='grid grid-cols-2 mt-[50px]'>
             {mostPopularApps.map((item, index) =>
               <div className='flex mb-[30px]' key={index}>
                 <div><img src={item.image} alt="" className='rounded-xl' style={{ boxShadow: '0px 4px 15px 0px #00000026' }} /></div>
