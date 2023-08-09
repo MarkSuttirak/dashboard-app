@@ -5,7 +5,6 @@ import appsImg from "../img/apps.svg";
 import teamsImg from "../img/teams.svg";
 import billingImg from "../img/billingImg.svg";
 import settingsImg from "../img/settingsImg.svg";
-<<<<<<< HEAD
 import userProfileIcon from "../img/userProfileIcon.svg";
 import usersProfileIcon from "../img/usersProfileIcon.svg";
 import userPlusIcon from "../img/user-plusIcon.svg";
@@ -18,8 +17,6 @@ import mock1 from '../img/mock1.svg';
 import mock2 from '../img/mock2.svg';
 import mock3 from '../img/mock3.svg';
 import switchuser from '../img/switchuser.svg';
-=======
->>>>>>> parent of bc39505 (Dashboard change and other things)
 import { Link, useLocation } from "react-router-dom";
 import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/24/outline'
 import pjob from "../img/pjob.svg";
