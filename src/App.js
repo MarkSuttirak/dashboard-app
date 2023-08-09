@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import './App.scss';
 import Sidebar from './components/sidebar';
 import Dashboard from './pages/dashboard';
+import AppsPage from './pages/apps';
 import ChangeDomain from './pages/changeDomain';
 import Welcome from './pages/register/welcome';
 import Register from './pages/register/setAccount';
