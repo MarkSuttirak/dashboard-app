@@ -24,7 +24,7 @@ import { Fragment } from 'react'
 import { Combobox, Dialog, Transition } from '@headlessui/react'
 import "../css/sidebar-dropdown.css";
 import { switchContext } from '../App'
-// import TeamModal from "../components/switchTeamModal";
+import { PlusIcon } from "@heroicons/react/20/solid";
 
 const Sidebar = ({ loadingLogo }) => {
   const location = useLocation();
@@ -49,11 +49,13 @@ const Sidebar = ({ loadingLogo }) => {
   }
 
   const navigation = [
-    { name: 'Dashboard', icon: dashboardImg, href: '/', current: active === '/' ? true : false },
-    { name: 'Apps', icon: appsImg, href: '/apps', count: 3, current: active === '/apps' ? true : false },
-    { name: 'Teams', icon: teamsImg, href: '/teams', count: 4, current: active === '/teams' ? true : false },
-    { name: 'Billing', icon: billingImg, href: '#', current: active === "#" ? true : false, active: active },
-    { name: 'Setting', icon: settingsImg, href: '#', count: 12, current: active === "/settings" || active === "/change-domain" ? true : false, active: active },
+    { name: 'Dashboard', icon: dashboardImg, href: '/', current: active === '/' ? true : false, id: 'dashboard' },
+    { name: 'Teams', icon: teamsImg, href: '/teams', count: 4, current: active === '/teams' ? true : false, id: 'teams' },
+    { name: 'Apps', icon: appsImg, href: '/apps', count: 3, current: active === '/apps' ? true : false, id: 'apps' },
+    // { name: 'Integration', icon: integrationIcon, href: '/integration', count: 4, current: active === '/integration' ? true : false, id: 'integration' },
+    { name: 'Gift & Privilege', icon: giftImg, href: '#', current: active === "#" ? true : false, active: active, id: 'gift' },
+    { name: 'การเรียกเก็บเงิน', icon: billingImg, href: '#', current: active === "#" ? true : false, active: active, id: 'billing' },
+    { name: 'ตั้งค่า', icon: settingsImg, href: '#', count: 12, current: active === "/settings" || active === "/change-domain" ? true : false, active: active, id: 'settings' },
   ]
 
 
@@ -240,9 +242,9 @@ const Sidebar = ({ loadingLogo }) => {
                                 alt=""
                               />
                             </div>
-                            <div className="user-name-in-side-menu">
-                              <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">John Persson</p>
-                              <p className="user-email text-xs font-medium text-gray-500 group-hover:text-gray-700">john@zaviago.com</p>
+                            <div className="user-name-in-side-menu ml-12 mt-1">
+                              <p className="text-sm font-medium text-[#344054] group-hover:text-gray-900">John Persson</p>
+                              <p className="user-email leading-[1] text-sm font-normal text-[#667085] group-hover:text-gray-700">john@zaviago.com</p>
                             </div>
                           </div>
                           <button
@@ -323,8 +325,9 @@ const Sidebar = ({ loadingLogo }) => {
                   type="button"
                   
                 >
-                  <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">John Persson</p>
-                  <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">john@zaviago.com</p>
+                  <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900 calsans">John Persson</p>
+                  {/* <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">john@zaviago.com</p> */}
+                  {/* <img src={switchuser} /> */}
                 </button>
 
               </div>
@@ -395,7 +398,6 @@ const Sidebar = ({ loadingLogo }) => {
                       ))}
                     </Combobox.Options>
                   )}
-
                   {query !== '' && filteredSearch.length === 0 && (
                     <div className="py-14 px-4 text-center sm:px-14">
                       <UsersIcon className="mx-auto h-6 w-6 text-gray-400" aria-hidden="true" />
