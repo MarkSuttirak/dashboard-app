@@ -13,6 +13,9 @@ import layersIcon from "../img/2-layersIcon.svg";
 import slackIcon from "../img/slackIcon.svg";
 import helpIcon from "../img/help-circleIcon.svg";
 import logoutIcon from "../img/log-outIcon.svg";
+import mock1 from '../img/mock1.svg'
+import mock2 from '../img/mock2.svg'
+import mock3 from '../img/mock3.svg'
 import { Link, useLocation } from "react-router-dom";
 import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/24/outline'
 import pjob from "../img/pjob.svg";
@@ -22,7 +25,6 @@ import { Combobox, Dialog, Transition } from '@headlessui/react'
 import "../css/sidebar-dropdown.css";
 import { switchContext } from '../App'
 import { PlusIcon } from "@heroicons/react/20/solid";
-// import TeamModal from "../components/switchTeamModal";
 
 const Sidebar = ({ loadingLogo, tooltip }) => {
   const location = useLocation();
@@ -53,7 +55,7 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
     { name: 'Dashboard', icon: dashboardImg, href: '/', current: active === '/' ? true : false, id: 'dashboard' },
     { name: 'Teams', icon: teamsImg, href: '/teams', count: 4, current: active === '/teams' ? true : false, id: 'teams' },
     { name: 'Apps', icon: appsImg, href: '/apps', count: 3, current: active === '/apps' ? true : false, id: 'apps' },
-    { name: 'Integration', icon: integrationIcon, href: '/integration', count: 4, current: active === '/integration' ? true : false, id: 'integration' },
+    // { name: 'Integration', icon: integrationIcon, href: '/integration', count: 4, current: active === '/integration' ? true : false, id: 'integration' },
     { name: 'Gift & Privilege', icon: giftImg, href: '#', current: active === "#" ? true : false, active: active, id: 'gift' },
     { name: 'การเรียกเก็บเงิน', icon: billingImg, href: '#', current: active === "#" ? true : false, active: active, id: 'billing' },
     { name: 'ตั้งค่า', icon: settingsImg, href: '#', count: 12, current: active === "/settings" || active === "/change-domain" ? true : false, active: active, id: 'settings' },
@@ -276,12 +278,6 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                               <p className="user-email leading-[1] text-sm font-normal text-[#667085] group-hover:text-gray-700">john@zaviago.com</p>
                             </div>
                           </div>
-                          <button
-                            className=""
-                            onClick={show_menu}
-                          >
-                            <span aria-hidden="true">&times;</span>
-                          </button>
                         </div>
                         {/*body*/}
                         <div className="side-menu-ul-container relative pl-4 py-6 flex-auto">
@@ -368,7 +364,7 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                 >
                   <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900 calsans">John Persson</p>
                   {/* <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">john@zaviago.com</p> */}
-                  <img src={switchuser} />
+                  {/* <img src={switchuser} /> */}
                 </button>
 
               </div>
