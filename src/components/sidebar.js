@@ -213,7 +213,7 @@ const Sidebar = ({ loadingLogo }) => {
                   className="inline-block h-8 w-8 rounded-full"
                   src={pjob}
                   alt=""
-                  onClick={() => setShowModal(true)}
+                  onClick={() => {setShowModal(!showModal); console.log(showModal)}}
                 />
               </div>
 
@@ -221,7 +221,7 @@ const Sidebar = ({ loadingLogo }) => {
               {showModal ? (
                 <>
                   <div
-                    className="sidebar-options-menu  justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                    className="sidebar-options-menu  justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 h-fit top-[30.5%] z-1 outline-none focus:outline-none"
                   >
                     <div className="relative w-full mb-1 border border-[#F2F4F7] rounded-lg">
                       {/*content*/}
@@ -236,17 +236,11 @@ const Sidebar = ({ loadingLogo }) => {
                                 alt=""
                               />
                             </div>
-                            <div className="user-name-in-side-menu ml-12 mt-1">
+                            <div className="user-name-in-side-menu ml-12">
                               <p className="text-sm font-medium text-[#344054] group-hover:text-gray-900">John Persson</p>
-                              <p className="user-email leading-[1] text-sm font-normal text-[#667085] group-hover:text-gray-700">john@zaviago.com</p>
+                              <p className="user-email leading-[1.5] text-sm font-normal text-[#667085] group-hover:text-gray-700">john@zaviago.com</p>
                             </div>
                           </div>
-                          <button
-                            className=""
-                            onClick={show_menu}
-                          >
-                            <span aria-hidden="true">&times;</span>
-                          </button>
                         </div>
                         {/*body*/}
                         <div className="side-menu-ul-container relative pl-4 py-6 flex-auto">
