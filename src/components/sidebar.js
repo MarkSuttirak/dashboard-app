@@ -16,6 +16,7 @@ import integrationIcon from "../img/integrationIcon.svg";
 import mock1 from '../img/mock1.svg';
 import mock2 from '../img/mock2.svg';
 import mock3 from '../img/mock3.svg';
+import giftImg from '../img/giftImg.svg';
 import switchuser from '../img/switchuser.svg';
 import { Link, useLocation } from "react-router-dom";
 import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/24/outline'
