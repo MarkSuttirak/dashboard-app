@@ -433,7 +433,6 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                       ))}
                     </Combobox.Options>
                   )}
-
                   {query !== '' && filteredSearch.length === 0 && (
                     <div className="py-14 px-4 text-center sm:px-14">
                       <UsersIcon className="mx-auto h-6 w-6 text-gray-400" aria-hidden="true" />
