@@ -26,6 +26,9 @@ import specialistIcon from "../img/specialist-icon.png";
 import upgradeicon from "../img/upgrade-icon.png";
 import addIcon from "../img/add-icon.png";
 import amazon from "../img/amazon.svg";
+import startWorkingIcon from "../img/start-working-icon.png";
+import appStoreIcon from "../img/appStoreIcon.png";
+import tutorialIcon from "../img/tutorialIcon.png";
 import { Link } from "react-router-dom";
 import PopUp from '../components/popup'
 import UserViewPopup from "../components/userViewPopup";
@@ -58,16 +61,19 @@ const Dashboard = ({ loadingLogo }) => {
       title: 'Start Working',
       description: 'Go to your business app',
       background: startWorking,
+      icon: startWorkingIcon,
     },
     {
       title: 'Apps Marketplace',
       description: 'See more at AppStore',
       background: appsMarketplace,
+      icon: appStoreIcon,
     },
     {
       title: 'Watch Tutorials',
       description: 'Learn Zaviago/OS',
       background: watchTutorials,
+      icon: tutorialIcon,
     },
   ];
 
@@ -182,9 +188,10 @@ const Dashboard = ({ loadingLogo }) => {
             {dashboardInfo.map((info) => (
               <div
                 key={info.title}
-                className="relative flex items-center space-x-3 bg-white p-4 pb-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400" style={{ background: "url(" + info.background + ")", backgroundSize: "100%", backgroundRepeat: "no-repeat", borderRadius: "20px", boxShadow: '0px 5px 23px 8px #0000001A' }}
+                className="h-[198px] relative flex items-start justify-between flex-col space-x-3 bg-white p-4 pb-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400" style={{ background: "url(" + info.background + ")", backgroundSize: "100%", backgroundRepeat: "no-repeat",backgroundSize: "contain", borderRadius: "20px", boxShadow: '0px 5px 23px 8px #0000001A' }}
               >
-                <div className="min-w-0" style={{ paddingTop: "8.25rem" }}>
+                <img src={info.icon} alt="" />
+                <div className="min-w-0">
                   <span className="absolute inset-0" aria-hidden="true" />
                   <h2 className="text-md font-bold text-white leading-5">{info.title}</h2>
                   <p className="truncate font-bold font-13" style={{ color: "#FFFFFF99" }}>{info.description}</p>

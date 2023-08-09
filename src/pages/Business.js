@@ -19,21 +19,20 @@ import testVideo from '../img/test.mp4'
 import blog1 from '../img/blog1.png'
 import blog2 from '../img/blog2.png'
 import blog3 from '../img/blog3.png'
-import POSLogo from '../img/POSLogo.png'
+import POSLogo from '../img/POSLogo.svg'
 import star from '../img/star.png'
-import instagramLogo from '../img/instagram.png'
-import businessIntelligent from '../img/bussiness-intelligent.png'
-import translationImg from '../img/translation.png'
-import payPalLogo from '../img/payPal.png'
-import applicationName from '../img/applicationName.png'
-import applicationName1 from '../img/applicationName1.png'
-import connectBusinessLogo from '../img/connectBusinessLogo.png'
-
-import freedlyLogo from '../img/freedlyLogo.png'
-import bulbYello from '../img/bulbYello.png'
-import googleLogo from '../img/googleLogo.png'
+import instagramLogo from '../img/instagram.svg'
+import businessIntelligent from '../img/bussiness-intelligent.svg'
+import translationImg from '../img/translation.svg'
+import payPalLogo from '../img/payPal.svg'
+import applicationName from '../img/applicationName.svg'
+import applicationName1 from '../img/applicationName1.svg'
+import connectBusinessLogo from '../img/connectBusinessLogo.svg'
+import freedlyLogo from '../img/freedlyLogo.svg'
+import bulbYello from '../img/bulbYello.svg'
+import googleLogo from '../img/googleLogo.svg'
 import flipIconPlus from '../img/flipIconPlus.png'
-import dropboxLogo from '../img/drpBoxLogo.png'
+import dropboxLogo from '../img/drpBoxLogo.svg'
 import FlipBox from '../components/flipBox'
 import flipIconMinus from '../img/flipIconMinus.png'
 import flipBoxLogos from '../img/flipBoxLogos.png'
@@ -162,9 +161,9 @@ function Business() {
         <div className='section-container mx-auto mt-[50px]'>
           <h3 className='text-[#1F272E] font-calSans font-semibold font-sm'>Most popular apps</h3>
           <p className='font-inter font-normal text-[13px] text-[#687178] mt-1'>Explore the apps that a wide range of merchants rely on.</p>
-          <div className='grid sm:grid-cols-2 grid-cols-1 mt-[37px]'>
+          <div className='grid sm:grid-cols-2 grid-cols-1 gap-x-10 gap-y-6 mt-[37px]'>
             {popularApps.map((item, index) =>
-              <div className='flex mb-[25px]' key={index}>
+              <div className='flex' key={index}>
                 <div><img src={item.image} alt="" className='rounded-xl' style={{ boxShadow: '0px 4px 15px 0px #00000026' }} /></div>
                 <div className='ml-5'>
                   <h3 className='font-inter font-semibold text-sm'>{item.title}</h3>
@@ -219,10 +218,12 @@ function Business() {
         <div className='section-container mx-auto mt-[80px]'>
           <h3 className='text-[#1F272E] font-calSans font-semibold font-sm'>Most popular apps</h3>
           <p className='font-inter font-normal text-[13px] text-[#687178] mt-1'>Explore the apps that a wide range of merchants rely on.</p>
-          <div className='grid sm:grid-cols-2 grid-cols-1 mt-[50px]'>
+          <div className='grid sm:grid-cols-2 grid-cols-1 gap-x-10 gap-y-6 mt-[50px]'>
             {mostPopularApps.map((item, index) =>
-              <div className='flex mb-[30px]' key={index}>
-                <div><img src={item.image} alt="" className='rounded-xl' style={{ boxShadow: '0px 4px 15px 0px #00000026' }} /></div>
+              <div className='flex' key={index}>
+                <div>
+                  <img src={item.image} alt="" className='rounded-xl' style={{ boxShadow: '0px 4px 15px 0px #00000026' }} />
+                </div>
                 <div className='ml-5'>
                   <h3 className='font-inter font-semibold text-sm'>{item.title}</h3>
                   <p className='font-inter font-normal text-[13px] text-[#687178] mt-1'>{item.description}</p>
@@ -243,7 +244,8 @@ function Business() {
                     <p className='font-inter font-medium text-[17px] leading-[21.06px] mt-3 sm:w-[190px] text-left text-white'>when you use your iPhone or Apple watch to pay with Apple Card.</p>
                   </div>
                   <div className='h-[40%] flex justify-end items-end'>
-                    <img src={flipIconPlus} alt="" className='w-[30px] h-[30px]' onClick={handleFlip} />
+                    <button className='w-[30px] h-[30px] bg-[#000] text-white rounded-full font-extralight text-xl' onClick={handleFlip}>+</button>
+                    {/* <img src={flipIconPlus} alt="" className='w-[30px] h-[30px]' onClick={handleFlip} /> */}
                   </div>
                 </div>
                 <div className="flip-box-back">
@@ -252,7 +254,7 @@ function Business() {
                     <img src={flipBoxLogos} className='mt-[30px]' alt="" />
                   </div>
                   <div className='h-[40%] flex justify-end items-end'>
-                    <img src={flipIconMinus} alt="" className='w-[30px] h-[30px]' onClick={handleFlip} />
+                  <button className='w-[30px] h-[30px] bg-[#000] text-white rounded-full font-extralight text-xl' onClick={handleFlip}>-</button>
                   </div>
                 </div>
               </div>
@@ -264,7 +266,7 @@ function Business() {
             </div>
             <div className='bg-white rounded-b-[16px] py-10 px-[29px]'>
               <h3 className='font-inter font-semibold text-[13px] text-[#1A1B25]'>Connect Business Intelligent</h3>
-              <p className='font-inter font-normall text-[13px] text-[#687178]'>Facilitate payments and pay out sellers or service providers.</p>
+              <p className='font-inter font-normall text-[13px] text-[#687178] mt-1'>Facilitate payments and pay out sellers or service providers.</p>
             </div>
           </div>
         </div>
