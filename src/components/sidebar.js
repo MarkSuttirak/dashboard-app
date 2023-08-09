@@ -251,14 +251,14 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                   className="inline-block h-8 w-8 rounded-full"
                   src={pjob}
                   alt=""
-                  onClick={() => setShowModal(true)}
+                  onClick={() => setShowModal(!showModal)}
                 />
               </div>
 
               {showModal ? (
                 <>
                   <div
-                    className="sidebar-options-menu  justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                    className="sidebar-options-menu top-[31%] h-fit w-[16rem] justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
                   >
                     <div className="relative w-full mb-1 border border-[#F2F4F7] rounded-lg">
                       {/*content*/}
