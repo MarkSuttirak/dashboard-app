@@ -13,6 +13,10 @@ import layersIcon from "../img/2-layersIcon.svg";
 import slackIcon from "../img/slackIcon.svg";
 import helpIcon from "../img/help-circleIcon.svg";
 import logoutIcon from "../img/log-outIcon.svg";
+import integrationIcon from "../img/integrationIcon.svg";
+import mock1 from '../img/mock1.svg';
+import mock2 from '../img/mock2.svg';
+import mock3 from '../img/mock3.svg';
 import { Link, useLocation } from "react-router-dom";
 import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/24/outline'
 import pjob from "../img/pjob.svg";
