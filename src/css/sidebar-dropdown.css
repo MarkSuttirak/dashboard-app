@@ -6,13 +6,11 @@
 }
 .sidebar-options-menu{
     padding: 10px;
-    /* margin-bottom: -120px; */
+    margin-bottom: -120px;
 }
 .sidebar-options-menu ul li{ 
     margin-top: 10px;
     color: #4A5055;
-    display: flex;
-    align-items: center;
 
 }
 .sidebar-options-menu ul li span{
@@ -34,7 +32,7 @@
     font-size: 14px;
 }
 .user-name-in-side-menu p{
-    /* font-size: 12px; */
+    font-size: 12px;
     letter-spacing: .2px;
     width: 90%;
 }
@@ -42,7 +40,7 @@
     width: 90%;
 }
 .user0in0menu .user-email{
-    /* font-size: 8px; */
+    font-size: 8px;
 }
 .hr-1{
     padding: -10px 0px -10px 0;
