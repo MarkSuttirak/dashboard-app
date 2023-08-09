@@ -11,6 +11,8 @@
 .sidebar-options-menu ul li{ 
     margin-top: 10px;
     color: #4A5055;
+    display: flex;
+    align-items: center;
 
 }
 .sidebar-options-menu ul li span{
