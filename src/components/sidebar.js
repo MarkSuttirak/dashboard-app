@@ -205,14 +205,15 @@ const Sidebar = ({ loadingLogo }) => {
 
 
         </div>
-        <div className="flex flex-shrink-0 p-4 bg-[#F5F5F5] m-4 rounded-md">
+        <div className="flex flex-shrink-0 p-4 bg-[#F5F5F5] m-4 rounded-[11px]">
           <a href="#" className="group block w-full flex-shrink-0">
             <div className="flex items-center">
               <div>
                 <img
-                  className="inline-block h-9 w-9 rounded-full"
+                  className="inline-block h-8 w-8 rounded-full"
                   src={pjob}
                   alt=""
+                  onClick={() => setShowModal(true)}
                 />
               </div>
 
@@ -328,7 +329,7 @@ const Sidebar = ({ loadingLogo }) => {
                 <button
                   className=""
                   type="button"
-                  onClick={() => setShowModal(true)}
+                  
                 >
                   <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">John Persson</p>
                   <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">john@zaviago.com</p>
