@@ -1,41 +1,27 @@
-import React, { useState, useEffect, useContext } from "react";
-import Logo from "../img/logo.svg";
+import React, { useState, useEffect, useContext, useRef } from "react";
+import Logo from "../img/Copilot.svg";
 import dashboardImg from "../img/dashboard.svg";
-import appsImg from "../img/apps.svg";
-import teamsImg from "../img/teams.svg";
+import appsImg from "../img/buildings.svg";
+import teamsImg from "../img/usersIcon.svg";
+import giftImg from "../img/giftImg.svg";
 import billingImg from "../img/billingImg.svg";
 import settingsImg from "../img/settingsImg.svg";
-import userProfileIcon from "../img/userProfileIcon.svg";
-import usersProfileIcon from "../img/usersProfileIcon.svg";
-import userPlusIcon from "../img/user-plusIcon.svg";
-import layersIcon from "../img/2-layersIcon.svg";
-import slackIcon from "../img/slackIcon.svg";
-import helpIcon from "../img/help-circleIcon.svg";
-import logoutIcon from "../img/log-outIcon.svg";
-import integrationIcon from "../img/integrationIcon.svg";
-import mock1 from '../img/mock1.svg';
-import mock2 from '../img/mock2.svg';
-import mock3 from '../img/mock3.svg';
-import giftImg from '../img/giftImg.svg';
-import user from '../img/user.svg';
-import users from '../img/users.svg';
-import userPlus from '../img/user-plus.svg';
-import layers from '../img/2-layers.svg';
-import slack from '../img/slack.svg';
-import helpCenter from '../img/help-circle.svg';
-import logout from '../img/log-out.svg';
-import switchuser from '../img/switchuser.svg';
+import integrationIcon from "../img/integrationIcon.svg"
+import mock1 from "../img/mock1.svg";
+import mock2 from "../img/mock2.svg";
+import mock3 from "../img/mock3.svg";
+import switchuser from "../img/switchuser.svg";
 import { Link, useLocation } from "react-router-dom";
 import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/24/outline'
 import pjob from "../img/pjob.svg";
-import logoAvatar from "../img/logoAvatar.png";
 import { Fragment } from 'react'
 import { Combobox, Dialog, Transition } from '@headlessui/react'
 import "../css/sidebar-dropdown.css";
 import { switchContext } from '../App'
 import { PlusIcon } from "@heroicons/react/20/solid";
+// import TeamModal from "../components/switchTeamModal";
 
-const Sidebar = ({ loadingLogo }) => {
+const Sidebar = ({ loadingLogo, tooltip }) => {
   const location = useLocation();
   const [active, setActive] = useState('');
 
@@ -45,6 +31,9 @@ const Sidebar = ({ loadingLogo }) => {
     sidebar.style.animation = "sidebarActive 400ms forwards";
     sidebarOverlay.style.animation = "sidebarOverlayActive 400ms forwards";
   }
+
+  const tooltipRef = useRef(null);
+  const containerRef = useRef(null);
 
   const closeSidebar = () => {
     const sidebar = document.getElementById('sidebar');
@@ -61,12 +50,17 @@ const Sidebar = ({ loadingLogo }) => {
     { name: 'Dashboard', icon: dashboardImg, href: '/', current: active === '/' ? true : false, id: 'dashboard' },
     { name: 'Teams', icon: teamsImg, href: '/teams', count: 4, current: active === '/teams' ? true : false, id: 'teams' },
     { name: 'Apps', icon: appsImg, href: '/apps', count: 3, current: active === '/apps' ? true : false, id: 'apps' },
-    // { name: 'Integration', icon: integrationIcon, href: '/integration', count: 4, current: active === '/integration' ? true : false, id: 'integration' },
+    { name: 'Integration', icon: integrationIcon, href: '/integration', count: 4, current: active === '/integration' ? true : false, id: 'integration' },
     { name: 'Gift & Privilege', icon: giftImg, href: '#', current: active === "#" ? true : false, active: active, id: 'gift' },
     { name: 'การเรียกเก็บเงิน', icon: billingImg, href: '#', current: active === "#" ? true : false, active: active, id: 'billing' },
     { name: 'ตั้งค่า', icon: settingsImg, href: '#', count: 12, current: active === "/settings" || active === "/change-domain" ? true : false, active: active, id: 'settings' },
   ]
 
+  const teamMembers = [
+    { avatar: mock1, name: 'Sebastian Rindom'},
+    { avatar: mock2, name: 'Oliver Windall Juhl'},
+    { avatar: mock3, name: 'Ludvig Rask'},
+  ]
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -104,10 +98,6 @@ const Sidebar = ({ loadingLogo }) => {
 
   const [isSwitchModalOpen, setisSwitchModalOpen] = React.useContext(switchContext);
 
-
-
-
-
   function show_menu() {
     setShowModal(false);
   }
@@ -124,78 +114,125 @@ const Sidebar = ({ loadingLogo }) => {
   //   setLoadingLogo(false);
   // };
 
-
   return (
     <>
-
-      <div className="w-full h-full fixed z-40 bg-gray-500" id="sidebar-overlay" onClick={closeSidebar}></div>
       <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white fixed h-screen" id="sidebar">
-        <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
-          <div className="flex flex-shrink-0 justify-between items-center px-4 columns-2">
+        <div className="flex flex-1 flex-col pt-5 pb-4">
+          <div className="flex flex-shrink-0 items-center px-4 columns-2 justify-between">
             {!loadingLogo ? (
-              <img
-                className="w-auto"
-                src={Logo}
-                alt="Your Company"
-              />
+              <div className="flex gap-x-3 p-1">
+                <img
+                  className="w-auto"
+                  src={Logo}
+                  alt="Your Company"
+                />
+                <h1 className="calsans text-[#1D2D35] text-[19px] item-name">zaviago<span className="text-xs calsans">.com</span></h1>
+              </div>
             ) : (
               <div className="animate-pulse">
                 <div className="bg-[#F3F3F3] w-[54px] aspect-square rounded-lg"></div>
               </div>
             )}
-
-            {!loadingLogo ? (
-              <div>
-                <h1 className="sidebar-btn search-btn" onClick={openSearch}>
-                  <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" /></svg>
-                </h1>
-
-                <h1 className="sidebar-btn close-sidebar-mobile" onClick={closeSidebar}>
-                  <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg>
-                </h1>
-              </div>
-            ) : (
-              <div className="animate-pulse">
-                <div className="bg-[#F3F3F3] w-[32px] aspect-square rounded-lg"></div>
-              </div>
-            )}
-          </div>
-
-          <div className="flex flex-shrink-0 justify-between items-center px-4 columns-2 search-btn-sec mt-4 -mb-2">
-            <h1 className="sidebar-btn search-btn-mobile" onClick={openSearch}>
-              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" /></svg>
-            </h1>
           </div>
 
           {!loadingLogo ? (
             <nav className="mt-5 flex-1 space-y-1 bg-white px-4 pt-4" aria-label="Sidebar">
-              <h4 className="text-sm font-semibold" style={{ fontFamily: "Inter", color: "#1F272E" }}>Business Apps</h4>
               {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={classNames(
-                    item.current
-                      ? 'bg-gray-100 text-[#0077E0] hover:bg-[#F5F5F5] active'
-                      : 'text-gray-600 hover:bg-[#F5F5F5] hover:text-[#0077E0]',
-                    'group flex items-center px-2 py-2 text-xs font-semibold rounded-md'
-                  )}
-                  onClick={() => handleMenuClick(item.href)}
-                >
-                  <img src={item.icon} className="mr-3 flex-shrink-0 h-6 w-6" alt="" />
-                  <span className="flex-1">{item.name}</span>
-                  {item.count ? (
-                    <span
-                      className={classNames(
-                        item.current ? 'bg-white' : 'bg-gray-100 group-hover:bg-gray-200',
-                        'ml-3 inline-block py-0.5 px-3 text-xs font-medium rounded-full'
-                      )}
-                    >
-                      {item.count}
-                    </span>
-                  ) : null}
-                </Link>
+                <>
+                  <Link
+                    key={item.id}
+                    to={item.href}
+                    className={classNames(
+                      item.current
+                        ? 'bg-gray-100 text-[#0077E0] hover:bg-[#F5F5F5] active'
+                        : 'text-gray-600 hover:bg-[#F5F5F5] hover:text-[#0077E0]',
+                      'group flex items-center px-2 py-2 text-[13px] font-normal rounded-md'
+                    )}
+                    onClick={() => handleMenuClick(item.href)}
+                    onMouseEnter={() => {
+                      const tooltip = document.getElementById(`tooltip-${item.id}`);
+                      tooltip.classList.remove('opacity-0');
+                      tooltip.classList.remove('invisible');
+                    }}
+                    onMouseLeave={() => {
+                      const tooltip = document.getElementById(`tooltip-${item.id}`);
+                      tooltip.classList.add('opacity-0');
+                      tooltip.classList.add('invisible');
+                    }}
+                  >
+                    <img src={item.icon} className="mr-3 flex-shrink-0 h-6 w-6" alt=""/>
+                    <span className="flex-1 item-name">{item.name}</span>
+                    {item.count ? (
+                      <>
+                      {/* Desktop Version */}
+                      <span
+                        className={classNames(
+                          item.current ? 'bg-white' : 'bg-gray-100 group-hover:bg-gray-200',
+                          'ml-3 inline-block py-0.5 px-3 text-xs font-medium rounded-full item-name'
+                        )}
+                      >
+                        {item.count}
+                      </span>
+
+                      {/* Responsive Version */}
+                      <span
+                        className={classNames(
+                          item.current ? 'bg-white' : 'bg-gray-100 group-hover:bg-gray-200',
+                          'flex items-center justify-center w-[20px] h-[20px] text-xs font-medium rounded-full absolute left-[40px] translate-y-[12px] item-name-res'
+                        )}
+                      >
+                        {item.count}
+                      </span>
+                      </>
+                    ) : null}
+                  </Link>
+                  <div id={`tooltip-${item.id}`} role="tooltip" className="tooltip-menu absolute invisible opacity-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg left-[60px] text-xs translate-y-[-120%] whitespace-pre shadow-sm dark:bg-gray-700">
+                    {item.name}
+                  </div>
+                </>
               ))}
+              <h2 className="text-xs font-bold text-[#6B7280] pt-5 pl-2 your-team">ทีมของคุณ</h2>
+              <hr className="line-your-team"/>
+              {teamMembers.map((member) => (
+                <>
+                  <div className="flex items-center pr-2 team-members py-2 text-xs font-semibold rounded-md"
+                    onMouseEnter={() => {
+                      const memberList = document.getElementById(`tooltip-${member.name}`);
+                      memberList.classList.remove('opacity-0');
+                      memberList.classList.remove('invisible');
+                    }}
+                    onMouseLeave={() => {
+                      const memberList = document.getElementById(`tooltip-${member.name}`);
+                      memberList.classList.add('opacity-0');
+                      memberList.classList.add('invisible');
+                    }}>
+                    <img src={member.avatar} className="mr-3 flex-shrink-0 h-5 w-5" alt="" />
+                    <span className="flex-1 item-name">{member.name}</span>
+                  </div>
+                  <div id={`tooltip-${member.name}`} role="tooltip" className="tooltip-menu absolute invisible opacity-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity translate-y-[-120%] duration-300 bg-gray-900 rounded-lg left-[60px] text-xs whitespace-pre shadow-sm dark:bg-gray-700">
+                    {member.name}
+                  </div>
+                </>
+              ))}
+
+              <div className="flex items-center pr-2 team-members py-2 text-xs font-semibold rounded-md" 
+                onMouseEnter={() => {
+                  const invite = document.getElementById("tooltip-invite");
+                  invite.classList.remove('opacity-0');
+                  invite.classList.remove('invisible');
+                }}
+                onMouseLeave={() => {
+                  const invite = document.getElementById("tooltip-invite");
+                  invite.classList.add('opacity-0');
+                  invite.classList.add('invisible');
+                }}
+              >
+                <PlusIcon color="#2684FF" className="min-h-[20px] min-w-[20px] w-5 h-5 bg-[#D6E6FE] rounded-full mr-3"/>
+                <span className="flex-1 text-[#2684FF] item-name">เชิญสมาชิกเข้าทีม</span>
+              </div>
+              <div id="tooltip-invite" role="tooltip" className="tooltip-menu absolute invisible opacity-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity translate-y-[-120%] duration-300 bg-gray-900 rounded-lg left-[60px] text-xs whitespace-pre shadow-sm dark:bg-gray-700">
+                เชิญสมาชิกเข้าทีม
+              </div>
             </nav>
           ) : (
             <div className="animate-pulse space-y-3">
@@ -213,122 +250,120 @@ const Sidebar = ({ loadingLogo }) => {
                       <div className="w-[80%] h-[28px] bg-[#F3F3F3] block rounded-lg"></div>
                     </Link>
                   ))}
+
+                  <div className="h-[16px] w-[20%] bg-[#F3F3F3] rounded-md block"></div>
+                  {teamMembers.map((member) => (
+                    <div className="flex">
+                      <div className="w-[15%] h-[28px] bg-[#F3F3F3] block rounded-lg mr-4 item-name">
+                      </div>
+                      <div className="w-[80%] h-[28px] bg-[#F3F3F3] block rounded-lg"></div>
+                    </div>
+                  ))}
                 </nav>
               </div>
             </div>
           )}
 
-
         </div>
-        <div className="flex flex-shrink-0 p-4 bg-[#F5F5F5] m-4 rounded-[11px]">
+        <div className="flex flex-shrink-0 bg-[#F5F5F5] m-4 rounded-md avatar-user"
+          onMouseEnter={() => {
+            const user = document.getElementById("tooltip-avatar-user");
+            user.classList.remove('opacity-0');
+            user.classList.remove('invisible');
+          }}
+          onMouseLeave={() => {
+            const user = document.getElementById("tooltip-avatar-user");
+            user.classList.add('opacity-0');
+            user.classList.add('invisible');
+          }}
+        >
+          <div id="tooltip-avatar-user" role="tooltip" className="tooltip-menu absolute invisible opacity-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg left-[60px] text-xs whitespace-pre shadow-sm dark:bg-gray-700">
+            John Persson
+          </div>
           <a href="#" className="group block w-full flex-shrink-0">
             <div className="flex items-center">
-              <div>
-                <img
-                  className="inline-block h-8 w-8 rounded-full"
-                  src={pjob}
-                  alt=""
-                  onClick={() => setShowModal(!showModal)}
-                />
-              </div>
+              <img
+                className="inline-block h-9 w-9 rounded-full"
+                src={pjob}
+                alt=""
+              />
 
-
-              {/* {showModal ? ( */}
+              {showModal ? (
                 <>
                   <div
-                    className={`${showModal == true ? 'active' : ''} sidebar-box sidebar-options-menu top-[31%] h-fit w-[16rem] justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none`} id="sidebarBox"
+                    className="sidebar-options-menu justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
                   >
-                    <div className="relative w-full my-0 mx-auto max-w-3xl">
+                    <div className="relative w-auto my-6 mx-auto max-w-3xl">
                       {/*content*/}
-                      <div className="rounded-lg border border-[#F2F4F7] relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                      <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                         {/*header*/}
                         <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                           <div className="user0in0menu">
                             <div className="user-image-inside-menu">
                               <img
-                                className="inline-block h-9 w-9"
-                                src={logoAvatar}
+                                className="inline-block h-9 w-9 rounded-full"
+                                src={pjob}
                                 alt=""
                               />
                             </div>
-                            <div className="user-name-in-side-menu ml-12 mt-1">
-                              <p className="text-sm font-medium text-[#344054] group-hover:text-gray-900">John Persson</p>
-                              <p className="user-email leading-[1] text-sm font-normal text-[#667085] group-hover:text-gray-700">john@zaviago.com</p>
+                            <div className="user-name-in-side-menu">
+                              <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">John Persson</p>
+                              <p className="user-email text-xs font-medium text-gray-500 group-hover:text-gray-700">john@zaviago.com</p>
                             </div>
                           </div>
-                          {/* <button
+                          <button
                             className=""
                             onClick={show_menu}
                           >
                             <span aria-hidden="true">&times;</span>
-                          </button> */}
+                          </button>
                         </div>
                         {/*body*/}
-                        <div className="side-menu-ul-container relative p-3 pb-6 flex-auto">
+                        <div className="side-menu-ul-container relative p-6 flex-auto">
                           <ul >
                             <li
                               onClick={() => setisSwitchModalOpen(true)}
                             >
                               <span className="logo-in-menu">
-                                <img src={user} />
+                                <img src={require('../img/reverse-arrows.png')} />
                               </span>
-                              <span>โปรไฟล์</span>
+                              <span>Switch Team</span>
+                            </li>
+                            <li>
+                              <span className="logo-in-menu"><img src={require('../img/account-in-menu.png')} /></span> <span>Account</span>
                             </li>
                           </ul>
                         </div>
-
                         <div>
-                          <hr className="hr-1" />
+                          <hr className="hr-1"></hr>
                         </div>
-
-                        <div className="side-menu-ul-container relative p-3 pb-6 flex-auto">
+                        <div className="side-menu-ul-container relative p-6 flex-auto">
                           <ul >
                             <li>
-                              <span className="logo-in-menu">
-                                <img src={users} />
-                              </span>
-                              <span>เปลี่ยนทีม</span>
+                              <span className="logo-in-menu"><img src={require('../img/ask-support.png')} /></span> <span>Help and support</span>
                             </li>
                             <li>
-                              <span className="logo-in-menu"><img src={userPlus} /></span> <span>เชิญสมาชิกเข้าทีม</span>
+                              <span className="logo-in-menu"><img src={require('../img/whats-new.png')} /></span> <span>What's new</span>
+                            </li>
+                            <li>
+                              <span className="logo-in-menu"><img src={require('../img/upgrade-to-pro.png')} /></span> <span>Upgrade to pro</span>
                             </li>
                           </ul>
                         </div>
-
                         <div>
-                          <hr className="hr-1" />
+                          <hr className="hr-1"></hr>
                         </div>
-
-                        <div className="side-menu-ul-container relative p-3 pb-6 flex-auto">
-                          <ul >
-                            <li>
-                              <span className="logo-in-menu">
-                                <img src={layers} />
-                              </span>
-                              <span>ประวัติการเปลี่ยนแปลง</span>
-                            </li>
-                            <li>
-                              <span className="logo-in-menu"><img src={slack} /></span> <span>Zaviago Slack Community</span>
-                            </li>
-                            <li>
-                              <span className="logo-in-menu"><img src={helpCenter} /></span> <span>ศูนย์ช่วยเหลือ</span>
-                            </li>
-                          </ul>
-                        </div>
-
-                        <div>
-                          <hr className="hr-1" />
-                        </div>
-
-                        <div className="side-menu-ul-container relative p-3 pb-6 flex-auto">
+                        <div className="side-menu-ul-container relative p-6 flex-auto">
                           <ul className="sign-out-ul">
                             <li>
                               <span className="logo-in-menu">
-                               <img src={logout} alt="" />
+                                <svg class="svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M835.669333 554.666667h-473.173333A42.453333 42.453333 0 0 1 320 512a42.666667 42.666667 0 0 1 42.474667-42.666667h473.173333l-161.813333-161.834666a42.666667 42.666667 0 0 1 60.330666-60.330667l234.666667 234.666667a42.666667 42.666667 0 0 1 0 60.330666l-234.666667 234.666667a42.666667 42.666667 0 0 1-60.330666-60.330667L835.669333 554.666667zM554.666667 42.666667a42.666667 42.666667 0 1 1 0 85.333333H149.525333C137.578667 128 128 137.578667 128 149.482667v725.034666C128 886.4 137.6 896 149.525333 896H554.666667a42.666667 42.666667 0 1 1 0 85.333333H149.525333A106.816 106.816 0 0 1 42.666667 874.517333V149.482667A106.773333 106.773333 0 0 1 149.525333 42.666667H554.666667z" fill="currentColor" /></svg>
                               </span>
-                              <span>Log Out</span><br></br>
-
+                              <span>Sign Out</span><br></br>
                             </li>
+                          </ul>
+                          <ul className="app-version">
+                            <li> <span>v.1.4.88</span></li>
                           </ul>
                         </div>
                         {/*footer*/}
@@ -336,7 +371,7 @@ const Sidebar = ({ loadingLogo }) => {
                         <button
                           className=""
                           type="button"
-                          onClick={() => setShowModal(true)}
+                          onClick={() => setShowModal(false)}
                         >
 
                         </button>
@@ -344,17 +379,18 @@ const Sidebar = ({ loadingLogo }) => {
                       </div>
                     </div>
                   </div>
+                  <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
                 </>
-              {/* ) : null} */}
-              <div className="ml-3">
+              ) : null}
+              <div className="ml-3 item-name">
                 <button
-                  className=""
+                  className="flex gap-x-9"
                   type="button"
                   onClick={()=> setShowModal(!showModal)}
                 >
                   <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900 calsans">John Persson</p>
                   {/* <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">john@zaviago.com</p> */}
-                  {/* <img src={switchuser} /> */}
+                  <img src={switchuser} />
                 </button>
 
               </div>
@@ -425,6 +461,7 @@ const Sidebar = ({ loadingLogo }) => {
                       ))}
                     </Combobox.Options>
                   )}
+
                   {query !== '' && filteredSearch.length === 0 && (
                     <div className="py-14 px-4 text-center sm:px-14">
                       <UsersIcon className="mx-auto h-6 w-6 text-gray-400" aria-hidden="true" />
