@@ -528,7 +528,7 @@ select#goal {
   height: 310px;
   background-repeat: no-repeat;
   background-size: cover;
-  border-radius: 16px, 16px, 0px, 0px;
+  border-radius: 16px 16px 0px 0px;
 }
 
 .connectBusiness2{
@@ -550,6 +550,20 @@ select#goal {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.sidebar-box {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%) translateY(130%);
+  transition: transform 0.4s ease-in-out;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.sidebar-box.active {
+  transform: translateX(-50%) translateY(0);
+}
+
 
 // .flipBoxSection .rotate-y-180 {
 //   transform: rotateY(180deg);
