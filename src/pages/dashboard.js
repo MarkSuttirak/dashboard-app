@@ -29,6 +29,9 @@ import PopUp from '../components/popup'
 import UserViewPopup from "../components/userViewPopup";
 
 const Dashboard = ({ loadingLogo }) => {
+
+
+
   const [isOpen, setIsOpen] = useState(false);
 
 
@@ -36,9 +39,10 @@ const Dashboard = ({ loadingLogo }) => {
   const handleInviteClick = () => {
     setIsOpen(!isOpen);
   }
+
+
   const closePopUp = () => {
     setIsOpen(false);
-    console.log('false')
   }
 
   const [isOpen2, setIsOpen2] = useState(false);
@@ -47,7 +51,6 @@ const Dashboard = ({ loadingLogo }) => {
   }
   const closePopUp2 = () => {
     setIsOpen2(false);
-    console.log('false')
   }
 
 
