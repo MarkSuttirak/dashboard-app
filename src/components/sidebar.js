@@ -17,18 +17,10 @@ import mock1 from '../img/mock1.svg';
 import mock2 from '../img/mock2.svg';
 import mock3 from '../img/mock3.svg';
 import giftImg from '../img/giftImg.svg';
-import user from '../img/user.svg';
-import users from '../img/users.svg';
-import userPlus from '../img/user-plus.svg';
-import layers from '../img/2-layers.svg';
-import slack from '../img/slack.svg';
-import helpCenter from '../img/help-circle.svg';
-import logout from '../img/log-out.svg';
 import switchuser from '../img/switchuser.svg';
 import { Link, useLocation } from "react-router-dom";
 import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/24/outline'
 import pjob from "../img/pjob.svg";
-import logoAvatar from "../img/logoAvatar.png";
 import { Fragment } from 'react'
 import { Combobox, Dialog, Transition } from '@headlessui/react'
 import "../css/sidebar-dropdown.css";
@@ -233,21 +225,21 @@ const Sidebar = ({ loadingLogo }) => {
               </div>
 
 
-              {/* {showModal ? ( */}
+              {showModal ? (
                 <>
                   <div
-                    className={`${showModal == true ? 'active' : ''} sidebar-box sidebar-options-menu top-[31%] h-fit w-[16rem] justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none`} id="sidebarBox"
+                    className="sidebar-options-menu top-[31%] h-fit w-[16rem] justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
                   >
-                    <div className="relative w-full my-0 mx-auto max-w-3xl">
+                    <div className="relative w-auto my-6 mx-auto max-w-3xl">
                       {/*content*/}
-                      <div className="rounded-lg border border-[#F2F4F7] relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                      <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                         {/*header*/}
                         <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                           <div className="user0in0menu">
                             <div className="user-image-inside-menu">
                               <img
-                                className="inline-block h-9 w-9"
-                                src={logoAvatar}
+                                className="inline-block h-9 w-9 rounded-full"
+                                src={pjob}
                                 alt=""
                               />
                             </div>
@@ -256,79 +248,60 @@ const Sidebar = ({ loadingLogo }) => {
                               <p className="user-email leading-[1] text-sm font-normal text-[#667085] group-hover:text-gray-700">john@zaviago.com</p>
                             </div>
                           </div>
-                          {/* <button
+                          <button
                             className=""
                             onClick={show_menu}
                           >
                             <span aria-hidden="true">&times;</span>
-                          </button> */}
+                          </button>
                         </div>
                         {/*body*/}
-                        <div className="side-menu-ul-container relative p-3 pb-6 flex-auto">
+                        <div className="side-menu-ul-container relative p-6 flex-auto">
                           <ul >
                             <li
                               onClick={() => setisSwitchModalOpen(true)}
                             >
                               <span className="logo-in-menu">
-                                <img src={user} />
+                                <img src={require('../img/reverse-arrows.png')} />
                               </span>
-                              <span>โปรไฟล์</span>
+                              <span>Switch Team</span>
+                            </li>
+                            <li>
+                              <span className="logo-in-menu"><img src={require('../img/account-in-menu.png')} /></span> <span>Account</span>
                             </li>
                           </ul>
                         </div>
-
                         <div>
-                          <hr className="hr-1" />
+                          <hr className="hr-1"></hr>
                         </div>
-
-                        <div className="side-menu-ul-container relative p-3 pb-6 flex-auto">
+                        <div className="side-menu-ul-container relative p-6 flex-auto">
                           <ul >
                             <li>
-                              <span className="logo-in-menu">
-                                <img src={users} />
-                              </span>
-                              <span>เปลี่ยนทีม</span>
+                              <span className="logo-in-menu"><img src={require('../img/ask-support.png')} /></span> <span>Help and support</span>
                             </li>
                             <li>
-                              <span className="logo-in-menu"><img src={userPlus} /></span> <span>เชิญสมาชิกเข้าทีม</span>
+                              <span className="logo-in-menu"><img src={require('../img/whats-new.png')} /></span> <span>What's new</span>
+                            </li>
+                            <li>
+                              <span className="logo-in-menu"><img src={require('../img/upgrade-to-pro.png')} /></span> <span>Upgrade to pro</span>
                             </li>
                           </ul>
                         </div>
-
                         <div>
-                          <hr className="hr-1" />
+                          <hr className="hr-1"></hr>
                         </div>
-
-                        <div className="side-menu-ul-container relative p-3 pb-6 flex-auto">
-                          <ul >
-                            <li>
-                              <span className="logo-in-menu">
-                                <img src={layers} />
-                              </span>
-                              <span>ประวัติการเปลี่ยนแปลง</span>
-                            </li>
-                            <li>
-                              <span className="logo-in-menu"><img src={slack} /></span> <span>Zaviago Slack Community</span>
-                            </li>
-                            <li>
-                              <span className="logo-in-menu"><img src={helpCenter} /></span> <span>ศูนย์ช่วยเหลือ</span>
-                            </li>
-                          </ul>
-                        </div>
-
-                        <div>
-                          <hr className="hr-1" />
-                        </div>
-
-                        <div className="side-menu-ul-container relative p-3 pb-6 flex-auto">
+                        <div className="side-menu-ul-container relative p-6 flex-auto">
                           <ul className="sign-out-ul">
                             <li>
                               <span className="logo-in-menu">
-                               <img src={logout} alt="" />
+                                <svg class="svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M835.669333 554.666667h-473.173333A42.453333 42.453333 0 0 1 320 512a42.666667 42.666667 0 0 1 42.474667-42.666667h473.173333l-161.813333-161.834666a42.666667 42.666667 0 0 1 60.330666-60.330667l234.666667 234.666667a42.666667 42.666667 0 0 1 0 60.330666l-234.666667 234.666667a42.666667 42.666667 0 0 1-60.330666-60.330667L835.669333 554.666667zM554.666667 42.666667a42.666667 42.666667 0 1 1 0 85.333333H149.525333C137.578667 128 128 137.578667 128 149.482667v725.034666C128 886.4 137.6 896 149.525333 896H554.666667a42.666667 42.666667 0 1 1 0 85.333333H149.525333A106.816 106.816 0 0 1 42.666667 874.517333V149.482667A106.773333 106.773333 0 0 1 149.525333 42.666667H554.666667z" fill="currentColor" /></svg>
                               </span>
-                              <span>Log Out</span><br></br>
+                              <span>Sign Out</span><br></br>
 
                             </li>
+                          </ul>
+                          <ul className="app-version">
+                            <li> <span>v.1.4.88</span></li>
                           </ul>
                         </div>
                         {/*footer*/}
@@ -336,7 +309,7 @@ const Sidebar = ({ loadingLogo }) => {
                         <button
                           className=""
                           type="button"
-                          onClick={() => setShowModal(true)}
+                          onClick={() => setShowModal(false)}
                         >
 
                         </button>
@@ -344,8 +317,9 @@ const Sidebar = ({ loadingLogo }) => {
                       </div>
                     </div>
                   </div>
+                  <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
                 </>
-              {/* ) : null} */}
+              ) : null}
               <div className="ml-3">
                 <button
                   className=""
