@@ -386,7 +386,7 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                 <button
                   className="flex gap-x-9"
                   type="button"
-                  onClick={() => setShowModal(true)}
+                  onClick={()=> setShowModal(!showModal)}
                 >
                   <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900 calsans">John Persson</p>
                   {/* <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">john@zaviago.com</p> */}
