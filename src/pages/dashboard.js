@@ -12,6 +12,7 @@ import wrapper from "../img/wrapper.svg";
 import pfyne from "../img/pfyne.svg";
 import person1 from "../img/person1.svg";
 import person2 from "../img/person2.svg";
+import thrBookFrame from "../img/theBookFrame.svg";
 import keyLock from "../img/key-lock.svg";
 import finlabLogo from "../img/finlab-logo.svg";
 import UOBLogo from "../img/uob.svg";
@@ -24,6 +25,9 @@ import meta from "../img/meta.svg";
 import workSpaceLogo from "../img/workspace-logo.png";
 import upgradeicon from "../img/upgrade-icon.png";
 import amazon from "../img/amazon.svg";
+import startWorkingSvg from "../img/startWorkingSvg.svg";
+import appStoreSvg from "../img/appStoreSvg.svg";
+import tutorialsSvg from "../img/tutorialsSvg.svg";
 import { Link } from "react-router-dom";
 import PopUp from '../components/popup'
 import UserViewPopup from "../components/userViewPopup";
@@ -57,16 +61,19 @@ const Dashboard = ({ loadingLogo }) => {
   const dashboardInfo = [
     {
       title: 'Start Working',
+      icon: startWorkingSvg,
       description: 'Go to your business app',
       background: startWorking,
     },
     {
       title: 'Apps Marketplace',
+      icon: appStoreSvg,
       description: 'See more at AppStore',
       background: appsMarketplace,
     },
     {
       title: 'Watch Tutorials',
+      icon: tutorialsSvg,
       description: 'Learn Zaviago/OS',
       background: watchTutorials,
     },
@@ -195,10 +202,10 @@ const Dashboard = ({ loadingLogo }) => {
             {dashboardInfo.map((info) => (
               <div
                 key={info.title}
-                className="relative flex items-center space-x-3 bg-white p-4 pb-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400" style={{ background: "url(" + info.background + ")", backgroundSize: "100%", backgroundRepeat: "no-repeat", borderRadius: "20px" }}
+                className="relative h-[200px] flex flex-col justify-between space-x-3 bg-white p-4 pb-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400" style={{ background: "url(" + info.background + ")", backgroundSize: "100%", backgroundRepeat: "no-repeat", borderRadius: "20px" }}
               >
-                <div className="min-w-0" style={{ paddingTop: "8.25rem" }}>
-                  <span className="absolute inset-0" aria-hidden="true" />
+                <img src={info.icon} className="w-[48px] h-[48px]" alt="" />
+                <div className="min-w-0">
                   <h2 className="text-md font-bold text-white leading-5">{info.title}</h2>
                   <p className="truncate font-bold font-13" style={{ color: "#FFFFFF99" }}>{info.description}</p>
                 </div>
@@ -490,7 +497,7 @@ const Dashboard = ({ loadingLogo }) => {
           <div className="mx-auto dashboard-container pb-10 gap-x-8">
             <div className="border border-gray-200 bg-white px-6 pt-4 pb-7" style={{ borderRadius: "20px" }}>
               <div className="flex gap-x-2.5 items-center">
-                <img src={guideIcon} />
+                <img src={thrBookFrame} />
                 <h1 className="text-md headings font-bold">ไกด์การใช้งาน และ ติดต่อทีมงาน</h1>
               </div>
 
