@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link, useLocation } from "react-router-dom";
 import websiteMade from '../img/website-made.png'
 // import businessIntelligent from '../img/business-intelligent.svg'
 import appsMarketplace from '../img/app-marketplace.svg'
@@ -154,7 +155,9 @@ function Business() {
               </div>
             </div>
             <div>
+              <Link to='/singleAppPage'>
               <button className='bg-[#0099FF] font-semibold font-inter text-sm rounded-lg py-2 px-[14px] text-white' style={{ boxShadow: '0px 4px 8px 0px #0099FF33' }}>Get it</button>
+              </Link>
             </div>
           </div>
         </div>
