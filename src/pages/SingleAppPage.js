@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import instagramShop from '../img/instagram-store.png'
 import star from '../img/star.png'
-import sellEverywhereMain from '../img/sell-everywhere-main.png'
+import sellEverywhereMain from '../img/sellEverywhereMain.png'
 import sellEverywhere1 from '../img/sell-everywhere-1.png'
 import sellEverywhere2 from '../img/sell-everywhere-2.png'
 import sellEverywhere3 from '../img/sell-everywhere-3.png'
