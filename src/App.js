@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import './App.scss';
 import Sidebar from './components/sidebar';
 import Dashboard from './pages/dashboard';
-import AppsPage from './pages/apps';
 import ChangeDomain from './pages/changeDomain';
 import Welcome from './pages/register/welcome';
 import Register from './pages/register/setAccount';
@@ -39,7 +38,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard loadingLogo={loadingLogo} />} />
           <Route path="/appsdetail" element={<BusinessDetail />} />
-          <Route path="/apps" element={<Business />} />
           <Route path="/singleAppPage" element={<SingleAppPage />} />
           <Route path="/change-domain" element={<ChangeDomain />} />
 
