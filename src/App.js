@@ -37,7 +37,8 @@ function App() {
         </switchContext.Provider>
         <Routes>
           <Route path="/" element={<Dashboard loadingLogo={loadingLogo} />} />
-          <Route path="/apps" element={<BusinessDetail />} />
+          <Route path="/appsdetail" element={<BusinessDetail />} />
+          <Route path="/apps" element={<Business />} />
           <Route path="/singleAppPage" element={<SingleAppPage />} />
           <Route path="/change-domain" element={<ChangeDomain />} />
 
