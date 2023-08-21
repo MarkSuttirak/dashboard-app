@@ -91,7 +91,7 @@ function SingleAppPage() {
               <div className="popup-overlay"></div>
               <div>
                 <div className='sm:w-[515px] w-[40%] h-[645px] sm:pt-0 sm:px-0 pt-10 px-5 bg-white rounded-2xl sm:right-[30%]  sm:left-auto left-[2%] install-addons popup-container z-[199] relative'>
-                  <InstallAddons isClickedInstall={isClickedInstall} changeInstallClick={changeInstallClick} closePopUp={closePopUp} />
+                  <InstallAddons changeInstallClick={changeInstallClick} closePopUp={closePopUp} />
                 </div>
               </div>
             </div>

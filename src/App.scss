@@ -563,6 +563,29 @@ select#goal {
   transform: translateX(0%) translateY(0);
 }
 
+.buttonClicked{
+  transition: .5s linear;
+  transform: translateX(-100%);
+}
+
+.buttonClicked1{
+  transition: .5s linear;
+  transform: translateX(100%);
+}
+
+.thePara{
+  opacity: 0;
+  transition: .3s linear;
+  // display: none;
+}
+
+.thePara1{
+  // display: block;
+  // margin-top: 0px !important;
+  opacity: 1;
+  transition: .3s linear;
+}
+
 
 // .flipBoxSection .rotate-y-180 {
 //   transform: rotateY(180deg);
