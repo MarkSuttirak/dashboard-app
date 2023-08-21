@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import installAddonsIcons from '../img/install-addons-icons.png'
 import installAddonsP from '../img/install-addons-p.png'
-import instagramStore from '../img/instagram-store.png'
+import instagramStore from '../img/business-intelligent.svg'
 function InstallAddons(props) {
 
     const [isClickedInstall, setIsClickedInstall] = useState(false);
