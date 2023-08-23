@@ -1,3 +1,9 @@
+$gray: #667085;
+$primary: #42A5F9;
+$error: #F04438;
+$warning: #F79009;
+$success: #17B26A;
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
 
 @font-face {
@@ -70,6 +76,87 @@
   font-style: normal;
 }
 
+.space-xs {
+  padding:0 5px;
+}
+
+.space-sm {
+  padding:0 10px;
+}
+
+.space-md {
+  padding:0 20px;
+}
+
+.space-lg {
+  padding:0 30px;
+}
+
+.sidebar-menu {
+  padding:6px 8px;
+  border-radius: 8px;
+  color:#6B7280;
+  width:100%;
+  display:flex;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  align-items:center;
+  gap:10px;
+  &:hover {
+    color:black;
+    background: #F3F4F6;
+  }
+}
+
+.orange {
+  .badge-sidebar {
+    background-color:#FEF6EE;
+    color:#B93815;
+  }
+  .badge-circle {
+    color:#EF6820
+  }
+}
+
+.blue {
+  .badge-sidebar {
+    background-color:#EFF8FF;
+    color:#175CD3;
+  }
+  .badge-circle {
+    color:#2E90FA
+  }
+}
+
+.gray {
+  .badge-sidebar {
+    background-color:#F9FAFB;
+    color:#344054;
+  }
+  // .badge-circle {
+  //   color:#EF6820
+  // }
+}
+
+
+.display-semibold {
+  font-family: Cal Sans;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 38px;
+}
+
+.subtitle {
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; 
+}
 
 @media (min-width:1200px) {
   .page-section {
@@ -144,16 +231,12 @@ h6 {
 
 .online {
   color: #118253;
-  font-size: 13px
+  font-size: 13px;
 }
 
 .link-anchor {
   color: #888;
   text-decoration: underline
-}
-
-.active {
-  color: #0077E0
 }
 
 .headings {
@@ -260,8 +343,6 @@ h6 {
   width: 160%;
   background: linear-gradient(to right, #006AFF 0%, #0094FF 30%, #dad3d336 55%, #C293FF 60%);
 }
-
-
 
 .moving-line {
   height: 5px;
@@ -475,6 +556,19 @@ select#goal {
   transform: rotate(180deg);
 }
 
+.primary-btn {
+  display:inline-flex;
+  border:1px solid transparent;
+  align-items:center;
+  border-radius:8px;
+  font-size:14px;
+  color:#333333;
+  font-size:14px;
+  font-weight:600;
+  background-color:#F3F3F3;
+  padding:7px 10px;
+}
+
 .tooltipButton:hover .tooltip {
   visibility: visible;
   opacity: 1;
@@ -645,14 +739,6 @@ select#goal {
   font-family: Arial, sans-serif;
 }
 
-.item-name {
-  white-space:pre;
-  visibility:visible;
-  opacity:1;
-  transition:all 200ms;
-  transition-delay:300ms;
-}
-
 .line-your-team {
   display:none;
   opacity:0;
@@ -671,7 +757,7 @@ select#goal {
 }
 
 .avatar-user {
-  padding:16px;
+  padding:12px;
   transition:all 300ms;
 }
 

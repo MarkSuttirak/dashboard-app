@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import Logo from "../img/Copilot.svg";
+import Logo from "../img/logo-zaviago.svg";
 import dashboardImg from "../img/dashboard.svg";
 import appsImg from "../img/buildings.svg";
 import teamsImg from "../img/usersIcon.svg";
@@ -19,6 +19,8 @@ import { Combobox, Dialog, Transition } from '@headlessui/react'
 import "../css/sidebar-dropdown.css";
 import { switchContext } from '../App'
 import { PlusIcon } from "@heroicons/react/20/solid";
+import { HomeSmile, Edit04, Menu01 } from "untitledui-js/icons/general";
+
 // import TeamModal from "../components/switchTeamModal";
 
 const Sidebar = ({ loadingLogo, tooltip }) => {
@@ -47,13 +49,13 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
   }
 
   const navigation = [
-    { name: 'Dashboard', icon: dashboardImg, href: '/', current: active === '/' ? true : false, id: 'dashboard' },
-    { name: 'Teams', icon: teamsImg, href: '/teams', count: 4, current: active === '/teams' ? true : false, id: 'teams' },
-    { name: 'Apps', icon: appsImg, href: '/apps', count: 3, current: active === '/apps' ? true : false, id: 'apps' },
-    { name: 'Integration', icon: integrationIcon, href: '/integration', count: 4, current: active === '/integration' ? true : false, id: 'integration' },
-    { name: 'Gift & Privilege', icon: giftImg, href: '#', current: active === "#" ? true : false, active: active, id: 'gift' },
-    { name: 'การเรียกเก็บเงิน', icon: billingImg, href: '#', current: active === "#" ? true : false, active: active, id: 'billing' },
-    { name: 'ตั้งค่า', icon: settingsImg, href: '#', count: 12, current: active === "/settings" || active === "/change-domain" ? true : false, active: active, id: 'settings' },
+    { name: 'Dashboard', icon: <HomeSmile viewBox='0 0 30 24' width='24'/>, href: '/', current: active === '/' ? true : false, id: 'dashboard' },
+    { name: 'Teams', icon: <img src={appsImg} />, href: '/teams', count: [4, 'orange', 'have-dot'], current: active === '/teams' ? true : false, id: 'teams' },
+    { name: 'Apps', icon: <Edit04 viewBox='0 0 30 24' width='24' />, href: '/apps', current: active === '/apps' ? true : false, id: 'apps' },
+    { name: 'Integration', icon: <Menu01 viewBox='0 0 30 24' width='24'/>, href: '/integration', count: [10, 'orange', 'have-dot'], current: active === '/integration' ? true : false, id: 'integration' },
+    { name: 'Gift & Privilege', icon: <img src={giftImg} />, href: '#', count: [5, 'blue', 'have-dot'], current: active === "#" ? true : false, active: active, id: 'gift' },
+    { name: 'การเรียกเก็บเงิน', icon: <img src={billingImg} />, href: '#', count: [10, 'gray'], current: active === "#" ? true : false, active: active, id: 'billing' },
+    { name: 'ตั้งค่า', icon: <img src={settingsImg} />, href: '#', current: active === "/settings" || active === "/change-domain" ? true : false, active: active, id: 'settings' },
   ]
 
   const teamMembers = [
@@ -117,17 +119,14 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
   return (
     <>
       <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white fixed h-screen" id="sidebar">
-        <div className="flex flex-1 flex-col pt-5 pb-4">
+        <div className="flex flex-1 flex-col pt-3 pb-5">
           <div className="flex flex-shrink-0 items-center px-4 columns-2 justify-between">
             {!loadingLogo ? (
-              <div className="flex gap-x-3 p-1">
-                <img
-                  className="w-auto"
-                  src={Logo}
-                  alt="Your Company"
-                />
-                <h1 className="calsans text-[#1D2D35] text-[19px] item-name">zaviago<span className="text-xs calsans">.com</span></h1>
-              </div>
+              <img
+                className="w-auto"
+                src={Logo}
+                alt="Your Company"
+              />
             ) : (
               <div className="animate-pulse">
                 <div className="bg-[#F3F3F3] w-[54px] aspect-square rounded-lg"></div>
@@ -136,7 +135,7 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
           </div>
 
           {!loadingLogo ? (
-            <nav className="mt-5 flex-1 space-y-1 bg-white px-4 pt-4" aria-label="Sidebar">
+            <nav className="flex-1 bg-white px-4 pt-7" aria-label="Sidebar">
               {navigation.map((item) => (
                 <>
                   <Link
@@ -144,9 +143,8 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                     to={item.href}
                     className={classNames(
                       item.current
-                        ? 'bg-gray-100 text-[#0077E0] hover:bg-[#F5F5F5] active'
-                        : 'text-gray-600 hover:bg-[#F5F5F5] hover:text-[#0077E0]',
-                      'group flex items-center px-2 py-2 text-[13px] font-normal rounded-md'
+                        ? 'sidebar-menu active'
+                        : 'sidebar-menu'
                     )}
                     onClick={() => handleMenuClick(item.href)}
                     onMouseEnter={() => {
@@ -160,29 +158,33 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                       tooltip.classList.add('invisible');
                     }}
                   >
-                    <img src={item.icon} className="mr-3 flex-shrink-0 h-6 w-6" alt=""/>
+                    {item.icon}
+                    {/* <img src={item.icon} className="mr-3 flex-shrink-0 h-6 w-6" alt=""/> */}
                     <span className="flex-1 item-name">{item.name}</span>
                     {item.count ? (
                       <>
                       {/* Desktop Version */}
-                      <span
-                        className={classNames(
-                          item.current ? 'bg-white' : 'bg-gray-100 group-hover:bg-gray-200',
-                          'ml-3 inline-block py-0.5 px-3 text-xs font-medium rounded-full item-name'
-                        )}
-                      >
-                        {item.count}
-                      </span>
+
+                      <div className={`${item.count[1] === 'orange' ? 'orange' : item.count[1] === 'blue' ? 'blue' : item.count[1] === 'gray' ? 'gray' : ''}`}>
+                        <span className="inline-flex items-center rounded-full bg-[#FEF6EE] px-3 py-0.5 text-sm font-medium text-[#B93815] badge-sidebar">
+                          {item.count[2] === 'have-dot' && (
+                            <svg className="-ml-1 mr-1.5 h-2 w-2 badge-circle" fill="currentColor" viewBox="0 0 8 8">
+                              <circle cx={4} cy={4} r={3} />
+                            </svg>
+                          )}
+                          {item.count[0]}
+                        </span>
+                      </div>
 
                       {/* Responsive Version */}
-                      <span
+                      {/* <span
                         className={classNames(
                           item.current ? 'bg-white' : 'bg-gray-100 group-hover:bg-gray-200',
                           'flex items-center justify-center w-[20px] h-[20px] text-xs font-medium rounded-full absolute left-[40px] translate-y-[12px] item-name-res'
                         )}
                       >
-                        {item.count}
-                      </span>
+                        {item.count[0]}
+                      </span> */}
                       </>
                     ) : null}
                   </Link>
@@ -191,48 +193,6 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                   </div>
                 </>
               ))}
-              <h2 className="text-xs font-bold text-[#6B7280] pt-5 pl-2 your-team">ทีมของคุณ</h2>
-              <hr className="line-your-team"/>
-              {teamMembers.map((member) => (
-                <>
-                  <div className="flex items-center pr-2 team-members py-2 text-xs font-semibold rounded-md"
-                    onMouseEnter={() => {
-                      const memberList = document.getElementById(`tooltip-${member.name}`);
-                      memberList.classList.remove('opacity-0');
-                      memberList.classList.remove('invisible');
-                    }}
-                    onMouseLeave={() => {
-                      const memberList = document.getElementById(`tooltip-${member.name}`);
-                      memberList.classList.add('opacity-0');
-                      memberList.classList.add('invisible');
-                    }}>
-                    <img src={member.avatar} className="mr-3 flex-shrink-0 h-5 w-5" alt="" />
-                    <span className="flex-1 item-name">{member.name}</span>
-                  </div>
-                  <div id={`tooltip-${member.name}`} role="tooltip" className="tooltip-menu absolute invisible opacity-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity translate-y-[-120%] duration-300 bg-gray-900 rounded-lg left-[60px] text-xs whitespace-pre shadow-sm dark:bg-gray-700">
-                    {member.name}
-                  </div>
-                </>
-              ))}
-
-              <div className="flex items-center pr-2 team-members py-2 text-xs font-semibold rounded-md" 
-                onMouseEnter={() => {
-                  const invite = document.getElementById("tooltip-invite");
-                  invite.classList.remove('opacity-0');
-                  invite.classList.remove('invisible');
-                }}
-                onMouseLeave={() => {
-                  const invite = document.getElementById("tooltip-invite");
-                  invite.classList.add('opacity-0');
-                  invite.classList.add('invisible');
-                }}
-              >
-                <PlusIcon color="#2684FF" className="min-h-[20px] min-w-[20px] w-5 h-5 bg-[#D6E6FE] rounded-full mr-3"/>
-                <span className="flex-1 text-[#2684FF] item-name">เชิญสมาชิกเข้าทีม</span>
-              </div>
-              <div id="tooltip-invite" role="tooltip" className="tooltip-menu absolute invisible opacity-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity translate-y-[-120%] duration-300 bg-gray-900 rounded-lg left-[60px] text-xs whitespace-pre shadow-sm dark:bg-gray-700">
-                เชิญสมาชิกเข้าทีม
-              </div>
             </nav>
           ) : (
             <div className="animate-pulse space-y-3">
@@ -265,7 +225,7 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
           )}
 
         </div>
-        <div className="flex flex-shrink-0 bg-[#F5F5F5] m-4 rounded-md avatar-user"
+        <div className="flex flex-shrink-0 bg-[#F5F5F5] m-4 rounded-[11px] avatar-user"
           onMouseEnter={() => {
             const user = document.getElementById("tooltip-avatar-user");
             user.classList.remove('opacity-0');
@@ -388,11 +348,11 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                   type="button"
                   onClick={()=> setShowModal(!showModal)}
                 >
-                  <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900 calsans">John Persson</p>
-                  {/* <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">john@zaviago.com</p> */}
-                  <img src={switchuser} />
+                  <div className="flex flex-col text-start">
+                    <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900 calsans">John Persson</p>
+                    <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">john@zaviago.com</p>
+                  </div>
                 </button>
-
               </div>
             </div>
           </a>

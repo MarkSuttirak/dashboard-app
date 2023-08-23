@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ChevronRightIcon } from '@heroicons/react/20/solid'
+import { ChevronRightIcon, EnvelopeIcon } from '@heroicons/react/20/solid'
 import startWorking from "../img/start-working.png";
 import appsMarketplace from "../img/apps-marketplace.png";
 import watchTutorials from "../img/watch-tutorials.png";
@@ -106,7 +106,10 @@ const Dashboard = ({ loadingLogo }) => {
                   <div className="mt-4">
                     <a href="#" className="inline-flex space-x-6">
                       {!loadingLogo ? (
-                        <span className="rounded-full px-4 font-11 font-semibold leading-6 text-slate-400 ring-1 ring-inset ring-slate-300" style={{ fontFamily: "Poppins" }}>
+                        <span className="inline-flex items-center rounded-full bg-indigo-100 px-3 py-0.5 text-xs font-medium text-indigo-800">
+                          <svg className="-ml-1 mr-1.5 h-2 w-2 text-indigo-400" fill="currentColor" viewBox="0 0 8 8">
+                            <circle cx={4} cy={4} r={3} />
+                          </svg>
                           Beta
                         </span>
                       ) : (
@@ -118,14 +121,9 @@ const Dashboard = ({ loadingLogo }) => {
                     </a>
                   </div>
                   {!loadingLogo ? (
-                    <div>
-                      <h1 className="mt-1 text-xl font-semibold tracking-tight text-gray-900">
-                        Sawadee, Chutiphol  🙏
-                      </h1>
-                      <p className="font-13 leading-8 text-gray-600">
-                        Welcome to your <span style={{ color: "#006AFF" }} className="font-bold">Zaviago/OS</span> v.1.4.88
-                      </p>
-                    </div>
+                    <h1 className="display-semibold">
+                      Sawadee, Chutiphol  🙏
+                    </h1>
                   ) : (
                     <div className="animate-pulse mt-2">
                       <div className="bg-[#F3F3F3] w-[200px] h-[24px] aspect-square rounded-lg"></div>
@@ -146,13 +144,21 @@ const Dashboard = ({ loadingLogo }) => {
               {!loadingLogo ? (
                 <div className="mt-4 flex md:mt-0 md:ml-4"
                   aria-hidden="true">
-                  <button
+                  {/* <button
                     type="button"
                     className="inline-flex items-center rounded-lg bg-[#F3F3F3] text-sm font-semibold font-inter text-[#333333] shadow-sm focus:outline-none focus:ring-offset-2 mt-2"
                     style={{ padding: "7px 10px" }}
                     onClick={handleInviteClick}
                   >
                     Invite your team
+                  </button> */}
+                  <button
+                    type="button"
+                    className="primary-btn"
+                    onClick={handleInviteClick}
+                  >
+                    {/* <EnvelopeIcon className="mr-2 h-5 w-5" aria-hidden="true" /> */}
+                    Button text
                   </button>
                   {/* <button
                     type="button"
@@ -198,20 +204,24 @@ const Dashboard = ({ loadingLogo }) => {
 
 
         {!loadingLogo ? (
-          <div className="mx-auto dashboard-container pb-10 gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {dashboardInfo.map((info) => (
-              <div
-                key={info.title}
-                className="relative h-[200px] flex flex-col justify-between space-x-3 bg-white p-4 pb-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400" style={{ background: "url(" + info.background + ")", backgroundSize: "100%", backgroundRepeat: "no-repeat", borderRadius: "20px" }}
-              >
-                <img src={info.icon} className="w-[48px] h-[48px]" alt="" />
-                <div className="min-w-0">
-                  <h2 className="text-md font-bold text-white leading-5">{info.title}</h2>
-                  <p className="truncate font-bold font-13" style={{ color: "#FFFFFF99" }}>{info.description}</p>
+          <>
+            <div className="mx-auto dashboard-container gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+              {dashboardInfo.map((info) => (
+                <div
+                  key={info.title}
+                  className="relative h-[200px] flex flex-col justify-between space-x-3 bg-white p-4 pb-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400" style={{ background: "url(" + info.background + ")", backgroundSize: "100%", backgroundRepeat: "no-repeat", borderRadius: "20px" }}
+                >
+                  <img src={info.icon} className="w-[48px] h-[48px]" alt="" />
+                  <div className="min-w-0">
+                    <h2 className="text-md font-bold text-white leading-5">{info.title}</h2>
+                    <p className="truncate font-bold font-13" style={{ color: "#FFFFFF99" }}>{info.description}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+              
+            </div>
+            <br className="space-xs"/>
+          </>
         ) : (
           <div className="animate-pulse mx-auto dashboard-container pb-10 gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {dashboardInfo.map((info) => (
@@ -223,38 +233,6 @@ const Dashboard = ({ loadingLogo }) => {
             ))}
           </div>
         )}
-
-
-
-        {!loadingLogo ? (
-          <div className="border border-gray-200 bg-[#F3F4F6] py-10 sm:pt-2 pl-5 sm:pl-10 sm:pb-6 mx-auto dashboard-container sm:flex justify-between items-center" style={{ borderRadius: "20px 20px 20px 20px" }}>
-            <div>
-              <p className="text-[#1F272E] font-bold" style={{ fontFamily: 'Eventpop' }}>แพ็กเกจที่คุณใช้อยู่</p>
-              <div className="flex items-center mt-[15px]"> <img src={freeTrialLogo} className="w-[45px] h-[45px]" alt="" /> <h2 className="ml-6 sm:leading-10 leading-8 text-[30px] sm:text-[48px] font-semibold text-[#1F272E] font-calSans">free trial package.</h2> </div>
-              <div className="flex items-center mt-5">
-                <button className="bg-[#000000] text-white text-xs sm:text-base flex py-[13px] px-[8px] sm:py-[10px] sm:px-[18px] rounded-lg items-center " style={{ boxShadow: '0px 4px 8px 0px #00000033' }}><img src={upgradeicon} className="w-[14px] h-[14px] mr-[5px] sm:mr-[11px] " />  Upgrade to Pro</button>
-                <button className="text-[#1F272E] font-inter font-semibold text-base sm:ml-4 ml-1">Talk with support</button>
-              </div>
-            </div>
-            <div>
-              <img src={freeTrial} className="w-[200px] h-[272px] sm:mt-0 mt-4" alt="" />
-            </div>
-          </div>
-        ) : (
-          <div className="border animate-pulse border-gray-200 bg-[#F3F4F6] py-20 pl-10 mx-auto dashboard-container flex justify-between items-center" style={{ borderRadius: "20px 20px 20px 20px" }}>
-            <div>
-              <div className="bg-[#c9ccd1] w-[130px] h-[15px] aspect-square rounded-md"></div>
-              <div className="flex items-center mt-[15px]"> <div className="bg-[#c9ccd1] w-[45px] h-[45px] aspect-square rounded-md"></div> <div className="bg-[#c9ccd1] ml-6 w-[370px] h-[50px] rounded-md"></div> </div>
-              <div className="flex items-center mt-5">
-                <div className="bg-[#c9ccd1] w-[170px] h-[44px] rounded-md"></div>
-                <div className="bg-[#c9ccd1] ml-5 w-[170px] h-[44px] rounded-md"></div>
-              </div>
-            </div>
-          </div>
-        )}
-
-
-
 
         {/* Packages */}
 
@@ -493,8 +471,37 @@ const Dashboard = ({ loadingLogo }) => {
           )}
 
         </div>
+
+        {/* Packages */}
         {!loadingLogo ? (
-          <div className="mx-auto dashboard-container pb-10 gap-x-8">
+          <div className="border border-gray-200 bg-[#F3F4F6] py-10 sm:pt-2 pl-5 sm:pl-10 sm:pb-6 mx-auto dashboard-container sm:flex justify-between items-center" style={{ borderRadius: "20px 20px 20px 20px" }}>
+            <div>
+              <p className="text-[#1F272E] font-bold" style={{ fontFamily: 'Eventpop' }}>แพ็กเกจที่คุณใช้อยู่</p>
+              <div className="flex items-center mt-[15px]"> <img src={freeTrialLogo} className="w-[45px] h-[45px]" alt="" /> <h2 className="ml-6 sm:leading-10 leading-8 text-[30px] sm:text-[48px] font-semibold text-[#1F272E] font-calSans">free trial package.</h2> </div>
+              <div className="flex items-center mt-5">
+                <button className="bg-[#000000] text-white text-xs sm:text-base flex py-[13px] px-[8px] sm:py-[10px] sm:px-[18px] rounded-lg items-center " style={{ boxShadow: '0px 4px 8px 0px #00000033' }}><img src={upgradeicon} className="w-[14px] h-[14px] mr-[5px] sm:mr-[11px] " />  Upgrade to Pro</button>
+                <button className="text-[#1F272E] font-inter font-semibold text-base sm:ml-4 ml-1">Talk with support</button>
+              </div>
+            </div>
+            <div>
+              <img src={freeTrial} className="w-[200px] h-[272px] sm:mt-0 mt-4" alt="" />
+            </div>
+          </div>
+        ) : (
+          <div className="border animate-pulse border-gray-200 bg-[#F3F4F6] py-20 pl-10 mx-auto dashboard-container flex justify-between items-center" style={{ borderRadius: "20px 20px 20px 20px" }}>
+            <div>
+              <div className="bg-[#c9ccd1] w-[130px] h-[15px] aspect-square rounded-md"></div>
+              <div className="flex items-center mt-[15px]"> <div className="bg-[#c9ccd1] w-[45px] h-[45px] aspect-square rounded-md"></div> <div className="bg-[#c9ccd1] ml-6 w-[370px] h-[50px] rounded-md"></div> </div>
+              <div className="flex items-center mt-5">
+                <div className="bg-[#c9ccd1] w-[170px] h-[44px] rounded-md"></div>
+                <div className="bg-[#c9ccd1] ml-5 w-[170px] h-[44px] rounded-md"></div>
+              </div>
+            </div>
+          </div>
+        )}
+  
+        {!loadingLogo ? (
+          <div className="mx-auto dashboard-container py-10 gap-x-8">
             <div className="border border-gray-200 bg-white px-6 pt-4 pb-7" style={{ borderRadius: "20px" }}>
               <div className="flex gap-x-2.5 items-center">
                 <img src={thrBookFrame} />
