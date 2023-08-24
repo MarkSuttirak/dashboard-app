@@ -94,7 +94,7 @@ const ChangeDomain = ({ loadingLogo }) => {
 
     return (
         <div className="page-section">
-          <div className="mx-auto dashboard-container pb-8 grid grid-cols-2 gap-x-8">
+          <div className="dashboard-container pb-8 grid grid-cols-2 gap-x-8">
             <div className="pt-0">
               <div className="mx-auto max-w-2xl">
                 <div className="max-w-lg">
@@ -151,7 +151,7 @@ const ChangeDomain = ({ loadingLogo }) => {
             </div>
           </div>
 
-          <div className="mx-auto dashboard-container pb-8 grid gap-x-8">
+          <div className="dashboard-container pb-8 grid gap-x-8">
             <table>
               <thead>
                 <tr>
