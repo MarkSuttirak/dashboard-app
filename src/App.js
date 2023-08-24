@@ -14,7 +14,7 @@ import { useEffect } from 'react';
 import TeamModal from "./components/switchTeamModal";
 import { createContext } from 'react';
 import SingleAppPage from './pages/SingleAppPage';
-
+import Settings from './pages/settings';
 
 export const switchContext = createContext();
 
@@ -41,6 +41,7 @@ function App() {
           <Route path="/apps" element={<Business />} />
           <Route path="/singleAppPage" element={<SingleAppPage />} />
           <Route path="/change-domain" element={<ChangeDomain />} />
+          <Route path="/settings" element={<Settings />} />
 
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/register" element={<Register />} />

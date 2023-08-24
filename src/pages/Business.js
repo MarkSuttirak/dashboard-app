@@ -125,7 +125,7 @@ function Business() {
   return (
     <>
       <div className="sm:p-10 p-5 page-section" style={{ paddingTop: '20px' }}>
-        <div className="pt-0 section-container mx-auto">
+        <div className="pt-0 section-container">
           <span className="rounded-full px-4 py-1 font-11 font-semibold leading-6 text-slate-400 ring-1 ring-inset ring-slate-300" style={{ fontFamily: "Poppins" }}>
             Beta
           </span>
@@ -141,7 +141,7 @@ function Business() {
           </div>
         </div>
 
-        <div className='section-container mx-auto mt-[30px] rounded-b-[16px]' style={{ boxShadow: '0px 4px 70px 0px #72727240' }}>
+        <div className='section-container mt-[30px] rounded-b-[16px]' style={{ boxShadow: '0px 4px 70px 0px #72727240' }}>
           <div className='appBanner'>
             <p className='font-inter font-medium text-[#FFFFFF] text-[13px] mt-1'>Choose professional solutions to power your business</p>
             <h2 className='font-inter text-[32px] font-bold sm:w-[390px] text-[#ffffff] leading-[38.73px] mt-[14px]'>Get the POS system for your store.</h2>
@@ -162,7 +162,7 @@ function Business() {
           </div>
         </div>
 
-        <div className='section-container mx-auto mt-[50px]'>
+        <div className='section-container mt-[50px]'>
           <h3 className='text-[#1F272E] font-calSans font-semibold font-sm'>Most popular apps</h3>
           <p className='font-inter font-normal text-[13px] text-[#687178] mt-1'>Explore the apps that a wide range of merchants rely on.</p>
           <div className='grid grid-cols-2 mt-[37px]'>
@@ -179,7 +179,7 @@ function Business() {
           </div>
         </div>
 
-        <div className='section-container mx-auto mt-[60px] flex gap-[14px]'>
+        <div className='section-container mt-[60px] flex gap-[14px]'>
           <div className='sm:w-1/2 rounded-[16px]' style={{ boxShadow: '0px 4px 70px 0px #72727240' }}>
             <div className='connectBusiness1 flex items-end h-full  p-6'>
               <h3 className='text-white font-inter font-bold text-[32px] leading-[38.73px]' style={{ boxShadow: '0px 4px 4px 0px #00000040', }}>Sync all sides of your business.</h3>
@@ -200,7 +200,7 @@ function Business() {
           </div>
         </div>
 
-        <div className='section-container mx-auto mt-[27px] rounded-b-[16px]' style={{ boxShadow: '0px 4px 70px 0px #72727240' }}>
+        <div className='section-container mt-[27px] rounded-b-[16px]' style={{ boxShadow: '0px 4px 70px 0px #72727240' }}>
           <div className='appConnectBusiness flex flex-col items-end text-right justify-end'>
             <p className='font-inter font-medium text-[#FFFFFF] text-[13px] mt-1'>Building your offline business</p>
             <h2 className='font-inter text-[32px] font-bold sm:w-[390px] text-[#ffffff] leading-[38.73px] mt-[14px]'>Get the POS system for your store.</h2>
@@ -219,7 +219,7 @@ function Business() {
           </div>
         </div>
 
-        <div className='section-container mx-auto mt-[80px]'>
+        <div className='section-container mt-[80px]'>
           <h3 className='text-[#1F272E] font-calSans font-semibold font-sm'>Most popular apps</h3>
           <p className='font-inter font-normal text-[13px] text-[#687178] mt-1'>Explore the apps that a wide range of merchants rely on.</p>
           <div className='grid grid-cols-2 mt-[50px]'>
@@ -236,7 +236,7 @@ function Business() {
           </div>
         </div>
 
-        <div className='section-container mx-auto mt-[60px] flex items-center'>
+        <div className='section-container mt-[60px] flex items-center'>
           <div className="flipBoxSection">
             <div>
               <div className={`flip-box ${isFlipped ? "rotate-y-180" : ""} flip-box-inner`}>

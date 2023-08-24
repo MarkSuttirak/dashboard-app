@@ -19,7 +19,6 @@ import { Combobox, Dialog, Transition } from '@headlessui/react'
 import "../css/sidebar-dropdown.css";
 import { switchContext } from '../App'
 import { PlusIcon } from "@heroicons/react/20/solid";
-// import { HomeSmile, Edit04, Menu01 } from "untitledui-js/icons/general";
 import { HomeSmile, Edit04, Menu01, LayoutAlt01, Backpack, Gift01, Inbox01, Settings01 } from "@untitled-ui/icons-react/build/cjs";
 
 // import TeamModal from "../components/switchTeamModal";
