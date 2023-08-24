@@ -37,9 +37,9 @@ function InstallAddons(props) {
 
             {!isClickedInstall ?
                 <div className='sm:w-[220px] mx-auto mt-[50px] flex justify-evenly'>
-                    <button onClick={changeInstallClick} className='py-[10px] px-[18px] bg-[#000000] rounded-lg font-inter font-semibold text-base text-[#FFFFFF]' style={{ boxShadow: '0px 4px 8px 0px #00000033' }}>Install apps</button>
+                    <button onClick={changeInstallClick} className='black-btn'>Install apps</button>
                     <button onClick={props.closePopUp} className='font-calSans font-semibold text-base leading-[19.2px] text-[#1F272E] ml-6'>Cancel</button>
-                </div> : <div className='sm:w-[220px] mx-auto mt-[50px] text-center'> <button onClick={props.closePopUp} className='py-[10px] px-[18px] bg-[#000000] rounded-lg font-inter font-semibold text-base text-[#FFFFFF]' style={{ boxShadow: '0px 4px 8px 0px #00000033' }}>Back to dashboard</button></div>}
+                </div> : <div className='sm:w-[220px] mx-auto mt-[50px] text-center'> <button onClick={props.closePopUp} className='black-btn'>Back to dashboard</button></div>}
 
 
             {!isClickedInstall ?

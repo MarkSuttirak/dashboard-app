@@ -19,7 +19,8 @@ import { Combobox, Dialog, Transition } from '@headlessui/react'
 import "../css/sidebar-dropdown.css";
 import { switchContext } from '../App'
 import { PlusIcon } from "@heroicons/react/20/solid";
-import { HomeSmile, Edit04, Menu01 } from "untitledui-js/icons/general";
+// import { HomeSmile, Edit04, Menu01 } from "untitledui-js/icons/general";
+import { HomeSmile, Edit04, Menu01, LayoutAlt01, Backpack, Gift01, Inbox01, Settings01 } from "@untitled-ui/icons-react/build/cjs";
 
 // import TeamModal from "../components/switchTeamModal";
 
@@ -49,13 +50,13 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
   }
 
   const navigation = [
-    { name: 'Dashboard', icon: <HomeSmile viewBox='0 0 30 24' width='24'/>, href: '/', current: active === '/' ? true : false, id: 'dashboard' },
-    { name: 'Teams', icon: <img src={appsImg} />, href: '/teams', count: [4, 'orange', 'have-dot'], current: active === '/teams' ? true : false, id: 'teams' },
-    { name: 'Apps', icon: <Edit04 viewBox='0 0 30 24' width='24' />, href: '/apps', current: active === '/apps' ? true : false, id: 'apps' },
-    { name: 'Integration', icon: <Menu01 viewBox='0 0 30 24' width='24'/>, href: '/integration', count: [10, 'orange', 'have-dot'], current: active === '/integration' ? true : false, id: 'integration' },
-    { name: 'Gift & Privilege', icon: <img src={giftImg} />, href: '#', count: [5, 'blue', 'have-dot'], current: active === "#" ? true : false, active: active, id: 'gift' },
-    { name: 'การเรียกเก็บเงิน', icon: <img src={billingImg} />, href: '#', count: [10, 'gray'], current: active === "#" ? true : false, active: active, id: 'billing' },
-    { name: 'ตั้งค่า', icon: <img src={settingsImg} />, href: '#', current: active === "/settings" || active === "/change-domain" ? true : false, active: active, id: 'settings' },
+    { name: 'Dashboard', icon: <HomeSmile viewBox='0 0 30 24' width='24' className='menu-icon'/>, href: '/', current: active === '/' ? true : false, id: 'dashboard' },
+    { name: 'Teams', icon: <LayoutAlt01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/teams', count: [4, 'orange', 'have-dot'], current: active === '/teams' ? true : false, id: 'teams' },
+    { name: 'Apps', icon: <Edit04 viewBox='0 0 30 24' width='24' className='menu-icon'/>, href: '/apps', current: active === '/apps' ? true : false, id: 'apps' },
+    { name: 'Integration', icon: <Backpack viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/integration', count: [10, 'orange', 'have-dot'], current: active === '/integration' ? true : false, id: 'integration' },
+    { name: 'Gift & Privilege', icon: <Gift01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '#', count: [5, 'blue', 'have-dot'], current: active === "#" ? true : false, active: active, id: 'gift' },
+    { name: 'การเรียกเก็บเงิน', icon: <Inbox01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '#', count: [10, 'gray'], current: active === "#" ? true : false, active: active, id: 'billing' },
+    { name: 'ตั้งค่า', icon: <Settings01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '#', current: active === "/settings" || active === "/change-domain" ? true : false, active: active, id: 'settings' },
   ]
 
   const teamMembers = [
@@ -166,9 +167,9 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                       {/* Desktop Version */}
 
                       <div className={`${item.count[1] === 'orange' ? 'orange' : item.count[1] === 'blue' ? 'blue' : item.count[1] === 'gray' ? 'gray' : ''}`}>
-                        <span className="inline-flex items-center rounded-full bg-[#FEF6EE] px-3 py-0.5 text-sm font-medium text-[#B93815] badge-sidebar">
+                        <span className="badge-sidebar">
                           {item.count[2] === 'have-dot' && (
-                            <svg className="-ml-1 mr-1.5 h-2 w-2 badge-circle" fill="currentColor" viewBox="0 0 8 8">
+                            <svg className="badge-circle" fill="currentColor" viewBox="0 0 8 8">
                               <circle cx={4} cy={4} r={3} />
                             </svg>
                           )}

@@ -81,7 +81,7 @@ function SingleAppPage() {
               </div>
             </div>
             <div className='sm:mt-0 mt-5'>
-              <button onClick={handleInviteClick} className='py-[10px] px-[18px] bg-[#000000] rounded-lg font-inter font-semibold text-base text-[#FFFFFF]' style={{ boxShadow: '0px 4px 8px 0px #00000033' }}>Install App</button>
+              <button onClick={handleInviteClick} className='black-btn'>Install App</button>
             </div>
           </div>
         </div>

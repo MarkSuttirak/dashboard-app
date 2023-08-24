@@ -105,16 +105,38 @@ $success: #17B26A;
   line-height: 20px;
   align-items:center;
   gap:10px;
+  .menu-icon {
+    stroke:#6B7280;
+  }
   &:hover {
     color:black;
     background: #F3F4F6;
+    .menu-icon {
+      stroke:black;
+    }
   }
+}
+
+.badge-sidebar {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:6px;
+  padding:0 5px;
+  font-size:12px;
+}
+
+.badge-circle {
+  width:8px;
+  height:8px;
+  margin-right:4px;
 }
 
 .orange {
   .badge-sidebar {
     background-color:#FEF6EE;
     color:#B93815;
+    border:1px solid #F9DBAF;
   }
   .badge-circle {
     color:#EF6820
@@ -125,6 +147,7 @@ $success: #17B26A;
   .badge-sidebar {
     background-color:#EFF8FF;
     color:#175CD3;
+    border:1px solid #B2DDFF;
   }
   .badge-circle {
     color:#2E90FA
@@ -135,12 +158,22 @@ $success: #17B26A;
   .badge-sidebar {
     background-color:#F9FAFB;
     color:#344054;
+    border:1px solid #EAECF0;
   }
   // .badge-circle {
   //   color:#EF6820
   // }
 }
 
+.black-btn {
+  box-shadow:0 4px 8px 0 #00000033;
+  padding:10px 18px;
+  background-color:black;
+  border-radius:8px;
+  font-family:Inter;
+  font-weight:600;
+  color:white;
+}
 
 .display-semibold {
   font-family: Cal Sans;
