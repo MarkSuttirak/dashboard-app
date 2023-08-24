@@ -15,6 +15,7 @@ import TeamModal from "./components/switchTeamModal";
 import { createContext } from 'react';
 import SingleAppPage from './pages/SingleAppPage';
 import Settings from './pages/settings';
+import Profile from './pages/profile';
 
 export const switchContext = createContext();
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/singleAppPage" element={<SingleAppPage />} />
           <Route path="/change-domain" element={<ChangeDomain />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/profile" element={<Profile />} />
 
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/register" element={<Register />} />

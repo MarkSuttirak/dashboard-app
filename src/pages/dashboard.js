@@ -154,7 +154,7 @@ const Dashboard = ({ loadingLogo }) => {
                   </button> */}
                   <button
                     type="button"
-                    className="primary-btn"
+                    className="secondary-btn"
                     onClick={handleInviteClick}
                   >
                     {/* <EnvelopeIcon className="mr-2 h-5 w-5" aria-hidden="true" /> */}
@@ -474,7 +474,7 @@ const Dashboard = ({ loadingLogo }) => {
 
         {/* Packages */}
         {!loadingLogo ? (
-          <div className="border border-gray-200 bg-[#F3F4F6] py-10 sm:pt-2 pl-5 sm:pl-10 sm:pb-6 mx-auto dashboard-container sm:flex justify-between items-center" style={{ borderRadius: "20px 20px 20px 20px" }}>
+          <div className="bg-[#F3F4F6] py-10 sm:pt-2 pl-5 sm:pl-10 sm:pb-6 mx-auto dashboard-container sm:flex justify-between items-center" style={{ borderRadius: "20px 20px 20px 20px" }}>
             <div>
               <p className="text-[#1F272E] font-bold" style={{ fontFamily: 'Eventpop' }}>แพ็กเกจที่คุณใช้อยู่</p>
               <div className="flex items-center mt-[15px]"> <img src={freeTrialLogo} className="w-[45px] h-[45px]" alt="" /> <h2 className="ml-6 sm:leading-10 leading-8 text-[30px] sm:text-[48px] font-semibold text-[#1F272E] font-calSans">free trial package.</h2> </div>

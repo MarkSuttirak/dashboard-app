@@ -1,11 +1,15 @@
+import { Link } from "react-router-dom";
+import Spacer from "../components/spacer";
 import SwitchWithDesc from "../components/switchWithDesc";
 import Table from "../components/table";
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
+import HeaderSettings from "../components/headerSettings";
 
 const Settings = () => {
   const menus = [
     {
-      name: 'Profile',
-      href: '#',
+      name: 'My Profile',
+      href: '/profile',
     },
     {
       name: 'My details',
@@ -14,19 +18,48 @@ const Settings = () => {
     {
       name: 'Password',
       href: '#',
+    },
+    {
+      name: 'Team',
+      href: '#',
+    },
+    {
+      name: 'Plan',
+      href: '#',
+    },
+    {
+      name: 'Billing',
+      href: '#',
+    },
+    {
+      name: 'Email',
+      href: '#',
+    },
+    {
+      name: 'Notifications',
+      href: '#',
+    }
+  ]
+
+  const tableInfo = [
+    {
+      invoice: 'Invoice #007 - Dec 2022',
+      billing_date: 'Dec 1, 2022',
+      status: 'Paid',
+      amount: 'USD $10.00',
+    },
+    {
+      invoice: 'Invoice #007 - Nov 2022',
+      billing_date: 'Nov 1, 2022',
+      status: 'Paid',
+      amount: 'USD $10.00',
     }
   ]
   return (
     <div className="page-section">
-      <div className="dashboard-container">
-        <h1>Settings</h1>
-        <nav className="tabs">
-          {menus.map((item) => (
-            <a key={item.name} href={item.href} className="tab-menu">
-              {item.name}
-            </a>
-          ))}
-        </nav>
+      <div className="dashboard-settings">
+
+        <HeaderSettings />
 
         <div className="tab-settings">
           <h2 className="main-heading">Settings</h2>
@@ -53,11 +86,11 @@ const Settings = () => {
               <h2 className="main-heading">Billing and invoicing</h2>
               <p className="tab-desc">Pick an account plan that fits your workflow.</p>
             </div>
-            <button className="primary-btn">Upgrade</button>
+            <button className="secondary-btn">Upgrade</button>
           </section>
         </div>
 
-        <Table />
+        <Table info={tableInfo}/>
       </div>
     </div>
   )

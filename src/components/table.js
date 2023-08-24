@@ -1,91 +1,70 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 
-const people = [
-  {
-    name: 'Lindsay Walton',
-    title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
-    role: 'Member',
-  },
-  {
-    name: 'Lindsay Walton',
-    title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
-    role: 'Member',
-  },
-  {
-    name: 'Lindsay Walton',
-    title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
-    role: 'Member',
-  },
-]
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const Table = () => {
+const Table = ({info}) => {
   const checkbox = useRef()
   const [checked, setChecked] = useState(false)
   const [indeterminate, setIndeterminate] = useState(false)
-  const [selectedPeople, setSelectedPeople] = useState([])
+  const [selectedInfo, setSelectedInfo] = useState([])
 
   useLayoutEffect(() => {
-    const isIndeterminate = selectedPeople.length > 0 && selectedPeople.length < people.length
-    setChecked(selectedPeople.length === people.length)
+    const isIndeterminate = selectedInfo.length > 0 && selectedInfo.length < info.length
+    setChecked(selectedInfo.length === info.length)
     setIndeterminate(isIndeterminate)
     checkbox.current.indeterminate = isIndeterminate
-  }, [selectedPeople])
+  }, [selectedInfo])
 
   function toggleAll() {
-    setSelectedPeople(checked || indeterminate ? [] : people)
+    setSelectedInfo(checked || indeterminate ? [] : info)
     setChecked(!checked && !indeterminate)
     setIndeterminate(false)
   }
 
   return (
     <div className="min-w-full p-[1px] align-middle">
-      <div className="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-        {selectedPeople.length > 0 && (
+      <div className="table-overview">
+        {selectedInfo.length > 0 && (
           <div className="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
             <button
               type="button"
-              className="inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
+              className="white-outline-btn"
             >
               Bulk edit
             </button>
             <button
               type="button"
-              className="inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
+              className="white-outline-btn"
             >
               Delete all
             </button>
           </div>
         )}
-        <table className="min-w-full table-fixed divide-y divide-gray-300">
-          <thead className="bg-gray-50">
+        <table className="table-info">
+          <thead className="table-head">
             <tr>
-              <th scope="col" className="relative w-12 px-6 sm:w-16 sm:px-8">
+              <th scope="col" className="relative w-12">
                 <input
                   type="checkbox"
-                  className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"
+                  className="table-checkbox"
                   ref={checkbox}
                   checked={checked}
                   onChange={toggleAll}
                 />
               </th>
-              <th scope="col" className="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                Name
+              <th scope="col" className="table-head-text">
+                Invoice
               </th>
-              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                Title
+              <th scope="col" className="table-head-text">
+                Billing date
               </th>
-              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                Email
+              <th scope="col" className="table-head-text">
+                Status
               </th>
-              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                Role
+              <th scope="col" className="table-head-text">
+                Amount
               </th>
               <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
                 <span className="sr-only">Download</span>
@@ -93,40 +72,37 @@ const Table = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
-            {people.map((person) => (
-              <tr key={person.email} className={selectedPeople.includes(person) ? 'bg-gray-50' : undefined}>
+            {info.map((i) => (
+              <tr key={i.invoice} className={selectedInfo.includes(i) ? 'bg-gray-50' : undefined}>
                 <td className="relative w-12 px-6 sm:w-16 sm:px-8">
-                  {selectedPeople.includes(person) && (
-                    <div className="absolute inset-y-0 left-0 w-0.5 bg-indigo-600" />
-                  )}
                   <input
                     type="checkbox"
-                    className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"
-                    value={person.email}
-                    checked={selectedPeople.includes(person)}
+                    className="table-checkbox"
+                    value={i.invoice}
+                    checked={selectedInfo.includes(i)}
                     onChange={(e) =>
-                      setSelectedPeople(
+                      setSelectedInfo(
                         e.target.checked
-                          ? [...selectedPeople, person]
-                          : selectedPeople.filter((p) => p !== person)
+                          ? [...selectedInfo, i]
+                          : selectedInfo.filter((p) => p !== i)
                       )
                     }
                   />
                 </td>
                 <td
                   className={classNames(
-                    'whitespace-nowrap py-4 pr-3 text-sm font-medium',
-                    selectedPeople.includes(person) ? 'text-indigo-600' : 'text-gray-900'
+                    'table-title',
+                    selectedInfo.includes(i) ? 'text-indigo-600' : 'text-gray-900'
                   )}
                 >
-                  {person.name}
+                  {i.invoice}
                 </td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.title}</td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.email}</td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.role}</td>
-                <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                <td className="table-desc">{i.billing_date}</td>
+                <td className="table-desc">{i.status}</td>
+                <td className="table-desc">{i.amount}</td>
+                <td className="table-link">
                   <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                    Download<span className="sr-only">, {person.name}</span>
+                    Download<span className="sr-only">, {i.invoice}</span>
                   </a>
                 </td>
               </tr>
