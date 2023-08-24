@@ -55,7 +55,7 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
     { name: 'Integration', icon: <Backpack viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/integration', count: [10, 'orange', 'have-dot'], current: active === '/integration' ? true : false, id: 'integration' },
     { name: 'Gift & Privilege', icon: <Gift01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '#', count: [5, 'blue', 'have-dot'], current: active === "#" ? true : false, active: active, id: 'gift' },
     { name: 'การเรียกเก็บเงิน', icon: <Inbox01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '#', count: [10, 'gray'], current: active === "#" ? true : false, active: active, id: 'billing' },
-    { name: 'ตั้งค่า', icon: <Settings01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '#', current: active === "/settings" || active === "/change-domain" ? true : false, active: active, id: 'settings' },
+    { name: 'ตั้งค่า', icon: <Settings01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/settings', current: active === "/settings" || active === "/change-domain" ? true : false, active: active, id: 'settings' },
   ]
 
   const teamMembers = [

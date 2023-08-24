@@ -1,40 +1,77 @@
 import { ChevronLeftIcon, ChevronRightIcon, HomeIcon } from '@heroicons/react/20/solid'
 import Spacer from './spacer'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { HomeSmile } from '@untitled-ui/icons-react/build/cjs'
+import { useState, useEffect } from 'react'
 
-const HeaderSettings = ({active}) => {
+const HeaderSettings = () => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
+  const location = useLocation();
+  const [activeMenu, setActiveMenu] = useState('')
+
+  const handleMenuClick = (menu) => {
+    setActiveMenu(menu);
+  }
+
+  const [currentPage, setCurrentPage] = useState('')
 
   const menus = [
     {
       name: 'My Account',
-      href: '/profile',
-      current: 0,
+      href: '/settings/profile',
+      current: activeMenu === '/settings/profile' ? true : false,
     },
     {
       name: 'Team',
-      href: '',
-      current: 1,
+      href: '/settings/team',
+      current: activeMenu === '/settings/team' ? true : false,
     },
     {
       name: 'Plan',
-      href: '',
-      current: 2,
+      href: '/settings/plan',
+      current: activeMenu === '/settings/plan' ? true : false,
     },
     {
       name: 'Billing',
-      href: '',
-      current: 3,
+      href: '/settings/billing',
+      current: activeMenu === '/settings/billing' ? true : false,
     },
     {
       name: 'Notifications',
-      href: '',
-      current: 4,
+      href: '/settings/notifications',
+      current: activeMenu === '/settings/notifications' ? true : false,
     }
   ]
+
+  useEffect(() => {
+    handlePageTitle();
+    setActiveMenu(location.pathname);
+  }, [activeMenu])
+
+  const handlePageTitle = () => {
+    switch (activeMenu) {
+      case '/settings/profile':
+        setCurrentPage('My Account')
+        break;
+      case '/settings/team':
+        setCurrentPage('Team')
+        break;
+      case '/settings/plan':
+        setCurrentPage('Plan')
+        break;
+      case '/settings/billing':
+        setCurrentPage('Billing')
+        break;
+      case '/settings/notifications':
+        setCurrentPage('Notifications')
+        break;
+      default:
+        setCurrentPage('Settings')
+        break;
+    }
+  }
 
   return (
     <>
@@ -50,17 +87,17 @@ const HeaderSettings = ({active}) => {
             <ol role="list" className="flex items-center space-x-4">
               <li>
                 <div className="flex">
-                  <a href="#" className="text-sm font-medium text-gray-500 hover:text-gray-700">
+                  <Link to='/' className="text-sm font-medium text-gray-500 hover:text-gray-700">
                     <HomeSmile />
-                  </a>
+                  </Link>
                 </div>
               </li>
               <li>
                 <div className="flex items-center">
                   <ChevronRightIcon className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                  <a href="#" className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
-                    Engineering
-                  </a>
+                  <Link to="/settings" className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
+                    Settings
+                  </Link>
                 </div>
               </li>
               <li>
@@ -76,11 +113,13 @@ const HeaderSettings = ({active}) => {
         </div>
         <div className="mt-2 flex items-center justify-between">
           <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
-            Back End Developer
+            {currentPage}
           </h2>
-          <button className="primary-btn">
-            Save
-          </button>
+          {activeMenu !== '/settings/team' && (
+            <button className="primary-btn">
+              Save
+            </button>
+          )}
         </div>
       </div>
 
@@ -91,7 +130,12 @@ const HeaderSettings = ({active}) => {
           <Link
             key={tab.name}
             to={tab.href}
-            className={`tab-menu${tab.current == active ? ' active' : ''}`}
+            className={classNames(
+              tab.current
+                ? 'tab-menu active'
+                : 'tab-menu'
+            )}
+            onClick={() => handleMenuClick(tab.href)}
           >
             {tab.name}
           </Link>

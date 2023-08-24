@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react'
+import { Download04 } from "@untitled-ui/icons-react/build/cjs";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -100,8 +101,9 @@ const Table = ({info}) => {
                 <td className="table-desc">{i.billing_date}</td>
                 <td className="table-desc">{i.status}</td>
                 <td className="table-desc">{i.amount}</td>
-                <td className="table-link">
-                  <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                <td className="table-link pr-5 w-8">
+                  <a href="#" className="text-indigo-600 hover:text-indigo-900 flex gap-x-2 justify-end">
+                    <Download04 />
                     Download<span className="sr-only">, {i.invoice}</span>
                   </a>
                 </td>

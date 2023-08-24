@@ -16,6 +16,8 @@ import { createContext } from 'react';
 import SingleAppPage from './pages/SingleAppPage';
 import Settings from './pages/settings';
 import Profile from './pages/profile';
+import TeamsSettings from './pages/teamsSettings';
+import BillingSettings from './pages/billingSettings';
 
 export const switchContext = createContext();
 
@@ -43,7 +45,9 @@ function App() {
           <Route path="/singleAppPage" element={<SingleAppPage />} />
           <Route path="/change-domain" element={<ChangeDomain />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/settings/profile" element={<Profile />} />
+          <Route path="/settings/team" element={<TeamsSettings />} />
+          <Route path="/settings/billing" element={<BillingSettings />} />
 
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/register" element={<Register />} />
