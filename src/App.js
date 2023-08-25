@@ -18,6 +18,8 @@ import Settings from './pages/settings';
 import Profile from './pages/profile';
 import TeamsSettings from './pages/teamsSettings';
 import BillingSettings from './pages/billingSettings';
+import PlanSettings from './pages/planSettings';
+import NotiSettings from './pages/NotificationsSettings';
 
 export const switchContext = createContext();
 
@@ -48,6 +50,8 @@ function App() {
           <Route path="/settings/profile" element={<Profile />} />
           <Route path="/settings/team" element={<TeamsSettings />} />
           <Route path="/settings/billing" element={<BillingSettings />} />
+          <Route path="/settings/plan" element={<PlanSettings />} />
+          <Route path="/settings/notifications" element={<NotiSettings />} />
 
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/register" element={<Register />} />

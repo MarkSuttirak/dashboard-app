@@ -152,29 +152,25 @@ $success: #17B26A;
   font-family:Inter
 }
 
-.form-prefix {
+.input-addon {
   display:flex;
   align-items:center;
   justify-content:center;
   border:1px solid #d1d5db;
-  border-radius:8px 0 0 8px;
   padding:8px 12px;
   font-size:14px;
   font-weight:400;
   color:#475467;
+  background-color:white;
+}
+
+.form-prefix {
+  border-radius:8px 0 0 8px;
   border-right:none;
 }
 
 .form-suffix {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border:1px solid #d1d5db;
   border-radius:0 8px 8px 0;
-  padding:8px 12px;
-  font-size:14px;
-  font-weight:400;
-  color:#475467;
   border-left:none;
 }
 
@@ -521,6 +517,9 @@ h6 {
   font-weight:500;
   padding:13px 0;
   text-align:left;
+  &.first-col {
+    padding-left:24px;
+  }
 }
 
 .table-title {

@@ -44,10 +44,10 @@ const TeamsSettings = () => {
                 <table className="min-w-full divide-y divide-gray-300">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                      <th scope="col" className="table-head-text first-col">
                         Name
                       </th>
-                      <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                      <th scope="col" className="table-head-text">
                         Role
                       </th>
                       <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
@@ -69,7 +69,7 @@ const TeamsSettings = () => {
                             </div>
                           </div>
                         </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.role}</td>
+                        <td className="table-desc">{person.role}</td>
                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                           <a href="#" className="text-indigo-600 hover:text-indigo-900">
                             Edit<span className="sr-only">, {person.name}</span>
@@ -86,20 +86,19 @@ const TeamsSettings = () => {
               >
                 <div className="hidden sm:block">
                   <p className="text-sm text-gray-700">
-                    Showing <span className="font-medium">1</span> to <span className="font-medium">{10}</span> of{' '}
-                    <span className="font-medium">20</span> results
+                    Showing <span className="font-medium">1</span> to <span className="font-medium">{people.length}</span> of <span className="font-medium">{people.length}</span> results
                   </p>
                 </div>
-                <div className="flex flex-1 justify-between sm:justify-end">
+                <div className="flex flex-1 justify-end gap-x-3">
                   <a
                     href="#"
-                    className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                    className="white-outline-btn"
                   >
                     Previous
                   </a>
                   <a
                     href="#"
-                    className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                    className="white-outline-btn"
                   >
                     Next
                   </a>

@@ -1,4 +1,5 @@
 import HeaderSettings from "../components/headerSettings"
+import InputWithPrefix from "../components/inputWithPrefix"
 
 export default function Profile() {
     return (
@@ -23,24 +24,7 @@ export default function Profile() {
                         <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
                           Website
                         </label>
-                        <div className="mt-1 flex rounded-md shadow-sm flex-row-reverse">
-                          {/* <span className="form-prefix">
-                            http://
-                          </span> */}
-                          <input
-                            type="text"
-                            name="company-website"
-                            id="company-website"
-                            className="form-input with-prefix"
-                            placeholder="www.example.com"
-                          />
-                          <span className="form-prefix">
-                            http://
-                          </span>
-                           {/* <span className="form-suffix">
-                            http://
-                          </span> */}
-                        </div>
+                        <InputWithPrefix prefix='http://' placeholder='www.example.com' id='company-website' name='company-website'/>
                       </div>
                     </div>
   

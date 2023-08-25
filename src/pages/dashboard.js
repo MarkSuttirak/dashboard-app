@@ -31,6 +31,7 @@ import tutorialsSvg from "../img/tutorialsSvg.svg";
 import { Link } from "react-router-dom";
 import PopUp from '../components/popup'
 import UserViewPopup from "../components/userViewPopup";
+import Spacer from "../components/spacer";
 
 const Dashboard = ({ loadingLogo }) => {
 
@@ -99,7 +100,7 @@ const Dashboard = ({ loadingLogo }) => {
       )}
       <div className="bg-white page-section pb-16">
         <div className="relative overflow-hidden">
-          <div className="mx-auto dashboard-container pb-8 grid grid-cols-2 gap-x-8">
+          <div className="dashboard-container pb-8 grid grid-cols-2 gap-x-8">
             <div className="pt-0">
               <div className="mx-auto max-w-2xl">
                 <div className="max-w-lg">
@@ -205,7 +206,7 @@ const Dashboard = ({ loadingLogo }) => {
 
         {!loadingLogo ? (
           <>
-            <div className="mx-auto dashboard-container gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div className="dashboard-container gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
               {dashboardInfo.map((info) => (
                 <div
                   key={info.title}
@@ -223,7 +224,7 @@ const Dashboard = ({ loadingLogo }) => {
             <br className="space-xs"/>
           </>
         ) : (
-          <div className="animate-pulse mx-auto dashboard-container pb-10 gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div className="animate-pulse dashboard-container pb-10 gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {dashboardInfo.map((info) => (
               <div
                 key={info.title}
@@ -236,11 +237,9 @@ const Dashboard = ({ loadingLogo }) => {
 
         {/* Packages */}
 
-        <div className="mx-auto dashboard-container pb-5 gap-x-8 mt-[50px]">
-
+        <div className="dashboard-container pb-5 gap-x-8 mt-[50px]">
 
           {!loadingLogo ? (
-
             <div className=" bg-white">
               <div className="sm:flex justify-between items-center">
                 <div className="flex items-center">
@@ -472,23 +471,26 @@ const Dashboard = ({ loadingLogo }) => {
 
         </div>
 
+        <Spacer size={40} />
         {/* Packages */}
         {!loadingLogo ? (
-          <div className="bg-[#F3F4F6] py-10 sm:pt-2 pl-5 sm:pl-10 sm:pb-6 mx-auto dashboard-container sm:flex justify-between items-center" style={{ borderRadius: "20px 20px 20px 20px" }}>
-            <div>
-              <p className="text-[#1F272E] font-bold" style={{ fontFamily: 'Eventpop' }}>แพ็กเกจที่คุณใช้อยู่</p>
-              <div className="flex items-center mt-[15px]"> <img src={freeTrialLogo} className="w-[45px] h-[45px]" alt="" /> <h2 className="ml-6 sm:leading-10 leading-8 text-[30px] sm:text-[48px] font-semibold text-[#1F272E] font-calSans">free trial package.</h2> </div>
-              <div className="flex items-center mt-5">
-                <button className="bg-[#000000] text-white text-xs sm:text-base flex py-[13px] px-[8px] sm:py-[10px] sm:px-[18px] rounded-lg items-center " style={{ boxShadow: '0px 4px 8px 0px #00000033' }}><img src={upgradeicon} className="w-[14px] h-[14px] mr-[5px] sm:mr-[11px] " />  Upgrade to Pro</button>
-                <button className="text-[#1F272E] font-inter font-semibold text-base sm:ml-4 ml-1">Talk with support</button>
+          <div className="dashboard-container">
+            <div className="bg-[#F3F4F6] py-10 pl-10 sm:flex justify-between items-center" style={{ borderRadius: "20px 20px 20px 20px" }}>
+              <div>
+                <p className="text-[#1F272E] font-bold" style={{ fontFamily: 'Eventpop' }}>แพ็กเกจที่คุณใช้อยู่</p>
+                <div className="flex items-center mt-[15px]"> <img src={freeTrialLogo} className="w-[45px] h-[45px]" alt="" /> <h2 className="ml-6 sm:leading-10 leading-8 text-[30px] sm:text-[48px] font-semibold text-[#1F272E] font-calSans">free trial package.</h2> </div>
+                <div className="flex items-center mt-5">
+                  <button className="bg-[#000000] text-white text-xs sm:text-base flex py-[13px] px-[8px] sm:py-[10px] sm:px-[18px] rounded-lg items-center " style={{ boxShadow: '0px 4px 8px 0px #00000033' }}><img src={upgradeicon} className="w-[14px] h-[14px] mr-[5px] sm:mr-[11px] " />  Upgrade to Pro</button>
+                  <button className="text-[#1F272E] font-inter font-semibold text-base sm:ml-4 ml-1">Talk with support</button>
+                </div>
               </div>
-            </div>
-            <div>
-              <img src={freeTrial} className="w-[200px] h-[272px] sm:mt-0 mt-4" alt="" />
+              <div>
+                <img src={freeTrial} className="w-[200px] h-[272px] sm:mt-0 mt-4" alt="" />
+              </div>
             </div>
           </div>
         ) : (
-          <div className="border animate-pulse border-gray-200 bg-[#F3F4F6] py-20 pl-10 mx-auto dashboard-container flex justify-between items-center" style={{ borderRadius: "20px 20px 20px 20px" }}>
+          <div className="border animate-pulse border-gray-200 bg-[#F3F4F6] py-20 pl-10 dashboard-container flex justify-between items-center" style={{ borderRadius: "20px 20px 20px 20px" }}>
             <div>
               <div className="bg-[#c9ccd1] w-[130px] h-[15px] aspect-square rounded-md"></div>
               <div className="flex items-center mt-[15px]"> <div className="bg-[#c9ccd1] w-[45px] h-[45px] aspect-square rounded-md"></div> <div className="bg-[#c9ccd1] ml-6 w-[370px] h-[50px] rounded-md"></div> </div>
@@ -499,9 +501,11 @@ const Dashboard = ({ loadingLogo }) => {
             </div>
           </div>
         )}
+
+        <Spacer size={40} />
   
         {!loadingLogo ? (
-          <div className="mx-auto dashboard-container py-10 gap-x-8">
+          <div className="dashboard-container py-10 gap-x-8">
             <div className="border border-gray-200 bg-white px-6 pt-4 pb-7" style={{ borderRadius: "20px" }}>
               <div className="flex gap-x-2.5 items-center">
                 <img src={thrBookFrame} />
@@ -565,7 +569,7 @@ const Dashboard = ({ loadingLogo }) => {
           </div>
         ) : (
           <div className="animate-pulse">
-            <div className="mx-auto dashboard-container pb-10 gap-x-8">
+            <div className="dashboard-container pb-10 gap-x-8">
               <div className="border border-gray-200 bg-white px-6 pt-4 pb-7" style={{ borderRadius: "20px" }}>
                 <div className="flex gap-x-2.5 items-center">
                   <div className="bg-[#F3F3F3] w-[40px] h-[40px] aspect-square rounded-lg mt-1"></div>
