@@ -6,7 +6,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const Table = ({info}) => {
+const TableTest = ({info, dataHeadings}) => {
   const checkbox = useRef()
   const [checked, setChecked] = useState(false)
   const [indeterminate, setIndeterminate] = useState(false)
@@ -56,18 +56,12 @@ const Table = ({info}) => {
                   onChange={toggleAll}
                 />
               </th>
+              {dataHeadings.map((heading) => 
               <th scope="col" className="table-head-text">
-                Invoice
+                {heading}
               </th>
-              <th scope="col" className="table-head-text">
-                Billing date
-              </th>
-              <th scope="col" className="table-head-text">
-                Status
-              </th>
-              <th scope="col" className="table-head-text">
-                Amount
-              </th>
+              )}
+              
               <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
                 <span className="sr-only">Download</span>
               </th>
@@ -117,4 +111,4 @@ const Table = ({info}) => {
   )
 }
 
-export default Table
+export default TableTest

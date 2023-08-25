@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Input = ({type = "text",name,id,placeholder,label}) => {
+const Input = ({type = "text",name,id,placeholder,label,width,height}) => {
   return (
     <>
       {label && <label htmlFor={id} className="subheading">{label}</label>}
@@ -10,6 +10,7 @@ const Input = ({type = "text",name,id,placeholder,label}) => {
         id={id}
         className="form-input"
         placeholder={placeholder}
+        style={{width:width,height:height}}
       />
     </>
   )

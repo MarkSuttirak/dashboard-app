@@ -6,7 +6,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Select({values}) {
+export default function Select({values, width, height}) {
   const [selected, setSelected] = useState(values[0])
 
   return (
@@ -14,7 +14,7 @@ export default function Select({values}) {
       {({ open }) => (
         <>
           <div className="relative mt-1">
-            <Listbox.Button className="form-input">
+            <Listbox.Button className="form-input" style={{width:{width},height:{height}}}>
               <span className="block truncate text-left">{selected.name}</span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <ChevronDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />

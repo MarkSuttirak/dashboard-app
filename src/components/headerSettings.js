@@ -113,8 +113,9 @@ const HeaderSettings = () => {
             </ol>
           </nav>
         </div>
-        <div className="mt-2 flex items-center justify-between">
-          <h2 className="main-heading">
+        <Spacer size={20} />
+        <div className="flex items-center justify-between">
+          <h2 className="main-title">
             {currentPage}
           </h2>
           <button className={`primary-btn${activeMenu === '/settings/team' ? ' invisible' : ''}`}>

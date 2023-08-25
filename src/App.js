@@ -21,6 +21,8 @@ import BillingSettings from './pages/billingSettings';
 import PlanSettings from './pages/planSettings';
 import NotiSettings from './pages/NotificationsSettings';
 
+import TestPage from './pages/testPage';
+
 export const switchContext = createContext();
 
 function App() {
@@ -52,6 +54,7 @@ function App() {
           <Route path="/settings/billing" element={<BillingSettings />} />
           <Route path="/settings/plan" element={<PlanSettings />} />
           <Route path="/settings/notifications" element={<NotiSettings />} />
+          <Route path="/test" element={<TestPage />} />
 
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/register" element={<Register />} />
