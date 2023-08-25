@@ -136,7 +136,7 @@ const ConnectedApps = () => {
                               <div className="bg-blue-600 h-2 rounded-full dark:bg-blue-500" style={{ width: `${app.usage}%` }}></div>
                             </div>
                           </td>
-                          <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 flex gap-x-2">
+                          <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 flex gap-x-2 items-center h-20">
                             <a href="#" className="text-indigo-600 hover:text-indigo-900">
                               <TrashIcon className='w-5 h-5'/>
                             </a>

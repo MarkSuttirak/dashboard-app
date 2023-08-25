@@ -20,7 +20,7 @@ const HeaderIntegration = () => {
   const menus = [
     {
       name: 'All integrations',
-      href: '/integration/',
+      href: '/integration',
       current: activeMenu === '/integration' ? true : false,
     },
     {
@@ -94,9 +94,6 @@ const HeaderIntegration = () => {
           <h2 className="main-title">
             {currentPage}
           </h2>
-          <button className={`primary-btn${activeMenu === '/settings/team' ? ' invisible' : ''}`}>
-            Save
-          </button>
         </div>
       </div>
 
