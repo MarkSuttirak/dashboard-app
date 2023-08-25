@@ -199,6 +199,32 @@ $success: #17B26A;
   }
 }
 
+.form-options {
+  position:absolute;
+  z-index:10;
+  margin-top:4px;
+  max-height:240px;
+  overflow:auto;
+  border-radius:6px;
+  background-color:white;
+  padding-top:4px;
+  padding-bottom:4px;
+  width:100%;
+  font-size:14px;
+  box-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.form-option-value {
+  padding:8px 36px 8px 12px;
+  cursor:pointer;
+  position:relative;
+  color:#101828;
+  &.active {
+    color:white;
+    background-color:#0788F5;
+  }
+}
+
 .switch-toggle {
   position:relative;
   display:inline-flex;
