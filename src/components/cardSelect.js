@@ -4,8 +4,8 @@ import { CheckCircleIcon } from '@heroicons/react/20/solid'
 import { CheckCircle } from '@untitled-ui/icons-react/build/cjs'
 
 const mailingLists = [
-  { id: 1, title: 'Free', description: 'Limited websites', services: ['Access to all basic features', 'Basic reporting and analytics'], price: 'Free' },
-  { id: 2, title: 'Pro', description: 'Unlimited websites', services: ['200+ integrations', 'Advanced reporting and analytics'], price: '฿750/month' },
+  { id: 1, title: 'Free', description: 'Limited websites', services: ['Access to all basic features', 'Basic reporting and analytics', 'Up to 10 individual users', '20GB individual data each user', 'Basic chat and email support'], price: 'Free' },
+  { id: 2, title: 'Pro', description: 'Unlimited websites', services: ['200+ integrations', 'Advanced reporting and analytics', 'Up to 20 individual users', '40GB individual data each user', 'Priority chat and email support'], price: '฿750/month' },
 ]
 
 function classNames(...classes) {
