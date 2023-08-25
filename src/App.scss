@@ -113,7 +113,7 @@ $success: #17B26A;
 
 .tab-menu {
   padding:8px 12px;
-  color:#667085;
+  color:$gray;
   font-size:14px;
   font-weight:600;
   border-radius:6px;
@@ -524,7 +524,6 @@ h6 {
 .table-head {
   border-bottom-width: 1px;
   border-color:#EAECF0;
-  background-color:#f9fafb;
 }
 
 .table-checkbox {

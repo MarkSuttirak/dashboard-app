@@ -1,4 +1,6 @@
+import { ArrowUpRight } from "@untitled-ui/icons-react/build/cjs";
 import HeaderSettings from "../components/headerSettings";
+import Spacer from "../components/spacer";
 import Table from "../components/table";
 import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/20/solid'
 import { CursorArrowRaysIcon, EnvelopeOpenIcon, UsersIcon } from '@heroicons/react/24/outline'
@@ -38,23 +40,79 @@ const BillingSettings = () => {
 
           <dl className="mt-5 grid gap-5 grid-cols-2">
             <div
-              className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-16 shadow"
+              className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-16 border"
             >
-              <p className="main-heading">Basic plan</p>
-              <p className="tab-desc">Our most popular plan for small teams</p>
-              <div className="absolute bottom-0 border-t px-4 py-4 right-0 w-full">
+              <div className="flex justify-between">
+                <div>
+                  <h2 className="main-heading">Basic plan</h2>
+                  <p className="tab-desc">Our most popular plan for small teams</p>
+                </div>
+                <div>
+                  <p className="tab-desc">$10.00 per month</p>
+                </div>
+              </div>
+              <Spacer size={20}/>
+              <div className="flex justify-between items-center">
+                <div className="flex -space-x-2 overflow-hidden">
+                  <img
+                    className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
+                    src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
+                  <img
+                    className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
+                    src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
+                  <img
+                    className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
+                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80"
+                    alt=""
+                  />
+                  <img
+                    className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
+                  <img
+                    className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
+                    src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
+                  <img
+                    className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
+                    src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
+                  <img
+                    className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
+                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80"
+                    alt=""
+                  />
+                  <img
+                    className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
+                </div>
+                <div>
+                  <p className="tab-desc">10 of 15 users</p>
+                </div>
+              </div>
+              <div className="absolute bottom-0 border-t px-4 py-4 right-0 w-full text-end">
                 <button className="white-outline-btn">
                   Upgrade plan
+                  <ArrowUpRight viewBox="0 0 30 30" width="24" height="24"/>
                 </button>
               </div>
             </div>
             <div
-              className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-16 shadow"
+              className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 border"
             >
               <p className="main-heading">Payment method</p>
               <p className="tab-desc">Change how you pay for your plan</p>
-
-              <div className="p-5 border rounded-lg flex justify-between">
+              <Spacer size={20}/>
+              <div className="px-5 py-4 border rounded-lg flex justify-between items-center">
                 <div>
                   <h2 className="subheading">Visa ending in 1234</h2>
                   <p className="tab-desc">Expiry 06/2024</p>
@@ -65,6 +123,20 @@ const BillingSettings = () => {
               </div>
             </div>
           </dl>
+        </div>
+        <Spacer size={60}/>
+
+        <div className="pb-5 flex items-center justify-between">
+          <div>
+            <h3 className="main-heading">Billing history</h3>
+            <p className="tab-desc">Download your previous plan receipts and usage details</p>
+          </div>
+          <button
+            type="button"
+            className="primary-btn"
+          >
+            Add Member
+          </button>
         </div>
 
         <Table info={tableInfo}/>
