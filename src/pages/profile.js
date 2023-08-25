@@ -1,5 +1,6 @@
 import HeaderSettings from "../components/headerSettings"
 import InputWithPrefix from "../components/inputWithPrefix"
+import Select from "../components/select"
 
 export default function Profile() {
     return (
@@ -171,16 +172,56 @@ export default function Profile() {
                         <label htmlFor="country" className="block text-sm font-medium text-gray-700">
                           Country
                         </label>
-                        <select
-                          id="country"
-                          name="country"
-                          autoComplete="country-name"
-                          className="form-input"
-                        >
-                          <option>United States</option>
-                          <option>Canada</option>
-                          <option>Mexico</option>
-                        </select>
+                        <Select values={[
+                          {
+                            id: 'usa',
+                            name: 'United States'
+                          },
+                          {
+                            id: 'deu',
+                            name: 'Germany'
+                          },
+                          {
+                            id: 'uk',
+                            name: 'United Kingdom'
+                          },
+                          {
+                            id: 'tha',
+                            name: 'Thailand'
+                          },
+                          {
+                            id: 'jpn',
+                            name: 'Japan'
+                          },
+                          {
+                            id: 'chn',
+                            name: 'China'
+                          },
+                          {
+                            id: 'bra',
+                            name: 'Brazil'
+                          },
+                          {
+                            id: 'aus',
+                            name: 'Australia'
+                          },
+                          {
+                            id: 'ind',
+                            name: 'India'
+                          },
+                          {
+                            id: 'aut',
+                            name: 'Austria'
+                          },
+                          {
+                            id: 'can',
+                            name: 'Canada'
+                          },
+                          {
+                            id: 'fra',
+                            name: 'France'
+                          }
+                        ]}/>
                       </div>
   
                       <div className="col-span-6">
