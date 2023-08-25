@@ -4,6 +4,7 @@ import SwitchWithDesc from "../components/switchWithDesc";
 import Table from "../components/table";
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import HeaderSettings from "../components/headerSettings";
+import Select from "../components/select";
 
 const Settings = () => {
   const menus = [
@@ -55,6 +56,17 @@ const Settings = () => {
       amount: 'USD $10.00',
     }
   ]
+
+  const valueSelect = [
+    {
+      id:'test',
+      name: 'Test'
+    },
+    {
+      id:'again',
+      name:'Again'
+    }
+  ]
   return (
     <div className="page-section">
       <div className="dashboard-settings">
@@ -91,6 +103,8 @@ const Settings = () => {
         </div>
 
         <Table info={tableInfo}/>
+
+        <Select values={valueSelect}/>
       </div>
     </div>
   )
