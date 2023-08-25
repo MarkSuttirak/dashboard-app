@@ -4,6 +4,7 @@ import Spacer from "../components/spacer";
 import Table from "../components/table";
 import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/20/solid'
 import { CursorArrowRaysIcon, EnvelopeOpenIcon, UsersIcon } from '@heroicons/react/24/outline'
+import { Link } from "react-router-dom";
 
 const stats = [
   { id: 1, name: 'Total Subscribers', stat: '71,897', icon: UsersIcon, change: '122', changeType: 'increase' },
@@ -40,7 +41,7 @@ const BillingSettings = () => {
 
           <dl className="mt-5 grid gap-5 grid-cols-2">
             <div
-              className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-16 border"
+              className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 border"
             >
               <div className="flex justify-between items-end">
                 <div>
@@ -105,15 +106,19 @@ const BillingSettings = () => {
                   <p className="tab-desc">15 users</p>
                 </div>
               </div>
-              <div className="absolute bottom-0 border-t px-4 py-4 right-0 w-full text-end">
-                <button className="white-outline-btn">
+              <div className="absolute bottom-0 border-t px-4 py-4 right-0 w-full bg-white flex justify-between items-center">
+                <div>
+                  <p className="tab-desc">Aug 1, 2023 → Aug 31, 2023</p>
+                  <p className="tab-desc">will be charged on Aug 31, 2023.</p>
+                </div>
+                <Link to='/settings/plan' className="white-outline-btn h-10">
                   Upgrade plan
                   <ArrowUpRight viewBox="-6 0 30 20" width="24" height="24"/>
-                </button>
+                </Link>
               </div>
             </div>
             <div
-              className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 border"
+              className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-20 border"
             >
               <p className="main-heading">Payment method</p>
               <p className="tab-desc">Change how you pay for your plan</p>

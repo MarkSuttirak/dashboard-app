@@ -1,3 +1,4 @@
+import CardSelect from "../components/cardSelect"
 import HeaderSettings from "../components/headerSettings"
 
 const PlanSettings = () => {
@@ -6,6 +7,8 @@ const PlanSettings = () => {
       <div className="page-section">
         <div className="dashboard-settings">
           <HeaderSettings />
+
+          <CardSelect title='Select a Plan'/>
         </div>
       </div>
     </>

@@ -53,10 +53,10 @@ const TeamsSettings = () => {
       <div className="dashboard-settings">
         <HeaderSettings />
 
-      <div>
-        <div className="text-center">
-          <h2 className="mt-2 text-lg font-medium text-gray-900">Add team members</h2>
-          <p className="mt-1 text-sm text-gray-500">You haven’t added any team members to your project yet.</p>
+        <div>
+        <div className="text-left">
+          <h2 className="main-heading">Add team members</h2>
+          <p className="tab-desc">You haven’t added any team members to your project yet.</p>
         </div>
         <form className="mt-6 sm:flex sm:items-center" action="#">
           <label htmlFor="emails" className="sr-only">

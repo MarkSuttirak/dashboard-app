@@ -1,4 +1,4 @@
-const InputWithPrefix = ({prefix,placeholder,id, type = "text", name, label,width,height}) => {
+const InputWithPrefix = ({prefix,placeholder,id, type = "text", name, label,width,height,border}) => {
   return (
     <>
       {label && <label htmlFor={id} className="subheading">{label}</label>}
@@ -9,9 +9,9 @@ const InputWithPrefix = ({prefix,placeholder,id, type = "text", name, label,widt
           id={id}
           className="form-input with-prefix"
           placeholder={placeholder}
-          style={{width:width,height:height}}
+          style={{width:width,height:height,border:border}}
         />
-        <span className="input-addon form-prefix">
+        <span className="input-addon form-prefix" style={{border:border}}>
           {prefix}
         </span>
       </div>

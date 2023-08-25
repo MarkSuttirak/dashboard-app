@@ -76,6 +76,27 @@ $success: #17B26A;
   font-style: normal;
 }
 
+body {
+  overflow-y:scroll;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: white
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius:99px;
+  &:hover {
+    background: #555;
+  }
+}
+
 .head-section {
   display:flex;
   justify-content:space-between;
@@ -124,7 +145,7 @@ $success: #17B26A;
 }
 
 .tab-settings {
-  background-color:#F9FAFB;
+  border:1px solid #F2F2F2;
   padding:32px;
   border-radius:16px;
 }
@@ -134,7 +155,7 @@ $success: #17B26A;
   font-size:30px;
   line-height:36px;
   font-weight:600;
-  font-family:Inter;
+  font-family:Cal Sans, Inter;
 }
 
 .main-heading {
@@ -142,15 +163,16 @@ $success: #17B26A;
   font-size:18px;
   line-height:28px;
   font-weight:600;
-  font-family:Inter;
+  font-family:Cal Sans, Inter;
 }
 
 .subheading {
   color:#344054;
-  font-size:14px;
-  line-height:24px;
+  font-size:16px;
+  line-height:28px;
   font-weight:600;
-  font-family:Inter;
+  font-family:Cal Sans, Inter;
+  letter-spacing:0.4px;
 }
 
 .tab-desc {
@@ -322,6 +344,10 @@ $success: #17B26A;
 
 .black-btn-sm {
   padding:6px 14px;
+}
+
+.cal-sans {
+  font-family:Cal Sans;
 }
 
 .display-semibold {

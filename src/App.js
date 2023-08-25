@@ -19,7 +19,8 @@ import Profile from './pages/profile';
 import TeamsSettings from './pages/teamsSettings';
 import BillingSettings from './pages/billingSettings';
 import PlanSettings from './pages/planSettings';
-import NotiSettings from './pages/NotificationsSettings';
+import Integration from './pages/integration';
+import ConnectedApps from './pages/connectedApps';
 
 import TestPage from './pages/testPage';
 
@@ -34,6 +35,18 @@ function App() {
   useEffect(() => {
     return () => clearTimeout(timeout);
   }, []);
+
+  // useEffect(() => {
+  //   var hs = document.body.scrollWidth > document.body.clientWidth;
+  //   var vs = document.body.scrollHeight > document.body.clientHeight;
+
+  //   if (vs) {
+  //     document.body.style.paddingRight = '17px';
+  //   } else {
+  //     document.body.style.paddingRight = '0';
+  //   }
+  // }, [])
+
   return (
     < >
       <Router>
@@ -53,8 +66,9 @@ function App() {
           <Route path="/settings/team" element={<TeamsSettings />} />
           <Route path="/settings/billing" element={<BillingSettings />} />
           <Route path="/settings/plan" element={<PlanSettings />} />
-          <Route path="/settings/notifications" element={<NotiSettings />} />
           <Route path="/test" element={<TestPage />} />
+          <Route path="/integration" element={<Integration />} />
+          <Route path="/integration/connected" element={<ConnectedApps />} />
 
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/register" element={<Register />} />

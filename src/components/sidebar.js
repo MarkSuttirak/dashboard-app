@@ -243,7 +243,7 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
           <a href="#" className="group block w-full flex-shrink-0">
             <div className="flex items-center">
               <img
-                className="inline-block h-9 w-9 rounded-full"
+                className="inline-block h-9 w-9 rounded-md"
                 src={pjob}
                 alt=""
               />

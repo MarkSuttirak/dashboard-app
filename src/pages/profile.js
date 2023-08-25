@@ -121,7 +121,7 @@ export default function Profile() {
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1">
               <div className="px-4 sm:px-0">
-                <h3 className="subheading">Personal Information</h3>
+                <h3 className="subheading">Billing Details</h3>
                 <p className="tab-desc">Use a permanent address where you can receive mail.</p>
               </div>
             </div>
@@ -138,7 +138,7 @@ export default function Profile() {
                       </div>
   
                       <div className="col-span-6 sm:col-span-4">
-                        <Input type="email" label="Email address" name="email" id="email" />
+                        <Input type="email" label="Email address" name="email" id="email" placeholder="you@example.com"/>
                       </div>
   
                       <div className="col-span-6 sm:col-span-3">

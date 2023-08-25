@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { HomeSmile } from '@untitled-ui/icons-react/build/cjs'
 import { useState, useEffect } from 'react'
 
-const HeaderSettings = () => {
+const HeaderIntegration = () => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
@@ -19,24 +19,14 @@ const HeaderSettings = () => {
 
   const menus = [
     {
-      name: 'My Account',
-      href: '/settings/profile',
-      current: activeMenu === '/settings/profile' ? true : false,
+      name: 'All integrations',
+      href: '/integration/',
+      current: activeMenu === '/integration' ? true : false,
     },
     {
-      name: 'Team',
-      href: '/settings/team',
-      current: activeMenu === '/settings/team' ? true : false,
-    },
-    {
-      name: 'Plan',
-      href: '/settings/plan',
-      current: activeMenu === '/settings/plan' ? true : false,
-    },
-    {
-      name: 'Billing',
-      href: '/settings/billing',
-      current: activeMenu === '/settings/billing' ? true : false,
+      name: 'Connected',
+      href: '/integration/connected',
+      current: activeMenu === '/integration/connected' ? true : false,
     },
   ]
 
@@ -47,20 +37,14 @@ const HeaderSettings = () => {
 
   const handlePageTitle = () => {
     switch (activeMenu) {
-      case '/settings/profile':
-        setCurrentPage('My Account')
+      case '/integration':
+        setCurrentPage('Integration')
         break;
-      case '/settings/team':
-        setCurrentPage('Team')
-        break;
-      case '/settings/plan':
-        setCurrentPage('Plan')
-        break;
-      case '/settings/billing':
-        setCurrentPage('Billing')
+      case '/integration/connected':
+        setCurrentPage('Connected')
         break;
       default:
-        setCurrentPage('Settings')
+        setCurrentPage('Integration')
         break;
     }
   }
@@ -87,12 +71,12 @@ const HeaderSettings = () => {
               <li>
                 <div className="flex items-center">
                   <ChevronRightIcon className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                  <Link to="/settings" className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
-                    Settings
+                  <Link to="/integration" className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
+                    Integration
                   </Link>
                 </div>
               </li>
-              {activeMenu !== '/settings' && (
+              {activeMenu !== '/integration' && (
                 <li>
                   <div className="flex items-center">
                     <ChevronRightIcon className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
@@ -140,4 +124,4 @@ const HeaderSettings = () => {
   )
 }
 
-export default HeaderSettings
+export default HeaderIntegration
