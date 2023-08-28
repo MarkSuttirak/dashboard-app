@@ -21,6 +21,8 @@ import Integration from './pages/integration';
 import ConnectedApps from './pages/connectedApps';
 import GiftsPrivileges from './pages/GiftsPrivileges';
 import Login from './pages/login';
+import Signup from './pages/signup';
+import OTP from './pages/otp';
 
 import TestPage from './pages/testPage';
 
@@ -60,6 +62,8 @@ function App() {
           <Route path="/integration/apps" element={<Business />} />
           <Route path="/gifts-privileges" element={<GiftsPrivileges />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/otp" element={<OTP />} />
 
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/register" element={<Register />} />

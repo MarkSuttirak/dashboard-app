@@ -1,7 +1,8 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import Logo from '../img/logo-zaviago.svg'
 import { CheckIcon } from '@heroicons/react/24/solid'
+import Spacer from "../components/spacer"
 
 const steps = [
   { id: '01', name: 'Job Details', description: 'Vitae sed mi luctus laoreet.', href: '#', status: 'complete' },
@@ -13,8 +14,15 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Register() {
+export default function OTP() {
   const location = useLocation();
+
+  const [enterOTPPage, setEnterOTPPage] = useState(false);
+
+  const clickToGetOTP = (e) => {
+    e.preventDefault();
+    setEnterOTPPage(true);
+  }
 
   return (
     <>
@@ -83,61 +91,77 @@ export default function Register() {
             </ol>
           </nav>
         </div>
-        <div className="relative flex flex-1 m-2 z-[999] bg-white">
-          <div className="m-auto w-full max-w-sm w-96">
-            <h2 className="main-title text-center">Register</h2>
-            <form action="#" method="POST" className="space-y-4 mt-3">
-              <div>
-                <label htmlFor="first-name" className="subheading">
-                  Name
-                </label>
-                <input
-                  id="first-name"
-                  name="first-name"
-                  type="text"
-                  autoComplete="first-name"
-                  required
-                  className="form-input"
-                  placeholder="Enter your first name"
-                />
-              </div>
+        {!enterOTPPage ? (
+          <div className="relative flex flex-1 m-2 z-[999] bg-white">
+            <div className="m-auto w-full max-w-sm w-96">
+              <h2 className="main-title">Let's get started</h2>
+              <p className="tab-desc">This is an example</p>
 
-              <div>
-                <label htmlFor="surname" className="subheading">
-                  Surname
-                </label>
-                <input
-                  id="surname"
-                  name="surname"
-                  type="text"
-                  autoComplete="surname"
-                  required
-                  className="form-input"
-                  placeholder="Enter your surname"
-                />
-              </div>
+              <Spacer size={20}/>
+              <form action="#" method="POST" className="space-y-4 mt-3">
+                <div>
+                  <label htmlFor="otp" className="subheading">
+                    Enter your phone number
+                  </label>
+                  <div className="relative mt-1 rounded-md shadow-sm">
+                    <div className="absolute inset-y-0 left-0 flex items-center">
+                      <label htmlFor="country" className="sr-only">
+                        Country
+                      </label>
+                      <select
+                        id="country"
+                        name="country"
+                        autoComplete="country"
+                        className="h-full rounded-md border-transparent bg-transparent py-0 pl-3 pr-1 text-gray-500 text-sm outline-none"
+                      >
+                        <option>TH</option>
+                      </select>
+                    </div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      id="phone"
+                      className="form-input"
+                      style={{paddingLeft:"64px"}}
+                      placeholder="091-234-5678"
+                    />
+                  </div>
+                </div>
 
-              <div>
-                <label htmlFor="email" className="subheading">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="form-input"
-                  placeholder="Enter your email"
-                />
-              </div>
-
-              <div>
-                <input type='submit' className="primary-btn w-full justify-center"/>
-              </div>
-            </form>
+                <div>
+                  <button type='submit' className="primary-btn w-full justify-center" onClick={clickToGetOTP}>Get OTP</button>
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="relative flex flex-1 m-2 z-[999] bg-white">
+            <div className="m-auto w-full max-w-sm w-96">
+              <h2 className="main-title">6-digit code</h2>
+              <p className="tab-desc">This is an example</p>
+
+              <Spacer size={20}/>
+              <form action="#" method="POST" className="space-y-4 mt-3">
+                <div>
+                  <label htmlFor="otp" className="subheading">
+                    Enter your OTP
+                  </label>
+                  <input
+                    type="text"
+                    name="phone"
+                    id="phone"
+                    className="form-input"
+                    maxLength={6}
+                  />
+                </div>
+
+                <div>
+                  <button type='submit' className="primary-btn w-full justify-center">Confirm OTP</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
       </div>
     </>
   )
