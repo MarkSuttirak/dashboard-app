@@ -39,7 +39,7 @@ export default function Signup() {
               <div className="mt-1 gap-3">
                 <div>
                   <a
-                    href="#"
+                    href="/otp"
                     className="login-line-btn"
                   >
                     <span className="sr-only">Login with Line</span>
