@@ -51,7 +51,7 @@ const TeamsSettings = () => {
   return (
     <div className="page-section">
       <div className="dashboard-settings">
-        <HeaderSettings />
+        <HeaderSettings title="Team"/>
 
         <div>
         <div className="text-left">
@@ -99,12 +99,6 @@ const TeamsSettings = () => {
       <Spacer size={40}/>
         <div className="pb-5 flex items-center justify-between">
           <h3 className="main-heading">Members</h3>
-          <button
-            type="button"
-            className="primary-btn"
-          >
-            Add Member
-          </button>
         </div>
 
         <div className="flex flex-col">

@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { HomeSmile } from '@untitled-ui/icons-react/build/cjs'
 import { useState, useEffect } from 'react'
 
-const HeaderSettings = () => {
+const HeaderSettings = ({title}) => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
@@ -41,29 +41,8 @@ const HeaderSettings = () => {
   ]
 
   useEffect(() => {
-    handlePageTitle();
     setActiveMenu(location.pathname);
   }, [activeMenu])
-
-  const handlePageTitle = () => {
-    switch (activeMenu) {
-      case '/settings/profile':
-        setCurrentPage('My Account')
-        break;
-      case '/settings/team':
-        setCurrentPage('Team')
-        break;
-      case '/settings/plan':
-        setCurrentPage('Plan')
-        break;
-      case '/settings/billing':
-        setCurrentPage('Billing')
-        break;
-      default:
-        setCurrentPage('Settings')
-        break;
-    }
-  }
 
   return (
     <>
@@ -97,7 +76,7 @@ const HeaderSettings = () => {
                   <div className="flex items-center">
                     <ChevronRightIcon className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
                     <a href="#" aria-current="page" className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
-                      {currentPage}
+                      {title}
                     </a>
                   </div>
                 </li>
@@ -108,7 +87,7 @@ const HeaderSettings = () => {
         <Spacer size={20} />
         <div className="flex items-center justify-between">
           <h2 className="main-title">
-            {currentPage}
+            {title}
           </h2>
           <button className={`primary-btn${activeMenu === '/settings/team' ? ' invisible' : ''}`}>
             Save

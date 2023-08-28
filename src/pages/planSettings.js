@@ -6,7 +6,7 @@ const PlanSettings = () => {
     <>
       <div className="page-section">
         <div className="dashboard-settings">
-          <HeaderSettings />
+          <HeaderSettings title="Plan"/>
 
           <CardSelect title='Select a Plan'/>
         </div>

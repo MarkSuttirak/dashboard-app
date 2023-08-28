@@ -1,6 +1,10 @@
 import HeaderIntegration from '../components/headerIntegration'
 import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/20/solid'
 import { CursorArrowRaysIcon, EnvelopeOpenIcon, UsersIcon, TrashIcon, PencilIcon } from '@heroicons/react/24/outline'
+import { ArrowUpRight } from '@untitled-ui/icons-react/build/cjs';
+import { Link } from "react-router-dom";
+import iconmock from '../img/iconmock.svg'
+import Spacer from '../components/spacer';
 
 const stats = [
   { id: 1, name: 'Total Subscribers', stat: '71,897', icon: UsersIcon, change: '122', changeType: 'increase' },
@@ -11,8 +15,6 @@ const stats = [
 const apps = [
   {
     companytitle: 'Catalog',
-    companydesc: 'catalogapp.io',
-    abouttitle: 'Content curating app',
     aboutdesc: 'Brings all your news into one place',
     usage: 40,
     image:
@@ -20,8 +22,6 @@ const apps = [
   },
   {
     companytitle: 'Catalog',
-    companydesc: 'catalogapp.io',
-    abouttitle: 'Content curating app',
     aboutdesc: 'Brings all your news into one place',
     usage: 20,
     image:
@@ -29,8 +29,6 @@ const apps = [
   },
   {
     companytitle: 'Catalog',
-    companydesc: 'catalogapp.io',
-    abouttitle: 'Content curating app',
     aboutdesc: 'Brings all your news into one place',
     usage: 30,
     image:
@@ -38,19 +36,54 @@ const apps = [
   },
 ]
 
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 const ConnectedApps = () => {
+  const CardList = ({title, desc, isConnected, icon}) => {
+    return (
+      <div
+        className="inte-card border"
+      >
+        <div className="flex justify-between items-end">
+          <div>
+            <img src={icon} />
+            <h2 className="main-heading flex gap-x-2 mt-2">{title}</h2>
+            <p className="tab-desc">{desc}</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  const appLists = [
+    {
+      title: 'Basic plan',
+      desc: 'Our most popular plan for small teams',
+      icon: iconmock
+    },
+    {
+      title: 'Basic plan',
+      desc: 'Our most popular plan for small teams',
+      icon: iconmock
+    },
+    {
+      title: 'Basic plan',
+      desc: 'Our most popular plan for small teams',
+      icon: iconmock
+    },
+  ]
+
   return (
     <>
       <div className="page-section">
         <div className="dashboard-settings">
-          <HeaderIntegration />
+          <HeaderIntegration title="Connected Apps"/>
 
           <div>
-            <h3 className="text-lg font-medium leading-6 text-gray-900">Last 30 days</h3>
+            <h3 className="main-heading">Last 30 days</h3>
 
             <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {stats.map((item) => (
@@ -81,6 +114,15 @@ const ConnectedApps = () => {
                   </dd>
                 </div>
               ))}
+            </dl>
+          </div>
+          <Spacer size={30}/>
+          <div>
+            <h3 className="main-heading">Most used apps</h3>
+            <dl className="mt-5 grid gap-5 grid-cols-3">
+              {appLists.map((app, index) => 
+                <CardList title={app.title} desc={app.desc} isConnected={app.isConnected} icon={app.icon}/>
+              )}
             </dl>
           </div>
 
@@ -115,7 +157,6 @@ const ConnectedApps = () => {
                         </div>
                         <div className="ml-4">
                           <div className="subheading">{app.companytitle}</div>
-                          <div className="table-desc">{app.companydesc}</div>
                         </div>
                       </div>
                     </td>
@@ -125,7 +166,6 @@ const ConnectedApps = () => {
                       </span>
                     </td>
                     <td className="whitespace-nowrap py-4 text-sm text-gray-500">
-                      <div className="subheading">{app.abouttitle}</div>
                       <div className="table-desc">{app.aboutdesc}</div>
                     </td>
                     <td className="whitespace-nowrap py-4 text-sm text-gray-500">

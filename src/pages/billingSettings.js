@@ -34,7 +34,7 @@ const BillingSettings = () => {
   return (
     <div className="page-section">
       <div className="dashboard-settings">
-        <HeaderSettings />
+        <HeaderSettings title="Billing"/>
 
         <div>
           <h3 className="main-heading">Last 30 days</h3>

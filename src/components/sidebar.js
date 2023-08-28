@@ -50,12 +50,12 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
 
   const navigation = [
     { name: 'Dashboard', icon: <HomeSmile viewBox='0 0 30 24' width='24' className='menu-icon'/>, href: '/', current: active === '/' ? true : false, id: 'dashboard' },
-    { name: 'Teams', icon: <LayoutAlt01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/teams', count: [4, 'orange', 'have-dot'], current: active === '/teams' ? true : false, id: 'teams' },
+    // { name: 'Teams', icon: <LayoutAlt01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/teams', count: [4, 'orange', 'have-dot'], current: active === '/teams' ? true : false, id: 'teams' },
     { name: 'Apps', icon: <Edit04 viewBox='0 0 30 24' width='24' className='menu-icon'/>, href: '/apps', current: active === '/apps' ? true : false, id: 'apps' },
     { name: 'Integration', icon: <Backpack viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/integration', count: [10, 'orange', 'have-dot'], current: active === '/integration' || active === '/integration/connected' ? true : false, id: 'integration' },
     { name: 'Gift & Privilege', icon: <Gift01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '#', count: [5, 'blue', 'have-dot'], current: active === "#" ? true : false, active: active, id: 'gift' },
-    { name: 'การเรียกเก็บเงิน', icon: <Inbox01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '#', count: [10, 'gray'], current: active === "#" ? true : false, active: active, id: 'billing' },
-    { name: 'ตั้งค่า', icon: <Settings01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/settings', current: active === "/settings" || active === "/settings/profile" || active === "/settings/team" || active === "/settings/plan" || active === "/settings/billing" ? true : false, active: active, id: 'settings' },
+    // { name: 'การเรียกเก็บเงิน', icon: <Inbox01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '#', count: [10, 'gray'], current: active === "#" ? true : false, active: active, id: 'billing' },
+    { name: 'ตั้งค่า', icon: <Settings01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/settings/profile', current: active === "/settings" || active === "/settings/profile" || active === "/settings/team" || active === "/settings/plan" || active === "/settings/billing" ? true : false, active: active, id: 'settings' },
   ]
 
   const teamMembers = [
@@ -346,7 +346,7 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                 <button
                   className="flex gap-x-9"
                   type="button"
-                  onClick={()=> setShowModal(!showModal)}
+                  // onClick={()=> setShowModal(!showModal)}
                 >
                   <div className="flex flex-col text-start">
                     <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900 calsans">John Persson</p>

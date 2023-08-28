@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { HomeSmile } from '@untitled-ui/icons-react/build/cjs'
 import { useState, useEffect } from 'react'
 
-const HeaderIntegration = () => {
+const HeaderIntegration = ({title}) => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
@@ -31,23 +31,8 @@ const HeaderIntegration = () => {
   ]
 
   useEffect(() => {
-    handlePageTitle();
     setActiveMenu(location.pathname);
   }, [activeMenu])
-
-  const handlePageTitle = () => {
-    switch (activeMenu) {
-      case '/integration':
-        setCurrentPage('Integration')
-        break;
-      case '/integration/connected':
-        setCurrentPage('Connected')
-        break;
-      default:
-        setCurrentPage('Integration')
-        break;
-    }
-  }
 
   return (
     <>
@@ -81,7 +66,7 @@ const HeaderIntegration = () => {
                   <div className="flex items-center">
                     <ChevronRightIcon className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
                     <a href="#" aria-current="page" className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
-                      {currentPage}
+                      {title}
                     </a>
                   </div>
                 </li>
@@ -92,7 +77,7 @@ const HeaderIntegration = () => {
         <Spacer size={20} />
         <div className="flex items-center justify-between">
           <h2 className="main-title">
-            {currentPage}
+            {title}
           </h2>
         </div>
       </div>
