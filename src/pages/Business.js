@@ -159,7 +159,7 @@ function Business() {
         <div className='dashboard-settings mt-[50px]'>
           <h3 className='text-[#1F272E] font-calSans font-semibold font-sm'>Most popular apps</h3>
           <p className='font-inter font-normal text-[13px] text-[#687178] mt-1'>Explore the apps that a wide range of merchants rely on.</p>
-          <div className='grid grid-cols-2 mt-[37px]'>
+          <div className='grid grid-cols-1 md:grid-cols-2 mt-[37px]'>
             {popularApps.map((item, index) =>
               <div className='flex mb-[25px]' key={index}>
                 <div><img src={item.image} alt="" className='rounded-xl w-[68px] h-[auto] max-w-[fit-content]' style={{ boxShadow: '0px 4px 15px 0px #00000026' }} /></div>
@@ -218,7 +218,7 @@ function Business() {
         <div className='dashboard-settings mt-[80px]'>
           <h3 className='text-[#1F272E] font-calSans font-semibold font-sm'>Most popular apps</h3>
           <p className='font-inter font-normal text-[13px] text-[#687178] mt-1'>Explore the apps that a wide range of merchants rely on.</p>
-          <div className='grid grid-cols-2 mt-[50px]'>
+          <div className='grid grid-cols-1 md:grid-cols-2 mt-[50px]'>
             {mostPopularApps.map((item, index) =>
               <div className='flex mb-[30px]' key={index}>
                 <div><img src={item.image} alt="" className='rounded-xl w-[68px] max-w-[fit-content]' style={{ boxShadow: '0px 4px 15px 0px #00000026' }} /></div>

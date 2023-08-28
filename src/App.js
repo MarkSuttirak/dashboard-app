@@ -1,18 +1,16 @@
 import logo from './logo.svg';
-import React, { useState } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import './App.scss';
 import Sidebar from './components/sidebar';
 import Dashboard from './pages/dashboard';
 import ChangeDomain from './pages/changeDomain';
 import Welcome from './pages/register/welcome';
-import Register from './pages/register/setAccount';
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Register from './pages/register'
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 import Business from './pages/Business';
 import BusinessDetail from './pages/BusinessDetail';
 import TeamsPage from './pages/teams';
-import { useEffect } from 'react';
 import TeamModal from "./components/switchTeamModal";
-import { createContext } from 'react';
 import SingleAppPage from './pages/SingleAppPage';
 import Settings from './pages/settings';
 import Profile from './pages/profile';
@@ -22,6 +20,7 @@ import PlanSettings from './pages/planSettings';
 import Integration from './pages/integration';
 import ConnectedApps from './pages/connectedApps';
 import GiftsPrivileges from './pages/GiftsPrivileges';
+import Login from './pages/login';
 
 import TestPage from './pages/testPage';
 
@@ -60,6 +59,7 @@ function App() {
           <Route path="/integration/connected" element={<ConnectedApps />} />
           <Route path="/integration/apps" element={<Business />} />
           <Route path="/gifts-privileges" element={<GiftsPrivileges />} />
+          <Route path="/login" element={<Login />} />
 
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/register" element={<Register />} />

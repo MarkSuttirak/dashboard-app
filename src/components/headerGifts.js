@@ -15,8 +15,6 @@ const HeaderGifts = ({title}) => {
     setActiveMenu(menu);
   }
 
-  const [currentPage, setCurrentPage] = useState('')
-
   const menus = [
     {
       name: 'All Gifts',

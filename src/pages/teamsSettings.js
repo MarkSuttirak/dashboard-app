@@ -59,7 +59,7 @@ const TeamsSettings = () => {
           <p className="tab-desc">You haven’t added any team members to your project yet.</p>
         </div>
         <form className="mt-6 sm:flex sm:items-center" action="#">
-          <div className="relative rounded-md shadow-sm sm:min-w-0 sm:flex-1">
+          <div className="relative rounded-md min-w-0 flex-1">
             <input
               type="text"
               name="emails"
@@ -102,7 +102,7 @@ const TeamsSettings = () => {
 
         <div className="flex flex-col">
           <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+            <div className="inline-block min-w-full py-2 align-middle px-4 md:px-6 lg:px-8">
               <div className="table-overview">
                 {selectedInfo.length > 0 && (
                   <div className="absolute top-1 flex items-center space-x-3 left-16">

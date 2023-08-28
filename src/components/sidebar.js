@@ -11,7 +11,7 @@ import mock1 from "../img/mock1.svg";
 import mock2 from "../img/mock2.svg";
 import mock3 from "../img/mock3.svg";
 import switchuser from "../img/switchuser.svg";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/24/outline'
 import pjob from "../img/pjob.svg";
 import { Fragment } from 'react'
@@ -19,7 +19,14 @@ import { Combobox, Dialog, Transition } from '@headlessui/react'
 import "../css/sidebar-dropdown.css";
 import { switchContext } from '../App'
 import { PlusIcon } from "@heroicons/react/20/solid";
-import { HomeSmile, Edit04, Menu01, LayoutAlt01, Backpack, Gift01, Inbox01, Settings01 } from "@untitled-ui/icons-react/build/cjs";
+import { HomeSmile, Edit04, Menu01, LayoutAlt01, Backpack, Gift01, Inbox01, Settings01, ArrowLeft } from "@untitled-ui/icons-react/build/cjs";
+import EarPhone from "./icon-menus/EarPhone";
+import GaugeMin from "./icon-menus/GaugeMin";
+import Digice from "./icon-menus/Digice";
+import IconMock from "./icon-menus/IconMock";
+import AppsIcon from "./icon-menus/AppsIcon";
+import BoxOpen from "./icon-menus/BoxOpen";
+import HomeIconTwo from "./icon-menus/HomeIcon";
 
 // import TeamModal from "../components/switchTeamModal";
 
@@ -47,6 +54,8 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
   const handleMenuClick = (menu) => {
     setActive(menu);
   }
+
+  const navigate = useNavigate();
 
   const navigation = [
     { name: 'Dashboard', icon: <HomeSmile viewBox='0 0 30 24' width='24' className='menu-icon'/>, href: '/', current: active === '/' ? true : false, id: 'dashboard' },
@@ -115,17 +124,57 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
   //   setLoadingLogo(false);
   // };
 
+  const IconSidebar = () => {
+    return (
+      <nav className="nav-left-side">
+        <div className="logo">
+          <img src={Logo} />
+        </div>
+        <Link to='/'>
+          <div className="nav-btns grey" id="home-btn">
+            <HomeIconTwo />
+          </div>
+        </Link>
+
+        <hr className="vertical-bar d-none d-sm-block" />
+        <div className="nav-btns grey">
+          <AppsIcon />
+        </div>
+        <div className="nav-btns grey">
+          <BoxOpen />
+        </div>
+        <div id="additional-apps">
+          <div className="nav-btns add-ons" style={{background:"#F2F2FD"}}>
+            <IconMock />
+          </div>
+          <div className="nav-btns add-ons" style={{background:"#FFEAE1"}}>
+            <Digice />
+          </div>
+        </div>
+        <div id="lower-apps">
+          <div className="nav-btns">
+            <GaugeMin />
+          </div>
+          <hr style={{borderColor:"#EBEEF0"}}/>
+          <div className="nav-btns">
+            <EarPhone />
+          </div>
+        </div>
+      </nav>
+    )
+  }
+
   return (
     <>
-      <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white fixed h-screen" id="sidebar">
-        <div className="flex flex-1 flex-col pt-3 pb-5">
-          <div className="flex flex-shrink-0 items-center px-4 columns-2 justify-between">
+    <IconSidebar />
+      <div className="flex flex-1 flex-col border-r border-gray-200 bg-white" id="sidebar">
+        <div className="flex flex-1 flex-col pt-[18px] pb-5">
+          <div className="flex flex-shrink-0 items-center px-4">
             {!loadingLogo ? (
-              <img
-                className="w-auto"
-                src={Logo}
-                alt="Your Company"
-              />
+              <button onClick={() => navigate(-1)} className="flex text-[13px] font-semibold items-center">
+                <ArrowLeft viewBox='0 0 30 24' />
+                Back
+              </button>
             ) : (
               <div className="animate-pulse">
                 <div className="bg-[#F3F3F3] w-[54px] aspect-square rounded-lg"></div>
@@ -134,7 +183,7 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
           </div>
 
           {!loadingLogo ? (
-            <nav className="flex-1 bg-white px-4 pt-7" aria-label="Sidebar">
+            <nav className="flex-1 bg-white px-4 pt-4" aria-label="Sidebar">
               {navigation.map((item) => (
                 <>
                   <Link
@@ -146,16 +195,16 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                         : 'sidebar-menu'
                     )}
                     onClick={() => handleMenuClick(item.href)}
-                    onMouseEnter={() => {
-                      const tooltip = document.getElementById(`tooltip-${item.id}`);
-                      tooltip.classList.remove('opacity-0');
-                      tooltip.classList.remove('invisible');
-                    }}
-                    onMouseLeave={() => {
-                      const tooltip = document.getElementById(`tooltip-${item.id}`);
-                      tooltip.classList.add('opacity-0');
-                      tooltip.classList.add('invisible');
-                    }}
+                    // onMouseEnter={() => {
+                    //   const tooltip = document.getElementById(`tooltip-${item.id}`);
+                    //   tooltip.classList.remove('opacity-0');
+                    //   tooltip.classList.remove('invisible');
+                    // }}
+                    // onMouseLeave={() => {
+                    //   const tooltip = document.getElementById(`tooltip-${item.id}`);
+                    //   tooltip.classList.add('opacity-0');
+                    //   tooltip.classList.add('invisible');
+                    // }}
                   >
                     {item.icon}
                     {/* <img src={item.icon} className="mr-3 flex-shrink-0 h-6 w-6" alt=""/> */}
@@ -164,8 +213,8 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                       <>
                       {/* Desktop Version */}
 
-                      <div className={`${item.count[1] === 'orange' ? 'orange' : item.count[1] === 'blue' ? 'blue' : item.count[1] === 'gray' ? 'gray' : ''}`}>
-                        <span className="badge-sidebar">
+                      <div className="menu-badge">
+                        <span className={`badge-sidebar ${item.count[1] === 'orange' ? 'orange' : item.count[1] === 'blue' ? 'blue' : item.count[1] === 'gray' ? 'gray' : ''}`}>
                           {item.count[2] === 'have-dot' && (
                             <svg className="badge-circle" fill="currentColor" viewBox="0 0 8 8">
                               <circle cx={4} cy={4} r={3} />
@@ -235,16 +284,16 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                 : 'sidebar-menu'
             )}
             onClick={() => handleMenuClick('/settings/profile')}
-            onMouseEnter={() => {
-              const tooltip = document.getElementById(`tooltip-settings`);
-              tooltip.classList.remove('opacity-0');
-              tooltip.classList.remove('invisible');
-            }}
-            onMouseLeave={() => {
-              const tooltip = document.getElementById(`tooltip-settings`);
-              tooltip.classList.add('opacity-0');
-              tooltip.classList.add('invisible');
-            }}
+            // onMouseEnter={() => {
+            //   const tooltip = document.getElementById(`tooltip-settings`);
+            //   tooltip.classList.remove('opacity-0');
+            //   tooltip.classList.remove('invisible');
+            // }}
+            // onMouseLeave={() => {
+            //   const tooltip = document.getElementById(`tooltip-settings`);
+            //   tooltip.classList.add('opacity-0');
+            //   tooltip.classList.add('invisible');
+            // }}
           >
             <Settings01 viewBox='0 0 30 24' width='24'className='menu-icon'/>
 

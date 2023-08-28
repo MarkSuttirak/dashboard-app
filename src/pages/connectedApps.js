@@ -45,7 +45,7 @@ const ConnectedApps = () => {
   const CardList = ({title, desc, isConnected, icon}) => {
     return (
       <div
-        className="inte-card border"
+        className="inte-card border inner-card"
       >
         <div className="flex justify-between items-end">
           <div>
@@ -85,7 +85,7 @@ const ConnectedApps = () => {
           <div>
             <h3 className="main-heading">Last 30 days</h3>
 
-            <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <dl className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
               {stats.map((item) => (
                 <div
                   key={item.id}
@@ -119,7 +119,7 @@ const ConnectedApps = () => {
           <Spacer size={30}/>
           <div>
             <h3 className="main-heading">Most used apps</h3>
-            <dl className="mt-5 grid gap-5 grid-cols-3">
+            <dl className="mt-5 grid gap-5 lg:grid-cols-3 md:grid-cols-2">
               {appLists.map((app, index) => 
                 <CardList title={app.title} desc={app.desc} isConnected={app.isConnected} icon={app.icon}/>
               )}
@@ -174,7 +174,7 @@ const ConnectedApps = () => {
                       </div>
                     </td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                      <a href="#" className="text-[#0788F5]">
                         Edit
                       </a>
                     </td>

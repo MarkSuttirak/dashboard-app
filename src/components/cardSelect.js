@@ -19,7 +19,7 @@ export default function CardSelect({title}) {
     <RadioGroup value={selectedMailingLists} onChange={setSelectedMailingLists}>
       <RadioGroup.Label className="main-heading">{title}</RadioGroup.Label>
 
-      <div className="mt-4 grid grid-cols-2 gap-x-4">
+      <div className="mt-4 grid md:grid-cols-2 gap-4">
         {mailingLists.map((mailingList) => (
           <RadioGroup.Option
             key={mailingList.id}

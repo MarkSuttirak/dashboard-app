@@ -4,6 +4,9 @@ $error: #F04438;
 $warning: #F79009;
 $success: #17B26A;
 
+$left-sidebar-width: 70px;
+$right-sidebar-width: 256px;
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
 
 @font-face {
@@ -142,6 +145,18 @@ body {
     background-color:#F9FAFB;
     color:#344054;
   }
+}
+
+.login-line-btn {
+  border-radius: 8px;
+  background: linear-gradient(152deg, #00B945 0%, #00D14E 100%);
+  box-shadow: 0 4px 10px 0 rgba(17, 192, 82, 0.05); 
+  display:inline-flex;
+  width:100%;
+  color:white;
+  padding:8px;
+  justify-content:center;
+  gap:8px;
 }
 
 .tab-settings {
@@ -306,45 +321,36 @@ body {
   border-radius:6px;
   padding:0 5px;
   font-size:12px;
+  &.orange {
+    background-color:#FEF6EE;
+    color:#B93815;
+    border:1px solid #F9DBAF;
+    .badge-circle {
+      color:#EF6820
+    }
+  }
+  &.blue {
+    background-color:#EFF8FF;
+    color:#175CD3;
+    border:1px solid #B2DDFF;
+    .badge-circle {
+      color:#2E90FA
+    }
+  }
+  &.gray {
+    background-color:#F9FAFB;
+    color:#344054;
+    border:1px solid #EAECF0;
+    .badge-circle {
+      color:#EF6820
+    }
+  }
 }
 
 .badge-circle {
   width:8px;
   height:8px;
   margin-right:4px;
-}
-
-.orange {
-  .badge-sidebar {
-    background-color:#FEF6EE;
-    color:#B93815;
-    border:1px solid #F9DBAF;
-  }
-  .badge-circle {
-    color:#EF6820
-  }
-}
-
-.blue {
-  .badge-sidebar {
-    background-color:#EFF8FF;
-    color:#175CD3;
-    border:1px solid #B2DDFF;
-  }
-  .badge-circle {
-    color:#2E90FA
-  }
-}
-
-.gray {
-  .badge-sidebar {
-    background-color:#F9FAFB;
-    color:#344054;
-    border:1px solid #EAECF0;
-  }
-  // .badge-circle {
-  //   color:#EF6820
-  // }
 }
 
 .black-btn {
@@ -425,10 +431,13 @@ h6 {
 }
 
 #sidebar {
-  width: 256px;
+  width:$right-sidebar-width;
   border-right: 1px solid #F4F5F6;
   z-index: 99;
   transition:width 300ms;
+  position:fixed;
+  height:100vh;
+  margin-left:$left-sidebar-width;
 }
 
 #video-overlay,
@@ -439,8 +448,8 @@ h6 {
 }
 
 .page-section {
-  margin-left: 256px;
-  padding-top:35px;
+  margin-left:$right-sidebar-width + $left-sidebar-width;
+  padding:35px 0;
 }
 
 .btn {
@@ -638,12 +647,14 @@ h6 {
 }
 
 .inte-card {
-  padding:20px 16px 0;
   position:relative;
-  height:250px;
   overflow:hidden;
   border-radius:8px;
   background-color:white;
+}
+
+.inner-card {
+  padding:20px 16px;
 }
 
 .table-title {
@@ -1099,6 +1110,62 @@ select#goal {
   font-family: Arial, sans-serif;
 }
 
+.nav-left-side {
+  z-index:101;
+	height:100%;
+  position:fixed;
+	top:0;
+	width:$left-sidebar-width;
+	background:white;
+	padding:12px;
+	border-right:1px solid #EBEEF0;
+	img {
+		display:block;
+		width:60%;
+		margin:0 auto 6px;
+		cursor:pointer;
+		border-radius:6px;
+	}
+}
+
+.nav-btns {
+	height:47px;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	margin:4px 0;
+	cursor:pointer;
+	border-radius:9px;
+	outline:0px solid #2794F0;
+	border:3px solid white;
+	&:hover {
+	  background-color:#F0F1F2;
+	}
+	&.add-ons:hover {
+	  outline:2px solid #2794F0;
+	}
+}
+
+#lower-apps {
+  position: absolute;
+  width: calc(100% - 24px);
+  bottom: 0;
+}
+
+.logo-text {
+  color:#1D2D35;
+  font-size:17px;
+  font-family:Cal Sans;
+  font-weight:600;
+  line-height:19.5px;
+  letter-spacing:4.5%;
+  .small {
+    font-size:11px;
+    font-family:Cal Sans;
+    font-weight:600;
+  }
+}
+
 .line-your-team {
   display:none;
   opacity:0;
@@ -1167,12 +1234,6 @@ select#goal {
 }
 
 @media (max-width:1199px) {
-  #sidebar {
-    width:73px;
-    transition:all 300ms;
-    transition-delay:300ms
-  }
-
   .tooltip-menu {
     display:block;
     transition:all 300ms;
@@ -1191,32 +1252,6 @@ select#goal {
     opacity:1;
     transition:opacity 300ms;
     transition-delay:300ms;
-  }
-
-  .item-name {
-    white-space:pre;
-    visibility:hidden;
-    opacity:0;
-    transition:all 200ms;
-  }
-
-  .avatar-user {
-    padding:4px 8px;
-    transition:all 300ms;
-  }
-
-  .team-members {
-    padding-left:8px;
-    transition:all 300ms;
-    transition-delay:300ms;
-  }
-
-  .page-section {
-    margin-left: 73px;
-  }
-
-  .page-section {
-    margin-left: 90px;
   }
 
   .header-mobile h1 {

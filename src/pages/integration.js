@@ -8,18 +8,16 @@ const Integration = () => {
   const CardList = ({title, desc, isConnected, icon}) => {
     return (
       <div
-        className="inte-card border"
+        className="inte-card border flex flex-col justify-between"
       >
-        <div className="flex justify-between items-end">
+        <div className="flex justify-between items-end inner-card">
           <div>
             <img src={icon} />
             <h2 className="main-heading flex gap-x-2 mt-2">{title}</h2>
             <p className="tab-desc">{desc}</p>
           </div>
         </div>
-        <Spacer size={20}/>
-
-        <div className="absolute bottom-0 border-t px-4 py-4 right-0 w-full bg-white flex justify-end items-center">
+        <div className='border-t inner-card'>
           <Link to='' className="white-outline-btn h-10">
             <ArrowUpRight viewBox="0 0 30 20" width="24" height="24"/>
             {isConnected ? "Connected" : "Connect"}
@@ -32,7 +30,7 @@ const Integration = () => {
   const appLists = [
     {
       title: 'Basic plan',
-      desc: 'Our most popular plan for small teams',
+      desc: 'Our most popular plan for small teams if it \'s available, wanna try? It is so interesting! WOWWOW!',
       isConnected: false,
       icon: iconmock
     },
@@ -56,7 +54,7 @@ const Integration = () => {
           <HeaderIntegration title="Integration"/>
           
           <div>
-            <dl className="mt-5 grid gap-5 grid-cols-3">
+            <dl className="mt-5 grid gap-5 lg:grid-cols-3 md:grid-cols-2">
               {appLists.map((app, index) => 
                 <CardList title={app.title} desc={app.desc} isConnected={app.isConnected} icon={app.icon}/>
               )}
