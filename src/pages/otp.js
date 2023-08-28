@@ -18,6 +18,7 @@ export default function OTP() {
   const location = useLocation();
 
   const [enterOTPPage, setEnterOTPPage] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const clickToGetOTP = (e) => {
     e.preventDefault();
@@ -98,7 +99,7 @@ export default function OTP() {
               <p className="tab-desc">This is an example</p>
 
               <Spacer size={20}/>
-              <form action="#" method="POST" className="space-y-4 mt-3">
+              <div className="space-y-6">
                 <div>
                   <label htmlFor="otp" className="subheading">
                     Enter your phone number
@@ -129,9 +130,9 @@ export default function OTP() {
                 </div>
 
                 <div>
-                  <button type='submit' className="primary-btn w-full justify-center" onClick={clickToGetOTP}>Get OTP</button>
+                  <button className="primary-btn w-full justify-center" onClick={clickToGetOTP}>Get OTP</button>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         ) : (
@@ -141,7 +142,7 @@ export default function OTP() {
               <p className="tab-desc">This is an example</p>
 
               <Spacer size={20}/>
-              <form action="#" method="POST" className="space-y-4 mt-3">
+              <div className="space-y-6">
                 <div>
                   <label htmlFor="otp" className="subheading">
                     Enter your OTP
@@ -152,13 +153,22 @@ export default function OTP() {
                     id="phone"
                     className="form-input"
                     maxLength={6}
+                    onInput={(e) => {
+                      if (e.target.value === "" || e.target.value.length !== 6){
+                        setIsDisabled(true);
+                      } else {
+                        setIsDisabled(false);
+                      }
+                    }}
                   />
+
+                  <p className="text-link inline-block">Resend code</p>
                 </div>
 
                 <div>
-                  <button type='submit' className="primary-btn w-full justify-center">Confirm OTP</button>
+                  <button className={`primary-btn ${isDisabled ? 'disabled' : ''} w-full justify-center`} disabled={isDisabled ? true : false} onClick={() => window.location.href = '/register'}>Confirm OTP</button>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         )}

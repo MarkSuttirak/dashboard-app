@@ -563,6 +563,10 @@ h6 {
   font-weight:600;
   background-color:#0788F5;
   padding:7px 10px;
+  &.disabled {
+    background-color:#b4ddff;
+    cursor:not-allowed;
+  }
 }
 
 .secondary-btn {
