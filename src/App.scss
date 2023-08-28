@@ -164,6 +164,7 @@ body {
   line-height:28px;
   font-weight:600;
   font-family:Cal Sans, Inter;
+  letter-spacing:0.6px;
 }
 
 .subheading {
@@ -180,6 +181,20 @@ body {
   font-size:14px;
   line-height:24px;
   font-family:Inter
+}
+
+.text-rating {
+  color:#1A1B25;
+  font-size:12px;
+  font-weight:600;
+}
+
+.text-link {
+  color:#0788F5;
+  font-size:14px;
+  font-family:Inter;
+  cursor:pointer;
+  line-height:24px;
 }
 
 .input-addon {
@@ -340,6 +355,22 @@ body {
   font-family:Inter;
   font-weight:600;
   color:white;
+}
+
+.text-small {
+  font-size:12px;
+  line-height:18px;
+  font-weight:400;
+  color:#475467;
+}
+
+.no-bg-btn {
+  padding:10px 18px;
+  background-color:transparent;
+  border-radius:8px;
+  font-family:Inter;
+  font-weight:600;
+  color:black;
 }
 
 .black-btn-sm {
@@ -934,7 +965,7 @@ select#goal {
   background-image: url('./img/appsBanner.png');
   height: 310px;
   background-size: cover;
-  border-radius: 16px, 16px, 0px, 0px;
+  border-radius: 16px 16px 0 0;
   padding: 27px 45px;
 }
 
@@ -942,7 +973,7 @@ select#goal {
   background-image: url('./img/appConnectBusiness.png');
   height: 310px;
   background-size: cover;
-  border-radius: 16px, 16px, 0px, 0px;
+  border-radius: 16px 16px 0 0;
   padding: 33px 23px;
 }
 
@@ -951,7 +982,7 @@ select#goal {
   height: 310px;
   background-repeat: no-repeat;
   background-size: cover;
-  border-radius: 16px 16px 0px 0px;
+  border-radius: 16px 16px 0 0;
 }
 
 .connectBusiness2{

@@ -59,9 +59,6 @@ const TeamsSettings = () => {
           <p className="tab-desc">You haven’t added any team members to your project yet.</p>
         </div>
         <form className="mt-6 sm:flex sm:items-center" action="#">
-          <label htmlFor="emails" className="sr-only">
-            Email addresses
-          </label>
           <div className="relative rounded-md shadow-sm sm:min-w-0 sm:flex-1">
             <input
               type="text"
@@ -72,17 +69,19 @@ const TeamsSettings = () => {
             />
             <div className="absolute inset-y-0 right-0 flex items-center">
               <span className="h-4 w-px bg-gray-200" aria-hidden="true" />
-              <label htmlFor="role" className="sr-only">
-                Role
-              </label>
               <select
                 id="role"
                 name="role"
-                className="h-full rounded-md border-transparent bg-transparent py-0 pl-4 pr-7 text-gray-500 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                className="h-full rounded-md border-transparent bg-transparent py-0 pl-4 pr-9 text-gray-500 outline-none text-sm appearance-none"
               >
                 <option>Can edit</option>
                 <option>Can view</option>
               </select>
+              <label htmlFor="role" className="absolute w-5 right-[8px]">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="#6b7280" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 8l4 4 4-4"/>
+                  <path xmlns="http://www.w3.org/2000/svg" stroke="#6b7280" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 8l4 4 4-4"/>
+                </svg>
+              </label>
             </div>
           </div>
           <div className="mt-3 sm:mt-0 sm:ml-4 sm:flex-shrink-0">
@@ -106,7 +105,7 @@ const TeamsSettings = () => {
             <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
               <div className="table-overview">
                 {selectedInfo.length > 0 && (
-                  <div className="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                  <div className="absolute top-1 flex items-center space-x-3 left-16">
                     <button
                       type="button"
                       className="white-outline-btn"
@@ -174,8 +173,8 @@ const TeamsSettings = () => {
                           </div>
                         </td>
                         <td className="table-desc">{person.role}</td>
-                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                          <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                        <td className="relative whitespace-nowrap py-4 pl-3 text-right text-sm font-medium pr-6">
+                          <a href="#" className="text-[#0788F5]">
                             Edit<span className="sr-only">, {person.name}</span>
                           </a>
                         </td>
@@ -188,7 +187,7 @@ const TeamsSettings = () => {
                 className="flex items-center justify-between py-4"
                 aria-label="Pagination"
               >
-                <div className="hidden sm:block">
+                <div className="block">
                   <p className="text-sm text-gray-700">
                     Showing <span className="font-medium">1</span> to <span className="font-medium">{people.length}</span> of <span className="font-medium">{people.length}</span> results
                   </p>

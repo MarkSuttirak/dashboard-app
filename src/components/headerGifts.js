@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { HomeSmile } from '@untitled-ui/icons-react/build/cjs'
 import { useState, useEffect } from 'react'
 
-const HeaderIntegration = ({title}) => {
+const HeaderGifts = ({title}) => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
@@ -19,9 +19,9 @@ const HeaderIntegration = ({title}) => {
 
   const menus = [
     {
-      name: 'All integrations',
-      href: '/integration',
-      current: activeMenu === '/integration' ? true : false,
+      name: 'All Gifts',
+      href: '/gifts-privileges',
+      current: activeMenu === '/gifts-privileges' ? true : false,
     },
     {
       name: 'Connected',
@@ -62,11 +62,11 @@ const HeaderIntegration = ({title}) => {
                 <div className="flex items-center">
                   <ChevronRightIcon className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
                   <Link to="/integration" className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
-                    Integration
+                    Gifts & Privileges
                   </Link>
                 </div>
               </li>
-              {activeMenu !== '/integration' && (
+              {activeMenu !== '/gifts-privileges' && (
                 <li>
                   <div className="flex items-center">
                     <ChevronRightIcon className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
@@ -111,4 +111,4 @@ const HeaderIntegration = ({title}) => {
   )
 }
 
-export default HeaderIntegration
+export default HeaderGifts

@@ -29,7 +29,7 @@ const Table = ({info}) => {
     <div className="min-w-full p-[1px] align-middle">
       <div className="table-overview">
         {selectedInfo.length > 0 && (
-          <div className="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+          <div className="absolute top-1 flex items-center space-x-3 left-16">
             <button
               type="button"
               className="white-outline-btn"
@@ -94,7 +94,7 @@ const Table = ({info}) => {
                 <td
                   className={classNames(
                     'table-title',
-                    selectedInfo.includes(i) ? 'text-indigo-600' : 'text-gray-900'
+                    selectedInfo.includes(i) ? 'text-[#0788F5]' : 'text-gray-900'
                   )}
                 >
                   {i.invoice}

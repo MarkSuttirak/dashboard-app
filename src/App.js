@@ -21,6 +21,7 @@ import BillingSettings from './pages/billingSettings';
 import PlanSettings from './pages/planSettings';
 import Integration from './pages/integration';
 import ConnectedApps from './pages/connectedApps';
+import GiftsPrivileges from './pages/GiftsPrivileges';
 
 import TestPage from './pages/testPage';
 
@@ -36,17 +37,6 @@ function App() {
     return () => clearTimeout(timeout);
   }, []);
 
-  // useEffect(() => {
-  //   var hs = document.body.scrollWidth > document.body.clientWidth;
-  //   var vs = document.body.scrollHeight > document.body.clientHeight;
-
-  //   if (vs) {
-  //     document.body.style.paddingRight = '17px';
-  //   } else {
-  //     document.body.style.paddingRight = '0';
-  //   }
-  // }, [])
-
   return (
     < >
       <Router>
@@ -58,7 +48,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard loadingLogo={loadingLogo} />} />
           <Route path="/appsdetail" element={<BusinessDetail />} />
-          <Route path="/apps" element={<Business />} />
           <Route path="/singleAppPage" element={<SingleAppPage />} />
           <Route path="/change-domain" element={<ChangeDomain />} />
           <Route path="/settings" element={<Settings />} />
@@ -69,6 +58,8 @@ function App() {
           <Route path="/test" element={<TestPage />} />
           <Route path="/integration" element={<Integration />} />
           <Route path="/integration/connected" element={<ConnectedApps />} />
+          <Route path="/integration/apps" element={<Business />} />
+          <Route path="/gifts-privileges" element={<GiftsPrivileges />} />
 
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/register" element={<Register />} />

@@ -27,7 +27,7 @@ export default function CardSelect({title}) {
             className={({ checked, active }) =>
               classNames(
                 checked ? 'border-transparent' : 'border-gray-300',
-                active ? 'border-indigo-500 ring-2 ring-indigo-500' : '',
+                active ? 'border-[#0788F5] ring-2 ring-[#0788F5]' : '',
                 'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
               )
             }
@@ -58,13 +58,13 @@ export default function CardSelect({title}) {
                   </span>
                 </span>
                 <CheckCircleIcon
-                  className={classNames(!checked ? 'invisible' : '', 'h-5 w-5 text-indigo-600')}
+                  className={classNames(!checked ? 'invisible' : '', 'h-5 w-5 text-[#0788F5]')}
                   aria-hidden="true"
                 />
                 <span
                   className={classNames(
                     active ? 'border' : 'border-2',
-                    checked ? 'border-indigo-500' : 'border-transparent',
+                    checked ? 'border-[#0788F5]' : 'border-transparent',
                     'pointer-events-none absolute -inset-px rounded-lg'
                   )}
                   aria-hidden="true"

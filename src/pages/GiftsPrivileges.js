@@ -1,10 +1,10 @@
-import HeaderIntegration from '../components/headerIntegration'
 import Spacer from '../components/spacer';
 import { ArrowUpRight } from '@untitled-ui/icons-react/build/cjs';
 import { Link } from 'react-router-dom';
 import iconmock from '../img/iconmock.svg'
+import HeaderGifts from '../components/headerGifts';
 
-const Integration = () => {
+const GiftsPrivileges = () => {
   const CardList = ({title, desc, isConnected, icon}) => {
     return (
       <div
@@ -53,7 +53,7 @@ const Integration = () => {
     <>
       <div className="page-section">
         <div className="dashboard-settings">
-          <HeaderIntegration title="Integration"/>
+          <HeaderGifts title="Gifts & Privileges"/>
           
           <div>
             <dl className="mt-5 grid gap-5 grid-cols-3">
@@ -68,4 +68,4 @@ const Integration = () => {
   )
 }
 
-export default Integration;
+export default GiftsPrivileges;

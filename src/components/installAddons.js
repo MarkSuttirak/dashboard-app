@@ -12,15 +12,15 @@ function InstallAddons(props) {
 
     return (
         <>
-            <div className='sm:mt-[85px]'>
-                <h2 className={`${!isClickedInstall ? '' : 'thePara'} font-calSans font-semibold text-[24px] text-[#1F272E] mx-auto text-center leading-[30px] sm:w-[245px]`}>
+            <div className='p-[60px] pb-10'>
+                <h2 className={`${!isClickedInstall ? '' : 'thePara'} main-title mx-auto text-center`}>
                     Install addons app to your workspace</h2>
 
-                <h2 className={`${!isClickedInstall ? 'mt-[-60px]' : 'thePara1 '} mt-[-60px] opacity-0 font-calSans font-semibold text-[24px] text-[#1F272E] mx-auto text-center leading-[30px] sm:w-[245px]`}>
-                    Application is being install to your site.</h2>
+                <h2 className={`${!isClickedInstall ? 'mt-[-72px]' : 'thePara1 '} mt-[-72px] opacity-0 main-title mx-auto text-center`}>
+                    Application is being installed to your site.</h2>
             </div>
 
-            <div className={`mx-auto mt-[40px] sm:w-[243px] flex ${!isClickedInstall ? 'justify-between' : 'justify-between'}  items-center`}>
+            <div className={`mx-auto sm:w-[243px] flex ${!isClickedInstall ? 'justify-between' : 'justify-between'}  items-center`}>
                 <img className={`${!isClickedInstall ? 'ml-0' : 'buttonClicked1'}`} src={instagramStore} alt="" />
 
 
@@ -31,20 +31,20 @@ function InstallAddons(props) {
             </div>
 
             <div className='mx-auto mt-[45px] sm:w-[360px] text-center'>
-                <h3 className='font-calSans font-semibold text-[15px] text-[#1F272E] leading-[18px]'>Allow instagram app to</h3>
-                <p className='font-inter font-normal text-[13px] text-[#687178] leading-[20px] mt-[15px]'>Selldone allows you to manage multiple stores per account and sell various product types. Connect to Selldone by clicking the login or sign-up.</p>
+                <h3 className='subheading'>Allow instagram app to</h3>
+                <p className='tab-desc'>Selldone allows you to manage multiple stores per account and sell various product types. Connect to Selldone by clicking the login or sign-up.</p>
             </div>
 
             {!isClickedInstall ?
                 <div className='sm:w-[220px] mx-auto mt-[50px] flex justify-evenly'>
                     <button onClick={changeInstallClick} className='black-btn'>Install apps</button>
-                    <button onClick={props.closePopUp} className='font-calSans font-semibold text-base leading-[19.2px] text-[#1F272E] ml-6'>Cancel</button>
+                    <button onClick={props.closePopUp} className='no-bg-btn'>Cancel</button>
                 </div> : <div className='sm:w-[220px] mx-auto mt-[50px] text-center'> <button onClick={props.closePopUp} className='black-btn'>Back to dashboard</button></div>}
 
 
             {!isClickedInstall ?
                 <div className='sm:w-[227px] mx-auto mt-[70px] text-center'>
-                    <p className='font-inter font-normal leading-[16.82px] text-xs text-[#687178]'>By connecting this application to your account, you accept its <span className='text-[#0066CC]'> Privacy Policy </span> and <span className='text-[#0066CC]'>Terms of Service.</span></p>
+                    <p className='text-small'>By connecting this application to your account, you accept its <span className='text-[#0788F5]'> Privacy Policy </span> and <span className='text-[#0788F5]'>Terms of Service.</span></p>
                 </div> : null}
 
         </>

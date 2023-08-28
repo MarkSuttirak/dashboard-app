@@ -146,7 +146,7 @@ const BillingSettings = () => {
             type="button"
             className="primary-btn"
           >
-            <DownloadCloud01 />
+            <DownloadCloud01 viewBox='0 0 30 20'/>
             Download all
           </button>
         </div>

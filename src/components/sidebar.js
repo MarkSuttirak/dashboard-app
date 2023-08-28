@@ -51,11 +51,10 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
   const navigation = [
     { name: 'Dashboard', icon: <HomeSmile viewBox='0 0 30 24' width='24' className='menu-icon'/>, href: '/', current: active === '/' ? true : false, id: 'dashboard' },
     // { name: 'Teams', icon: <LayoutAlt01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/teams', count: [4, 'orange', 'have-dot'], current: active === '/teams' ? true : false, id: 'teams' },
-    { name: 'Apps', icon: <Edit04 viewBox='0 0 30 24' width='24' className='menu-icon'/>, href: '/apps', current: active === '/apps' ? true : false, id: 'apps' },
     { name: 'Integration', icon: <Backpack viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/integration', count: [10, 'orange', 'have-dot'], current: active === '/integration' || active === '/integration/connected' ? true : false, id: 'integration' },
-    { name: 'Gift & Privilege', icon: <Gift01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '#', count: [5, 'blue', 'have-dot'], current: active === "#" ? true : false, active: active, id: 'gift' },
+    { name: 'Gift & Privilege', icon: <Gift01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/gifts-privileges', count: [5, 'blue', 'have-dot'], current: active === "/gifts-privileges" ? true : false, active: active, id: 'gift' },
     // { name: 'การเรียกเก็บเงิน', icon: <Inbox01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '#', count: [10, 'gray'], current: active === "#" ? true : false, active: active, id: 'billing' },
-    { name: 'ตั้งค่า', icon: <Settings01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/settings/profile', current: active === "/settings" || active === "/settings/profile" || active === "/settings/team" || active === "/settings/plan" || active === "/settings/billing" ? true : false, active: active, id: 'settings' },
+    // { name: 'ตั้งค่า', icon: <Settings01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/settings/profile', current: active === "/settings" || active === "/settings/profile" || active === "/settings/team" || active === "/settings/plan" || active === "/settings/billing" ? true : false, active: active, id: 'settings' },
   ]
 
   const teamMembers = [
@@ -211,20 +210,51 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                     </Link>
                   ))}
 
-                  <div className="h-[16px] w-[20%] bg-[#F3F3F3] rounded-md block"></div>
+                  {/* <div className="h-[16px] w-[20%] bg-[#F3F3F3] rounded-md block"></div>
                   {teamMembers.map((member) => (
                     <div className="flex">
                       <div className="w-[15%] h-[28px] bg-[#F3F3F3] block rounded-lg mr-4 item-name">
                       </div>
                       <div className="w-[80%] h-[28px] bg-[#F3F3F3] block rounded-lg"></div>
                     </div>
-                  ))}
+                  ))} */}
                 </nav>
               </div>
             </div>
           )}
 
         </div>
+
+        <nav className="flex bg-white px-4" aria-label="Sidebar">
+          <Link
+            key='settings'
+            to='/settings/profile'
+            className={classNames(
+              active === "/settings" || active === "/settings/profile" || active === "/settings/team" || active === "/settings/plan" || active === "/settings/billing"
+                ? 'sidebar-menu active'
+                : 'sidebar-menu'
+            )}
+            onClick={() => handleMenuClick('/settings/profile')}
+            onMouseEnter={() => {
+              const tooltip = document.getElementById(`tooltip-settings`);
+              tooltip.classList.remove('opacity-0');
+              tooltip.classList.remove('invisible');
+            }}
+            onMouseLeave={() => {
+              const tooltip = document.getElementById(`tooltip-settings`);
+              tooltip.classList.add('opacity-0');
+              tooltip.classList.add('invisible');
+            }}
+          >
+            <Settings01 viewBox='0 0 30 24' width='24'className='menu-icon'/>
+
+            <span className="flex-1 item-name">Settings</span>
+          </Link>
+          <div id={`tooltip-settings`} role="tooltip" className="tooltip-menu absolute invisible opacity-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg left-[60px] text-xs translate-y-[-120%] whitespace-pre shadow-sm dark:bg-gray-700">
+            Settings
+          </div>
+        </nav>
+        
         <div className="flex flex-shrink-0 bg-[#F5F5F5] m-4 rounded-[11px] avatar-user"
           onMouseEnter={() => {
             const user = document.getElementById("tooltip-avatar-user");

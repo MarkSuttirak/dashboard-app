@@ -66,22 +66,22 @@ function SingleAppPage() {
       <div className='sm:p-10 p-5 page-section'>
 
         <div className='section-container mx-auto'>
-          <div className='sm:flex justify-between items-center'>
+          <div className='sm:flex justify-between items-start'>
             <div className='sm:flex'>
               <div>
                 <img src={instagramShop} alt="" />
               </div>
               <div className='sm:ml-[26px] sm:mt-0 mt-5'>
-                <h3 className='font-calSans font-semibold text-xl text-[#1F272E]'>Instagram Store</h3>
-                <p className='font-inter font-normal text-[13px] text-[#687178] sm:w-[273px]'>Facilitate payments and pay out sellers or service providers.</p>
-                <div className='flex mt-2'>
+                <h3 className='main-title'>Instagram Store</h3>
+                <p className='tab-desc'>Facilitate payments and pay out sellers or service providers.</p>
+                <div className='flex items-center mt-2'>
                   <img src={star} alt="" />
-                  <h4 className='font-inter font-semibold text-xs text-[#1A1B25] ml-2'>386K</h4>
+                  <h4 className='text-rating ml-2'>386K</h4>
                 </div>
               </div>
             </div>
-            <div className='sm:mt-0 mt-5'>
-              <button onClick={handleInviteClick} className='black-btn'>Install App</button>
+            <div>
+              <button onClick={handleInviteClick} className='primary-btn'>Install App</button>
             </div>
           </div>
         </div>
@@ -111,66 +111,68 @@ function SingleAppPage() {
         <div className='section-container mx-auto sm:flex justify-between mt-[75px]'>
           <div className='sm:w-[225px] w-full'>
             <div>
-              <h3 className='font-inter font-semibold text-base text-[#1F272E]'>Highlights</h3>
-              <h4 className='mt-[10px] font-inter font-normal text-sm text-[#1F272E]'>Built for your business</h4>
-              <p className='mt-1 font-inter font-normal text-sm text-[#8A8E91]'>Use directly in Shopify admin</p>
-            </div>
-            <div className='mt-[50px]'>
-              <h3 className='font-inter font-semibold text-base text-[#1F272E]'>Information</h3>
+              <h3 className='main-heading'>Highlights</h3>
               <div className='mt-[10px]'>
-                <h4 className=' font-inter font-normal text-sm text-[#1F272E]'>Launched</h4>
-                <p className='mt-1 font-inter font-normal text-sm text-[#8A8E91]'>March 25, 2021</p>
-              </div>
-              <div className='mt-[20px]'>
-                <h4 className=' font-inter font-normal text-sm text-[#1F272E]'>Categories</h4>
-                <p className='mt-1 font-inter font-normal text-sm text-[#8A8E91]'>Marketing and conversion</p>
-              </div>
-              <div className='mt-[20px]'>
-                <h4 className=' font-inter font-normal text-sm text-[#1F272E]'>Integrates with</h4>
-                <p className='mt-1 font-inter font-normal text-sm text-[#8A8E91]'>Facebook Advertising, <br /> Recharge, Zendesk,</p>
+                <h4 className='subheading'>Built for your business</h4>
+                <p className='tab-desc'>Use directly in Shopify admin</p>
               </div>
             </div>
             <div className='mt-[50px]'>
-              <h3 className='font-inter font-semibold text-base text-[#1F272E]'>Built by Zaviago</h3>
-              <div>
-                <p className='font-inter font-normal text-sm text-[#0066CC] mt-[10px]'>Website</p>
-                <p className='font-inter font-normal text-sm text-[#0066CC] mt-[10px]'>Contact us</p>
-                <p className='font-inter font-normal text-sm text-[#0066CC] mt-[10px]'>Privacy policy</p>
+              <h3 className='main-heading'>Information</h3>
+              <div className='mt-[10px]'>
+                <h4 className='subheading'>Launched</h4>
+                <p className='tab-desc'>March 25, 2021</p>
+              </div>
+              <div className='mt-[20px]'>
+                <h4 className='subheading'>Categories</h4>
+                <p className='tab-desc'>Marketing and conversion</p>
+              </div>
+              <div className='mt-[20px]'>
+                <h4 className='subheading'>Integrates with</h4>
+                <p className='tab-desc'>Facebook Advertising, <br /> Recharge, Zendesk,</p>
+              </div>
+            </div>
+            <div className='mt-[50px]'>
+              <h3 className='main-heading'>Built by Zaviago</h3>
+              <div className='flex flex-col gap-y-[10px] mt-[10px]'>
+                <p className='text-link'>Website</p>
+                <p className='text-link'>Contact us</p>
+                <p className='text-link'>Privacy policy</p>
               </div>
             </div>
           </div>
           <div className='sm:w-[525px] w-full sm:mt-0 mt-10 sm:ml-4'>
             <div className='flex justify-between'>
-              <h2 className=' font-inter font-semibold text-xl text-[#000000] '>What's New</h2>
-              <button className='font-inter font-normal text-[13px] text-[#0066CC] leading-[15.73px]'>Version History</button>
+              <h2 className='main-heading'>What's New</h2>
+              <button className='text-link'>Version History</button>
             </div>
             <div className='mt-3'>
-              <p className='font-inter font-normal text-[13px] text-[#8A8E91] leading-[15.73px]'>Version 1,6.72.735.1</p>
+              <p className='tab-desc'>Version 1,6.72.735.1</p>
             </div>
             <div className='mt-[38px]'>
-              <h3 className='font-inter font-bold text-[13px] leading-[20px] text-[#1A1B25]'>Get The Latest Status Of Your Online & In-Person Sales</h3>
-              <p className='font-inter font-normal text-[13px] leading-[20px] text-[#1A1B25]'>Selldone allows you to manage multiple stores per account and sell various product types. Connect to Selldone by clicking the login or sign-up. This will allow you to view your shops' performance and access them directly and receive notifications about new orders in your Stripe Dashboard.</p>
+              <h3 className='subheading'>Get The Latest Status Of Your Online & In-Person Sales</h3>
+              <p className='tab-desc'>Selldone allows you to manage multiple stores per account and sell various product types. Connect to Selldone by clicking the login or sign-up. This will allow you to view your shops' performance and access them directly and receive notifications about new orders in your Stripe Dashboard.</p>
             </div>
             <div>
               <img src={statusChart} alt="" />
             </div>
             <div className='mt-[30px]'>
-              <p className='font-inter font-normal text-[13px] leading-[20px] text-[#1A1B25]'>Selldone allows business owners, merchants, and agencies to build and manage their online businesses — and in-store — without installing any plugins! With access to enterprise-grade tools, you can easily adjust your business model, whether it's a marketplace, dropshipping, or a simple shop. In addition, this app helps you view relevant orders, fulfillment status, and more within the Stripe payment tab, and see your customers' last orders and journey within the Stripe customer tab. This app is designed to help business owners streamline their operations and improve their online sales.</p>
+              <p className='tab-desc'>Selldone allows business owners, merchants, and agencies to build and manage their online businesses — and in-store — without installing any plugins! With access to enterprise-grade tools, you can easily adjust your business model, whether it's a marketplace, dropshipping, or a simple shop. In addition, this app helps you view relevant orders, fulfillment status, and more within the Stripe payment tab, and see your customers' last orders and journey within the Stripe customer tab. This app is designed to help business owners streamline their operations and improve their online sales.</p>
             </div>
           </div>
         </div>
 
         <div className='section-container mx-auto mt-[120px]'>
-          <h3 className='text-[#1F272E] font-calSans font-semibold font-sm'>You may also likes these applications</h3>
-          <p className='font-inter font-normal text-[13px] text-[#687178] mt-1'>Explore the apps that a wide range of merchants rely on.</p>
+          <h3 className='main-heading'>You may also likes these applications</h3>
+          <p className='tab-desc'>Explore the apps that a wide range of merchants rely on.</p>
           <div className='grid sm:grid-cols-2 grid-cols-1 mt-[40px]'>
             {mostPopularApps.map((item, index) =>
               <div className='flex mb-[30px]' key={index}>
                 <div><img src={item.image} alt="" className='rounded-xl' style={{ boxShadow: '0px 4px 15px 0px #00000026' }} /></div>
                 <div className='ml-5'>
-                  <h3 className='font-inter font-semibold text-sm'>{item.title}</h3>
-                  <p className='font-inter font-normal text-[13px] text-[#687178] mt-1'>{item.description}</p>
-                  <div className='flex items-center  mt-1'><img src={star} className='w-[18px] h-[18px]' alt="" /><p className='ml-3 font-inter font-semibold text-xs text-[#1A1B25]'>{item.rating}</p></div>
+                  <h3 className='subheading'>{item.title}</h3>
+                  <p className='tab-desc'>{item.description}</p>
+                  <div className='flex items-center mt-1'><img src={star} className='w-[18px] h-[18px]' alt="" /><p className='text-rating ml-1'>{item.rating}</p></div>
                 </div>
               </div>
             )}
