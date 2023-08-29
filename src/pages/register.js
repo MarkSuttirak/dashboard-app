@@ -489,8 +489,8 @@ export default function Register() {
                   .zaviago.com
                 </div>
               </div>
+              <p className="tab-desc-small">Only A-Z, a-z and numbers are allowed.</p>
             </div>
-            <p className="tab-desc-small mt-2">Only A-Z, a-z and numbers are allowed.</p>
 
             <Spacer size={30}/>
             <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : animDown ? 'anim-down' : ''}`}>
