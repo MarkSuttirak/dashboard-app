@@ -27,9 +27,9 @@ export default function Signup() {
                 <h2 className="font-bold">zaviago.com</h2>
               </div>
               <h2 className="main-title">Create new account</h2>
-              <p className="mt-2 text-sm text-gray-600">
+              <p className="tab-desc">
                 Or{' '}
-                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                <a href="#" className="font-medium text-[#0788F5]">
                   start your 14-day free trial
                 </a>
               </p>
@@ -58,7 +58,7 @@ export default function Signup() {
                 <div className="w-full border-t border-gray-300" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="bg-white px-2 text-gray-500">OR</span>
+                <span className="bg-white px-2 tab-desc">OR</span>
               </div>
             </div>
 
