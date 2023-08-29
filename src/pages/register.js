@@ -1,7 +1,7 @@
 import { useEffect, useState, Fragment } from "react"
 import { useLocation } from "react-router-dom"
 import Logo from '../img/logo-zaviago.svg'
-import { CheckIcon, ChatBubbleOvalLeftEllipsisIcon, HomeModernIcon, BuildingStorefrontIcon, DocumentIcon, CursorArrowRippleIcon } from '@heroicons/react/24/solid'
+import { CheckIcon, ChatBubbleOvalLeftEllipsisIcon, HomeModernIcon, BuildingStorefrontIcon, DocumentIcon } from '@heroicons/react/24/solid'
 import { useRef } from "react"
 import { RadioGroup } from '@headlessui/react'
 import { CheckCircleIcon } from '@heroicons/react/20/solid'
@@ -67,18 +67,50 @@ export default function Register() {
   const emailRef = useRef(null);
 
   const [open, setOpen] = useState(false)
-  const [openTwo, setOpenTwo] = useState(false)
+
+  const [isGoingBack, setIsGoingBack] = useState(false)
+  const [isGoingNext, setIsGoingNext] = useState(false)
 
   const [selectedMailingLists, setSelectedMailingLists] = useState(mailingLists[0])
 
+  const [animUp, setAnimUp] = useState(false);
+  const [animDown, setAnimDown] = useState(false);
+
+  const addAnimUp = () => {
+    setAnimUp(true);
+    setTimeout(() => {
+      setAnimUp(false);
+    }, 800)
+  }
+
+  const addAnimDown = () => {
+    setAnimDown(true);
+    setTimeout(() => {
+      setAnimDown(false);
+    }, 800)
+  }
+
   const goPrev = () => {
     if (page > 0) {
-      setPage(page - 1);
+      addAnimDown();
+      setIsGoingBack(true);
+      setTimeout(() => {
+        setPage(page - 1);
+        addAnimUp();
+      }, 800)
     }
   }
 
   const goNext = () => {
-    setPage(page + 1);
+    addAnimDown();
+    setIsGoingNext(true);
+    setTimeout(() => {
+      setPage(page + 1);
+      addAnimUp();
+    }, 800)
+    setTimeout(() => {
+      setIsGoingNext(false);
+    }, 1000)
   }
 
   const Steps = ({process}) => {
@@ -136,18 +168,30 @@ export default function Register() {
         registerStep[8].status = 'current'
       }
     }
-
+    
+    <div className="w-1/2 bg-gray-200 rounded-full h-1 rounded-full">
+      <div className="h-1 rounded-full bg-[#0788F5]" style={{ width: "40%" }}></div>
+    </div>
     return (
       <nav aria-label="Progress">
         <ol role="list" className="flex space-x-2">
           {registerStep.map((step) => (
             <li key={step.id}>
               {step.status === 'complete' ? (
-                <div className="flex flex-col pl-1 mt-4 w-8 bg-[#0788F5] h-1 rounded-full"/>
+                // <div className="flex flex-col pl-1 mt-4 w-8 bg-[#0788F5] h-1 rounded-full"/>
+                <div className="flex flex-col w-8 bg-gray-200 rounded-full h-1 rounded-full">
+                  <div className={`h-1 rounded-full bg-[#0788F5]`} style={{ width: "100%" }} />
+                </div>
               ) : step.status === 'current' ? (
-                <div className="group flex flex-col bg-gray-200 pl-1 mt-4 w-8 h-1 rounded-full" style={{background:"linear-gradient(to right, #0788F5 50%, #E5E7EB 50%)"}}/>
+                <div className="flex flex-col w-8 bg-gray-200 rounded-full h-1 rounded-full">
+                  <div className={`h-1 rounded-full bg-[#0788F5]`} style={{ width: "50%" }} />
+                </div>
+                // <div className="group flex flex-col bg-gray-200 pl-1 mt-4 w-8 h-1 rounded-full" style={{background:"linear-gradient(to right, #0788F5 50%, #E5E7EB 50%)"}}/>
               ) : (
-                <div className="group flex flex-col bg-gray-200 pl-1 mt-4 w-8 h-1 rounded-full"/>
+                <div className="flex flex-col w-8 bg-gray-200 rounded-full h-1 rounded-full">
+                  <div className={`h-1 rounded-full bg-[#0788F5]`} style={{ width: "0%" }} />
+                </div>
+                // <div className="group flex flex-col bg-gray-200 pl-1 mt-4 w-8 h-1 rounded-full"/>
               )}
             </li>
           ))}
@@ -217,10 +261,7 @@ export default function Register() {
   ]
 
   useEffect(() => {
-    setOpenTwo(true);
-    setTimeout(() => {
-      setOpenTwo(false)
-    }, 5000)
+    addAnimUp();
   }, [])
 
   return (
@@ -235,7 +276,7 @@ export default function Register() {
             <Steps process={0}/>
             <h2 className="main-title mt-10">What is your email address?</h2>
             <p className="tab-desc">It was popularised in the 1960s with the release of Letraset.</p>
-            <div className="space-y-4 mt-6">
+            <div className={`space-y-4 mt-6 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
               <input
                 id="email"
                 name="email"
@@ -253,7 +294,7 @@ export default function Register() {
                   }
                 }}
               />
-              <div>
+              <div className={`${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : animDown ? 'anim-down' : ''}`}>
                 <button className={`primary-btn w-full justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
               </div>
             </div>
@@ -263,9 +304,9 @@ export default function Register() {
         {page === 1 && (
           <div className="m-auto w-full max-w-sm w-96 h-[400px]">
             <Steps process={1}/>
-            <div className="space-y-4 mt-10">
+            <h2 className="main-title mt-8">Tell us more about you</h2>
+            <div className={`space-y-4 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
             <RadioGroup value={selectedMailingLists} onChange={setSelectedMailingLists}>
-              <RadioGroup.Label className="main-title">Tell us more about you</RadioGroup.Label>
 
               <div className="mt-4 grid grid-cols-1 gap-y-6">
                 {mailingLists.map((mailingList) => (
@@ -313,7 +354,7 @@ export default function Register() {
             </div>
 
             <Spacer size={30}/>
-            <div className="flex gap-x-2">
+            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : animDown ? 'anim-down' : ''}`}>
               <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
               <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
             </div>
@@ -324,7 +365,7 @@ export default function Register() {
           <div className="m-auto w-full max-w-sm w-96 h-[400px]">
             <Steps process={2} />
             <h2 className="main-title mt-8">What is your business about?</h2>
-            <div className="space-y-4 mt-10">
+            <div className={`space-y-4 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
               <Select values={[
                 {
                   id: 'private',
@@ -350,7 +391,7 @@ export default function Register() {
             </div>
 
             <Spacer size={30}/>
-            <div className="flex gap-x-2">
+            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : animDown ? 'anim-down' : ''}`}>
               <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
               <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
             </div>
@@ -361,7 +402,7 @@ export default function Register() {
           <div className="m-auto w-full max-w-sm w-96 h-[400px]">
             <Steps process={3}/>
             <h2 className="main-title mt-8">How many people are there in your team?</h2>
-            <div className="space-y-4 mt-10">
+            <div className={`space-y-4 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
               <RadioGroup value={mem} onChange={setMem} className="mt-2">
                 <RadioGroup.Label className="sr-only"> How many people are there in your team? </RadioGroup.Label>
                 <div className="grid grid-cols-1 gap-3">
@@ -387,7 +428,7 @@ export default function Register() {
             </div>
 
             <Spacer size={30}/>
-            <div className="flex gap-x-2">
+            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : animDown ? 'anim-down' : ''}`}>
               <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
               <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
             </div>
@@ -398,7 +439,7 @@ export default function Register() {
           <div className="m-auto w-full max-w-sm w-96 h-[400px]">
             <Steps process={4}/>
             <h2 className="main-title mt-8">What are your goals for this business?</h2>
-            <div className="space-y-4 mt-10">
+            <div className={`space-y-4 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
               <div className="grid grid-cols-2 gap-4">
 
                 {checkboxLists.map((checkboxList) => (
@@ -419,7 +460,7 @@ export default function Register() {
             </div>
 
             <Spacer size={30}/>
-            <div className="flex gap-x-2">
+            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : animDown ? 'anim-down' : ''}`}>
               <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
               <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
             </div>
@@ -431,7 +472,7 @@ export default function Register() {
             <Steps process={5}/>
             <h2 className="main-title mt-8">What would you like to call your site?</h2>
             <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
-            <div className="space-y-4 mt-10">
+            <div className={`space-y-4 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
               <div className="relative mt-1 rounded-md shadow-sm">
                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 tab-desc">
                   http://
@@ -452,7 +493,7 @@ export default function Register() {
             <p className="tab-desc-small mt-2">Only A-Z, a-z and numbers are allowed.</p>
 
             <Spacer size={30}/>
-            <div className="flex gap-x-2">
+            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : animDown ? 'anim-down' : ''}`}>
               <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
               <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
             </div>
@@ -464,7 +505,7 @@ export default function Register() {
             <Steps process={6}/>
             <h2 className="main-title mt-8">What would you like to add on your site?</h2>
             <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
-            <div className="space-y-4 mt-10">
+            <div className={`space-y-4 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
               <div className="grid grid-cols-2 gap-4">
 
                 {addOnLists.map((checkboxList) => (
@@ -486,7 +527,7 @@ export default function Register() {
             </div>
 
             <Spacer size={30}/>
-            <div className="flex gap-x-2">
+            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : animDown ? 'anim-down' : ''}`}>
               <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
               <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
             </div>
@@ -498,7 +539,7 @@ export default function Register() {
             <Steps process={7}/>
             <h2 className="main-title mt-8">Pick a theme you like</h2>
             <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
-            <div className="space-y-4 mt-10">
+            <div className={`space-y-4 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
               <RadioGroup value={theme} onChange={setTheme} className="mt-2">
                 <RadioGroup.Label className="sr-only"> Pick a theme you like </RadioGroup.Label>
                 <div className="grid grid-cols-2 gap-3">
@@ -525,7 +566,7 @@ export default function Register() {
             </div>
 
             <Spacer size={30}/>
-            <div className="flex gap-x-2">
+            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : animDown ? 'anim-down' : ''}`}>
               <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
               <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={() => setOpen(true)}>Submit</button>
             </div>
@@ -589,85 +630,6 @@ export default function Register() {
             </div>
           </Dialog>
         </Transition.Root>
-
-        <Transition.Root show={openTwo} as={Fragment}>
-        <Dialog as="div" className="relative z-[1001]" onClose={setOpenTwo}>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-          </Transition.Child>
-
-          <div className="fixed inset-0 z-10 overflow-y-auto">
-            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                enterTo="opacity-100 translate-y-0 sm:scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-              >
-                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white p-8 shadow-xl transition-all w-full max-w-[400px] flex flex-col gap-y-4">
-                  <div class="moving-line"/>
-                  <p className="tab-desc text-left font-bold mb-3 flex gap-x-2">
-                    <CursorArrowRippleIcon width='24'/>
-                    Preparing your account
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-x-2 items-center">
-                      <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[#0788F5]">
-                        <CheckIcon className="h-3 w-3 text-[#0788F5]" aria-hidden="true" />
-                      </div>
-                      <div className="text-left">
-                        <Dialog.Title as="h3" className="subheading small">
-                          Created your account
-                        </Dialog.Title>
-                      </div>
-                    </div>
-                    <div>
-                      <p className='text-link'>Done</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-x-2 items-center">
-                      <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[#0788F5]">
-                        <CheckIcon className="h-3 w-3 text-[#0788F5]" aria-hidden="true" />
-                      </div>
-                      <Dialog.Title as="h3" className="subheading small">
-                        Setting up the profile
-                      </Dialog.Title>
-                    </div>
-                    <div>
-                      <p className='tab-desc'>In progress</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-x-2 items-center">
-                      <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[#0788F5]">
-                        <CheckIcon className="h-3 w-3 text-[#0788F5]" aria-hidden="true" />
-                      </div>
-                      <Dialog.Title as="h3" className="subheading small">
-                        Preparing your workspace
-                      </Dialog.Title>
-                    </div>
-                    <div>
-                      <p className='tab-desc'>Done</p>
-                    </div>
-                  </div>
-                </Dialog.Panel>
-              </Transition.Child>
-            </div>
-          </div>
-        </Dialog>
-      </Transition.Root>
       </div>
     </>
   )

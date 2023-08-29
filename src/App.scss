@@ -981,12 +981,86 @@ select#location {
   }
 }
 
+@keyframes fadeInDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+}
+
+@keyframes hundredToFifty {
+  from {
+    width:100%
+  }
+  to {
+    width:50%
+  }
+}
+
+@keyframes fiftyToHundred {
+  from {
+    width:50%
+  }
+  to {
+    width:100%
+  }
+}
+
+@keyframes fiftyToZero {
+  from {
+    width:50%
+  }
+  to {
+    width:0%
+  }
+}
+
+@keyframes zeroToFifty {
+  from {
+    width:0%
+  }
+  to {
+    width:50%
+  }
+}
+
+.complete-to-current {
+  animation: hundredToFifty 0.5s forwards;
+  animation-delay:0.5s;
+}
+
+.current-to-complete {
+  animation: fiftyToHundred 0.5s forwards;
+}
+
+.current-to-zero {
+  animation: fiftyToZero 0.5s forwards;
+}
+
+.zero-to-current {
+  animation: zeroToFifty 0.5s forwards;
+  animation-delay:0.5s;
+}
+
 .anim-up {
   animation: fadeInUp 0.5s forwards;
 }
 
 .anim-up-delay {
   animation: fadeInUp 0.5s forwards;
+  animation-delay: 0.2s;
+}
+
+.anim-down {
+  animation: fadeInDown 0.5s forwards;
+}
+
+.anim-down-delay {
+  animation: fadeInDown 0.5s forwards;
   animation-delay: 0.2s;
 }
 
