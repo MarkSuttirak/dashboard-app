@@ -311,8 +311,6 @@ const Dashboard = ({ loadingLogo }) => {
                 </div>
               </div>
 
-
-
               {/* Progress Bars */}
               <div className="flex gap-x-2 items-center mb-4 columns-4">
                 <div className="w-[30%]">

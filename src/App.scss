@@ -774,7 +774,7 @@ h6 {
   left: 0;
   animation: moving-line 2s linear infinite;
   // background: linear-gradient(to right, #006AFF 0%, #0094FF 30%, #dad3d336 55%, #C293FF 60%); /* Replace red with your line color */
-  background: linear-gradient(to right, #006AFF 0%, #0094FF 30%, #dad3d336 55%, #C293FF 60%, #006AFF 100%);
+  background: linear-gradient(to right, #006AFF 0%, #0094FF 30%, #dad3d336 55%, #C293FF 80%, #006AFF 100%);
   background-size: 200% 100%;
   background-position: 100% 0;
 }
@@ -968,10 +968,32 @@ select#location {
   }
 }
 
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -981,12 +1003,34 @@ select#location {
 
 @keyframes fadeInDown {
   from {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(20px);
+  }
+}
+
+@keyframes fadeInDownTwo {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutDownTwo {
+  from {
     opacity: 1;
     transform: translateY(0);
   }
   to {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(20px);
   }
 }
 
@@ -1045,21 +1089,37 @@ select#location {
 }
 
 .anim-up {
-  animation: fadeInUp 0.5s forwards;
+  animation: fadeInUp 0.4s forwards;
 }
 
 .anim-up-delay {
-  animation: fadeInUp 0.5s forwards;
+  animation: fadeInUp 0.4s forwards;
   animation-delay: 0.2s;
 }
 
 .anim-down {
-  animation: fadeInDown 0.5s forwards;
+  animation: fadeOutDownTwo 0.4s forwards;
 }
 
 .anim-down-delay {
-  animation: fadeInDown 0.5s forwards;
+  animation: fadeOutDownTwo 0.4s forwards;
   animation-delay: 0.2s;
+}
+
+.anim-up-two {
+  animation: fadeOutUp 0.4s forwards;
+}
+
+.anim-down-two {
+  animation: fadeInDownTwo 0.4s forwards;
+}
+
+.fade-out {
+  animation: openModal 0.4s forwards;
+}
+
+.fade-in {
+  animation: closeModal 0.4s forwards;
 }
 
 select#business-type,
@@ -1345,8 +1405,6 @@ select#goal {
   }
 }
 
-
-
 @media screen and (max-width:1025px) {
   .slick-next {
     right: 10px !important;
@@ -1628,4 +1686,10 @@ select#goal {
 @keyframes loadingAnim{
   from{transform:rotate(0deg)}
   to{transform:rotate(360deg)}
+}
+
+@media (max-width:767px){
+  .register-screen {
+    width:calc(100% - 60px)
+  }
 }

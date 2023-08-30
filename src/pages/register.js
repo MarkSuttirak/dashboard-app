@@ -1,7 +1,7 @@
 import { useEffect, useState, Fragment } from "react"
 import { useLocation } from "react-router-dom"
 import Logo from '../img/logo-zaviago.svg'
-import { CheckIcon, ChatBubbleOvalLeftEllipsisIcon, HomeModernIcon, BuildingStorefrontIcon, DocumentIcon } from '@heroicons/react/24/solid'
+import { CheckIcon, ChatBubbleOvalLeftEllipsisIcon, HomeModernIcon, BuildingStorefrontIcon, DocumentIcon, ArrowDownOnSquareStackIcon } from '@heroicons/react/24/solid'
 import { useRef } from "react"
 import { RadioGroup } from '@headlessui/react'
 import { CheckCircleIcon } from '@heroicons/react/20/solid'
@@ -9,6 +9,7 @@ import Spacer from "../components/spacer"
 import Select from "../components/select"
 import { Dialog, Transition } from '@headlessui/react'
 import RegisterStep from "../components/registerStep"
+import LoadingCheck from "../components/loadingcheck"
 
 const mailingLists = [
   { id: 1, title: 'I am a solo entrepreneur', description: 'Last message sent an hour ago' },
@@ -56,6 +57,11 @@ export default function Register() {
     }
   },[])
 
+  const [buildingWorkspace, setBuildingWorkspace] = useState(false);
+  const [changingSite, setChangingSite] = useState(false);
+  const [preparingDashboard, setPreparingDashboard] = useState(false);
+  const [deployingSystem, setDeployingSystem] = useState(false);
+
   const location = useLocation();
 
   const [isDisabled, setIsDisabled] = useState(true);
@@ -64,9 +70,11 @@ export default function Register() {
   const [theme, setTheme] = useState(themeOptions[0])
 
   const [page, setPage] = useState(0);
+
   const emailRef = useRef(null);
 
   const [open, setOpen] = useState(false)
+  const [openSettingUp, setOpenSettingUp] = useState(false)
 
   const [isGoingBack, setIsGoingBack] = useState(false)
   const [isGoingNext, setIsGoingNext] = useState(false)
@@ -80,14 +88,70 @@ export default function Register() {
     setAnimUp(true);
     setTimeout(() => {
       setAnimUp(false);
-    }, 800)
+    }, 600)
   }
 
   const addAnimDown = () => {
     setAnimDown(true);
     setTimeout(() => {
       setAnimDown(false);
-    }, 800)
+    }, 600)
+  }
+
+  const registerStep = [
+    { id: 0, status: page },
+    { id: 1, status: page },
+    { id: 2, status: page },
+    { id: 3, status: page },
+    { id: 4, status: page },
+    { id: 5, status: page },
+    { id: 6, status: page },
+    { id: 7, status: page },
+  ]
+
+  const Steps = ({process}) => {
+    for (let i = 0; i <= Math.min(process, 8); i++) {
+      registerStep[i].status = 'complete';
+    }
+    if (process >= 0 && process <= 8) {
+      registerStep[process].status = 'current';
+    }
+
+    return (
+      <nav aria-label="Progress">
+        <ol role="list" className="flex justify-between">
+          {registerStep.map((step) => (
+            <li key={step.id} className="step-list">
+              {step.status === 'complete' ? (
+                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-8">
+                  <div className={`h-1 rounded-full bg-[#0788F5]`} style={{ width: "100%" }} />
+                </div>
+              ) : step.status === 'current' ? (
+                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-8">
+                  <div className={`h-1 rounded-full bg-[#0788F5]`} style={{ width: "50%" }} />
+                </div>
+              ) : step.status === 'going-back-complete' ? (
+                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-8">
+                  <div className={`h-1 rounded-full bg-[#0788F5] coming`} style={{ width: "0%" }} />
+                </div>
+              ) : step.status === 'going-next-complete' ? (
+                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-8">
+                  <div className={`h-1 rounded-full bg-[#0788F5]`} style={{ width: "50%" }} />
+                </div>
+              ) : step.status === 'going-back-current' ? (
+                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-8">
+                  <div className={`h-1 rounded-full bg-[#0788F5] coming`} style={{ width: "0%" }} />
+                </div>
+              ) : (
+                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-8">
+                  <div className={`h-1 rounded-full bg-[#0788F5] coming`} style={{ width: "0%" }} />
+                </div>
+              )}
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )
   }
 
   const goPrev = () => {
@@ -97,7 +161,7 @@ export default function Register() {
       setTimeout(() => {
         setPage(page - 1);
         addAnimUp();
-      }, 800)
+      }, 600)
     }
   }
 
@@ -107,97 +171,10 @@ export default function Register() {
     setTimeout(() => {
       setPage(page + 1);
       addAnimUp();
-    }, 800)
+    }, 600)
     setTimeout(() => {
       setIsGoingNext(false);
     }, 1000)
-  }
-
-  const Steps = ({process}) => {
-    const registerStep = [
-      { id: 1, status: process },
-      { id: 2, status: process },
-      { id: 3, status: process },
-      { id: 4, status: process },
-      { id: 5, status: process },
-      { id: 6, status: process },
-      { id: 7, status: process },
-      { id: 8, status: process },
-    ]
-
-    if (process === 0) {
-      registerStep[0].status = 'current'
-    } else if (process === 1) {
-      for (let i = 0; i <= 1; i++) {
-        registerStep[i].status = 'complete'
-        registerStep[1].status = 'current'
-      }
-    } else if (process === 2) {
-      for (let i = 0; i <= 2; i++) {
-        registerStep[i].status = 'complete'
-        registerStep[2].status = 'current'
-      }
-    } else if (process === 3) {
-      for (let i = 0; i <= 3; i++) {
-        registerStep[i].status = 'complete'
-        registerStep[3].status = 'current'
-      }
-    } else if (process === 4) {
-      for (let i = 0; i <= 4; i++) {
-        registerStep[i].status = 'complete'
-        registerStep[4].status = 'current'
-      }
-    } else if (process === 5) {
-      for (let i = 0; i <= 5; i++) {
-        registerStep[i].status = 'complete'
-        registerStep[5].status = 'current'
-      }
-    } else if (process === 6) {
-      for (let i = 0; i <= 6; i++) {
-        registerStep[i].status = 'complete'
-        registerStep[6].status = 'current'
-      }
-    } else if (process === 7) {
-      for (let i = 0; i <= 7; i++) {
-        registerStep[i].status = 'complete'
-        registerStep[7].status = 'current'
-      }
-    } else {
-      for (let i = 0; i <= 8; i++) {
-        registerStep[i].status = 'complete'
-        registerStep[8].status = 'current'
-      }
-    }
-    
-    <div className="w-1/2 bg-gray-200 rounded-full h-1 rounded-full">
-      <div className="h-1 rounded-full bg-[#0788F5]" style={{ width: "40%" }}></div>
-    </div>
-    return (
-      <nav aria-label="Progress">
-        <ol role="list" className="flex space-x-2">
-          {registerStep.map((step) => (
-            <li key={step.id}>
-              {step.status === 'complete' ? (
-                // <div className="flex flex-col pl-1 mt-4 w-8 bg-[#0788F5] h-1 rounded-full"/>
-                <div className="flex flex-col w-8 bg-gray-200 rounded-full h-1 rounded-full">
-                  <div className={`h-1 rounded-full bg-[#0788F5]`} style={{ width: "100%" }} />
-                </div>
-              ) : step.status === 'current' ? (
-                <div className="flex flex-col w-8 bg-gray-200 rounded-full h-1 rounded-full">
-                  <div className={`h-1 rounded-full bg-[#0788F5]`} style={{ width: "50%" }} />
-                </div>
-                // <div className="group flex flex-col bg-gray-200 pl-1 mt-4 w-8 h-1 rounded-full" style={{background:"linear-gradient(to right, #0788F5 50%, #E5E7EB 50%)"}}/>
-              ) : (
-                <div className="flex flex-col w-8 bg-gray-200 rounded-full h-1 rounded-full">
-                  <div className={`h-1 rounded-full bg-[#0788F5]`} style={{ width: "0%" }} />
-                </div>
-                // <div className="group flex flex-col bg-gray-200 pl-1 mt-4 w-8 h-1 rounded-full"/>
-              )}
-            </li>
-          ))}
-        </ol>
-      </nav>
-    )
   }
 
   const checkboxLists = [
@@ -260,6 +237,30 @@ export default function Register() {
     }
   ]
 
+  const clickToCreateSite = () => {
+    setOpenSettingUp(true);
+    setBuildingWorkspace(true);
+    setChangingSite(true);
+    setPreparingDashboard(true);
+    setDeployingSystem(true);
+    setTimeout(() => {
+      setBuildingWorkspace(false);
+    }, 1000)
+    setTimeout(() => {
+      setChangingSite(false);
+    }, 2000)
+    setTimeout(() => {
+      setPreparingDashboard(false);
+    }, 4000)
+    setTimeout(() => {
+      setDeployingSystem(false);
+    }, 5000)
+    setTimeout(() => {
+      setOpenSettingUp(false);
+      setOpen(true);
+    }, 6000)
+  }
+
   useEffect(() => {
     addAnimUp();
   }, [])
@@ -270,21 +271,60 @@ export default function Register() {
         <div className="flex-1 flex-col hidden md:flex justify-center bg-[#F2F2F2]">
           <RegisterStep active={1}/>
         </div>
-        <div className="flex flex-1 m-[30px] md:m-2 z-[999] basis-[20%] bg-white absolute md:relative">
+        <div className="flex flex-1 m-[30px] md:m-2 z-[999] basis-[20%] bg-white absolute md:relative register-screen">
         {page === 0 && (
           <div className="m-auto w-full max-w-sm w-96 h-[400px]">
             <Steps process={0}/>
-            <h2 className="main-title mt-10">What is your email address?</h2>
-            <p className="tab-desc">It was popularised in the 1960s with the release of Letraset.</p>
+            <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
+              <h2 className="main-title mt-10">Fill in your information</h2>
+              <p className="tab-desc">It was popularised in the 1960s with the release of Letraset.</p>
+            </div>
             <div className={`space-y-4 mt-6 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
+              <div className="flex gap-x-3">
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                  required
+                  className="form-input"
+                  placeholder="Name"
+                  ref={emailRef}
+                  onInput={(e) => {
+                    if (e.target.value === ""){
+                      setIsDisabled(true)
+                    } else {
+                      setIsDisabled(false)
+                    }
+                  }}
+                />
+                <input
+                  id="surname"
+                  name="surname"
+                  type="text"
+                  autoComplete="surname"
+                  required
+                  className="form-input"
+                  placeholder="Surname"
+                  ref={emailRef}
+                  onInput={(e) => {
+                    if (e.target.value === ""){
+                      setIsDisabled(true)
+                    } else {
+                      setIsDisabled(false)
+                    }
+                  }}
+                />
+              </div>
+
               <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
+                id="birthdate"
+                name="birthdate"
+                type="date"
+                autoComplete="birthdate"
                 required
                 className="form-input"
-                placeholder="Enter your email"
+                placeholder="Birthdate"
                 ref={emailRef}
                 onInput={(e) => {
                   if (e.target.value === ""){
@@ -294,7 +334,25 @@ export default function Register() {
                   }
                 }}
               />
-              <div className={`${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : animDown ? 'anim-down' : ''}`}>
+
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                className="form-input"
+                placeholder="Email"
+                ref={emailRef}
+                onInput={(e) => {
+                  if (e.target.value === ""){
+                    setIsDisabled(true)
+                  } else {
+                    setIsDisabled(false)
+                  }
+                }}
+              />
+              <div className={`${animUp ? 'anim-up-delay translate-y-[20px] opacity-0' : animDown ? 'anim-down' : ''}`}>
                 <button className={`primary-btn w-full justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
               </div>
             </div>
@@ -304,7 +362,9 @@ export default function Register() {
         {page === 1 && (
           <div className="m-auto w-full max-w-sm w-96 h-[400px]">
             <Steps process={1}/>
-            <h2 className="main-title mt-8">Tell us more about you</h2>
+            <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
+              <h2 className="main-title mt-8">Tell us more about you</h2>
+            </div>
             <div className={`space-y-4 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
             <RadioGroup value={selectedMailingLists} onChange={setSelectedMailingLists}>
 
@@ -354,7 +414,7 @@ export default function Register() {
             </div>
 
             <Spacer size={30}/>
-            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : animDown ? 'anim-down' : ''}`}>
+            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[20px] opacity-0' : animDown ? 'anim-down' : ''}`}>
               <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
               <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
             </div>
@@ -364,7 +424,9 @@ export default function Register() {
         {page === 2 && (
           <div className="m-auto w-full max-w-sm w-96 h-[400px]">
             <Steps process={2} />
-            <h2 className="main-title mt-8">What is your business about?</h2>
+            <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
+              <h2 className="main-title mt-8">What is your business about?</h2>
+            </div>
             <div className={`space-y-4 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
               <Select values={[
                 {
@@ -391,7 +453,7 @@ export default function Register() {
             </div>
 
             <Spacer size={30}/>
-            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : animDown ? 'anim-down' : ''}`}>
+            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[20px] opacity-0' : animDown ? 'anim-down' : ''}`}>
               <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
               <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
             </div>
@@ -401,7 +463,9 @@ export default function Register() {
         {page === 3 && (
           <div className="m-auto w-full max-w-sm w-96 h-[400px]">
             <Steps process={3}/>
-            <h2 className="main-title mt-8">How many people are there in your team?</h2>
+            <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
+              <h2 className="main-title mt-8">How many people are there in your team?</h2>
+            </div>
             <div className={`space-y-4 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
               <RadioGroup value={mem} onChange={setMem} className="mt-2">
                 <RadioGroup.Label className="sr-only"> How many people are there in your team? </RadioGroup.Label>
@@ -428,7 +492,7 @@ export default function Register() {
             </div>
 
             <Spacer size={30}/>
-            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : animDown ? 'anim-down' : ''}`}>
+            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[20px] opacity-0' : animDown ? 'anim-down' : ''}`}>
               <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
               <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
             </div>
@@ -438,7 +502,9 @@ export default function Register() {
         {page === 4 && (
           <div className="m-auto w-full max-w-sm w-96 h-[400px]">
             <Steps process={4}/>
-            <h2 className="main-title mt-8">What are your goals for this business?</h2>
+            <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
+              <h2 className="main-title mt-8">What are your goals for this business?</h2>
+            </div>
             <div className={`space-y-4 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
               <div className="grid grid-cols-2 gap-4">
 
@@ -460,7 +526,7 @@ export default function Register() {
             </div>
 
             <Spacer size={30}/>
-            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : animDown ? 'anim-down' : ''}`}>
+            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[20px] opacity-0' : animDown ? 'anim-down' : ''}`}>
               <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
               <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
             </div>
@@ -470,8 +536,10 @@ export default function Register() {
         {page === 5 && (
           <div className="m-auto w-full max-w-sm w-96 h-[400px]">
             <Steps process={5}/>
-            <h2 className="main-title mt-8">What would you like to call your site?</h2>
-            <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
+            <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
+              <h2 className="main-title mt-8">What would you like to call your site?</h2>
+              <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
+            </div>
             <div className={`space-y-4 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
               <div className="relative mt-1 rounded-md shadow-sm">
                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 tab-desc">
@@ -493,7 +561,7 @@ export default function Register() {
             </div>
 
             <Spacer size={30}/>
-            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : animDown ? 'anim-down' : ''}`}>
+            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[20px] opacity-0' : animDown ? 'anim-down' : ''}`}>
               <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
               <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
             </div>
@@ -503,8 +571,10 @@ export default function Register() {
         {page === 6 && (
           <div className="m-auto w-full max-w-sm w-96 h-[400px]">
             <Steps process={6}/>
-            <h2 className="main-title mt-8">What would you like to add on your site?</h2>
-            <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
+            <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
+              <h2 className="main-title mt-8">What would you like to add on your site?</h2>
+              <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
+            </div>
             <div className={`space-y-4 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
               <div className="grid grid-cols-2 gap-4">
 
@@ -527,7 +597,7 @@ export default function Register() {
             </div>
 
             <Spacer size={30}/>
-            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : animDown ? 'anim-down' : ''}`}>
+            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[20px] opacity-0' : animDown ? 'anim-down' : ''}`}>
               <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
               <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
             </div>
@@ -537,8 +607,10 @@ export default function Register() {
         {page === 7 && (
           <div className="m-auto w-full max-w-sm w-96 h-[400px]">
             <Steps process={7}/>
-            <h2 className="main-title mt-8">Pick a theme you like</h2>
-            <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
+            <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
+              <h2 className="main-title mt-8">Pick a theme you like</h2>
+              <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
+            </div>
             <div className={`space-y-4 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
               <RadioGroup value={theme} onChange={setTheme} className="mt-2">
                 <RadioGroup.Label className="sr-only"> Pick a theme you like </RadioGroup.Label>
@@ -566,9 +638,9 @@ export default function Register() {
             </div>
 
             <Spacer size={30}/>
-            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : animDown ? 'anim-down' : ''}`}>
+            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[20px] opacity-0' : animDown ? 'anim-down' : ''}`}>
               <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
-              <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={() => setOpen(true)}>Submit</button>
+              <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={clickToCreateSite}>Submit</button>
             </div>
           </div>
         )}
@@ -630,6 +702,161 @@ export default function Register() {
             </div>
           </Dialog>
         </Transition.Root>
+
+        <Transition.Root show={openSettingUp} as={Fragment}>
+        <Dialog as="div" className="relative z-[1001]" onClose={() => setOpenSettingUp(true)}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 z-10 overflow-y-auto">
+            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                enterTo="opacity-100 translate-y-0 sm:scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              >
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white p-8 shadow-xl transition-all w-full max-w-[400px] flex flex-col gap-y-4">
+                  <div class="moving-line"/>
+                  <p className="tab-desc text-left font-bold mb-3 flex gap-x-2">
+                    <ArrowDownOnSquareStackIcon width='24'/>
+                    Creating your site
+                  </p>
+                  {buildingWorkspace ? (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        <div className="loading-icon">
+                          <div className="inner-icon"></div>
+                        </div>
+                        <div className="text-left">
+                          <Dialog.Title as="h3" className="subheading small">
+                            Building your workspace
+                          </Dialog.Title>
+                        </div>
+                      </div>
+                      <div>
+                        <p className='tab-desc'>
+                          In progress
+                        </p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        <LoadingCheck type='primary' height='20px'/>
+                        <div className="text-left">
+                          <Dialog.Title as="h3" className="subheading small">
+                            Built your workspace
+                          </Dialog.Title>
+                        </div>
+                      </div>
+                      <div>
+                        <p className='text-link'>Done</p>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {changingSite ? (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        <div className="loading-icon">
+                          <div className="inner-icon"></div>
+                        </div>
+                        <Dialog.Title as="h3" className="subheading small">
+                          Changing your site name
+                        </Dialog.Title>
+                      </div>
+                      <div>
+                        <p className='tab-desc'>In progress</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        <LoadingCheck type='primary' height='20px'/>
+                        <Dialog.Title as="h3" className="subheading small">
+                          Changed your site name
+                        </Dialog.Title>
+                      </div>
+                      <div>
+                        <p className='text-link'>Done</p>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {preparingDashboard ? (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        <div className="loading-icon">
+                          <div className="inner-icon"></div>
+                        </div>
+                        <Dialog.Title as="h3" className="subheading small">
+                          Preparing dashboard
+                        </Dialog.Title>
+                      </div>
+                      <div>
+                        <p className='tab-desc'>In progress</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        <LoadingCheck type='primary' height='20px'/>
+                        <Dialog.Title as="h3" className="subheading small">
+                          Prepared dashboard
+                        </Dialog.Title>
+                      </div>
+                      <div>
+                        <p className='text-link'>Done</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {deployingSystem ? (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        <div className="loading-icon">
+                          <div className="inner-icon"></div>
+                        </div>
+                        <Dialog.Title as="h3" className="subheading small">
+                          Deploying system
+                        </Dialog.Title>
+                      </div>
+                      <div>
+                        <p className='tab-desc'>In progress</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        <LoadingCheck type='primary' height='20px'/>
+                        <Dialog.Title as="h3" className="subheading small">
+                          Deployed system
+                        </Dialog.Title>
+                      </div>
+                      <div>
+                        <p className='text-link'>Done</p>
+                      </div>
+                    </div>
+                  )}
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition.Root>
       </div>
     </>
   )
