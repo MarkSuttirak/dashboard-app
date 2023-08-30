@@ -65,19 +65,32 @@ export default function Register() {
   const location = useLocation();
 
   const [isDisabled, setIsDisabled] = useState(true);
+  const [isDisabledStepTwo, setIsDisabledStepTwo] = useState(true);
+  const [isDisabledStepFour, setIsDisabledStepFour] = useState(true);
+  const [isDisabledStepFive, setIsDisabledStepFive] = useState(true);
+  const [isDisabledStepSix, setIsDisabledStepSix] = useState(true);
+  const [isDisabledStepSeven, setIsDisabledStepSeven] = useState(true);
+  const [isDisabledStepEight, setIsDisabledStepEight] = useState(true);
 
-  const [mem, setMem] = useState(memberOptions[2])
+  const [isChecked, setIsChecked] = useState(false);
+  const [isCheckedTwo, setIsCheckedTwo] = useState(false);
+
+  const [mem, setMem] = useState()
   const [theme, setTheme] = useState(themeOptions[0])
 
   const [page, setPage] = useState(0);
 
+  const nameRef = useRef(null);
+  const surnameRef = useRef(null);
+  const birthdateRef = useRef(null);
   const emailRef = useRef(null);
+  const siteRef = useRef(null);
+
+  const [emailError, setEmailError] = useState(false);
+  const [siteError, setSiteError] = useState(false);
 
   const [open, setOpen] = useState(false)
   const [openSettingUp, setOpenSettingUp] = useState(false)
-
-  const [isGoingBack, setIsGoingBack] = useState(false)
-  const [isGoingNext, setIsGoingNext] = useState(false)
 
   const [selectedMailingLists, setSelectedMailingLists] = useState(mailingLists[0])
 
@@ -157,7 +170,6 @@ export default function Register() {
   const goPrev = () => {
     if (page > 0) {
       addAnimDown();
-      setIsGoingBack(true);
       setTimeout(() => {
         setPage(page - 1);
         addAnimUp();
@@ -167,14 +179,10 @@ export default function Register() {
 
   const goNext = () => {
     addAnimDown();
-    setIsGoingNext(true);
     setTimeout(() => {
       setPage(page + 1);
       addAnimUp();
     }, 600)
-    setTimeout(() => {
-      setIsGoingNext(false);
-    }, 1000)
   }
 
   const checkboxLists = [
@@ -289,12 +297,12 @@ export default function Register() {
                   required
                   className="form-input"
                   placeholder="Name"
-                  ref={emailRef}
-                  onInput={(e) => {
-                    if (e.target.value === ""){
-                      setIsDisabled(true)
+                  ref={nameRef}
+                  onInput={() => {
+                    if (nameRef.current.value === "" || surnameRef.current.value === "" || birthdateRef.current.value === "" || emailRef.current.value === ""){
+                      setIsDisabled(true);
                     } else {
-                      setIsDisabled(false)
+                      setIsDisabled(false);
                     }
                   }}
                 />
@@ -306,12 +314,12 @@ export default function Register() {
                   required
                   className="form-input"
                   placeholder="Surname"
-                  ref={emailRef}
-                  onInput={(e) => {
-                    if (e.target.value === ""){
-                      setIsDisabled(true)
+                  ref={surnameRef}
+                  onInput={() => {
+                    if (nameRef.current.value === "" || surnameRef.current.value === "" || birthdateRef.current.value === "" || emailRef.current.value === ""){
+                      setIsDisabled(true);
                     } else {
-                      setIsDisabled(false)
+                      setIsDisabled(false);
                     }
                   }}
                 />
@@ -325,35 +333,47 @@ export default function Register() {
                 required
                 className="form-input"
                 placeholder="Birthdate"
-                ref={emailRef}
-                onInput={(e) => {
-                  if (e.target.value === ""){
-                    setIsDisabled(true)
+                ref={birthdateRef}
+                onInput={() => {
+                  if (nameRef.current.value === "" || surnameRef.current.value === "" || birthdateRef.current.value === "" || emailRef.current.value === ""){
+                    setIsDisabled(true);
                   } else {
-                    setIsDisabled(false)
+                    setIsDisabled(false);
                   }
                 }}
               />
 
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                className="form-input"
-                placeholder="Email"
-                ref={emailRef}
-                onInput={(e) => {
-                  if (e.target.value === ""){
-                    setIsDisabled(true)
-                  } else {
-                    setIsDisabled(false)
-                  }
-                }}
-              />
+              <div>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  className={`form-input ${emailError ? 'error' : ''}`}
+                  placeholder="Email"
+                  ref={emailRef}
+                  onInput={() => {
+                    if (nameRef.current.value === "" || surnameRef.current.value === "" || birthdateRef.current.value === "" || emailRef.current.value === ""){
+                      setIsDisabled(true);
+                    } else {
+                      setIsDisabled(false);
+                    }
+                  }}
+                  onKeyDown={() => {
+                    setEmailError(false)
+                  }}
+                />
+                {emailError && (<p className="error">Invalid email address</p>)}
+              </div>
               <div className={`${animUp ? 'anim-up-delay translate-y-[20px] opacity-0' : animDown ? 'anim-down' : ''}`}>
-                <button className={`primary-btn w-full justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
+                <button className={`primary-btn w-full justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={() => {
+                  if (emailRef.current.value.includes('@') && emailRef.current.value.includes('.')){
+                    goNext();
+                  } else {
+                    setEmailError(true)
+                  }
+                }}>Submit</button>
               </div>
             </div>
           </div>
@@ -415,7 +435,7 @@ export default function Register() {
 
             <Spacer size={30}/>
             <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[20px] opacity-0' : animDown ? 'anim-down' : ''}`}>
-              <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
+              <button className={`no-bg-btn w-1/4 justify-center`} onClick={goPrev}>Back</button>
               <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
             </div>
           </div>
@@ -454,7 +474,7 @@ export default function Register() {
 
             <Spacer size={30}/>
             <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[20px] opacity-0' : animDown ? 'anim-down' : ''}`}>
-              <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
+              <button className={`no-bg-btn w-1/4 justify-center`} onClick={goPrev}>Back</button>
               <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
             </div>
           </div>
@@ -467,7 +487,7 @@ export default function Register() {
               <h2 className="main-title mt-8">How many people are there in your team?</h2>
             </div>
             <div className={`space-y-4 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
-              <RadioGroup value={mem} onChange={setMem} className="mt-2">
+              <RadioGroup value={mem} onChange={setMem} className="mt-2" onClick={() => setIsDisabledStepFour(false)}>
                 <RadioGroup.Label className="sr-only"> How many people are there in your team? </RadioGroup.Label>
                 <div className="grid grid-cols-1 gap-3">
                   {memberOptions.map((option) => (
@@ -493,8 +513,8 @@ export default function Register() {
 
             <Spacer size={30}/>
             <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[20px] opacity-0' : animDown ? 'anim-down' : ''}`}>
-              <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
-              <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
+              <button className={`no-bg-btn w-1/4 justify-center`} onClick={goPrev}>Back</button>
+              <button className={`primary-btn w-1/4 justify-center ${isDisabledStepFour ? 'disabled' : ''}`} disabled={isDisabledStepFour ? true : false} onClick={goNext}>Submit</button>
             </div>
           </div>
         )}
@@ -515,6 +535,13 @@ export default function Register() {
                       name={checkboxList.key}
                       type="checkbox"
                       className="checkbox-card-input"
+                      onChange={(e) => {
+                        if (e.target.checked === true){
+                          setIsDisabledStepFive(false);
+                        } else {
+                          setIsDisabledStepFive(true);
+                        }
+                      }}
                     />
                     <span className="tab-desc border checkbox-card">
                       {checkboxList.title}
@@ -527,8 +554,8 @@ export default function Register() {
 
             <Spacer size={30}/>
             <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[20px] opacity-0' : animDown ? 'anim-down' : ''}`}>
-              <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
-              <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
+              <button className={`no-bg-btn w-1/4 justify-center`} onClick={goPrev}>Back</button>
+              <button className={`primary-btn w-1/4 justify-center ${isDisabledStepFive ? 'disabled' : ''}`} disabled={isDisabledStepFive ? true : false} onClick={goNext}>Submit</button>
             </div>
           </div>
         )}
@@ -549,21 +576,68 @@ export default function Register() {
                   type="text"
                   name="site"
                   id="site"
-                  className="form-input"
+                  className={`form-input ${siteError ? 'error' : ''}`}
                   placeholder="example"
                   style={{paddingRight:"140px",paddingLeft:"60px"}}
+                  ref={siteRef}
+                  onInput={(e) => {
+                    if (e.target.value === ""){
+                      setIsDisabledStepSix(true);
+                    } else {
+                      setIsDisabledStepSix(false);
+                    }
+                  }}
+                  onKeyDown={() => setSiteError(false)}
                 />
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 tab-desc">
                   .zaviago.com
                 </div>
               </div>
-              <p className="tab-desc-small">Only A-Z, a-z and numbers are allowed.</p>
+              <p className={`${siteError ? 'error-small' : 'tab-desc-small'}`}>Only A-Z, a-z and numbers are allowed.</p>
             </div>
 
             <Spacer size={30}/>
             <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[20px] opacity-0' : animDown ? 'anim-down' : ''}`}>
-              <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
-              <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
+              <button className={`no-bg-btn w-1/4 justify-center`} onClick={goPrev}>Back</button>
+              <button className={`primary-btn w-1/4 justify-center ${isDisabledStepSix ? 'disabled' : ''}`} disabled={isDisabledStepSix ? true : false} onClick={() => {
+                if (siteRef.current.value.includes('@') || 
+                siteRef.current.value.includes('.') || 
+                siteRef.current.value.includes('%') || 
+                siteRef.current.value.includes('&') || 
+                siteRef.current.value.includes('+') || 
+                siteRef.current.value.includes('#') ||
+                siteRef.current.value.includes('!') ||
+                siteRef.current.value.includes('$') ||
+                siteRef.current.value.includes('^') ||
+                siteRef.current.value.includes('*') ||
+                siteRef.current.value.includes('(') ||
+                siteRef.current.value.includes(')') ||
+                siteRef.current.value.includes('-') ||
+                siteRef.current.value.includes('_') ||
+                siteRef.current.value.includes('=') ||
+                siteRef.current.value.includes('[') ||
+                siteRef.current.value.includes(']') ||
+                siteRef.current.value.includes('{') ||
+                siteRef.current.value.includes('}') ||
+                siteRef.current.value.includes('|') ||
+                siteRef.current.value.includes('\\') ||
+                siteRef.current.value.includes('/') ||
+                siteRef.current.value.includes(':') ||
+                siteRef.current.value.includes(';') ||
+                siteRef.current.value.includes('"') ||
+                siteRef.current.value.includes('\'') ||
+                siteRef.current.value.includes('<') ||
+                siteRef.current.value.includes('>') ||
+                siteRef.current.value.includes('?') ||
+                siteRef.current.value.includes('`') ||
+                siteRef.current.value.includes('~') ||
+                siteRef.current.value.includes(' ')
+                ){
+                  setSiteError(true)
+                } else {
+                  goNext();
+                }
+              }}>Submit</button>
             </div>
           </div>
         )}
@@ -585,6 +659,13 @@ export default function Register() {
                       name={checkboxList.key}
                       type="checkbox"
                       className="checkbox-card-input"
+                      onChange={(e) => {
+                        if (e.target.checked === true){
+                          setIsDisabledStepSeven(false);
+                        } else {
+                          setIsDisabledStepSeven(true);
+                        }
+                      }}
                     />
                     <span className="tab-desc border checkbox-card">
                       {checkboxList.icon}
@@ -598,8 +679,8 @@ export default function Register() {
 
             <Spacer size={30}/>
             <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[20px] opacity-0' : animDown ? 'anim-down' : ''}`}>
-              <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
-              <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
+              <button className={`no-bg-btn w-1/4 justify-center`} onClick={goPrev}>Back</button>
+              <button className={`primary-btn w-1/4 justify-center ${isDisabledStepSeven ? 'disabled' : ''}`} disabled={isDisabledStepSeven ? true : false} onClick={goNext}>Submit</button>
             </div>
           </div>
         )}
@@ -612,7 +693,7 @@ export default function Register() {
               <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
             </div>
             <div className={`space-y-4 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
-              <RadioGroup value={theme} onChange={setTheme} className="mt-2">
+              <RadioGroup value={theme} onChange={setTheme} className="mt-2" onClick={() => setIsDisabledStepEight(false)}>
                 <RadioGroup.Label className="sr-only"> Pick a theme you like </RadioGroup.Label>
                 <div className="grid grid-cols-2 gap-3">
                   {themeOptions.map((option) => (
@@ -639,8 +720,8 @@ export default function Register() {
 
             <Spacer size={30}/>
             <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[20px] opacity-0' : animDown ? 'anim-down' : ''}`}>
-              <button className={`no-bg-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goPrev}>Back</button>
-              <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={clickToCreateSite}>Submit</button>
+              <button className={`no-bg-btn w-1/4 justify-center`}  onClick={goPrev}>Back</button>
+              <button className={`primary-btn w-1/4 justify-center ${isDisabledStepEight ? 'disabled' : ''}`} disabled={isDisabledStepEight ? true : false} onClick={clickToCreateSite}>Submit</button>
             </div>
           </div>
         )}

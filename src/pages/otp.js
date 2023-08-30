@@ -1,12 +1,13 @@
 import { useEffect, useState, Fragment } from "react"
 import { useLocation } from "react-router-dom"
 import Logo from '../img/logo-zaviago.svg'
-import { CheckIcon, ChatBubbleBottomCenterTextIcon, CursorArrowRippleIcon } from '@heroicons/react/24/solid'
+import { CheckIcon, ChatBubbleBottomCenterTextIcon, CursorArrowRippleIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import Spacer from "../components/spacer"
 import RegisterStep from "../components/registerStep"
 import { Dialog, Transition } from '@headlessui/react'
 import LoadingCheck from "../components/loadingcheck"
 import Scrambles from "../components/scrambledText"
+import { useRef } from "react"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -22,6 +23,11 @@ export default function OTP() {
   const [requestingOTP, setRequestingOTP] = useState(false);
   const [sendingOTP, setSendingOTP] = useState(false);
   const [sentOTP, setSentOTP] = useState(false);
+
+  const phoneRef = useRef(null);
+
+  const [phoneError, setPhoneError] = useState(false);
+  const [otpError, setOtpError] = useState(false);
 
   const [open, setOpen] = useState(false)
   const [openTwo, setOpenTwo] = useState(false)
@@ -43,24 +49,28 @@ export default function OTP() {
   }
 
   const clickToGetOTP = () => {
-    setOpen(true);
-    setRequestingOTP(true);
-    setSendingOTP(true);
-    setSentOTP(false);
-    setTimeout(() => {
-      setRequestingOTP(false);
-    }, 1000)
-    setTimeout(() => {
-      setSendingOTP(false);
-    }, 3000)
-    setTimeout(() => {
-      setSentOTP(true);
-    }, 4000)
-    setTimeout(() => {
-      setEnterOTPPage(true);
-      addAnimUp();
-      setOpen(false);
-    }, 6000)
+    if (phoneRef.current.value.length < 10){
+      setPhoneError(true);
+    } else {
+      setOpen(true);
+      setRequestingOTP(true);
+      setSendingOTP(true);
+      setSentOTP(false);
+      setTimeout(() => {
+        setRequestingOTP(false);
+      }, 1000)
+      setTimeout(() => {
+        setSendingOTP(false);
+      }, 3000)
+      setTimeout(() => {
+        setSentOTP(true);
+      }, 4000)
+      setTimeout(() => {
+        setEnterOTPPage(true);
+        addAnimUp();
+        setOpen(false);
+      }, 6000)
+    }
   }
 
   const clickToResendOTP = () => {
@@ -71,10 +81,16 @@ export default function OTP() {
 
   const clickToConfirmOTP = () => {
     setOpenThree(true);
-    setTimeout(() => {
-      setOpenThree(false);
-      window.location.href = '/register';
-    }, 2000)
+    if (!otpError){
+      setTimeout(() => {
+        setOpenThree(false);
+        window.location.href = '/register';
+      }, 2000)
+    } else {
+      setTimeout(() => {
+        setOpenThree(false);
+      }, 2000)
+    }
   }
 
   useEffect(() => {
@@ -145,6 +161,7 @@ export default function OTP() {
                     className="form-input"
                     style={{paddingLeft:"64px"}}
                     placeholder="091-234-5678"
+                    ref={phoneRef}
                     onInput={(e) => {
                       if (e.target.value === ""){
                         setIsDisabledPhone(true);
@@ -152,13 +169,16 @@ export default function OTP() {
                         setIsDisabledPhone(false);
                       }
                     }}
-                    onKeyDown={(e) => {
+                    onKeyPress={(e) => {
                       if (e.key === "Enter"){
                         clickToGetOTP();
                       }
                     }}
+                    onKeyDown={() => setPhoneError(false)}
                   />
                 </div>
+
+                {phoneError && (<p className="error">Invalid phone number</p>)}
               </div>
 
               <div className={`${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : ''}`}>
@@ -202,6 +222,7 @@ export default function OTP() {
 
               <div className={`${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : ''}`}>
                 <button className={`primary-btn ${isDisabled ? 'disabled' : ''} w-full justify-center`} disabled={isDisabled ? true : false} onClick={clickToConfirmOTP}>Confirm OTP</button>
+                <p className="error" onClick={() => {setOtpError(true);setOpenThree(true)}}>OTP is incorrect</p>
               </div>
             </div>
           </div>
@@ -469,7 +490,7 @@ export default function OTP() {
       </Transition.Root>
 
       <Transition.Root show={openThree} as={Fragment}>
-        <Dialog as="div" className="relative z-[1001]" onClose={() => setOpenThree(true)}>
+        <Dialog as="div" className="relative z-[1001]" onClose={() => {setOpenThree(false);setOtpError(false)}}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -493,13 +514,24 @@ export default function OTP() {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white p-8 shadow-xl transition-all w-full max-w-[400px] flex flex-col gap-y-4">
-                  <div class="moving-line"/>
-                  <LoadingCheck type='success'/>
-                  <p className="tab-desc justify-center font-bold flex">
-                    OTP confirmed
-                  </p>
-                </Dialog.Panel>
+                {otpError ? (
+                  <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white p-8 shadow-xl transition-all w-full max-w-[400px] flex flex-col gap-y-4">
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
+                      <XMarkIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
+                    </div>
+                    <p className="tab-desc justify-center font-bold flex">
+                      OTP is incorrect, please try again
+                    </p>
+                  </Dialog.Panel>
+                ) : (
+                  <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white p-8 shadow-xl transition-all w-full max-w-[400px] flex flex-col gap-y-4">
+                    <div class="moving-line"/>
+                    <LoadingCheck type='success'/>
+                    <p className="tab-desc justify-center font-bold flex">
+                      OTP confirmed
+                    </p>
+                  </Dialog.Panel>
+                )}
               </Transition.Child>
             </div>
           </div>

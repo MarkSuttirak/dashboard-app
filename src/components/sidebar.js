@@ -1,12 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import Logo from "../img/logo-zaviago.svg";
-import dashboardImg from "../img/dashboard.svg";
-import appsImg from "../img/buildings.svg";
-import teamsImg from "../img/usersIcon.svg";
-import giftImg from "../img/giftImg.svg";
-import billingImg from "../img/billingImg.svg";
-import settingsImg from "../img/settingsImg.svg";
-import integrationIcon from "../img/integrationIcon.svg"
 import mock1 from "../img/mock1.svg";
 import mock2 from "../img/mock2.svg";
 import mock3 from "../img/mock3.svg";
@@ -66,10 +59,8 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
     // { name: 'ตั้งค่า', icon: <Settings01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/settings/profile', current: active === "/settings" || active === "/settings/profile" || active === "/settings/team" || active === "/settings/plan" || active === "/settings/billing" ? true : false, active: active, id: 'settings' },
   ]
 
-  const teamMembers = [
-    { avatar: mock1, name: 'Sebastian Rindom'},
-    { avatar: mock2, name: 'Oliver Windall Juhl'},
-    { avatar: mock3, name: 'Ludvig Rask'},
+  const leftNavigation = [
+    { name: 'Settings', icon: <Settings01 />, href: '/settings/profile', current: active === '/settings' || active === '/settings/profile' || active === '/settings/team' || active === '/settings/plan' || active === '/settings/billing' ? true : false, id: 'settings' },
   ]
 
   function classNames(...classes) {
@@ -131,17 +122,17 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
           <img src={Logo} />
         </div>
         <Link to='/'>
-          <div className="nav-btns grey" id="home-btn">
-            <HomeSmile />
+          <div className="nav-btns" id="home-btn">
+            <HomeSmile className='menu-icon'/>
           </div>
         </Link>
 
         <hr className="vertical-bar d-none d-sm-block" />
-        <div className="nav-btns grey">
-          <Backpack />
+        <div className="nav-btns">
+          <Backpack className='menu-icon'/>
         </div>
-        <div className="nav-btns grey">
-          <Gift01 />
+        <div className="nav-btns">
+          <Gift01 className='menu-icon'/>
         </div>
         <div id="additional-apps">
           <div className="nav-btns add-ons" style={{background:"#F2F2FD"}}>
@@ -152,12 +143,15 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
           </div>
         </div>
         <div id="lower-apps">
-          <div className="nav-btns">
+          <Link to='/settings/profile' className="nav-btns">
             <Settings01/>
-          </div>
+          </Link>
           <hr style={{borderColor:"#EBEEF0"}}/>
           <div className="nav-btns">
-            <EarPhone />
+            <img
+              src={pjob}
+              alt=""
+            />
           </div>
         </div>
       </nav>
@@ -272,169 +266,6 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
             </div>
           )}
 
-        </div>
-
-        <nav className="flex bg-white px-4" aria-label="Sidebar">
-          <Link
-            key='settings'
-            to='/settings/profile'
-            className={classNames(
-              active === "/settings" || active === "/settings/profile" || active === "/settings/team" || active === "/settings/plan" || active === "/settings/billing"
-                ? 'sidebar-menu active'
-                : 'sidebar-menu'
-            )}
-            onClick={() => handleMenuClick('/settings/profile')}
-            // onMouseEnter={() => {
-            //   const tooltip = document.getElementById(`tooltip-settings`);
-            //   tooltip.classList.remove('opacity-0');
-            //   tooltip.classList.remove('invisible');
-            // }}
-            // onMouseLeave={() => {
-            //   const tooltip = document.getElementById(`tooltip-settings`);
-            //   tooltip.classList.add('opacity-0');
-            //   tooltip.classList.add('invisible');
-            // }}
-          >
-            <Settings01 viewBox='0 0 30 24' width='24'className='menu-icon'/>
-
-            <span className="flex-1 item-name">Settings</span>
-          </Link>
-          <div id={`tooltip-settings`} role="tooltip" className="tooltip-menu absolute invisible opacity-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg left-[60px] text-xs translate-y-[-120%] whitespace-pre shadow-sm dark:bg-gray-700">
-            Settings
-          </div>
-        </nav>
-        
-        <div className="flex flex-shrink-0 bg-[#F5F5F5] m-4 rounded-[11px] avatar-user"
-          onMouseEnter={() => {
-            const user = document.getElementById("tooltip-avatar-user");
-            user.classList.remove('opacity-0');
-            user.classList.remove('invisible');
-          }}
-          onMouseLeave={() => {
-            const user = document.getElementById("tooltip-avatar-user");
-            user.classList.add('opacity-0');
-            user.classList.add('invisible');
-          }}
-        >
-          <div id="tooltip-avatar-user" role="tooltip" className="tooltip-menu absolute invisible opacity-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg left-[60px] text-xs whitespace-pre shadow-sm dark:bg-gray-700">
-            John Persson
-          </div>
-          <a href="#" className="group block w-full flex-shrink-0">
-            <div className="flex items-center">
-              <img
-                className="inline-block h-9 w-9 rounded-md"
-                src={pjob}
-                alt=""
-              />
-
-              {showModal ? (
-                <>
-                  <div
-                    className="sidebar-options-menu justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
-                  >
-                    <div className="relative w-auto my-6 mx-auto max-w-3xl">
-                      {/*content*/}
-                      <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                        {/*header*/}
-                        <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                          <div className="user0in0menu">
-                            <div className="user-image-inside-menu">
-                              <img
-                                className="inline-block h-9 w-9 rounded-full"
-                                src={pjob}
-                                alt=""
-                              />
-                            </div>
-                            <div className="user-name-in-side-menu">
-                              <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">John Persson</p>
-                              <p className="user-email text-xs font-medium text-gray-500 group-hover:text-gray-700">john@zaviago.com</p>
-                            </div>
-                          </div>
-                          <button
-                            className=""
-                            onClick={show_menu}
-                          >
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        {/*body*/}
-                        <div className="side-menu-ul-container relative p-6 flex-auto">
-                          <ul >
-                            <li
-                              onClick={() => setisSwitchModalOpen(true)}
-                            >
-                              <span className="logo-in-menu">
-                                <img src={require('../img/reverse-arrows.png')} />
-                              </span>
-                              <span>Switch Team</span>
-                            </li>
-                            <li>
-                              <span className="logo-in-menu"><img src={require('../img/account-in-menu.png')} /></span> <span>Account</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div>
-                          <hr className="hr-1"></hr>
-                        </div>
-                        <div className="side-menu-ul-container relative p-6 flex-auto">
-                          <ul >
-                            <li>
-                              <span className="logo-in-menu"><img src={require('../img/ask-support.png')} /></span> <span>Help and support</span>
-                            </li>
-                            <li>
-                              <span className="logo-in-menu"><img src={require('../img/whats-new.png')} /></span> <span>What's new</span>
-                            </li>
-                            <li>
-                              <span className="logo-in-menu"><img src={require('../img/upgrade-to-pro.png')} /></span> <span>Upgrade to pro</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div>
-                          <hr className="hr-1"></hr>
-                        </div>
-                        <div className="side-menu-ul-container relative p-6 flex-auto">
-                          <ul className="sign-out-ul">
-                            <li>
-                              <span className="logo-in-menu">
-                                <svg class="svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M835.669333 554.666667h-473.173333A42.453333 42.453333 0 0 1 320 512a42.666667 42.666667 0 0 1 42.474667-42.666667h473.173333l-161.813333-161.834666a42.666667 42.666667 0 0 1 60.330666-60.330667l234.666667 234.666667a42.666667 42.666667 0 0 1 0 60.330666l-234.666667 234.666667a42.666667 42.666667 0 0 1-60.330666-60.330667L835.669333 554.666667zM554.666667 42.666667a42.666667 42.666667 0 1 1 0 85.333333H149.525333C137.578667 128 128 137.578667 128 149.482667v725.034666C128 886.4 137.6 896 149.525333 896H554.666667a42.666667 42.666667 0 1 1 0 85.333333H149.525333A106.816 106.816 0 0 1 42.666667 874.517333V149.482667A106.773333 106.773333 0 0 1 149.525333 42.666667H554.666667z" fill="currentColor" /></svg>
-                              </span>
-                              <span>Sign Out</span><br></br>
-                            </li>
-                          </ul>
-                          <ul className="app-version">
-                            <li> <span>v.1.4.88</span></li>
-                          </ul>
-                        </div>
-                        {/*footer*/}
-
-                        <button
-                          className=""
-                          type="button"
-                          onClick={() => setShowModal(false)}
-                        >
-
-                        </button>
-
-                      </div>
-                    </div>
-                  </div>
-                  <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
-                </>
-              ) : null}
-              <div className="ml-3 item-name">
-                <button
-                  className="flex gap-x-9"
-                  type="button"
-                  // onClick={()=> setShowModal(!showModal)}
-                >
-                  <div className="flex flex-col text-start">
-                    <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900 calsans">John Persson</p>
-                    <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">john@zaviago.com</p>
-                  </div>
-                </button>
-              </div>
-            </div>
-          </a>
         </div>
       </div>
 

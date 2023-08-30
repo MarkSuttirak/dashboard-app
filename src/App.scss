@@ -118,9 +118,6 @@ body {
   line-height: 20px;
   align-items:center;
   gap:10px;
-  .menu-icon {
-    stroke:#6B7280;
-  }
   &.active {
     color:black;
     background: #F3F4F6;
@@ -194,6 +191,20 @@ body {
   }
 }
 
+.error {
+  color:$error;
+  font-size:14px;
+  line-height:24px;
+  font-family:Inter;
+}
+
+.error-small {
+  color:$error;
+  font-size:12px;
+  line-height:18px;
+  font-family:Inter;
+}
+
 .tab-desc {
   color:#475467;
   font-size:14px;
@@ -253,6 +264,9 @@ body {
   color:#475467;
   background-color:white;
   width:100%;
+  &.error {
+    border-color:$error;
+  }
   &:focus, &:focus ~ .form-prefix, &:focus ~ .form-suffix {
     outline:none;
     border-color:#0099FF;
@@ -1344,6 +1358,7 @@ select#goal {
 	border-radius:9px;
 	outline:0px solid #2794F0;
 	border:3px solid white;
+  color:#6B7280;
 	&:hover {
 	  background-color:#F0F1F2;
 	}
