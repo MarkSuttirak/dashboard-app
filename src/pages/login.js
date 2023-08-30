@@ -51,7 +51,7 @@ export default function Login() {
       <div className="flex min-h-screen z-[999] relative bg-white">
         <div className="flex flex-1 justify-center">
           {loginSection ? (
-            <div className="max-w-sm w-96 flex flex-col justify-center m-[30px]">
+            <div className="max-w-sm w-96 flex flex-col justify-center m-[30px] register-screen">
               <div className={`${animOn ? 'anim-up-two' : animOff ? 'anim-down-two' : ''}`}>
                 <div className="flex gap-x-2 mb-3 items-center">
                   <img

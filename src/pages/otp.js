@@ -112,7 +112,7 @@ export default function OTP() {
         <div className="flex-1 flex-col hidden md:flex justify-center bg-[#F2F2F2]">
           <RegisterStep active={0}/>
         </div>
-        <div className="flex flex-1 m-[30px] md:m-2 z-[999] bg-white basis-[20%] absolute md:relative">
+        <div className="flex flex-1 m-[30px] md:m-2 z-[999] bg-white basis-[20%] absolute md:relative register-screen">
         {!enterOTPPage ? (
           <div className="m-auto w-full max-w-sm w-96">
             <h2 className="main-title">{resendOTP ? "Resend OTP" : "Let's get started"}</h2>

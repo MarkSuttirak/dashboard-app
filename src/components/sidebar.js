@@ -132,16 +132,16 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
         </div>
         <Link to='/'>
           <div className="nav-btns grey" id="home-btn">
-            <HomeIconTwo />
+            <HomeSmile />
           </div>
         </Link>
 
         <hr className="vertical-bar d-none d-sm-block" />
         <div className="nav-btns grey">
-          <AppsIcon />
+          <Backpack />
         </div>
         <div className="nav-btns grey">
-          <BoxOpen />
+          <Gift01 />
         </div>
         <div id="additional-apps">
           <div className="nav-btns add-ons" style={{background:"#F2F2FD"}}>
@@ -153,7 +153,7 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
         </div>
         <div id="lower-apps">
           <div className="nav-btns">
-            <GaugeMin />
+            <Settings01/>
           </div>
           <hr style={{borderColor:"#EBEEF0"}}/>
           <div className="nav-btns">
