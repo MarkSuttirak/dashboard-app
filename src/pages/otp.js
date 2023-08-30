@@ -5,12 +5,8 @@ import { CheckIcon, ChatBubbleBottomCenterTextIcon, CursorArrowRippleIcon } from
 import Spacer from "../components/spacer"
 import RegisterStep from "../components/registerStep"
 import { Dialog, Transition } from '@headlessui/react'
-
-const steps = [
-  { id: '01', name: 'Job Details', description: 'Vitae sed mi luctus laoreet.', href: '#', status: 'complete' },
-  { id: '02', name: 'Application form', description: 'Cursus semper viverra.', href: '#', status: 'current' },
-  { id: '03', name: 'Preview', description: 'Penatibus eu quis ante.', href: '#', status: 'upcoming' },
-]
+import LoadingCheck from "../components/loadingcheck"
+import Scrambles from "../components/scrambledText"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -19,8 +15,17 @@ function classNames(...classes) {
 export default function OTP() {
   const location = useLocation();
 
+  const [creatingAccount, setCreatingAccount] = useState(false);
+  const [settingUpProfile, setSettingUpProfile] = useState(false);
+  const [preparingWorkspace, setPreparingWorkspace] = useState(false);
+
+  const [requestingOTP, setRequestingOTP] = useState(false);
+  const [sendingOTP, setSendingOTP] = useState(false);
+  const [sentOTP, setSentOTP] = useState(false);
+
   const [open, setOpen] = useState(false)
   const [openTwo, setOpenTwo] = useState(false)
+  const [openThree, setOpenThree] = useState(false)
 
   const [enterOTPPage, setEnterOTPPage] = useState(false);
   const [isDisabledPhone, setIsDisabledPhone] = useState(true);
@@ -39,11 +44,23 @@ export default function OTP() {
 
   const clickToGetOTP = () => {
     setOpen(true);
+    setRequestingOTP(true);
+    setSendingOTP(true);
+    setSentOTP(false);
+    setTimeout(() => {
+      setRequestingOTP(false);
+    }, 1000)
+    setTimeout(() => {
+      setSendingOTP(false);
+    }, 3000)
+    setTimeout(() => {
+      setSentOTP(true);
+    }, 4000)
     setTimeout(() => {
       setEnterOTPPage(true);
       addAnimUp();
       setOpen(false);
-    }, 4000)
+    }, 6000)
   }
 
   const clickToResendOTP = () => {
@@ -52,18 +69,42 @@ export default function OTP() {
     addAnimUp();
   }
 
+  const clickToConfirmOTP = () => {
+    setOpenThree(true);
+    setTimeout(() => {
+      setOpenThree(false);
+      window.location.href = '/register';
+    }, 2000)
+  }
+
   useEffect(() => {
     addAnimUp();
-    setOpenTwo(true);
-    setTimeout(() => {
-      setOpenTwo(false)
-    }, 5000)
+    openModalOne();
     if (location.pathname === '/otp'){
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "scroll";
     }
   },[])
+
+  const openModalOne = () => {
+    setOpenTwo(true);
+    setCreatingAccount(true);
+    setSettingUpProfile(true);
+    setPreparingWorkspace(true);
+    setTimeout(() => {
+      setCreatingAccount(false);
+    }, 1000)
+    setTimeout(() => {
+      setSettingUpProfile(false);
+    }, 2000)
+    setTimeout(() => {
+      setPreparingWorkspace(false);
+    }, 4000)
+    setTimeout(() => {
+      setOpenTwo(false);
+    }, 6000)
+  }
 
   return (
     <>
@@ -111,6 +152,11 @@ export default function OTP() {
                         setIsDisabledPhone(false);
                       }
                     }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter"){
+                        clickToGetOTP();
+                      }
+                    }}
                   />
                 </div>
               </div>
@@ -144,13 +190,18 @@ export default function OTP() {
                       setIsDisabled(false);
                     }
                   }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter"){
+                      clickToConfirmOTP();
+                    }
+                  }}
                 />
 
                 <p className="text-link inline-block" onClick={clickToResendOTP}>Resend code</p>
               </div>
 
               <div className={`${animUp ? 'anim-up-delay translate-y-[40px] opacity-0' : ''}`}>
-                <button className={`primary-btn ${isDisabled ? 'disabled' : ''} w-full justify-center`} disabled={isDisabled ? true : false} onClick={() => window.location.href = '/register'}>Confirm OTP</button>
+                <button className={`primary-btn ${isDisabled ? 'disabled' : ''} w-full justify-center`} disabled={isDisabled ? true : false} onClick={clickToConfirmOTP}>Confirm OTP</button>
               </div>
             </div>
           </div>
@@ -159,7 +210,7 @@ export default function OTP() {
       </div>
 
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-[1001]" onClose={setOpen}>
+        <Dialog as="div" className="relative z-[1001]" onClose={() => setOpen(true)}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -189,47 +240,90 @@ export default function OTP() {
                     <ChatBubbleBottomCenterTextIcon width='24'/>
                     Requesting OTP
                   </p>
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-x-2 items-center">
-                      <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[#0788F5]">
-                        <CheckIcon className="h-3 w-3 text-[#0788F5]" aria-hidden="true" />
+                  {requestingOTP ? (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        <div className="loading-icon">
+                          <div className="inner-icon"></div>
+                        </div>
+                        <div className="text-left">
+                          <Dialog.Title as="h3" className="subheading small">
+                            Requesting OTP
+                          </Dialog.Title>
+                        </div>
                       </div>
-                      <div className="text-left">
+                      <div>
+                        <p className='tab-desc'>
+                          In progress
+                        </p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        {/* <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[#0788F5]">
+                          <CheckIcon className="h-3 w-3 text-[#0788F5]" aria-hidden="true" />
+                        </div> */}
+                        <LoadingCheck type='primary' height='20px'/>
+                        <div className="text-left">
+                          <Dialog.Title as="h3" className="subheading small">
+                            Requested OTP
+                          </Dialog.Title>
+                        </div>
+                      </div>
+                      <div>
+                        <p className='text-link'>Done</p>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {sendingOTP ? (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        <div className="loading-icon">
+                          <div className="inner-icon"></div>
+                        </div>
                         <Dialog.Title as="h3" className="subheading small">
-                          Requested OTP
+                          Sending OTP
                         </Dialog.Title>
                       </div>
-                    </div>
-                    <div>
-                      <p className='text-link'>Done</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-x-2 items-center">
-                      <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[#0788F5]">
-                        <CheckIcon className="h-3 w-3 text-[#0788F5]" aria-hidden="true" />
+                      <div>
+                        <p className='tab-desc'>In progress</p>
                       </div>
-                      <Dialog.Title as="h3" className="subheading small">
-                        Sending OTP
-                      </Dialog.Title>
                     </div>
-                    <div>
-                      <p className='tab-desc'>In progress</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-x-2 items-center">
-                      <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[#0788F5]">
-                        <CheckIcon className="h-3 w-3 text-[#0788F5]" aria-hidden="true" />
+                  ) : (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        {/* <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[#0788F5]">
+                          <CheckIcon className="h-3 w-3 text-[#0788F5]" aria-hidden="true" />
+                        </div> */}
+                        <LoadingCheck type='primary' height='20px'/>
+                        <Dialog.Title as="h3" className="subheading small">
+                          Sent OTP
+                        </Dialog.Title>
                       </div>
-                      <Dialog.Title as="h3" className="subheading small">
-                        OTP sent to your phone
-                      </Dialog.Title>
+                      <div>
+                        <p className='text-link'>Done</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className='tab-desc'>Done</p>
+                  )}
+                  
+                  {sentOTP && (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        {/* <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[#0788F5]">
+                          <CheckIcon className="h-3 w-3 text-[#0788F5]" aria-hidden="true" />
+                        </div> */}
+                        <LoadingCheck type='primary' height='20px'/>
+                        <Dialog.Title as="h3" className="subheading small">
+                          OTP sent to your phone
+                        </Dialog.Title>
+                      </div>
+                      <div>
+                        <p className='text-link'>Done</p>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </Dialog.Panel>
               </Transition.Child>
             </div>
@@ -238,7 +332,7 @@ export default function OTP() {
       </Transition.Root>
 
       <Transition.Root show={openTwo} as={Fragment}>
-        <Dialog as="div" className="relative z-[1001]" onClose={setOpenTwo}>
+        <Dialog as="div" className="relative z-[1001]" onClose={() => setOpenTwo(true)}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -268,47 +362,143 @@ export default function OTP() {
                     <CursorArrowRippleIcon width='24'/>
                     Preparing your account
                   </p>
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-x-2 items-center">
-                      <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[#0788F5]">
-                        <CheckIcon className="h-3 w-3 text-[#0788F5]" aria-hidden="true" />
+                  {creatingAccount ? (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        <div className="loading-icon">
+                          <div className="inner-icon"></div>
+                        </div>
+                        <div className="text-left">
+                          <Dialog.Title as="h3" className="subheading small">
+                            Creating your account
+                          </Dialog.Title>
+                        </div>
                       </div>
-                      <div className="text-left">
+                      <div>
+                        <p className='tab-desc'>
+                          In progress
+                        </p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        {/* <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[#0788F5]">
+                          <CheckIcon className="h-3 w-3 text-[#0788F5]" aria-hidden="true" />
+                        </div> */}
+                        <LoadingCheck type='primary' height='20px'/>
+                        <div className="text-left">
+                          <Dialog.Title as="h3" className="subheading small">
+                            Created your account
+                          </Dialog.Title>
+                        </div>
+                      </div>
+                      <div>
+                        <p className='text-link'>Done</p>
+                      </div>
+                    </div>
+                  )}
+
+
+                  {settingUpProfile ? (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        <div className="loading-icon">
+                          <div className="inner-icon"></div>
+                        </div>
                         <Dialog.Title as="h3" className="subheading small">
-                          Created your account
+                          Setting up the profile
                         </Dialog.Title>
                       </div>
-                    </div>
-                    <div>
-                      <p className='text-link'>Done</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-x-2 items-center">
-                      <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[#0788F5]">
-                        <CheckIcon className="h-3 w-3 text-[#0788F5]" aria-hidden="true" />
+                      <div>
+                        <p className='tab-desc'>In progress</p>
                       </div>
-                      <Dialog.Title as="h3" className="subheading small">
-                        Setting up the profile
-                      </Dialog.Title>
                     </div>
-                    <div>
-                      <p className='tab-desc'>In progress</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-x-2 items-center">
-                      <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[#0788F5]">
-                        <CheckIcon className="h-3 w-3 text-[#0788F5]" aria-hidden="true" />
+                  ) : (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        {/* <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[#0788F5]">
+                          <CheckIcon className="h-3 w-3 text-[#0788F5]" aria-hidden="true" />
+                        </div> */}
+                        <LoadingCheck type='primary' height='20px'/>
+                        <Dialog.Title as="h3" className="subheading small">
+                          Set up the profile
+                        </Dialog.Title>
                       </div>
-                      <Dialog.Title as="h3" className="subheading small">
-                        Preparing your workspace
-                      </Dialog.Title>
+                      <div>
+                        <p className='text-link'>Done</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className='tab-desc'>Done</p>
+                  )}
+                  
+                  {preparingWorkspace ? (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        <div className="loading-icon">
+                          <div className="inner-icon"></div>
+                        </div>
+                        <Dialog.Title as="h3" className="subheading small">
+                          Preparing your workspace
+                        </Dialog.Title>
+                      </div>
+                      <div>
+                        <p className='tab-desc'>In progress</p>
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        {/* <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[#0788F5]">
+                          <CheckIcon className="h-3 w-3 text-[#0788F5]" aria-hidden="true" />
+                        </div> */}
+                        <LoadingCheck type='primary' height='20px'/>
+                        <Dialog.Title as="h3" className="subheading small">
+                          Prepared your workspace
+                        </Dialog.Title>
+                      </div>
+                      <div>
+                        <p className='text-link'>Done</p>
+                      </div>
+                    </div>
+                  )}
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition.Root>
+
+      <Transition.Root show={openThree} as={Fragment}>
+        <Dialog as="div" className="relative z-[1001]" onClose={() => setOpenThree(true)}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 z-10 overflow-y-auto">
+            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                enterTo="opacity-100 translate-y-0 sm:scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              >
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white p-8 shadow-xl transition-all w-full max-w-[400px] flex flex-col gap-y-4">
+                  <div class="moving-line"/>
+                  <LoadingCheck type='success'/>
+                  <p className="tab-desc justify-center font-bold flex">
+                    OTP confirmed
+                  </p>
                 </Dialog.Panel>
               </Transition.Child>
             </div>

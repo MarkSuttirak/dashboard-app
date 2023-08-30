@@ -772,23 +772,21 @@ h6 {
   z-index: 99;
   top: 0;
   left: 0;
-  animation: moving-line 1s linear infinite;
-  background: linear-gradient(to right, #006AFF 0%, #0094FF 30%, #dad3d336 55%, #C293FF 60%); /* Replace red with your line color */
+  animation: moving-line 2s linear infinite;
+  // background: linear-gradient(to right, #006AFF 0%, #0094FF 30%, #dad3d336 55%, #C293FF 60%); /* Replace red with your line color */
+  background: linear-gradient(to right, #006AFF 0%, #0094FF 30%, #dad3d336 55%, #C293FF 60%, #006AFF 100%);
   background-size: 200% 100%;
   background-position: 100% 0;
 }
 
 @keyframes moving-line {
   0% {
-    background-position: 100% 0;
+    background-position: 200% 0;
   }
   100% {
     background-position: 0 0;
   }
 }
-
-
-
 
 .required {
   color: #EF4444
@@ -1504,4 +1502,130 @@ select#goal {
   to {
     opacity: 1
   }
+}
+
+/* Checkbox anim */
+.loading-icon-check {
+  display: inline-block;
+  vertical-align: top;
+  opacity: 1;
+  overflow: visible;
+
+  &.loading-icon-check-success {
+    .success-tick {
+      fill: none;
+      stroke-width: 1px;
+      stroke: #20D84A;
+      stroke-dasharray: 15px, 15px;
+      stroke-dashoffset: -14px;
+      animation: success-tick 450ms ease 600ms forwards;
+      opacity: 0;
+    }
+  
+    .success-circle-outline {
+      fill: none;
+      stroke-width: 1px;
+      stroke: #20D84A;
+      stroke-dasharray: 72px, 72px;
+      stroke-dashoffset: 72px;
+      animation: success-circle-outline 300ms ease-in-out forwards;
+      opacity: 0;
+    }
+  
+    .success-circle-fill {
+      fill: #bbf7d0;
+      stroke: none;
+      opacity: 0;
+      animation: success-circle-fill 300ms ease-out 300ms forwards;
+    }
+  }
+
+  &.loading-icon-check-primary {
+    .success-tick {
+      fill: none;
+      stroke-width: 1px;
+      stroke: $primary;
+      stroke-dasharray: 15px, 15px;
+      stroke-dashoffset: -14px;
+      animation: success-tick 450ms ease 600ms forwards;
+      opacity: 0;
+    }
+  
+    .success-circle-outline {
+      fill: none;
+      stroke-width: 1px;
+      stroke: $primary;
+      stroke-dasharray: 72px, 72px;
+      stroke-dashoffset: 72px;
+      animation: success-circle-outline 300ms ease-in-out forwards;
+      opacity: 0;
+    }
+  
+    .success-circle-fill {
+      fill: white;
+      stroke: none;
+      opacity: 0;
+      animation: success-circle-fill 300ms ease-out 300ms forwards;
+    }
+  }
+
+  @keyframes success-tick {
+    0% {
+      stroke-dashoffset: 16px;
+      opacity: 1
+    }
+
+    100% {
+      stroke-dashoffset: 31px;
+      opacity: 1
+    }
+  }
+
+  @keyframes success-circle-outline {
+    0% {
+      stroke-dashoffset: 72px;
+      opacity: 1
+    }
+
+    100% {
+      stroke-dashoffset: 0px;
+      opacity: 1
+    }
+  }
+
+  @keyframes success-circle-fill {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+/* loading anim */
+
+.loading-icon{
+  width:20px; /* Customise the width */
+  height:20px; /* Customise the height */
+  border-radius:50%;
+  background:linear-gradient(0deg, $primary, #F2F2F2);
+  animation:loadingAnim 1s linear infinite;
+  margin:auto;
+}
+
+.inner-icon{
+  border-radius:50%;
+  margin:auto;
+  display:block;
+  width:18px; /* Customise the width */
+  height:18px; /* Customise the height */
+  background:white;
+  transform:translate(0,1px) /* Just customise the Y axis */
+}
+
+@keyframes loadingAnim{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
 }
