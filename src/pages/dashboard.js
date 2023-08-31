@@ -100,8 +100,8 @@ const Dashboard = ({ loadingLogo }) => {
       )}
       <div className="bg-white page-section pb-16">
         <div className="relative overflow-hidden">
-          <div className="dashboard-container pb-8 grid grid-cols-2 gap-x-8">
-            <div className="max-w-lg">
+          <div className="dashboard-container pb-8 flex">
+            <div className="basis-full">
               <div className="mt-4">
                 <a href="#" className="inline-flex space-x-6">
                   {!loadingLogo ? (
@@ -121,7 +121,7 @@ const Dashboard = ({ loadingLogo }) => {
               </div>
               {!loadingLogo ? (
                 <h1 className="display-semibold">
-                  Sawadee, Chutiphol  🙏
+                  Welcome, Chutiphol 🙏
                 </h1>
               ) : (
                 <div className="animate-pulse mt-2">
@@ -142,14 +142,6 @@ const Dashboard = ({ loadingLogo }) => {
               {!loadingLogo ? (
                 <div className="mt-4 flex md:mt-0 md:ml-4"
                   aria-hidden="true">
-                  {/* <button
-                    type="button"
-                    className="inline-flex items-center rounded-lg bg-[#F3F3F3] text-sm font-semibold font-inter text-[#333333] shadow-sm focus:outline-none focus:ring-offset-2 mt-2"
-                    style={{ padding: "7px 10px" }}
-                    onClick={handleInviteClick}
-                  >
-                    Invite your team
-                  </button> */}
                   <button
                     type="button"
                     className="secondary-btn"
@@ -158,14 +150,6 @@ const Dashboard = ({ loadingLogo }) => {
                     {/* <EnvelopeIcon className="mr-2 h-5 w-5" aria-hidden="true" /> */}
                     Button text
                   </button>
-                  {/* <button
-                    type="button"
-                    className="ml-3 inline-flex items-center rounded-lg border border-transparent text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn font-13 btn-primary-shadow mt-2"
-                    style={{ padding: "4px 18px" }}
-                    onClick={handleInviteClick2}
-                  >
-                    Go to Workspace
-                  </button> */}
                 </div>
               ) : (
                 <div className="animate-pulse flex">
@@ -177,6 +161,16 @@ const Dashboard = ({ loadingLogo }) => {
             </div>
           </div>
           <Spacer size={20} />
+
+          <div className="mobile-section">
+            <div className="overflow-x-auto dashboard-container flex gap-x-2 flex-nowrap">
+              <button className="black-btn whitespace-pre text-sm">Point of Sale</button>
+              <button className="black-btn whitespace-pre text-sm">Inventory</button>
+              <button className="black-btn whitespace-pre text-sm">Accounting</button>
+            </div>
+
+            <Spacer size={20} />
+          </div>
           {isOpen &&
             <div>
               <div className="popup-overlay"></div>
