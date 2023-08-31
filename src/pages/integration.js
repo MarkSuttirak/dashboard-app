@@ -42,11 +42,6 @@ const Integration = () => {
                   <CheckCircleIcon className="h-5 w-5 text-green-600" aria-hidden="true"/>
                   For Zaviago pro users only
                 </p>
-                <Spacer size={5}/>
-                <span className="inline-flex items-start rounded-md bg-gray-50 px-2 py-1 text-xs font-semibold text-gray-600 ring-1 ring-inset ring-gray-500/10 min-h-[24px] items-center gap-x-1" style={{letterSpacing:'-0.4px'}}>
-                  <ReceiptPercentIcon width='16'/>
-                  {badgeTitle}
-                </span>
               </div>
             )}
           </div>
@@ -62,7 +57,7 @@ const Integration = () => {
               Premium
             </span>
           </div>
-          <Link to='' className={`${isConnected ? 'primary-btn disabled' : 'primary-btn'} h-10`}>
+          <Link to={isConnected ? '' : '/singleAppPage'} className={`${isConnected ? 'primary-btn disabled' : 'primary-btn'} h-10`}>
             <ArrowUpRight viewBox="0 0 30 20" width="24" height="24"/>
             {isConnected ? "Connected" : "Connect"}
           </Link>
@@ -77,7 +72,6 @@ const Integration = () => {
       desc: '6 months free on the Plus plan',
       isConnected: false,
       icon: iconmock,
-      badgeTitle: 'Save up to $6000',
       isSpecial: true,
       link: '/'
     },
@@ -86,7 +80,6 @@ const Integration = () => {
       desc: 'Waived fees on tens of thousands dollars in Stripe card processing',
       isConnected: true,
       icon: iconmock,
-      badgeTitle: 'Save up to $600',
       isSpecial: false,
       link: '/singleAppPage'
     },
@@ -95,7 +88,6 @@ const Integration = () => {
       desc: 'Waived fees on tens of thousands dollars in Stripe card processingWaived fees on tens of thousands',
       isConnected: true,
       icon: iconmock,
-      badgeTitle: 'Save up to $600',
       isSpecial: false,
       link: '/singleAppPage'
     },
@@ -104,7 +96,6 @@ const Integration = () => {
       desc: 'Waived fees on tens of thousands dollars in Stripe card processing',
       isConnected: true,
       icon: iconmock,
-      badgeTitle: 'Save up to $600',
       isSpecial: false,
       link: '/singleAppPage'
     },

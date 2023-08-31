@@ -5,7 +5,7 @@ import mock2 from "../img/mock2.svg";
 import mock3 from "../img/mock3.svg";
 import switchuser from "../img/switchuser.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/24/outline'
+import { CalendarIcon, ChartBarIcon, Cog6ToothIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/24/outline'
 import pjob from "../img/pjob.svg";
 import { Fragment } from 'react'
 import { Combobox, Dialog, Transition } from '@headlessui/react'
@@ -57,7 +57,7 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
   ]
 
   const leftNavigation = [
-    { name: 'Settings', icon: <Settings01 />, href: '/settings/profile', current: active === '/settings' || active === '/settings/profile' || active === '/settings/team' || active === '/settings/plan' || active === '/settings/billing' ? true : false, id: 'settings' },
+    { name: 'Settings', icon: <Cog6ToothIcon width='24'/>, href: '/settings/profile', current: active === '/settings' || active === '/settings/profile' || active === '/settings/team' || active === '/settings/plan' || active === '/settings/billing' ? true : false, id: 'settings' },
   ]
 
   function classNames(...classes) {
@@ -141,21 +141,22 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
         </div>
         <div id="lower-apps">
           {leftNavigation.map((item) => (
-            <Link                    key={item.id}
+            <Link key={item.id}
             to={item.href}
             className={classNames(
               item.current
-                ? 'sidebar-menu active'
-                : 'sidebar-menu'
+                ? 'nav-btns active'
+                : 'nav-btns'
             )}>
+              {item.icon}
             </Link>
             // <Link to='/settings/profile' className="nav-btns">
             //   <Settings01/>
             // </Link>
           ))}
-          <Link to='/settings/profile' className="nav-btns">
-            <Settings01/>
-          </Link>
+          {/* <Link to='/settings/profile' className="nav-btns">
+            <Cog6ToothIcon width='24'/>
+          </Link> */}
           <hr style={{borderColor:"#EBEEF0"}}/>
           <div className="nav-btns">
             <img
