@@ -13,10 +13,7 @@ import dropboxLogo from '../img/drpBoxLogo.svg'
 import flipIconPlus from '../img/flipIconPlus.png'
 import InstallAddons from '../components/installAddons'
 import HeaderApps from '../components/headerApps'
-import { Dialog, Transition } from '@headlessui/react'
-import { Disclosure, RadioGroup, Tab } from '@headlessui/react'
-import { StarIcon } from '@heroicons/react/20/solid'
-import { HeartIcon, MinusIcon, PlusIcon } from '@heroicons/react/24/outline'
+import { useParams } from 'react-router-dom'
 
 const product = {
   name: 'Zip Tote Basket',
@@ -61,6 +58,7 @@ function classNames(...classes) {
 }
 
 function GiftPage() {
+  const { id } = useParams();
 
   const [isOpen, setIsOpen] = useState(false);
   const closePopUp = () => {
@@ -105,7 +103,7 @@ function GiftPage() {
       <div className='sm:p-10 p-5 page-section'>
 
         <div className='dashboard-settings'>
-          <HeaderApps title='Instagram Store' desc='Facilitate payments and pay out sellers or service providers with Friends by Chom.'/>
+          <HeaderApps title={id} desc='Facilitate payments and pay out sellers or service providers with Friends by Chom.'/>
         </div>
 
         {/* <div className='dashboard-settings'>

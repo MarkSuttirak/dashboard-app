@@ -18,10 +18,10 @@ const GiftsPrivileges = () => {
                 <div className='border rounded-lg w-[60px] h-[60px] bg-[#F3F4F6] flex justify-center items-center'>
                   {/* <img src={icon} /> */}
                 </div>
-                <p className='card-link flex items-center gap-x-2'>
-                  zaviago.com
+                <Link to={`/gift-page/${title}`} className='card-link flex items-center gap-x-2'>
+                  Read more
                   <ArrowTopRightOnSquareIcon viewBox='0 0 24 24' width='20' strokeWidth='4'/> {/* Make it bolder */}
-                </p>
+                </Link>
               </div>
               <Spacer size={10}/>
               <h2 className="main-heading flex gap-x-2 mt-2 items-center">

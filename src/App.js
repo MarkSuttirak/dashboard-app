@@ -65,7 +65,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/otp" element={<OTP />} />
-          <Route path="/gift-page/" element={<GiftPage />} />
+          <Route path="/gift-page/:id" element={<GiftPage />} />
 
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/register" element={<Register />} />
