@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@untitled-ui/icons-react": "^0.1.1",
     "feather-icons": "^4.29.0",
+    "framer-motion": "^10.16.2",
     "inter-font": "^3.19.0",
     "radix-ui": "^1.0.1",
     "react": "^18.2.0",

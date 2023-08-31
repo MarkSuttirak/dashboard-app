@@ -5627,10 +5627,10 @@
   "resolved" "https://registry.npmjs.org/fraction.js/-/fraction.js-4.2.0.tgz"
   "version" "4.2.0"
 
-"framer-motion@^10.15.2":
-  "integrity" "sha512-K6TXr5mZtitC/dxQCBdg7xzdN0d5IAIrlaqCPKtIQVdzVPGC0qBuJKXggHX1vjnP5gPOFwB1KbCCTWcnFc3kWg=="
-  "resolved" "https://registry.npmjs.org/framer-motion/-/framer-motion-10.16.1.tgz"
-  "version" "10.16.1"
+"framer-motion@^10.15.2", "framer-motion@^10.16.2":
+  "integrity" "sha512-aY6L9YMvqMWtfOQptaUvvr8dp97jskXY5UYLQM0vOPxKeERrG/Z034EIQZ/52u7MeCT0HlCQy3/l0HdUZCB9Tw=="
+  "resolved" "https://registry.npmjs.org/framer-motion/-/framer-motion-10.16.2.tgz"
+  "version" "10.16.2"
   dependencies:
     "tslib" "^2.4.0"
   optionalDependencies:
