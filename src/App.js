@@ -23,6 +23,7 @@ import GiftsPrivileges from './pages/GiftsPrivileges';
 import Login from './pages/login';
 import Signup from './pages/signup';
 import OTP from './pages/otp';
+import GiftPage from './pages/giftPage';
 
 import TestPage from './pages/testPage';
 
@@ -64,6 +65,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/otp" element={<OTP />} />
+          <Route path="/gift-page/" element={<GiftPage />} />
 
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/register" element={<Register />} />

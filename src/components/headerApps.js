@@ -1,4 +1,4 @@
-import { ChevronLeftIcon, ChevronRightIcon, HomeIcon, CheckCircleIcon } from '@heroicons/react/20/solid'
+import { ChevronLeftIcon, ChevronRightIcon, HomeIcon, CheckCircleIcon, ChatBubbleBottomCenterTextIcon } from '@heroicons/react/20/solid'
 import { PlayCircleIcon, ArrowsRightLeftIcon } from '@heroicons/react/24/outline'
 import Spacer from './spacer'
 import { Link, useLocation } from 'react-router-dom'
@@ -6,6 +6,7 @@ import { HomeSmile } from '@untitled-ui/icons-react/build/cjs'
 import { useState, useEffect, Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ArrowLeft, ArrowRight } from 'untitledui-js/icons/arrow'
+import LoadingCheck from './loadingcheck'
 
 const HeaderApps = ({title, desc}) => {
   function classNames(...classes) {
@@ -20,6 +21,12 @@ const HeaderApps = ({title, desc}) => {
 
   const [currentPage, setCurrentPage] = useState('')
   const [openInstallApp, setOpenInstallApp] = useState(false);
+  const [openInstallingApp, setOpenInstallingApp] = useState(false);
+
+  const [preparingWorkspace, setPreparingWorkspace] = useState(true);
+  const [creatingDatabase, setCreatingDatabase] = useState(true);
+  const [connectApp, setConnectApp] = useState(true);
+  const [openFinishedInstalling, setOpenFinishedInstalling] = useState(false);
 
   const menus = [
     {
@@ -38,6 +45,31 @@ const HeaderApps = ({title, desc}) => {
       current: activeMenu === '/integration/apps' ? true : false,
     },
   ]
+
+  const installApp = () => {
+    setOpenInstallApp(false);
+    setOpenInstallingApp(true);
+    setPreparingWorkspace(true);
+    setCreatingDatabase(true);
+    setConnectApp(true);
+    setTimeout(() => {
+      setPreparingWorkspace(false);
+    }, 1000)
+    setTimeout(() => {
+      setCreatingDatabase(false);
+    }, 2000)
+    setTimeout(() => {
+      setConnectApp(false);
+    }, 4000)
+    setTimeout(() => {
+      finishedInstalling();
+    }, 6000)
+  }
+
+  const finishedInstalling = () => {
+    setOpenInstallingApp(false);
+    setOpenFinishedInstalling(true);
+  }
 
   useEffect(() => {
     setActiveMenu(location.pathname);
@@ -89,7 +121,7 @@ const HeaderApps = ({title, desc}) => {
         <div className="flex items-center justify-between">
           <div>
             <h2 className="main-title">
-                {title}
+              {title}
             </h2>
             <p className='tab-desc'>{desc}</p>
           </div>
@@ -174,12 +206,196 @@ const HeaderApps = ({title, desc}) => {
                         <button className={`white-outline-btn`} onClick={() => setOpenInstallApp(false)}>
                           Cancel
                         </button>
-                        <button className={`primary-btn`}>
+                        <button className={`primary-btn`} onClick={installApp}>
                           Install
                         </button>
                       </div>
                     </section>
 
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
+            </div>
+          </Dialog>
+        </Transition.Root>
+
+        <Transition.Root show={openInstallingApp} as={Fragment}>
+        <Dialog as="div" className="relative z-[1001]" onClose={() => setOpenInstallingApp(true)}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 z-10 overflow-y-auto">
+            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                enterTo="opacity-100 translate-y-0 sm:scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              >
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white p-8 shadow-xl transition-all w-full max-w-[400px] flex flex-col gap-y-4">
+                  <div class="moving-line"/>
+                  <p className="tab-desc text-left font-bold mb-3 flex gap-x-2">
+                    <ChatBubbleBottomCenterTextIcon width='24'/>
+                    Installing app
+                  </p>
+                  {preparingWorkspace ? (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        <div className="loading-icon">
+                          <div className="inner-icon"></div>
+                        </div>
+                        <div className="text-left">
+                          <Dialog.Title as="h3" className="subheading small">
+                            Preparing workspace
+                          </Dialog.Title>
+                        </div>
+                      </div>
+                      <div>
+                        <p className='tab-desc'>
+                          In progress
+                        </p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        <LoadingCheck type='primary' height='20px'/>
+                        <div className="text-left">
+                          <Dialog.Title as="h3" className="subheading small">
+                            Prepared workspace
+                          </Dialog.Title>
+                        </div>
+                      </div>
+                      <div>
+                        <p className='text-link'>Done</p>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {creatingDatabase ? (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        <div className="loading-icon">
+                          <div className="inner-icon"></div>
+                        </div>
+                        <Dialog.Title as="h3" className="subheading small">
+                          Creating database
+                        </Dialog.Title>
+                      </div>
+                      <div>
+                        <p className='tab-desc'>In progress</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        <LoadingCheck type='primary' height='20px'/>
+                        <Dialog.Title as="h3" className="subheading small">
+                          Created database
+                        </Dialog.Title>
+                      </div>
+                      <div>
+                        <p className='text-link'>Done</p>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {connectApp ? (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        <div className="loading-icon">
+                          <div className="inner-icon"></div>
+                        </div>
+                        <Dialog.Title as="h3" className="subheading small">
+                          Connect application
+                        </Dialog.Title>
+                      </div>
+                      <div>
+                        <p className='tab-desc'>In progress</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-x-2 items-center">
+                        <LoadingCheck type='primary' height='20px'/>
+                        <Dialog.Title as="h3" className="subheading small">
+                          Connected application
+                        </Dialog.Title>
+                      </div>
+                      <div>
+                        <p className='text-link'>Done</p>
+                      </div>
+                    </div>
+                  )}
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition.Root>
+
+      <Transition.Root show={openFinishedInstalling} as={Fragment}>
+        <Dialog as="div" className="relative z-[1001]" onClose={() => setOpenFinishedInstalling(false)}>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+            </Transition.Child>
+
+            <div className="fixed inset-0 z-10 overflow-y-auto">
+              <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                  enterTo="opacity-100 translate-y-0 sm:scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                  leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                >
+                  <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                    <div>
+                      <div className='flex justify-center'>
+                        <LoadingCheck type='success'/>
+                      </div>
+                      <div className="mt-3 text-center sm:mt-5">
+                        <Dialog.Title as="h3" className="main-heading">
+                          The app has been installed
+                        </Dialog.Title>
+                        <div className="mt-2">
+                          <p className="tab-desc">
+                            Please click 'Go to dashboard' to start working.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-5 sm:mt-6">
+                      <button
+                        type="button"
+                        className="primary-btn w-full justify-center"
+                        onClick={() => setOpenFinishedInstalling(false)}
+                      >
+                        Go back to dashboard
+                      </button>
+                    </div>
                   </Dialog.Panel>
                 </Transition.Child>
               </div>

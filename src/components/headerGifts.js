@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { HomeSmile } from '@untitled-ui/icons-react/build/cjs'
 import { useState, useEffect } from 'react'
 
-const HeaderGifts = ({title}) => {
+const HeaderGifts = ({title, desc}) => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
@@ -88,7 +88,7 @@ const HeaderGifts = ({title}) => {
             <h2 className="main-title">
               {title}
             </h2>
-            <p className='tab-desc'>Quisque et neque et lorem imperdiet malesuada. metus nec sapien cursus vehicula. Vivamus non orci nulla. Sed commodo tortor vel efficitur volutpat. Nullam vel dolor nunc. Quisque eu lacus justo.</p>
+            <p className='tab-desc'>{desc}</p>
           </div>
           <div className='w-fit'>
             <div className="overflow-hidden rounded-lg bg-white px-6 py-5 border">

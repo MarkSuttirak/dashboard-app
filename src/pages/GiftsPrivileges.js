@@ -98,7 +98,7 @@ const GiftsPrivileges = () => {
     <>
       <div className="page-section">
         <div className="dashboard-settings">
-          <HeaderGifts title="Privileges"/>
+          <HeaderGifts title="Privileges" desc="Quisque et neque et lorem imperdiet malesuada. metus nec sapien cursus vehicula. Vivamus non orci nulla. Sed commodo tortor vel efficitur volutpat. Nullam vel dolor nunc. Quisque eu lacus justo."/>
           
           <div>
             <dl className="grid gap-5 cards-sec">

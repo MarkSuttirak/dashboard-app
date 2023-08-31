@@ -7,7 +7,7 @@ import HeaderGifts from '../components/headerGifts';
 import { ArrowTopRightOnSquareIcon, ReceiptPercentIcon, CheckCircleIcon, FireIcon } from '@heroicons/react/24/solid';
 
 const Integration = () => {
-  const CardList = ({title, desc, isConnected, icon, badgeTitle, isSpecial}) => {
+  const CardList = ({title, desc, isConnected, icon, badgeTitle, isSpecial, link}) => {
     return (
       <div
         className="inte-card border flex flex-col justify-between"
@@ -19,10 +19,10 @@ const Integration = () => {
                 <div className='border rounded-lg w-[60px] h-[60px] bg-[#F3F4F6] flex justify-center items-center'>
                   {/* <img src={icon} /> */}
                 </div>
-                <p className='card-link flex items-center gap-x-2'>
+                <Link to={link} className='card-link flex items-center gap-x-2'>
                   Read more
                   <ArrowTopRightOnSquareIcon viewBox='0 0 24 24' width='20' strokeWidth='4'/> {/* Make it bolder */}
-                </p>
+                </Link>
               </div>
               <Spacer size={10}/>
               <h2 className="main-heading flex gap-x-2 mt-2 items-center">
@@ -76,7 +76,8 @@ const Integration = () => {
       isConnected: false,
       icon: iconmock,
       badgeTitle: 'Save up to $6000',
-      isSpecial: true
+      isSpecial: true,
+      link: '/'
     },
     {
       title: 'Stripe',
@@ -84,7 +85,8 @@ const Integration = () => {
       isConnected: true,
       icon: iconmock,
       badgeTitle: 'Save up to $600',
-      isSpecial: false
+      isSpecial: false,
+      link: '/singleAppPage'
     },
     {
       title: 'Line CRM',
@@ -92,7 +94,17 @@ const Integration = () => {
       isConnected: true,
       icon: iconmock,
       badgeTitle: 'Save up to $600',
-      isSpecial: false
+      isSpecial: false,
+      link: '/singleAppPage'
+    },
+    {
+      title: 'Instagram Store',
+      desc: 'Waived fees on tens of thousands dollars in Stripe card processing',
+      isConnected: true,
+      icon: iconmock,
+      badgeTitle: 'Save up to $600',
+      isSpecial: false,
+      link: '/singleAppPage'
     },
   ]
   return (
@@ -104,7 +116,7 @@ const Integration = () => {
           <div>
             <dl className="grid gap-5 cards-sec-inte">
               {appLists.map((app, index) => 
-                <CardList title={app.title} desc={app.desc} isConnected={app.isConnected} icon={app.icon} badgeTitle={app.badgeTitle}/>
+                <CardList title={app.title} desc={app.desc} isConnected={app.isConnected} icon={app.icon} badgeTitle={app.badgeTitle} link={app.link}/>
               )}
             </dl>
           </div>

@@ -60,7 +60,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-function SingleAppPage() {
+function GiftPage() {
 
   const [isOpen, setIsOpen] = useState(false);
   const closePopUp = () => {
@@ -237,4 +237,4 @@ function SingleAppPage() {
   )
 }
 
-export default SingleAppPage
+export default GiftPage
