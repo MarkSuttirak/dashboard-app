@@ -28,6 +28,7 @@ import PremiumPrivileges from './pages/premiumPrivileges';
 import FreePrivileges from './pages/freePrivileges';
 
 import TestPage from './pages/testPage';
+import MobileMenu from './components/mobileMenu';
 
 export const switchContext = createContext();
 
@@ -76,7 +77,7 @@ function App() {
           <Route path="/teams" element={<TeamsPage />} />
         </Routes>
 
-
+        <MobileMenu />
       </Router>
     </>
   );
