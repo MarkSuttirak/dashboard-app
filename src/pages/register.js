@@ -119,14 +119,13 @@ export default function Register() {
     { id: 4, status: page },
     { id: 5, status: page },
     { id: 6, status: page },
-    { id: 7, status: page },
   ]
 
   const Steps = ({process}) => {
-    for (let i = 0; i <= Math.min(process, 8); i++) {
+    for (let i = 0; i <= Math.min(process, 7); i++) {
       registerStep[i].status = 'complete';
     }
-    if (process >= 0 && process <= 8) {
+    if (process >= 0 && process <= 7) {
       registerStep[process].status = 'current';
     }
 
@@ -136,27 +135,31 @@ export default function Register() {
           {registerStep.map((step) => (
             <li key={step.id} className="step-list">
               {step.status === 'complete' ? (
-                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-8">
+                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-10">
                   <div className={`h-1 rounded-full bg-[#0788F5]`} style={{ width: "100%" }} />
                 </div>
               ) : step.status === 'current' ? (
-                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-8">
+                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-10">
                   <div className={`h-1 rounded-full bg-[#0788F5]`} style={{ width: "50%" }} />
                 </div>
               ) : step.status === 'going-back-complete' ? (
-                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-8">
-                  <div className={`h-1 rounded-full bg-[#0788F5] coming`} style={{ width: "0%" }} />
+                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-10">
+                  <div className={`h-1 rounded-full bg-[#0788F5] complete-to-current`} />
                 </div>
               ) : step.status === 'going-next-complete' ? (
-                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-8">
-                  <div className={`h-1 rounded-full bg-[#0788F5]`} style={{ width: "50%" }} />
+                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-10">
+                  <div className={`h-1 rounded-full bg-[#0788F5] current-to-complete`} />
                 </div>
               ) : step.status === 'going-back-current' ? (
-                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-8">
-                  <div className={`h-1 rounded-full bg-[#0788F5] coming`} style={{ width: "0%" }} />
+                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-10">
+                  <div className={`h-1 rounded-full bg-[#0788F5] current-to-zero`} />
+                </div>
+              ) : step.status === 'going-next-current' ? (
+                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-10">
+                  <div className={`h-1 rounded-full bg-[#0788F5] zero-to-current`} />
                 </div>
               ) : (
-                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-8">
+                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-10">
                   <div className={`h-1 rounded-full bg-[#0788F5] coming`} style={{ width: "0%" }} />
                 </div>
               )}
@@ -281,7 +284,7 @@ export default function Register() {
         </div>
         <div className="flex flex-1 m-[30px] md:m-2 z-[999] basis-[20%] bg-white absolute md:relative register-screen">
         {page === 0 && (
-          <div className="m-auto w-full max-w-sm w-96 h-[400px]">
+          <div className="m-auto w-full max-w-sm w-96 h-[600px]">
             <Steps process={0}/>
             <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
               <h2 className="main-title mt-10">Fill in your information</h2>
@@ -366,6 +369,54 @@ export default function Register() {
                 />
                 {emailError && (<p className="error">Invalid email address</p>)}
               </div>
+
+              <div>
+                <h2 className="subheading">Tell us more about you</h2>
+              <RadioGroup value={selectedMailingLists} onChange={setSelectedMailingLists}>
+                <div className="mt-4 grid grid-cols-1 gap-y-3">
+                  {mailingLists.map((mailingList) => (
+                    <RadioGroup.Option
+                      key={mailingList.id}
+                      value={mailingList}
+                      className={({ checked, active }) =>
+                        classNames(
+                          checked ? 'border-transparent' : 'border-gray-300',
+                          active ? 'border-[#0788F5] ring-2 ring-[#0788F5]' : '',
+                          'relative flex cursor-pointer rounded-lg border bg-white p-4 outline-none'
+                        )
+                      }
+                    >
+                      {({ checked, active }) => (
+                        <>
+                          <span className="flex flex-1">
+                            <span className="flex flex-col">
+                              <RadioGroup.Label as="span" className="subheading">
+                                {mailingList.title}
+                              </RadioGroup.Label>
+                              <RadioGroup.Description as="span" className="tab-desc">
+                                {mailingList.description}
+                              </RadioGroup.Description>
+                            </span>
+                          </span>
+                          <CheckCircleIcon
+                            className={classNames(!checked ? 'invisible' : '', 'h-5 w-5 text-[#0788F5]')}
+                            aria-hidden="true"
+                          />
+                          <span
+                            className={classNames(
+                              active ? 'border' : 'border-2',
+                              checked ? 'border-[#0788F5]' : 'border-transparent',
+                              'pointer-events-none absolute -inset-px rounded-lg'
+                            )}
+                            aria-hidden="true"
+                          />
+                        </>
+                      )}
+                    </RadioGroup.Option>
+                  ))}
+                </div>
+                </RadioGroup>
+              </div>
               <div className={`${animUp ? 'anim-up-delay translate-y-[20px] opacity-0' : animDown ? 'anim-down' : ''}`}>
                 <button className={`primary-btn w-full justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={() => {
                   if (emailRef.current.value.includes('@') && emailRef.current.value.includes('.')){
@@ -381,69 +432,7 @@ export default function Register() {
 
         {page === 1 && (
           <div className="m-auto w-full max-w-sm w-96 h-[400px]">
-            <Steps process={1}/>
-            <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
-              <h2 className="main-title mt-8">Tell us more about you</h2>
-            </div>
-            <div className={`space-y-4 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
-            <RadioGroup value={selectedMailingLists} onChange={setSelectedMailingLists}>
-
-              <div className="mt-4 grid grid-cols-1 gap-y-6">
-                {mailingLists.map((mailingList) => (
-                  <RadioGroup.Option
-                    key={mailingList.id}
-                    value={mailingList}
-                    className={({ checked, active }) =>
-                      classNames(
-                        checked ? 'border-transparent' : 'border-gray-300',
-                        active ? 'border-[#0788F5] ring-2 ring-[#0788F5]' : '',
-                        'relative flex cursor-pointer rounded-lg border bg-white p-4 outline-none'
-                      )
-                    }
-                  >
-                    {({ checked, active }) => (
-                      <>
-                        <span className="flex flex-1">
-                          <span className="flex flex-col">
-                            <RadioGroup.Label as="span" className="subheading">
-                              {mailingList.title}
-                            </RadioGroup.Label>
-                            <RadioGroup.Description as="span" className="tab-desc">
-                              {mailingList.description}
-                            </RadioGroup.Description>
-                          </span>
-                        </span>
-                        <CheckCircleIcon
-                          className={classNames(!checked ? 'invisible' : '', 'h-5 w-5 text-[#0788F5]')}
-                          aria-hidden="true"
-                        />
-                        <span
-                          className={classNames(
-                            active ? 'border' : 'border-2',
-                            checked ? 'border-[#0788F5]' : 'border-transparent',
-                            'pointer-events-none absolute -inset-px rounded-lg'
-                          )}
-                          aria-hidden="true"
-                        />
-                      </>
-                    )}
-                  </RadioGroup.Option>
-                ))}
-              </div>
-            </RadioGroup>
-            </div>
-
-            <Spacer size={30}/>
-            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[20px] opacity-0' : animDown ? 'anim-down' : ''}`}>
-              <button className={`no-bg-btn w-1/4 justify-center`} onClick={goPrev}>Back</button>
-              <button className={`primary-btn w-1/4 justify-center ${isDisabled ? 'disabled' : ''}`} disabled={isDisabled ? true : false} onClick={goNext}>Submit</button>
-            </div>
-          </div>
-        )}
-
-        {page === 2 && (
-          <div className="m-auto w-full max-w-sm w-96 h-[400px]">
-            <Steps process={2} />
+            <Steps process={1} />
             <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
               <h2 className="main-title mt-8">What is your business about?</h2>
             </div>
@@ -480,9 +469,9 @@ export default function Register() {
           </div>
         )}
 
-        {page === 3 && (
+        {page === 2 && (
           <div className="m-auto w-full max-w-sm w-96 h-[400px]">
-            <Steps process={3}/>
+            <Steps process={2}/>
             <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
               <h2 className="main-title mt-8">How many people are there in your team?</h2>
             </div>
@@ -519,9 +508,9 @@ export default function Register() {
           </div>
         )}
 
-        {page === 4 && (
+        {page === 3 && (
           <div className="m-auto w-full max-w-sm w-96 h-[400px]">
-            <Steps process={4}/>
+            <Steps process={3}/>
             <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
               <h2 className="main-title mt-8">What are your goals for this business?</h2>
             </div>
@@ -560,9 +549,9 @@ export default function Register() {
           </div>
         )}
 
-        {page === 5 && (
+        {page === 4 && (
           <div className="m-auto w-full max-w-sm w-96 h-[400px]">
-            <Steps process={5}/>
+            <Steps process={4}/>
             <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
               <h2 className="main-title mt-8">What would you like to call your site?</h2>
               <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
@@ -642,9 +631,9 @@ export default function Register() {
           </div>
         )}
 
-        {page === 6 && (
+        {page === 5 && (
           <div className="m-auto w-full max-w-sm w-96 h-[400px]">
-            <Steps process={6}/>
+            <Steps process={5}/>
             <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
               <h2 className="main-title mt-8">What would you like to add on your site?</h2>
               <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
@@ -685,9 +674,9 @@ export default function Register() {
           </div>
         )}
 
-        {page === 7 && (
+        {page === 6 && (
           <div className="m-auto w-full max-w-sm w-96 h-[400px]">
-            <Steps process={7}/>
+            <Steps process={6}/>
             <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
               <h2 className="main-title mt-8">Pick a theme you like</h2>
               <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import instagramShop from '../img/business-intelligent.svg'
 import star from '../img/star.png'
 import sellEverywhereMain from '../img/sellEverywhereMain.png'
@@ -12,14 +12,13 @@ import googleLogo from '../img/googleLogo.svg'
 import dropboxLogo from '../img/drpBoxLogo.svg'
 import flipIconPlus from '../img/flipIconPlus.png'
 import InstallAddons from '../components/installAddons'
+import HeaderApps from '../components/headerApps'
+import { Dialog, Transition } from '@headlessui/react'
+
 function SingleAppPage() {
 
   const [isOpen, setIsOpen] = useState(false);
-
-  const handleInviteClick = () => {
-    setIsOpen(!isOpen);
-    setIsClickedInstall(false)
-  }
+  const [openInstallApp, setOpenInstallApp] = useState(false);
   const closePopUp = () => {
     setIsOpen(false);
     console.log('false')
@@ -31,28 +30,24 @@ function SingleAppPage() {
       title: 'Application name here',
       description: 'Facilitate payments and pay out sellers or service providers.',
       image: freedlyLogo,
-      rating: 5.0,
     },
     {
       id: 2,
       title: 'Application name here Intelligent',
       description: 'Facilitate payments and pay out sellers or service providers.',
       image: bulbYello,
-      rating: 4.9,
     },
     {
       id: 3,
       title: 'Application name here Intelligent',
       description: 'Facilitate payments and pay out sellers or service providers.',
       image: googleLogo,
-      rating: 4.7,
     },
     {
       id: 4,
       title: 'Application name here Intelligent',
       description: 'Facilitate payments and pay out sellers or service providers.',
       image: dropboxLogo,
-      rating: 4.9
     },
   ];
 
@@ -65,7 +60,11 @@ function SingleAppPage() {
     <>
       <div className='sm:p-10 p-5 page-section'>
 
-        <div className='section-container mx-auto'>
+        <div className='dashboard-settings'>
+          <HeaderApps title='Instagram Store' desc='Facilitate payments and pay out sellers or service providers with Friends by Chom.'/>
+        </div>
+
+        {/* <div className='dashboard-settings'>
           <div className='sm:flex justify-between items-start'>
             <div className='sm:flex'>
               <div>
@@ -74,17 +73,13 @@ function SingleAppPage() {
               <div className='sm:ml-[26px] sm:mt-0 mt-5'>
                 <h3 className='main-title'>Instagram Store</h3>
                 <p className='tab-desc'>Facilitate payments and pay out sellers or service providers.</p>
-                <div className='flex items-center mt-2'>
-                  <img src={star} alt="" />
-                  <h4 className='text-rating ml-2'>386K</h4>
-                </div>
               </div>
             </div>
             <div>
               <button onClick={handleInviteClick} className='primary-btn'>Install App</button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {isOpen &&
             <div>
@@ -97,19 +92,19 @@ function SingleAppPage() {
             </div>
           }
 
-        <div className='section-container mx-auto sm:flex mt-[45px]'>
+        <div className='dashboard-settings sm:flex mt-[45px]'>
           <div className='rounded-lg'>
-            <img src={sellEverywhereMain} style={{ boxShadow: '0px 4px 16px 0px #00000017' }} alt="" className='w-[250px] sm:w-[585px] sm:h-[375px] rounded-[20px]' />
+            <img src={sellEverywhereMain} alt="" className='w-[250px] sm:w-[765px] sm:h-[495px] rounded-[16px] border p-1' />
           </div>
           <div className='sm:ml-4 sm:mt-0 mt-[10px] space-y-[6px]'>
-            <img src={sellEverywhere1} style={{ boxShadow: '0px 4px 16px 0px #00000017' }} alt="" className='w-[250px] sm:w-[165px] sm:h-[121px] rounded-[20px]' />
-            <img src={sellEverywhere2} style={{ boxShadow: '0px 4px 16px 0px #00000017' }} alt="" className='w-[250px] sm:w-[165px] sm:h-[121px] rounded-[20px]' />
-            <img src={sellEverywhere3} style={{ boxShadow: '0px 4px 16px 0px #00000017' }} alt="" className='w-[250px] sm:w-[165px] sm:h-[121px] rounded-[20px]' />
+            <img src={sellEverywhere1} alt="" className='w-[250px] sm:w-[255px] sm:h-[161px] rounded-[16px] border p-1' />
+            <img src={sellEverywhere2} alt="" className='w-[250px] sm:w-[255px] sm:h-[161px] rounded-[16px] border p-1' />
+            <div className='w-[250px] sm:w-[255px] sm:h-[161px] rounded-[16px] border p-1 bg-[#F2F2F2]' />
           </div>
         </div>
 
-        <div className='section-container mx-auto sm:flex justify-between mt-[75px]'>
-          <div className='sm:w-[225px] w-full'>
+        <div className='dashboard-settings sm:flex mt-[75px]'>
+          <div className='sm:w-[350px] w-full'>
             <div>
               <h3 className='main-heading'>Highlights</h3>
               <div className='mt-[10px]'>
@@ -141,7 +136,7 @@ function SingleAppPage() {
               </div>
             </div>
           </div>
-          <div className='sm:w-[525px] w-full sm:mt-0 mt-10 sm:ml-4'>
+          <div className='w-full sm:mt-0 mt-10 sm:ml-4'>
             <div className='flex justify-between'>
               <h2 className='main-heading'>What's New</h2>
               <button className='text-link'>Version History</button>
@@ -162,8 +157,8 @@ function SingleAppPage() {
           </div>
         </div>
 
-        <div className='section-container mx-auto mt-[120px]'>
-          <h3 className='main-heading'>You may also likes these applications</h3>
+        <div className='dashboard-settings mt-[120px]'>
+          <h3 className='main-heading'>You may also like these applications</h3>
           <p className='tab-desc'>Explore the apps that a wide range of merchants rely on.</p>
           <div className='grid sm:grid-cols-2 grid-cols-1 mt-[40px]'>
             {mostPopularApps.map((item, index) =>
@@ -172,12 +167,52 @@ function SingleAppPage() {
                 <div className='ml-5'>
                   <h3 className='subheading'>{item.title}</h3>
                   <p className='tab-desc'>{item.description}</p>
-                  <div className='flex items-center mt-1'><img src={star} className='w-[18px] h-[18px]' alt="" /><p className='text-rating ml-1'>{item.rating}</p></div>
                 </div>
               </div>
             )}
           </div>
         </div>
+
+        <Transition.Root show={openInstallApp} as={Fragment}>
+          <Dialog as="div" className="relative z-[1001]" onClose={() => setOpenInstallApp(true)}>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+            </Transition.Child>
+
+            <div className="fixed inset-0 z-10 overflow-y-auto">
+              <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                  enterTo="opacity-100 translate-y-0 sm:scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                  leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                >
+                  <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white p-8 shadow-xl transition-all w-full max-w-[400px] flex flex-col gap-y-4">
+                    <div class="moving-line"/>
+                    <p className="tab-desc text-left font-bold mb-3 flex gap-x-2">
+                      Creating your site
+                    </p>
+                    <Dialog.Title as="h3" className="subheading small">
+                      Prepared dashboard
+                    </Dialog.Title>
+                    
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
+            </div>
+          </Dialog>
+        </Transition.Root>
 
       </div>
     </>

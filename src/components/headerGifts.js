@@ -22,14 +22,19 @@ const HeaderGifts = ({title}) => {
       current: activeMenu === '/gifts-privileges' ? true : false,
     },
     {
-      name: 'Connected',
-      href: '/integration/connected',
-      current: activeMenu === '/integration/connected' ? true : false,
+      name: 'Premium',
+      href: '/gifts-privileges/premium',
+      current: activeMenu === '/gifts-privileges/premium' ? true : false,
     },
     {
-      name: 'Apps',
-      href: '/integration/apps',
-      current: activeMenu === '/integration/apps' ? true : false,
+      name: 'Free',
+      href: '/gifts-privileges/free',
+      current: activeMenu === '/gifts-privileges/free' ? true : false,
+    },
+    {
+      name: 'Partner',
+      href: '/gifts-privileges/partner',
+      current: activeMenu === '/gifts-privileges/partner' ? true : false,
     },
   ]
 
@@ -60,7 +65,7 @@ const HeaderGifts = ({title}) => {
                 <div className="flex items-center">
                   <ChevronRightIcon className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
                   <Link to="/integration" className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
-                    Gifts & Privileges
+                    Privileges
                   </Link>
                 </div>
               </li>
@@ -79,9 +84,24 @@ const HeaderGifts = ({title}) => {
         </div>
         <Spacer size={20} />
         <div className="flex items-center justify-between">
-          <h2 className="main-title">
-            {title}
-          </h2>
+          <div className='w-1/2'>
+            <h2 className="main-title">
+              {title}
+            </h2>
+            <p className='tab-desc'>Quisque et neque et lorem imperdiet malesuada. metus nec sapien cursus vehicula. Vivamus non orci nulla. Sed commodo tortor vel efficitur volutpat. Nullam vel dolor nunc. Quisque eu lacus justo.</p>
+          </div>
+          <div className='w-fit'>
+            <div className="overflow-hidden rounded-lg bg-white px-6 py-5 border">
+              <h2 className="subheading">
+                Total deals value
+              </h2>
+              <p className="mb-3 text-3xl font-semibold tracking-tight text-gray-900">1,200,000
+                <span className="ml-2 tab-desc">฿</span>
+              </p>
+
+              <p className="tab-desc-small">From total 150 partners</p>
+            </div>
+          </div>
         </div>
       </div>
 

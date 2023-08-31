@@ -101,39 +101,36 @@ const Dashboard = ({ loadingLogo }) => {
       <div className="bg-white page-section pb-16">
         <div className="relative overflow-hidden">
           <div className="dashboard-container pb-8 grid grid-cols-2 gap-x-8">
-            <div className="pt-0">
-              <div className="mx-auto max-w-2xl">
-                <div className="max-w-lg">
-                  <div className="mt-4">
-                    <a href="#" className="inline-flex space-x-6">
-                      {!loadingLogo ? (
-                        <span className="inline-flex items-center rounded-full bg-indigo-100 px-3 py-0.5 text-xs font-medium text-indigo-800">
-                          <svg className="-ml-1 mr-1.5 h-2 w-2 text-indigo-400" fill="currentColor" viewBox="0 0 8 8">
-                            <circle cx={4} cy={4} r={3} />
-                          </svg>
-                          Beta
-                        </span>
-                      ) : (
-                        <div className="animate-pulse">
-                          <div className="bg-[#F3F3F3] w-[58px] h-[24px] aspect-square rounded-full"></div>
-                        </div>
-                      )}
-
-                    </a>
-                  </div>
+            <div className="max-w-lg">
+              <div className="mt-4">
+                <a href="#" className="inline-flex space-x-6">
                   {!loadingLogo ? (
-                    <h1 className="display-semibold">
-                      Sawadee, Chutiphol  🙏
-                    </h1>
+                    <span className="inline-flex items-center rounded-full bg-indigo-100 px-3 py-0.5 text-xs font-medium text-indigo-800">
+                      <svg className="-ml-1 mr-1.5 h-2 w-2 text-indigo-400" fill="currentColor" viewBox="0 0 8 8">
+                        <circle cx={4} cy={4} r={3} />
+                      </svg>
+                      Beta
+                    </span>
                   ) : (
-                    <div className="animate-pulse mt-2">
-                      <div className="bg-[#F3F3F3] w-[200px] h-[24px] aspect-square rounded-lg"></div>
-                      <div className="bg-[#F3F3F3] w-[280px] h-[15px] aspect-square rounded-lg mt-2"></div>
+                    <div className="animate-pulse">
+                      <div className="bg-[#F3F3F3] w-[58px] h-[24px] aspect-square rounded-full"></div>
                     </div>
                   )}
-                </div>
+
+                </a>
               </div>
+              {!loadingLogo ? (
+                <h1 className="display-semibold">
+                  Sawadee, Chutiphol  🙏
+                </h1>
+              ) : (
+                <div className="animate-pulse mt-2">
+                  <div className="bg-[#F3F3F3] w-[200px] h-[24px] aspect-square rounded-lg"></div>
+                  <div className="bg-[#F3F3F3] w-[280px] h-[15px] aspect-square rounded-lg mt-2"></div>
+                </div>
+              )}
             </div>
+
             <div className="mx-auto flex items-center justify-end w-full">
               <div
                 className="absolute inset-y-0 right-1/2 -z-10 -mr-10 w-[200%] skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 md:-mr-20 lg:-mr-36"
@@ -179,6 +176,7 @@ const Dashboard = ({ loadingLogo }) => {
 
             </div>
           </div>
+          <Spacer size={20} />
           {isOpen &&
             <div>
               <div className="popup-overlay"></div>
