@@ -12,8 +12,8 @@ import googleLogo from '../img/googleLogo.svg'
 import dropboxLogo from '../img/drpBoxLogo.svg'
 import flipIconPlus from '../img/flipIconPlus.png'
 import InstallAddons from '../components/installAddons'
-import HeaderApps from '../components/headerApps'
 import { useParams } from 'react-router-dom'
+import HeaderRedeem from '../components/headerRedeem'
 
 const product = {
   name: 'Zip Tote Basket',
@@ -103,7 +103,7 @@ function GiftPage() {
       <div className='sm:p-10 p-5 page-section'>
 
         <div className='dashboard-settings'>
-          <HeaderApps title={id} desc='Facilitate payments and pay out sellers or service providers with Friends by Chom.'/>
+          <HeaderRedeem title={id} desc='Facilitate payments and pay out sellers or service providers with Friends by Chom.' button="Redeem"/>
         </div>
 
         {/* <div className='dashboard-settings'>

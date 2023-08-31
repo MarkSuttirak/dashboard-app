@@ -105,7 +105,7 @@ function SingleAppPage() {
       <div className='sm:p-10 p-5 page-section'>
 
         <div className='dashboard-settings'>
-          <HeaderApps title='Instagram Store' desc='Facilitate payments and pay out sellers or service providers with Friends by Chom.'/>
+          <HeaderApps title='Instagram Store' desc='Facilitate payments and pay out sellers or service providers with Friends by Chom.' button="Connect"/>
         </div>
 
         {/* <div className='dashboard-settings'>

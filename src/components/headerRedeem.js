@@ -8,7 +8,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { ArrowLeft, ArrowRight } from 'untitledui-js/icons/arrow'
 import LoadingCheck from './loadingcheck'
 
-const HeaderApps = ({title, desc, button}) => {
+const HeaderRedeem = ({title, desc}) => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
@@ -116,7 +116,7 @@ const HeaderApps = ({title, desc, button}) => {
             <p className='tab-desc'>{desc}</p>
           </div>
           <button className={`primary-btn`} onClick={() => setOpenInstallApp(true)}>
-            Connect
+            Redeem
           </button>
         </div>
       </div>
@@ -152,17 +152,13 @@ const HeaderApps = ({title, desc, button}) => {
                     <section className='p-6 pt-8'>
                       <div className='flex gap-x-4 justify-center'>
                         <div className='border rounded-lg w-[60px] h-[60px] bg-[#F3F4F6] flex justify-center items-center' />
-                        <div className='w-[24px] flex flex-col justify-center'>
-                          <ArrowsRightLeftIcon stroke='#475467'/>
-                        </div>
-                        <div className='border rounded-lg w-[60px] h-[60px] bg-[#F3F4F6] flex justify-center items-center' />
                       </div>
                       <Spacer size={20}/>
                       <Dialog.Title as="h3" className="main-heading">
-                        Connect App to Zaviago 
+                        Redeem Privilege
                       </Dialog.Title>
                       <Dialog.Description as="p" className="tab-desc px-3">
-                        Connect your app to Zaviago to get more customers and increase your revenue.
+                        Redeem this privilege to get access to the application.
                       </Dialog.Description>
                     </section>
 
@@ -170,7 +166,7 @@ const HeaderApps = ({title, desc, button}) => {
 
                     <section className='p-6'>
                       <Dialog.Title as="h3" className="subheading small text-left">
-                        Application would like to
+                        How to redeem:
                       </Dialog.Title>
                       <Spacer size={10} />
                       <ul className='flex flex-col gap-y-1 ml-2'>
@@ -197,7 +193,7 @@ const HeaderApps = ({title, desc, button}) => {
                           Cancel
                         </button>
                         <button className={`primary-btn`} onClick={installApp}>
-                          Install
+                          Redeem
                         </button>
                       </div>
                     </section>
@@ -238,7 +234,7 @@ const HeaderApps = ({title, desc, button}) => {
                   <div class="moving-line"/>
                   <p className="tab-desc text-left font-bold mb-3 flex gap-x-2">
                     <ChatBubbleBottomCenterTextIcon width='24'/>
-                    Installing app
+                    Redeeming privilege
                   </p>
                   {preparingWorkspace ? (
                     <div className="flex items-center justify-between">
@@ -248,7 +244,7 @@ const HeaderApps = ({title, desc, button}) => {
                         </div>
                         <div className="text-left">
                           <Dialog.Title as="h3" className="subheading small">
-                            Preparing workspace
+                            Preparing code
                           </Dialog.Title>
                         </div>
                       </div>
@@ -264,7 +260,7 @@ const HeaderApps = ({title, desc, button}) => {
                         <LoadingCheck type='primary' height='20px'/>
                         <div className="text-left">
                           <Dialog.Title as="h3" className="subheading small">
-                            Prepared workspace
+                            Prepared code
                           </Dialog.Title>
                         </div>
                       </div>
@@ -281,7 +277,7 @@ const HeaderApps = ({title, desc, button}) => {
                           <div className="inner-icon"></div>
                         </div>
                         <Dialog.Title as="h3" className="subheading small">
-                          Creating database
+                          Adding code to your account
                         </Dialog.Title>
                       </div>
                       <div>
@@ -293,7 +289,7 @@ const HeaderApps = ({title, desc, button}) => {
                       <div className="flex gap-x-2 items-center">
                         <LoadingCheck type='primary' height='20px'/>
                         <Dialog.Title as="h3" className="subheading small">
-                          Created database
+                          Added code to your account
                         </Dialog.Title>
                       </div>
                       <div>
@@ -309,7 +305,7 @@ const HeaderApps = ({title, desc, button}) => {
                           <div className="inner-icon"></div>
                         </div>
                         <Dialog.Title as="h3" className="subheading small">
-                          Connect application
+                          Redeeming item
                         </Dialog.Title>
                       </div>
                       <div>
@@ -321,7 +317,7 @@ const HeaderApps = ({title, desc, button}) => {
                       <div className="flex gap-x-2 items-center">
                         <LoadingCheck type='primary' height='20px'/>
                         <Dialog.Title as="h3" className="subheading small">
-                          Connected application
+                          Redeemed item
                         </Dialog.Title>
                       </div>
                       <div>
@@ -368,11 +364,11 @@ const HeaderApps = ({title, desc, button}) => {
                       </div>
                       <div className="mt-3 text-center sm:mt-5">
                         <Dialog.Title as="h3" className="main-heading">
-                          The app has been installed
+                          The privilege has been redeemed
                         </Dialog.Title>
                         <div className="mt-2">
                           <p className="tab-desc">
-                            Please click 'Go to dashboard' to start working.
+                            Please click 'Go back' to start working.
                           </p>
                         </div>
                       </div>
@@ -383,7 +379,7 @@ const HeaderApps = ({title, desc, button}) => {
                         className="primary-btn w-full justify-center"
                         onClick={() => setOpenFinishedInstalling(false)}
                       >
-                        Go back to dashboard
+                        Go back
                       </button>
                     </div>
                   </Dialog.Panel>
@@ -396,4 +392,4 @@ const HeaderApps = ({title, desc, button}) => {
   )
 }
 
-export default HeaderApps
+export default HeaderRedeem

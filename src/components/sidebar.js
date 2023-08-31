@@ -52,11 +52,8 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
 
   const navigation = [
     { name: 'Dashboard', icon: <HomeSmile viewBox='0 0 30 24' width='24' className='menu-icon'/>, href: '/', current: active === '/' ? true : false, id: 'dashboard' },
-    // { name: 'Teams', icon: <LayoutAlt01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/teams', count: [4, 'orange', 'have-dot'], current: active === '/teams' ? true : false, id: 'teams' },
     { name: 'Integration', icon: <Backpack viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/integration', count: [10, 'orange', 'have-dot'], current: active === '/integration' || active === '/integration/connected' ? true : false, id: 'integration' },
-    { name: 'Gift & Privilege', icon: <Gift01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/gifts-privileges', count: [5, 'blue', 'have-dot'], current: active === "/gifts-privileges" ? true : false, active: active, id: 'gift' },
-    // { name: 'การเรียกเก็บเงิน', icon: <Inbox01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '#', count: [10, 'gray'], current: active === "#" ? true : false, active: active, id: 'billing' },
-    // { name: 'ตั้งค่า', icon: <Settings01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/settings/profile', current: active === "/settings" || active === "/settings/profile" || active === "/settings/team" || active === "/settings/plan" || active === "/settings/billing" ? true : false, active: active, id: 'settings' },
+    { name: 'Gift & Privilege', icon: <Gift01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/gifts-privileges', count: [5, 'blue', 'have-dot'], current: active === "/gifts-privileges" || active === "/gifts-privileges/premium" || active === "/gifts-privileges/free" ? true : false, active: active, id: 'gift' },
   ]
 
   const leftNavigation = [
@@ -143,6 +140,19 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
           </div>
         </div>
         <div id="lower-apps">
+          {leftNavigation.map((item) => (
+            <Link                    key={item.id}
+            to={item.href}
+            className={classNames(
+              item.current
+                ? 'sidebar-menu active'
+                : 'sidebar-menu'
+            )}>
+            </Link>
+            // <Link to='/settings/profile' className="nav-btns">
+            //   <Settings01/>
+            // </Link>
+          ))}
           <Link to='/settings/profile' className="nav-btns">
             <Settings01/>
           </Link>

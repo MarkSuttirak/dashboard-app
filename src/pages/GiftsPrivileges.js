@@ -1,5 +1,5 @@
 import Spacer from '../components/spacer';
-import { ArrowUpRight } from '@untitled-ui/icons-react/build/cjs';
+import { ArrowUpRight, LinkExternal01 } from '@untitled-ui/icons-react/build/cjs';
 import { Link } from 'react-router-dom';
 import iconmock from '../img/iconmock.svg'
 import HeaderGifts from '../components/headerGifts';
@@ -20,7 +20,7 @@ const GiftsPrivileges = () => {
                 </div>
                 <Link to={`/gift-page/${title}`} className='card-link flex items-center gap-x-2'>
                   Read more
-                  <ArrowTopRightOnSquareIcon viewBox='0 0 24 24' width='20' strokeWidth='4'/> {/* Make it bolder */}
+                  <LinkExternal01 viewBox='0 0 24 24' width='20' strokeWidth='4'/>
                 </Link>
               </div>
               <Spacer size={10}/>
@@ -31,21 +31,23 @@ const GiftsPrivileges = () => {
               <p className="tab-desc">{desc}</p>
               <Spacer size={20}/>
             </div>
-            <div className='flex flex-col gap-y-1'>
-              <p className="tab-desc-small flex items-center gap-x-2">
-                <CheckBadgeIcon className="h-5 w-5 text-green-600" aria-hidden="true"/>
-                Special deals for UOB customers
-              </p>
-              <p className="tab-desc-small flex items-center gap-x-2">
-                <CheckBadgeIcon className="h-5 w-5 text-green-600" aria-hidden="true"/>
-                For Zaviago pro users only
-              </p>
-              <Spacer size={5}/>
-              <span className="inline-flex items-start rounded-md bg-gray-50 px-2 py-1 text-xs font-semibold text-gray-600 ring-1 ring-inset ring-gray-500/10 min-h-[24px] items-center gap-x-1" style={{letterSpacing:'-0.4px'}}> {/* Make it align middle */}
-                <ReceiptPercentIcon width='16'/>
-                {badgeTitle}
-              </span>
-            </div>
+            {isSpecial && (
+              <div className='flex flex-col gap-y-1'>
+                <p className="tab-desc-small flex items-center gap-x-2">
+                  <CheckBadgeIcon className="h-5 w-5 text-green-600" aria-hidden="true"/>
+                  Special deals for UOB customers
+                </p>
+                <p className="tab-desc-small flex items-center gap-x-2">
+                  <CheckBadgeIcon className="h-5 w-5 text-green-600" aria-hidden="true"/>
+                  For Zaviago pro users only
+                </p>
+                <Spacer size={5}/>
+                <span className="inline-flex items-start rounded-md bg-gray-50 px-2 py-1 text-xs font-semibold text-gray-600 ring-1 ring-inset ring-gray-500/10 min-h-[24px] items-center gap-x-1" style={{letterSpacing:'-0.4px'}}> {/* Make it align middle */}
+                  <ReceiptPercentIcon width='16'/>
+                  {badgeTitle}
+                </span>
+              </div>
+            )}
           </div>
         </div>
         <div className='border-t inner-card flex justify-between items-center'>
@@ -103,7 +105,7 @@ const GiftsPrivileges = () => {
           <div>
             <dl className="grid gap-5 cards-sec">
               {appLists.map((app, index) => 
-                <CardList title={app.title} desc={app.desc} isConnected={app.isConnected} icon={app.icon} badgeTitle={app.badgeTitle}/>
+                <CardList title={app.title} desc={app.desc} isConnected={app.isConnected} icon={app.icon} badgeTitle={app.badgeTitle} isSpecial={app.isSpecial}/>
               )}
             </dl>
           </div>

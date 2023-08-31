@@ -1,11 +1,13 @@
 import HeaderIntegration from '../components/headerIntegration'
 import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/20/solid'
-import { CursorArrowRaysIcon, EnvelopeOpenIcon, UsersIcon, TrashIcon, PencilIcon } from '@heroicons/react/24/outline'
+import { CursorArrowRaysIcon, EnvelopeOpenIcon, UsersIcon, TrashIcon, PencilIcon, PlayCircleIcon, ArrowsRightLeftIcon } from '@heroicons/react/24/outline'
 import { ArrowTopRightOnSquareIcon, ReceiptPercentIcon, CheckCircleIcon, FireIcon } from '@heroicons/react/24/solid';
 import { ArrowUpRight } from '@untitled-ui/icons-react/build/cjs';
 import { Link } from "react-router-dom";
 import iconmock from '../img/iconmock.svg'
 import Spacer from '../components/spacer';
+import { Dialog, Transition } from '@headlessui/react'
+import { Fragment, useState } from 'react';
 
 const stats = [
   { id: 1, name: 'Total Subscribers', stat: '71,897', icon: UsersIcon, change: '122', changeType: 'increase' },
@@ -43,6 +45,7 @@ function classNames(...classes) {
 }
 
 const ConnectedApps = () => {
+  const [openConnect, setOpenConnect] = useState(false)
   const CardList = ({title, desc, isConnected, icon, badgeTitle, isSpecial, link}) => {
     return (
       <div
@@ -199,7 +202,7 @@ const ConnectedApps = () => {
               <thead className="table-head">
                 <tr>
                   <th scope="col" className="table-head-text first-col">
-                    Company
+                    App
                   </th>
                   <th scope="col" className="table-head-text">
                     Status
@@ -221,7 +224,7 @@ const ConnectedApps = () => {
                     <td className="whitespace-nowrap py-4 pr-3 text-sm pl-6">
                       <div className="flex items-center">
                         <div className="h-10 w-10 flex-shrink-0">
-                          <img className="h-10 w-10 rounded-full" src={app.image} alt="" />
+                          <img className="h-10 w-10 rounded-md" src={app.image} alt="" />
                         </div>
                         <div className="ml-4">
                           <div className="subheading">{app.companytitle}</div>
@@ -242,9 +245,9 @@ const ConnectedApps = () => {
                       </div>
                     </td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" className="text-[#0788F5]">
+                      <button onClick={() => setOpenConnect(true)} className="text-[#0788F5]">
                         Edit
-                      </a>
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -277,6 +280,78 @@ const ConnectedApps = () => {
           </div>
         </div>
       </div>
+
+      <Transition.Root show={openConnect} as={Fragment}>
+          <Dialog as="div" className="relative z-[1001]" onClose={() => setOpenConnect(false)}>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+            </Transition.Child>
+
+            <div className="fixed inset-0 z-10 overflow-y-auto">
+              <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                  enterTo="opacity-100 translate-y-0 sm:scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                  leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                >
+                  <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white shadow-xl transition-all w-full max-w-[400px] flex flex-col">
+                    <section className='p-6 pt-8'>
+                      <div className='flex gap-x-4 justify-center'>
+                        <div className='border rounded-lg w-[60px] h-[60px] bg-[#F3F4F6] flex justify-center items-center' />
+                        <div className='w-[24px] flex flex-col justify-center'>
+                          <ArrowsRightLeftIcon stroke='#475467'/>
+                        </div>
+                        <div className='border rounded-lg w-[60px] h-[60px] bg-[#F3F4F6] flex justify-center items-center' />
+                      </div>
+                      <Spacer size={20}/>
+                      <Dialog.Title as="h3" className="main-heading">
+                        Edit integration
+                      </Dialog.Title>
+                      <Dialog.Description as="p" className="tab-desc px-3">
+                        Connect your app to Zaviago to get more customers and increase your revenue.
+                      </Dialog.Description>
+                    </section>
+
+                    <hr />
+
+                    <section className='p-6 text-left'>
+                      <Dialog.Title as="h3" className="subheading small">
+                        Information and Help Support
+                      </Dialog.Title>
+                      <p className='tab-desc'>service@zaviago.com</p>
+                    </section>
+
+                    <hr />
+
+                    <section className='p-6 flex justify-end'>
+                      <div className='flex gap-x-2'>
+                        <button className={`white-outline-btn`} onClick={() => setOpenConnect(false)}>
+                          Cancel
+                        </button>
+                        <button className={`primary-btn`}>
+                          Remove app
+                        </button>
+                      </div>
+                    </section>
+
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
+            </div>
+          </Dialog>
+        </Transition.Root>
     </>
   )
 }

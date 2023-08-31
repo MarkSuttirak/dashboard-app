@@ -24,6 +24,8 @@ import Login from './pages/login';
 import Signup from './pages/signup';
 import OTP from './pages/otp';
 import GiftPage from './pages/giftPage';
+import PremiumPrivileges from './pages/premiumPrivileges';
+import FreePrivileges from './pages/freePrivileges';
 
 import TestPage from './pages/testPage';
 
@@ -40,7 +42,7 @@ function App() {
   }, []);
 
   return (
-    < >
+    <>
       <Router>
         <switchContext.Provider value={[isSwitchModalOpen, setisSwitchModalOpen]}>
 
@@ -66,6 +68,8 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/otp" element={<OTP />} />
           <Route path="/gift-page/:id" element={<GiftPage />} />
+          <Route path="/gift-privileges/premium" element={<PremiumPrivileges />} />
+          <Route path="/gift-privileges/free" element={<FreePrivileges />} />
 
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/register" element={<Register />} />
