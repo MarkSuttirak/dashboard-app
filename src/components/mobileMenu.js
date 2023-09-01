@@ -12,7 +12,7 @@ const MobileMenu = () => {
     },
     {
       title: "Site & App",
-      link: "/about",
+      link: "/site-and-app",
       icon: <CommandLineIcon width='20'/>
     },
     {

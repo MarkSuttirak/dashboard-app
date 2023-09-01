@@ -26,6 +26,7 @@ import OTP from './pages/otp';
 import GiftPage from './pages/giftPage';
 import PremiumPrivileges from './pages/premiumPrivileges';
 import FreePrivileges from './pages/freePrivileges';
+import SiteAndApp from './pages/siteandapp';
 
 import TestPage from './pages/testPage';
 import MobileMenu from './components/mobileMenu';
@@ -73,6 +74,7 @@ function App() {
           <Route path="/gift-page/:id" element={<GiftPage />} />
           <Route path="/gift-privileges/premium" element={<PremiumPrivileges />} />
           <Route path="/gift-privileges/free" element={<FreePrivileges />} />
+          <Route path="/site-and-app" element={<SiteAndApp />} />
 
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/register" element={<Register />} />
