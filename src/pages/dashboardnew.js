@@ -458,6 +458,53 @@ const DashboardNew = ({ loadingLogo }) => {
           <div className="border rounded-lg">
             <section className="p-4">
               <div className="flex justify-between items-start">
+                <h2 className="subheading">Latest Blog Posts</h2>
+                <Link className="text-link bold">Manage Blog</Link>
+              </div>
+            </section>
+
+            <hr />
+
+            <section className="p-4 flex flex-col gap-y-4">
+              <div className="flex gap-x-2">
+                <div>
+                  <img src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' width='60' className="rounded-lg"/>
+                </div>
+                <div>
+                  <h2 className="subheading">New Technologies That Can Help...</h2>
+                  <p className="tab-desc">Jun 30, 2023 | tim cruise</p>
+                </div>
+              </div>
+
+              <div className="flex gap-x-2">
+                <div>
+                  <img src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' width='60' className="rounded-lg"/>
+                </div>
+                <div>
+                  <h2 className="subheading">New Technologies That Can Help...</h2>
+                  <p className="tab-desc">Jun 30, 2023 | tim cruise</p>
+                </div>
+              </div>
+
+              <div className="flex gap-x-2">
+                <div>
+                  <img src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' width='60' className="rounded-lg"/>
+                </div>
+                <div>
+                  <h2 className="subheading">New Technologies That Can Help...</h2>
+                  <p className="tab-desc">Jun 30, 2023 | tim cruise</p>
+                </div>
+              </div>
+              
+              <p className="text-link">View 5 More</p>
+            </section>
+          </div>
+        </div>
+
+        <div className="dashboard-container mb-5">
+          <div className="border rounded-lg">
+            <section className="p-4">
+              <div className="flex justify-between items-start">
                 <h2 className="subheading">Tasks & Reminders</h2>
                 <Link className="text-link bold">Manage Tasks</Link>
               </div>
