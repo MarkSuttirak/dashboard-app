@@ -33,7 +33,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 
 const Dashboard = ({ loadingLogo }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [openEditShortcuts, setOpenEditShortcuts] = useState(true)
+  const [openEditShortcuts, setOpenEditShortcuts] = useState(false)
 
   const handleInviteClick = () => {
     setIsOpen(!isOpen);
@@ -54,32 +54,32 @@ const Dashboard = ({ loadingLogo }) => {
   const shortcuts = [
     {
       title: 'Point of Sale',
-      icon: <WalletIcon width='20' />,
+      icon: <WalletIcon width='20' strokeWidth='2'/>,
       added: true
     },
     {
       title: 'Products',
-      icon: <TagIcon width='20'/>,
+      icon: <TagIcon width='20' strokeWidth='2'/>,
       added: true
     },
     {
       title: 'Orders',
-      icon: <ShoppingCartIcon width='20'/>,
+      icon: <ShoppingCartIcon width='20' strokeWidth='2'/>,
       added: true
     },
     {
       title: 'Coupons',
-      icon: <TicketIcon width='20'/>,
+      icon: <TicketIcon width='20' strokeWidth='2'/>,
       added: true
     },
     {
       title: 'Forms',
-      icon: <ListBulletIcon width='20'/>,
+      icon: <ListBulletIcon width='20' strokeWidth='2'/>,
       added: true
     },
     {
       title: 'Payments',
-      icon: <CreditCardIcon width='20'/>,
+      icon: <CreditCardIcon width='20' strokeWidth='2'/>,
       added: false
     },
     {
@@ -128,37 +128,45 @@ const Dashboard = ({ loadingLogo }) => {
           <div className="dashboard-container pb-8 flex">
             <div className="basis-full">
               {!loadingLogo ? (
-                <h1 className="display-semibold">
-                  Welcome, Chutiphol 🙏
-                </h1>
+                <div className="flex justify-between">
+                  <h1 className="display-semibold">
+                    Welcome, Chutiphol 🙏
+                  </h1>
+                  <Bars3Icon width='24'/>
+                </div>
               ) : (
                 <div className="animate-pulse mt-2">
                   <div className="bg-[#F3F3F3] w-[200px] h-[24px] aspect-square rounded-lg"></div>
-                  <div className="bg-[#F3F3F3] w-[280px] h-[15px] aspect-square rounded-lg mt-2"></div>
                 </div>
               )}
             </div>
 
-            <Bars3Icon width='24'/>
+            
           </div>
           <Spacer size={20} />
 
           <div className="mobile-section">
-            <div className="overflow-x-auto dashboard-container flex gap-x-2 flex-nowrap">
-              <button className="white-outline-btn" onClick={() => setOpenEditShortcuts(true)}>
-                <PencilIcon width='20' />
-              </button>
-              {shortcuts.map((s) => (
-                <>
-                  {s.added === true && (
-                    <button className="black-btn whitespace-pre with-icon">
-                    {s.icon}
-                    {s.title}
-                  </button>
-                  )}
-                </>
-              ))}
-            </div>
+            {!loadingLogo ? (
+              <div className="overflow-x-auto dashboard-container flex gap-x-2 flex-nowrap">
+                <button className="white-outline-btn" onClick={() => setOpenEditShortcuts(true)}>
+                  <PencilIcon width='20' strokeWidth='2' />
+                </button>
+                {shortcuts.map((s) => (
+                  <>
+                    {s.added === true && (
+                      <button className="black-btn whitespace-pre with-icon">
+                      {s.icon}
+                      {s.title}
+                    </button>
+                    )}
+                  </>
+                ))}
+              </div>
+            ) : (
+              <div className="dashboard-container m-5">
+                <div className="animate-pulse bg-[#F3F3F3] h-[40px] rounded-[20px]" />
+              </div>
+            )}
 
             <Spacer size={20} />
           </div>
@@ -199,12 +207,12 @@ const Dashboard = ({ loadingLogo }) => {
                   </div>
                 </div>
                 <div className="w-1/2 text-right">
-                  <Link className="text-link">View All (7)</Link>
+                  <Link className="text-link bold">View All (7)</Link>
                 </div>
               </div>
             </div>
 
-            <div className="bg-[#0788F5] text-white p-5 rounded-[20px]">
+            <div className="bg-[#0788F5] text-white p-5 rounded-lg">
               <h2 className="heading-white">Connect a custom domain</h2>
               <p className="desc-white">Get a unique address for your site</p>
 
@@ -214,14 +222,8 @@ const Dashboard = ({ loadingLogo }) => {
             </div>
           </div>
         ) : (
-          <div className="animate-pulse dashboard-container pb-10 gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {dashboardInfo.map((info) => (
-              <div
-                key={info.title}
-                className="relative w-[242px] h-[200px] rounded-[20px] flex items-center space-x-3 bg-[#F3F3F3] p-4 pb-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
-              >
-              </div>
-            ))}
+          <div className="dashboard-container m-5">
+            <div className="animate-pulse bg-[#F3F3F3] h-[200px] rounded-[20px]" />
           </div>
         )}
 
@@ -512,10 +514,10 @@ const Dashboard = ({ loadingLogo }) => {
           <div className="border animate-pulse border-gray-200 bg-[#F3F4F6] py-20 pl-10 dashboard-container flex justify-between items-center" style={{ borderRadius: "20px 20px 20px 20px" }}>
             <div>
               <div className="bg-[#c9ccd1] w-[130px] h-[15px] aspect-square rounded-md"></div>
-              <div className="flex items-center mt-[15px]"> <div className="bg-[#c9ccd1] w-[45px] h-[45px] aspect-square rounded-md"></div> <div className="bg-[#c9ccd1] ml-6 w-[370px] h-[50px] rounded-md"></div> </div>
+              <div className="flex items-center mt-[15px]"> <div className="bg-[#c9ccd1] w-[45px] h-[45px] aspect-square rounded-md"></div> <div className="bg-[#c9ccd1] ml-6 max-w-[240px] w-full h-[50px] rounded-md"></div> </div>
               <div className="flex items-center mt-5">
-                <div className="bg-[#c9ccd1] w-[170px] h-[44px] rounded-md"></div>
-                <div className="bg-[#c9ccd1] ml-5 w-[170px] h-[44px] rounded-md"></div>
+                <div className="bg-[#c9ccd1] w-[120px] md:w-[170px] h-[44px] rounded-md"></div>
+                <div className="bg-[#c9ccd1] ml-5 w-[120px] md:w-[170px] h-[44px] rounded-md"></div>
               </div>
             </div>
           </div>
@@ -595,10 +597,10 @@ const Dashboard = ({ loadingLogo }) => {
                   <div className="bg-[#F3F3F3] w-[224px] h-[24px] aspect-square rounded-lg mt-1"></div>
                 </div>
 
-                <div className="bg-[#F3F3F3] w-[420px] h-[12px] aspect-square rounded-lg mt-2"></div>
-                <div className="bg-[#F3F3F3] w-[290px] h-[12px] aspect-square rounded-lg mt-2"></div>
+                <div className="bg-[#F3F3F3] max-w-[200px] w-full md:w-[420px] h-[12px] aspect-square rounded-lg mt-2"></div>
+                <div className="bg-[#F3F3F3] max-w-[100px] w-full md:w-[290px] h-[12px] aspect-square rounded-lg mt-2"></div>
 
-                <div className="btn-group mt-5 columns-5">
+                <div className="btn-group mt-5 rows-5 md:columns-5">
                   <button className="flex items-center font-13 headings gap-x-2.5">
                     <div className="bg-[#F3F3F3] w-[14px] h-[14px] aspect-square rounded-lg"></div>
                     <div className="bg-[#F3F3F3] w-[80px] h-[12px] aspect-square rounded-lg"></div>
@@ -686,7 +688,7 @@ const Dashboard = ({ loadingLogo }) => {
                                 {s.icon}
                                 {s.title}
                               </div>
-                              <div>
+                              {/* <div>
                                 {s.added === true ? (
                                   <CheckCircleIcon className="h-5 w-5 text-[#0788F5]" aria-hidden="true"/>
                                 ) : (
@@ -694,7 +696,7 @@ const Dashboard = ({ loadingLogo }) => {
                                     <PlusCircleIcon className="h-5 w-5 text-[#0788F5]" aria-hidden="true" />
                                   </button>
                                 )}
-                              </div>
+                              </div> */}
                             </li>
                           ))}
                         </ul>

@@ -37,7 +37,7 @@ function App() {
   const [loadingLogo, setLoadingLogo] = useState(true);
   const timeout = setTimeout(() => {
     setLoadingLogo(false);
-  }, 2020);
+  }, 500);
   useEffect(() => {
     return () => clearTimeout(timeout);
   }, []);

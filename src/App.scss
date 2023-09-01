@@ -8,7 +8,7 @@ $left-sidebar-width: 70px;
 $right-sidebar-width: 256px;
 
 $mobile-header-size: 60px;
-$mobile-footer-size: 50px;
+$mobile-footer-size: 60px;
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
 
@@ -118,6 +118,7 @@ body {
 .header-mobile {
   height:$mobile-header-size;
   top:0;
+  padding:16px;
 }
 
 .mobile-menu {
@@ -127,13 +128,17 @@ body {
   justify-content:space-between;
   align-items:center;
   background-color:white;
-  padding:16px;
 }
 
 .footer-mobile {
   height:$mobile-footer-size;
   bottom:0;
   border-top:1px solid #EBEEF0;
+  padding:16px 4px;
+}
+
+.footer-menu-text {
+  font-size:12px;
 }
 
 .sidebar-menu {
@@ -306,6 +311,9 @@ body {
   font-family:Inter;
   cursor:pointer;
   line-height:24px;
+  &.bold {
+    font-weight:600
+  }
 }
 
 .input-addon {
