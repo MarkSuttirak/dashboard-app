@@ -545,8 +545,8 @@ const DashboardNew = ({ loadingLogo }) => {
 
               <h2 className="subheading">Get paid instantly with Pay Links</h2>
               <p className="tab-desc mb-2">Charge clients once or multiple times, share links on social, via email or any way you want.</p>
-              <Link className="text-white bg-[#0788F5] inline-flex px-2 py-1 rounded-full text-xs items-center gap-x-1">
-                <PlusIcon width='16' strokeWidth='2'/>
+              <Link className="text-white bg-[#0788F5] inline-flex px-3 py-1 rounded-full text-sm items-center gap-x-1">
+                <PlusIcon width='20' strokeWidth='2'/>
                 Create New
               </Link>
             </section>
@@ -698,7 +698,7 @@ const DashboardNew = ({ loadingLogo }) => {
 
               <h2 className="subheading">Notify members on their mobile</h2>
               <p className="tab-desc mb-2">Update your members and get them to interact with the mobile app.</p>
-              <Link className="text-white bg-[#0788F5] inline-flex px-2 py-1 rounded-full text-xs items-center gap-x-1">
+              <Link className="text-white bg-[#0788F5] inline-flex px-3 py-1 rounded-full text-sm items-center gap-x-1">
                 Send Push Notification
               </Link>
             </section>

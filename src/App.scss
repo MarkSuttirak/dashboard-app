@@ -86,12 +86,6 @@ body {
   overflow-y:scroll;
 }
 
-.mobile-section {
-  ::-webkit-scrollbar {
-    display:none
-  }
-}
-
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -1832,5 +1826,8 @@ select#goal {
 @media (max-width:767px){
   .register-screen {
     width:calc(100% - 60px)
+  }
+  ::-webkit-scrollbar {
+    display:none
   }
 }
