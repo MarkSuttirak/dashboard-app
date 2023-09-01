@@ -84,7 +84,7 @@ const Dashboard = ({ loadingLogo }) => {
     },
     {
       title: 'Pay Links',
-      icon: <LinkIcon width='20'/>,
+      icon: <LinkIcon width='20' strokeWidth='2'/>,
       added: false
     },
   ]
@@ -434,8 +434,6 @@ const Dashboard = ({ loadingLogo }) => {
                   </div>
                 </div>
 
-
-
                 {/* Progress Bars */}
                 <div className="flex gap-x-2 items-center mb-4 columns-4">
                   <div className="w-[30%]">
@@ -662,7 +660,7 @@ const Dashboard = ({ loadingLogo }) => {
                   leaveFrom="translate-x-0"
                   leaveTo="translate-x-full"
                 >
-                  <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
+                  <Dialog.Panel className="pointer-events-auto w-screen">
                     <div className="flex h-full overflow-auto flex-col bg-white py-4">
                       <div className="px-4 sm:px-6 shadow-lg pb-3">
                         <div className="flex items-start justify-between">

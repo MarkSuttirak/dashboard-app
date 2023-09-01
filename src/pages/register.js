@@ -57,6 +57,11 @@ export default function Register() {
     }
   },[])
 
+  const [isGoingBack, setIsGoingBack] = useState(false);
+  const [isGoingNext, setIsGoingNext] = useState(false);
+  const [isGoingBackComplete, setIsGoingBackComplete] = useState(false);
+  const [isGoingNextCurrent, setIsGoingNextCurrent] = useState(false);
+
   const [buildingWorkspace, setBuildingWorkspace] = useState(false);
   const [changingSite, setChangingSite] = useState(false);
   const [preparingDashboard, setPreparingDashboard] = useState(false);
@@ -71,9 +76,6 @@ export default function Register() {
   const [isDisabledStepSix, setIsDisabledStepSix] = useState(true);
   const [isDisabledStepSeven, setIsDisabledStepSeven] = useState(true);
   const [isDisabledStepEight, setIsDisabledStepEight] = useState(true);
-
-  const [isChecked, setIsChecked] = useState(false);
-  const [isCheckedTwo, setIsCheckedTwo] = useState(false);
 
   const [mem, setMem] = useState()
   const [theme, setTheme] = useState(themeOptions[0])
@@ -111,60 +113,45 @@ export default function Register() {
     }, 600)
   }
 
-  const registerStep = [
-    { id: 0, status: page },
-    { id: 1, status: page },
-    { id: 2, status: page },
-    { id: 3, status: page },
-    { id: 4, status: page },
-    { id: 5, status: page },
-    { id: 6, status: page },
-  ]
-
-  const Steps = ({process}) => {
-    for (let i = 0; i <= Math.min(process, 7); i++) {
-      registerStep[i].status = 'complete';
-    }
-    if (process >= 0 && process <= 7) {
-      registerStep[process].status = 'current';
-    }
-
+  const Steps = () => {
     return (
       <nav aria-label="Progress">
         <ol role="list" className="flex justify-between">
-          {registerStep.map((step) => (
-            <li key={step.id} className="step-list">
-              {step.status === 'complete' ? (
-                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-10">
-                  <div className={`h-1 rounded-full bg-[#0788F5]`} style={{ width: "100%" }} />
-                </div>
-              ) : step.status === 'current' ? (
-                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-10">
-                  <div className={`h-1 rounded-full bg-[#0788F5]`} style={{ width: "50%" }} />
-                </div>
-              ) : step.status === 'going-back-complete' ? (
-                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-10">
-                  <div className={`h-1 rounded-full bg-[#0788F5] complete-to-current`} />
-                </div>
-              ) : step.status === 'going-next-complete' ? (
-                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-10">
-                  <div className={`h-1 rounded-full bg-[#0788F5] current-to-complete`} />
-                </div>
-              ) : step.status === 'going-back-current' ? (
-                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-10">
-                  <div className={`h-1 rounded-full bg-[#0788F5] current-to-zero`} />
-                </div>
-              ) : step.status === 'going-next-current' ? (
-                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-10">
-                  <div className={`h-1 rounded-full bg-[#0788F5] zero-to-current`} />
-                </div>
-              ) : (
-                <div className="flex flex-col bg-gray-200 rounded-full h-1 w-10">
-                  <div className={`h-1 rounded-full bg-[#0788F5] coming`} style={{ width: "0%" }} />
-                </div>
-              )}
-            </li>
-          ))}
+          <li className="step-list">
+            <div className="step-register">
+              <div className={`step-register-inner ${page === 0 ? (isGoingNext ? 'current-to-complete' : 'current') : 'complete'}`} />
+            </div>
+          </li>
+          <li className="step-list">
+            <div className="step-register">
+              <div className={`step-register-inner ${page === 1 ? (isGoingNext ? 'current-to-complete' : isGoingBack ? 'current-to-zero' : 'current') : page > 1 ? 'complete' : 'coming'}`} />
+            </div>
+          </li>
+          <li className="step-list">
+            <div className="step-register">
+              <div className={`step-register-inner ${page === 2 ? (isGoingNext ? 'current-to-complete' : isGoingBack ? 'current-to-zero' : 'current') : page > 2 ? 'complete' : 'coming'}`} />
+            </div>
+          </li>
+          <li className="step-list">
+            <div className="step-register">
+              <div className={`step-register-inner ${page === 3 ? (isGoingNext ? 'current-to-complete' : isGoingBack ? 'current-to-zero' : 'current') : page > 3 ? 'complete' : 'coming'}`} />
+            </div>
+          </li>
+          <li className="step-list">
+            <div className="step-register">
+              <div className={`step-register-inner ${page === 4 ? (isGoingNext ? 'current-to-complete' : isGoingBack ? 'current-to-zero' : 'current') : page > 4 ? 'complete' : 'coming'}`} />
+            </div>
+          </li>
+          <li className="step-list">
+            <div className="step-register">
+              <div className={`step-register-inner ${page === 5 ? (isGoingNext ? 'current-to-complete' : isGoingBack ? 'current-to-zero' : 'current') : page > 5 ? (isGoingBackComplete ? 'complete-to-current' : 'complete') : 'coming'}`} />
+            </div>
+          </li>
+          <li className="step-list">
+            <div className="step-register">
+              <div className={`step-register-inner ${page === 6 ? (isGoingNext ? 'current-to-complete' : isGoingBack ? 'current-to-zero' : 'current') : page > 6 ? 'complete' : 'coming'}`} />
+            </div>
+          </li>
         </ol>
       </nav>
     )
@@ -173,8 +160,11 @@ export default function Register() {
   const goPrev = () => {
     if (page > 0) {
       addAnimDown();
+      setIsGoingBack(true);
       setTimeout(() => {
         setPage(page - 1);
+        setIsGoingBack(false);
+        setIsGoingBackComplete(true);
         addAnimUp();
       }, 600)
     }
@@ -182,10 +172,16 @@ export default function Register() {
 
   const goNext = () => {
     addAnimDown();
+    setIsGoingNext(true);
     setTimeout(() => {
+      setIsGoingNext(false);
+      setIsGoingNextCurrent(true);
       setPage(page + 1);
       addAnimUp();
     }, 600)
+    setTimeout(() => {
+      setIsGoingNextCurrent(false);
+    },1200)
   }
 
   const checkboxLists = [
@@ -431,7 +427,7 @@ export default function Register() {
         )}
 
         {page === 1 && (
-          <div className="m-auto w-full max-w-sm w-96 h-[400px]">
+          <div className="m-auto w-full max-w-sm w-96 h-[600px]">
             <Steps process={1} />
             <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
               <h2 className="main-title mt-8">What is your business about?</h2>
@@ -470,7 +466,7 @@ export default function Register() {
         )}
 
         {page === 2 && (
-          <div className="m-auto w-full max-w-sm w-96 h-[400px]">
+          <div className="m-auto w-full max-w-sm w-96 h-[600px]">
             <Steps process={2}/>
             <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
               <h2 className="main-title mt-8">How many people are there in your team?</h2>
@@ -509,7 +505,7 @@ export default function Register() {
         )}
 
         {page === 3 && (
-          <div className="m-auto w-full max-w-sm w-96 h-[400px]">
+          <div className="m-auto w-full max-w-sm w-96 h-[600px]">
             <Steps process={3}/>
             <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
               <h2 className="main-title mt-8">What are your goals for this business?</h2>
@@ -550,7 +546,7 @@ export default function Register() {
         )}
 
         {page === 4 && (
-          <div className="m-auto w-full max-w-sm w-96 h-[400px]">
+          <div className="m-auto w-full max-w-sm w-96 h-[600px]">
             <Steps process={4}/>
             <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
               <h2 className="main-title mt-8">What would you like to call your site?</h2>
@@ -632,7 +628,7 @@ export default function Register() {
         )}
 
         {page === 5 && (
-          <div className="m-auto w-full max-w-sm w-96 h-[400px]">
+          <div className="m-auto w-full max-w-sm w-96 h-[600px]">
             <Steps process={5}/>
             <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
               <h2 className="main-title mt-8">What would you like to add on your site?</h2>
@@ -675,7 +671,7 @@ export default function Register() {
         )}
 
         {page === 6 && (
-          <div className="m-auto w-full max-w-sm w-96 h-[400px]">
+          <div className="m-auto w-full max-w-sm w-96 h-[600px]">
             <Steps process={6}/>
             <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
               <h2 className="main-title mt-8">Pick a theme you like</h2>

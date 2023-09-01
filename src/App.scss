@@ -1195,6 +1195,30 @@ select#location {
   }
 }
 
+.step-register {
+  display:flex;
+  flex-direction:column;
+  border-radius:999px;
+  height:4px;
+  width:40px;
+  background-color:#e5e7eb;
+
+  .step-register-inner {
+      height:4px;
+      background-color:#0788F5;
+      border-radius:999px;
+      &.complete {
+          width:100%;
+      }
+      &.current {
+          width:50%;
+      }
+      &.coming {
+          width:0%;
+      }
+  }
+}
+
 .complete-to-current {
   animation: hundredToFifty 0.5s forwards;
   animation-delay:0.5s;

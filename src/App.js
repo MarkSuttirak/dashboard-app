@@ -29,6 +29,7 @@ import FreePrivileges from './pages/freePrivileges';
 
 import TestPage from './pages/testPage';
 import MobileMenu from './components/mobileMenu';
+import DashboardNew from './pages/dashboardnew';
 
 export const switchContext = createContext();
 
@@ -51,7 +52,8 @@ function App() {
           <TeamModal />
         </switchContext.Provider>
         <Routes>
-          <Route path="/" element={<Dashboard loadingLogo={loadingLogo} />} />
+          <Route path="/" element={<DashboardNew />} />
+          <Route path="/dashboard/old" element={<Dashboard loadingLogo={loadingLogo} />} />
           <Route path="/appsdetail" element={<BusinessDetail />} />
           <Route path="/singleAppPage" element={<SingleAppPage />} />
           <Route path="/change-domain" element={<ChangeDomain />} />
