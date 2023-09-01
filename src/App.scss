@@ -86,6 +86,12 @@ body {
   overflow-y:scroll;
 }
 
+.mobile-section {
+  ::-webkit-scrollbar {
+    display:none
+  }
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -212,6 +218,42 @@ body {
   letter-spacing:0.4px;
   &.small {
     font-size:14px;
+  }
+}
+
+.heading-white {
+  color:white;
+  font-size:14px;
+  font-weight:600;
+  font-family:Cal Sans, Inter;
+  letter-spacing:0.4px;
+}
+
+.desc-white {
+  color:white;
+  font-size:12px;
+  font-family:Inter;
+  font-weight:400;
+  line-height:20px;
+}
+
+.white-btn {
+  background-color:white;
+  border-radius:8px;
+  padding:8px 12px;
+  font-size:14px;
+  font-weight:600;
+  color:#344054;
+  font-family:Inter;
+  cursor:pointer;
+  line-height:24px;
+  &.with-icon {
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  &.blue {
+    color:$primary;
   }
 }
 
@@ -416,8 +458,14 @@ body {
   background-color:black;
   border-radius:8px;
   font-family:Inter;
+  font-size:14px;
   font-weight:600;
   color:white;
+  &.with-icon {
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
 }
 
 .text-small {
@@ -446,10 +494,10 @@ body {
 
 .display-semibold {
   font-family: Cal Sans;
-  font-size: 20px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 600;
-  line-height: 30px;
+  line-height: 38px;
 }
 
 .subtitle {
@@ -461,7 +509,7 @@ body {
 }
 
 .page-section {
-  padding:$mobile-header-size 0 $mobile-footer-size + 20 0;
+  padding:$mobile-header-size + 20 0 $mobile-footer-size + 20 0;
 }
 
 .nav-left-side {
@@ -472,6 +520,10 @@ body {
   .page-section {
     margin-left:$right-sidebar-width + $left-sidebar-width;
     padding:35px 0;
+  }
+
+  .mobile-menu, .mobile-section {
+    display:none;
   }
 
   #sidebar {
