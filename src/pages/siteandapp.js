@@ -65,12 +65,12 @@ const SiteAndApp = () => {
           <p className="tab-desc mb-2">Use these tools to promote and grow your business or community.</p>
           <div className="flex flex-col gap-y-4">
             <div className="flex justify-between items-center gap-x-3">
-              <div>
+              <div className="flex gap-x-4 items-center">
                 <ComputerDesktopIcon width='40'/>
-              </div>
-              <div>
-                <h2 className="subheading">Get your site discovered</h2>
-                <p className="tab-desc-small">Let people discover your site on the Spaces by Zaviago app through different features.</p>
+                <div>
+                  <h2 className="subheading">Get your site discovered</h2>
+                  <p className="tab-desc-small">Let people discover your site on the Spaces by Zaviago app through different features.</p>
+                </div>
               </div>
               <div>
                 <ChevronRightIcon width='24'/>
@@ -78,12 +78,12 @@ const SiteAndApp = () => {
             </div>
 
             <div className="flex justify-between items-center gap-x-3">
-              <div>
+              <div className="flex gap-x-4 items-center">
                 <ReceiptPercentIcon width='40'/>
-              </div>
-              <div>
-                <h2 className="subheading">Offer coupons</h2>
-                <p className="tab-desc-small">Treat your customers to discounts, free shipping & more.</p>
+                <div>
+                  <h2 className="subheading">Offer coupons</h2>
+                  <p className="tab-desc-small">Treat your customers to discounts, free shipping & more.</p>
+                </div>
               </div>
               <div>
                 <ChevronRightIcon width='24'/>
@@ -91,12 +91,12 @@ const SiteAndApp = () => {
             </div>
             
             <div className="flex justify-between items-center gap-x-3">
-              <div>
+              <div className="flex gap-x-4 items-center">
                 <ClipboardDocumentListIcon width='40'/>
-              </div>
-              <div>
-                <h2 className="subheading">Share a social post</h2>
-                <p className="tab-desc-small">Choose a template and customise it to stand out on social media.</p>
+                <div>
+                  <h2 className="subheading">Share a social post</h2>
+                  <p className="tab-desc-small">Choose a template and customise it to stand out on social media.</p>
+                </div>
               </div>
               <div>
                 <ChevronRightIcon width='24'/>
@@ -104,12 +104,12 @@ const SiteAndApp = () => {
             </div>
 
             <div className="flex justify-between items-center gap-x-3">
-              <div>
+              <div className="flex gap-x-4 items-center">
                 <InboxStackIcon width='40'/>
-              </div>
-              <div>
-                <h2 className="subheading">Create an email campaign</h2>
-                <p className="tab-desc-small">Engage your audience with offers, newsletters, and more.</p>
+                <div>
+                  <h2 className="subheading">Create an email campaign</h2>
+                  <p className="tab-desc-small">Engage your audience with offers, newsletters, and more.</p>
+                </div>
               </div>
               <div>
                 <ChevronRightIcon width='24'/>
