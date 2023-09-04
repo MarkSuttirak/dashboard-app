@@ -161,6 +161,8 @@ const DashboardNew = ({ loadingLogo }) => {
     }
   ]
 
+  const ordersBadges = ['Paid', 'Shipped']
+
   // const [loadingLogo, setLoadingLogo] = useState(true);
   // const timeout = setTimeout(() => {
   //   console.log(loadingLogo)
@@ -419,6 +421,13 @@ const DashboardNew = ({ loadingLogo }) => {
                         <img src={order.src} alt={order.alt} className={`aspect-square w-full h-full object-cover`}/>
                       ))}
                     </div>
+                  </div>
+                  <div className="flex gap-x-2">
+                    {ordersBadges.map((badge) => (
+                      <span className="inline-flex items-center rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">
+                        {badge}
+                      </span>
+                    ))}
                   </div>
                 </>
               ) : (
