@@ -142,8 +142,6 @@ const Dashboard = ({ loadingLogo }) => {
                 </div>
               )}
             </div>
-
-            
           </div>
           <Spacer size={20} />
 

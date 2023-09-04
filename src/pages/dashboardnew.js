@@ -61,14 +61,23 @@ const products = [
   },
 ]
 
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+
 const DashboardNew = ({ loadingLogo }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [openEditShortcuts, setOpenEditShortcuts] = useState(false)
+  const [openMembership, setOpenMembership] = useState(true);
 
-  const [hasOrders, setHasOrders] = useState(true);
+  const [tabsFreeTrial, setTabsFreeTrial] = useState(0)
 
   const handleInviteClick = () => {
     setIsOpen(!isOpen);
+  }
+
+  const handleFreeTrial = (index) => {
+    setTabsFreeTrial(index)
   }
 
   const closePopUp = () => {
@@ -794,8 +803,6 @@ const DashboardNew = ({ loadingLogo }) => {
           </div>
         </div>
       </div>
-
-      
 
       <Transition.Root show={openEditShortcuts} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={setOpenEditShortcuts}>

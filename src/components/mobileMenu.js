@@ -6,6 +6,13 @@ import { Fragment, useState } from 'react'
 
 const MobileMenu = () => {
   const [open, setOpen] = useState(false)
+  const [openMembership, setOpenMembership] = useState(false);
+
+  const [tabsFreeTrial, setTabsFreeTrial] = useState(0)
+
+  const handleFreeTrial = (index) => {
+    setTabsFreeTrial(index)
+  }
   const footerMenusLeft = [
     {
       title: "Dashboard",
@@ -70,7 +77,7 @@ const MobileMenu = () => {
         <h2 className="subheading">My site</h2>
       </div>
       <div className="flex gap-x-4 w-1/2 justify-end">
-        <BoltIcon width='24'/>
+        <BoltIcon width='24' onClick={() => setOpenMembership(true)}/>
         <BellIcon width='24'/>
       </div>
     </header>
@@ -166,6 +173,89 @@ const MobileMenu = () => {
         </div>
       </Dialog>
     </Transition.Root>
+
+    <Transition.Root show={openMembership} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={setOpenMembership}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 z-10 overflow-y-auto">
+            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                enterTo="opacity-100 translate-y-0 sm:scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              >
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                  <div>
+                    <div className="mt-3 text-center sm:mt-5">
+                      <Dialog.Title as="h3" className="main-heading">
+                        {tabsFreeTrial === 0 ? 'Zaviago Free' : 'Zaviago Pro'}
+                      </Dialog.Title>
+                      {tabsFreeTrial === 0 ? (
+                        <div className="mt-2">
+                          <h2 className="subheading">1TB Cloud Storage</h2>
+                          <p className="tab-desc">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur amet labore.
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="mt-2">
+                          <h2 className="subheading">Up to 6TB Cloud Storage</h2>
+                          <p className="tab-desc">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur amet labore.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <nav className='flex flex-col relative' aria-label="Tabs">
+                    <div className="flex">
+                      <button
+                        key='Free'
+                        className='tab-desc w-full p-4 text-center'
+                        onClick={() => handleFreeTrial(0)}
+                      >
+                        Free
+                      </button>
+                      <button
+                        key='Pro'
+                        className='tab-desc w-full p-4 text-center'
+                        onClick={() => handleFreeTrial(1)}
+                      >
+                        Pro
+                      </button>
+                    </div>
+                    <div className={`h-[2px] w-1/2 bg-[#0788F5] absolute bottom-0 ${tabsFreeTrial === 0 ? 'left-0' : 'right-0'}`} />
+                  </nav>
+                  <div className="mt-5">
+                    <button
+                      type="button"
+                      className="primary-btn w-full justify-center"
+                      onClick={() => setOpenMembership(false)}
+                    >
+                      Start 30-day free trial
+                    </button>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition.Root>
     </>
   )
 }
