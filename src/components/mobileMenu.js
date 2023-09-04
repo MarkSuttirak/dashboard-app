@@ -232,7 +232,7 @@ const MobileMenu = () => {
                     <div className="flex">
                       <button
                         key='Free'
-                        className={`tab-desc w-full p-4 text-center ${tabsFreeTrial !== 0 ? 'bg-[#EDEDED]' : ''}`}
+                        className={`tab-desc w-full p-4 text-center outline-none ${tabsFreeTrial !== 0 ? 'bg-[#EDEDED]' : ''}`}
                         onClick={() => handleFreeTrial(0)}
                       >
                         <p className="tab-desc bold">THB 209.99/mo</p>
@@ -240,7 +240,7 @@ const MobileMenu = () => {
                       </button>
                       <button
                         key='Pro'
-                        className={`tab-desc w-full p-4 text-center ${tabsFreeTrial !== 1 ? 'bg-[#EDEDED]' : ''}`}
+                        className={`tab-desc w-full p-4 text-center outline-none ${tabsFreeTrial !== 1 ? 'bg-[#EDEDED]' : ''}`}
                         onClick={() => handleFreeTrial(1)}
                       >
                         <p className="tab-desc bold">THB 289.99/mo</p>
