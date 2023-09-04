@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { PlusCircleIcon, HomeIcon, ChatBubbleOvalLeftEllipsisIcon, Bars3Icon, CommandLineIcon, CheckIcon, BellIcon, ClipboardDocumentListIcon, LinkIcon, TagIcon, ReceiptPercentIcon, InboxStackIcon, VideoCameraIcon, ComputerDesktopIcon, SquaresPlusIcon, BoltIcon } from "@heroicons/react/24/outline";
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
+import iconsGroup from '../img/icons-group.svg'
 
 const MobileMenu = () => {
   const [open, setOpen] = useState(false)
@@ -203,13 +204,14 @@ const MobileMenu = () => {
                   <div>
                     <div className="mt-3 text-center sm:mt-5">
                       <Dialog.Title as="h3" className="main-heading">
-                        {tabsFreeTrial === 0 ? 'Zaviago Free' : 'Zaviago Pro'}
+                        {tabsFreeTrial === 0 ? 'Zaviago Personal' : 'Zaviago Family'}
                       </Dialog.Title>
                       {tabsFreeTrial === 0 ? (
                         <div className="mt-2">
                           <h2 className="subheading">1TB Cloud Storage</h2>
                           <p className="tab-desc">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur amet labore.
+                            <img src={iconsGroup} alt="" className="mt-2 mx-auto" />
                           </p>
                         </div>
                       ) : (
@@ -217,6 +219,7 @@ const MobileMenu = () => {
                           <h2 className="subheading">Up to 6TB Cloud Storage</h2>
                           <p className="tab-desc">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur amet labore.
+                            <img src={iconsGroup} alt="" className="mt-2 mx-auto" />
                           </p>
                         </div>
                       )}
@@ -229,14 +232,16 @@ const MobileMenu = () => {
                         className='tab-desc w-full p-4 text-center'
                         onClick={() => handleFreeTrial(0)}
                       >
-                        Free
+                        <p className="tab-desc">THB 209.99/mo</p>
+                        <p className="tab-desc-small">1 Person</p>
                       </button>
                       <button
                         key='Pro'
                         className='tab-desc w-full p-4 text-center'
                         onClick={() => handleFreeTrial(1)}
                       >
-                        Pro
+                        <p className="tab-desc">THB 289.99/mo</p>
+                        <p className="tab-desc-small">2-6 People</p>
                       </button>
                     </div>
                     <div className={`h-[2px] w-1/2 bg-[#0788F5] absolute bottom-0 ${tabsFreeTrial === 0 ? 'left-0' : 'right-0'}`} />
