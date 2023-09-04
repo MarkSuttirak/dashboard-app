@@ -1,4 +1,5 @@
-import { ChevronRightIcon, MagnifyingGlassIcon, QuestionMarkCircleIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon, QuestionMarkCircleIcon, ShoppingCartIcon, TagIcon, ClipboardDocumentListIcon } from "@heroicons/react/24/outline";
+import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import InputWithPrefix from "../components/inputWithPrefix";
 import Accordion from "../components/accordion";
 import { Link } from "react-router-dom";
@@ -7,7 +8,7 @@ const Manage = () => {
   const MenuButton = ({title, link}) => {
     return (
       <Link to={link} className="flex justify-between items-center py-4">
-        <p className="subheading">{title}</p>
+        <p className="tab-desc">{title}</p>
         <div>
           <ChevronRightIcon width='24'/>
         </div>
@@ -24,12 +25,12 @@ const Manage = () => {
     {
       title: 'Products',
       link: '',
-      icon: ''
+      icon: <TagIcon width='24'/>
     },
     {
       title: 'Subscriptions',
       link: '',
-      icon: ''
+      icon: <ClipboardDocumentListIcon width='24'/>
     },
   ]
 
@@ -232,7 +233,7 @@ const Manage = () => {
   return (
     <>
       <div className='page-section'>
-        <header className='dashboard-container mb-4'>
+        <header className='dashboard-container mb-5'>
           <h1 className='main-title mb-4'>Manage</h1>
 
           <InputWithPrefix placeholder='Search' prefix={<MagnifyingGlassIcon width='24'/>} />
@@ -241,10 +242,10 @@ const Manage = () => {
         <hr />
 
         <main>
-          <div className="flex flex-col border-b border-b-[#E3E3E3]">
+          <div className="flex flex-col border-b border-b-[#E3E3E3] mt-4">
             {generalItems.map((item) => (
               <Link to={item.link} className="flex justify-between items-center px-5 py-4">
-                <div className="flex gap-x-2 items-center">
+                <div className="flex gap-x-4 items-center">
                   {item.icon}
                   <p className="subheading">{item.title}</p>
                 </div>

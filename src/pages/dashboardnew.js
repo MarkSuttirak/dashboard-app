@@ -155,7 +155,7 @@ const DashboardNew = ({ loadingLogo }) => {
       )}
       <div className="bg-white page-section pb-16">
         <div className="relative overflow-hidden">
-          <div className="dashboard-container pb-8 flex">
+          <div className="dashboard-mobile pb-8 flex">
             <div className="basis-full">
               {!loadingLogo ? (
                 <div className="flex justify-between">
@@ -177,7 +177,7 @@ const DashboardNew = ({ loadingLogo }) => {
 
           <div className="mobile-section">
             {!loadingLogo ? (
-              <div className="overflow-x-auto dashboard-container flex gap-x-2 flex-nowrap">
+              <div className="overflow-x-auto dashboard-mobile flex gap-x-2 flex-nowrap">
                 <button className="white-outline-btn" onClick={() => setOpenEditShortcuts(true)}>
                   <PencilIcon width='20' strokeWidth='2' />
                 </button>
@@ -193,7 +193,7 @@ const DashboardNew = ({ loadingLogo }) => {
                 ))}
               </div>
             ) : (
-              <div className="dashboard-container m-5">
+              <div className="dashboard-mobile m-5">
                 <div className="animate-pulse bg-[#F3F3F3] h-[40px] rounded-[20px]" />
               </div>
             )}
@@ -223,7 +223,7 @@ const DashboardNew = ({ loadingLogo }) => {
           <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-white sm:h-32" />
         </div>
 
-        <div className="dashboard-container mb-5">
+        <div className="dashboard-mobile mb-5">
           <div className="pt-4">
             <div className="flex justify-between items-start mb-4">
               <div className="w-1/2">
@@ -251,7 +251,7 @@ const DashboardNew = ({ loadingLogo }) => {
           </div>
         </div>
 
-        <div className="dashboard-container mb-5">
+        <div className="dashboard-mobile mb-5">
           <div className="border rounded-lg">
             <section className="p-4">
               <div className="flex justify-between items-start">
@@ -333,7 +333,7 @@ const DashboardNew = ({ loadingLogo }) => {
           </div>
         </div>
 
-        <div className="dashboard-container mb-5">
+        <div className="dashboard-mobile mb-5">
           <div className="border rounded-lg">
             <section className="p-4">
               <div className="flex justify-between items-start">
@@ -375,7 +375,7 @@ const DashboardNew = ({ loadingLogo }) => {
           </div>
         </div>
 
-        <div className="dashboard-container mb-5">
+        <div className="dashboard-mobile mb-5">
           <div className="border rounded-lg">
             <section className="p-4">
               <div className="flex justify-between items-start">
@@ -401,7 +401,7 @@ const DashboardNew = ({ loadingLogo }) => {
           </div>
         </div>
 
-        <div className="dashboard-container mb-5">
+        <div className="dashboard-mobile mb-5">
           <div className="border rounded-lg">
             <section className="p-4">
               <div className="flex justify-between items-start">
@@ -454,7 +454,7 @@ const DashboardNew = ({ loadingLogo }) => {
           </div>
         </div>
 
-        <div className="dashboard-container mb-5">
+        <div className="dashboard-mobile mb-5">
           <div className="border rounded-lg">
             <section className="p-4">
               <div className="flex justify-between items-start">
@@ -501,7 +501,7 @@ const DashboardNew = ({ loadingLogo }) => {
           </div>
         </div>
 
-        <div className="dashboard-container mb-5">
+        <div className="dashboard-mobile mb-5">
           <div className="border rounded-lg">
             <section className="p-4">
               <div className="flex justify-between items-start">
@@ -529,7 +529,7 @@ const DashboardNew = ({ loadingLogo }) => {
           </div>
         </div>
 
-        <div className="dashboard-container mb-5">
+        <div className="dashboard-mobile mb-5">
           <div className="border rounded-lg">
             <section className="p-4">
               <div className="flex justify-between items-start">
@@ -553,7 +553,7 @@ const DashboardNew = ({ loadingLogo }) => {
           </div>
         </div>
 
-        <div className="dashboard-container mb-5">
+        <div className="dashboard-mobile mb-5">
           <div className="border rounded-lg">
             <section className="p-4">
               <div className="flex justify-between items-start">
@@ -580,7 +580,7 @@ const DashboardNew = ({ loadingLogo }) => {
           </div>
         </div>
 
-        <div className="dashboard-container mb-5">
+        <div className="dashboard-mobile mb-5">
           <div className="border rounded-lg">
             <section className="p-4">
               <div className="flex justify-between items-start">
@@ -607,7 +607,7 @@ const DashboardNew = ({ loadingLogo }) => {
           </div>
         </div>
 
-        <div className="dashboard-container mb-5">
+        <div className="dashboard-mobile mb-5">
           <div className="border rounded-lg">
             <section className="p-4">
               <div className="flex justify-between items-start">
@@ -624,7 +624,7 @@ const DashboardNew = ({ loadingLogo }) => {
           </div>
         </div>
 
-        <div className="dashboard-container mb-5">
+        <div className="dashboard-mobile mb-5">
           <div className="border rounded-lg">
             <section className="p-4">
               <div className="flex justify-between items-start">
@@ -641,7 +641,7 @@ const DashboardNew = ({ loadingLogo }) => {
           </div>
         </div>
 
-        <div className="dashboard-container mb-5">
+        <div className="dashboard-mobile mb-5">
           <div className="border rounded-lg">
             <section className="p-4">
               <div className="flex justify-between items-start">
@@ -664,7 +664,7 @@ const DashboardNew = ({ loadingLogo }) => {
           </div>
         </div>
 
-        <div className="dashboard-container mb-5">
+        <div className="dashboard-mobile mb-5">
           <div className="border rounded-lg">
             <section className="p-4">
               <div className="flex justify-between items-start">
@@ -682,7 +682,7 @@ const DashboardNew = ({ loadingLogo }) => {
           </div>
         </div>
 
-        <div className="dashboard-container mb-5">
+        <div className="dashboard-mobile mb-5">
           <div className="border rounded-lg">
             <section className="p-4">
               <div className="flex justify-between items-start">

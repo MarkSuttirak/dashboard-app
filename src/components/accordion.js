@@ -1,4 +1,4 @@
-import { ChevronDown } from "@untitled-ui/icons-react/build/cjs"
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { useState, useRef } from "react"
 
 const Accordion = ({items}) => {
@@ -20,7 +20,7 @@ const Accordion = ({items}) => {
         return (<div key={index}>
           <button onClick={handleClick} className="accordion-btn border-b border-b-[#E3E3E3]">
             <h2 className="subheading">{item.title}</h2>
-            <ChevronDown className={`accordion-arrow-anim`}/>
+            <ChevronDownIcon className={`accordion-arrow-anim`} width='24'/>
           </button>
           <div ref={content} className={`accordion-detail`}>
             <div className="px-5">{item.content}</div>
