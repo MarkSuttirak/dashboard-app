@@ -65,6 +65,8 @@ const DashboardNew = ({ loadingLogo }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [openEditShortcuts, setOpenEditShortcuts] = useState(false)
 
+  const [hasOrders, setHasOrders] = useState(true);
+
   const handleInviteClick = () => {
     setIsOpen(!isOpen);
   }
@@ -139,6 +141,25 @@ const DashboardNew = ({ loadingLogo }) => {
       background: watchTutorials,
     },
   ];
+
+  const orders = [
+    {
+      src:'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg',
+      alt:'Test One'
+    },
+    {
+      src:'https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
+      alt:'Test Two'
+    },
+    {
+      src:'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
+      alt:'Test Three'
+    },
+    {
+      src:'https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg',
+      alt:'Test Four'
+    }
+  ]
 
   // const [loadingLogo, setLoadingLogo] = useState(true);
   // const timeout = setTimeout(() => {
@@ -373,7 +394,7 @@ const DashboardNew = ({ loadingLogo }) => {
             <hr />
 
             <section className="p-4">
-              <div className="overflow-x-auto flex gap-x-2 flex-nowrap mb-2">
+              <div className="overflow-x-auto flex gap-x-2 flex-nowrap mb-5">
                 <button className="white-outline-btn whitespace-pre">
                   Unfulfiled 0
                 </button>
@@ -382,7 +403,27 @@ const DashboardNew = ({ loadingLogo }) => {
                 </button>
               </div>
 
-              <p className="tab-desc">No unfulfiled orders</p>
+              {hasOrders ? (
+                <>
+                  <div className="flex justify-between mb-2">
+                    <p className="tab-desc">#1321313231</p>
+                    <p className="tab-desc">30 Aug 2023 12:00</p>
+                  </div>
+                  <div className="flex justify-between">
+                    <div>
+                      <h2 className="subheading">Chomchuenchom</h2>
+                      <p className="tab-desc">฿4,000.00</p>
+                    </div>
+                    <div className={`w-[60px] grid overflow-hidden rounded-lg${orders.length <= 1 ? '' : ' grid-cols-2'}`}>
+                      {orders.map((order) => (
+                        <img src={order.src} alt={order.alt} className={`aspect-square w-full h-full object-cover`}/>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <p className="tab-desc">No unfulfiled orders</p>
+              )}
             </section>
           </div>
         </div>
