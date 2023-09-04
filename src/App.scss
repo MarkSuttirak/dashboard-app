@@ -1831,25 +1831,31 @@ select#goal {
   display:flex;
   gap:8px;
   align-items:center;
+  border-bottom:1px solid #E3E3E3;
   + .accordion-detail {
-    visibility:hidden;
-    opacity:0;
-    max-height:0;
-    transition:visibility 200ms, opacity 200ms, max-height 300ms;
+    display:none;
+    border:none
+    // visibility:hidden;
+    // opacity:0;
+    // max-height:0;
+    // transition:visibility 200ms, opacity 200ms, max-height 300ms;
   }
   .accordion-arrow-anim {
     transform:rotate(0deg);
     transition:transform 200ms;
   }
   &.active {
+    border:none;
     .accordion-arrow-anim {
       transform:rotate(180deg);
       transition:all 200ms;
     }
     + .accordion-detail {
-      visibility:visible;
-      opacity:1;
-      transition:visibility 200ms, opacity 200ms, max-height 300ms;
+      display:block;
+      border-bottom:1px solid #E3E3E3;
+      // visibility:visible;
+      // opacity:1;
+      // transition:visibility 200ms, opacity 200ms, max-height 300ms;
     }
   }
 }

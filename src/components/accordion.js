@@ -6,19 +6,19 @@ const Accordion = ({items}) => {
 
   const handleClick = (event) => {
     event.currentTarget.classList.toggle("active");
-    var panel = event.currentTarget.nextElementSibling;
+    // var panel = event.currentTarget.nextElementSibling;
 
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
+    // if (panel.style.maxHeight){
+    //   panel.style.maxHeight = null
+    // } else {
+    //   panel.style.maxHeight = panel.scrollHeight + "px";
+    // }
   }
   return (
     <div>
       {items.map((item, index) => {
         return (<div key={index}>
-          <button onClick={handleClick} className="accordion-btn border-b border-b-[#E3E3E3]">
+          <button onClick={handleClick} className="accordion-btn">
             <h2 className="subheading">{item.title}</h2>
             <ChevronDownIcon className={`accordion-arrow-anim`} width='24'/>
           </button>
