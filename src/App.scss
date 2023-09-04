@@ -276,6 +276,9 @@ body {
   font-size:14px;
   line-height:24px;
   font-family:Inter;
+  &.bold {
+    font-weight:bold
+  }
 }
 
 .card-link {

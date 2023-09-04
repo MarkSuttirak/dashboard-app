@@ -201,46 +201,49 @@ const MobileMenu = () => {
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
                 <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
-                  <div>
-                    <div className="mt-3 text-center sm:mt-5">
-                      <Dialog.Title as="h3" className="main-heading">
-                        {tabsFreeTrial === 0 ? 'Zaviago Personal' : 'Zaviago Family'}
-                      </Dialog.Title>
+                  <div className="text-center">
+                    <Dialog.Title as="h3" className="main-heading flex justify-center items-center gap-x-2">
+                      <BoltIcon color='#0788F5' width='24'/>
+                      {tabsFreeTrial === 0 ? 'Zaviago Personal' : 'Zaviago Family'}
+                    </Dialog.Title>
+                    <div className="mt-3 px-3 py-6 pb-8 bg-[#EDEDED] rounded-lg">
                       {tabsFreeTrial === 0 ? (
                         <div className="mt-2">
                           <h2 className="subheading">1TB Cloud Storage</h2>
-                          <p className="tab-desc">
+                          <p className="tab-desc-small">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur amet labore.
-                            <img src={iconsGroup} alt="" className="mt-2 mx-auto" />
+                            <img src={iconsGroup} alt="" className="mt-5 mx-auto" />
                           </p>
                         </div>
                       ) : (
                         <div className="mt-2">
                           <h2 className="subheading">Up to 6TB Cloud Storage</h2>
-                          <p className="tab-desc">
+                          <p className="tab-desc-small">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur amet labore.
-                            <img src={iconsGroup} alt="" className="mt-2 mx-auto" />
+                            <img src={iconsGroup} alt="" className="mt-5 mx-auto" />
                           </p>
                         </div>
                       )}
                     </div>
+                    <img src={iconsGroup} alt="" className="mt-5 mx-auto w-[25%]" />
+                    <p className="tab-desc-small">Unlock all premium features across devices</p>
                   </div>
-                  <nav className='flex flex-col relative' aria-label="Tabs">
+                  <nav className='flex flex-col relative border border-[#E3E3E3] rounded-lg mt-5' aria-label="Tabs">
                     <div className="flex">
                       <button
                         key='Free'
-                        className='tab-desc w-full p-4 text-center'
+                        className={`tab-desc w-full p-4 text-center ${tabsFreeTrial !== 0 ? 'bg-[#EDEDED]' : ''}`}
                         onClick={() => handleFreeTrial(0)}
                       >
-                        <p className="tab-desc">THB 209.99/mo</p>
+                        <p className="tab-desc bold">THB 209.99/mo</p>
                         <p className="tab-desc-small">1 Person</p>
                       </button>
                       <button
                         key='Pro'
-                        className='tab-desc w-full p-4 text-center'
+                        className={`tab-desc w-full p-4 text-center ${tabsFreeTrial !== 1 ? 'bg-[#EDEDED]' : ''}`}
                         onClick={() => handleFreeTrial(1)}
                       >
-                        <p className="tab-desc">THB 289.99/mo</p>
+                        <p className="tab-desc bold">THB 289.99/mo</p>
                         <p className="tab-desc-small">2-6 People</p>
                       </button>
                     </div>
