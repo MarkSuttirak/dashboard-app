@@ -113,6 +113,7 @@ body {
   height:$mobile-header-size;
   top:0;
   padding:16px;
+  background:linear-gradient(to bottom, #CDE6FF 0%, white 90%)
 }
 
 .mobile-menu {
@@ -121,7 +122,6 @@ body {
   display:flex;
   justify-content:space-between;
   align-items:center;
-  background-color:white;
 }
 
 .footer-mobile {
@@ -129,6 +129,7 @@ body {
   bottom:0;
   border-top:1px solid #EBEEF0;
   padding:16px 4px;
+  background-color:white;
 }
 
 .footer-menu-text {

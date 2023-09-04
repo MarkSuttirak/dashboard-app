@@ -1,6 +1,6 @@
 import pjob from "../img/pjob.svg";
 import { Link } from "react-router-dom";
-import { PlusCircleIcon, HomeIcon, ChatBubbleOvalLeftEllipsisIcon, Bars3Icon, CommandLineIcon, CheckIcon, BellIcon, ClipboardDocumentListIcon, LinkIcon, TagIcon, ReceiptPercentIcon, InboxStackIcon, VideoCameraIcon, ComputerDesktopIcon } from "@heroicons/react/24/outline";
+import { PlusCircleIcon, HomeIcon, ChatBubbleOvalLeftEllipsisIcon, Bars3Icon, CommandLineIcon, CheckIcon, BellIcon, ClipboardDocumentListIcon, LinkIcon, TagIcon, ReceiptPercentIcon, InboxStackIcon, VideoCameraIcon, ComputerDesktopIcon, SquaresPlusIcon, GiftIcon } from "@heroicons/react/24/outline";
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 
@@ -21,9 +21,9 @@ const MobileMenu = () => {
 
   const footerMenusRight = [
     {
-      title: 'Inbox',
+      title: 'Apps',
       link: '/inbox',
-      icon: <ChatBubbleOvalLeftEllipsisIcon width='20'/>
+      icon: <SquaresPlusIcon width='20'/>
     },
     {
       title: 'Manage',
@@ -62,12 +62,19 @@ const MobileMenu = () => {
   return (
     <>
     <header className="mobile-menu header-mobile">
-      <img
-        src={pjob}
-        alt=""
-      />
-      <h2 className="subheading">My site</h2>
-      <BellIcon width='24'/>
+      <div className="w-1/3">
+        <img
+          src={pjob}
+          alt=""
+        />
+      </div>
+      <div className="w-1/3 text-center">
+        <h2 className="subheading">My site</h2>
+      </div>
+      <div className="flex gap-x-2 w-1/3 justify-end">
+        <GiftIcon width='24'/>
+        <BellIcon width='24'/>
+      </div>
     </header>
     <footer className="mobile-menu footer-mobile">
       <ul className="flex justify-between w-full">
