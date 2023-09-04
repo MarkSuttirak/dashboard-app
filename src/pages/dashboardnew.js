@@ -263,20 +263,6 @@ const DashboardNew = ({ loadingLogo }) => {
             <hr />
 
             <section className="p-4">
-              <div className="overflow-x-auto flex gap-x-2 flex-nowrap mb-2">
-                <button className="white-outline-btn whitespace-pre">
-                  Last 30 days
-                </button>
-                <button className="white-outline-btn whitespace-pre">
-                  Last 7 days
-                </button>
-                <button className="white-outline-btn whitespace-pre">
-                  This month
-                </button>
-                <button className="white-outline-btn whitespace-pre">
-                  This week
-                </button>
-              </div>
 
               <p className="tab-desc">Aug 3 - Today, compared to Jul 4 - Aug 2</p>
 

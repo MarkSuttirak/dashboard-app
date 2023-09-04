@@ -256,7 +256,12 @@ const Manage = () => {
             ))}
           </div>
           <div className="px-5 border-b border-b-[#E3E3E3]">
-            <MenuButton title="Manage Apps" link="" />
+            <Link to='' className="flex justify-between items-center py-4">
+              <p className="subheading">Manage Apps</p>
+              <div>
+                <ChevronRightIcon width='24'/>
+              </div>
+            </Link>
           </div>
           <Accordion items={items} />
         </main>

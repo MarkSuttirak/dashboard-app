@@ -10,14 +10,14 @@ const SiteAndApp = () => {
           <h1 className="main-title">Site & App</h1>
         </header>
         <div className="dashboard-mobile mb-5">
-          <h2 className="subheading">WEBSITE</h2>
+          <h2 className="subheading ml-2">WEBSITE</h2>
           <div className="border rounded-lg p-4">
             <p className="tab-desc">To design and publish your site so clients can find your services online, go to your Zaviago account on desktop.</p>
           </div>
         </div>
 
         <div className="dashboard-mobile mb-5">
-          <h2 className="subheading">MOBILE APPS</h2>
+          <h2 className="subheading ml-2">MOBILE APPS</h2>
           <div className="border rounded-lg">
             <div className="p-4">
               <h2 className="subheading">Spaces by Zaviago</h2>
@@ -51,7 +51,7 @@ const SiteAndApp = () => {
         </div>
 
         <div className="dashboard-mobile mb-5">
-          <h2 className="subheading">Get your own mobile app</h2>
+          <h2 className="subheading ml-2">Get your own mobile app</h2>
           <div className="border rounded-lg p-4">
             <p className="tab-desc mb-2">Increase engagement with a fully branded app to list on the App Store and Google Play.</p>
             <Link className="text-white bg-[#0788F5] inline-flex px-3 py-1 rounded-full text-sm items-center gap-x-1">
