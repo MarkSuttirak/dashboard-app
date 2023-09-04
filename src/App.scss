@@ -311,6 +311,17 @@ body {
   }
 }
 
+.text-link-small {
+  color:$primary;
+  font-size:12px;
+  font-family:Inter;
+  cursor:pointer;
+  line-height:18px;
+  &.bold {
+    font-weight:600
+  }
+}
+
 .input-addon {
   display:flex;
   align-items:center;

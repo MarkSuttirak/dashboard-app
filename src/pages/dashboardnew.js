@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Bars3Icon, CheckCircleIcon, ChevronRightIcon, EnvelopeIcon, PlusCircleIcon } from '@heroicons/react/20/solid'
-import { ArrowLeftOnRectangleIcon, BellIcon, CreditCardIcon, LinkIcon, ListBulletIcon, PencilIcon, PlusIcon, ShoppingCartIcon, TagIcon, TicketIcon, UserPlusIcon, WalletIcon } from '@heroicons/react/24/outline'
+import { ArrowLeftOnRectangleIcon, BellIcon, CreditCardIcon, LinkIcon, ListBulletIcon, PencilIcon, PlusIcon, ShoppingBagIcon, ShoppingCartIcon, TagIcon, TicketIcon, UserPlusIcon, WalletIcon } from '@heroicons/react/24/outline'
 import startWorking from "../img/start-working.png";
 import appsMarketplace from "../img/apps-marketplace.png";
 import watchTutorials from "../img/watch-tutorials.png";
@@ -39,7 +39,7 @@ const products = [
     imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
     imageAlt: "Front of men's Basic Tee in black.",
     price: '$35',
-    color: 'Black',
+    instock: 'In Stock',
   },
   {
     id: 2,
@@ -48,7 +48,7 @@ const products = [
     imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
     imageAlt: "Front of men's Basic Tee in black.",
     price: '$35',
-    color: 'Black',
+    instock: 'Out of Stock',
   },
   {
     id: 3,
@@ -57,7 +57,7 @@ const products = [
     imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
     imageAlt: "Front of men's Basic Tee in black.",
     price: '$35',
-    color: 'Black',
+    instock: 'Infinite Stock',
   },
 ]
 
@@ -142,9 +142,26 @@ const DashboardNew = ({ loadingLogo }) => {
     },
   ];
 
+  const orders = [
+    {
+      code: 'ACC-SINV-2023-00730',
+      date: '30/08/23 12:00',
+      name: 'Chomchuenischomchuen',
+      price: '฿4,000.00',
+      isPaid: true
+    },
+    {
+      code: 'ACC-SINV-2023-00737',
+      date: '30/08/23 12:00',
+      name: 'Thitaisalsothita',
+      price: '฿4,000.00',
+      isPaid: false
+    }
+  ]
+
   const Orders = ({code, date, name, price, isPaid}) => {
     const [orderIsPaid, setOrderIsPaid] = useState(isPaid);
-    const orders = [
+    const ordersImg = [
       {
         src:'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg',
         alt:'Test One'
@@ -191,8 +208,8 @@ const DashboardNew = ({ loadingLogo }) => {
             </div>
           </div>
           <div className={`w-[88px] grid overflow-hidden rounded-lg${orders.length <= 1 ? '' : ' grid-cols-2'}`}>
-            {orders.map((order) => (
-              <img src={order.src} alt={order.alt} className={`aspect-square w-full h-full object-cover`}/>
+            {ordersImg.map((img) => (
+              <img src={img.src} alt={img.alt} className={`aspect-square w-full h-full object-cover`}/>
             ))}
           </div>
         </div>
@@ -442,11 +459,11 @@ const DashboardNew = ({ loadingLogo }) => {
                 </button>
               </div>
 
-              {hasOrders ? (
+              {orders.length <= 0 ? (
                 <>
-                  <Orders code="ACC-SINV-2023-00730" date="30/08/23 12:00" name="Chomchuenischomchuen" price="฿4,000.00" isPaid={true}/>
-                  <Orders code="ACC-SINV-2023-00737" date="30/08/23 12:00" name="Thitaisalsothita" price="฿4,000.00" isPaid={false}/>
-
+                  {orders.length((order) => 
+                    <Orders code={order.code} date={order.date} name={order.name} price={order.price} isPaid={order.isPaid}/>
+                  )}
                   <p className="text-link mt-4">View More</p>
                 </>
               ) : (
@@ -468,46 +485,61 @@ const DashboardNew = ({ loadingLogo }) => {
             </section>
 
             <hr />
+            
+            {products.length <= 0 ? (
+              <section className="p-4 text-center">
+                <ShoppingBagIcon width='24' className="m-auto"/>
+  
+                <h2 className="subheading">Add products</h2>
+                <p className="tab-desc mb-2">Vestibulum rutrum urna leo, sit amet vehicula purus dignissim fermentum.</p>
+                <Link className="text-white bg-[#0788F5] inline-flex px-3 py-1 rounded-full text-sm items-center gap-x-1">
+                  <PlusIcon width='20' strokeWidth='2'/>
+                  Add products
+                </Link>
+              </section>
+            ) : (
+              <section className="p-4">
+                <div className="overflow-x-auto flex gap-x-2 flex-nowrap mb-2">
+                  <button className="white-outline-btn whitespace-pre">
+                    Last Updated
+                  </button>
+                  <button className="white-outline-btn whitespace-pre">
+                    Out of Stock
+                  </button>
+                  <button className="white-outline-btn whitespace-pre">
+                    Most Viewed
+                  </button>
+                </div>
 
-            <section className="p-4">
-              <div className="overflow-x-auto flex gap-x-2 flex-nowrap mb-2">
-                <button className="white-outline-btn whitespace-pre">
-                  Last Updated
-                </button>
-                <button className="white-outline-btn whitespace-pre">
-                  Out of Stock
-                </button>
-                <button className="white-outline-btn whitespace-pre">
-                  Most Viewed
-                </button>
-              </div>
-
-              <div className="mt-6 grid grid-cols-2 gap-y-10 gap-x-6 xl:gap-x-8">
-                {products.map((product) => (
-                  <div key={product.id} className="group relative">
-                    <div className="min-h-60 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200">
-                      <img
-                        src={product.imageSrc}
-                        alt={product.imageAlt}
-                        className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                      />
-                    </div>
-                    <div className="mt-4 flex justify-between">
-                      <div>
-                        <h3>
-                          <Link to={product.href} className="subheading">
-                            <span aria-hidden="true" className="absolute inset-0" />
-                            {product.name}
-                          </Link>
-                        </h3>
-                        <p className="tab-desc">{product.color}</p>
+                <div className="mt-6 grid grid-cols-2 gap-y-10 gap-x-6 xl:gap-x-8">
+                  {products.map((product) => (
+                    <div key={product.id} className="group relative">
+                      <div className="min-h-60 aspect-square w-full overflow-hidden rounded-md bg-gray-200">
+                        <img
+                          src={product.imageSrc}
+                          alt={product.imageAlt}
+                          className="h-full w-full object-cover lg:h-full lg:w-full"
+                        />
                       </div>
-                      <p className="tab-desc">{product.price}</p>
+                      <div className="mt-4 flex justify-between">
+                        <div>
+                          <h3>
+                            <Link to={product.href} className="subheading">
+                              <span aria-hidden="true" className="absolute inset-0" />
+                              {product.name}
+                            </Link>
+                          </h3>
+                          <p className="tab-desc">{product.instock}</p>
+                        </div>
+                        <p className="tab-desc">{product.price}</p>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </section>
+                  ))}
+                </div>
+
+                <p className="text-link mt-4">View More</p>
+              </section>
+            )}
           </div>
         </div>
 
@@ -553,7 +585,7 @@ const DashboardNew = ({ loadingLogo }) => {
                 </div>
               </div>
               
-              <p className="text-link">View 5 More</p>
+              <p className="text-link">View More</p>
             </section>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Bars3Icon, CheckCircleIcon, ChevronRightIcon, EnvelopeIcon, PlusCircleIcon } from '@heroicons/react/20/solid'
-import { CreditCardIcon, LinkIcon, ListBulletIcon, PencilIcon, ShoppingCartIcon, TagIcon, TicketIcon, WalletIcon } from '@heroicons/react/24/outline'
+import { Cog6ToothIcon, CreditCardIcon, LinkIcon, ListBulletIcon, PencilIcon, ShoppingCartIcon, TagIcon, TicketIcon, WalletIcon } from '@heroicons/react/24/outline'
 import startWorking from "../img/start-working.png";
 import appsMarketplace from "../img/apps-marketplace.png";
 import watchTutorials from "../img/watch-tutorials.png";
@@ -132,7 +132,9 @@ const Dashboard = ({ loadingLogo }) => {
                   <h1 className="display-semibold">
                     Welcome, Chutiphol 🙏
                   </h1>
-                  <Bars3Icon width='24'/>
+                  <button className="primary-btn">
+                    Invite team
+                  </button>
                 </div>
               ) : (
                 <div className="animate-pulse mt-2">
@@ -194,6 +196,60 @@ const Dashboard = ({ loadingLogo }) => {
         </div>
 
         {!loadingLogo ? (
+          <>
+            <div className="dashboard-container gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+              {dashboardInfo.map((info) => (
+                <div
+                  key={info.title}
+                  className="relative h-[200px] flex flex-col justify-between space-x-3 bg-white p-4 pb-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400" style={{ background: "url(" + info.background + ")", backgroundSize: "100%", backgroundRepeat: "no-repeat", borderRadius: "20px" }}
+                >
+                  <img src={info.icon} className="w-[48px] h-[48px]" alt="" />
+                  <div className="min-w-0">
+                    <h2 className="text-md font-bold text-white leading-5">{info.title}</h2>
+                    <p className="truncate font-bold font-13" style={{ color: "#FFFFFF99" }}>{info.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <br className="space-xs"/>
+          </>
+        ) : (
+          <div className="animate-pulse dashboard-container pb-10 gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {dashboardInfo.map((info) => (
+              <div
+                key={info.title}
+                className="relative w-[242px] h-[200px] rounded-[20px] flex items-center space-x-3 bg-[#F3F3F3] p-4 pb-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
+              >
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div className="dashboard-container mb-5">
+          <div className="flex items-center border border-[#E3E3E3] rounded-lg py-3">
+            <div className="flex px-5 gap-x-1">
+              <p className="tab-desc-small">Free plan</p>
+              <a href="#" className="text-link-small bold">Compare Plans</a>
+            </div>
+            <div className='border-l border-l-[#E3E3E3] h-5'></div>
+            <div className="flex px-5 gap-x-1">
+              <p className="tab-desc-small">No domain</p>
+              <a href="#" className="text-link-small bold">Connect</a>
+            </div>
+            <div className='border-l border-l-[#E3E3E3] h-5'></div>
+            <div className="flex px-5 gap-x-1">
+              <p className="tab-desc-small">No business email</p>
+              <a href="#" className="text-link-small bold">Connect</a>
+            </div>
+            <div className='border-l border-l-[#E3E3E3] h-5'></div>
+            <a href="#" className="flex px-5 gap-x-1 items-center">
+              <Cog6ToothIcon width='20'/>
+              <p className="tab-desc-small">Business Info</p>
+            </a>
+          </div>
+        </div>
+
+        {!loadingLogo ? (
           <div className="dashboard-container mb-5">
             <div className="pt-4">
               <div className="flex justify-between items-start mb-4">
@@ -224,36 +280,6 @@ const Dashboard = ({ loadingLogo }) => {
         ) : (
           <div className="dashboard-container m-5">
             <div className="animate-pulse bg-[#F3F3F3] h-[200px] rounded-[20px]" />
-          </div>
-        )}
-
-        {!loadingLogo ? (
-          <>
-            <div className="dashboard-container gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
-              {dashboardInfo.map((info) => (
-                <div
-                  key={info.title}
-                  className="relative h-[200px] flex flex-col justify-between space-x-3 bg-white p-4 pb-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400" style={{ background: "url(" + info.background + ")", backgroundSize: "100%", backgroundRepeat: "no-repeat", borderRadius: "20px" }}
-                >
-                  <img src={info.icon} className="w-[48px] h-[48px]" alt="" />
-                  <div className="min-w-0">
-                    <h2 className="text-md font-bold text-white leading-5">{info.title}</h2>
-                    <p className="truncate font-bold font-13" style={{ color: "#FFFFFF99" }}>{info.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <br className="space-xs"/>
-          </>
-        ) : (
-          <div className="animate-pulse dashboard-container pb-10 gap-x-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {dashboardInfo.map((info) => (
-              <div
-                key={info.title}
-                className="relative w-[242px] h-[200px] rounded-[20px] flex items-center space-x-3 bg-[#F3F3F3] p-4 pb-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
-              >
-              </div>
-            ))}
           </div>
         )}
 
@@ -300,11 +326,8 @@ const Dashboard = ({ loadingLogo }) => {
                       type="button"
                       className="inline-flex items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-offset-2 btn btn-primary-shadow text-xs"
                     >
-                      Login As Admin
-                    </button>
-                    <a href="#" className="link-anchor font-11">
                       View Website
-                    </a>
+                    </button>
                   </div>
                 </div>
                 <div className="ml-4 mt-2 flex-shrink-0 items-center flex pb-10">
