@@ -144,12 +144,7 @@ export default function Register() {
           </li>
           <li className="step-list">
             <div className="step-register">
-              <div className={`step-register-inner ${page === 5 ? (isGoingNext ? 'current-to-complete' : isGoingBack ? 'current-to-zero' : 'current') : page > 5 ? (isGoingBackComplete ? 'complete-to-current' : 'complete') : 'coming'}`} />
-            </div>
-          </li>
-          <li className="step-list">
-            <div className="step-register">
-              <div className={`step-register-inner ${page === 6 ? (isGoingNext ? 'current-to-complete' : isGoingBack ? 'current-to-zero' : 'current') : page > 6 ? 'complete' : 'coming'}`} />
+              <div className={`step-register-inner ${page === 5 ? (isGoingNext ? 'current-to-complete' : isGoingBack ? 'current-to-zero' : 'current') : page > 5 ? 'complete' : 'coming'}`} />
             </div>
           </li>
         </ol>
@@ -432,7 +427,7 @@ export default function Register() {
             <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
               <h2 className="main-title mt-8">What is your business about?</h2>
             </div>
-            <div className={`space-y-4 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
+            <div className={`space-y-6 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
               <Select values={[
                 {
                   id: 'private',
@@ -455,6 +450,32 @@ export default function Register() {
                   name: 'To drink coffee',
                 }
               ]}/>
+
+              <h2 className="subheading">What are your goals for this business?</h2>
+
+              <div className="grid grid-cols-2 gap-4">
+                {checkboxLists.map((checkboxList) => (
+                  <label htmlFor={checkboxList.key}>
+                    <input
+                      id={checkboxList.key}
+                      name={checkboxList.key}
+                      type="checkbox"
+                      className="checkbox-card-input"
+                      onChange={(e) => {
+                        if (e.target.checked === true){
+                          setIsDisabledStepFive(false);
+                        } else {
+                          setIsDisabledStepFive(true);
+                        }
+                      }}
+                    />
+                    <span className="tab-desc border checkbox-card">
+                      {checkboxList.title}
+                    </span>
+                  </label>
+                ))}
+
+              </div>
             </div>
 
             <Spacer size={30}/>
@@ -505,47 +526,6 @@ export default function Register() {
         )}
 
         {page === 3 && (
-          <div className="m-auto w-full max-w-sm w-96 h-[600px]">
-            <Steps process={3}/>
-            <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
-              <h2 className="main-title mt-8">What are your goals for this business?</h2>
-            </div>
-            <div className={`space-y-4 mt-10 ${animUp ? 'anim-up' : animDown ? 'anim-down-delay' : ''}`}>
-              <div className="grid grid-cols-2 gap-4">
-
-                {checkboxLists.map((checkboxList) => (
-                  <label htmlFor={checkboxList.key}>
-                    <input
-                      id={checkboxList.key}
-                      name={checkboxList.key}
-                      type="checkbox"
-                      className="checkbox-card-input"
-                      onChange={(e) => {
-                        if (e.target.checked === true){
-                          setIsDisabledStepFive(false);
-                        } else {
-                          setIsDisabledStepFive(true);
-                        }
-                      }}
-                    />
-                    <span className="tab-desc border checkbox-card">
-                      {checkboxList.title}
-                    </span>
-                  </label>
-                ))}
-
-              </div>
-            </div>
-
-            <Spacer size={30}/>
-            <div className={`flex gap-x-2 ${animUp ? 'anim-up-delay translate-y-[20px] opacity-0' : animDown ? 'anim-down' : ''}`}>
-              <button className={`no-bg-btn w-1/4 justify-center`} onClick={goPrev}>Back</button>
-              <button className={`primary-btn w-1/4 justify-center ${isDisabledStepFive ? 'disabled' : ''}`} disabled={isDisabledStepFive ? true : false} onClick={goNext}>Submit</button>
-            </div>
-          </div>
-        )}
-
-        {page === 4 && (
           <div className="m-auto w-full max-w-sm w-96 h-[600px]">
             <Steps process={4}/>
             <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
@@ -627,7 +607,7 @@ export default function Register() {
           </div>
         )}
 
-        {page === 5 && (
+        {page === 4 && (
           <div className="m-auto w-full max-w-sm w-96 h-[600px]">
             <Steps process={5}/>
             <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
@@ -670,7 +650,7 @@ export default function Register() {
           </div>
         )}
 
-        {page === 6 && (
+        {page === 5 && (
           <div className="m-auto w-full max-w-sm w-96 h-[600px]">
             <Steps process={6}/>
             <div className={`${animUp ? 'fade-out' : animDown ? 'fade-in' : ''}`}>
