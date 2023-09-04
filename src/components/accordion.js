@@ -23,7 +23,7 @@ const Accordion = ({items}) => {
             <ChevronDown className={`accordion-arrow-anim`}/>
           </button>
           <div ref={content} className={`accordion-detail`}>
-            <div className="p-5">{item.content}</div>
+            <div className="px-5">{item.content}</div>
           </div>
         </div>)
       })}

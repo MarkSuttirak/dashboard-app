@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Manage = () => {
   const MenuButton = ({title, link}) => {
     return (
-      <Link to={link} className="flex justify-between items-center">
+      <Link to={link} className="flex justify-between items-center py-4">
         <p className="subheading">{title}</p>
         <div>
           <ChevronRightIcon width='24'/>
@@ -180,7 +180,7 @@ const Manage = () => {
     {
       title: 'Get Paid',
       content: (
-        <div className="flex flex-col gap-y-4">
+        <div className="flex flex-col">
           {getPaidItems.map((item) => 
             <MenuButton title={item.title} link={item.link} />
           )}
@@ -190,7 +190,7 @@ const Manage = () => {
     {
       title: 'Analytics & Reports',
       content: (
-        <div className="flex flex-col gap-y-4">
+        <div className="flex flex-col">
           {analyticsItems.map((item) =>
             <MenuButton title={item.title} link={item.link} />
           )}
@@ -200,7 +200,7 @@ const Manage = () => {
     {
       title: 'Marketing',
       content: (
-        <div className="flex flex-col gap-y-4">
+        <div className="flex flex-col">
           {marketingItems.map((item) =>
             <MenuButton title={item.title} link={item.link} />
           )}
@@ -210,7 +210,7 @@ const Manage = () => {
     {
       title: 'Customers & Contacts',
       content: (
-        <div className="flex flex-col gap-y-4">
+        <div className="flex flex-col">
           {customerItems.map((item) =>
             <MenuButton title={item.title} link={item.link} />
           )}
@@ -220,7 +220,7 @@ const Manage = () => {
     {
       title: 'Settings',
       content: (
-        <div className="flex flex-col gap-y-4">
+        <div className="flex flex-col">
           {settingsItems.map((item) =>
             <MenuButton title={item.title} link={item.link} />
           )}
@@ -233,7 +233,7 @@ const Manage = () => {
     <>
       <div className='page-section'>
         <header className='dashboard-container mb-4'>
-          <h1 className='main-title'>Manage</h1>
+          <h1 className='main-title mb-4'>Manage</h1>
 
           <InputWithPrefix placeholder='Search' prefix={<MagnifyingGlassIcon width='24'/>} />
         </header>
@@ -241,9 +241,9 @@ const Manage = () => {
         <hr />
 
         <main>
-          <div className="flex flex-col gap-y-4 border-b border-b-[#E3E3E3] py-5">
+          <div className="flex flex-col border-b border-b-[#E3E3E3]">
             {generalItems.map((item) => (
-              <Link to={item.link} className="flex justify-between items-center px-5">
+              <Link to={item.link} className="flex justify-between items-center px-5 py-4">
                 <div className="flex gap-x-2 items-center">
                   {item.icon}
                   <p className="subheading">{item.title}</p>
@@ -254,7 +254,7 @@ const Manage = () => {
               </Link>
             ))}
           </div>
-          <div className="p-5 border-b border-b-[#E3E3E3]">
+          <div className="px-5 border-b border-b-[#E3E3E3]">
             <MenuButton title="Manage Apps" link="" />
           </div>
           <Accordion items={items} />
