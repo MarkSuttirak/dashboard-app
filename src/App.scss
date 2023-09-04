@@ -113,7 +113,7 @@ body {
   height:$mobile-header-size;
   top:0;
   padding:16px;
-  background:linear-gradient(to bottom, #CDE6FF 0%, white 90%)
+  background:linear-gradient(180deg, transparent 0%, #FFFFFF 100%), linear-gradient(90deg, rgba(205,230,255,1) 0%, rgba(252,237,255,1) 50%, rgba(205,230,255,1) 100%);
 }
 
 .mobile-menu {

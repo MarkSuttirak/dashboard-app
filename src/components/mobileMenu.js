@@ -1,6 +1,6 @@
 import pjob from "../img/pjob.svg";
 import { Link } from "react-router-dom";
-import { PlusCircleIcon, HomeIcon, ChatBubbleOvalLeftEllipsisIcon, Bars3Icon, CommandLineIcon, CheckIcon, BellIcon, ClipboardDocumentListIcon, LinkIcon, TagIcon, ReceiptPercentIcon, InboxStackIcon, VideoCameraIcon, ComputerDesktopIcon, SquaresPlusIcon, GiftIcon } from "@heroicons/react/24/outline";
+import { PlusCircleIcon, HomeIcon, ChatBubbleOvalLeftEllipsisIcon, Bars3Icon, CommandLineIcon, CheckIcon, BellIcon, ClipboardDocumentListIcon, LinkIcon, TagIcon, ReceiptPercentIcon, InboxStackIcon, VideoCameraIcon, ComputerDesktopIcon, SquaresPlusIcon, BoltIcon } from "@heroicons/react/24/outline";
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 
@@ -62,17 +62,15 @@ const MobileMenu = () => {
   return (
     <>
     <header className="mobile-menu header-mobile">
-      <div className="w-1/3">
+      <div className="w-1/2 flex gap-x-4 items-center">
         <img
           src={pjob}
           alt=""
         />
-      </div>
-      <div className="w-1/3 text-center">
         <h2 className="subheading">My site</h2>
       </div>
-      <div className="flex gap-x-2 w-1/3 justify-end">
-        <GiftIcon width='24'/>
+      <div className="flex gap-x-4 w-1/2 justify-end">
+        <BoltIcon width='24'/>
         <BellIcon width='24'/>
       </div>
     </header>
