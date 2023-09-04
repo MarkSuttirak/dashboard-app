@@ -142,26 +142,63 @@ const DashboardNew = ({ loadingLogo }) => {
     },
   ];
 
-  const orders = [
-    {
-      src:'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg',
-      alt:'Test One'
-    },
-    {
-      src:'https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
-      alt:'Test Two'
-    },
-    {
-      src:'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
-      alt:'Test Three'
-    },
-    {
-      src:'https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg',
-      alt:'Test Four'
-    }
-  ]
-
-  const ordersBadges = ['Paid', 'Shipped']
+  const Orders = ({code, date, name, price, isPaid}) => {
+    const [orderIsPaid, setOrderIsPaid] = useState(isPaid);
+    const orders = [
+      {
+        src:'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg',
+        alt:'Test One'
+      },
+      {
+        src:'https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
+        alt:'Test Two'
+      },
+      {
+        src:'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
+        alt:'Test Three'
+      },
+      {
+        src:'https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg',
+        alt:'Test Four'
+      }
+    ]
+  
+    const isPaidBadges = ['Paid', 'Shipped'];
+    return (
+      <div className="border-b border-b-[#E3E3E3] py-4">
+        <div className="flex justify-between mb-2">
+          <p className="tab-desc">{code}</p>
+          <p className="tab-desc">{date}</p>
+        </div>
+        <div className="flex justify-between">
+          <div>
+            <h2 className="subheading">{name}</h2>
+            <p className="tab-desc">{price}</p>
+            <div className="flex gap-x-2 mt-4">
+              {orderIsPaid ? (
+                <>
+                {isPaidBadges.map((badge) => (
+                  <span className="inline-flex items-center rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">
+                    {badge}
+                  </span>
+                ))}
+                </>
+              ) : (
+                <span className="inline-flex items-center rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-800">
+                  Unpaid
+                </span>
+              )}
+            </div>
+          </div>
+          <div className={`w-[88px] grid overflow-hidden rounded-lg${orders.length <= 1 ? '' : ' grid-cols-2'}`}>
+            {orders.map((order) => (
+              <img src={order.src} alt={order.alt} className={`aspect-square w-full h-full object-cover`}/>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   // const [loadingLogo, setLoadingLogo] = useState(true);
   // const timeout = setTimeout(() => {
@@ -407,32 +444,16 @@ const DashboardNew = ({ loadingLogo }) => {
 
               {hasOrders ? (
                 <>
-                  <div className="flex justify-between mb-2">
-                    <p className="tab-desc">#1321313231</p>
-                    <p className="tab-desc">30 Aug 2023 12:00</p>
-                  </div>
-                  <div className="flex justify-between">
-                    <div>
-                      <h2 className="subheading">Chomchuenchom</h2>
-                      <p className="tab-desc">฿4,000.00</p>
-                    </div>
-                    <div className={`w-[60px] grid overflow-hidden rounded-lg${orders.length <= 1 ? '' : ' grid-cols-2'}`}>
-                      {orders.map((order) => (
-                        <img src={order.src} alt={order.alt} className={`aspect-square w-full h-full object-cover`}/>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="flex gap-x-2">
-                    {ordersBadges.map((badge) => (
-                      <span className="inline-flex items-center rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">
-                        {badge}
-                      </span>
-                    ))}
-                  </div>
+                  <Orders code="ACC-SINV-2023-00730" date="30/08/23 12:00" name="Chomchuenischomchuen" price="฿4,000.00" isPaid={true}/>
+                  <Orders code="ACC-SINV-2023-00737" date="30/08/23 12:00" name="Thitaisalsothita" price="฿4,000.00" isPaid={false}/>
+
+                  <p className="text-link mt-4">View More</p>
                 </>
               ) : (
                 <p className="tab-desc">No unfulfiled orders</p>
               )}
+
+              
             </section>
           </div>
         </div>
