@@ -31,6 +31,7 @@ import SiteAndApp from './pages/siteandapp';
 import TestPage from './pages/testPage';
 import MobileMenu from './components/mobileMenu';
 import DashboardNew from './pages/dashboardnew';
+import Manage from './pages/manage';
 
 export const switchContext = createContext();
 
@@ -79,6 +80,7 @@ function App() {
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/register" element={<Register />} />
           <Route path="/teams" element={<TeamsPage />} />
+          <Route path="/manage" element={<Manage />} />
         </Routes>
 
         <MobileMenu />

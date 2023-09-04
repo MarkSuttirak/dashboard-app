@@ -242,7 +242,6 @@ const Dashboard = ({ loadingLogo }) => {
                   </div>
                 </div>
               ))}
-              
             </div>
             <br className="space-xs"/>
           </>

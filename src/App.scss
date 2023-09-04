@@ -1818,6 +1818,36 @@ select#goal {
   transform:translate(0,1px) /* Just customise the Y axis */
 }
 
+.accordion-btn {
+  width:100%;
+  padding:20px;
+  display:flex;
+  gap:8px;
+  align-items:center;
+  + .accordion-detail {
+    visibility:hidden;
+    opacity:0;
+    max-height:0;
+    transition:visibility 200ms, opacity 200ms, max-height 300ms;
+  }
+  .accordion-arrow-anim {
+    transform:rotate(0deg);
+    transition:transform 200ms;
+  }
+  &.active {
+    .accordion-arrow-anim {
+      transform:rotate(180deg);
+      transition:all 200ms;
+    }
+    + .accordion-detail {
+      visibility:visible;
+      opacity:1;
+      border-bottom:1px solid #E3E3E3;
+      transition:visibility 200ms, opacity 200ms, max-height 300ms;
+    }
+  }
+}
+
 @keyframes loadingAnim{
   from{transform:rotate(0deg)}
   to{transform:rotate(360deg)}
