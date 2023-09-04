@@ -68,16 +68,9 @@ function classNames(...classes) {
 const DashboardNew = ({ loadingLogo }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [openEditShortcuts, setOpenEditShortcuts] = useState(false)
-  const [openMembership, setOpenMembership] = useState(true);
-
-  const [tabsFreeTrial, setTabsFreeTrial] = useState(0)
 
   const handleInviteClick = () => {
     setIsOpen(!isOpen);
-  }
-
-  const handleFreeTrial = (index) => {
-    setTabsFreeTrial(index)
   }
 
   const closePopUp = () => {
