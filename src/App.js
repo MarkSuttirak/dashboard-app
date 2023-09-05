@@ -54,8 +54,8 @@ function App() {
           <TeamModal />
         </switchContext.Provider>
         <Routes>
-          <Route path="/" element={<DashboardNew />} />
-          <Route path="/dashboard/old" element={<Dashboard loadingLogo={loadingLogo} />} />
+          <Route path="/" element={<Dashboard loadingLogo={loadingLogo} />} />
+          <Route path="/dashboard" element={<DashboardNew />} />
           <Route path="/appsdetail" element={<BusinessDetail />} />
           <Route path="/singleAppPage" element={<SingleAppPage />} />
           <Route path="/change-domain" element={<ChangeDomain />} />
