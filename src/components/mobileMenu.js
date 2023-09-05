@@ -4,10 +4,12 @@ import { PlusCircleIcon, HomeIcon, ChatBubbleOvalLeftEllipsisIcon, Bars3Icon, Co
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import iconsGroup from '../img/icons-group.svg'
+import POSLogo from '../img/POSLogo.svg'
 
 const MobileMenu = () => {
   const [open, setOpen] = useState(false)
   const [openMembership, setOpenMembership] = useState(false);
+  const [openApps, setOpenApps] = useState(false)
 
   const [tabsFreeTrial, setTabsFreeTrial] = useState(0)
 
@@ -28,11 +30,6 @@ const MobileMenu = () => {
   ]
 
   const footerMenusRight = [
-    {
-      title: 'Apps',
-      link: '/inbox',
-      icon: <SquaresPlusIcon width='20'/>
-    },
     {
       title: 'Manage',
       link: '/manage',
@@ -96,6 +93,12 @@ const MobileMenu = () => {
           <button onClick={() => setOpen(true)}>
             <span className="inline-block m-auto"><PlusCircleIcon width='20'/></span>
             <p className="footer-menu-text">Add</p>
+          </button>
+        </li>
+        <li key={3} className="block text-center" style={{width:`20%`}}>
+          <button onClick={() => setOpenApps(true)}>
+            <span className="inline-block m-auto"><SquaresPlusIcon width='20'/></span>
+            <p className="footer-menu-text">Apps</p>
           </button>
         </li>
         {footerMenusRight.map((menu, index) => (
@@ -167,6 +170,57 @@ const MobileMenu = () => {
                       </div>
                     </button>
                   ))}
+                </div>
+              </Dialog.Panel>
+            </Transition.Child>
+          </div>
+        </div>
+      </Dialog>
+    </Transition.Root>
+
+    <Transition.Root show={openApps} as={Fragment}>
+      <Dialog as="div" className="relative z-10" onClose={setOpenApps}>
+        <Transition.Child
+          as={Fragment}
+          enter="ease-out duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="ease-in duration-200"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+        </Transition.Child>
+
+        <div className="fixed inset-0 z-10 overflow-y-auto">
+          <div className="min-h-full flex items-end max-h-1/2 w-full p-4 text-center justify-center">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              enterTo="opacity-100 translate-y-0 sm:scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+              leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            >
+              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white p-6 text-left shadow-xl transition-all w-full">
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="flex flex-col justify-center gap-y-2 text-center">
+                    <img src={POSLogo} className="m-auto" width='50%'/>
+                    <p className="tab-desc-small">App Test One</p>
+                  </div>
+                  <div className="flex flex-col justify-center gap-y-2 text-center">
+                    <img src={POSLogo} className="m-auto" width='50%'/>
+                    <p className="tab-desc-small">App Test Two</p>
+                  </div>
+                  <div className="flex flex-col justify-center gap-y-2 text-center">
+                    <img src={POSLogo} className="m-auto" width='50%'/>
+                    <p className="tab-desc-small">App Test Three</p>
+                  </div>
+                  <div className="flex flex-col justify-center gap-y-2 text-center">
+                    <img src={POSLogo} className="m-auto" width='50%'/>
+                    <p className="tab-desc-small">App Test Four</p>
+                  </div>
                 </div>
               </Dialog.Panel>
             </Transition.Child>
