@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom/dist';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ToastProvider } from './hooks/useToast';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <ToastProvider>
+        <App />
+      </ToastProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

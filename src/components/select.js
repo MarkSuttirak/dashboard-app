@@ -6,16 +6,15 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Select({values, width, height, border}) {
-  const [selected, setSelected] = useState(values[0])
+export default function Select({ options, value, onChange, width, height, border }) {
 
   return (
-    <Listbox value={selected} onChange={setSelected}>
+    <Listbox value={value} onChange={onChange}>
       {({ open }) => (
         <>
-          <div className="relative" style={{width:width,height:height}}>
-            <Listbox.Button className="form-input" style={{border:border}}>
-              <span className="block truncate text-left">{selected.name}</span>
+          <div className="relative" style={{ width: width, height: height }}>
+            <Listbox.Button className="form-input" style={{ border: border }}>
+              <span className="block truncate text-left">{value?.value}</span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <ChevronDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
               </span>
@@ -30,35 +29,33 @@ export default function Select({values, width, height, border}) {
             >
               {/* <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"> */}
               <Listbox.Options className="form-options">
-                {values.map((value) => (
+                {options.map((option) => (
                   <Listbox.Option
-                    key={value.id}
+                    key={option.value}
                     className={({ active }) =>
                       classNames(
-                        active ? 'active' : '',
+                        option.value === value.value ? 'active' : '',
                         'form-option-value'
                       )
                     }
-                    value={value}
+                    value={option}
                   >
-                    {({ selected, active }) => (
-                      <>
-                        <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
-                          {value.name}
-                        </span>
+                    <>
+                      <span className={classNames(value ? 'font-semibold' : 'font-normal', 'block truncate')}>
+                        {option?.label}
+                      </span>
 
-                        {selected ? (
-                          <span
-                            className={classNames(
-                              active ? 'text-white' : 'text-[#0788F5]',
-                              'absolute inset-y-0 right-0 flex items-center pr-4'
-                            )}
-                          >
-                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                          </span>
-                        ) : null}
-                      </>
-                    )}
+                      {option.value === value.value ? (
+                        <span
+                          className={classNames(
+                            option.value === value.value ? 'text-white' : 'text-[#0788F5]',
+                            'absolute inset-y-0 right-0 flex items-center pr-4'
+                          )}
+                        >
+                          <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                        </span>
+                      ) : null}
+                    </>
                   </Listbox.Option>
                 ))}
               </Listbox.Options>

@@ -20,12 +20,14 @@ import IconMock from "./icon-menus/IconMock";
 import AppsIcon from "./icon-menus/AppsIcon";
 import BoxOpen from "./icon-menus/BoxOpen";
 import HomeIconTwo from "./icon-menus/HomeIcon";
+import { useUser } from "../hooks/useUser";
 
 // import TeamModal from "../components/switchTeamModal";
 
 const Sidebar = ({ loadingLogo, tooltip }) => {
-  const location = useLocation();
   const [active, setActive] = useState('');
+  const location = useLocation();
+  const { user } = useUser();
 
   const openSidebar = () => {
     const sidebar = document.getElementById('sidebar');
@@ -51,13 +53,13 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
   const navigate = useNavigate();
 
   const navigation = [
-    { name: 'Dashboard', icon: <HomeSmile viewBox='0 0 30 24' width='24' className='menu-icon'/>, href: '/', current: active === '/' ? true : false, id: 'dashboard' },
-    { name: 'Integration', icon: <Backpack viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/integration', count: [10, 'orange', 'have-dot'], current: active === '/integration' || active === '/integration/connected' ? true : false, id: 'integration' },
-    { name: 'Gift & Privilege', icon: <Gift01 viewBox='0 0 30 24' width='24'className='menu-icon'/>, href: '/gifts-privileges', count: [5, 'blue', 'have-dot'], current: active === "/gifts-privileges" || active === "/gifts-privileges/premium" || active === "/gifts-privileges/free" ? true : false, active: active, id: 'gift' },
+    { name: 'Dashboard', icon: <HomeSmile viewBox='0 0 30 24' width='24' className='menu-icon' />, href: '/', current: active === '/' ? true : false, id: 'dashboard' },
+    { name: 'Integration', icon: <Backpack viewBox='0 0 30 24' width='24' className='menu-icon' />, href: '/integration', count: [10, 'orange', 'have-dot'], current: active === '/integration' || active === '/integration/connected' ? true : false, id: 'integration' },
+    { name: 'Gift & Privilege', icon: <Gift01 viewBox='0 0 30 24' width='24' className='menu-icon' />, href: '/gifts-privileges', count: [5, 'blue', 'have-dot'], current: active === "/gifts-privileges" || active === "/gifts-privileges/premium" || active === "/gifts-privileges/free" ? true : false, active: active, id: 'gift' },
   ]
 
   const leftNavigation = [
-    { name: 'Settings', icon: <Cog6ToothIcon width='24'/>, href: '/settings/profile', current: active === '/settings' || active === '/settings/profile' || active === '/settings/team' || active === '/settings/plan' || active === '/settings/billing' ? true : false, id: 'settings' },
+    { name: 'Settings', icon: <Cog6ToothIcon width='24' />, href: '/settings/profile', current: active === '/settings' || active === '/settings/profile' || active === '/settings/team' || active === '/settings/plan' || active === '/settings/billing' ? true : false, id: 'settings' },
   ]
 
   function classNames(...classes) {
@@ -90,16 +92,6 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
         return result.name.toLowerCase().includes(query.toLowerCase())
       })
 
-  const openSearch = () => {
-    setOpen(true);
-  }
-
-  const [isSwitchModalOpen, setisSwitchModalOpen] = React.useContext(switchContext);
-
-  function show_menu() {
-    setShowModal(false);
-  }
-
   // const [loadingLogo, setLoadingLogo] = useState(true);
   // const timeout = setTimeout(() => {
   //   setLoadingLogo(false);
@@ -120,34 +112,34 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
         </div>
         <Link to='/'>
           <div className="nav-btns" id="home-btn">
-            <HomeSmile className='menu-icon'/>
+            <HomeSmile className='menu-icon' />
           </div>
         </Link>
 
         <hr className="vertical-bar d-none d-sm-block" />
         <div className="nav-btns">
-          <Backpack className='menu-icon'/>
+          <Backpack className='menu-icon' />
         </div>
         <div className="nav-btns">
-          <Gift01 className='menu-icon'/>
+          <Gift01 className='menu-icon' />
         </div>
         <div id="additional-apps">
-          <div className="nav-btns add-ons" style={{background:"#F2F2FD"}}>
+          <div className="nav-btns add-ons" style={{ background: "#F2F2FD" }}>
             <IconMock />
           </div>
-          <div className="nav-btns add-ons" style={{background:"#FFEAE1"}}>
+          <div className="nav-btns add-ons" style={{ background: "#FFEAE1" }}>
             <Digice />
           </div>
         </div>
         <div id="lower-apps">
           {leftNavigation.map((item) => (
             <Link key={item.id}
-            to={item.href}
-            className={classNames(
-              item.current
-                ? 'nav-btns active'
-                : 'nav-btns'
-            )}>
+              to={item.href}
+              className={classNames(
+                item.current
+                  ? 'nav-btns active'
+                  : 'nav-btns'
+              )}>
               {item.icon}
             </Link>
             // <Link to='/settings/profile' className="nav-btns">
@@ -157,10 +149,10 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
           {/* <Link to='/settings/profile' className="nav-btns">
             <Cog6ToothIcon width='24'/>
           </Link> */}
-          <hr style={{borderColor:"#EBEEF0"}}/>
+          <hr style={{ borderColor: "#EBEEF0" }} />
           <div className="nav-btns">
             <img
-              src={pjob}
+              src={user?.user_image ?? pjob}
               alt=""
             />
           </div>
@@ -171,7 +163,7 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
 
   return (
     <>
-    <IconSidebar />
+      <IconSidebar />
       <div className="flex flex-1 flex-col border-r border-gray-200 bg-white" id="sidebar">
         <div className="flex flex-1 flex-col pt-[18px] pb-5">
           <div className="flex flex-shrink-0 items-center px-4">
@@ -200,37 +192,37 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                         : 'sidebar-menu'
                     )}
                     onClick={() => handleMenuClick(item.href)}
-                    // onMouseEnter={() => {
-                    //   const tooltip = document.getElementById(`tooltip-${item.id}`);
-                    //   tooltip.classList.remove('opacity-0');
-                    //   tooltip.classList.remove('invisible');
-                    // }}
-                    // onMouseLeave={() => {
-                    //   const tooltip = document.getElementById(`tooltip-${item.id}`);
-                    //   tooltip.classList.add('opacity-0');
-                    //   tooltip.classList.add('invisible');
-                    // }}
+                  // onMouseEnter={() => {
+                  //   const tooltip = document.getElementById(`tooltip-${item.id}`);
+                  //   tooltip.classList.remove('opacity-0');
+                  //   tooltip.classList.remove('invisible');
+                  // }}
+                  // onMouseLeave={() => {
+                  //   const tooltip = document.getElementById(`tooltip-${item.id}`);
+                  //   tooltip.classList.add('opacity-0');
+                  //   tooltip.classList.add('invisible');
+                  // }}
                   >
                     {item.icon}
                     {/* <img src={item.icon} className="mr-3 flex-shrink-0 h-6 w-6" alt=""/> */}
                     <span className="flex-1 item-name">{item.name}</span>
                     {item.count ? (
                       <>
-                      {/* Desktop Version */}
+                        {/* Desktop Version */}
 
-                      <div className="menu-badge">
-                        <span className={`badge-sidebar ${item.count[1] === 'orange' ? 'orange' : item.count[1] === 'blue' ? 'blue' : item.count[1] === 'gray' ? 'gray' : ''}`}>
-                          {item.count[2] === 'have-dot' && (
-                            <svg className="badge-circle" fill="currentColor" viewBox="0 0 8 8">
-                              <circle cx={4} cy={4} r={3} />
-                            </svg>
-                          )}
-                          {item.count[0]}
-                        </span>
-                      </div>
+                        <div className="menu-badge">
+                          <span className={`badge-sidebar ${item.count[1] === 'orange' ? 'orange' : item.count[1] === 'blue' ? 'blue' : item.count[1] === 'gray' ? 'gray' : ''}`}>
+                            {item.count[2] === 'have-dot' && (
+                              <svg className="badge-circle" fill="currentColor" viewBox="0 0 8 8">
+                                <circle cx={4} cy={4} r={3} />
+                              </svg>
+                            )}
+                            {item.count[0]}
+                          </span>
+                        </div>
 
-                      {/* Responsive Version */}
-                      {/* <span
+                        {/* Responsive Version */}
+                        {/* <span
                         className={classNames(
                           item.current ? 'bg-white' : 'bg-gray-100 group-hover:bg-gray-200',
                           'flex items-center justify-center w-[20px] h-[20px] text-xs font-medium rounded-full absolute left-[40px] translate-y-[12px] item-name-res'

@@ -1,12 +1,12 @@
 import logo from './logo.svg';
 import React, { useState, useEffect, createContext } from "react";
+import Router from './routes';
 import './App.scss';
 import Sidebar from './components/sidebar';
 import Dashboard from './pages/dashboard';
 import ChangeDomain from './pages/changeDomain';
 import Welcome from './pages/register/welcome';
 import Register from './pages/register'
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 import Business from './pages/Business';
 import BusinessDetail from './pages/BusinessDetail';
 import TeamsPage from './pages/teams';
@@ -32,61 +32,62 @@ import TestPage from './pages/testPage';
 import MobileMenu from './components/mobileMenu';
 import DashboardNew from './pages/dashboardnew';
 import Manage from './pages/manage';
+import { AuthProvider } from 'react-oauth2-code-pkce';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { useToast } from './hooks/useToast';
+import { UserProvider } from './hooks/useUser';
+
+const authConfig = {
+  autoLogin: false,
+  decodeToken: false,
+  clientId: '2000074326',
+  authorizationEndpoint: 'https://access.line.me/oauth2/v2.1/authorize',
+  tokenEndpoint: 'https://api.line.me/oauth2/v2.1/token',
+  redirectUri: `${process.env.NODE_ENV === 'development' ?
+    "http://localhost:3000" :
+    window.location.origin
+    }/callback`,
+  scope: 'openid profile email',
+  state: "a1212s4s",
+  onRefreshTokenExpire: (event) => window.confirm('Session expired. Refresh page to continue using the site?') && event.login(),
+}
 
 export const switchContext = createContext();
 
 function App() {
-  const [isSwitchModalOpen, setisSwitchModalOpen] = useState(false);
-  const [loadingLogo, setLoadingLogo] = useState(true);
-  const timeout = setTimeout(() => {
-    setLoadingLogo(false);
-  }, 500);
-  useEffect(() => {
-    return () => clearTimeout(timeout);
-  }, []);
+  const { showToast } = useToast();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      mutations: {
+        onError: (error) => {
+          if (error.response.status === 500) {
+            showToast('error', 'Something went wrong. Please try again later.')
+          } else {
+            if (error.response.data._server_messages) {
+              showToast('error', JSON.parse(JSON.parse("[\"{\\\"message\\\": \\\"Invalid or Expired Key\\\", \\\"title\\\": \\\"Message\\\", \\\"indicator\\\": \\\"red\\\", \\\"raise_exception\\\": 1}\"]")[0]).message)
+            }
+          }
+        },
+      },
+    }
+  })
 
   return (
-    <>
-      <Router>
-        <switchContext.Provider value={[isSwitchModalOpen, setisSwitchModalOpen]}>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider authConfig={authConfig}>
+        <UserProvider>
+          <Router />
+          {/* <switchContext.Provider value={[isSwitchModalOpen, setisSwitchModalOpen]}>
 
           <Sidebar loadingLogo={loadingLogo} />
           <TeamModal />
-        </switchContext.Provider>
-        <Routes>
-          <Route path="/" element={<Dashboard loadingLogo={loadingLogo} />} />
-          <Route path="/dashboard" element={<DashboardNew />} />
-          <Route path="/appsdetail" element={<BusinessDetail />} />
-          <Route path="/singleAppPage" element={<SingleAppPage />} />
-          <Route path="/change-domain" element={<ChangeDomain />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/settings/profile" element={<Profile />} />
-          <Route path="/settings/team" element={<TeamsSettings />} />
-          <Route path="/settings/billing" element={<BillingSettings />} />
-          <Route path="/settings/plan" element={<PlanSettings />} />
-          <Route path="/test" element={<TestPage />} />
-          <Route path="/integration" element={<Integration />} />
-          <Route path="/integration/connected" element={<ConnectedApps />} />
-          <Route path="/integration/apps" element={<Business />} />
-          <Route path="/gifts-privileges" element={<GiftsPrivileges />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/otp" element={<OTP />} />
-          <Route path="/gift-page/:id" element={<GiftPage />} />
-          <Route path="/gift-privileges/premium" element={<PremiumPrivileges />} />
-          <Route path="/gift-privileges/free" element={<FreePrivileges />} />
-          <Route path="/site-and-app" element={<SiteAndApp />} />
+        </switchContext.Provider> */}
 
-          <Route path="/welcome" element={<Welcome />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/teams" element={<TeamsPage />} />
-          <Route path="/manage" element={<Manage />} />
-        </Routes>
-
-        <MobileMenu />
-      </Router>
-    </>
+          {/* <MobileMenu /> */}
+        </UserProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   );
-}
 
+}
 export default App;
