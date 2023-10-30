@@ -22,18 +22,11 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
 
   const navigate = useNavigate();
 
-  // const navigation = [
-  //   { name: 'Dashboard', icon: <Home viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/', current: active === '/' ? true : false, id: 'dashboard' },
-  //   { name: 'Notifications', icon: <Bell viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/integration', current: active === '/integration' || active === '/integration/connected' ? true : false, id: 'integration' },
-  //   { name: 'Search', icon: <Search viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/gifts-privileges', current: active === "/gifts-privileges" || active === "/gifts-privileges/premium" || active === "/gifts-privileges/free" ? true : false, active: active, id: 'gift' },
-  //   { name: 'Settings', icon: <Settings viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/gifts-privileges', current: active === "/gifts-privileges" || active === "/gifts-privileges/premium" || active === "/gifts-privileges/free" ? true : false, active: active, id: 'gift' },
-  // ]
-
   const navigation = [
-    { name: 'Dashboard', icon: <LayoutGrid viewBox='0 0 30 24' width='24' color='#18181B' />, id: 'dashboard' },
-    { name: 'Notifications', icon: <Bell viewBox='0 0 30 24' width='24' color='#18181B' />, id: 'notifications' },
-    { name: 'Search', icon: <Search viewBox='0 0 30 24' width='24' color='#18181B' />, id: 'search' },
-    { name: 'Settings', icon: <Settings viewBox='0 0 30 24' width='24' color='#18181B' />, id: 'settings' },
+    { name: 'Dashboard', icon: <LayoutGrid viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/dashboard/app', current: active === '/dashboard/app' ? true : false, id: 'dashboard' },
+    { name: 'Notifications', icon: <Bell viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/integration', current: active === '/integration' || active === '/integration/connected' ? true : false, id: 'integration' },
+    { name: 'Search', icon: <Search viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/gifts-privileges', current: active === "/gifts-privileges" || active === "/gifts-privileges/premium" || active === "/gifts-privileges/free" ? true : false, active: active, id: 'gift' },
+    { name: 'Settings', icon: <Settings viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/dashboard/settings/account', current: active === "/dashboard/settings/account" || active === "/dashboard/settings/appearance" || active === "/dashboard/settings/account" ? true : false, active: active, id: 'settings' },
   ]
 
   const yourSites = [
@@ -103,32 +96,38 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
           </div>
 
           <nav className="flex bg-white px-4 pt-2 flex-col gap-y-4" aria-label="Sidebar">
-            <section>
+            <section className="flex flex-col gap-y-1">
               {navigation.map((item) => (
-                <Button variant='ghost' className='w-full flex justify-start gap-x-2'>
-                  {item.icon}
-                  {item.name}
-                </Button>
+                <Link to={item.href}>
+                  <Button variant='ghost' onClick={handleMenuClick} className={`w-full flex justify-start gap-x-2 ${item.href === active ? 'bg-accent' : ''}`}>
+                    {item.icon}
+                    {item.name}
+                  </Button>
+                </Link>
               ))}
             </section>
 
-            <section>
+            <section className="flex flex-col gap-y-1">
               <h3 className="text-[#797979] text-sm font-semibold p-4">Your sites</h3>
               {yourSites.map((item) => (
-                <Button variant='ghost' className='w-full flex justify-start gap-x-2'>
-                  {item.icon}
-                  {item.name}
-                </Button>
+                <Link to={item.href}>
+                  <Button variant='ghost' onClick={handleMenuClick} className={`w-full flex justify-start gap-x-2 ${item.href === active ? 'bg-accent' : ''}`}>
+                    {item.icon}
+                    {item.name}
+                  </Button>
+                </Link>
               ))}
             </section>
 
-            <section>
+            <section className="flex flex-col gap-y-1">
               <h3 className="text-[#797979] text-sm font-semibold p-4">WorkSpace App</h3>
               {workspaceApp.map((item) => (
-                <Button variant='ghost' className='w-full flex justify-start gap-x-2'>
-                  {item.icon}
-                  {item.name}
-                </Button>
+                <Link to={item.href}>
+                  <Button variant='ghost' onClick={handleMenuClick} className={`w-full flex justify-start gap-x-2 ${item.href === active ? 'bg-accent' : ''}`}>
+                    {item.icon}
+                    {item.name}
+                  </Button>
+                </Link>
               ))}
             </section>
           </nav>
