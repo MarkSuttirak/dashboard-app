@@ -24,7 +24,6 @@ export default function Router() {
             children: [
                 { path: 'instance-configuration', element: <InstanceConfig /> },
                 { path: 'app', element: <DashboardNewVer /> },
-                { path: 'settings/:id', element: <Settings /> },
                 {
                     path: 'products',
                     children: [
@@ -33,6 +32,7 @@ export default function Router() {
                         { path: 'edit/:id', element: <></> },
                     ],
                 },
+                { path: 'settings/:id', element: <Settings /> },
             ],
         },
         {
