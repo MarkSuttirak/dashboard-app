@@ -1,26 +1,15 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import Logo from "../img/logo-zaviago.svg";
-import mock1 from "../img/mock1.svg";
-import mock2 from "../img/mock2.svg";
-import mock3 from "../img/mock3.svg";
-import switchuser from "../img/switchuser.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { CalendarIcon, ChartBarIcon, Cog6ToothIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/24/outline'
-import pjob from "../img/pjob.svg";
 import { Fragment } from 'react'
 import { Combobox, Dialog, Transition } from '@headlessui/react'
 import "../css/sidebar-dropdown.css";
 import { switchContext } from '../App'
-import { PlusIcon } from "@heroicons/react/20/solid";
-import { HomeSmile, Edit04, Menu01, LayoutAlt01, Backpack, Gift01, Inbox01, Settings01, ArrowLeft } from "@untitled-ui/icons-react/build/cjs";
-import EarPhone from "./icon-menus/EarPhone";
-import GaugeMin from "./icon-menus/GaugeMin";
 import Digice from "./icon-menus/Digice";
 import IconMock from "./icon-menus/IconMock";
-import AppsIcon from "./icon-menus/AppsIcon";
-import BoxOpen from "./icon-menus/BoxOpen";
-import HomeIconTwo from "./icon-menus/HomeIcon";
 import { useUser } from "../hooks/useUser";
+import SidebarShortcut from "./sidebarShortcut";
+import { Home, ListMinus, PlusCircle, Settings, Search, Bell, Users } from "lucide-react";
+import { Button } from "./ui/button";
 
 // import TeamModal from "../components/switchTeamModal";
 
@@ -29,22 +18,7 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
   const location = useLocation();
   const { user } = useUser();
 
-  const openSidebar = () => {
-    const sidebar = document.getElementById('sidebar');
-    const sidebarOverlay = document.getElementById('sidebar-overlay');
-    sidebar.style.animation = "sidebarActive 400ms forwards";
-    sidebarOverlay.style.animation = "sidebarOverlayActive 400ms forwards";
-  }
-
-  const tooltipRef = useRef(null);
-  const containerRef = useRef(null);
-
-  const closeSidebar = () => {
-    const sidebar = document.getElementById('sidebar');
-    const sidebarOverlay = document.getElementById('sidebar-overlay');
-    sidebar.style.animation = "sidebarInactive 300ms forwards";
-    sidebarOverlay.style.animation = "sidebarOverlayInactive 300ms forwards";
-  }
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
 
   const handleMenuClick = (menu) => {
     setActive(menu);
@@ -53,13 +27,10 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
   const navigate = useNavigate();
 
   const navigation = [
-    { name: 'Dashboard', icon: <HomeSmile viewBox='0 0 30 24' width='24' className='menu-icon' />, href: '/', current: active === '/' ? true : false, id: 'dashboard' },
-    { name: 'Integration', icon: <Backpack viewBox='0 0 30 24' width='24' className='menu-icon' />, href: '/integration', count: [10, 'orange', 'have-dot'], current: active === '/integration' || active === '/integration/connected' ? true : false, id: 'integration' },
-    { name: 'Gift & Privilege', icon: <Gift01 viewBox='0 0 30 24' width='24' className='menu-icon' />, href: '/gifts-privileges', count: [5, 'blue', 'have-dot'], current: active === "/gifts-privileges" || active === "/gifts-privileges/premium" || active === "/gifts-privileges/free" ? true : false, active: active, id: 'gift' },
-  ]
-
-  const leftNavigation = [
-    { name: 'Settings', icon: <Cog6ToothIcon width='24' />, href: '/settings/profile', current: active === '/settings' || active === '/settings/profile' || active === '/settings/team' || active === '/settings/plan' || active === '/settings/billing' ? true : false, id: 'settings' },
+    { name: 'Dashboard', icon: <Home viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/', current: active === '/' ? true : false, id: 'dashboard' },
+    { name: 'Notifications', icon: <Bell viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/integration', current: active === '/integration' || active === '/integration/connected' ? true : false, id: 'integration' },
+    { name: 'Search', icon: <Search viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/gifts-privileges', current: active === "/gifts-privileges" || active === "/gifts-privileges/premium" || active === "/gifts-privileges/free" ? true : false, active: active, id: 'gift' },
+    { name: 'Settings', icon: <Settings viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/gifts-privileges', current: active === "/gifts-privileges" || active === "/gifts-privileges/premium" || active === "/gifts-privileges/free" ? true : false, active: active, id: 'gift' },
   ]
 
   function classNames(...classes) {
@@ -81,10 +52,8 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
   }
 
   const [query, setQuery] = useState('')
-
   const [open, setOpen] = useState(false)
 
-  const [showModal, setShowModal] = React.useState(false);
   const filteredSearch =
     query === ''
       ? []
@@ -92,70 +61,22 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
         return result.name.toLowerCase().includes(query.toLowerCase())
       })
 
-  // const [loadingLogo, setLoadingLogo] = useState(true);
-  // const timeout = setTimeout(() => {
-  //   setLoadingLogo(false);
-  // }, 1800);
-  // useEffect(() => {
-  //   return () => clearTimeout(timeout);
-  // }, []);
-  // const handleContentLoad = () => {
-  //   clearTimeout(timeout);
-  //   setLoadingLogo(false);
-  // };
-
   const IconSidebar = () => {
     return (
       <nav className="nav-left-side">
-        <div className="logo">
-          <img src={Logo} />
-        </div>
         <Link to='/'>
           <div className="nav-btns" id="home-btn">
-            <HomeSmile className='menu-icon' />
+            <Home color='#18181B' viewBox='0 0 24 24' width='18' height='18'/>
           </div>
         </Link>
-
-        <hr className="vertical-bar d-none d-sm-block" />
-        <div className="nav-btns">
-          <Backpack className='menu-icon' />
+        <div className="nav-btns add-ons" style={{ background: "#F2F2FD" }}>
+          <IconMock />
+        </div>
+        <div className="nav-btns add-ons" style={{ background: "#FFEAE1" }}>
+          <Digice />
         </div>
         <div className="nav-btns">
-          <Gift01 className='menu-icon' />
-        </div>
-        <div id="additional-apps">
-          <div className="nav-btns add-ons" style={{ background: "#F2F2FD" }}>
-            <IconMock />
-          </div>
-          <div className="nav-btns add-ons" style={{ background: "#FFEAE1" }}>
-            <Digice />
-          </div>
-        </div>
-        <div id="lower-apps">
-          {leftNavigation.map((item) => (
-            <Link key={item.id}
-              to={item.href}
-              className={classNames(
-                item.current
-                  ? 'nav-btns active'
-                  : 'nav-btns'
-              )}>
-              {item.icon}
-            </Link>
-            // <Link to='/settings/profile' className="nav-btns">
-            //   <Settings01/>
-            // </Link>
-          ))}
-          {/* <Link to='/settings/profile' className="nav-btns">
-            <Cog6ToothIcon width='24'/>
-          </Link> */}
-          <hr style={{ borderColor: "#EBEEF0" }} />
-          <div className="nav-btns">
-            <img
-              src={user?.user_image ?? pjob}
-              alt=""
-            />
-          </div>
+          <PlusCircle color='#18181B' viewBox='0 0 24 24' width='18' height='18'/>
         </div>
       </nav>
     )
@@ -164,14 +85,20 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
   return (
     <>
       <IconSidebar />
-      <div className="flex flex-1 flex-col border-r border-gray-200 bg-white" id="sidebar">
-        <div className="flex flex-1 flex-col pt-[18px] pb-5">
-          <div className="flex flex-shrink-0 items-center px-4">
+      <div className={`flex flex-1 flex-col border-r border-gray-200 bg-white ${isSidebarOpen ? 'active' : 'inactive'}`} id="sidebar">
+        <div className="flex flex-1 flex-col pt-[10px]">
+          <div className="flex flex-shrink-0 items-center px-3">
             {!loadingLogo ? (
-              <button onClick={() => navigate(-1)} className="flex text-[13px] font-semibold items-center">
-                <ArrowLeft viewBox='0 0 30 24' />
-                Back
-              </button>
+              // <button onClick={() => navigate(-1)} className="flex text-[13px] font-semibold items-center">
+              //   <ArrowLeft viewBox='0 0 30 24' />
+              //   Back
+              // </button>
+              <div className="flex gap-x-2 items-center w-full">
+                <SidebarShortcut />
+                <Button className='h-10 w-10 p-[10px]' variant='secondary' onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+                  <ListMinus color='#18181B' viewBox='0 0 24 24'/>
+                </Button>
+              </div>
             ) : (
               <div className="animate-pulse">
                 <div className="bg-[#F3F3F3] w-[54px] aspect-square rounded-lg"></div>
@@ -180,7 +107,7 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
           </div>
 
           {!loadingLogo ? (
-            <nav className="flex-1 bg-white px-4 pt-4" aria-label="Sidebar">
+            <nav className="flex-1 bg-white px-4 pt-2" aria-label="Sidebar">
               {navigation.map((item) => (
                 <>
                   <Link
@@ -192,20 +119,10 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                         : 'sidebar-menu'
                     )}
                     onClick={() => handleMenuClick(item.href)}
-                  // onMouseEnter={() => {
-                  //   const tooltip = document.getElementById(`tooltip-${item.id}`);
-                  //   tooltip.classList.remove('opacity-0');
-                  //   tooltip.classList.remove('invisible');
-                  // }}
-                  // onMouseLeave={() => {
-                  //   const tooltip = document.getElementById(`tooltip-${item.id}`);
-                  //   tooltip.classList.add('opacity-0');
-                  //   tooltip.classList.add('invisible');
-                  // }}
                   >
                     {item.icon}
                     {/* <img src={item.icon} className="mr-3 flex-shrink-0 h-6 w-6" alt=""/> */}
-                    <span className="flex-1 item-name">{item.name}</span>
+                    <span className="flex-1 text-zinc-950">{item.name}</span>
                     {item.count ? (
                       <>
                         {/* Desktop Version */}
@@ -220,22 +137,9 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
                             {item.count[0]}
                           </span>
                         </div>
-
-                        {/* Responsive Version */}
-                        {/* <span
-                        className={classNames(
-                          item.current ? 'bg-white' : 'bg-gray-100 group-hover:bg-gray-200',
-                          'flex items-center justify-center w-[20px] h-[20px] text-xs font-medium rounded-full absolute left-[40px] translate-y-[12px] item-name-res'
-                        )}
-                      >
-                        {item.count[0]}
-                      </span> */}
                       </>
                     ) : null}
                   </Link>
-                  <div id={`tooltip-${item.id}`} role="tooltip" className="tooltip-menu absolute invisible opacity-0 z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg left-[60px] text-xs translate-y-[-120%] whitespace-pre shadow-sm dark:bg-gray-700">
-                    {item.name}
-                  </div>
                 </>
               ))}
             </nav>
@@ -328,7 +232,7 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
 
                   {query !== '' && filteredSearch.length === 0 && (
                     <div className="py-14 px-4 text-center sm:px-14">
-                      <UsersIcon className="mx-auto h-6 w-6 text-gray-400" aria-hidden="true" />
+                      <Users className="mx-auto h-6 w-6 text-gray-400" aria-hidden="true" />
                       <p className="mt-4 text-sm text-gray-900">No search found using that search term.</p>
                     </div>
                   )}

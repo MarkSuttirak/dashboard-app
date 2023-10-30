@@ -6,11 +6,20 @@ $success: #17B26A;
 $primary-color: #09090B;
 $secondary-color: #71717A;
 
-$left-sidebar-width: 70px;
-$right-sidebar-width: 256px;
+$left-sidebar-width: 60px;
+$right-sidebar-width: 266px;
 
 $mobile-header-size: 60px;
 $mobile-footer-size: 60px;
+
+@mixin check-sidebar($active: true){
+  @if $active {
+    $right-sidebar-width: 266px;
+  }
+  @else {
+    $right-sidebar-width: 0px;
+  }
+}
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
 
@@ -179,7 +188,7 @@ body {
 
 /* Sidebar style */
 .sidebar-menu {
-  padding:6px 8px;
+  padding:8px 16px;
   border-radius:8px;
   color:#6B7280;
   width:100%;
@@ -193,7 +202,6 @@ body {
   &.active {
     color:black;
     background: #F3F4F6;
-    .menu-icon {stroke:black}
   }
 }
 
@@ -201,11 +209,13 @@ body {
   z-index:101;
   height:100%;
   position:fixed;
-  display:block;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
   top:0;
   width:$left-sidebar-width;
   background:white;
-  padding:12px;
+  padding:10px;
   border-right:1px solid #EBEEF0;
   img {
     display:block;
@@ -217,24 +227,24 @@ body {
 }
 
 .nav-btns {
-	height:47px;
+  height:39px;
 	display:flex;
 	align-items:center;
 	justify-content:center;
-	margin:4px 0;
 	cursor:pointer;
-	border-radius:9px;
+  box-sizing:border-box;
+	border-radius:6px;
 	outline:0px solid #2794F0;
-	border:3px solid white;
+	border:1px solid #E4E4E7;
   color:#6B7280;
 	&:hover,&.active {background-color:#F0F1F2}
-	&.add-ons:hover {outline:2px solid #2794F0}
-}
-
-#lower-apps {
-  position:absolute;
-  width:calc(100% - 24px);
-  bottom:0;
+	&.add-ons {
+    border:none;
+    box-sizing:border-box;
+    &:hover {
+      outline:2px solid #2794F0
+    }
+  }
 }
 
 #sidebar {
@@ -246,6 +256,14 @@ body {
   position:fixed;
   height:100vh;
   margin-left:$left-sidebar-width;
+  &.active {
+    transform:translateX(0);
+    transition:transform 300ms;
+  }
+  &.inactive {
+    transform:translateX(-100%);
+    transition:transform 300ms;
+  }
 }
 
 .badge-sidebar {

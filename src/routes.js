@@ -12,6 +12,7 @@ import Partial, { PhoneVerification } from './pages/register/partial';
 import OtherInfo from './pages/register/otherInfo';
 import InstanceConfig from './pages/register/instanceConfig';
 import DashboardNewVer from './pages/dashboard-newver';
+import Settings from './pages/settings/settings';
 
 // ----------------------------------------------------------------------
 
@@ -23,6 +24,7 @@ export default function Router() {
             children: [
                 { path: 'instance-configuration', element: <InstanceConfig /> },
                 { path: 'app', element: <DashboardNewVer /> },
+                { path: 'settings/:id', element: <Settings /> },
                 {
                     path: 'products',
                     children: [
