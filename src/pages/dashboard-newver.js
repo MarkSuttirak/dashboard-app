@@ -140,7 +140,7 @@ export default function DashboardNewVer(){
               <Badge variant="outline">Free trial</Badge>
             </div>
           </div>
-          <Button variant='default' className='btn-with-icon leading-5'>
+          <Button variant='default' className='btn-with-icon leading-5' onClick={() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })}>
             <PlusCircledIcon />
             Go to WorkSpace
           </Button>
