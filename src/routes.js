@@ -11,7 +11,7 @@ import Callback from './callback';
 import Partial, { PhoneVerification } from './pages/register/partial';
 import OtherInfo from './pages/register/otherInfo';
 import InstanceConfig from './pages/register/instanceConfig';
-
+import DashboardNewVer from './pages/dashboard-newver';
 
 // ----------------------------------------------------------------------
 
@@ -22,7 +22,7 @@ export default function Router() {
             element: withAuthenticationRequired(DashboardLayout),
             children: [
                 { path: 'instance-configuration', element: <InstanceConfig /> },
-                { path: 'app', element: <Dashboard /> },
+                { path: 'app', element: <DashboardNewVer /> },
                 {
                     path: 'products',
                     children: [

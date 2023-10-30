@@ -498,7 +498,6 @@ const Dashboard = ({ loadingLogo }) => {
                   </div>
 
                   {/* Progress Bars */}
-                  {/* Progress Bars */}
                   <div className="flex gap-x-2 items-center mb-4 columns-4">
                     <div className="w-[30%]">
                       <p className="font-13">Customer</p>

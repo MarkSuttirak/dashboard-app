@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import React, { useState, useEffect, createContext } from "react";
 import Router from './routes';
-import './App.scss';
+import './App-new.scss';
 import Sidebar from './components/sidebar';
 import Dashboard from './pages/dashboard';
 import ChangeDomain from './pages/changeDomain';
