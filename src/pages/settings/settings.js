@@ -14,6 +14,7 @@ import { Separator } from "../../components/ui/separator";
 import AccountForm from "./accountForm";
 import { useState } from "react";
 import SettingsMenus from "./settingsMenus";
+import { AppearanceForm } from "./appearance";
 
 export default function Settings(){
   const [settingsPage, setSettingsPage] = useState('account')
@@ -25,19 +26,27 @@ export default function Settings(){
 
       <main className="flex gap-x-10 mt-8">
         <section>
-          <SettingsMenus />
+          <SettingsMenus setMenu={setSettingsPage}/>
         </section>
-
-        <section>
-          <h2 className="secondary-heading">Account</h2>
-          <p className="secondary-desc">Update your account settings. Set your preferred language and timezone.</p>
-
-          <Separator className='my-6'/>
-
           {id === 'account' && (
-            <AccountForm />
+            <section>
+              <h2 className="secondary-heading">Account</h2>
+              <p className="secondary-desc">Update your account settings. Set your preferred language and timezone.</p>
+
+              <Separator className='my-6'/>
+              <AccountForm />
+            </section>
           )}
-        </section>
+
+          {id === 'appearance' && (
+            <section>
+              <h2 className="secondary-heading">Appearance</h2>
+              <p className="secondary-desc">Customize the appearance of the app. Automatically switch between day and night themes.</p>
+
+              <Separator className='my-6'/>
+              <AppearanceForm />
+            </section>
+          )}
       </main>
     </div>
   )

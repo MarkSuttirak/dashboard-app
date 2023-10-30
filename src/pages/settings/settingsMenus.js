@@ -10,28 +10,24 @@ export const metadata = {
 
 const sidebarNavItems = [
   {
-    title: "Profile",
-    href: "/examples/forms",
-  },
-  {
     title: "Account",
-    href: "/examples/forms/account",
+    href: "account",
   },
   {
     title: "Appearance",
-    href: "/examples/forms/appearance",
+    href: "appearance",
   },
   {
     title: "Notifications",
-    href: "/examples/forms/notifications",
+    href: "notifications",
   },
   {
     title: "Display",
-    href: "/examples/forms/display",
+    href: "display",
   },
 ]
 
-export default function SettingsMenus() {
+export default function SettingsMenus({setMenu}) {
   return (
     <>
       <div className="hidden space-y-6 md:block">
@@ -43,12 +39,7 @@ export default function SettingsMenus() {
               )}
             >
               {sidebarNavItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                >
-                  <Button className='w-full flex justify-start gap-x-2' variant='ghost'>{item.title}</Button>
-                </Link>
+                <Button key={item.href} className='w-full flex justify-start gap-x-2' variant='ghost' onClick={() => setMenu(item.href)}>{item.title}</Button>
               ))}
             </nav>
           </aside>
