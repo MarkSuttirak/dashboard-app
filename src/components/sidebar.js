@@ -13,12 +13,10 @@ import { Button } from "./ui/button";
 
 // import TeamModal from "../components/switchTeamModal";
 
-const Sidebar = ({ loadingLogo, tooltip }) => {
+const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
   const [active, setActive] = useState('');
   const location = useLocation();
   const { user } = useUser();
-
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
 
   const handleMenuClick = (menu) => {
     setActive(menu);
@@ -64,11 +62,9 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
   const IconSidebar = () => {
     return (
       <nav className="nav-left-side">
-        <Link to='/'>
-          <div className="nav-btns" id="home-btn">
-            <Home color='#18181B' viewBox='0 0 24 24' width='18' height='18'/>
-          </div>
-        </Link>
+        <div className="nav-btns" id="home-btn" onClick={() => setIsSidebarOpen(true)}>
+          <Home color='#18181B' viewBox='0 0 24 24' width='18' height='18'/>
+        </div>
         <div className="nav-btns add-ons" style={{ background: "#F2F2FD" }}>
           <IconMock />
         </div>
@@ -95,7 +91,7 @@ const Sidebar = ({ loadingLogo, tooltip }) => {
               // </button>
               <div className="flex gap-x-2 items-center w-full">
                 <SidebarShortcut />
-                <Button className='h-10 w-10 p-[10px]' variant='secondary' onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+                <Button className='h-10 w-10 p-[10px]' variant='secondary' onClick={() => setIsSidebarOpen(false)}>
                   <ListMinus color='#18181B' viewBox='0 0 24 24'/>
                 </Button>
               </div>
