@@ -11,23 +11,23 @@ export const metadata = {
 const sidebarNavItems = [
   {
     title: "Account",
-    href: "account",
+    href: "/dashboard/settings/account",
   },
   {
     title: "Appearance",
-    href: "appearance",
+    href: "/dashboard/settings/appearance",
   },
   {
     title: "Notifications",
-    href: "notifications",
+    href: "/dashboard/settings/notifications",
   },
   {
     title: "Display",
-    href: "display",
+    href: "/dashboard/settings/display",
   },
 ]
 
-export default function SettingsMenus({setMenu}) {
+export default function SettingsMenus({active}) {
   return (
     <>
       <div className="hidden space-y-6 md:block">
@@ -39,7 +39,9 @@ export default function SettingsMenus({setMenu}) {
               )}
             >
               {sidebarNavItems.map((item) => (
-                <Button key={item.href} className='w-full flex justify-start gap-x-2' variant='ghost' onClick={() => setMenu(item.href)}>{item.title}</Button>
+                <Link to={item.href}>
+                  <Button key={item.href} className={`w-full flex justify-start gap-x-2 ${item.href === active ? 'bg-accent' : ''}`} variant='ghost'>{item.title}</Button>
+                </Link>
               ))}
             </nav>
           </aside>
