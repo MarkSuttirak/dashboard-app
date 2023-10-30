@@ -18,11 +18,10 @@ import { site } from "../client/api";
 
 export default function DashboardNewVer(){
   const location = useLocation()
-  const [firstname, setFirstname] = useState('Olivia')
-  const [lastname, setLastname] = useState('Martin')
   const [date, setDate] = useState('April 2023')
 
   const { user, auth, logout } = useUser();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -132,10 +131,10 @@ export default function DashboardNewVer(){
             <div className="mt-1 flex items-center gap-x-4">
               <div className="flex items-center gap-x-[10px]">
                 <Avatar className='w-[35px] h-[35px]'>
-                  <AvatarImage src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
-                  <AvatarFallback>{firstname[0]}{lastname[0]}</AvatarFallback>
+                  <AvatarImage src="" />
+                  <AvatarFallback>{user?.first_name[0]}{user?.last_name[0]}</AvatarFallback>
                 </Avatar>
-                <h2 className="text-sm font-medium text-zinc-950">{firstname}{' '}{lastname}</h2>
+                <h2 className="text-sm font-medium text-zinc-950">{user?.first_name}{' '}{user?.last_name}</h2>
               </div>
               <Badge variant="outline">Free trial</Badge>
             </div>
