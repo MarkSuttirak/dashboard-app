@@ -154,14 +154,14 @@ export default function DashboardNewVer(){
 
       <section className="mt-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-x-[15px]">
-          <CardInfo title="Your WorkSpace" value={sites?.site_list[0].name} desc="+19% from last month" /> {/* Will use this value soon: sites?.site_list[0].name */}
+          <CardInfo title="Your WorkSpace" value={sites?.site_list[0].name} desc="+19% from last month" />
           <CardInfo title="Your Plan" value="Free trial" desc="+19% from last month" />
         </div>
 
         <Card className='w-full mt-6'>
           <CardHeader className='pb-2 flex flex-row items-center justify-between'>
             <div>
-              <CardTitle className='subheading font-semibold mb-1'>{sites?.site_list[0].name}</CardTitle> {/* sites?.site_list[0].name will be replaced with intergoods.zaviago.com */}
+              <CardTitle className='subheading font-semibold mb-1'>{sites?.site_list[0].name}</CardTitle>
               <CardDescription>Beautifully designed components built with Radix UI and Tailwind CSS.</CardDescription>
             </div>
             <Button variant='secondary' className='btn-with-icon leading-5' onClick={() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })}>

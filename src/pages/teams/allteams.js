@@ -1,25 +1,8 @@
 import { PlusCircle, X, ChevronDownIcon } from "lucide-react";
-import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
-import VerticalLine from "../../components/verticalLine";
-import { Badge } from "../../components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "../../components/ui/avatar"
-import {
-  Command,
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-  CommandShortcut,
-} from "../../components/ui/command"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "../../components/ui/popover"
+import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "../../components/ui/command"
+import { Popover, PopoverContent, PopoverTrigger } from "../../components/ui/popover"
 
 export default function AllTeams(){
   const TeamCard = ({teamname, role, avatar}) => {

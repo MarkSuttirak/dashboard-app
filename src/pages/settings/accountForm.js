@@ -15,26 +15,26 @@ import { toast } from "../../components/ui/use-toast"
 
 const accountFormSchema = z.object({
   firstname: z.string({
-    required_error: "The first name is required.", // Ein Geburtsdatum ist erforderlich.
+    required_error: "The first name is required.",
   }),
   lastname: z.string({
-    required_error: "The last name is required.", // Ein Geburtsdatum ist erforderlich.
+    required_error: "The last name is required.",
   }),
   username: z
     .string()
     .min(2, {
-      message: "Name must be at least 2 characters.", // Name muss mindestens 2 Zeichen lang sein.
+      message: "Name must be at least 2 characters.",
     })
     .max(30, {
-      message: "Name must not be longer than 30 characters.", // Name muss nicht länger als 30 Zeichen sein.
+      message: "Name must not be longer than 30 characters.",
     }),
   email: z
     .string({
-      required_error: "Please select an email to display.", // Bitte wählen Sie eine E-Mail zum Anzeigen aus.
+      required_error: "Please select an email to display.",
     })
     .email(),
   dob: z.date({
-    required_error: "The date of birth is required.", // Ein Geburtsdatum ist erforderlich.
+    required_error: "The date of birth is required.",
   }),
 })
 
