@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 import { Button } from './ui/button'
-import { Bell, ChevronDown, Zap } from 'lucide-react'
+import { BadgeInfo, Bell, BookCopy, ChevronDown, ClipboardList, Info, MessageCircle, Zap, User, Keyboard, Layout, LogOut } from 'lucide-react'
 import VerticalLine from './verticalLine'
-import { Input } from './ui/input'
 import {
   Popover,
   PopoverContent,
@@ -86,16 +85,90 @@ export default function Topbar({isSidebarOpen}){
               Help
               <ChevronDown viewBox='0 0 24 24' width='16' height='16'/>
             </PopoverTrigger>
-            <PopoverContent>Place content for the popover here.</PopoverContent>
+            <PopoverContent className='p-0'>
+              <Command>
+                <CommandList>
+                  <CommandGroup>
+                    <CommandItem>
+                      <BookCopy viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+                      Documentation
+                      <CommandShortcut>⇧⌘P</CommandShortcut>
+                    </CommandItem>
+                    <CommandItem>
+                      <MessageCircle viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+                      User forum
+                      <CommandShortcut>⌘K</CommandShortcut>
+                    </CommandItem>
+                  </CommandGroup>
+                  <CommandSeparator />
+                  <CommandGroup>
+                    <CommandItem>
+                      <ClipboardList viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+                      Report an Issue
+                    </CommandItem>
+                  </CommandGroup>
+                  <CommandSeparator />
+                  <CommandGroup>
+                    <CommandItem>
+                      <Info viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+                      About
+                      <CommandShortcut>⇧⌘Q</CommandShortcut>
+                    </CommandItem>
+                    <CommandItem>
+                      <BadgeInfo viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+                      Support
+                      <CommandShortcut>⇧⌘Q</CommandShortcut>
+                    </CommandItem>
+                  </CommandGroup>
+                </CommandList>
+              </Command>
+            </PopoverContent>
           </Popover>
         </div>
 
-        <div>
-          <Avatar>
-            <AvatarImage src="" />
-            <AvatarFallback>{user?.first_name[0]}</AvatarFallback>
-          </Avatar>
-        </div>
+        <Popover>
+          <PopoverTrigger>
+            <Avatar>
+              <AvatarImage src="" />
+              <AvatarFallback>{user?.first_name[0]}</AvatarFallback>
+            </Avatar>
+          </PopoverTrigger>
+          <PopoverContent className='p-0'>
+            <Command>
+              <CommandList>
+                <h2 className='subheading font-semibold px-3 py-[10px]'>My Apps</h2>
+                <CommandSeparator />
+                <CommandGroup>
+                  <CommandItem>
+                    <User viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+                    Account settings
+                    <CommandShortcut>⇧⌘P</CommandShortcut>
+                  </CommandItem>
+                  <CommandItem>
+                    <Keyboard viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+                    Keyboard shortcuts
+                    <CommandShortcut>⌘K</CommandShortcut>
+                  </CommandItem>
+                </CommandGroup>
+                <CommandSeparator />
+                <CommandGroup>
+                  <CommandItem>
+                    <Layout viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+                    View website
+                  </CommandItem>
+                </CommandGroup>
+                <CommandSeparator />
+                <CommandGroup>
+                  <CommandItem>
+                    <LogOut viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+                    Logout
+                    <CommandShortcut>⇧⌘Q</CommandShortcut>
+                  </CommandItem>
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </PopoverContent>
+        </Popover>
       </section>
     </div>
   )
