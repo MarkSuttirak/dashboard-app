@@ -32,31 +32,33 @@ import {
 import { toast } from "../../components/ui/use-toast"
 
 const languages = [
-  { label: "English", value: "en" },
-  { label: "French", value: "fr" },
-  { label: "German", value: "de" },
-  { label: "Spanish", value: "es" },
-  { label: "Portuguese", value: "pt" },
-  { label: "Russian", value: "ru" },
-  { label: "Japanese", value: "ja" },
-  { label: "Korean", value: "ko" },
-  { label: "Chinese", value: "zh" },
+  { label: "English", value: "en" }, // English
+  { label: "Français", value: "fr" }, // French
+  { label: "Deutsch", value: "de" }, // German
+  { label: "Español", value: "es" }, // Spanish
+  { label: "Português", value: "pt" }, // Portuguese
+  { label: "Русский", value: "ru" }, // Russian
+  { label: "日本語", value: "ja" }, // Japanese
+  { label: "한국어", value: "ko" }, // Korean
+  { label: "简体中文", value: "zh-hans" }, // Simplified Chinese
+  { label: "繁體中文", value: "zh-hant" }, // Traditional Chinese
+  { label: "ไทย", value: "th" }, // Thai
 ]
 
 const accountFormSchema = z.object({
   name: z
     .string()
     .min(2, {
-      message: "Name must be at least 2 characters.",
+      message: "Name must be at least 2 characters.", // Name muss mindestens 2 Zeichen lang sein.
     })
     .max(30, {
-      message: "Name must not be longer than 30 characters.",
+      message: "Name must not be longer than 30 characters.", // Name muss nicht länger als 30 Zeichen sein.
     }),
   dob: z.date({
-    required_error: "A date of birth is required.",
+    required_error: "A date of birth is required.", // Ein Geburtsdatum ist erforderlich.
   }),
   language: z.string({
-    required_error: "Please select a language.",
+    required_error: "Please select a language.", // Wählen Sie eine Sprache auf.
   }),
 })
 

@@ -2,6 +2,7 @@ import { Separator } from "../../components/ui/separator"
 import { Link, useParams } from "react-router-dom"
 import { cn } from "../../lib/utils"
 import { buttonVariants, Button } from "../../components/ui/button"
+import { useLocation } from "react-router-dom"
 
 export const metadata = {
   title: "Forms",
@@ -27,7 +28,10 @@ const sidebarNavItems = [
   },
 ]
 
-export default function SettingsMenus({active}) {
+export default function SettingsMenus() {
+  const location = useLocation()
+  const active = location.pathname
+
   return (
     <>
       <div className="hidden space-y-6 md:block">

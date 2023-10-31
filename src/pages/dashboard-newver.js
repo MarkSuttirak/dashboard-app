@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../components/ui/card"
 import { useState, useEffect } from "react";
 import { Badge } from "../components/ui/badge";
-import { CreditCard01 } from "@untitled-ui/icons-react/build/cjs";
+import { CreditCard } from "lucide-react";
 import VerticalLine from "../components/verticalLine";
 import { Separator } from "../components/ui/separator";
 import { ButtonImage01, ButtonImage02, ButtonImage03, ButtonImage04, ButtonImage05 } from "../components/buttonImage";
@@ -85,7 +85,7 @@ export default function DashboardNewVer(){
       <Card className='w-full'>
         <CardHeader className='pb-2 flex flex-row items-center justify-between'>
           <CardTitle className='subheading font-medium'>{title}</CardTitle>
-          <CreditCard01 viewBox="0 0 24 24" width='16' height='16' color='#71717A'/>
+          <CreditCard viewBox="0 0 24 24" width='16' height='16' color='#71717A'/>
         </CardHeader>
         <CardContent>
           <h1 className="main-heading">{value}</h1> {/* Will use this code soon: sites?.site_list[0].name */}
