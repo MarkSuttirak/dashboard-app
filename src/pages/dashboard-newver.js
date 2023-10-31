@@ -49,34 +49,40 @@ export default function DashboardNewVer(){
 
   const newOrManageMenus = [
     {
-      title:'New Products',
+      title:'Add Product',
       image:<ButtonImage01 shadow={false}/>,
-      background:"#E5F5FF",
-      color:"#00B2FF"
+      background:"#EFE3F6",
+      color:"#EB67FF"
     },
     {
-      title:'Manage Order',
+      title:'Shipping',
       image:<ButtonImage02 shadow={false}/>,
-      background:"#F6F3FF",
-      color:"#8866FF"
+      background:"#DDFEF4",
+      color:"#01545E"
     },
     {
       title:'CRM',
       image:<ButtonImage03 shadow={false}/>,
-      background:"#E5F5FF",
-      color:"#00B2FF"
+      background:"#F5F2FE",
+      color:"#4C349F"
     },
     {
-      title:'Form',
+      title:'Payment',
       image:<ButtonImage04 shadow={false}/>,
-      background:"#F7EBFF",
-      color:"#AD00C9"
+      background:"#E5F5FF",
+      color:"#419CFF"
     },
     {
-      title:'Input',
+      title:'Manage Order',
       image:<ButtonImage05 shadow={false}/>,
-      background:"#F7E3F1",
-      color:"#B90C21"
+      background:"#FFF9E9",
+      color:"#FABF20"
+    },
+    {
+      title:'Sales Promotion',
+      image:<ButtonImage05 shadow={false}/>,
+      background:"#F5FFE5",
+      color:"#174F20"
     },
   ]
 
