@@ -29,10 +29,19 @@ import {
 import Logo from "../img/logo-zaviago.svg";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { useUser } from '../hooks/useUser'
+import { useMutation, useQuery } from "react-query";
+import { site } from "../client/api";
+import { useLocation } from 'react-router-dom'
 
 export default function Topbar({isSidebarOpen}){
   const { user, auth, logout } = useUser();
+  const location = useLocation()
   const [currentPage, setCurrentPage] = useState('Zaviago WorkSpace')
+
+  const { data: sites } = useQuery('sites', site.list, {
+    enabled: !!user,
+  });
+
   return (
     <div className={`topbar ${isSidebarOpen ? 'active' : 'inactive'}`}>
       <h2 className='subheading font-medium'>{currentPage}</h2>
@@ -152,7 +161,7 @@ export default function Topbar({isSidebarOpen}){
                 </CommandGroup>
                 <CommandSeparator />
                 <CommandGroup>
-                  <CommandItem>
+                  <CommandItem onClick={() => window.location.href = `http://${sites?.site_list[0].name}`}>
                     <Layout viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
                     View website
                   </CommandItem>
