@@ -15,8 +15,8 @@ const sidebarNavItems = [
     href: "/dashboard/settings/account",
   },
   {
-    title: "Appearance",
-    href: "/dashboard/settings/appearance",
+    title: "Billing & Plans",
+    href: "/dashboard/settings/billing-plans",
   },
   {
     title: "Notifications",

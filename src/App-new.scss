@@ -341,3 +341,32 @@ body {
     transition:width 300ms;
   }
 }
+
+$gradient-border-size:3px;
+$gradient-border-radius:10px;
+$gradient-border:linear-gradient(to right, #9A5BFF, #FF9C27);
+
+@mixin gradient-card {
+  position:relative;
+	border:$gradient-border-size solid transparent;
+  background:white;
+  background-clip:padding-box;
+  border-radius:$gradient-border-radius;
+  &::after {
+    content:'';
+    position:absolute;
+    top:-$gradient-border-size;
+    bottom:-$gradient-border-size;
+    left:-$gradient-border-size;
+    right:-$gradient-border-size;
+    background:$gradient-border;
+    z-index:-1;
+    border-radius:$gradient-border-radius;
+  }
+}
+
+.free-trial {
+  @include gradient-card;
+  padding:26px 24px;
+  margin-top:16px;
+}

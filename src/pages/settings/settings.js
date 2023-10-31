@@ -3,7 +3,7 @@ import { Separator } from "../../components/ui/separator";
 import AccountForm from "./accountForm";
 import { useState } from "react";
 import SettingsMenus from "./settingsMenus";
-import { AppearanceForm } from "./appearance";
+import BillingPlan from "./billingPlan";
 import NotificationsForm from "./notifications";
 import { DisplayForm } from "./display";
 
@@ -26,13 +26,13 @@ export default function Settings(){
           </section>
         )}
 
-        {id === 'appearance' && (
+        {id === 'billing-plans' && (
           <section>
-            <h2 className="secondary-heading">Appearance</h2>
+            <h2 className="secondary-heading">Billing & Plans</h2>
             <p className="secondary-desc">Customise the appearance of the app. Automatically switch between day and night themes.</p>
 
             <Separator className='my-6'/>
-            <AppearanceForm />
+            <BillingPlan />
           </section>
         )}
 
