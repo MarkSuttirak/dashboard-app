@@ -94,7 +94,7 @@ export default function Topbar({isSidebarOpen}){
               Help
               <ChevronDown viewBox='0 0 24 24' width='16' height='16'/>
             </PopoverTrigger>
-            <PopoverContent className='p-0'>
+            <PopoverContent className='p-0 w-[243px]'>
               <Command>
                 <CommandList>
                   <CommandGroup>
@@ -142,7 +142,7 @@ export default function Topbar({isSidebarOpen}){
               <AvatarFallback>{user?.first_name[0]}</AvatarFallback>
             </Avatar>
           </PopoverTrigger>
-          <PopoverContent className='p-0'>
+          <PopoverContent className='p-0 w-[243px]'>
             <Command>
               <CommandList>
                 <h2 className='subheading font-semibold px-3 py-[10px]'>My Apps</h2>

@@ -1,52 +1,26 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { CalendarIcon, CaretSortIcon, CheckIcon } from "@radix-ui/react-icons"
+import { CalendarIcon } from "@radix-ui/react-icons"
 import { format } from "date-fns"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-
+import { Link } from "react-router-dom"
 import { cn } from "../../lib/utils"
 import { Button } from "../../components/ui/button"
 import { Calendar } from "../../components/ui/calendar"
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "../../components/ui/command"
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../../components/ui/form"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../components/ui/select"
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../../components/ui/form"
 import { Input } from "../../components/ui/input"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "../../components/ui/popover"
+import { Popover, PopoverContent, PopoverTrigger } from "../../components/ui/popover"
 import { toast } from "../../components/ui/use-toast"
 
-const languages = [
-  { label: "English", value: "en" }, // English
-  { label: "Français", value: "fr" }, // French
-  { label: "Deutsch", value: "de" }, // German
-  { label: "Español", value: "es" }, // Spanish
-  { label: "Português", value: "pt" }, // Portuguese
-  { label: "Русский", value: "ru" }, // Russian
-  { label: "日本語", value: "ja" }, // Japanese
-  { label: "한국어", value: "ko" }, // Korean
-  { label: "简体中文", value: "zh-hans" }, // Simplified Chinese
-  { label: "繁體中文", value: "zh-hant" }, // Traditional Chinese
-  { label: "ไทย", value: "th" }, // Thai
-]
-
 const accountFormSchema = z.object({
-  name: z
+  firstname: z.string({
+    required_error: "The first name is required.", // Ein Geburtsdatum ist erforderlich.
+  }),
+  lastname: z.string({
+    required_error: "The last name is required.", // Ein Geburtsdatum ist erforderlich.
+  }),
+  username: z
     .string()
     .min(2, {
       message: "Name must be at least 2 characters.", // Name muss mindestens 2 Zeichen lang sein.
@@ -54,11 +28,13 @@ const accountFormSchema = z.object({
     .max(30, {
       message: "Name must not be longer than 30 characters.", // Name muss nicht länger als 30 Zeichen sein.
     }),
+  email: z
+    .string({
+      required_error: "Please select an email to display.", // Bitte wählen Sie eine E-Mail zum Anzeigen aus.
+    })
+    .email(),
   dob: z.date({
-    required_error: "A date of birth is required.", // Ein Geburtsdatum ist erforderlich.
-  }),
-  language: z.string({
-    required_error: "Please select a language.", // Wählen Sie eine Sprache auf.
+    required_error: "The date of birth is required.", // Ein Geburtsdatum ist erforderlich.
   }),
 })
 
@@ -90,16 +66,64 @@ export default function AccountForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="name"
+          name="firstname"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>First Name</FormLabel>
               <FormControl>
                 <Input placeholder="Your name" {...field} />
               </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="lastname"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Last Name</FormLabel>
+              <FormControl>
+                <Input placeholder="Your name" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input placeholder="shadcn" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a verified email to display" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="m@example.com">m@example.com</SelectItem>
+                  <SelectItem value="m@google.com">m@google.com</SelectItem>
+                  <SelectItem value="m@support.com">m@support.com</SelectItem>
+                </SelectContent>
+              </Select>
               <FormDescription>
-                This is the name that will be displayed on your profile and in
-                emails.
+                You can manage verified email addresses in your{" "}
+                <Link href="/examples/forms">email settings</Link>.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -144,67 +168,6 @@ export default function AccountForm() {
               </Popover>
               <FormDescription>
                 Your date of birth is used to calculate your age.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="language"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Language</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant="outline"
-                      role="combobox"
-                      className={cn(
-                        "w-[200px] justify-between",
-                        !field.value && "text-muted-foreground"
-                      )}
-                    >
-                      {field.value
-                        ? languages.find(
-                            (language) => language.value === field.value
-                          )?.label
-                        : "Select language"}
-                      <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-[200px] p-0">
-                  <Command>
-                    <CommandInput placeholder="Search language..." />
-                    <CommandEmpty>No language found.</CommandEmpty>
-                    <CommandGroup>
-                      {languages.map((language) => (
-                        <CommandItem
-                          value={language.label}
-                          key={language.value}
-                          onSelect={() => {
-                            form.setValue("language", language.value)
-                          }}
-                        >
-                          <CheckIcon
-                            className={cn(
-                              "mr-2 h-4 w-4",
-                              language.value === field.value
-                                ? "opacity-100"
-                                : "opacity-0"
-                            )}
-                          />
-                          {language.label}
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  </Command>
-                </PopoverContent>
-              </Popover>
-              <FormDescription>
-                This is the language that will be used in the dashboard.
               </FormDescription>
               <FormMessage />
             </FormItem>

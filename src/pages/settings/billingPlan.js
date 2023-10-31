@@ -1,21 +1,13 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { ChevronDownIcon, PlusCircledIcon, StarIcon, ValueIcon } from "@radix-ui/react-icons"
-import { Users } from "lucide-react"
+import { Users, Zap } from "lucide-react"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { Separator } from "../../components/ui/separator";
 import VerticalLine from "src/components/verticalLine";
 import { cn } from "../../lib/utils"
 import { Button, buttonVariants } from "../../components/ui/button"
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../../components/ui/form"
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../../components/ui/form"
 import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group"
 import { toast } from "../../components/ui/use-toast"
 import { useUser } from "../../hooks/useUser";
@@ -23,8 +15,12 @@ import { useMutation, useQuery } from "react-query";
 import { site } from "../../client/api";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Input } from "../../components/ui/input"
 
 const appearanceFormSchema = z.object({
+  company_name: z.string({
+    required_error: "The company name is required.", // Ein Geschäftname ist erforderlich.
+  }),
   theme: z.enum(["light", "dark"], {
     required_error: "Please select a theme.",
   }),
@@ -45,7 +41,7 @@ export default function BillingPlan() {
   const navigate = useNavigate();
 
   const [numOfAdmin, setNumOfAdmin] = useState(14)
-  const [numOfCustomers, setNumOfCustomers] = useState(20)
+  const [numOfCustomers, setNumOfCustomers] = useState(2544)
 
   useEffect(() => {
     if (auth?.onboarding.site_created === false) {
@@ -97,7 +93,7 @@ export default function BillingPlan() {
           </div>
 
           <Button variant='secondary' className='btn-with-icon leading-5' onClick={() => window.location.href = `http://${sites?.site_list[0].name}`}>
-            <StarIcon />
+            <Zap viewBox='0 0 24 24' width='16' height='16'/>
             Upgrade to Pro
             <VerticalLine color='#E4E4E7' height="80%" size={1}/>
             <ChevronDownIcon />
@@ -106,38 +102,24 @@ export default function BillingPlan() {
 
         <div className="text-desc flex gap-x-4 items-center mt-10">
           <p className="flex items-center gap-x-1 text-sm"><Users viewBox='0 0 24 24' width='16' height='16' /> {numOfAdmin} admin {numOfAdmin == 1 ? 'user' : 'users'}</p>
-          <p className="flex items-center gap-x-1 text-sm"><StarIcon /> 20k</p>
+          <p className="flex items-center gap-x-1 text-sm"><StarIcon /> {numOfCustomers >= 1000000 ? `${(numOfCustomers / 1000000).toFixed(1)}m` : numOfCustomers >= 1000 ? `${(numOfCustomers / 1000).toFixed(1)}k` : numOfCustomers} {numOfCustomers == 1 ? "customer" : "customers"}</p>
         </div>
       </div>
 
       <Separator className='my-6'/>
+
+      <h1 className="secondary-heading">Team billing information</h1>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mt-4">
           <FormField
             control={form.control}
-            name="font"
+            name="company_name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Font</FormLabel>
-                <div className="relative w-max">
-                  <FormControl>
-                    <select
-                      className={cn(
-                        buttonVariants({ variant: "outline" }),
-                        "w-[200px] appearance-none bg-transparent font-normal"
-                      )}
-                      {...field}
-                    >
-                      <option value="inter">Inter</option>
-                      <option value="manrope">Manrope</option>
-                      <option value="system">System</option>
-                    </select>
-                  </FormControl>
-                  <ChevronDownIcon className="absolute right-3 top-2.5 h-4 w-4 opacity-50" />
-                </div>
-                <FormDescription>
-                  Set the font you want to use in the dashboard.
-                </FormDescription>
+                <FormLabel>Company Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="Your name" {...field} />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}

@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../components/ui/card"
 import { useState, useEffect } from "react";
 import { Badge } from "../components/ui/badge";
-import { CreditCard } from "lucide-react";
+import { CreditCard, LogIn, Users, Zap } from "lucide-react";
 import VerticalLine from "../components/verticalLine";
 import { Separator } from "../components/ui/separator";
 import { ButtonImage01, ButtonImage02, ButtonImage03, ButtonImage04, ButtonImage05 } from "../components/buttonImage";
@@ -18,6 +18,8 @@ import { site } from "../client/api";
 
 export default function DashboardNewVer(){
   const location = useLocation()
+  const [numOfAdmin, setNumOfAdmin] = useState(3)
+  const [numOfCustomers, setNumOfCustomers] = useState(145)
   const [date, setDate] = useState('April 2023')
 
   const { user, auth, logout } = useUser();
@@ -94,7 +96,7 @@ export default function DashboardNewVer(){
           <CreditCard viewBox="0 0 24 24" width='16' height='16' color='#71717A'/>
         </CardHeader>
         <CardContent>
-          <h1 className="main-heading">{value}</h1> {/* Will use this code soon: sites?.site_list[0].name */}
+          <h1 className="main-heading">{value}</h1>
           <p className="text-desc">{desc}</p>
         </CardContent>
       </Card>
@@ -144,9 +146,9 @@ export default function DashboardNewVer(){
             <Badge variant="outline">Free trial</Badge>
           </div>
         </div>
-        <Button variant='default' className='btn-with-icon leading-5' onClick={() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })}>
+        <Button variant='default' className='btn-with-icon leading-5'>
           <PlusCircledIcon />
-          Go to WorkSpace
+          Add more
         </Button>
       </section>
 
@@ -162,17 +164,15 @@ export default function DashboardNewVer(){
               <CardTitle className='subheading font-semibold mb-1'>{sites?.site_list[0].name}</CardTitle> {/* sites?.site_list[0].name will be replaced with intergoods.zaviago.com */}
               <CardDescription>Beautifully designed components built with Radix UI and Tailwind CSS.</CardDescription>
             </div>
-            <Button variant='secondary' className='btn-with-icon leading-5' onClick={() => window.location.href = `http://${sites?.site_list[0].name}`}>
-              <StarIcon />
-              Go to App
-              <VerticalLine color='#E4E4E7' height="80%" size={1}/>
-              <ChevronDownIcon />
+            <Button variant='secondary' className='btn-with-icon leading-5' onClick={() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })}>
+              <LogIn viewBox="0 0 24 24" width='16' height='16'/>
+              Go to Workspace
             </Button>
           </CardHeader>
           <CardContent className='mt-6'>
             <div className="text-desc flex gap-x-4 items-center">
-              <p className="flex items-center gap-x-1 text-sm"><ValueIcon /> TypeScript</p>
-              <p className="flex items-center gap-x-1 text-sm"><StarIcon /> 20k</p>
+              <p className="flex items-center gap-x-1 text-sm"><Users viewBox='0 0 24 24' width='16' height='16' /> {numOfAdmin} {numOfAdmin == 1 ? 'admin' : 'admins'} in team</p>
+              <p className="flex items-center gap-x-1 text-sm"><StarIcon /> {numOfCustomers >= 1000000 ? `${(numOfCustomers / 1000000).toFixed(1)}m` : numOfCustomers >= 1000 ? `${(numOfCustomers / 1000).toFixed(1)}k` : numOfCustomers} {numOfCustomers == 1 ? "customer" : "customers"}</p>
               <p className="flex text-sm">Updated {date}</p>
             </div>
           </CardContent>
