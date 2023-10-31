@@ -53,7 +53,7 @@ const defaultValues = {
   items: ["recents", "home"],
 }
 
-export function DisplayForm() {
+export default function DisplayForm() {
   const form = useForm({
     resolver: zodResolver(displayFormSchema),
     defaultValues,

@@ -26,13 +26,13 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
     { name: 'Dashboard', icon: <LayoutGrid viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/dashboard/app', current: active === '/dashboard/app' ? true : false, id: 'dashboard' },
     { name: 'Notifications', icon: <Bell viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/integration', current: active === '/integration' || active === '/integration/connected' ? true : false, id: 'integration' },
     { name: 'Search', icon: <Search viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/gifts-privileges', current: active === "/gifts-privileges" || active === "/gifts-privileges/premium" || active === "/gifts-privileges/free" ? true : false, active: active, id: 'gift' },
-    { name: 'Settings', icon: <Settings viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/dashboard/settings/account', current: active === "/dashboard/settings/account" || active === "/dashboard/settings/appearance" || active === "/dashboard/settings/account" ? true : false, active: active, id: 'settings' },
+    { name: 'Settings', icon: <Settings viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/dashboard/settings/account', current: active == "/dashboard/settings/account" || active == "/dashboard/settings/billing-plans" || active == "/dashboard/settings/notifications" ? true : false, active: active, id: 'settings' },
   ]
 
   const yourSites = [
     { name: 'Integration', icon: <Zap viewBox='0 0 30 24' width='24' color='#18181B' />, id: 'integration' },
     { name: 'App Store', icon: <UserCircle viewBox='0 0 30 24' width='24' color='#18181B' />, id: 'app-store' },
-    { name: 'Teams', icon: <LayoutGrid viewBox='0 0 30 24' width='24' color='#18181B' />, id: 'teams' },
+    { name: 'Teams', icon: <LayoutGrid viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/dashboard/teams/team-members', current: active === "/dashboard/teams/team-members" || active === "/dashboard/teams/teams" ? true : false, active: active, id: 'teams' },
   ]
 
   const workspaceApp = [

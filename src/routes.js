@@ -13,6 +13,7 @@ import OtherInfo from './pages/register/otherInfo';
 import InstanceConfig from './pages/register/instanceConfig';
 import DashboardNewVer from './pages/dashboard-newver';
 import Settings from './pages/settings/settings';
+import Teams from './pages/teams/teams';
 
 // ----------------------------------------------------------------------
 
@@ -33,6 +34,7 @@ export default function Router() {
                     ],
                 },
                 { path: 'settings/:id', element: <Settings /> },
+                { path: 'teams/:id', element: <Teams /> },
             ],
         },
         {
