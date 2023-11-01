@@ -222,7 +222,7 @@ body {
 }
 
 .page-section {
-  padding:84px 20px 35px 20px;
+  padding:76px 20px 35px 20px;
   box-sizing:content-box;
   &.active {
     margin-left:$right-sidebar-width + $left-sidebar-width;
@@ -279,7 +279,7 @@ body {
   top:0;
   width:$left-sidebar-width;
   background:white;
-  padding:10px;
+  padding:15px 12px;
   border-right:1px solid #EBEEF0;
   img {
     display:block;
@@ -291,7 +291,8 @@ body {
 }
 
 .nav-btns {
-  height:39px;
+  height:36px;
+  width:36px;
 	display:flex;
 	align-items:center;
 	justify-content:center;
@@ -355,13 +356,13 @@ body {
 .topbar {
   border-bottom:1px solid #E4E4E7;
   box-sizing:border-box;
-  height:60px;
+  height:52px;
   width:100%;
   position:fixed;
   top:0;
   right:0;
   background-color:white;
-  padding:18px;
+  padding:18px 28px;
   display:flex;
   align-items:center;
   justify-content:space-between;

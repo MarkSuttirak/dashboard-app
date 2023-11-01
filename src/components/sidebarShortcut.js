@@ -18,11 +18,11 @@ export default function SidebarShortcut(){
           aria-expanded={open}
           className="w-full justify-between h-10"
         >
-          <span className="flex gap-x-2 items-center">
-            <img src={Logo} width='20'/>
-            Zaviago
+          <span className="flex gap-x-2 items-center font-semibold">
+            <img src={Logo} width='19'/>
+            zaviago
           </span>
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <ChevronsUpDown className="ml-2 h-3 w-3 shrink-0 opacity-50 text-zinc-950"/>
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-full p-0 z-[105] relative left-[24px]">

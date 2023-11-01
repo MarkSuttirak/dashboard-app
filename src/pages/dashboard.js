@@ -18,7 +18,7 @@ import { site } from "../client/api";
 export default function Dashboard(){
   const location = useLocation()
   const [numOfAdmin, setNumOfAdmin] = useState(3)
-  const [numOfCustomers, setNumOfCustomers] = useState(1454)
+  const [numOfCustomers, setNumOfCustomers] = useState(2512)
   const [date, setDate] = useState('April 2023')
   const [isMenuCardHover, setIsMenuCardHover] = useState(false)
   const [menuCardIndex, setMenuCardIndex] = useState(0)
@@ -100,7 +100,7 @@ export default function Dashboard(){
 
   const PostInfo = ({title, desc, buttonText, onClick, image}) => {
     return (
-      <div className="p-6 bg-zinc-100 rounded-xl h-[423px] flex flex-col justify-between">
+      <div className="p-6 bg-zinc-100 rounded-xl h-[423px] flex flex-col gap-y-12">
         <div>
           <h3 className="secondary-heading">{title}</h3>
           <p className="text-[13px] text-zinc-500 font-medium leading-4 mt-4 mb-6">{desc}</p>
@@ -140,7 +140,7 @@ export default function Dashboard(){
             <Badge variant="outline">Free trial</Badge>
           </div>
         </div>
-        <Button variant='outline' className='btn-with-icon leading-5'>
+        <Button variant='outline' className='btn-with-icon leading-5 bg-white'>
           <PlusCircledIcon />
           Invite team
         </Button>
@@ -195,7 +195,7 @@ export default function Dashboard(){
 
         <div className="flex gap-x-[15px] mt-6">
           {newOrManageMenus.map((n, index) => (
-            <div className="menu-card" key={index} style={{backgroundColor:n.background,color:n.color,boxShadow:isMenuCardHover && menuCardIndex === index ? `0 0 3px ${n.color}` : null}} onMouseEnter={() => handleCardHover(index)} onMouseLeave={handleCardHoverLeave}>
+            <div className="menu-card" key={index} style={{backgroundColor:n.background,color:n.color,boxShadow:isMenuCardHover && menuCardIndex === index ? `0 0 3px ${n.color}` : '0 0 0 1px #E4E4E7'}} onMouseEnter={() => handleCardHover(index)} onMouseLeave={handleCardHoverLeave}>
               {n.image}
               <span className="absolute bottom-4">{n.title}</span>
             </div>

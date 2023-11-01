@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Button } from './ui/button'
-import { BadgeInfo, BookCopy, ChevronDown, ClipboardList, Info, MessageCircle, Zap, User, Keyboard, Layout, LogOut } from 'lucide-react'
-import { BellIcon } from '@radix-ui/react-icons'
+import { BadgeInfo, BookCopy, ChevronDown, ClipboardList, Info, MessageCircle, User, Keyboard, Layout, LogOut } from 'lucide-react'
+import { BellIcon, LightningBoltIcon } from '@radix-ui/react-icons'
 import VerticalLine from './verticalLine'
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog"
@@ -11,12 +11,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { useUser } from '../hooks/useUser'
 import { useMutation, useQuery } from "react-query";
 import { site } from "../client/api";
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "./ui/dropdown-menu"
 
 export default function Topbar({isSidebarOpen}){
   const { user, auth, logout } = useUser();
   const location = useLocation()
+  const navigate = useNavigate()
   const [currentPage, setCurrentPage] = useState('Zaviago WorkSpace')
 
   const { data: sites } = useQuery('sites', site.list, {
@@ -25,19 +26,19 @@ export default function Topbar({isSidebarOpen}){
 
   return (
     <div className={`topbar ${isSidebarOpen ? 'active' : 'inactive'}`}>
-      <h2 className='subheading font-medium'>{currentPage}</h2>
+      <h2 className='subheading font-semibold'>{currentPage}</h2>
 
       <section className='flex items-center'>
         <Button variant='ghost' className='text-[#006AFF] hover:text-[#006AFF] gap-x-2 text-xs flex items-center'>
-          <Zap color='#006AFF' viewBox='0 0 24 24' width='16' height='16'/>
-          Upgrade to pro
+          <LightningBoltIcon color='#006AFF'/>
+          Upgrade to Pro
         </Button>
 
         <VerticalLine color='#E4E4E7' size={1} height="32px"/>
 
         <div className='px-3 flex gap-x-5 items-center'>
           <Dialog>
-            <DialogTrigger className='bg-zinc-100 rounded-md px-4 py-2 text-xs h-9 flex justify-between items-center w-[292px] text-zinc-500'>
+            <DialogTrigger className='bg-zinc-100 rounded-md px-4 py-2 text-xs h-10 flex justify-between items-center w-[292px] text-zinc-500'>
               <div className='flex gap-x-2 items-center'>
                 <img src={Logo} className='w-5 h-5'/>
                 Search or type a command
@@ -69,9 +70,9 @@ export default function Topbar({isSidebarOpen}){
 
         <VerticalLine color='#E4E4E7' size={1} height="32px"/>
 
-        <div className='px-3 flex gap-x-5 items-center'>
+        <div className='pl-3 flex gap-x-5 items-center'>
           <DropdownMenu>
-            <DropdownMenuTrigger className='text-xs w-[45px] flex justify-between items-center outline-none'>
+            <DropdownMenuTrigger className='text-xs w-[77px] flex justify-center gap-x-[2px] items-center outline-none'>
               Help
               <ChevronDown viewBox='0 0 24 24' width='16' height='16'/>
             </DropdownMenuTrigger>
@@ -108,13 +109,13 @@ export default function Topbar({isSidebarOpen}){
 
         <DropdownMenu>
           <DropdownMenuTrigger className='outline-none'>
-            <Avatar>
+            <Avatar className='w-9 h-9'>
               <AvatarImage src="" />
               <AvatarFallback>{user?.first_name[0]}</AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent className='w-[243px]'>
-            <DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => navigate('/dashboard/settings/account')}>
               <User viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
               Account settings
               <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
