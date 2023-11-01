@@ -12,6 +12,18 @@ import { useUser } from '../hooks/useUser'
 import { useMutation, useQuery } from "react-query";
 import { site } from "../client/api";
 import { useLocation } from 'react-router-dom'
+import { DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger } from "./ui/dropdown-menu"
 
 export default function Topbar({isSidebarOpen}){
   const { user, auth, logout } = useUser();
@@ -69,95 +81,73 @@ export default function Topbar({isSidebarOpen}){
         <VerticalLine color='#E4E4E7' size={1} height="32px"/>
 
         <div className='px-3 flex gap-x-5 items-center'>
-          <Popover>
-            <PopoverTrigger className='text-xs w-[45px] flex justify-between items-center'>
+          <DropdownMenu>
+            <DropdownMenuTrigger className='text-xs w-[45px] flex justify-between items-center'>
               Help
               <ChevronDown viewBox='0 0 24 24' width='16' height='16'/>
-            </PopoverTrigger>
-            <PopoverContent className='p-0 w-[243px]'>
-              <Command>
-                <CommandList>
-                  <CommandGroup>
-                    <CommandItem>
-                      <BookCopy viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
-                      Documentation
-                      <CommandShortcut>⇧⌘P</CommandShortcut>
-                    </CommandItem>
-                    <CommandItem>
-                      <MessageCircle viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
-                      User forum
-                      <CommandShortcut>⌘K</CommandShortcut>
-                    </CommandItem>
-                  </CommandGroup>
-                  <CommandSeparator />
-                  <CommandGroup>
-                    <CommandItem>
-                      <ClipboardList viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
-                      Report an Issue
-                    </CommandItem>
-                  </CommandGroup>
-                  <CommandSeparator />
-                  <CommandGroup>
-                    <CommandItem>
-                      <Info viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
-                      About
-                      <CommandShortcut>⇧⌘Q</CommandShortcut>
-                    </CommandItem>
-                    <CommandItem>
-                      <BadgeInfo viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
-                      Support
-                      <CommandShortcut>⇧⌘Q</CommandShortcut>
-                    </CommandItem>
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-            </PopoverContent>
-          </Popover>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className='w-[243px]'>
+              <DropdownMenuItem>
+                <BookCopy viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+                Documentation
+                <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <MessageCircle viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+                User forum
+                <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <ClipboardList viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+                Report an Issue
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <Info viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+                About
+                <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <BadgeInfo viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+                Support
+                <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
-        <Popover>
-          <PopoverTrigger>
+        <DropdownMenu>
+          <DropdownMenuTrigger>
             <Avatar>
               <AvatarImage src="" />
               <AvatarFallback>{user?.first_name[0]}</AvatarFallback>
             </Avatar>
-          </PopoverTrigger>
-          <PopoverContent className='p-0 w-[243px]'>
-            <Command>
-              <CommandList>
-                <h2 className='subheading font-semibold px-3 py-[10px]'>My Apps</h2>
-                <CommandSeparator />
-                <CommandGroup>
-                  <CommandItem>
-                    <User viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
-                    Account settings
-                    <CommandShortcut>⇧⌘P</CommandShortcut>
-                  </CommandItem>
-                  <CommandItem>
-                    <Keyboard viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
-                    Keyboard shortcuts
-                    <CommandShortcut>⌘K</CommandShortcut>
-                  </CommandItem>
-                </CommandGroup>
-                <CommandSeparator />
-                <CommandGroup>
-                  <CommandItem onClick={() => window.location.href = `http://${sites?.site_list[0].name}`}>
-                    <Layout viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
-                    View website
-                  </CommandItem>
-                </CommandGroup>
-                <CommandSeparator />
-                <CommandGroup>
-                  <CommandItem>
-                    <LogOut viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
-                    Logout
-                    <CommandShortcut>⇧⌘Q</CommandShortcut>
-                  </CommandItem>
-                </CommandGroup>
-              </CommandList>
-            </Command>
-          </PopoverContent>
-        </Popover>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className='w-[243px]'>
+            <DropdownMenuItem>
+              <User viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+              Account settings
+              <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Keyboard viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+              Keyboard shortcuts
+              <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onSelect={() => window.location.href = `http://${sites?.site_list[0].name}`}>
+              <Layout viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+              View website
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <LogOut viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+              Logout
+              <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </section>
     </div>
   )
