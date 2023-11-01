@@ -34,7 +34,7 @@ export default function Settings(){
         <PagesMenus menus={sidebarNavItems} />
         {id === 'account' && (
           <section className="w-[672px]">
-            <h2 className="secondary-heading">Account</h2>
+            <h2 className="tertiary-heading">Account</h2>
             <p className="secondary-desc">Update your account settings. Set your preferred language and timezone.</p>
 
             <Separator className='my-6'/>
@@ -62,7 +62,7 @@ export default function Settings(){
 
         {id === 'notifications' && (
           <section className="w-[672px]">
-            <h2 className="secondary-heading">Notifications</h2>
+            <h2 className="tertiary-heading">Notifications</h2>
             <p className="secondary-desc">Configure how you receive notifications.</p>
 
             <Separator className='my-6'/>
@@ -72,7 +72,7 @@ export default function Settings(){
 
         {id === 'display' && (
           <section className="w-[672px]">
-            <h2 className="secondary-heading">Display</h2>
+            <h2 className="tertiary-heading">Display</h2>
             <p className="secondary-desc">Turn items on or off to control what's displayed in the app.</p>
 
             <Separator className='my-6'/>

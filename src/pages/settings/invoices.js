@@ -48,7 +48,7 @@ const invoices = [
 export default function Invoices() {
   return (
     <>
-      <h2 className="secondary-heading">Invoices</h2>
+      <h2 className="tertiary-heading">Invoices</h2>
       <p className="secondary-desc">Update your account settings. Set your preferred language and timezone.</p>
       
       <section className="mt-8">

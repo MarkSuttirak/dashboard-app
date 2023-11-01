@@ -8,7 +8,7 @@ export default function NotFoundPage(){
     <div className="h-screen w-screen flex items-center justify-center flex-col gap-y-6">
       <div className="flex flex-col gap-y-4 items-center justify-center">
         <h1 className="text-zinc-900 text-3xl font-semibold">404 - Page Not Found</h1>
-        <p className="text-zinc-500 text-lg font-medium">Sorry, the page you are looking for does not exist.</p> {/* Leider existiert die von Ihnen gesuchte Seite nicht.*/}
+        <p className="text-zinc-500 text-lg font-medium">Sorry, the page you are looking for does not exist.</p>
       </div>
 
       <Button variant='ghost' className='btn-with-icon' onClick={() => navigate('/')}>

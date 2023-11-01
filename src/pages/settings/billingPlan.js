@@ -95,7 +95,7 @@ export default function BillingPlan() {
 
   return (
     <>
-      <h2 className="secondary-heading">Subscription for your team</h2>
+      <h2 className="tertiary-heading">Subscription for your team</h2>
       <div className="free-trial">
         <div className="flex items-center justify-between">
           <div>

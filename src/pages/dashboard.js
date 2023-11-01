@@ -152,7 +152,7 @@ export default function Dashboard(){
             <CardHeader className='pb-2 flex flex-row items-center justify-between'>
               <div>
                 <CardTitle className='subheading font-medium'>Your WorkSpace</CardTitle>
-                <CardDescription className="main-heading">{sites?.site_list[0].name}</CardDescription>
+                <CardDescription className="secondary-heading">{sites?.site_list[0].name}</CardDescription>
               </div>
               <Button variant='secondary' className='btn-with-icon leading-5 m-0'>
                 <LogIn viewBox="0 0 24 24" width='16' height='16'/>
@@ -171,7 +171,7 @@ export default function Dashboard(){
           <Card className='w-full xl:w-[40%] flex flex-col justify-between'>
             <CardHeader className='pb-2 flex flex-row items-center justify-between'>
               <div>
-                <CardTitle className='main-heading'>Free trial</CardTitle>
+                <CardTitle className='secondary-heading'>Free trial</CardTitle>
                 <CardDescription>You are on free trial plan</CardDescription>
               </div>
               <Button variant='secondary' className='btn-with-icon leading-5 m-0'>

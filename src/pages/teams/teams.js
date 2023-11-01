@@ -39,7 +39,7 @@ export default function Teams(){
         <PagesMenus menus={sidebarNavItems}/>
         {id === 'team-members' && (
           <section className="w-[672px]">
-            <h2 className="secondary-heading">Manage Members</h2>
+            <h2 className="tertiary-heading">Manage Members</h2>
             <p className="secondary-desc">Anyone with the link can view this document.</p>
 
             <div className="flex w-full items-center space-x-2 mt-6">
@@ -55,7 +55,7 @@ export default function Teams(){
 
         {id === 'teams' && (
           <section className="w-[672px]">
-            <h2 className="secondary-heading">All your teams</h2>
+            <h2 className="tertiary-heading">All your teams</h2>
             <p className="secondary-desc">You can switch between team work space here.</p>
 
             <AllTeams />
