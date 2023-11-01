@@ -338,7 +338,7 @@ export const SiteDomainForm = ({
             </div>
 
             <Spacer size={30} />
-            <div className={`flex gap-x-2 anim-up-delay translate-y-[20px] opacity-0`}>
+            <div className={`flex gap-x-2 anim-up-delay translate-y-[20px]`}>
                 <button
                     type='submit'
                     className={`primary-btn w-1/4 justify-center ${!formik.isValid ? 'disabled' : ''}`}
@@ -436,7 +436,7 @@ export const AppsSelectionForm = ({
             </div>
 
             <Spacer size={30} />
-            <div className={`flex gap-x-2 anim-up-delay translate-y-[20px] opacity-0`}>
+            <div className={`flex gap-x-2 anim-up-delay translate-y-[20px]`}>
                 <button className={`no-bg-btn w-1/4 justify-center`} onClick={prev}>Back</button>
                 <button
                     type='submit'
@@ -534,7 +534,7 @@ export const ThemeSelectionForm = ({
             </div>
 
             <Spacer size={30} />
-            <div className={`flex gap-x-2 anim-up-delay translate-y-[20px] opacity-0`}>
+            <div className={`flex gap-x-2 anim-up-delay translate-y-[20px]`}>
                 <button className={`no-bg-btn w-1/4 justify-center`} onClick={prev}>Back</button>
                 <button
                     type='submit'

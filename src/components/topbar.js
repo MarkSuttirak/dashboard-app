@@ -12,18 +12,7 @@ import { useUser } from '../hooks/useUser'
 import { useMutation, useQuery } from "react-query";
 import { site } from "../client/api";
 import { useLocation } from 'react-router-dom'
-import { DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger } from "./ui/dropdown-menu"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "./ui/dropdown-menu"
 
 export default function Topbar({isSidebarOpen}){
   const { user, auth, logout } = useUser();
@@ -82,7 +71,7 @@ export default function Topbar({isSidebarOpen}){
 
         <div className='px-3 flex gap-x-5 items-center'>
           <DropdownMenu>
-            <DropdownMenuTrigger className='text-xs w-[45px] flex justify-between items-center'>
+            <DropdownMenuTrigger className='text-xs w-[45px] flex justify-between items-center outline-none'>
               Help
               <ChevronDown viewBox='0 0 24 24' width='16' height='16'/>
             </DropdownMenuTrigger>
@@ -118,7 +107,7 @@ export default function Topbar({isSidebarOpen}){
         </div>
 
         <DropdownMenu>
-          <DropdownMenuTrigger>
+          <DropdownMenuTrigger className='outline-none'>
             <Avatar>
               <AvatarImage src="" />
               <AvatarFallback>{user?.first_name[0]}</AvatarFallback>
