@@ -9,9 +9,7 @@ import SidebarShortcut from "./sidebarShortcut";
 import { Home, ListMinus, PlusCircle, Settings, Search, Bell, Users, Zap, UserCircle, LayoutGrid, Layout } from "lucide-react";
 import { Button } from "./ui/button";
 
-// import TeamModal from "../components/switchTeamModal";
-
-const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
+export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }){
   const [active, setActive] = useState('');
   const location = useLocation();
   const { user } = useUser();
@@ -136,5 +134,3 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
     </>
   )
 }
-
-export default Sidebar;

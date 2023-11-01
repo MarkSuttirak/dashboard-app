@@ -8,13 +8,7 @@ import VerticalLine from "src/components/verticalLine";
 import { cn } from "../../lib/utils"
 import { Button, buttonVariants } from "../../components/ui/button"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../../components/ui/form"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../components/ui/select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../components/ui/select"
 import { toast } from "../../components/ui/use-toast"
 import { useUser } from "../../hooks/useUser";
 import { useMutation, useQuery } from "react-query";
@@ -27,23 +21,23 @@ const countries = ["China","France","Germany","Pakistan","Thailand","United King
 
 const appearanceFormSchema = z.object({
   company_name: z.string({
-    required_error: "The company name is required.", // Der Geschäftsname ist erforderlich.
+    required_error: "The company name is required.",
   }),
   country: z.enum(countries, {
     invalid_type_error: "Select a country",
-    required_error: "Please select a country.", // Bitte wählen Sie ein Land aus.
+    required_error: "Please select a country.",
   }),
   address: z.string({
-    required_error: "The address is required.", // Die Adresse ist erforderlich
+    required_error: "The address is required.",
   }),
   city: z.string({
-    required_error: "The city is required.", // Die Stadt ist erforderlich
+    required_error: "The city is required.",
   }),
   state: z.string({
-    required_error: "The state/province is required.", // Der Staat/Die Provinz ist erforderlich
+    required_error: "The state/province is required.",
   }),
   postal_code: z.string({
-    required_error: "The postal code is required.", // Die Postleitzahl ist erforderlich
+    required_error: "The postal code is required.",
   }),
 })
 

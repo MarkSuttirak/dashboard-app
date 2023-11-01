@@ -185,26 +185,6 @@ export default function Dashboard(){
             </CardContent>
           </Card>
         </div>
-
-        {/* <Card className='w-full mt-6'>
-          <CardHeader className='pb-2 flex flex-row items-center justify-between'>
-            <div>
-              <CardTitle className='subheading font-semibold mb-1'>{sites?.site_list[0].name}</CardTitle>
-              <CardDescription>Beautifully designed components built with Radix UI and Tailwind CSS.</CardDescription>
-            </div>
-            <Button variant='secondary' className='btn-with-icon leading-5' onClick={() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })}>
-              <LogIn viewBox="0 0 24 24" width='16' height='16'/>
-              Go to Workspace
-            </Button>
-          </CardHeader>
-          <CardContent className='mt-6'>
-            <div className="text-desc flex gap-x-4 items-center">
-              <p className="flex items-center gap-x-1 text-sm"><Users viewBox='0 0 24 24' width='16' height='16' /> {numOfAdmin} {numOfAdmin == 1 ? 'admin' : 'admins'} in team</p>
-              <p className="flex items-center gap-x-1 text-sm"><StarIcon /> {numOfCustomers >= 1000000 ? `${(numOfCustomers / 1000000).toFixed(1)}m` : numOfCustomers >= 1000 ? `${(numOfCustomers / 1000).toFixed(1)}k` : numOfCustomers} {numOfCustomers == 1 ? "customer" : "customers"}</p>
-              <p className="flex text-sm">Updated {date}</p>
-            </div>
-          </CardContent>
-        </Card> */}
       </section>
 
       <Separator className="my-10"/>
