@@ -168,6 +168,26 @@ body {
   align-items:center;
 }
 
+.primary-btn {
+  display:inline-flex;
+  border:1px solid transparent;
+  align-items:center;
+  border-radius:8px;
+  font-size:14px;
+  line-height:24px;
+  color:white;
+  font-weight:600;
+  background-color:$primary;
+  padding:7px 10px;
+  &.disabled {
+    background-color:#b4ddff;
+    cursor:not-allowed;
+  }
+  &.error {
+    background-color:$error;
+  }
+}
+
 .menu-card {
   cursor:pointer;
   overflow:hidden;
