@@ -160,7 +160,7 @@ export default function Dashboard(){
               </Button>
             </CardHeader>
             <CardContent>
-              <Link className="text-desc">Connect Domain</Link>
+              <Button variant='link' className="text-desc p-0">Connect Domain</Button>
               <div className="text-desc flex gap-x-4 items-center mt-5">
                 <p className="flex items-center gap-x-1 text-sm"><Users viewBox='0 0 24 24' width='16' height='16' /> {numOfAdmin} {numOfAdmin == 1 ? 'admin' : 'admins'} in team</p>
                 <p className="flex items-center gap-x-1 text-sm"><StarIcon /> {numOfCustomers >= 1000000 ? `${(numOfCustomers / 1000000).toFixed(1)}m` : numOfCustomers >= 1000 ? `${(numOfCustomers / 1000).toFixed(1)}k` : numOfCustomers} {numOfCustomers == 1 ? "customer" : "customers"}</p>

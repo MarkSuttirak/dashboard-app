@@ -8,7 +8,13 @@ import VerticalLine from "src/components/verticalLine";
 import { cn } from "../../lib/utils"
 import { Button, buttonVariants } from "../../components/ui/button"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../../components/ui/form"
-import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../components/ui/select"
 import { toast } from "../../components/ui/use-toast"
 import { useUser } from "../../hooks/useUser";
 import { useMutation, useQuery } from "react-query";
@@ -17,16 +23,27 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Input } from "../../components/ui/input"
 
+const countries = ["China","France","Germany","Pakistan","Thailand","United Kingdom","United States"]
+
 const appearanceFormSchema = z.object({
   company_name: z.string({
-    required_error: "The company name is required.", // Ein Geschäftname ist erforderlich.
+    required_error: "The company name is required.", // Der Geschäftsname ist erforderlich.
   }),
-  theme: z.enum(["light", "dark"], {
-    required_error: "Please select a theme.",
+  country: z.enum(countries, {
+    invalid_type_error: "Select a country",
+    required_error: "Please select a country.", // Bitte wählen Sie ein Land aus.
   }),
-  font: z.enum(["inter", "manrope", "system"], {
-    invalid_type_error: "Select a font",
-    required_error: "Please select a font.",
+  address: z.string({
+    required_error: "The address is required.", // Die Adresse ist erforderlich
+  }),
+  city: z.string({
+    required_error: "The city is required.", // Die Stadt ist erforderlich
+  }),
+  state: z.string({
+    required_error: "The state/province is required.", // Der Staat/Die Provinz ist erforderlich
+  }),
+  postal_code: z.string({
+    required_error: "The postal code is required.", // Die Postleitzahl ist erforderlich
   }),
 })
 
@@ -126,77 +143,79 @@ export default function BillingPlan() {
           />
           <FormField
             control={form.control}
-            name="theme"
+            name="country"
             render={({ field }) => (
-              <FormItem className="space-y-1">
-                <FormLabel>Theme</FormLabel>
-                <FormDescription>
-                  Select the theme for the dashboard.
-                </FormDescription>
+              <FormItem>
+                <FormLabel>Country</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a verified email to display" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {countries.map(country => (
+                      <SelectItem value={country}>{country}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 <FormMessage />
-                <RadioGroup
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                  className="grid max-w-md grid-cols-2 gap-8 pt-2"
-                >
-                  <FormItem>
-                    <FormLabel className="[&:has([data-state=checked])>div]:border-primary">
-                      <FormControl>
-                        <RadioGroupItem value="light" className="sr-only" />
-                      </FormControl>
-                      <div className="items-center rounded-md border-2 border-muted p-1 hover:border-accent">
-                        <div className="space-y-2 rounded-sm bg-[#ecedef] p-2">
-                          <div className="space-y-2 rounded-md bg-white p-2 shadow-sm">
-                            <div className="h-2 w-[80px] rounded-lg bg-[#ecedef]" />
-                            <div className="h-2 w-[100px] rounded-lg bg-[#ecedef]" />
-                          </div>
-                          <div className="flex items-center space-x-2 rounded-md bg-white p-2 shadow-sm">
-                            <div className="h-4 w-4 rounded-full bg-[#ecedef]" />
-                            <div className="h-2 w-[100px] rounded-lg bg-[#ecedef]" />
-                          </div>
-                          <div className="flex items-center space-x-2 rounded-md bg-white p-2 shadow-sm">
-                            <div className="h-4 w-4 rounded-full bg-[#ecedef]" />
-                            <div className="h-2 w-[100px] rounded-lg bg-[#ecedef]" />
-                          </div>
-                        </div>
-                      </div>
-                      <span className="block w-full p-2 text-center font-normal">
-                        Light
-                      </span>
-                    </FormLabel>
-                  </FormItem>
-                  <FormItem>
-                    <FormLabel className="[&:has([data-state=checked])>div]:border-primary">
-                      <FormControl>
-                        <RadioGroupItem value="dark" className="sr-only" />
-                      </FormControl>
-                      <div className="items-center rounded-md border-2 border-muted bg-popover p-1 hover:bg-accent hover:text-accent-foreground">
-                        <div className="space-y-2 rounded-sm bg-slate-950 p-2">
-                          <div className="space-y-2 rounded-md bg-slate-800 p-2 shadow-sm">
-                            <div className="h-2 w-[80px] rounded-lg bg-slate-400" />
-                            <div className="h-2 w-[100px] rounded-lg bg-slate-400" />
-                          </div>
-                          <div className="flex items-center space-x-2 rounded-md bg-slate-800 p-2 shadow-sm">
-                            <div className="h-4 w-4 rounded-full bg-slate-400" />
-                            <div className="h-2 w-[100px] rounded-lg bg-slate-400" />
-                          </div>
-                          <div className="flex items-center space-x-2 rounded-md bg-slate-800 p-2 shadow-sm">
-                            <div className="h-4 w-4 rounded-full bg-slate-400" />
-                            <div className="h-2 w-[100px] rounded-lg bg-slate-400" />
-                          </div>
-                        </div>
-                      </div>
-                      <span className="block w-full p-2 text-center font-normal">
-                        Dark
-                      </span>
-                    </FormLabel>
-                  </FormItem>
-                </RadioGroup>
               </FormItem>
             )}
           />
-
-          <Button type="submit">Update preferences</Button>
+          <FormField
+            control={form.control}
+            name="address"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Address</FormLabel>
+                <FormControl>
+                  <Input placeholder="Limited Co 999 99 Rama IX Rd," {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="city"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>City</FormLabel>
+                <FormControl>
+                  <Input placeholder="Suan Luang" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="state"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>State / Province / Region</FormLabel>
+                <FormControl>
+                  <Input placeholder="Bangkok" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="postal_code"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Postal Code</FormLabel>
+                <FormControl>
+                  <Input placeholder="10210" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit">Update account</Button>
         </form>
       </Form>
     </>

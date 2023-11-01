@@ -6,6 +6,8 @@ import BillingPlan from "./billingPlan";
 import NotificationsForm from "./notifications";
 import DisplayForm from "./display";
 import PagesMenus from "src/components/pagesMenus";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs"
+import Invoices from "./invoices";
 
 const sidebarNavItems = [
   {
@@ -43,11 +45,20 @@ export default function Settings(){
 
         {id === 'billing-plans' && (
           <section className="w-[672px]">
-            <h2 className="secondary-heading">Billing & Plans</h2>
-            <p className="secondary-desc">Customise the appearance of the app. Automatically switch between day and night themes.</p>
+            <Tabs defaultValue="overview">
+              <TabsList>
+                <TabsTrigger value="overview">Overview</TabsTrigger>
+                <TabsTrigger value="invoices">Invoices</TabsTrigger>
+              </TabsList>
+              <Separator className='my-6'/>
+              <TabsContent value="overview">
+                <BillingPlan />
+              </TabsContent>
+              <TabsContent value="invoices">
+                <Invoices />
+              </TabsContent>
+            </Tabs>
 
-            <Separator className='my-6'/>
-            <BillingPlan />
           </section>
         )}
 
