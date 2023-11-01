@@ -168,6 +168,20 @@ body {
   align-items:center;
 }
 
+.menu-card {
+  cursor:pointer;
+  overflow:hidden;
+  border-radius:10px;
+  width:164px;
+  height:174px;
+  font-size:14px;
+  font-weight:500;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
 #sidebar {
   width:$right-sidebar-width;
   border-right: 1px solid #F4F5F6;

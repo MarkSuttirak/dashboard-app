@@ -4,14 +4,13 @@ import DashboardLayout from './layouts/DashboardLayout';
 // import LogoOnlyLayout from './layouts/LogoOnlyLayout';
 // pages
 import withAuthenticationRequired from './utils/withAuthenticationRequired';
-import Dashboard from './pages/dashboard';
 import Welcome from './pages/register/welcome';
 import ChangeDomain from './pages/changeDomain';
 import Callback from './callback';
 import Partial, { PhoneVerification } from './pages/register/partial';
 import OtherInfo from './pages/register/otherInfo';
 import InstanceConfig from './pages/register/instanceConfig';
-import DashboardNewVer from './pages/dashboard-newver';
+import Dashboard from './pages/dashboard';
 import Settings from './pages/settings/settings';
 import Teams from './pages/teams/teams';
 
@@ -24,7 +23,7 @@ export default function Router() {
             element: withAuthenticationRequired(DashboardLayout),
             children: [
                 { path: 'instance-configuration', element: <InstanceConfig /> },
-                { path: 'app', element: <DashboardNewVer /> },
+                { path: 'app', element: <Dashboard /> },
                 {
                     path: 'products',
                     children: [

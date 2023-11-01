@@ -1,31 +1,11 @@
 import React, {useState} from 'react'
 import { Button } from './ui/button'
-import { BadgeInfo, Bell, BookCopy, ChevronDown, ClipboardList, Info, MessageCircle, Zap, User, Keyboard, Layout, LogOut } from 'lucide-react'
+import { BadgeInfo, BookCopy, ChevronDown, ClipboardList, Info, MessageCircle, Zap, User, Keyboard, Layout, LogOut } from 'lucide-react'
+import { BellIcon } from '@radix-ui/react-icons'
 import VerticalLine from './verticalLine'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "./ui/popover"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "./ui/dialog"
-import {
-  Command,
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-  CommandShortcut,
-} from "./ui/command"
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog"
+import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "./ui/command"
 import Logo from "../img/logo-zaviago.svg";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { useUser } from '../hooks/useUser'
@@ -83,7 +63,7 @@ export default function Topbar({isSidebarOpen}){
               </Command>
             </DialogContent>
           </Dialog>
-          <Bell color='#7D7D7D'/>
+          <BellIcon color='#7D7D7D' width='21' height='21'/>
         </div>
 
         <VerticalLine color='#E4E4E7' size={1} height="32px"/>
