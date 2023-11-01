@@ -147,8 +147,8 @@ export default function Dashboard(){
       </section>
 
       <section className="mt-6">
-        <div className="grid grid-cols-1 md:flex gap-6 md:gap-x-[15px]">
-          <Card className='w-[60%]'>
+        <div className="flex flex-col gap-[15px] xl:flex-row">
+          <Card className='w-full xl:w-[60%]'>
             <CardHeader className='pb-2 flex flex-row items-center justify-between'>
               <div>
                 <CardTitle className='subheading font-medium'>Your WorkSpace</CardTitle>
@@ -168,7 +168,7 @@ export default function Dashboard(){
               </div>
             </CardContent>
           </Card>
-          <Card className='w-[40%] flex flex-col justify-between'>
+          <Card className='w-full xl:w-[40%] flex flex-col justify-between'>
             <CardHeader className='pb-2 flex flex-row items-center justify-between'>
               <div>
                 <CardTitle className='main-heading'>Free trial</CardTitle>
@@ -193,7 +193,7 @@ export default function Dashboard(){
         <h2 className="secondary-heading">Create New or Manage</h2>
         <p className="secondary-desc">What do you want to do today?</p>
 
-        <div className="flex gap-x-[15px] mt-6">
+        <div className="flex gap-[15px] mt-6">
           {newOrManageMenus.map((n, index) => (
             <div className="menu-card" key={index} style={{backgroundColor:n.background,color:n.color,boxShadow:isMenuCardHover && menuCardIndex === index ? `0 0 3px ${n.color}` : '0 0 0 1px #E4E4E7'}} onMouseEnter={() => handleCardHover(index)} onMouseLeave={handleCardHoverLeave}>
               {n.image}
@@ -209,7 +209,7 @@ export default function Dashboard(){
         <h2 className="secondary-heading">Discover what you can do</h2>
         <p className="secondary-desc">Manage posts, track post performance and learn about new ways to improve your blog.</p>
 
-        <div className="mt-6 grid grid-cols-3 gap-x-[15px]">
+        <div className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-[15px]">
           <PostInfo title="Create your blog" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={phoneBanner} />
           <PostInfo title="Selling Online" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={sellingOnline} />
           <PostInfo title="Connect Shopee" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={connectMessage} />
