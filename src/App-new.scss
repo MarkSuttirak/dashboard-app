@@ -207,6 +207,9 @@ body {
   display:flex;
   flex-direction:column;
   align-items:center;
+  &:nth-child(5),&:nth-child(6){
+    padding-top:20px;
+  }
 }
 
 #sidebar {
