@@ -9,6 +9,8 @@ export const user = {
     logout: () => api.post('/method/logout'),
     register: (email, password) => api.post('/method/register', { usr: email, pwd: password }),
     get: () => api.get('/method/press.api.account.get'),
+    updateUser : (data) => api.post("/method/press.api.account.update_profile" , data),
+    getInvoices : () => api.get("method/press.api.billing.invoices_and_payments"),
 }
 
 export const partial = {

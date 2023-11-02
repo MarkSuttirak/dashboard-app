@@ -1,5 +1,6 @@
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "../../components/ui/table"
-
+import { useUser } from "../../hooks/useUser";
+import React, { useState,useEffect  } from 'react';
 const invoices = [
   {
     invoice: "INV001",
@@ -46,6 +47,18 @@ const invoices = [
 ]
 
 export default function Invoices() {
+  const { user } = useUser();
+  const [userInvoices,setuserInvoices]=useState(null)
+  const fetchData = async()=> {
+    console.log(user)
+    setuserInvoices(await user.getInvoices)
+  }
+  useEffect(()=>{
+    fetchData()
+    console.log( userInvoices )
+    console.log( 'userInvoices' )
+  },[] )
+  fetchData()
   return (
     <>
       <h2 className="secondary-heading">Invoices</h2>
