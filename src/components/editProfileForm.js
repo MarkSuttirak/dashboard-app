@@ -48,12 +48,16 @@ export function EditProfileForm({preloadedValues}) {
     console.log(data)
     user.updateUser(data).then()
     .then((response) => {
-        console.log( response.data.message )
+      
+      if( response.status===200 && response.statusText==="OK" ){
         document.getElementById("success-save").style.display="block"
+        document.getElementById("success-save").innerHTML="Profile is updated successfully"
+      }else{
+          document.getElementById("success-save").innerHTML = "Something went wrong"
+          document.getElementById("success-save").style.display="block"
+      }
     })
 };
-
-
 
 function onError(e) {
     console.log('error')
@@ -62,7 +66,7 @@ function onError(e) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit, onError)} className="space-y-8">
-        <p id="success-save" style={{display:'none'}}>Profile is updated successfully</p>
+        <p id="success-save" style={{display:'none'}}></p>
         <FormField
           control={form.control}
           name="first_name"

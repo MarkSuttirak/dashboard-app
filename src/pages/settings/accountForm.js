@@ -1,6 +1,6 @@
 import React, { useState,useEffect  } from 'react';
 import { useUser } from "../../hooks/useUser";
-import {EditProfileForm} from '../../components/editProfileForm'
+import { EditProfileForm } from '../../components/editProfileForm'
 
 
 export default function AccountForm() {

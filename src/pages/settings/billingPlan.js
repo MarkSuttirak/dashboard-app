@@ -22,6 +22,8 @@ import { site } from "../../client/api";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Input } from "../../components/ui/input"
+import { user as user_api } from "src/client/api";
+import { BillingAddressForm } from "../../components/billingAddressForm"
 
 const countries = ["China","France","Germany","Pakistan","Thailand","United Kingdom","United States"]
 
@@ -98,6 +100,18 @@ export default function BillingPlan() {
       ),
     })
   }
+  const [billingAddress,setbilligAddress]=useState(null)
+  const fetchBilling = async()=> {
+    console.log( )
+    setbilligAddress( await user_api.getBillingInfo() )
+    //setbilligAddress(billingAddress.message)
+  }
+  useEffect(()=>{
+    fetchBilling() 
+  },[])
+  // fetchBilling() 
+
+
 
   return (
     <>
@@ -126,98 +140,12 @@ export default function BillingPlan() {
       <Separator className='my-6'/>
 
       <h1 className="secondary-heading">Team billing information</h1>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mt-4">
-          <FormField
-            control={form.control}
-            name="company_name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Company Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="Your name" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="country"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Country</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a verified email to display" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {countries.map(country => (
-                      <SelectItem value={country}>{country}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="address"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Address</FormLabel>
-                <FormControl>
-                  <Input placeholder="Limited Co 999 99 Rama IX Rd," {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="city"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>City</FormLabel>
-                <FormControl>
-                  <Input placeholder="Suan Luang" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="state"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>State / Province / Region</FormLabel>
-                <FormControl>
-                  <Input placeholder="Bangkok" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="postal_code"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Postal Code</FormLabel>
-                <FormControl>
-                  <Input placeholder="10210" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type="submit">Update account</Button>
-        </form>
-      </Form>
+     
+      {billingAddress ? (
+        <BillingAddressForm billingAddress={billingAddress.message}/>
+      ) : (
+        <div>Loading...</div>
+      )}
     </>
   )
 }
