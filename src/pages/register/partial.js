@@ -280,7 +280,7 @@ const VerifyOTP = ({
                     <p className="text-link inline-block" onClick={prev}>Resend code</p>
                 </div>
 
-                <div className="anim-up-delay translate-y-[40px] opacity-0">
+                <div className="anim-up-delay translate-y-[40px]">
                     <button
                         type='submit'
                         className={`primary-btn ${!formik.isValid ? 'disabled' : ''} w-full justify-center`}

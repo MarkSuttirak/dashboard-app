@@ -253,7 +253,7 @@ export const UserInfoForm = ({
                         </div>
                     </RadioGroup>
 
-                    <div className={`anim-up-delay translate-y-[20px] opacity-0 mt-4`}>
+                    <div className={`anim-up-delay translate-y-[20px] mt-4`}>
                         <button
                             type='submit'
                             className={`primary-btn w-full justify-center ${!formik.isValid ? 'disabled' : ''}`}
@@ -378,7 +378,7 @@ export const BusinessInfoForm = ({
             </div>
 
             <Spacer size={30} />
-            <div className={`anim-up-delay translate-y-[20px] opacity-0 mt-4`}>
+            <div className={`anim-up-delay translate-y-[20px] mt-4`}>
                 <button className={`no-bg-btn w-1/4 justify-center`} onClick={prev}>Back</button>
                 <button
                     className={`primary-btn w-1/4 justify-center ${!formik.isValid ? 'disabled' : ''}`}
