@@ -1,8 +1,6 @@
-import { zodResolver } from "@hookform/resolvers/zod"
 import { CalendarIcon } from "@radix-ui/react-icons"
 import { format } from "date-fns"
 import { useForm } from "react-hook-form"
-import * as z from "zod"
 import { Link } from "react-router-dom"
 import { cn } from "../../lib/utils"
 import { Button } from "../../components/ui/button"
@@ -13,30 +11,30 @@ import { Input } from "../../components/ui/input"
 import { Popover, PopoverContent, PopoverTrigger } from "../../components/ui/popover"
 import { toast } from "../../components/ui/use-toast"
 
-const accountFormSchema = z.object({
-  firstname: z.string({
-    required_error: "The first name is required.",
-  }),
-  lastname: z.string({
-    required_error: "The last name is required.",
-  }),
-  username: z
-    .string()
-    .min(2, {
-      message: "Name must be at least 2 characters.",
-    })
-    .max(30, {
-      message: "Name must not be longer than 30 characters.",
-    }),
-  email: z
-    .string({
-      required_error: "Please select an email to display.",
-    })
-    .email(),
-  dob: z.date({
-    required_error: "The date of birth is required.",
-  }),
-})
+// const accountFormSchema = z.object({
+//   firstname: z.string({
+//     required_error: "The first name is required.",
+//   }),
+//   lastname: z.string({
+//     required_error: "The last name is required.",
+//   }),
+//   username: z
+//     .string()
+//     .min(2, {
+//       message: "Name must be at least 2 characters.",
+//     })
+//     .max(30, {
+//       message: "Name must not be longer than 30 characters.",
+//     }),
+//   email: z
+//     .string({
+//       required_error: "Please select an email to display.",
+//     })
+//     .email(),
+//   dob: z.date({
+//     required_error: "The date of birth is required.",
+//   }),
+// })
 
 // This can come from your database or API.
 const defaultValues = {
@@ -46,8 +44,8 @@ const defaultValues = {
 
 export default function AccountForm() {
   const form = useForm({
-    resolver: zodResolver(accountFormSchema),
-    defaultValues,
+    // resolver: zodResolver(accountFormSchema),
+    // defaultValues,
   })
 
   function onSubmit(data) {

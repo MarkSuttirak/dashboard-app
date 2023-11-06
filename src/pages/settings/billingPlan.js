@@ -1,8 +1,6 @@
-import { zodResolver } from "@hookform/resolvers/zod"
 import { ChevronDownIcon, PlusCircledIcon, StarIcon, ValueIcon } from "@radix-ui/react-icons"
 import { Users, Zap } from "lucide-react"
 import { useForm } from "react-hook-form"
-import * as z from "zod"
 import { Separator } from "../../components/ui/separator";
 import VerticalLine from "src/components/verticalLine";
 import { cn } from "../../lib/utils"
@@ -19,27 +17,27 @@ import { Input } from "../../components/ui/input"
 
 const countries = ["China","France","Germany","Pakistan","Thailand","United Kingdom","United States"]
 
-const appearanceFormSchema = z.object({
-  company_name: z.string({
-    required_error: "The company name is required.",
-  }),
-  country: z.enum(countries, {
-    invalid_type_error: "Select a country",
-    required_error: "Please select a country.",
-  }),
-  address: z.string({
-    required_error: "The address is required.",
-  }),
-  city: z.string({
-    required_error: "The city is required.",
-  }),
-  state: z.string({
-    required_error: "The state/province is required.",
-  }),
-  postal_code: z.string({
-    required_error: "The postal code is required.",
-  }),
-})
+// const appearanceFormSchema = z.object({
+//   company_name: z.string({
+//     required_error: "The company name is required.",
+//   }),
+//   country: z.enum(countries, {
+//     invalid_type_error: "Select a country",
+//     required_error: "Please select a country.",
+//   }),
+//   address: z.string({
+//     required_error: "The address is required.",
+//   }),
+//   city: z.string({
+//     required_error: "The city is required.",
+//   }),
+//   state: z.string({
+//     required_error: "The state/province is required.",
+//   }),
+//   postal_code: z.string({
+//     required_error: "The postal code is required.",
+//   }),
+// })
 
 // This can come from your database or API.
 const defaultValues = {
@@ -78,8 +76,8 @@ export default function BillingPlan() {
   });
 
   const form = useForm({
-    resolver: zodResolver(appearanceFormSchema),
-    defaultValues,
+    // resolver: zodResolver(appearanceFormSchema),
+    // defaultValues,
   })
 
   function onSubmit(data) {

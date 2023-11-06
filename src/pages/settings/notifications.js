@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom"
-import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import * as z from "zod"
 import { Button } from "../../components/ui/button"
 import { Checkbox } from "../../components/ui/checkbox"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../../components/ui/form"
@@ -9,16 +7,16 @@ import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group"
 import { Switch } from "../../components/ui/switch"
 import { toast } from "../../components/ui/use-toast"
 
-const notificationsFormSchema = z.object({
-  type: z.enum(["all", "mentions", "none"], {
-    required_error: "You need to select a notification type.",
-  }),
-  mobile: z.boolean().default(false).optional(),
-  communication_emails: z.boolean().default(false).optional(),
-  social_emails: z.boolean().default(false).optional(),
-  marketing_emails: z.boolean().default(false).optional(),
-  security_emails: z.boolean(),
-})
+// const notificationsFormSchema = z.object({
+//   type: z.enum(["all", "mentions", "none"], {
+//     required_error: "You need to select a notification type.",
+//   }),
+//   mobile: z.boolean().default(false).optional(),
+//   communication_emails: z.boolean().default(false).optional(),
+//   social_emails: z.boolean().default(false).optional(),
+//   marketing_emails: z.boolean().default(false).optional(),
+//   security_emails: z.boolean(),
+// })
 
 // This can come from your database or API.
 const defaultValues = {
@@ -30,8 +28,8 @@ const defaultValues = {
 
 export default function NotificationsForm() {
   const form = useForm({
-    resolver: zodResolver(notificationsFormSchema),
-    defaultValues,
+    // resolver: zodResolver(notificationsFormSchema),
+    // defaultValues,
   })
 
   function onSubmit(data) {
