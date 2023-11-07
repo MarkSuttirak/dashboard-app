@@ -1,10 +1,6 @@
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { Button } from "../../components/ui/button"
-import { Checkbox } from "../../components/ui/checkbox"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../../components/ui/form"
 import { toast } from "../../components/ui/use-toast"
+import * as yup from "yup"
+import { useFormik } from 'formik';
 
 const items = [
   {
@@ -33,21 +29,21 @@ const items = [
   },
 ]
 
-const displayFormSchema = z.object({
-  items: z.array(z.string()).refine((value) => value.some((item) => item), {
-    message: "You have to select at least one item.",
-  }),
+const displayFormSchema = yup.object().shape({
+  items: yup.array().min(1).of(yup.string().required()).required()
 })
 
 // This can come from your database or API.
-const defaultValues = {
-  items: ["recents", "home"],
-}
+const defaultValues = ["recents", "home"]
 
 export default function DisplayForm() {
-  const form = useForm({
-    resolver: zodResolver(displayFormSchema),
-    defaultValues,
+  const form = useFormik({
+    validationSchema:displayFormSchema,
+    initialValues:{},
+    onSubmit: values => {
+      console.log('values')
+      console.log(values)
+    },
   })
 
   function onSubmit(data) {
@@ -62,58 +58,17 @@ export default function DisplayForm() {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="items"
-          render={() => (
-            <FormItem>
+      <form onSubmit={form.handleSubmit} className="space-y-8">
               <div className="mb-4">
-                <FormLabel className="text-base">Sidebar</FormLabel>
-                <FormDescription>
                   Select the items you want to display in the sidebar.
-                </FormDescription>
               </div>
               {items.map((item) => (
-                <FormField
-                  key={item.id}
-                  control={form.control}
-                  name="items"
-                  render={({ field }) => {
-                    return (
-                      <FormItem
-                        key={item.id}
-                        className="flex flex-row items-start space-x-3 space-y-0"
-                      >
-                        <FormControl>
-                          <Checkbox
-                            checked={field.value?.includes(item.id)}
-                            onCheckedChange={(checked) => {
-                              return checked
-                                ? field.onChange([...field.value, item.id])
-                                : field.onChange(
-                                    field.value?.filter(
-                                      (value) => value !== item.id
-                                    )
-                                  )
-                            }}
-                          />
-                        </FormControl>
-                        <FormLabel className="font-normal">
-                          {item.label}
-                        </FormLabel>
-                      </FormItem>
-                    )
-                  }}
-                />
+                <div className="Documents">
+                  <input onChange={form.handleChange} defaultChecked ={defaultValues.includes(item.id) } type="checkbox" id="{item.id}" name="items" value="documents" /> {item.label}
+                </div>
               ))}
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">Update display</Button>
+        <button type="submit">Update display</button>
       </form>
-    </Form>
+    
   )
 }

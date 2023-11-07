@@ -1,170 +1,265 @@
-import { zodResolver } from "@hookform/resolvers/zod"
-import { ChevronDownIcon, PlusCircledIcon, StarIcon, ValueIcon } from "@radix-ui/react-icons"
-import { Users, Zap } from "lucide-react"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { Separator } from "./ui/separator";
-import VerticalLine from "src/components/verticalLine";
-import { cn } from "../lib/utils"
-import { Button, buttonVariants } from "./ui/button"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "./ui/form"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select"
-import { Input } from "./ui/input"
 import { user as user_api } from "src/client/api";
+import * as yup from "yup"
+import { useFormik } from 'formik';
 
 
 export function BillingAddressForm({billingAddress}) {
    
     const countries = ["China","France","Germany","Pakistan","Thailand","United Kingdom","United States"]
 
-   
-    
-      const appearanceFormSchema = z.object({
-        billing_name: z.string({
-          required_error: "Company name is required.", // Der Geschäftsname ist erforderlich.
-        }),
-        country: z.enum(countries, {
-          invalid_type_error: "Select a country",
-          required_error: "Please select a country.", // Bitte wählen Sie ein Land aus.
-        }),
-        address_line1: z.string({
-          required_error: "The address is required.", // Die Adresse ist erforderlich
-        }),
-        city: z.string({
-          required_error: "The city is required.", // Die Stadt ist erforderlich
-        }),
-        state: z.string({
-          required_error: "The state/province is required.", // Der Staat/Die Provinz ist erforderlich
-        }),
-        pincode: z.string({
-          required_error: "The postal code is required.", // Die Postleitzahl ist erforderlich
-        }),
-      })
-    const form = useForm({
-        resolver: zodResolver(appearanceFormSchema),
-        defaultValues: billingAddress
-      })
+    const appearanceFormSchema = yup.object().shape({
+      billing_name: yup.string().required('Company Name is a required field'),
+      country: yup.string().required('Country is a required field'),
+      email: yup.string().email().required('Email is a required field'),
+      address_line1: yup.string().required('Address is a required field'),
+      city: yup.string().required('The city is required'),
+      state: yup.string().required('The state is required'),
+      pincode: yup.string().required('The Postal Code is required'),
       
-    const onSubmit = async data => {
-        console.log(data)
-        data['address']=data['address_line1']
-        data['postal_code']=data['pincode']
-        user_api.updateBillingInfo(data).then()
-        .then((response)=>{
-            if( response.status===200 && response.statusText==="OK" ){
-                document.getElementById("call-response").style.display="block"
-                document.getElementById("call-response").innerHTML="Address is updated successfully"
-            }else{
-                document.getElementById("call-response").innerHTML = "Something went wrong"
-                document.getElementById("call-response").style.display="block"
-            }
-        });
-         
-    };
-    function onError(e) {
-        console.log('error')
-        console.log(e)
-      }
+    })
+    
+   
+    const form = useFormik({
+      initialValues: {
+        billing_name:billingAddress.billing_name,
+        country:billingAddress.country,
+        address_line1:billingAddress.address_line1,
+        city:billingAddress.city,
+        state:billingAddress.state,
+        pincode:billingAddress.pincode,
+      },
+      validateOnChange: true,
+      validationSchema: appearanceFormSchema,
+      onSubmit: values => {
+        console.log('values')
+        console.log(values)
+        onSubmitFunction( values )
+      },
+    })
+    const onSubmitFunction = async (data) => {
+      console.log(data)
+      data['address']=data['address_line1']
+      data['postal_code']=data['pincode']
+      user_api.updateBillingInfo(data).then()
+      .then((response)=>{
+          if( response.status===200 && response.statusText==="OK" ){
+              document.getElementById("call-response").style.display="block"
+              document.getElementById("call-response").innerHTML="Address is updated successfully"
+          }else{
+              document.getElementById("call-response").innerHTML = "Something went wrong"
+              document.getElementById("call-response").style.display="block"
+          }
+      });
+       
+  };
+
 
     return (
-          <Form {...form}>
-            <p id="call-response" style={{display:'none'}}></p>
-            <form onSubmit={form.handleSubmit(onSubmit,onError)} className="space-y-8 mt-4">
-              <FormField
-                control={form.control}
-                name="billing_name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Company Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Your name" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="country"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Country</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a verified email to display" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {countries.map(country => (
-                          <SelectItem value={country}>{country}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="address_line1"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Address</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Limited Co 999 99 Rama IX Rd," {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="city"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>City</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Suan Luang" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="state"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>State / Province / Region</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Bangkok" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="pincode"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Postal Code</FormLabel>
-                    <FormControl>
-                      <Input placeholder="10210" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit">Update account</Button>
-            </form>
-          </Form>
+      <>
+        <form className="m-auto w-full max-w-sm w-96" onSubmit={form.handleSubmit}>
+          <p id="call-response" style={{display:'none'}}></p>
+              <div className="space-y-6">
+                  <div className="anim-up">
+                      <label className="subheading">
+                        Company Name
+                      </label>
+                      <div className="relative mt-1 rounded-md shadow-sm">
+                          <input
+                              placeholder="Company Name"
+                              className="form-input"
+                              name="billing_name"
+                              type='text'
+                              onChange={form.handleChange}
+                              defaultValue={billingAddress.billing_name}
+                          />
+                      </div>
+                  </div>
+              </div>
+              <div className="space-y-6">
+                  <div className="anim-up">
+                      <label className="subheading">
+                          Country
+                      </label>
+                      <div className="relative mt-1 rounded-md shadow-sm">
+                        <select name="country" defaultValue={billingAddress.country} onChange={form.handleChange}>
+                        <option>Select Country</option>
+                            {countries.map(country => (
+                              <option  value={country}>{country}</option>
+                            ))}
+                        
+                        </select>
+                      </div>
+                  </div>
+              </div>
+              <div className="space-y-6">
+                  <div className="anim-up">
+                      <label className="subheading">
+                        Address
+                      </label>
+                      <div className="relative mt-1 rounded-md shadow-sm">
+                          <input
+                              placeholder="Address"
+                              className="form-input"
+                              name="address_line1"
+                              onChange={form.handleChange}
+                              type='text'
+                              defaultValue ={billingAddress.address_line1}
+                          />
+                      </div>
+                  </div>
+              </div>
+              <div className="space-y-6">
+                  <div className="anim-up">
+                      <label className="subheading">
+                        City
+                      </label>
+                      <div className="relative mt-1 rounded-md shadow-sm">
+                          <input
+                              placeholder="City"
+                              className="form-input"
+                              name="city"
+                              type='text'
+                              onChange={form.handleChange}
+                              defaultValue ={billingAddress.city}
+                          />
+                      </div>
+                  </div>
+              </div>
+              <div className="space-y-6">
+                  <div className="anim-up">
+                      <label className="subheading">
+                        State / Province / Region
+                      </label>
+                      <div className="relative mt-1 rounded-md shadow-sm">
+                          <input
+                              placeholder="State"
+                              className="form-input"
+                              name="state"
+                              type='text'
+                              onChange={form.handleChange}
+                              defaultValue ={billingAddress.state}
+                          />
+                      </div>
+                  </div>
+              </div>
+              <div className="space-y-6">
+                  <div className="anim-up">
+                      <label className="subheading">
+                        Postal Code
+                      </label>
+                      <div className="relative mt-1 rounded-md shadow-sm">
+                          <input
+                              placeholder="Postal Code"
+                              className="form-input"
+                              name="pincode"
+                              type='text'
+                              onChange={form.handleChange}
+                              defaultValue ={billingAddress.pincode}
+                          />
+                      </div>
+                  </div>
+              </div>
+              <div >
+                <button
+                    type='submit'
+                    className={'primary-btn'}>
+                      Update Address
+                  </button>
+            </div>
+        </form>
+      </>
+          // <Form {...form}>
+          //   <p id="call-response" style={{display:'none'}}></p>
+          //   <form onSubmit={form.handleSubmit(onSubmit,onError)} className="space-y-8 mt-4">
+          //     <FormField
+          //       control={form.control}
+          //       name="billing_name"
+          //       render={({ field }) => (
+          //         <FormItem>
+          //           <FormLabel>Company Name</FormLabel>
+          //           <FormControl>
+          //             <Input placeholder="Your name" {...field} />
+          //           </FormControl>
+          //           <FormMessage />
+          //         </FormItem>
+          //       )}
+          //     />
+          //     <FormField
+          //       control={form.control}
+          //       name="country"
+          //       render={({ field }) => (
+          //         <FormItem>
+          //           <FormLabel>Country</FormLabel>
+          //           <Select onValueChange={field.onChange} defaultValue={field.value}>
+          //             <FormControl>
+          //               <SelectTrigger>
+          //                 <SelectValue placeholder="Select a verified email to display" />
+          //               </SelectTrigger>
+          //             </FormControl>
+          //             <SelectContent>
+          //               {countries.map(country => (
+          //                 <SelectItem value={country}>{country}</SelectItem>
+          //               ))}
+          //             </SelectContent>
+          //           </Select>
+          //           <FormMessage />
+          //         </FormItem>
+          //       )}
+          //     />
+          //     <FormField
+          //       control={form.control}
+          //       name="address_line1"
+          //       render={({ field }) => (
+          //         <FormItem>
+          //           <FormLabel>Address</FormLabel>
+          //           <FormControl>
+          //             <Input placeholder="Limited Co 999 99 Rama IX Rd," {...field} />
+          //           </FormControl>
+          //           <FormMessage />
+          //         </FormItem>
+          //       )}
+          //     />
+          //     <FormField
+          //       control={form.control}
+          //       name="city"
+          //       render={({ field }) => (
+          //         <FormItem>
+          //           <FormLabel>City</FormLabel>
+          //           <FormControl>
+          //             <Input placeholder="Suan Luang" {...field} />
+          //           </FormControl>
+          //           <FormMessage />
+          //         </FormItem>
+          //       )}
+          //     />
+          //     <FormField
+          //       control={form.control}
+          //       name="state"
+          //       render={({ field }) => (
+          //         <FormItem>
+          //           <FormLabel>State / Province / Region</FormLabel>
+          //           <FormControl>
+          //             <Input placeholder="Bangkok" {...field} />
+          //           </FormControl>
+          //           <FormMessage />
+          //         </FormItem>
+          //       )}
+          //     />
+          //     <FormField
+          //       control={form.control}
+          //       name="pincode"
+          //       render={({ field }) => (
+          //         <FormItem>
+          //           <FormLabel>Postal Code</FormLabel>
+          //           <FormControl>
+          //             <Input placeholder="10210" {...field} />
+          //           </FormControl>
+          //           <FormMessage />
+          //         </FormItem>
+          //       )}
+          //     />
+          //     <Button type="submit">Update account</Button>
+          //   </form>
+          // </Form>
       )
 }

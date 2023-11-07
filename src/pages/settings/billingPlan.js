@@ -1,21 +1,9 @@
-import { zodResolver } from "@hookform/resolvers/zod"
 import { ChevronDownIcon, PlusCircledIcon, StarIcon, ValueIcon } from "@radix-ui/react-icons"
 import { Users, Zap } from "lucide-react"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
 import { Separator } from "../../components/ui/separator";
 import VerticalLine from "src/components/verticalLine";
-import { cn } from "../../lib/utils"
 import { Button, buttonVariants } from "../../components/ui/button"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../../components/ui/form"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../components/ui/select"
-import { toast } from "../../components/ui/use-toast"
+
 import { useUser } from "../../hooks/useUser";
 import { useMutation, useQuery } from "react-query";
 import { site } from "../../client/api";
@@ -25,29 +13,7 @@ import { Input } from "../../components/ui/input"
 import { user as user_api } from "src/client/api";
 import { BillingAddressForm } from "../../components/billingAddressForm"
 
-const countries = ["China","France","Germany","Pakistan","Thailand","United Kingdom","United States"]
 
-const appearanceFormSchema = z.object({
-  company_name: z.string({
-    required_error: "The company name is required.", // Der Geschäftsname ist erforderlich.
-  }),
-  country: z.enum(countries, {
-    invalid_type_error: "Select a country",
-    required_error: "Please select a country.", // Bitte wählen Sie ein Land aus.
-  }),
-  address: z.string({
-    required_error: "The address is required.", // Die Adresse ist erforderlich
-  }),
-  city: z.string({
-    required_error: "The city is required.", // Die Stadt ist erforderlich
-  }),
-  state: z.string({
-    required_error: "The state/province is required.", // Der Staat/Die Provinz ist erforderlich
-  }),
-  postal_code: z.string({
-    required_error: "The postal code is required.", // Die Postleitzahl ist erforderlich
-  }),
-})
 
 // This can come from your database or API.
 const defaultValues = {
@@ -85,21 +51,7 @@ export default function BillingPlan() {
     }
   });
 
-  const form = useForm({
-    resolver: zodResolver(appearanceFormSchema),
-    defaultValues,
-  })
 
-  function onSubmit(data) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
-  }
   const [billingAddress,setbilligAddress]=useState(null)
   const fetchBilling = async()=> {
     console.log( )
@@ -109,7 +61,6 @@ export default function BillingPlan() {
   useEffect(()=>{
     fetchBilling() 
   },[])
-  // fetchBilling() 
 
 
 

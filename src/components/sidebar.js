@@ -24,7 +24,7 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
 
   const navigation = [
     { name: 'Dashboard', icon: <LayoutGrid viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/dashboard/app', current: active === '/dashboard/app' ? true : false, id: 'dashboard' },
-    { name: 'Notifications', icon: <Bell viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/integration', current: active === '/integration' || active === '/integration/connected' ? true : false, id: 'integration' },
+    { name: 'Notifications', icon: <Bell viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/dashboard/notification', current: active === '/integration' || active === '/integration/connected' ? true : false, id: 'integration' },
     { name: 'Search', icon: <Search viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/gifts-privileges', current: active === "/gifts-privileges" || active === "/gifts-privileges/premium" || active === "/gifts-privileges/free" ? true : false, active: active, id: 'gift' },
     { name: 'Settings', icon: <Settings viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/dashboard/settings/account', current: active == "/dashboard/settings/account" || active == "/dashboard/settings/billing-plans" || active == "/dashboard/settings/notifications" ? true : false, active: active, id: 'settings' },
   ]

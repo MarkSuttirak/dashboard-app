@@ -8,16 +8,15 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group"
 import { Switch } from "../../components/ui/switch"
 import { toast } from "../../components/ui/use-toast"
+import { useFormik } from 'formik';
+import * as yup from "yup"
 
-const notificationsFormSchema = z.object({
-  type: z.enum(["all", "mentions", "none"], {
-    required_error: "You need to select a notification type.",
-  }),
-  mobile: z.boolean().default(false).optional(),
-  communication_emails: z.boolean().default(false).optional(),
-  social_emails: z.boolean().default(false).optional(),
-  marketing_emails: z.boolean().default(false).optional(),
-  security_emails: z.boolean(),
+const notificationsFormSchema = yup.object().shape({
+  mobile: yup.boolean().default(false).optional(),
+  communication_emails: yup.boolean().default(false).optional(),
+  social_emails: yup.boolean().default(false).optional(),
+  marketing_emails: yup.boolean().default(false).optional(),
+  security_emails: yup.boolean(),
 })
 
 // This can come from your database or API.
@@ -29,12 +28,24 @@ const defaultValues = {
 }
 
 export default function NotificationsForm() {
-  const form = useForm({
-    resolver: zodResolver(notificationsFormSchema),
-    defaultValues,
+  const form = useFormik({
+    validationSchema: notificationsFormSchema,
+    initialValues: {
+      communication_emails: false,
+      marketing_emails: false,
+      social_emails: true,
+      security_emails: true,
+    },
+    onSubmit: values => {
+      console.log('values')
+      console.log(values)
+      onSubmitFunction( values )
+    },
   })
 
-  function onSubmit(data) {
+
+  function onSubmitFunction(data) {
+    console.log("toast"+data)
     toast({
       title: "You submitted the following values:",
       description: (
@@ -46,164 +57,44 @@ export default function NotificationsForm() {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="type"
-          render={({ field }) => (
-            <FormItem className="space-y-3">
-              <FormLabel>Notify me about...</FormLabel>
-              <FormControl>
-                <RadioGroup
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                  className="flex flex-col space-y-1"
-                >
-                  <FormItem className="flex items-center space-x-3 space-y-0">
-                    <FormControl>
-                      <RadioGroupItem value="all" />
-                    </FormControl>
-                    <FormLabel className="font-normal">
-                      All new messages
-                    </FormLabel>
-                  </FormItem>
-                  <FormItem className="flex items-center space-x-3 space-y-0">
-                    <FormControl>
-                      <RadioGroupItem value="mentions" />
-                    </FormControl>
-                    <FormLabel className="font-normal">
-                      Direct messages and mentions
-                    </FormLabel>
-                  </FormItem>
-                  <FormItem className="flex items-center space-x-3 space-y-0">
-                    <FormControl>
-                      <RadioGroupItem value="none" />
-                    </FormControl>
-                    <FormLabel className="font-normal">Nothing</FormLabel>
-                  </FormItem>
-                </RadioGroup>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+    
+      <form onSubmit={form.handleSubmit} className="space-y-8">
+        <div>
+          <input type="radio" id="0" checked="checked" value="all" name="notification_type" /> All new messages
+          <input type="radio" id="1" value="mentions" name="notification_type" /> Direct messages and mentions
+          <input type="radio" id="2" value="none" name="notification_type" /> Nothing
+        </div>
         <div>
           <h3 className="mb-4 text-lg font-medium">Email Notifications</h3>
           <div className="space-y-4">
-            <FormField
-              control={form.control}
-              name="communication_emails"
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
-                  <div className="space-y-0.5">
-                    <FormLabel className="text-base">
-                      Communication emails
-                    </FormLabel>
-                    <FormDescription>
-                      Receive emails about your account activity.
-                    </FormDescription>
-                  </div>
-                  <FormControl>
-                    <Switch
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="marketing_emails"
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
-                  <div className="space-y-0.5">
-                    <FormLabel className="text-base">
-                      Marketing emails
-                    </FormLabel>
-                    <FormDescription>
-                      Receive emails about new products, features, and more.
-                    </FormDescription>
-                  </div>
-                  <FormControl>
-                    <Switch
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="social_emails"
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
-                  <div className="space-y-0.5">
-                    <FormLabel className="text-base">Social emails</FormLabel>
-                    <FormDescription>
-                      Receive emails for friend requests, follows, and more.
-                    </FormDescription>
-                  </div>
-                  <FormControl>
-                    <Switch
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="security_emails"
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
-                  <div className="space-y-0.5">
-                    <FormLabel className="text-base">Security emails</FormLabel>
-                    <FormDescription>
-                      Receive emails about your account activity and security.
-                    </FormDescription>
-                  </div>
-                  <FormControl>
-                    <Switch
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                      disabled
-                      aria-readonly
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
+            <div>
+              <input type="radio" value="type" name="communication_emails" /> Communication emails
+              Receive emails about your account activity.
+            </div>
+            
+            <div>
+              <input type="radio" value="type" name="marketing_emails" /> Marketing emails
+              Receive emails about new products, features, and more.
+            </div>
+            
+             <div>
+              <input type="radio" value="type" name="social_emails" /> Social emails
+              Receive emails for friend requests, follows, and more.
+            </div>
+           
+             <div>
+              <input type="radio" value="type" name="security_emails" /> Security emails
+              Receive emails about your account activity and security.
+            </div>
           </div>
         </div>
-        <FormField
-          control={form.control}
-          name="mobile"
-          render={({ field }) => (
-            <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-              <FormControl>
-                <Checkbox
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
-              </FormControl>
-              <div className="space-y-1 leading-none">
-                <FormLabel>
-                  Use different settings for my mobile devices
-                </FormLabel>
-                <FormDescription>
-                  You can manage your mobile notifications in the{" "}
-                  <Link href="/examples/forms">mobile settings</Link> page.
-                </FormDescription>
-              </div>
-            </FormItem>
-          )}
-        />
-        <Button type="submit">Update notifications</Button>
+        
+        <input type="checkbox" name="mobile" value="Paneer" />Use different settings for my mobile devices
+        You can manage your mobile notifications in the{" "}
+        <Link href="/examples/forms">mobile settings</Link> page.
+        <button type="submit">Update notifications</button>
+        
       </form>
-    </Form>
+    
   )
 }

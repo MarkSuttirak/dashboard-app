@@ -14,154 +14,156 @@ import { format } from "date-fns"
 import { CalendarIcon } from "@radix-ui/react-icons"
 import { toast } from "./ui/use-toast"
 import { user } from "src/client/api";
+import * as yup from "yup"
+import { useFormik } from 'formik';
 
 export function EditProfileForm({preloadedValues}) {
-  const accountFormSchema = z.object({
-    first_name: z.string({
-      required_error: "The first name is required.",
-    }),
-    last_name: z.string({
-      required_error: "The last name is required.",
-    }),
-    username: z
-      .string()
-      .min(2, {
-        message: "Name must be at least 2 characters.",
-      })
-      .max(30, {
-        message: "Name must not be longer than 30 characters.",
-      }),
-    email: z
-      .string({
-        required_error: "Please select an email to display.",
-      })
-      .email(),
-    dob: z.date({
-      required_error: "The date of birth is required.",
-    }),
+
+  const accountFormSchema = yup.object().shape({
+    first_name: yup.string().required('First Name is a required field'),
+    last_name: yup.string().required('Last name is a required field'),
+    email: yup.string().email().required('Email is a required field'),
+    // dob: yup.date().required('DOB is a required field'),
   })
-  const form = useForm({
-    resolver: zodResolver(accountFormSchema),
-    defaultValues: preloadedValues
+  const onSubmitFunction = async (data) => {
+    const isValid = await accountFormSchema.isValid(data)
+    if( isValid ){
+      user.updateUser(data).then()
+      .then((response) => {
+        
+        if( response.status===200 && response.statusText==="OK" ){
+            document.getElementById("success-save").style.display="block"
+            document.getElementById("success-save").innerHTML="Profile is updated successfully"
+        }else{
+            document.getElementById("success-save").innerHTML = "Something went wrong"
+            document.getElementById("success-save").style.display="block"
+        }
+      })
+    }else{
+      document.getElementById("success-save").innerHTML = "Please fill required fields"
+      document.getElementById("success-save").style.display="block"
+    }
+    return
+    // 
+  };
+  const form = useFormik({
+    initialValues: {
+      first_name:preloadedValues.first_name,
+      last_name:preloadedValues.last_name,
+      email:preloadedValues.email,
+      username:preloadedValues.username,
+      dob:preloadedValues.birth_date,
+    },
+    validateOnChange: true,
+    validationSchema: accountFormSchema,
+    onSubmit: values => {
+      console.log('values')
+      console.log(values)
+      onSubmitFunction( values )
+    },
+    
   })
-  const onSubmit = async data => {
-    console.log(data)
-    user.updateUser(data).then()
-    .then((response) => {
-      
-      if( response.status===200 && response.statusText==="OK" ){
-        document.getElementById("success-save").style.display="block"
-        document.getElementById("success-save").innerHTML="Profile is updated successfully"
-      }else{
-          document.getElementById("success-save").innerHTML = "Something went wrong"
-          document.getElementById("success-save").style.display="block"
-      }
-    })
-};
+  
+
+ 
 
 function onError(e) {
     console.log('error')
     console.log(e)
   }
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit, onError)} className="space-y-8">
-        <p id="success-save" style={{display:'none'}}></p>
-        <FormField
-          control={form.control}
-          name="first_name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>First Name</FormLabel>
-              <FormControl>
-                <Input placeholder="Your name" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="last_name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Last Name</FormLabel>
-              <FormControl>
-                <Input placeholder="Your name" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={preloadedValues.email}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a verified email to display" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value="m@example.com">m@example.com</SelectItem>
-                  <SelectItem value="m@google.com">m@google.com</SelectItem>
-                  <SelectItem value="m@support.com">m@support.com</SelectItem>
-                </SelectContent>
-              </Select>
-              <FormDescription>
-                You can manage verified email addresses in your{" "}
-                <Link href="/examples/forms">email settings</Link>.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="dob"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Date of birth</FormLabel>
+    <>
+      <form className="m-auto w-full max-w-sm w-96" onSubmit={form.handleSubmit}>
+          <p id="success-save" className="tab-desc"></p>
+          <div className="space-y-6">
+              <div className="anim-up">
+                  <label className="subheading">
+                    First Name
+                  </label>
+                  <div className="relative mt-1 rounded-md shadow-sm">
+                      <input
+                          placeholder="First Name"
+                          className="form-input"
+                          name="first_name"
+                          type='text'
+                          onChange={form.handleChange}
+                          defaultValue ={preloadedValues.first_name}
+                      />
+                  </div>
+              </div>
+          </div>
+          <div className="space-y-6">
+              <div className="anim-up">
+                  <label className="subheading">
+                    Last Name
+                  </label>
+                  <div className="relative mt-1 rounded-md shadow-sm">
+                      <input
+                          placeholder="First Name"
+                          className="form-input"
+                          name="last_name"
+                          onChange={form.handleChange}
+                          type='text'
+                          defaultValue ={preloadedValues.last_name}
+                      />
+                  </div>
+              </div>
+          </div>
+          <div className="space-y-6">
+              <div className="anim-up">
+                  <label className="subheading">
+                    Username
+                  </label>
+                  <div className="relative mt-1 rounded-md shadow-sm">
+                      <input
+                          placeholder="First Name"
+                          className="form-input"
+                          name="username"
+                          type='text'
+                          disabled
+                          defaultValue ={preloadedValues.username}
+                      />
+                  </div>
+              </div>
+          </div>
+          
+          <div className="space-y-6">
+              <div className="anim-up">
+                  <label className="subheading">
+                      Email
+                  </label>
+                  <select
+                      className="h-full rounded-md border-transparent bg-transparent py-0 pl-3 pr-1 text-gray-500 text-sm outline-none"
+                      name="email"
+                      onChange={form.handleChange}
+                      defaultValue ={preloadedValues.email}
+                  >
+                      <option value="m@support.com">m@support.com</option>
+                      <option value="m@example.com">m@example.com</option>
+                      <option value="m@google.com">m@google.com</option>
+                  </select>
+              </div>
+          </div>
+        
+              
               <Popover>
                 <PopoverTrigger asChild>
-                  <FormControl>
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "w-[240px] pl-3 text-left font-normal",
-                        !field.value && "text-muted-foreground"
+                        "w-[240px] pl-3 text-left font-normal" && "text-muted-foreground"
                       )}
                     >
-                      {field.value ? (
-                        format(field.value, "PPP")
-                      ) : (
-                        <span>Pick a date</span>
-                      )}
+                      <span>Pick a date</span>
                       <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                     </Button>
-                  </FormControl>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
                   <Calendar
                     mode="single"
-                    selected={field.value}
-                    onSelect={field.onChange}
+                    selected={preloadedValues.dob}
+                    onSelect={preloadedValues.dob}
+                    onChange={form.handleChange}
                     disabled={(date) =>
                       date > new Date() || date < new Date("1900-01-01")
                     }
@@ -169,15 +171,147 @@ function onError(e) {
                   />
                 </PopoverContent>
               </Popover>
-              <FormDescription>
-                Your date of birth is used to calculate your age.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">Update account</Button>
-      </form>
-    </Form>
+              <div className="space-y-6">
+                  <div className="anim-up">
+                      <label className="subheading">
+                        Date of Birth
+                      </label>
+                      <div className="relative mt-1 rounded-md shadow-sm">
+                          <input
+                              placeholder="Date of Birth"
+                              className="form-input"
+                              name="dob"
+                              onChange={form.handleChange}
+                              type='text'
+                              defaultValue ={preloadedValues.dob}
+                          />
+                      </div>
+                  </div>
+              </div>
+              <div >
+                    <button
+                        type='submit'
+                        className={'primary-btn'}>
+                          Update Profile
+                      </button>
+                </div>
+        </form>
+    </>
+    
+    // <Form {...form}>
+    //   <form onSubmit={form.handleSubmit(onSubmit,onError)} className="space-y-8">
+    //     <p id="success-save" style={{display:'none'}}></p>
+    //     <FormField
+    //       control={form.control}
+    //       name="first_name"
+    //       render={({ field }) => (
+    //         <FormItem>
+    //           <FormLabel>First Name</FormLabel>
+    //           <FormControl>
+    //             <Input placeholder="Your name" {...field} />
+    //           </FormControl>
+    //           <FormMessage />
+    //         </FormItem>
+    //       )}
+    //     />
+    //     <FormField
+    //       control={form.control}
+    //       name="last_name"
+    //       render={({ field }) => (
+    //         <FormItem>
+    //           <FormLabel>Last Name</FormLabel>
+    //           <FormControl>
+    //             <Input placeholder="Your name" {...field} />
+    //           </FormControl>
+    //           <FormMessage />
+    //         </FormItem>
+    //       )}
+    //     />
+    //     <FormField
+    //       control={form.control}
+    //       name="username"
+    //       render={({ field }) => (
+    //         <FormItem>
+    //           <FormLabel>Username</FormLabel>
+    //           <FormControl>
+    //             <Input placeholder="shadcn" {...field} />
+    //           </FormControl>
+    //           <FormMessage />
+    //         </FormItem>
+    //       )}
+    //     />
+    //     <FormField
+    //       control={form.control}
+    //       name="email"
+    //       render={({ field }) => (
+    //         <FormItem>
+    //           <FormLabel>Email</FormLabel>
+    //           <Select onValueChange={field.onChange} defaultValue={preloadedValues.email}>
+    //             <FormControl>
+    //               <SelectTrigger>
+    //                 <SelectValue placeholder="Select a verified email to display" />
+    //               </SelectTrigger>
+    //             </FormControl>
+    //             <SelectContent>
+    //               <SelectItem value="m@example.com">m@example.com</SelectItem>
+    //               <SelectItem value="m@google.com">m@google.com</SelectItem>
+    //               <SelectItem value="m@support.com">m@support.com</SelectItem>
+    //             </SelectContent>
+    //           </Select>
+    //           <FormDescription>
+    //             You can manage verified email addresses in your{" "}
+    //             <Link href="/examples/forms">email settings</Link>.
+    //           </FormDescription>
+    //           <FormMessage />
+    //         </FormItem>
+    //       )}
+    //     />
+    //     <FormField
+    //       control={form.control}
+    //       name="dob"
+    //       render={({ field }) => (
+    //         <FormItem className="flex flex-col">
+    //           <FormLabel>Date of birth</FormLabel>
+    //           <Popover>
+    //             <PopoverTrigger asChild>
+    //               <FormControl>
+    //                 <Button
+    //                   variant={"outline"}
+    //                   className={cn(
+    //                     "w-[240px] pl-3 text-left font-normal",
+    //                     !field.value && "text-muted-foreground"
+    //                   )}
+    //                 >
+    //                   {field.value ? (
+    //                     format(field.value, "PPP")
+    //                   ) : (
+    //                     <span>Pick a date</span>
+    //                   )}
+    //                   <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+    //                 </Button>
+    //               </FormControl>
+    //             </PopoverTrigger>
+    //             <PopoverContent className="w-auto p-0" align="start">
+    //               <Calendar
+    //                 mode="single"
+    //                 selected={field.value}
+    //                 onSelect={field.onChange}
+    //                 disabled={(date) =>
+    //                   date > new Date() || date < new Date("1900-01-01")
+    //                 }
+    //                 initialFocus
+    //               />
+    //             </PopoverContent>
+    //           </Popover>
+    //           <FormDescription>
+    //             Your date of birth is used to calculate your age.
+    //           </FormDescription>
+    //           <FormMessage />
+    //         </FormItem>
+    //       )}
+    //     />
+    //     <Button type="submit">Update account</Button>
+    //   </form>
+    // </Form>
   )
 }
