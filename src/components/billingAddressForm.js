@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 
 export function BillingAddressForm({billingAddress}) {
    
-    const countries = ["China","France","Germany","Pakistan","Thailand","United Kingdom","United States"]
+    const countries = ["Thailand"]
 
     const appearanceFormSchema = yup.object().shape({
       billing_name: yup.string().required('Company Name is a required field'),
@@ -56,9 +56,9 @@ export function BillingAddressForm({billingAddress}) {
 
     return (
       <>
-        <form className="m-auto w-full max-w-sm w-96" onSubmit={form.handleSubmit}>
+        <form className="w-full" onSubmit={form.handleSubmit}>
           <p id="call-response" style={{display:'none'}}></p>
-          <main className="flex flex-col gap-y-8">
+          <main className="flex flex-col gap-y-8 mt-4">
             <div className="space-y-6">
                   <div className="anim-up flex flex-col">
                       <label className="subheading mb-2">
@@ -150,7 +150,7 @@ export function BillingAddressForm({billingAddress}) {
               <div >
                 <button
                     type='submit'
-                    className={'primary-btn'}>
+                    className={'text-sm bg-primary text-[#FAFAFA] px-4 py-2 rounded-md'}>
                       Update Address
                   </button>
             </div>
