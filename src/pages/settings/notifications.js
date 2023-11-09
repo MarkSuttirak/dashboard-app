@@ -59,40 +59,71 @@ export default function NotificationsForm() {
   return (
     
       <form onSubmit={form.handleSubmit} className="space-y-8">
-        <div>
-          <input type="radio" id="0" checked="checked" value="all" name="notification_type" /> All new messages
-          <input type="radio" id="1" value="mentions" name="notification_type" /> Direct messages and mentions
-          <input type="radio" id="2" value="none" name="notification_type" /> Nothing
-        </div>
+        <RadioGroup>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="all" id="0" name="notification_type"/>
+            <label htmlFor="0">All new messages</label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="mentions" id="1" name="notification_type"/>
+            <label htmlFor="1">Direct messages and mentions</label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="none" id="2" name="notification_type"/>
+            <label htmlFor="2">Nothing</label>
+          </div>
+        </RadioGroup>
+
         <div>
           <h3 className="mb-4 text-lg font-medium">Email Notifications</h3>
           <div className="space-y-4">
-            <div>
-              <input type="radio" value="type" name="communication_emails" /> Communication emails
-              Receive emails about your account activity.
+            <div className="border rounded-md p-4 flex items-center justify-between">
+              {/* <input type="radio" value="type" name="communication_emails" />  */}
+              <div>
+                <h2 class='secondary-heading'>Communication emails</h2>
+                <p className="text-desc">Receive emails about your account activity.</p>
+              </div>
+              <Switch name="communication_emails"/>
             </div>
-            
-            <div>
-              <input type="radio" value="type" name="marketing_emails" /> Marketing emails
-              Receive emails about new products, features, and more.
+
+            <div className="border rounded-md p-4 flex items-center justify-between">
+              {/* <input type="radio" value="type" name="marketing_emails" />  */}
+              <div>
+                <h2 class='secondary-heading'>Marketing emails</h2>
+                <p className="text-desc">Receive emails for friend requests, follows, and more.</p>
+              </div>
+              <Switch name="marketing_emails"/>
             </div>
-            
-             <div>
-              <input type="radio" value="type" name="social_emails" /> Social emails
-              Receive emails for friend requests, follows, and more.
+
+            <div className="border rounded-md p-4 flex items-center justify-between">
+              {/* <input type="radio" value="type" name="social_emails" />  */}
+              <div>
+                <h2 class='secondary-heading'>Social emails</h2>
+                <p className="text-desc">Receive emails for friend requests, follows, and more.</p>
+              </div>
+              <Switch name="social_emails"/>
             </div>
            
-             <div>
-              <input type="radio" value="type" name="security_emails" /> Security emails
-              Receive emails about your account activity and security.
+            <div className="border rounded-md p-4 flex items-center justify-between">
+              {/* <input type="radio" value="type" name="security_emails" /> Security emails */}
+              <div>
+                <h2 class='secondary-heading'>Security emails</h2>
+                <p className="text-desc">Receive emails about your account activity and security.</p>
+              </div>
+              <Switch name="security_emails"/>
             </div>
           </div>
         </div>
         
-        <input type="checkbox" name="mobile" value="Paneer" />Use different settings for my mobile devices
-        You can manage your mobile notifications in the{" "}
-        <Link href="/examples/forms">mobile settings</Link> page.
-        <button type="submit">Update notifications</button>
+        <div className="flex gap-x-3">
+          <Checkbox value='Paneer' name='mobile'/>
+          {/* <input type="checkbox" name="mobile" value="Paneer" /> */}
+          <div className="-mt-1">
+            <h2 class='secondary-heading'>Use different settings for my mobile devices</h2>
+            <p className="text-desc">You can manage your mobile notifications in the{" "}<Link href="/examples/forms">mobile settings</Link> page.</p>
+          </div>
+        </div>
+        <button type="submit" className="text-sm bg-primary text-[#FAFAFA] px-4 py-2 rounded-md">Update notifications</button>
         
       </form>
     

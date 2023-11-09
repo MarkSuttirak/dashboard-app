@@ -58,105 +58,93 @@ export function BillingAddressForm({billingAddress}) {
       <>
         <form className="m-auto w-full max-w-sm w-96" onSubmit={form.handleSubmit}>
           <p id="call-response" style={{display:'none'}}></p>
-              <div className="space-y-6">
-                  <div className="anim-up">
-                      <label className="subheading">
+          <main className="flex flex-col gap-y-8">
+            <div className="space-y-6">
+                  <div className="anim-up flex flex-col">
+                      <label className="subheading mb-2">
                         Company Name
                       </label>
-                      <div className="relative mt-1 rounded-md shadow-sm">
-                          <input
-                              placeholder="Company Name"
-                              className="form-input"
-                              name="billing_name"
-                              type='text'
-                              onChange={form.handleChange}
-                              defaultValue={billingAddress.billing_name}
-                          />
-                      </div>
+                      <input
+                        placeholder="Company Name"
+                        className="form-input"
+                        name="billing_name"
+                        type='text'
+                        onChange={form.handleChange}
+                        defaultValue={billingAddress.billing_name}
+                      />
                   </div>
               </div>
               <div className="space-y-6">
-                  <div className="anim-up">
-                      <label className="subheading">
-                          Country
+                  <div className="anim-up flex flex-col">
+                      <label className="subheading mb-2">
+                        Country
                       </label>
-                      <div className="relative mt-1 rounded-md shadow-sm">
-                        <select name="country" defaultValue={billingAddress.country} onChange={form.handleChange}>
+                      <select name="country" className="form-input" defaultValue={billingAddress.country} onChange={form.handleChange}>
                         <option>Select Country</option>
-                            {countries.map(country => (
-                              <option  value={country}>{country}</option>
-                            ))}
-                        
-                        </select>
-                      </div>
+                          {countries.map(country => (
+                          <option  value={country}>{country}</option>
+                        ))}
+                      </select>
                   </div>
               </div>
               <div className="space-y-6">
-                  <div className="anim-up">
-                      <label className="subheading">
+                  <div className="anim-up flex flex-col">
+                      <label className="subheading mb-2">
                         Address
                       </label>
-                      <div className="relative mt-1 rounded-md shadow-sm">
-                          <input
-                              placeholder="Address"
-                              className="form-input"
-                              name="address_line1"
-                              onChange={form.handleChange}
-                              type='text'
-                              defaultValue ={billingAddress.address_line1}
-                          />
-                      </div>
+                      <input
+                        placeholder="Address"
+                        className="form-input"
+                        name="address_line1"
+                        onChange={form.handleChange}
+                        type='text'
+                        defaultValue ={billingAddress.address_line1}
+                      />
                   </div>
               </div>
               <div className="space-y-6">
-                  <div className="anim-up">
-                      <label className="subheading">
+                  <div className="anim-up flex flex-col">
+                      <label className="subheading mb-2">
                         City
                       </label>
-                      <div className="relative mt-1 rounded-md shadow-sm">
-                          <input
-                              placeholder="City"
-                              className="form-input"
-                              name="city"
-                              type='text'
-                              onChange={form.handleChange}
-                              defaultValue ={billingAddress.city}
-                          />
-                      </div>
+                      <input
+                        placeholder="City"
+                        className="form-input"
+                        name="city"
+                        type='text'
+                        onChange={form.handleChange}
+                        defaultValue ={billingAddress.city}
+                      />
                   </div>
               </div>
               <div className="space-y-6">
-                  <div className="anim-up">
-                      <label className="subheading">
+                  <div className="anim-up flex flex-col">
+                      <label className="subheading mb-2">
                         State / Province / Region
                       </label>
-                      <div className="relative mt-1 rounded-md shadow-sm">
-                          <input
-                              placeholder="State"
-                              className="form-input"
-                              name="state"
-                              type='text'
-                              onChange={form.handleChange}
-                              defaultValue ={billingAddress.state}
-                          />
-                      </div>
+                      <input
+                        placeholder="State"
+                        className="form-input"
+                        name="state"
+                        type='text'
+                        onChange={form.handleChange}
+                        defaultValue ={billingAddress.state}
+                      />
                   </div>
               </div>
               <div className="space-y-6">
-                  <div className="anim-up">
-                      <label className="subheading">
+                  <div className="anim-up flex flex-col">
+                      <label className="subheading mb-2">
                         Postal Code
                       </label>
-                      <div className="relative mt-1 rounded-md shadow-sm">
-                          <input
-                              placeholder="Postal Code"
-                              className="form-input"
-                              name="pincode"
-                              type='text'
-                              onChange={form.handleChange}
-                              defaultValue ={billingAddress.pincode}
-                          />
-                      </div>
+                      <input
+                        placeholder="Postal Code"
+                        className="form-input"
+                        name="pincode"
+                        type='text'
+                        onChange={form.handleChange}
+                        defaultValue ={billingAddress.pincode}
+                      />
                   </div>
               </div>
               <div >
@@ -166,6 +154,7 @@ export function BillingAddressForm({billingAddress}) {
                       Update Address
                   </button>
             </div>
+          </main>
         </form>
       </>
           // <Form {...form}>

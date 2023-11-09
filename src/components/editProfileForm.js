@@ -1,8 +1,4 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "./ui/form"
-import * as z from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
 import { Input } from "./ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
 import { Link } from "react-router-dom"
@@ -63,9 +59,6 @@ export function EditProfileForm({preloadedValues}) {
     },
     
   })
-  
-
- 
 
 function onError(e) {
     console.log('error')
@@ -73,128 +66,113 @@ function onError(e) {
   }
   return (
     <>
-      <form className="m-auto w-full max-w-sm w-96" onSubmit={form.handleSubmit}>
+      <form className="w-full" onSubmit={form.handleSubmit}>
           <p id="success-save" className="tab-desc"></p>
-          <div className="space-y-6">
-              <div className="anim-up">
-                  <label className="subheading">
-                    First Name
-                  </label>
-                  <div className="relative mt-1 rounded-md shadow-sm">
-                      <input
-                          placeholder="First Name"
-                          className="form-input"
-                          name="first_name"
-                          type='text'
-                          onChange={form.handleChange}
-                          defaultValue ={preloadedValues.first_name}
-                      />
-                  </div>
+          <main className="flex flex-col gap-y-8">
+            <div className="space-y-6">
+              <div className="anim-up flex flex-col">
+                <label className="subheading mb-2">
+                  First Name
+                </label>
+                <input
+                  placeholder="First Name"
+                  className="form-input"
+                  name="first_name"
+                  type='text'
+                  onChange={form.handleChange}
+                  defaultValue ={preloadedValues.first_name}
+                />
               </div>
-          </div>
-          <div className="space-y-6">
-              <div className="anim-up">
-                  <label className="subheading">
-                    Last Name
-                  </label>
-                  <div className="relative mt-1 rounded-md shadow-sm">
-                      <input
-                          placeholder="First Name"
-                          className="form-input"
-                          name="last_name"
-                          onChange={form.handleChange}
-                          type='text'
-                          defaultValue ={preloadedValues.last_name}
-                      />
-                  </div>
+            </div>
+            <div className="space-y-6">
+              <div className="anim-up flex flex-col">
+                <label className="subheading mb-2">
+                  Last Name
+                </label>
+                <input
+                  placeholder="First Name"
+                  className="form-input"
+                  name="last_name"
+                  onChange={form.handleChange}
+                  type='text'
+                  defaultValue ={preloadedValues.last_name}
+                />
               </div>
-          </div>
-          <div className="space-y-6">
-              <div className="anim-up">
-                  <label className="subheading">
-                    Username
-                  </label>
-                  <div className="relative mt-1 rounded-md shadow-sm">
-                      <input
-                          placeholder="First Name"
-                          className="form-input"
-                          name="username"
-                          type='text'
-                          disabled
-                          defaultValue ={preloadedValues.username}
-                      />
-                  </div>
+            </div>
+            <div className="space-y-6">
+              <div className="anim-up flex flex-col">
+                <label className="subheading mb-2">
+                  Username
+                </label>
+                <input
+                  placeholder="First Name"
+                  className="form-input"
+                  name="username"
+                  type='text'
+                  disabled
+                  defaultValue ={preloadedValues.username}
+                />
               </div>
-          </div>
+            </div>
+            
+            <div className="space-y-6">
+              <div className="anim-up flex flex-col">
+                <label className="subheading mb-2">
+                  Email
+                </label>
+                <select
+                  className="form-input"
+                  name="email"
+                  onChange={form.handleChange}
+                  defaultValue ={preloadedValues.email}
+                >
+                  <option value="m@support.com">m@support.com</option>
+                  <option value="m@example.com">m@example.com</option>
+                  <option value="m@google.com">m@google.com</option>
+                </select>
+              </div>
+            </div>
           
-          <div className="space-y-6">
-              <div className="anim-up">
-                  <label className="subheading">
-                      Email
-                  </label>
-                  <select
-                      className="h-full rounded-md border-transparent bg-transparent py-0 pl-3 pr-1 text-gray-500 text-sm outline-none"
-                      name="email"
-                      onChange={form.handleChange}
-                      defaultValue ={preloadedValues.email}
-                  >
-                      <option value="m@support.com">m@support.com</option>
-                      <option value="m@example.com">m@example.com</option>
-                      <option value="m@google.com">m@google.com</option>
-                  </select>
-              </div>
-          </div>
-        
-              
-              <Popover>
-                <PopoverTrigger asChild>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                        "w-[240px] pl-3 text-left font-normal" && "text-muted-foreground"
-                      )}
-                    >
-                      <span>Pick a date</span>
-                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                    </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={preloadedValues.dob}
-                    onSelect={preloadedValues.dob}
-                    onChange={form.handleChange}
-                    disabled={(date) =>
-                      date > new Date() || date < new Date("1900-01-01")
-                    }
-                    initialFocus
-                  />
-                </PopoverContent>
-              </Popover>
-              <div className="space-y-6">
-                  <div className="anim-up">
-                      <label className="subheading">
-                        Date of Birth
-                      </label>
-                      <div className="relative mt-1 rounded-md shadow-sm">
-                          <input
-                              placeholder="Date of Birth"
-                              className="form-input"
-                              name="dob"
-                              onChange={form.handleChange}
-                              type='text'
-                              defaultValue ={preloadedValues.dob}
-                          />
-                      </div>
-                  </div>
-              </div>
-              <div >
-                    <button
-                        type='submit'
-                        className={'primary-btn'}>
-                          Update Profile
-                      </button>
+            <div className="space-y-6">
+                <div className="anim-up flex flex-col">
+                    <label className="subheading mb-2">
+                      Date of Birth
+                    </label>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                          <Button
+                            variant={"outline"}
+                            className={cn(
+                              "w-[240px] pl-3 text-left font-normal" && "text-muted-foreground"
+                            )}
+                          >
+                            <span>Pick a date</span>
+                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                          </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={preloadedValues.dob}
+                          onSelect={preloadedValues.dob}
+                          onChange={form.handleChange}
+                          disabled={(date) =>
+                            date > new Date() || date < new Date("1900-01-01")
+                          }
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
                 </div>
+            </div>
+            <div>
+              <button
+                type='submit'
+                className={'text-sm bg-primary text-[#FAFAFA] px-4 py-2 rounded-md'}>
+                  Update Profile
+              </button>
+            </div>
+          </main>
         </form>
     </>
     

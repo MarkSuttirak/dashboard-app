@@ -13,8 +13,6 @@ import { Input } from "../../components/ui/input"
 import { user as user_api } from "src/client/api";
 import { BillingAddressForm } from "../../components/billingAddressForm"
 
-
-
 // This can come from your database or API.
 const defaultValues = {
   theme: "light",
