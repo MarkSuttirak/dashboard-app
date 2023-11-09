@@ -4,14 +4,15 @@ import DashboardLayout from './layouts/DashboardLayout';
 // import LogoOnlyLayout from './layouts/LogoOnlyLayout';
 // pages
 import withAuthenticationRequired from './utils/withAuthenticationRequired';
-import Dashboard from './pages/dashboard';
 import Welcome from './pages/register/welcome';
 import ChangeDomain from './pages/changeDomain';
 import Callback from './callback';
 import Partial, { PhoneVerification } from './pages/register/partial';
 import OtherInfo from './pages/register/otherInfo';
 import InstanceConfig from './pages/register/instanceConfig';
-
+import Dashboard from './pages/dashboard';
+import Settings from './pages/settings/settings';
+import Teams from './pages/teams/teams';
 
 // ----------------------------------------------------------------------
 
@@ -31,6 +32,8 @@ export default function Router() {
                         { path: 'edit/:id', element: <></> },
                     ],
                 },
+                { path: 'settings/:id', element: <Settings /> },
+                { path: 'teams/:id', element: <Teams /> },
             ],
         },
         {

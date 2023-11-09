@@ -9,6 +9,11 @@ export const user = {
     logout: () => api.post('/method/logout'),
     register: (email, password) => api.post('/method/register', { usr: email, pwd: password }),
     get: () => api.get('/method/press.api.account.get'),
+    updateUser : (data) => api.post("/method/press.api.account.update_profile" , data),
+    getInvoices : () => api.get("/method/press.api.billing.invoices_and_payments").then((response) => response.data),
+    getBillingInfo : () => api.post("/method/press.api.account.get_billing_information").then((response) => response.data),
+    updateBillingInfo:(data)=>api.post("/method/press.api.account.update_billing_information",{billing_details:data}),
+    // {billing_details:{address:"Thailandvdddddd",billing_name:"Test 3",city:"Thailand",country:"Thailand",gstin:null,postal_code:"12345",state:"Bangkok"}})
 }
 
 export const partial = {
