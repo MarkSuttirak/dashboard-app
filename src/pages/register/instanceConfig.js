@@ -14,7 +14,8 @@ import { Steps } from '../register';
 import Spacer from '../../components/spacer';
 import { BuildingStorefrontIcon } from '@heroicons/react/24/solid';
 import { classNames } from '../../utils/helper';
-
+import { Input } from '../../components/ui/input';
+import { Button } from '../../components/ui/button';
 
 const InstanceConfig = () => {
     const { auth } = useUser();
@@ -122,20 +123,20 @@ const InstanceConfig = () => {
                                                 Registered successfully
                                             </Dialog.Title>
                                             <div className="mt-2">
-                                                <p className="tab-desc">
+                                                <p className="subheading">
                                                     Please click 'Go to dashboard' to start working.
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="mt-5 sm:mt-6">
-                                        <button
+                                        <Button
                                             type="button"
-                                            className="primary-btn w-full justify-center"
+                                            className="w-full justify-center"
                                             onClick={() => window.location.href = "/dashboard/app"}
                                         >
                                             Go to dashboard
-                                        </button>
+                                        </Button>
                                     </div>
                                 </Dialog.Panel>
                             </Transition.Child>
@@ -314,15 +315,15 @@ export const SiteDomainForm = ({
         <form className="m-auto w-full max-w-sm w-96 h-[600px]" onSubmit={formik.handleSubmit}>
             <Steps total={5} step={3} />
             <div className={`anim-up`}>
-                <h2 className="main-title mt-8">What would you like to call your site?</h2>
-                <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
+                <h2 className="main-heading mt-8">What would you like to call your site?</h2>
+                <p className="subheading mt-2">It was popularised in the 1960s with the release of Letraset.</p>
             </div>
             <div className={`space-y-4 mt-10 anim-up`}>
                 <div className="relative mt-1 rounded-md shadow-sm">
-                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 tab-desc">
+                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 subheading">
                         https://
                     </div>
-                    <input
+                    <Input
                         style={{ paddingRight: "140px", paddingLeft: "60px" }}
                         className={`form-input ${formik.errors.subdomain ? 'error' : ''}`}
                         placeholder="example"
@@ -330,20 +331,20 @@ export const SiteDomainForm = ({
                         onChange={formik.handleChange}
                         value={formik.values.subdomain}
                     />
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 tab-desc">
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 subheading">
                         .{formik.values.domain}
                     </div>
                 </div>
-                <p className={`${formik.errors.subdomain ? 'error-small' : 'tab-desc-small'}`}>{exists ? "This subdomain is already taken" : formik.errors.subdomain ? formik.errors.subdomain : "Only A-Z, a-z and numbers are allowed."}</p>
+                <p className={`${formik.errors.subdomain ? 'error' : 'text-desc'}`}>{exists ? "This subdomain is already taken" : formik.errors.subdomain ? formik.errors.subdomain : "Only A-Z, a-z and numbers are allowed."}</p>
             </div>
 
             <Spacer size={30} />
-            <div className={`flex gap-x-2 anim-up-delay translate-y-[20px] opacity-0`}>
-                <button
+            <div className={`flex gap-x-2 anim-up-delay translate-y-[20px]`}>
+                <Button
                     type='submit'
-                    className={`primary-btn w-1/4 justify-center ${!formik.isValid ? 'disabled' : ''}`}
+                    className='justify-center'
                     disabled={!formik.isValid}
-                >Submit</button>
+                >Submit</Button>
             </div>
         </form>
     )
@@ -399,13 +400,12 @@ export const AppsSelectionForm = ({
         },
     })
 
-
     return (
         <form className="m-auto w-full max-w-sm w-96 h-[600px]" onSubmit={formik.handleSubmit}>
             <Steps total={5} step={4} />
             <div className="anim-up">
-                <h2 className="main-title mt-8">What would you like to add on your site?</h2>
-                <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
+                <h2 className="main-heading mt-8">What would you like to add on your site?</h2>
+                <p className="subheading mt-2">It was popularised in the 1960s with the release of Letraset.</p>
             </div>
             <div className={`space-y-4 mt-10 anim-up`}>
                 <div className="grid grid-cols-2 gap-4">
@@ -425,7 +425,7 @@ export const AppsSelectionForm = ({
                                 name={app}
                                 checked={formik.values.apps.includes(app)}
                             />
-                            <span className="tab-desc border checkbox-card">
+                            <span className="subheading border checkbox-card">
                                 <BuildingStorefrontIcon />
                                 {app_title}
                             </span>
@@ -436,13 +436,13 @@ export const AppsSelectionForm = ({
             </div>
 
             <Spacer size={30} />
-            <div className={`flex gap-x-2 anim-up-delay translate-y-[20px] opacity-0`}>
-                <button className={`no-bg-btn w-1/4 justify-center`} onClick={prev}>Back</button>
-                <button
+            <div className={`flex gap-x-2 anim-up-delay translate-y-[20px] flex gap-x-2`}>
+                <Button variant='ghost' className='w-1/4 justify-center' onClick={prev}>Back</Button>
+                <Button
                     type='submit'
-                    className={`primary-btn w-1/4 justify-center ${!formik.isValid ? 'disabled' : ''}`}
+                    className='w-1/4 justify-center'
                     disabled={!formik.isValid}
-                >Submit</button>
+                >Submit</Button>
             </div>
         </form>
     )
@@ -534,13 +534,13 @@ export const ThemeSelectionForm = ({
             </div>
 
             <Spacer size={30} />
-            <div className={`flex gap-x-2 anim-up-delay translate-y-[20px] opacity-0`}>
-                <button className={`no-bg-btn w-1/4 justify-center`} onClick={prev}>Back</button>
-                <button
+            <div className={`flex gap-x-2 anim-up-delay translate-y-[20px] flex gap-x-2`}>
+                <Button variant='ghost' className='w-1/4 justify-center' onClick={prev}>Back</Button>
+                <Button
                     type='submit'
-                    className={`primary-btn w-1/4 justify-center ${!formik.isValid ? 'disabled' : ''}`}
+                    className='w-1/4 justify-center'
                     disabled={!formik.isValid}
-                >Submit</button>
+                >Submit</Button>
             </div>
         </form>
     )
