@@ -154,9 +154,9 @@ export default function Dashboard(){
                 <CardTitle className='subheading font-medium'>Your WorkSpace</CardTitle>
                 <CardDescription className="main-heading">{sites?.site_list[0].name}</CardDescription>
               </div>
-              <Button variant='secondary' className='btn-with-icon leading-5 m-0'>
+              <Button variant='secondary' className='btn-with-icon leading-5 m-0' onClick={() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })}>
                 <LogIn viewBox="0 0 24 24" width='16' height='16'/>
-                Select App
+                Login as Admin
               </Button>
             </CardHeader>
             <CardContent>

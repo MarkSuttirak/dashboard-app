@@ -191,10 +191,21 @@ body {
   align-items:center;
 }
 
+.listminus-btn {
+	min-width:40px;
+	height:40px;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	background-color:#F4F4F5;
+	border-radius:6px;
+	border:none;
+}
+
 #sidebar {
   width:$right-sidebar-width;
-  border-right: 1px solid #F4F5F6;
-  z-index: 4;
+  border-right:1px solid #E4E4E7;
+  z-index:4;
   display:block !important;
   transition:width 300ms;
   position:fixed;
@@ -268,7 +279,7 @@ body {
   top:0;
   width:$left-sidebar-width;
   background:white;
-  padding:10px;
+  padding:12px;
   border-right:1px solid #EBEEF0;
   img {
     display:block;
@@ -280,17 +291,20 @@ body {
 }
 
 .nav-btns {
-  height:39px;
+  min-width:36px;
+	min-height:36px;
 	display:flex;
 	align-items:center;
 	justify-content:center;
 	cursor:pointer;
   box-sizing:border-box;
 	border-radius:6px;
+  background-color:#F4F4F5;
 	outline:0px solid #2794F0;
 	border:1px solid #E4E4E7;
   color:#6B7280;
-	&:hover,&.active {background-color:#F0F1F2}
+  &.add {background-color:white}
+	// &:hover,&.active {background-color:#F0F1F2}
 	&.add-ons {
     border:none;
     box-sizing:border-box;
