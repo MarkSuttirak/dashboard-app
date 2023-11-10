@@ -13,6 +13,7 @@ import InstanceConfig from './pages/register/instanceConfig';
 import Dashboard from './pages/dashboard';
 import Settings from './pages/settings/settings';
 import Teams from './pages/teams/teams';
+import NotFoundPage from './pages/404';
 
 // ----------------------------------------------------------------------
 
@@ -51,9 +52,9 @@ export default function Router() {
                         { path: 'other-info', element: <OtherInfo /> },
                     ]
                 },
-                { path: '*', element: <Navigate to="/404" /> },
+                { path: '*', element: <NotFoundPage /> },
             ],
         },
-        { path: '*', element: <Navigate to="/404" replace /> },
+        { path: '*', element: <NotFoundPage replace /> },
     ]);
 }
