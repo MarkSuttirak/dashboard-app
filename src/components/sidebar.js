@@ -56,16 +56,16 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
   ]
 
   const yourSites = [
-    { name: 'Integration', icon: <Zap viewBox='0 0 30 24' width='24' color='#18181B' />, id: 'integration' },
-    { name: 'App Store', icon: <UserCircle viewBox='0 0 30 24' width='24' color='#18181B' />, id: 'app-store' },
-    { name: 'Teams', icon: <LayoutGrid viewBox='0 0 30 24' width='24' color='#18181B' />, href: '/dashboard/teams/team-members', current: active === "/dashboard/teams/team-members" || active === "/dashboard/teams/teams" ? true : false, active: active, id: 'teams' },
+    { name: 'Integration', icon: <Zap className="w-4 h-4 stroke-[1.5] text-[#18181B]" />, id: 'integration' },
+    { name: 'App Store', icon: <UserCircle className="w-4 h-4 stroke-[1.5] text-[#18181B]" />, id: 'app-store' },
+    { name: 'Teams', icon: <LayoutGrid viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/teams/team-members', current: active === "/dashboard/teams/team-members" || active === "/dashboard/teams/teams" ? true : false, active: active, id: 'teams' },
   ]
 
   const workspaceApp = [
-    { name: 'Commerce', icon: <Layout viewBox='0 0 30 24' width='24' color='#18181B' />, id: 'commerce' },
-    { name: 'Blog & Website', icon: <LayoutGrid viewBox='0 0 30 24' width='24' color='#18181B' />, id: 'blog-website' },
-    { name: 'CRM', icon: <LayoutGrid viewBox='0 0 30 24' width='24' color='#18181B' />, id: 'crm' },
-    { name: 'HR & HRM', icon: <LayoutGrid viewBox='0 0 30 24' width='24' color='#18181B' />, id: 'hr-hrm' },
+    { name: 'Commerce', icon: <Layout viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' />, id: 'commerce' },
+    { name: 'Blog & Website', icon: <LayoutGrid viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' />, id: 'blog-website' },
+    { name: 'CRM', icon: <LayoutGrid viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' />, id: 'crm' },
+    { name: 'HR & HRM', icon: <LayoutGrid viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' />, id: 'hr-hrm' },
   ]
 
   useEffect(() => {
@@ -134,7 +134,7 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
               ))}
             </section>
 
-            <section className="flex flex-col">
+            {/* <section className="flex flex-col">
               <Button variant='ghost' className="text-[#797979] text-sm font-semibold tracking-[-0.35px] justify-between" onClick={() => setSellingMenus(!sellingMenus)}>
                 Selling
                 <ChevronDown viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' className={`${sellingMenus ? 'rotate-180' : ''} transition duration-200`}/>
@@ -170,9 +170,9 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
               <Button variant='ghost' className="text-[#797979] text-sm font-semibold tracking-[-0.35px] justify-between">
                 Accounting
               </Button>
-            </section>
+            </section> */}
 
-            {/* <section className="flex flex-col">
+            <section className="flex flex-col">
               <h3 className="text-[#797979] text-sm font-semibold p-4">Your sites</h3>
               {yourSites.map((item) => (
                 <Link to={item.href}>
@@ -194,7 +194,7 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
                   </Button>
                 </Link>
               ))}
-            </section> */}
+            </section>
           </nav>
         </div>
       </div>
