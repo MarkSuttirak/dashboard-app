@@ -12,7 +12,16 @@ import { classNames, setToken } from '../../utils/helper'
 import RegisterStep from '../../components/registerStep'
 import { Steps } from '../register'
 import Spacer from '../../components/spacer'
-import Select from '../../components/select'
+import { Button } from '../../components/ui/button';
+import { Checkbox } from "../../components/ui/checkbox"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "../../components/ui/select"
+import { Input } from '../../components/ui/input';
 
 const OtherInfo = () => {
     const { key } = useParams()
@@ -147,13 +156,13 @@ export const UserInfoForm = ({
         >
             <Steps total={5} step={current} />
             <div className="anim-up">
-                <h2 className="main-title mt-10">Fill in your information</h2>
-                <p className="tab-desc">It was popularised in the 1960s with the release of Letraset.</p>
+                <h2 className="main-heading mt-10">Fill in your information</h2>
+                <p className="subheading">It was popularised in the 1960s with the release of Letraset.</p>
             </div>
             <div className={`space-y-4 mt-6 anim-up`}>
                 <div className="flex gap-x-3">
                     <div>
-                        <input
+                        <Input
                             className="form-input"
                             placeholder="Name"
                             name="first_name"
@@ -167,7 +176,7 @@ export const UserInfoForm = ({
                         }
                     </div>
                     <div>
-                        <input
+                        <Input
                             className="form-input"
                             placeholder="Surname"
                             name="last_name"
@@ -183,7 +192,7 @@ export const UserInfoForm = ({
                 </div>
 
                 <div>
-                    <input
+                    <Input
                         type="date"
                         name="birth_date"
                         onChange={formik.handleChange}
@@ -195,12 +204,12 @@ export const UserInfoForm = ({
                 </div>
 
                 <div>
-                    <input
+                    <Input
                         type="email"
                         name="email"
                         onChange={formik.handleChange}
                         value={formik.values.email}
-                        className={`form-input ${formik.errors.email ? 'error' : ''}`}
+                        className='form-input'
                         placeholder="Email"
                     />
                     {formik.errors.email && (<p className="error">{formik.errors.email}</p>)}
@@ -253,12 +262,12 @@ export const UserInfoForm = ({
                         </div>
                     </RadioGroup>
 
-                    <div className={`anim-up-delay translate-y-[20px] opacity-0 mt-4`}>
-                        <button
+                    <div className={`anim-up-delay translate-y-[20px] mt-4`}>
+                        <Button
                             type='submit'
-                            className={`primary-btn w-full justify-center ${!formik.isValid ? 'disabled' : ''}`}
+                            className='justify-center w-full'
                             disabled={!formik.isValid}
-                        >Submit</button>
+                        >Submit</Button>
                     </div>
                 </div>
             </div>
@@ -342,18 +351,29 @@ export const BusinessInfoForm = ({
         <form className="m-auto w-full max-w-sm w-96 h-[600px]" onSubmit={formik.handleSubmit}>
             <Steps total={5} step={current} />
             <div className="anim-up">
-                <h2 className="main-title mt-8">What is your business about?</h2>
+                <h2 className="main-heading mt-8">What is your business about?</h2>
             </div>
             <div className={`space-y-4 mt-6 anim-up`}>
-                <Select options={industryOptions}
+                {/* <Select options={industryOptions}
                     value={industryOptions.find((option) => option.value === formik.values.industry)}
                     onChange={({ value }) => formik.setFieldValue('industry', value)}
-                />
+                /> */}
 
-                <h2 className="subheading">What are your goals for this business?</h2>
+                <Select onChange={({ value }) => formik.setFieldValue('industry', value)}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder={industryOptions[0].label} defaultValue={industryOptions[0].label} />
+                  </SelectTrigger>
+                  <SelectContent className='z-[999]'>
+                    {industryOptions.map(option => (
+                      <SelectItem value={option.value}>{option.label}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+
+                <h2 className="secondary-heading">What are your goals for this business?</h2>
 
                 <div className="grid grid-cols-2 gap-4">
-                    {checkboxLists.map((checkboxList) => (
+                    {/* {checkboxLists.map((checkboxList) => (
                         <label htmlFor={checkboxList.key} onClick={(e) => {
                             if (!formik.values.goal.includes(checkboxList.key)) {
                                 formik.setFieldValue('goal', [...formik.values.goal, checkboxList.key])
@@ -372,18 +392,30 @@ export const BusinessInfoForm = ({
                                 {checkboxList.title}
                             </span>
                         </label>
+                    ))} */}
+                    {checkboxLists.map(checkboxList => (
+                        <div className='flex items-center gap-x-2'>
+                          <Checkbox checked={formik.values.goal.includes(checkboxList.key)} value={checkboxList.key} name={checkboxList.key} onCheckedChange={(e) => {
+                            if (!formik.values.goal.includes(checkboxList.key)) {
+                                formik.setFieldValue('goal', [...formik.values.goal, checkboxList.key])
+                            } else {
+                                formik.setFieldValue('goal', formik.values.goal.filter((item) => item !== checkboxList.key))
+                            }
+                          }}/>
+                          <label htmlFor={checkboxList.key}>{checkboxList.title}</label>
+                        </div>
                     ))}
                     {formik.errors.goal && (<p className="error">{formik.errors.goal}</p>)}
                 </div>
             </div>
 
             <Spacer size={30} />
-            <div className={`anim-up-delay translate-y-[20px] opacity-0 mt-4`}>
-                <button className={`no-bg-btn w-1/4 justify-center`} onClick={prev}>Back</button>
-                <button
-                    className={`primary-btn w-1/4 justify-center ${!formik.isValid ? 'disabled' : ''}`}
+            <div className={`anim-up-delay translate-y-[20px] mt-4 flex gap-x-2`}>
+                <Button variant='ghost' className={`w-1/4 justify-center`} onClick={prev}>Back</Button>
+                <Button
+                    className='w-1/4 justify-center'
                     disabled={!formik.isValid}
-                >Next</button>
+                >Next</Button>
             </div>
         </form>
     )
@@ -419,7 +451,7 @@ export const TeamInfoForm = ({
         >
             <Steps total={5} step={current} />
             <div className="anim-up">
-                <h2 className="main-title mt-8">How many people are there in your team?</h2>
+                <h2 className="main-heading mt-8">How many people are there in your team?</h2>
             </div>
             <div className={`space-y-4 mt-6 anim-up`}>
                 <RadioGroup className="mt-2" name='no_of_employees' value={formik.values.no_of_employees} onChange={(value) => formik.setFieldValue('no_of_employees', value)}>
@@ -431,9 +463,9 @@ export const TeamInfoForm = ({
                                 value={option}
                                 className={({ active, checked }) =>
                                     classNames(
-                                        active ? 'ring-2 ring-offset-2 ring-[#0788F5]' : '',
+                                        active ? 'ring-2 ring-offset-2 ring-[#0F172A]' : '',
                                         checked
-                                            ? 'bg-[#0788F5] border-transparent text-white'
+                                            ? 'bg-[#0F172A] border-transparent text-white'
                                             : 'bg-white border-gray-200 text-gray-900',
                                         'border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium cursor-pointer'
                                     )
@@ -444,10 +476,10 @@ export const TeamInfoForm = ({
                         ))}
                     </div>
                 </RadioGroup>
-                <button
-                    className={`primary-btn w-1/4 justify-center ${!formik.isValid ? 'disabled' : ''}`}
+                <Button
+                    className='w-1/4 justify-center'
                     disabled={!formik.isValid}
-                >Next</button>
+                >Next</Button>
             </div>
         </form>
     )

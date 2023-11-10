@@ -1,10 +1,10 @@
 import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "../components/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "../components/ui/popover"
 import { useState } from "react"
-import Logo from "../img/logo-zaviago.svg";
 import { cn } from "../lib/utils"
 import { Button } from "../components/ui/button"
 import { ChevronRight, PlusCircle, Shuffle, UserPlus, Users, Check, ChevronsUpDown } from "lucide-react"
+import ZaviagoIcon from "./icon-menus/ZaviagoIcon";
 
 export default function SidebarShortcut(){
   const [open, setOpen] = useState(false)
@@ -18,11 +18,11 @@ export default function SidebarShortcut(){
           aria-expanded={open}
           className="w-full justify-between h-10"
         >
-          <span className="flex gap-x-2 items-center">
-            <img src={Logo} width='20'/>
+          <span className="flex gap-x-2 items-center leading-[1px]">
+            <ZaviagoIcon />
             Zaviago
           </span>
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <ChevronsUpDown className="ml-2 shrink-0 opacity-50" viewBox="0 0 24 24" width='12' height='12' />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-full p-0 z-[105] relative left-[24px]">

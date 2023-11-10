@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Button } from './ui/button'
-import { BadgeInfo, BookCopy, ChevronDown, ClipboardList, Info, MessageCircle, Zap, User, Keyboard, Layout, LogOut } from 'lucide-react'
-import { BellIcon } from '@radix-ui/react-icons'
+import { BadgeInfo, BookCopy, ChevronDown, ClipboardList, Info, MessageCircle, Zap, User, Keyboard, Layout, LogOut, Search } from 'lucide-react'
+import { BellIcon, LightningBoltIcon } from '@radix-ui/react-icons'
 import VerticalLine from './verticalLine'
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog"
@@ -27,21 +27,18 @@ export default function Topbar({isSidebarOpen}){
       <h2 className='subheading font-medium'>{currentPage}</h2>
 
       <section className='flex items-center'>
-        <Button variant='ghost' className='text-[#006AFF] hover:text-[#006AFF] gap-x-2 text-xs flex items-center'>
-          <Zap color='#006AFF' viewBox='0 0 24 24' width='16' height='16'/>
-          Upgrade to pro
+        <Button variant='ghost' className='text-[#006AFF] hover:text-[#006AFF] hover:bg-transparent gap-x-2 text-xs flex items-center font-normal'>
+          <LightningBoltIcon color='#006AFF'/>
+          Upgrade to Pro
         </Button>
+{/* 
+        <VerticalLine color='#E4E4E7' size={1} height="32px"/> */}
 
-        <VerticalLine color='#E4E4E7' size={1} height="32px"/>
-
-        <div className='px-3 flex gap-x-5 items-center'>
+        <div className='pr-6 flex gap-x-5 items-center'>
           <Dialog>
-            <DialogTrigger className='bg-zinc-100 rounded-md px-4 py-2 text-xs h-9 flex justify-between items-center w-[292px] text-zinc-500'>
-              <div className='flex gap-x-2 items-center'>
-                <img src={Logo} className='w-5 h-5'/>
-                Search or type a command
-              </div>
-              (CTRL +G)
+            <DialogTrigger className='bg-zinc-100 rounded-md px-2 py-[6px] text-[13px] h-7 flex items-center w-[300px] text-zinc-500 tracking-[0.02em] gap-x-[9px] leading-5'>
+              <Search viewBox='0 0 24 24' width='14' height='14' className='ml-1'/>
+              Search or type a command (Ctrl + G)
             </DialogTrigger>
             <DialogContent className='p-0'>
               <Command>
@@ -66,13 +63,13 @@ export default function Topbar({isSidebarOpen}){
           <BellIcon color='#7D7D7D' width='21' height='21'/>
         </div>
 
-        <VerticalLine color='#E4E4E7' size={1} height="32px"/>
+        <VerticalLine color='#E4E4E7' size={1} height="24px"/>
 
         <div className='px-3 flex gap-x-5 items-center'>
           <Popover>
-            <PopoverTrigger className='text-xs w-[45px] flex justify-between items-center'>
+            <PopoverTrigger className='text-[13px] w-[45px] flex justify-between items-center'>
               Help
-              <ChevronDown viewBox='0 0 24 24' width='16' height='16'/>
+              <ChevronDown viewBox='0 0 24 24' width='14' height='14' strokeWidth='1'/>
             </PopoverTrigger>
             <PopoverContent className='p-0 w-[243px]'>
               <Command>
@@ -117,7 +114,7 @@ export default function Topbar({isSidebarOpen}){
 
         <Popover>
           <PopoverTrigger>
-            <Avatar>
+            <Avatar className='w-7 h-7 text-sm'>
               <AvatarImage src="" />
               <AvatarFallback>{user?.first_name[0]}</AvatarFallback>
             </Avatar>

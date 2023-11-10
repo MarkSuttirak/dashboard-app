@@ -12,6 +12,8 @@ import { otpSchema, phoneSchema } from './validations/phoneVerificationSchema';
 import RegisterStep from '../../components/registerStep';
 import Spacer from '../../components/spacer';
 import { useState } from 'react';
+import { Input } from '../../components/ui/input';
+import { Button } from '../../components/ui/button';
 
 const Partial = () => {
     return (
@@ -66,8 +68,8 @@ const GetPhoneNumber = ({
 
     return (
         <form className="m-auto w-full max-w-sm w-96" onSubmit={formik.handleSubmit}>
-            <h2 className="main-title">{false ? "Resend OTP" : "Let's get started"}</h2>
-            <p className="tab-desc">This is an example</p>
+            <h2 className="main-heading">{false ? "Resend OTP" : "Let's get started"}</h2>
+            <p className="subheading">This is an example</p>
 
             <Spacer size={20} />
             <div className="space-y-6">
@@ -92,7 +94,7 @@ const GetPhoneNumber = ({
                                 <option value="88">US</option>
                             </select>
                         </div>
-                        <input
+                        <Input
                             ref={null}
                             placeholder="091-234-5678"
                             className="form-input"
@@ -107,12 +109,12 @@ const GetPhoneNumber = ({
                     {(formik.errors.phoneNumber || formik.errors.countryCode) && (<p className="error">{formik.errors.phoneNumber}</p>)}
                 </div>
 
-                <div className="anim-up-delay translate-y-[40px] opacity-0">
-                    <button
+                <div className="anim-up-delay translate-y-[40px]">
+                    <Button
                         type='submit'
-                        className={`primary-btn ${!formik.isValid ? 'disabled' : ''} w-full justify-center`}
+                        className='w-full justify-center'
                         disabled={formik.isSubmitting || !formik.isValid}
-                    >Get OTP</button>
+                    >Get OTP</Button>
                 </div>
             </div>
             <Transition.Root show={isLoading} as={Fragment}>
