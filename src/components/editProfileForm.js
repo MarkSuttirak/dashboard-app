@@ -74,7 +74,7 @@ function onError(e) {
                 <label className="subheading mb-2">
                   First Name
                 </label>
-                <input
+                <Input
                   placeholder="First Name"
                   className="form-input"
                   name="first_name"
@@ -89,7 +89,7 @@ function onError(e) {
                 <label className="subheading mb-2">
                   Last Name
                 </label>
-                <input
+                <Input
                   placeholder="First Name"
                   className="form-input"
                   name="last_name"
@@ -104,7 +104,7 @@ function onError(e) {
                 <label className="subheading mb-2">
                   Username
                 </label>
-                <input
+                <Input
                   placeholder="First Name"
                   className="form-input"
                   name="username"
@@ -120,16 +120,16 @@ function onError(e) {
                 <label className="subheading mb-2">
                   Email
                 </label>
-                <select
-                  className="form-input"
-                  name="email"
-                  onChange={form.handleChange}
-                  defaultValue ={preloadedValues.email}
-                >
-                  <option value="m@support.com">m@support.com</option>
-                  <option value="m@example.com">m@example.com</option>
-                  <option value="m@google.com">m@google.com</option>
-                </select>
+                <Select className='form-input' name="email" onChange={form.handleChange} defaultValue={preloadedValues.email}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue defaultValue={preloadedValues.email} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="m@support.com">m@support.com</SelectItem>
+                    <SelectItem value="m@example.com">m@example.com</SelectItem>
+                    <SelectItem value="m@google.com">m@google.com</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
           

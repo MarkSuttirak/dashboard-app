@@ -1,10 +1,10 @@
 import { user as user_api } from "src/client/api";
 import * as yup from "yup"
 import { useFormik } from 'formik';
+import { Input } from "./ui/input";
 
 
 export function BillingAddressForm({billingAddress}) {
-   
     const countries = ["Thailand"]
 
     const appearanceFormSchema = yup.object().shape({
@@ -15,10 +15,8 @@ export function BillingAddressForm({billingAddress}) {
       city: yup.string().required('The city is required'),
       state: yup.string().required('The state is required'),
       pincode: yup.string().required('The Postal Code is required'),
-      
     })
-    
-   
+
     const form = useFormik({
       initialValues: {
         billing_name:billingAddress.billing_name,
@@ -64,7 +62,7 @@ export function BillingAddressForm({billingAddress}) {
                       <label className="subheading mb-2">
                         Company Name
                       </label>
-                      <input
+                      <Input
                         placeholder="Company Name"
                         className="form-input"
                         name="billing_name"
@@ -82,7 +80,7 @@ export function BillingAddressForm({billingAddress}) {
                       <select name="country" className="form-input" defaultValue={billingAddress.country} onChange={form.handleChange}>
                         <option>Select Country</option>
                           {countries.map(country => (
-                          <option  value={country}>{country}</option>
+                          <option value={country}>{country}</option>
                         ))}
                       </select>
                   </div>
@@ -92,7 +90,7 @@ export function BillingAddressForm({billingAddress}) {
                       <label className="subheading mb-2">
                         Address
                       </label>
-                      <input
+                      <Input
                         placeholder="Address"
                         className="form-input"
                         name="address_line1"
@@ -107,7 +105,7 @@ export function BillingAddressForm({billingAddress}) {
                       <label className="subheading mb-2">
                         City
                       </label>
-                      <input
+                      <Input
                         placeholder="City"
                         className="form-input"
                         name="city"
@@ -122,7 +120,7 @@ export function BillingAddressForm({billingAddress}) {
                       <label className="subheading mb-2">
                         State / Province / Region
                       </label>
-                      <input
+                      <Input
                         placeholder="State"
                         className="form-input"
                         name="state"
@@ -137,7 +135,7 @@ export function BillingAddressForm({billingAddress}) {
                       <label className="subheading mb-2">
                         Postal Code
                       </label>
-                      <input
+                      <Input
                         placeholder="Postal Code"
                         className="form-input"
                         name="pincode"
