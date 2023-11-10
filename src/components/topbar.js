@@ -34,14 +34,11 @@ export default function Topbar({isSidebarOpen}){
 {/* 
         <VerticalLine color='#E4E4E7' size={1} height="32px"/> */}
 
-        <div className='px-3 flex gap-x-5 items-center'>
+        <div className='pr-6 flex gap-x-5 items-center'>
           <Dialog>
-            <DialogTrigger className='bg-zinc-100 rounded-md px-2 py-[6px] text-[13px] flex justify-between items-center w-[300px] text-zinc-500 leading-[0.02em]'>
-              <div className='flex gap-x-2 items-center'>
-                <Search viewBox='0 0 24 24' width='16' height='16'/>
-                Search or type a command
-              </div>
-              (CTRL +G)
+            <DialogTrigger className='bg-zinc-100 rounded-md px-2 py-[6px] text-[13px] h-7 flex items-center w-[300px] text-zinc-500 tracking-[0.02em] gap-x-[9px] leading-5'>
+              <Search viewBox='0 0 24 24' width='14' height='14' className='ml-1'/>
+              Search or type a command (Ctrl + G)
             </DialogTrigger>
             <DialogContent className='p-0'>
               <Command>
@@ -66,13 +63,13 @@ export default function Topbar({isSidebarOpen}){
           <BellIcon color='#7D7D7D' width='21' height='21'/>
         </div>
 
-        <VerticalLine color='#E4E4E7' size={1} height="32px"/>
+        <VerticalLine color='#E4E4E7' size={1} height="24px"/>
 
         <div className='px-3 flex gap-x-5 items-center'>
           <Popover>
-            <PopoverTrigger className='text-xs w-[45px] flex justify-between items-center'>
+            <PopoverTrigger className='text-[13px] w-[45px] flex justify-between items-center'>
               Help
-              <ChevronDown viewBox='0 0 24 24' width='16' height='16'/>
+              <ChevronDown viewBox='0 0 24 24' width='14' height='14' strokeWidth='1'/>
             </PopoverTrigger>
             <PopoverContent className='p-0 w-[243px]'>
               <Command>
