@@ -361,7 +361,7 @@ export const BusinessInfoForm = ({
 
                 <Select onChange={({ value }) => formik.setFieldValue('industry', value)}>
                   <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Theme" />
+                    <SelectValue placeholder={industryOptions[0].label} defaultValue={industryOptions[0].label} />
                   </SelectTrigger>
                   <SelectContent className='z-[999]'>
                     {industryOptions.map(option => (
