@@ -188,7 +188,7 @@ export default function AppStore(){
               View Blog
             </Button>
           </div>
-          <img src={startSellingOnline} width='100%'/>
+          <img src={startSellingOnline} width='100%' className="rounded-b-xl"/>
         </section>
       </div>
     </div>
