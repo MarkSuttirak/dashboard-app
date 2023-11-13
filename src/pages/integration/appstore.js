@@ -9,6 +9,7 @@ import { Button } from "src/components/ui/button"
 import { Link } from "react-router-dom"
 import { PlusCircledIcon } from "@radix-ui/react-icons"
 import { CheckCircle2, Crown } from "lucide-react"
+import startSellingOnline from 'src/img/how-to-start-selling-online.png'
 
 export default function AppStore(){
   const [isMenuCardHover, setIsMenuCardHover] = useState(false)
@@ -156,10 +157,10 @@ export default function AppStore(){
         <Link className="text-[#006AFF] text-sm font-medium">See more apps</Link>
       </div>
 
-      <div>
-        <section className="mt-6 grid grid-cols-2 gap-6 w-2/3">
+      <div className="flex gap-x-6 mt-6">
+        <section className="grid grid-cols-2 gap-6 w-[70%]">
           {recommendedApps.map(app => (
-            <Card className='shadow-none'>
+            <Card className='shadow-none flex flex-col justify-between'>
               <CardHeader className='flex flex-row gap-x-6'>
                 {app.icon}
                 <div className="m-[0!important]">
@@ -177,6 +178,17 @@ export default function AppStore(){
               </CardFooter>
             </Card>
           ))}
+        </section>
+        <section className="border rounded-xl bg-[#F7F7F8] w-[30%]">
+          <div className="p-6">
+            <h1 className="secondary-heading">How to Start Selling Online</h1>
+            <p className="text-[13px] font-medium text-[#71717A] mt-4 mb-6">Say hello to the world and let readers know what your blog is all about.</p>
+            <Button variant='outline' className='btn-with-icon bg-white'>
+              <PlusCircledIcon />
+              View Blog
+            </Button>
+          </div>
+          <img src={startSellingOnline} width='100%'/>
         </section>
       </div>
     </div>
