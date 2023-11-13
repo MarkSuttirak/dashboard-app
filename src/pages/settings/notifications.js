@@ -10,6 +10,8 @@ import { Switch } from "../../components/ui/switch"
 import { toast } from "../../components/ui/use-toast"
 import { useFormik } from 'formik';
 import * as yup from "yup"
+import { AnimationContext } from "src/components/provider/animationProvider"
+import { useContext } from "react"
 
 const notificationsFormSchema = yup.object().shape({
   mobile: yup.boolean().default(false).optional(),

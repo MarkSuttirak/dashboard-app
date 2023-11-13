@@ -19,12 +19,13 @@ import {
 } from "src/components/ui/dialog"
 import { useState } from "react"
 import { AppStoreApp02, SidebarApp03, SidebarApp04 } from "src/components/sidebarApps"
-import ZaviagoIcon from "src/components/icon-menus/ZaviagoIcon"
 
 export default function SingleApp(){
   const { id } = useParams()
 
   const [isInstalled, setIsInstalled] = useState(false)
+
+  const [installHeading, setInstallHeading] = useState('Install addons app to your workspace')
 
   const CardData = ({data}) => {
     return (
@@ -67,8 +68,8 @@ export default function SingleApp(){
                           </div>
                         </DialogTitle>
                       </div>
-                      <DialogDescription className='p-6'>
-                        <h1 className="secondary-heading tracking-[-0.4px] mb-3">Install addons app to your workspace</h1>
+                      <DialogDescription className='p-6 mt-[0!important]'>
+                        <h1 className="secondary-heading tracking-[-0.4px] mb-3">{installHeading}</h1>
                         <p>The app will be able to read the email address you use to log in with Zaviago.</p>
 
                         <Button className='btn-with-icon text-[#006AFF] font-normal w-full mt-6 justify-start' variant='secondary'>
@@ -80,7 +81,9 @@ export default function SingleApp(){
                           <DialogClose>
                             <Button variant='outline'>Cancel</Button>
                           </DialogClose>
-                          <Button>Install apps</Button>
+                          <Button onClick={() => {
+                            setInstallHeading('Installing app')
+                          }}>Install apps</Button>
                         </div>
                       </DialogDescription>
                     </DialogHeader>

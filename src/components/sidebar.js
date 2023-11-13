@@ -9,6 +9,16 @@ import { BellIcon, CheckCircledIcon, LightningBoltIcon } from "@radix-ui/react-i
 import { SidebarApp01, SidebarApp02, SidebarApp03, SidebarApp04, SidebarApp05, SidebarApp06, SidebarApp07, SidebarApp08, SidebarApp09, SidebarApp10 } from "./sidebarApps";
 import { useMutation, useQuery } from "react-query";
 import { site } from "../client/api";
+import { ServiceContext } from "./provider/serviceProvider";
+import proplan1 from 'src/img/proplan1.png'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "src/components/ui/dialog"
 
 const apps = [<SidebarApp01 />, <SidebarApp02 />, <SidebarApp03 />, <SidebarApp04 />, <SidebarApp05 />, <SidebarApp06 />, <SidebarApp07 />, <SidebarApp08 />, <SidebarApp09 />, <SidebarApp10 />]
 
@@ -39,6 +49,8 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
       }
     }
   });
+
+  const serviceModal = useContext(ServiceContext)
 
   const navigate = useNavigate();
 
@@ -113,7 +125,20 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
         </div>
         {apps.map((a) => (
           <div className="nav-btns add-ons">
-            {a}
+            <Dialog>
+              <DialogTrigger>{a}</DialogTrigger>
+              <DialogContent className='p-0'>
+                <DialogHeader>
+                  <DialogTitle>
+                    <img src={proplan1} />
+                  </DialogTitle>
+                  <DialogDescription>
+                    This action cannot be undone. This will permanently delete your account
+                    and remove your data from our servers.
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
           </div>
         ))}
         <div className="nav-btns add">

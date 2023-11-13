@@ -5,6 +5,7 @@ import { AuthProvider } from 'react-oauth2-code-pkce';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { useToast } from './hooks/useToast';
 import { UserProvider } from './hooks/useUser';
+import { ServiceProvider } from "./components/provider/serviceProvider";
 
 const authConfig = {
   autoLogin: false,
@@ -45,14 +46,16 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider authConfig={authConfig}>
         <UserProvider>
-          <Router />
-          {/* <switchContext.Provider value={[isSwitchModalOpen, setisSwitchModalOpen]}>
+          <ServiceProvider>
+            <Router />
+            {/* <switchContext.Provider value={[isSwitchModalOpen, setisSwitchModalOpen]}>
 
-          <Sidebar loadingLogo={loadingLogo} />
-          <TeamModal />
-        </switchContext.Provider> */}
+            <Sidebar loadingLogo={loadingLogo} />
+            <TeamModal />
+          </switchContext.Provider> */}
 
-          {/* <MobileMenu /> */}
+            {/* <MobileMenu /> */}
+          </ServiceProvider>
         </UserProvider>
       </AuthProvider>
     </QueryClientProvider>
