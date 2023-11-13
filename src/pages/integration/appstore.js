@@ -8,8 +8,8 @@ import { Separator } from "src/components/ui/separator"
 import { Button } from "src/components/ui/button"
 import { Link } from "react-router-dom"
 import { PlusCircledIcon } from "@radix-ui/react-icons"
-import { CheckCircle2, Crown } from "lucide-react"
 import startSellingOnline from 'src/img/how-to-start-selling-online.png'
+import { recommendedApps } from "./recommendedApps"
 
 export default function AppStore(){
   const [isMenuCardHover, setIsMenuCardHover] = useState(false)
@@ -23,47 +23,6 @@ export default function AppStore(){
   const handleCardHoverLeave = () => {
     setIsMenuCardHover(false)
   }
-
-  const recommendedApps = [
-    {
-      icon:<AppStoreApp01 />,
-      title:'Create project',
-      desc:'Facilitate payments and pay out sellers or service providers.',
-      status:(<div className="flex text-[#2CB216] items-center gap-x-2">
-        <CheckCircle2 color='#2CB216' viewBox="0 0 24 24" width='16' height='16'/>
-        Installed
-      </div>),
-      link:''
-    },
-    {
-      icon:<AppStoreApp01 />,
-      title:'Create project',
-      desc:'Facilitate payments and pay out sellers or service providers.',
-      status:(<div className="flex text-[#71717A] items-center gap-x-2">
-        <Crown color='#71717A' viewBox="0 0 24 24" width='16' height='16'/>
-        Pro plan
-      </div>),
-      link:''
-    },
-    {
-      icon:<AppStoreApp01 />,
-      title:'Create project',
-      desc:'Facilitate payments and pay out sellers or service providers.',
-      status:(<div className="text-[#71717A]">
-        14 days free trial
-      </div>),
-      link:''
-    },
-    {
-      icon:<AppStoreApp01 />,
-      title:'Create project',
-      desc:'Facilitate payments and pay out sellers or service providers.',
-      status:(<div className="text-[#71717A]">
-        Free plan available
-      </div>),
-      link:''
-    }
-  ]
 
   const appstoreMenus = [
     {
@@ -159,10 +118,12 @@ export default function AppStore(){
 
       <div className="flex gap-x-6 mt-6">
         <section className="grid grid-cols-2 gap-6 w-[70%]">
-          {recommendedApps.map(app => (
-            <Card className='shadow-none flex flex-col justify-between'>
+          {recommendedApps.map((app, index) => (
+            <Card key={index} className='shadow-none flex flex-col justify-between'>
               <CardHeader className='flex flex-row gap-x-6'>
-                {app.icon}
+                <div className="w-[90px]">
+                  {app.icon}
+                </div>
                 <div className="m-[0!important]">
                   <CardTitle>{app.title}</CardTitle>
                   <CardDescription className='mt-[6px]'>{app.desc}</CardDescription>
@@ -172,7 +133,7 @@ export default function AppStore(){
                 <div className="text-sm">
                   {app.status}
                 </div>
-                <Link to={app.link}>
+                <Link to={`/integration/appstore/${app.id}`}>
                   <Button variant='outline'>See more</Button>
                 </Link>
               </CardFooter>
