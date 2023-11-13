@@ -41,11 +41,11 @@ export default function SingleApp(){
             </section>
 
             <section className="flex gap-x-6 mt-[55px]">
-              <img src={item.images[0]} className="rounded-md h-fit"/>
+              <img src={item.images[0]} className="rounded-md h-fit w-full"/>
               <div>
-                {item.images.map(image => (
-                  <img src={image} className="img-apps"/>
-                ), {start: 1})}
+                {item.images.map((image, index) => (
+                  <img key={index} src={image} className="img-apps" width='340'/>
+                )).slice(1, 4)}
               </div>
             </section>
 
