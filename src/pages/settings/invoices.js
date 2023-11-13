@@ -9,8 +9,6 @@ export default function Invoices() {
     if( userInvoices ==null ){
       setuserInvoices( await  user.getInvoices( ) )
     }
-    
-    console.log(userInvoices)
   }
   useEffect(()=>{
     fetchData()

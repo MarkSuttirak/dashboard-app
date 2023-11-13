@@ -13,6 +13,7 @@ export const user = {
     getInvoices : () => api.get("/method/press.api.billing.invoices_and_payments").then((response) => response.data),
     getBillingInfo : () => api.post("/method/press.api.account.get_billing_information").then((response) => response.data),
     updateBillingInfo:(data)=>api.post("/method/press.api.account.update_billing_information",{billing_details:data}),
+    get_plans: () => api.get(`/resource/Plan?limit_start=0`).then((response) => response.data),
     // {billing_details:{address:"Thailandvdddddd",billing_name:"Test 3",city:"Thailand",country:"Thailand",gstin:null,postal_code:"12345",state:"Bangkok"}})
 }
 
@@ -32,6 +33,7 @@ export const site = {
     exists: (data) => api.get('/method/press.api.site.exists', { params: data }).then((response) => response.data.message),
     optionsForNew: () => api.get('/method/press.api.site.options_for_new').then((response) => response.data.message),
     new: (data) => api.post('/method/press.api.site.new_saas_site', data).then((response) => response.data.message),
+    
 }
 
 export const getCountryList = () => api.get('/method/press.api.account.country_list').then((response) => response.data);
