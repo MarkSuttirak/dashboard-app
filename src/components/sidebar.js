@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../css/sidebar-dropdown.css";
-import { switchContext } from '../App'
-import Digice from "./icon-menus/Digice";
-import IconMock from "./icon-menus/IconMock";
 import { useUser } from "../hooks/useUser";
 import SidebarShortcut from "./sidebarShortcut";
 import { Home, ListMinus, PlusCircle, Settings, Search, Bell, Users, Zap, UserCircle, LayoutGrid, Layout, ClipboardList, Package, ChevronDown, Group, Baseline, Clipboard, CheckCircle, CheckCircle2, UserSquare, Mailbox, Milestone, PackagePlus, ClipboardPaste } from "lucide-react";
 import { Button } from "./ui/button";
 import { BellIcon, CheckCircledIcon, LightningBoltIcon } from "@radix-ui/react-icons";
 import { SidebarApp01, SidebarApp02, SidebarApp03, SidebarApp04, SidebarApp05, SidebarApp06, SidebarApp07, SidebarApp08, SidebarApp09, SidebarApp10 } from "./sidebarApps";
+import { useMutation, useQuery } from "react-query";
+import { site } from "../client/api";
 
 const apps = [<SidebarApp01 />, <SidebarApp02 />, <SidebarApp03 />, <SidebarApp04 />, <SidebarApp05 />, <SidebarApp06 />, <SidebarApp07 />, <SidebarApp08 />, <SidebarApp09 />, <SidebarApp10 />]
 
@@ -24,6 +23,23 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
     setActive(menu);
   }
 
+  const { data: sites } = useQuery('sites', site.list, {
+    enabled: !!user,
+  });
+
+  const { data: siteOverview } = useQuery(['site', `${sites?.site_list[0].name}`], () => site.overview(sites?.site_list[0].name), {
+    enabled: !!sites?.site_list.length
+  });
+
+  const { mutate: loginAsAdmin } = useMutation('loginAsAdmin', ({ name, reason }) => site.loginAsAdmin(name, reason), {
+    onSuccess: (res) => {
+      const { sid, site } = res.data.message;
+      if (sid && site) {
+        window.open(`https://${site}/app/home?sid=${sid}`, '_blank');
+      }
+    }
+  });
+
   const navigate = useNavigate();
 
   const navigation = [
@@ -35,34 +51,33 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
 
   const settingsMenus = [
     { name: 'Inventory', icon: <LightningBoltIcon />, submenus: [
-      { title:'Items',icon:<Package viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5'/> },
-      { title:'Item Group', icon:<Group viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5'/>},
-      { title:'Brand', icon:<Baseline viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5'/>}
+      { title:'Items',icon:<Package className="w-4 h-4 stroke-[1.5] text-[#18181B]"/> },
+      { title:'Item Group', icon:<Group className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>},
+      { title:'Brand', icon:<Baseline className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>}
     ]},
-    { name: 'Orders', icon: <ClipboardList viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5'/>, submenus: [
-      { title:'Sales Invoice', icon:<Clipboard viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5'/>},
-      { title:'Payment Entry', icon:<CheckCircle2 viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5'/>}
+    { name: 'Orders', icon: <ClipboardList className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>, submenus: [
+      { title:'Sales Invoice', icon:<Clipboard className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>},
+      { title:'Payment Entry', icon:<CheckCircle2 className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>}
     ]},
-    { name: 'Customers', icon: <UserCircle viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5'/>, submenus: [
-      { title:'Customer', icon: <UserSquare viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5'/>},
-      { title:'Customers Group', icon: <Users viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5'/>},
-      { title:'Contact', icon: <Mailbox viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5'/>},
-      { title:'Address', icon: <Milestone viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5'/>}
+    { name: 'Customers', icon: <UserCircle className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>, submenus: [
+      { title:'Customer', icon: <UserSquare className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>},
+      { title:'Customers Group', icon: <Users className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>},
+      { title:'Contact', icon: <Mailbox className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>},
+      { title:'Address', icon: <Milestone className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>}
     ]},
-    { name: 'Stock', icon: <LayoutGrid viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5'/>, submenus: [
-      { title:'Stock Entry', icon: <PackagePlus viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5'/>},
-      { title:'Delivery Note', icon: <ClipboardPaste viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5'/>}
+    { name: 'Stock', icon: <LayoutGrid className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>, submenus: [
+      { title:'Stock Entry', icon: <PackagePlus className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>},
+      { title:'Delivery Note', icon: <ClipboardPaste className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>}
     ]},
   ]
 
   const yourSites = [
     { name: 'Integration', icon: <Zap className="w-4 h-4 stroke-[1.5] text-[#18181B]" />, id: 'integration' },
-    { name: 'App Store', icon: <UserCircle className="w-4 h-4 stroke-[1.5] text-[#18181B]" />, id: 'app-store' },
-    { name: 'Teams', icon: <LayoutGrid viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/teams/team-members', current: active === "/dashboard/teams/team-members" || active === "/dashboard/teams/teams" ? true : false, active: active, id: 'teams' },
+    { name: 'App Store', icon: <UserCircle className="w-4 h-4 stroke-[1.5] text-[#18181B]" />, id: 'app-store', href: '/integration/appstore' },
+    { name: 'Teams', icon: <LayoutGrid className="w-4 h-4 stroke-[1.5] text-[#18181B]" />, href: '/dashboard/teams/team-members', current: active === "/dashboard/teams/team-members" || active === "/dashboard/teams/teams" ? true : false, active: active, id: 'teams' },
   ]
 
   const workspaceApp = [
-    { name: 'Commerce', icon: <Layout viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' />, id: 'commerce' },
     { name: 'Blog & Website', icon: <LayoutGrid viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' />, id: 'blog-website' },
     { name: 'CRM', icon: <LayoutGrid viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' />, id: 'crm' },
     { name: 'HR & HRM', icon: <LayoutGrid viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' />, id: 'hr-hrm' },
@@ -186,6 +201,10 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
 
             <section className="flex flex-col">
               <h3 className="text-[#797979] text-sm font-semibold p-4">WorkSpace App</h3>
+              <Button variant='ghost' onClick={() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5`}>
+                <Layout viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' />
+                Commerce
+              </Button>
               {workspaceApp.map((item) => (
                 <Link to={item.href}>
                   <Button variant='ghost' onClick={handleMenuClick} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.href === active ? 'bg-zinc-100' : ''}`}>

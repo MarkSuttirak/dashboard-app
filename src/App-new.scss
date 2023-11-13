@@ -177,7 +177,7 @@ body {
   align-items:center;
 }
 
-.menu-card {
+.menu-card,.menu-card-app-store {
   cursor:pointer;
   overflow:hidden;
   border-radius:10px;
@@ -189,8 +189,27 @@ body {
   display:flex;
   flex-direction:column;
   align-items:center;
+}
+
+.menu-card {
   &:nth-child(5),&:nth-child(6){
     padding-top:20px;
+  }
+}
+
+.menu-card-app-store {
+  &:nth-child(1),&:nth-child(2),&:nth-child(5),&:nth-child(6){
+    padding-top:16px;
+  };
+  &:nth-child(3){
+    svg {
+      margin-right:8px;
+    }
+  };
+  &:nth-child(6){
+    svg {
+      margin-left:16px;
+    }
   }
 }
 
