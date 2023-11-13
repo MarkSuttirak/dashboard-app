@@ -4,6 +4,18 @@ import { Button } from "src/components/ui/button"
 import { OpenInNewWindowIcon, PlusCircledIcon } from "@radix-ui/react-icons"
 import { Globe, Key, MessageSquare, Smile } from "lucide-react"
 import { Separator } from "src/components/ui/separator"
+import connectMarketingBg from "src/img/socialapp-bg.png"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "src/components/ui/card"
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "src/components/ui/dialog"
 import { useState } from "react"
 
 export default function SingleApp(){
@@ -33,18 +45,31 @@ export default function SingleApp(){
                   Open
                 </Button>
               ) : (
-                <Button className='btn-with-icon'>
-                  <PlusCircledIcon />
-                  Add to site
-                </Button>
+                <Dialog>
+                  <DialogTrigger>
+                    <Button className='btn-with-icon'>
+                      <PlusCircledIcon />
+                      Add to site
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Are you sure absolutely sure?</DialogTitle>
+                      <DialogDescription>
+                        This action cannot be undone. This will permanently delete your account
+                        and remove your data from our servers.
+                      </DialogDescription>
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
               )}
             </section>
 
             <section className="flex gap-x-6 mt-[55px]">
               <img src={item.images[0]} className="rounded-md h-fit w-full"/>
-              <div>
+              <div className="flex flex-col gap-y-6">
                 {item.images.map((image, index) => (
-                  <img key={index} src={image} className="img-apps" width='340'/>
+                  <img key={index} src={image} className="img-apps" width='330'/>
                 )).slice(1, 4)}
               </div>
             </section>
@@ -113,6 +138,36 @@ export default function SingleApp(){
       <CardData data={recommendedApps}/>
 
       <Separator className='my-10'/>
+
+      <section style={{background:`url(${connectMarketingBg})`,backgroundRepeat:"no-repeat",backgroundSize:"cover"}} className="rounded-xl p-6 flex gap-x-8">
+        <div className="flex flex-col justify-between">
+          <article>
+            <h1 className="secondary-heading mb-4">Connect Marketing place</h1>
+            <p className="text-[13px] font-medium text-[#71717A] mt-4 mb-6">Say hello to the world and let readers know what your blog is all about.</p>
+          </article>
+
+          <Button className='btn-with-icon w-fit bg-white' variant='outline'>
+            <PlusCircledIcon />
+            See more Apps
+          </Button>
+        </div>
+
+        <div className="flex gap-x-6">
+          {recommendedApps.map((app, index) => (
+            <Card key={index} className='shadow-none flex flex-col justify-between'>
+              <CardHeader className='flex flex-col gap-x-6'>
+                <div className="w-[52px]">
+                  {app.icon}
+                </div>
+                <div className="mt-[12px!important]">
+                  <CardTitle>{app.title}</CardTitle>
+                  <CardDescription className='mt-[6px]'>{app.desc}</CardDescription>
+                </div>
+              </CardHeader>
+            </Card>
+          )).slice(0, 3)}
+        </div>
+      </section>
     </div>
   )
 }
