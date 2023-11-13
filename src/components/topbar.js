@@ -1,12 +1,11 @@
 import React, {useState} from 'react'
 import { Button } from './ui/button'
-import { BadgeInfo, BookCopy, ChevronDown, ClipboardList, Info, MessageCircle, Zap, User, Keyboard, Layout, LogOut, Search } from 'lucide-react'
+import { BadgeInfo, BookCopy, ChevronDown, ClipboardList, Info, MessageCircle, Zap, User, Keyboard, Layout, LogOut, Search, BadgeHelp } from 'lucide-react'
 import { BellIcon, LightningBoltIcon } from '@radix-ui/react-icons'
 import VerticalLine from './verticalLine'
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog"
 import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "./ui/command"
-import Logo from "../img/logo-zaviago.svg";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { useUser } from '../hooks/useUser'
 import { useMutation, useQuery } from "react-query";
@@ -31,9 +30,7 @@ export default function Topbar({isSidebarOpen}){
           <LightningBoltIcon color='#006AFF'/>
           Upgrade to Pro
         </Button>
-{/* 
-        <VerticalLine color='#E4E4E7' size={1} height="32px"/> */}
-
+{/* <VerticalLine color='#E4E4E7' size={1} height="32px"/> */}
         <div className='pr-6 flex gap-x-5 items-center'>
           <Dialog>
             <DialogTrigger className='bg-zinc-100 rounded-md px-2 py-[6px] text-[13px] h-7 flex items-center w-[300px] text-zinc-500 tracking-[0.02em] gap-x-[9px] leading-5'>
@@ -78,12 +75,10 @@ export default function Topbar({isSidebarOpen}){
                     <CommandItem>
                       <BookCopy viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
                       Documentation
-                      <CommandShortcut>⇧⌘P</CommandShortcut>
                     </CommandItem>
                     <CommandItem>
                       <MessageCircle viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
                       User forum
-                      <CommandShortcut>⌘K</CommandShortcut>
                     </CommandItem>
                   </CommandGroup>
                   <CommandSeparator />
@@ -98,12 +93,10 @@ export default function Topbar({isSidebarOpen}){
                     <CommandItem>
                       <Info viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
                       About
-                      <CommandShortcut>⇧⌘Q</CommandShortcut>
                     </CommandItem>
                     <CommandItem>
-                      <BadgeInfo viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+                      <BadgeHelp viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
                       Support
-                      <CommandShortcut>⇧⌘Q</CommandShortcut>
                     </CommandItem>
                   </CommandGroup>
                 </CommandList>
@@ -122,18 +115,14 @@ export default function Topbar({isSidebarOpen}){
           <PopoverContent className='p-0 w-[243px]'>
             <Command>
               <CommandList>
-                <h2 className='subheading font-semibold px-3 py-[10px]'>My Apps</h2>
-                <CommandSeparator />
                 <CommandGroup>
                   <CommandItem>
                     <User viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
                     Account settings
-                    <CommandShortcut>⇧⌘P</CommandShortcut>
                   </CommandItem>
                   <CommandItem>
                     <Keyboard viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
                     Keyboard shortcuts
-                    <CommandShortcut>⌘K</CommandShortcut>
                   </CommandItem>
                 </CommandGroup>
                 <CommandSeparator />
@@ -148,7 +137,6 @@ export default function Topbar({isSidebarOpen}){
                   <CommandItem>
                     <LogOut viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
                     Logout
-                    <CommandShortcut>⇧⌘Q</CommandShortcut>
                   </CommandItem>
                 </CommandGroup>
               </CommandList>

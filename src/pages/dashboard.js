@@ -128,7 +128,7 @@ export default function Dashboard(){
     <div className="dashboard-container">
       <section className="flex justify-between">
         <div>
-          <h1 className="main-heading">Welcome to Zaviago</h1>
+          <h1 className="main-heading tracking-[-0.6px]">Welcome to Zaviago</h1>
           <div className="mt-1 flex items-center gap-x-4">
             <div className="flex items-center gap-x-[10px]">
               <Avatar className='w-[35px] h-[35px]'>
@@ -149,32 +149,32 @@ export default function Dashboard(){
       <section className="mt-6">
         <div className="grid grid-cols-1 md:flex gap-6 md:gap-x-[15px]">
           <Card className='w-[60%]'>
-            <CardHeader className='pb-2 flex flex-row items-center justify-between'>
+            <CardHeader className='pb-2 flex flex-col xl:flex-row xl:items-center justify-between'>
               <div>
                 <CardTitle className='subheading font-medium'>Your WorkSpace</CardTitle>
-                <CardDescription className="main-heading">{sites?.site_list[0].name}</CardDescription>
+                <CardDescription className="domain-heading">{sites?.site_list[0].name}</CardDescription>
               </div>
-              <Button variant='secondary' className='btn-with-icon leading-5 m-0' onClick={() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })}>
+              <Button variant='secondary' className='btn-with-icon leading-5 m-[0!important]' onClick={() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })}>
                 <LogIn viewBox="0 0 24 24" width='16' height='16'/>
                 Login as Admin
               </Button>
             </CardHeader>
             <CardContent>
               <Button variant='link' className="text-desc p-0">Connect Domain</Button>
-              <div className="text-desc flex gap-x-4 items-center mt-5">
-                <p className="flex items-center gap-x-1 text-sm"><Users viewBox='0 0 24 24' width='16' height='16' /> {numOfAdmin} {numOfAdmin == 1 ? 'admin' : 'admins'} in team</p>
-                <p className="flex items-center gap-x-1 text-sm"><StarIcon /> {numOfCustomers >= 1000000 ? `${(numOfCustomers / 1000000).toFixed(1)}m` : numOfCustomers >= 1000 ? `${(numOfCustomers / 1000).toFixed(1)}k` : numOfCustomers} {numOfCustomers == 1 ? "customer" : "customers"}</p>
+              <div className="text-desc flex gap-x-4 items-center mt-5 flex-row">
+                <p className="flex items-center gap-x-1 text-sm"><Users viewBox='0 0 24 24' width='12' height='12' /> {numOfAdmin} {numOfAdmin == 1 ? 'admin' : 'admins'} in team</p>
+                <p className="flex items-center gap-x-1 text-sm"><StarIcon width='12' height='12'/> {numOfCustomers >= 1000000 ? `${(numOfCustomers / 1000000).toFixed(1)}m` : numOfCustomers >= 1000 ? `${(numOfCustomers / 1000).toFixed(1)}k` : numOfCustomers} {numOfCustomers == 1 ? "customer" : "customers"}</p>
                 <p className="flex text-sm">Updated {date}</p>
               </div>
             </CardContent>
           </Card>
           <Card className='w-[40%] flex flex-col justify-between'>
-            <CardHeader className='pb-2 flex flex-row items-center justify-between'>
+            <CardHeader className='pb-2 flex flex-col xl:flex-row xl:items-start justify-between'>
               <div>
-                <CardTitle className='main-heading'>Free trial</CardTitle>
+                <CardTitle className='domain-heading'>Free trial</CardTitle>
                 <CardDescription>You are on free trial plan</CardDescription>
               </div>
-              <Button variant='secondary' className='btn-with-icon leading-5 m-0'>
+              <Button variant='secondary' className='btn-with-icon leading-5 m-[0!important]'>
                 <Zap viewBox="0 0 24 24" width='16' height='16'/>
                 Compare Plan
               </Button>
@@ -207,9 +207,7 @@ export default function Dashboard(){
         </Card> */}
       </section>
 
-      <Separator className="my-10"/>
-
-      <section>
+      <section className="mt-6">
         <h2 className="secondary-heading">Create New or Manage</h2>
         <p className="secondary-desc">What do you want to do today?</p>
 
