@@ -1,12 +1,15 @@
 import { useParams } from "react-router"
 import { recommendedApps } from "./recommendedApps"
 import { Button } from "src/components/ui/button"
-import { PlusCircledIcon } from "@radix-ui/react-icons"
+import { OpenInNewWindowIcon, PlusCircledIcon } from "@radix-ui/react-icons"
 import { Globe, Key, MessageSquare, Smile } from "lucide-react"
 import { Separator } from "src/components/ui/separator"
+import { useState } from "react"
 
 export default function SingleApp(){
   const { id } = useParams()
+
+  const [isInstalled, setIsInstalled] = useState(false)
 
   const CardData = ({data}) => {
     return (
@@ -24,10 +27,17 @@ export default function SingleApp(){
                   <p className="text-sm mt-1">{item.status}</p>
                 </div>
               </div>
-              <Button className='btn-with-icon'>
-                <PlusCircledIcon />
-                Add to site
-              </Button>
+              {isInstalled ? (
+                <Button className='btn-with-icon'>
+                  <OpenInNewWindowIcon />
+                  Open
+                </Button>
+              ) : (
+                <Button className='btn-with-icon'>
+                  <PlusCircledIcon />
+                  Add to site
+                </Button>
+              )}
             </section>
 
             <section className="flex gap-x-6 mt-[55px]">
