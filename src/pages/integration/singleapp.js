@@ -7,24 +7,13 @@ import { Separator } from "src/components/ui/separator"
 import connectMarketingBg from "src/img/socialapp-bg.png"
 import installAppBg from "src/img/install-app-bg.png"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "src/components/ui/card"
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "src/components/ui/dialog"
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "src/components/ui/dialog"
 import { useState } from "react"
-import { AppStoreApp02, POSApp, SidebarApp04 } from "src/components/sidebar/sidebarApps"
+import { AppStoreApp02, POSApp } from "src/components/sidebar/sidebarApps"
 
 export default function SingleApp(){
   const { id } = useParams()
-
   const [isInstalled, setIsInstalled] = useState(false)
-
   const [installHeading, setInstallHeading] = useState('Install addons app to your workspace')
 
   const CardData = ({data}) => {
@@ -45,15 +34,13 @@ export default function SingleApp(){
               </div>
               {isInstalled ? (
                 <Button className='btn-with-icon'>
-                  <OpenInNewWindowIcon />
-                  Open
+                  <OpenInNewWindowIcon />Open
                 </Button>
               ) : (
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button className='btn-with-icon'>
-                      <PlusCircledIcon />
-                      Add to site
+                      <PlusCircledIcon />Add to site
                     </Button>
                   </DialogTrigger>
                   <DialogContent className='p-0 max-w-[368px] border-0 gap-0'>

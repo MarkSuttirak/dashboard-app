@@ -1,4 +1,3 @@
-import { Separator } from "../components/ui/separator"
 import { Link, useParams } from "react-router-dom"
 import { cn } from "../lib/utils"
 import { buttonVariants, Button } from "../components/ui/button"

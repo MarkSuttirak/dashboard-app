@@ -1,7 +1,7 @@
 import { ChevronDownIcon, PlusCircledIcon, StarIcon, ValueIcon } from "@radix-ui/react-icons"
 import { Users, Zap } from "lucide-react"
 import { Separator } from "../../components/ui/separator";
-import VerticalLine from "src/components/verticalLine";
+import VerticalLine from "src/components/drawLine";
 import { Button, buttonVariants } from "../../components/ui/button"
 
 import { useUser } from "../../hooks/useUser";

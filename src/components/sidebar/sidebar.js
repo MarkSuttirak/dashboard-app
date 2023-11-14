@@ -7,13 +7,12 @@ import { Button } from "../ui/button";
 import { BellIcon, CheckCircledIcon, LightningBoltIcon } from "@radix-ui/react-icons";
 import { useMutation, useQuery } from "react-query";
 import { site } from "../../client/api";
-import { ServiceContext } from "../provider/serviceProvider";
 import { ZaviagoApp } from "./sidebarApps";
 import ServiceModals from "./serviceModals";
 
 // import TeamModal from "../components/switchTeamModal";
 
-const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
+export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }){
   const [active, setActive] = useState('');
   const location = useLocation();
   const { user } = useUser();
@@ -38,8 +37,6 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
       }
     }
   });
-
-  const serviceModal = useContext(ServiceContext)
 
   const navigate = useNavigate();
 
@@ -226,5 +223,3 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
     </>
   )
 }
-
-export default Sidebar;

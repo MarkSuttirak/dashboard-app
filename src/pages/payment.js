@@ -1,13 +1,13 @@
 import { ArrowLeft, Tag, X } from "lucide-react";
 import { Link } from "react-router-dom";
-import Topbar from "src/components/topbar";
+import Topbar from "src/components/topbar/topbar";
 import { Badge } from "src/components/ui/badge";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "src/components/ui/card"
 import { Separator } from "src/components/ui/separator";
 import { Switch } from "src/components/ui/switch";
 import { Button } from "src/components/ui/button";
 import { Input } from "src/components/ui/input";
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 
 export default function PaymentPage(){
   const [addPromo, setAddPromo] = useState(false)
@@ -16,7 +16,6 @@ export default function PaymentPage(){
   return (
     <>
       <Topbar isSidebarOpen={false} hasNoLeftSidebar={true}/>
-
       <div className="page-section">
         <div className="dashboard-container">
           <div className="flex items-center gap-x-3">
