@@ -1,32 +1,18 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import "../css/sidebar-dropdown.css";
-import { useUser } from "../hooks/useUser";
+import { useUser } from "../../hooks/useUser";
 import SidebarShortcut from "./sidebarShortcut";
 import { Home, ListMinus, PlusCircle, Settings, Search, Bell, Users, Zap, UserCircle, LayoutGrid, Layout, ClipboardList, Package, ChevronDown, Group, Baseline, Clipboard, CheckCircle, CheckCircle2, UserSquare, Mailbox, Milestone, PackagePlus, ClipboardPaste, Crown } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { BellIcon, CheckCircledIcon, LightningBoltIcon } from "@radix-ui/react-icons";
-import { SidebarApp01, SidebarApp02, SidebarApp03, SidebarApp04, SidebarApp05, SidebarApp06, SidebarApp07, SidebarApp08, SidebarApp09, SidebarApp10 } from "./sidebarApps";
 import { useMutation, useQuery } from "react-query";
-import { site } from "../client/api";
-import { ServiceContext } from "./provider/serviceProvider";
-import proplan1 from 'src/img/proplan1.png'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "src/components/ui/dialog"
-import { Badge } from "./ui/badge";
+import { site } from "../../client/api";
+import { ZaviagoApp } from "./sidebarApps";
 import ServiceModals from "./serviceModals";
-
-const apps = [<SidebarApp01 />, <SidebarApp02 />, <SidebarApp03 />, <SidebarApp04 />, <SidebarApp05 />, <SidebarApp06 />, <SidebarApp07 />, <SidebarApp08 />, <SidebarApp09 />, <SidebarApp10 />]
 
 // import TeamModal from "../components/switchTeamModal";
 
-const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
+export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }){
   const [active, setActive] = useState('');
   const location = useLocation();
   const { user } = useUser();
@@ -51,8 +37,6 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
       }
     }
   });
-
-  const serviceModal = useContext(ServiceContext)
 
   const navigate = useNavigate();
 
@@ -125,6 +109,12 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
       <nav className="nav-left-side">
         <div className="nav-btns" id="home-btn" onClick={() => setIsSidebarOpen(true)}>
           <Home color='#18181B' viewBox='0 0 24 24' width='16' height='16'/>
+        </div>
+
+        <div className="nav-btns add-ons">
+          <Link to='/'>
+            <ZaviagoApp />
+          </Link>
         </div>
 
         <ServiceModals />
@@ -233,5 +223,3 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
     </>
   )
 }
-
-export default Sidebar;

@@ -205,6 +205,10 @@ body {
   align-items:center;
 }
 
+.required {
+  color:#EF4444
+}
+
 .menu-card {
   &:nth-child(5),&:nth-child(6){
     padding-top:20px;
@@ -417,6 +421,9 @@ body {
   &.inactive {
     width:calc(100% - $left-sidebar-width);
     transition:width 300ms;
+  }
+  &.no-sidebar {
+    width:100%;
   }
 }
 

@@ -40,8 +40,6 @@ export default function Settings(){
             <PlanUpgrades />
           </section>
         )}
-
-
         
         {id === 'account' && (
           <section className="w-[672px]">
@@ -68,7 +66,6 @@ export default function Settings(){
                 <Invoices />
               </TabsContent>
             </Tabs>
-
           </section>
         )}
 

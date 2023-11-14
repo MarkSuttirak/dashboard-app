@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
-import Sidebar from "../components/sidebar";
+import Sidebar from "../components/sidebar/sidebar";
 import { useState } from "react";
-import Topbar from "src/components/topbar";
+import Topbar from "src/components/topbar/topbar";
 
 export default function DashboardLayout() {
   const location = useLocation()
@@ -11,7 +11,7 @@ export default function DashboardLayout() {
       {location.pathname !== '/dashboard/instance-configuration' ? (
         <>
           <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen}/>
-          <Topbar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen}/>
+          <Topbar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} hasNoLeftSidebar={false}/>
           <div className={`page-section ${isSidebarOpen ? 'active' : 'inactive'}`}>
             <Outlet />
           </div>

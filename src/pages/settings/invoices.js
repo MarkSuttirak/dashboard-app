@@ -15,8 +15,6 @@ export default function Invoices() {
   },[] )
 
     fetchData();
-  
 
-  
   return userInvoices ? <InvoiceTable invoices_props={userInvoices}/> : <div>Loading...</div>
 }

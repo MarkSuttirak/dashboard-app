@@ -59,14 +59,14 @@ export default function DisplayForm() {
 
   return (
       <form onSubmit={form.handleSubmit} className="space-y-8">
-              <div className="mb-4">
-                  Select the items you want to display in the sidebar.
-              </div>
-              {items.map((item) => (
-                <div className="Documents">
-                  <input onChange={form.handleChange} defaultChecked ={defaultValues.includes(item.id) } type="checkbox" id="{item.id}" name="items" value="documents" /> {item.label}
-                </div>
-              ))}
+        <div className="mb-4">
+            Select the items you want to display in the sidebar.
+        </div>
+        {items.map((item) => (
+          <div className="Documents">
+            <input onChange={form.handleChange} defaultChecked ={defaultValues.includes(item.id) } type="checkbox" id="{item.id}" name="items" value="documents" /> {item.label}
+          </div>
+        ))}
         <button type="submit">Update display</button>
       </form>
     
