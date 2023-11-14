@@ -14,6 +14,17 @@ export default function UpgradeProModal(){
   const [openModal, setOpenModal] = useState(false)
   const [perYear, setPerYear] = useState(false);
 
+  const handleCloseModal = () => {
+    if (openModal){
+      setOpenModal(false);
+      setTimeout(() => {
+        setPerYear(false)
+      }, 100)
+    } else {
+      setOpenModal(true);
+    }
+  }
+
   const handlePerYear = () => {
     setPerYear(!perYear)
   }
@@ -42,7 +53,7 @@ export default function UpgradeProModal(){
   ]
 
   return (
-    <Dialog open={openModal} onOpenChange={setOpenModal}>
+    <Dialog open={openModal} onOpenChange={handleCloseModal}>
       <DialogTrigger>
         <Button variant='ghost' className='text-[#006AFF] hover:text-[#006AFF] hover:bg-transparent gap-x-2 text-xs flex items-center font-normal'>
           <LightningBoltIcon color='#006AFF'/>
@@ -71,7 +82,7 @@ export default function UpgradeProModal(){
 
                 <div className='mt-6 flex flex-col gap-y-[18px]'>
                   <div className='flex gap-x-3 items-center'>
-                    <Switch onCheckedChange={openModal === true ? setPerYear : null} />
+                    <Switch onCheckedChange={handlePerYear} />
                     <Badge variant='destructive'>Yearly save - ฿ 990</Badge>
                   </div>
                   <div className='flex gap-x-2'>

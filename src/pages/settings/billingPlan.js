@@ -49,7 +49,6 @@ export default function BillingPlan() {
     }
   });
 
-
   const [billingAddress,setbilligAddress]=useState(null)
   const fetchBilling = async()=> {
     console.log( )
@@ -59,8 +58,6 @@ export default function BillingPlan() {
   useEffect(()=>{
     fetchBilling() 
   },[])
-
-
 
   return (
     <>

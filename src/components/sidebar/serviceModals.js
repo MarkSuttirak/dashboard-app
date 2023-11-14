@@ -6,8 +6,44 @@ import { Button } from "../ui/button";
 import ServicePrivileges from "./servicePrivileges";
 import { ServiceBadge } from "./serviceBadge";
 import DrawLine from "../drawLine";
+import { useEffect } from "react";
+import { BellIcon, EyeNoneIcon } from "@radix-ui/react-icons";
+
+const privileges = [
+  {
+    icon:<BellIcon className="mt-1" color='#09090B' width='20' height='20'/>,
+    title:'Super Admin',
+    desc:'Can access billing and members'
+  },
+  {
+    icon:<EyeNoneIcon className="mt-1" color='#09090B' width='20' height='20'/>,
+    title:'Remove',
+    desc:'Turn off all notifications'
+  },
+  {
+    icon:<BellIcon className="mt-1" color='#09090B' width='20' height='20'/>,
+    title:'Super Admin',
+    desc:'Can access billing and members'
+  },
+  {
+    icon:<EyeNoneIcon className="mt-1" color='#09090B' width='20' height='20'/>,
+    title:'Remove',
+    desc:'Turn off all notifications'
+  }
+]
 
 export default function ServiceModals(){
+  useEffect(() => {
+    const items = privileges.map((item) => {
+      if (item.title == 'Remove' || item.title == 'Supertest'){
+        return item
+      } else {
+        return undefined
+      }
+    })
+    console.log(items.filter((item) => item !== undefined))
+  }, [])
+
   return (
     <>
       {serviceMenus.map((d, index) => (
@@ -18,7 +54,6 @@ export default function ServiceModals(){
               <DialogHeader className='flex-row'>
                 <DialogTitle className='relative'>
                   <img src={d.image} className='rounded-l-lg h-full w-[800px]'/>
-
                   <div className="absolute left-5 bottom-5 flex gap-x-2 items-center">
                     <Button variant='link' className='text-white text-xs p-0 h-fit'>Privacy Policy</Button>
                     <DrawLine color='#FFF' width='1px' height='14px'/>
@@ -32,9 +67,9 @@ export default function ServiceModals(){
                       <h1 className="main-heading tracking-[-0.6px] mt-3 mb-2">{d.title}</h1>
                       <p>{d.desc}</p>
                       <ul className="mt-6 gap-y-[17px] flex flex-col px-2">
-                        {d.privileges.map(p => (
-                          <ServicePrivileges icon={p.icon} title={p.title} desc={p.desc}/>
-                        ))}
+                        {privileges.map(p => {
+                          return (<ServicePrivileges key={index} icon={p.icon} title={p.title} desc={p.desc}/>)
+                        })}
                       </ul>
                     </section>
                     <section>

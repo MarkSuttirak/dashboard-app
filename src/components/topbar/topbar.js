@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { BellIcon, LightningBoltIcon, EyeNoneIcon } from '@radix-ui/react-icons'
-import VerticalLine from '../drawLine'
+import DrawLine from '../drawLine'
 import { useLocation } from 'react-router-dom'
 import UpgradeProModal from './upgradeProModal'
 import SearchBar from './searchBar'
@@ -22,7 +22,7 @@ export default function Topbar({isSidebarOpen, hasNoLeftSidebar}){
           <BellIcon color='#7D7D7D' width='21' height='21'/>
         </div>
 
-        <VerticalLine color='#E4E4E7' size={1} height="24px"/>
+        <DrawLine color='#E4E4E7' width='1px' height="24px"/>
 
         <div className='px-3 flex gap-x-5 items-center'>
           <HelpMenu />
