@@ -16,17 +16,19 @@ import { ServiceBadge } from './sidebar/serviceBadge'
 import ServicePrivileges from './sidebar/servicePrivileges'
 import { Link } from 'react-router-dom'
 
-export default function Topbar({isSidebarOpen}){
+export default function Topbar({isSidebarOpen, hasNoLeftSidebar}){
   const { user, auth, logout } = useUser();
   const location = useLocation()
   const [currentPage, setCurrentPage] = useState('Zaviago WorkSpace')
+
+  const [startPro, setStartPro] = useState(false);
 
   const { data: sites } = useQuery('sites', site.list, {
     enabled: !!user,
   });
 
   return (
-    <div className={`topbar ${isSidebarOpen ? 'active' : 'inactive'}`}>
+    <div className={`topbar${isSidebarOpen ? ' active' : ' inactive'}${hasNoLeftSidebar ? 'no-sidebar' : ''}`}>
       <h2 className='subheading font-medium'>{currentPage}</h2>
       <section className='flex items-center'>
         <Dialog>
@@ -57,11 +59,11 @@ export default function Topbar({isSidebarOpen}){
                     </ul>
                   </section>
                   <section>
-                    <Button className='btn-with-icon w-full mb-[7px]'>
+                    <Button className='btn-with-icon w-full mb-[7px]' onClick={() => setStartPro(true)}>
                       <LightningBoltIcon />
                       Upgrade to Pro
                     </Button>
-                    <p className="main-desc">See all features in <Link className="text-[#006AFF]">App store Detail</Link></p>
+                    <p className="main-desc">By Payment you accept its <Link className="text-[#006AFF]">Privacy Policy</Link></p>
                   </section>
                 </div>
               </DialogDescription>

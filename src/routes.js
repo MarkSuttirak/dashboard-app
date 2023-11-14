@@ -16,6 +16,7 @@ import Teams from './pages/teams/teams';
 import NotFoundPage from './pages/404';
 import AppStore from './pages/integration/appstore';
 import SingleApp from './pages/integration/singleapp';
+import PaymentPage from './pages/payment';
 
 // ----------------------------------------------------------------------
 
@@ -38,6 +39,10 @@ export default function Router() {
                 { path: 'settings/:id', element: <Settings /> },
                 { path: 'teams/:id', element: <Teams /> },
             ],
+        },
+        {
+            path: '/payment',
+            element: <PaymentPage />
         },
         {
             path: '/integration',

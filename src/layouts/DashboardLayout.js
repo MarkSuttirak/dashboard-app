@@ -11,7 +11,7 @@ export default function DashboardLayout() {
       {location.pathname !== '/dashboard/instance-configuration' ? (
         <>
           <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen}/>
-          <Topbar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen}/>
+          <Topbar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} hasNoLeftSidebar={false}/>
           <div className={`page-section ${isSidebarOpen ? 'active' : 'inactive'}`}>
             <Outlet />
           </div>
