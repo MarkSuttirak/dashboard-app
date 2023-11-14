@@ -12,7 +12,7 @@ export default function PaymentInfo(){
   const [promoAdded, setPromoAdded] = useState(false)
 
   return (
-    <section className="p-10">
+    <section className="p-10 w-full">
       <h2 className="main-desc">Subscribe to Professional together</h2>
       <div className="mt-3 flex gap-x-[10px] items-center">
         <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px]">฿ 7,900</h1>

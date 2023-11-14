@@ -2,6 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import Topbar from "src/components/topbar/topbar";
 import PaymentInfo from "./paymentInfo";
+import PaymentForm from "./paymentForm";
 
 export default function PaymentPage(){
   return (
@@ -16,12 +17,9 @@ export default function PaymentPage(){
             <h1 className="main-heading">Payment</h1>
           </div>
 
-          <main className="mt-[44px]">
+          <main className="mt-[44px] flex gap-x-10">
             <PaymentInfo />
-
-            <section>
-
-            </section>
+            <PaymentForm />
           </main>
         </div>
       </div>

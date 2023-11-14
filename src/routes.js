@@ -16,7 +16,7 @@ import Teams from './pages/teams/teams';
 import NotFoundPage from './pages/404';
 import AppStore from './pages/integration/appstore';
 import SingleApp from './pages/integration/singleapp';
-import PaymentPage from './pages/payment';
+import PaymentPage from './pages/payment/payment';
 
 // ----------------------------------------------------------------------
 
