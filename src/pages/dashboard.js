@@ -148,7 +148,7 @@ export default function Dashboard(){
 
       <section className="mt-6">
         <div className="grid grid-cols-1 md:flex gap-6 md:gap-x-[15px]">
-          <Card className='w-[60%]'>
+          <Card className='w-[60%] shadow-none'>
             <CardHeader className='pb-2 flex flex-col xl:flex-row xl:items-center justify-between'>
               <div>
                 <CardTitle className='subheading font-medium'>Your WorkSpace</CardTitle>
@@ -168,7 +168,8 @@ export default function Dashboard(){
               </div>
             </CardContent>
           </Card>
-          <Card className='w-[40%] flex flex-col justify-between'>
+
+          <Card className='w-[40%] flex flex-col justify-between shadow-none'>
             <CardHeader className='pb-2 flex flex-col xl:flex-row xl:items-start justify-between'>
               <div>
                 <CardTitle className='domain-heading'>Free trial</CardTitle>
