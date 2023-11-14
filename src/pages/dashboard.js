@@ -168,6 +168,7 @@ export default function Dashboard(){
               </div>
             </CardContent>
           </Card>
+
           <Card className='w-[40%] flex flex-col justify-between shadow-none'>
             <CardHeader className='pb-2 flex flex-col xl:flex-row xl:items-start justify-between'>
               <div>

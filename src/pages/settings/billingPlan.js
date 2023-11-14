@@ -72,7 +72,7 @@ export default function BillingPlan() {
             <p className="secondary-heading">{sites?.site_list[0].name}</p>
           </div>
 
-          <Button variant='secondary' className='btn-with-icon leading-5' onClick={() => window.location.href = `http://${sites?.site_list[0].name}`}>
+          <Button variant='secondary' className='btn-with-icon leading-5' onClick={() => window.location.href = `/dashboard/settings/plan-upgrade`}>
             <Zap viewBox='0 0 24 24' width='16' height='16'/>
             Upgrade to Pro
             <VerticalLine color='#E4E4E7' height="80%" size={1}/>

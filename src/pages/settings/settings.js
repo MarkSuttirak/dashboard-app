@@ -3,6 +3,7 @@ import { Separator } from "../../components/ui/separator";
 import AccountForm from "./accountForm";
 import { useState } from "react";
 import BillingPlan from "./billingPlan";
+import PlanUpgrades from "./planUpgrade";
 import NotificationsForm from "./notifications";
 import DisplayForm from "./display";
 import PagesMenus from "src/components/pagesMenus";
@@ -21,7 +22,7 @@ const sidebarNavItems = [
   {
     title: "Notifications",
     href: "/dashboard/settings/notifications",
-  },
+  }
 ]
 
 export default function Settings(){
@@ -33,6 +34,15 @@ export default function Settings(){
 
       <main className="flex gap-x-10 mt-8">
         <PagesMenus menus={sidebarNavItems} />
+        
+        {id === 'plan-upgrade' && (
+          <section className="w-[672px]">
+            <PlanUpgrades />
+          </section>
+        )}
+
+
+        
         {id === 'account' && (
           <section className="w-[672px]">
             <h2 className="secondary-heading">Account</h2>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import chevronDown from '../img/chevron-down.png'
 import closeIcon from '../img/closeIcon.png'
 import MFrame from '../img/MFrame.png'
 import addPlus from '../img/addPlus.png'
@@ -7,8 +6,7 @@ import ZFrame from '../img/ZFrame.png'
 import errorIcon from '../img/errorIcon.png'
 import IFrame from '../img/IFrame.png'
 
-function UserViewPopup({ closePopUp2 }) {
-
+export default function UserViewPopup({ closePopUp2 }) {
     const [input, setInput] = useState('')
 
     const handleClosePopup = () => {
@@ -119,5 +117,3 @@ function UserViewPopup({ closePopUp2 }) {
         </>
     )
 }
-
-export default UserViewPopup
