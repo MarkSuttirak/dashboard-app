@@ -18,7 +18,7 @@ import {
   DialogTrigger,
 } from "src/components/ui/dialog"
 import { useState } from "react"
-import { AppStoreApp02, SidebarApp03, SidebarApp04 } from "src/components/sidebarApps"
+import { AppStoreApp02, POSApp, SidebarApp04 } from "src/components/sidebar/sidebarApps"
 
 export default function SingleApp(){
   const { id } = useParams()
@@ -64,7 +64,7 @@ export default function SingleApp(){
                             <AppStoreApp02 />
                           </div>
                           <div className="p-3 rounded-lg bg-white inline-block shadow-lg">
-                            <SidebarApp03 width='52' height='52'/>
+                            <POSApp width='52' height='52'/>
                           </div>
                         </DialogTitle>
                       </div>

@@ -1,10 +1,10 @@
-import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "../components/ui/command"
-import { Popover, PopoverContent, PopoverTrigger } from "../components/ui/popover"
+import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "../ui/command"
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 import { useState } from "react"
-import { cn } from "../lib/utils"
-import { Button } from "../components/ui/button"
+import { cn } from "../../lib/utils"
+import { Button } from "../ui/button"
 import { ChevronRight, PlusCircle, Shuffle, UserPlus, Users, Check, ChevronsUpDown } from "lucide-react"
-import ZaviagoIcon from "./icon-menus/ZaviagoIcon";
+import ZaviagoIcon from "../icon-menus/ZaviagoIcon";
 
 export default function SidebarShortcut(){
   const [open, setOpen] = useState(false)

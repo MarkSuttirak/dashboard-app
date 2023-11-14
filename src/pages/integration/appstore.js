@@ -2,7 +2,7 @@ import { ButtonAppStoreImage01, ButtonAppStoreImage02, ButtonAppStoreImage03, Bu
 import { useState } from 'react'
 import appstoreBg from 'src/img/appstore-detail-bg.png'
 import frappePreview from 'src/img/frappe-preview.png'
-import { AppStoreApp01, SidebarApp01 } from "src/components/sidebarApps"
+import { AppStoreApp01, ERPApp } from "src/components/sidebar/sidebarApps"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "src/components/ui/card"
 import { Separator } from "src/components/ui/separator"
 import { Button } from "src/components/ui/button"
@@ -92,7 +92,7 @@ export default function AppStore(){
             <img src={frappePreview} className="inline-block pt-[34px] pl-[34px]"/>
 
             <article className="p-6">
-              <SidebarApp01 />
+              <ERPApp />
               <h2 className="text-sm font-semibold tracking-[-0.35px] my-[11px]">Create project</h2>
               <p className="text-[#71717A] text-sm">Deploy your new project in one-click.</p>
             </article>
@@ -101,7 +101,7 @@ export default function AppStore(){
             <img src={frappePreview} className="inline-block pt-[34px] pl-[34px]"/>
 
             <article className="p-6">
-              <SidebarApp01 />
+              <ERPApp />
               <h2 className="text-sm font-semibold tracking-[-0.35px] my-[11px]">Create project</h2>
               <p className="text-[#71717A] text-sm">Deploy your new project in one-click.</p>
             </article>

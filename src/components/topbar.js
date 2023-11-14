@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Button } from './ui/button'
 import { BadgeInfo, BookCopy, ChevronDown, ClipboardList, Info, MessageCircle, Zap, User, Keyboard, Layout, LogOut, Search, BadgeHelp } from 'lucide-react'
-import { BellIcon, LightningBoltIcon } from '@radix-ui/react-icons'
+import { BellIcon, LightningBoltIcon, EyeNoneIcon } from '@radix-ui/react-icons'
 import VerticalLine from './verticalLine'
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog"
@@ -11,6 +11,10 @@ import { useUser } from '../hooks/useUser'
 import { useMutation, useQuery } from "react-query";
 import { site } from "../client/api";
 import { useLocation } from 'react-router-dom'
+import upgradeProBg from 'src/img/upgrade-pro-bg.png'
+import { ServiceBadge } from './sidebar/serviceBadge'
+import ServicePrivileges from './sidebar/servicePrivileges'
+import { Link } from 'react-router-dom'
 
 export default function Topbar({isSidebarOpen}){
   const { user, auth, logout } = useUser();
@@ -24,13 +28,47 @@ export default function Topbar({isSidebarOpen}){
   return (
     <div className={`topbar ${isSidebarOpen ? 'active' : 'inactive'}`}>
       <h2 className='subheading font-medium'>{currentPage}</h2>
-
       <section className='flex items-center'>
-        <Button variant='ghost' className='text-[#006AFF] hover:text-[#006AFF] hover:bg-transparent gap-x-2 text-xs flex items-center font-normal'>
-          <LightningBoltIcon color='#006AFF'/>
-          Upgrade to Pro
-        </Button>
-{/* <VerticalLine color='#E4E4E7' size={1} height="32px"/> */}
+        <Dialog>
+          <DialogTrigger>
+            <Button variant='ghost' className='text-[#006AFF] hover:text-[#006AFF] hover:bg-transparent gap-x-2 text-xs flex items-center font-normal'>
+              <LightningBoltIcon color='#006AFF'/>
+              Upgrade to Pro
+            </Button>
+          </DialogTrigger>
+          <DialogContent className='p-0 border-0 max-w-4xl'>
+            <DialogHeader className='flex-row'>
+              <DialogTitle>
+                <img src={upgradeProBg} className='rounded-l-lg h-full w-[800px]'/>
+              </DialogTitle>
+              <DialogDescription className='px-10 pt-6 pb-10 shadow-lg'>
+                <div className="flex flex-col justify-between h-full">
+                  <section>
+                    <div className='flex items-center justify-between mb-2'>
+                      <h1 className="main-heading tracking-[-0.6px]">Professional</h1>
+                      <ServiceBadge text='Recommended'/>
+                    </div>
+                    <p>Access exclusive tools to help you build client sites and scale your business</p>
+                    <ul className="mt-6 gap-y-[17px] flex flex-col px-2">
+                      <ServicePrivileges icon={<BellIcon className="mt-1" color='#09090B' width='20' height='20'/>} title='Super Admin' desc='Can access billing and members'/>
+                      <ServicePrivileges icon={<EyeNoneIcon className="mt-1" color='#09090B' width='20' height='20'/>} title='Remove' desc='Turn off all notifications'/>
+                      <ServicePrivileges icon={<BellIcon className="mt-1" color='#09090B' width='20' height='20'/>} title='Super Admin' desc='Can access billing and members'/>
+                      <ServicePrivileges icon={<EyeNoneIcon className="mt-1" color='#09090B' width='20' height='20'/>} title='Remove' desc='Turn off all notifications'/>
+                    </ul>
+                  </section>
+                  <section>
+                    <Button className='btn-with-icon w-full mb-[7px]'>
+                      <LightningBoltIcon />
+                      Upgrade to Pro
+                    </Button>
+                    <p className="main-desc">See all features in <Link className="text-[#006AFF]">App store Detail</Link></p>
+                  </section>
+                </div>
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+
         <div className='pr-6 flex gap-x-5 items-center'>
           <Dialog>
             <DialogTrigger className='bg-zinc-100 rounded-md px-2 py-[6px] text-[13px] h-7 flex items-center w-[300px] text-zinc-500 tracking-[0.02em] gap-x-[9px] leading-5'>

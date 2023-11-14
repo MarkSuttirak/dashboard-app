@@ -1,4 +1,4 @@
-import { AppStoreApp01, SidebarApp01 } from "src/components/sidebarApps"
+import { AppStoreApp01, SidebarApp01 } from "src/components/sidebar/sidebarApps"
 import { CheckCircle2, Crown } from "lucide-react"
 import mockapp1 from 'src/img/mockapp1.png'
 import mockapp2 from 'src/img/mockapp2.png'
