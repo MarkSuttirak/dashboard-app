@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../css/sidebar-dropdown.css";
 import { useUser } from "../hooks/useUser";
 import SidebarShortcut from "./sidebarShortcut";
-import { Home, ListMinus, PlusCircle, Settings, Search, Bell, Users, Zap, UserCircle, LayoutGrid, Layout, ClipboardList, Package, ChevronDown, Group, Baseline, Clipboard, CheckCircle, CheckCircle2, UserSquare, Mailbox, Milestone, PackagePlus, ClipboardPaste } from "lucide-react";
+import { Home, ListMinus, PlusCircle, Settings, Search, Bell, Users, Zap, UserCircle, LayoutGrid, Layout, ClipboardList, Package, ChevronDown, Group, Baseline, Clipboard, CheckCircle, CheckCircle2, UserSquare, Mailbox, Milestone, PackagePlus, ClipboardPaste, Crown } from "lucide-react";
 import { Button } from "./ui/button";
 import { BellIcon, CheckCircledIcon, LightningBoltIcon } from "@radix-ui/react-icons";
 import { SidebarApp01, SidebarApp02, SidebarApp03, SidebarApp04, SidebarApp05, SidebarApp06, SidebarApp07, SidebarApp08, SidebarApp09, SidebarApp10 } from "./sidebarApps";
@@ -19,6 +19,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "src/components/ui/dialog"
+import { Badge } from "./ui/badge";
+import ServiceModals from "./serviceModals";
 
 const apps = [<SidebarApp01 />, <SidebarApp02 />, <SidebarApp03 />, <SidebarApp04 />, <SidebarApp05 />, <SidebarApp06 />, <SidebarApp07 />, <SidebarApp08 />, <SidebarApp09 />, <SidebarApp10 />]
 
@@ -123,24 +125,9 @@ const Sidebar = ({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) => {
         <div className="nav-btns" id="home-btn" onClick={() => setIsSidebarOpen(true)}>
           <Home color='#18181B' viewBox='0 0 24 24' width='16' height='16'/>
         </div>
-        {apps.map((a) => (
-          <div className="nav-btns add-ons">
-            <Dialog>
-              <DialogTrigger>{a}</DialogTrigger>
-              <DialogContent className='p-0'>
-                <DialogHeader>
-                  <DialogTitle>
-                    <img src={proplan1} />
-                  </DialogTitle>
-                  <DialogDescription>
-                    This action cannot be undone. This will permanently delete your account
-                    and remove your data from our servers.
-                  </DialogDescription>
-                </DialogHeader>
-              </DialogContent>
-            </Dialog>
-          </div>
-        ))}
+
+        <ServiceModals />
+
         <div className="nav-btns add">
           <PlusCircle color='#18181B' viewBox='0 0 24 24' width='16' height='16'/>
         </div>

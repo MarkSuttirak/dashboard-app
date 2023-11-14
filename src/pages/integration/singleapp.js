@@ -50,13 +50,13 @@ export default function SingleApp(){
                 </Button>
               ) : (
                 <Dialog>
-                  <DialogTrigger>
+                  <DialogTrigger asChild>
                     <Button className='btn-with-icon'>
                       <PlusCircledIcon />
                       Add to site
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className='p-0 max-w-[368px]'>
+                  <DialogContent className='p-0 max-w-[368px] border-0 gap-0'>
                     <DialogHeader>
                       <div className='rounded-t-lg' style={{background:`url(${installAppBg})`,backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
                         <DialogTitle className='flex justify-center gap-x-[55px] py-[50px]'>
@@ -68,25 +68,25 @@ export default function SingleApp(){
                           </div>
                         </DialogTitle>
                       </div>
-                      <DialogDescription className='p-6 mt-[0!important]'>
-                        <h1 className="secondary-heading tracking-[-0.4px] mb-3">{installHeading}</h1>
-                        <p>The app will be able to read the email address you use to log in with Zaviago.</p>
-
-                        <Button className='btn-with-icon text-[#006AFF] font-normal w-full mt-6 justify-start' variant='secondary'>
-                          <Key viewBox="0 0 24 24" width='16' height='16' color='#006AFF'/>
-                          Privacy Policy and Terms of Service.
-                        </Button>
-
-                        <div className="flex items-center justify-between mt-6">
-                          <DialogClose>
-                            <Button variant='outline'>Cancel</Button>
-                          </DialogClose>
-                          <Button onClick={() => {
-                            setInstallHeading('Installing app')
-                          }}>Install apps</Button>
-                        </div>
-                      </DialogDescription>
                     </DialogHeader>
+                    <DialogDescription className='p-6 mt-[0!important]'>
+                      <h1 className="secondary-heading tracking-[-0.4px] mb-3">{installHeading}</h1>
+                      <p>The app will be able to read the email address you use to log in with Zaviago.</p>
+
+                      <Button className='btn-with-icon text-[#006AFF] font-normal w-full mt-6 justify-start' variant='secondary'>
+                        <Key viewBox="0 0 24 24" width='16' height='16' color='#006AFF'/>
+                        Privacy Policy and Terms of Service.
+                      </Button>
+
+                      <div className="flex items-center justify-between mt-6">
+                        <DialogClose>
+                          <Button variant='outline'>Cancel</Button>
+                        </DialogClose>
+                        <Button onClick={() => {
+                          setInstallHeading('Installing app')
+                        }}>Install apps</Button>
+                      </div>
+                    </DialogDescription>
                   </DialogContent>
                 </Dialog>
               )}
