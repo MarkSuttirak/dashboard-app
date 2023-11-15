@@ -47,16 +47,22 @@ export default function Dashboard(){
   const { data: sites } = useQuery('sites', site.list, {
     enabled: !!user,
   });
-  const { data: siteOverview } = useQuery(['site', `${sites?.site_list[0].name}`], () => site.overview(sites?.site_list[0].name), {
-    enabled: !!sites?.site_list.length,
-    onSuccess: (res) => {
-      if(res?.domains[0]?.name){
-        loginAsAdmin({ name: res?.domains[0]?.name, reason: "Login as admin" })
-      }
+
+  useEffect(() => {
+    if (sites?.site_list[0].name) {
+      loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })
     }
-  }
-  
-  );
+  }, [sites?.site_list[0].name]);
+
+
+  // const { data: siteOverview } = useQuery(['site', `${sites?.site_list[0].name}`], () => site.overview(sites?.site_list[0].name), {
+  //   enabled: !!sites?.site_list.length,
+  //   onSuccess: (res) => {
+  //     if(res?.domains[0]?.name){
+  //       loginAsAdmin({ name: res?.domains[0]?.name, reason: "Login as admin" })
+  //     }
+  //   }
+  // });
   
   const { mutate: loginAsAdmin } = useMutation('loginAsAdmin', ({ name, reason }) => site.loginAsAdmin(name, reason), {
     onSuccess: (res) => {
