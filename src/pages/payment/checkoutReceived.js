@@ -1,10 +1,9 @@
 import { Card, CardContent, CardFooter, CardHeader } from "src/components/ui/card";
-import Topbar from "src/components/topbar/topbar";
-import 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js'
+// import 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js'
 import { Link } from "react-router-dom";
 import { Separator } from "src/components/ui/separator";
 import { Button } from "src/components/ui/button";
-import { BadgeCheck } from "lucide-react";
+import { BadgeCheck, CheckCircle2 } from "lucide-react";
 
 export default function CheckoutReceived(){
   return (
@@ -12,7 +11,8 @@ export default function CheckoutReceived(){
       <div className="page-section max-w-[580px] mx-auto">
         <Card className='justify-center p-0'>
           <CardHeader className='p-10'>
-            <lottie-player src="https://lottie.host/35c8156d-ab67-4f80-9372-797e1c8dd147/lMQYkT9cd9.json" background="transparent" speed="1" style={{width:"80px",height:"80px",margin:"auto"}} direction="1" mode="normal" autoplay></lottie-player>
+            <CheckCircle2 color='#22CC88' viewBox='0 0 24 24' width='80' height='80' className="mx-auto"/>
+            {/* <lottie-player src="https://lottie.host/35c8156d-ab67-4f80-9372-797e1c8dd147/lMQYkT9cd9.json" background="transparent" speed="1" style={{width:"80px",height:"80px",margin:"auto"}} direction="1" mode="normal" autoplay></lottie-player> */}
             <h1 className="text-[36px] font-extrabold tracking-[-0.9px] leading-[40px] text-center text-[#09090B]">We have received your information 🎉</h1>
             <p className="mt-[12px!important] secondary-desc text-center">Thank you for notifying us of your payment. We will investigate quickly within 6 hours.</p>
             <p className="main-desc mt-[24px!important] text-center">
@@ -46,7 +46,7 @@ export default function CheckoutReceived(){
             </table>
           </CardContent>
           <CardFooter className='pb-10 px-10'>
-            <Button className='btn-with-icon w-full'>
+            <Button className='btn-with-icon w-full' onClick={() => window.location.href="/"}>
               <BadgeCheck viewBox="0 0 24 24" width='16' height='16'/>
               Back to Workspace
             </Button>

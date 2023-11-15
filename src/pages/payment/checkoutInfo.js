@@ -24,7 +24,7 @@ export default function CheckoutInfo({paymentConfirm, setPaymentConfirm}){
   return (
     <section className="w-full">
       <h2 className="secondary-heading">Purchase detail</h2>
-      <p className="main-desc">If you need to edit billing information of tax invoice issurance or modify your order, please press 'Back' button to cancel the current order.</p>
+      <p className="main-desc">If you need to edit billing information of tax invoice issuance or modify your order, please press 'Back' button to cancel the current order.</p>
 
       <Separator className='my-6'/>
 

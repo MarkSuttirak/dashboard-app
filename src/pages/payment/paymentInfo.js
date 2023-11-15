@@ -15,10 +15,10 @@ export default function PaymentInfo(){
   const [couponCode, setCouponCode] = useState('')
   const [couponExplanation, setCouponExplanation] = useState('');
   const [subtotal, setSubtotal] = useState(750)
-  const [discount, setDiscount] = useState(0)
   const [perYear, setPerYear] = useState(false);
+  const [discount, setDiscount] = useState(0)
 
-  const vat = Math.floor(subtotal * 0.07);
+  const vat = Math.floor(subtotal * 0.07)
 
   const handlePerYear = () => {
     setPerYear(!perYear)
@@ -38,7 +38,7 @@ export default function PaymentInfo(){
         setCouponExplanation('Discount 10 %')
         break
       default:
-        setDiscount(0);
+        setDiscount(0)
         setCouponExplanation('This coupon is invalid.')
     }
   }
@@ -80,11 +80,11 @@ export default function PaymentInfo(){
             <div className="flex gap-x-3 items-center">
               <div className="bg-[#27272A] w-[50px] h-[50px] rounded-md"/>
               <div>
-                <CardTitle>{subtotal} Baht / Year / User</CardTitle>
+                <CardTitle>{subtotal.toLocaleString()} Baht / Year / User</CardTitle>
                 <CardDescription>Discount 10%</CardDescription>
               </div>
             </div>
-            <p className="subheading">฿ {subtotal}</p>
+            <p className="subheading">฿ {subtotal.toLocaleString()}</p>
           </CardHeader>
           <CardFooter className='border-t bg-muted-50 py-4 px-3 bg-zinc-100/50 justify-between'>
             <div className="flex items-center gap-x-3">
@@ -92,7 +92,7 @@ export default function PaymentInfo(){
               <Badge variant='outline' className='bg-white'>Yearly save - ฿ 1,500</Badge>
               <p className="subheading">Yearly plan</p>
             </div>
-            <p className="subheading">฿ 7,900/year</p>
+            <p className="subheading">฿ {subtotal.toLocaleString()}/year</p>
           </CardFooter>
         </Card>
 

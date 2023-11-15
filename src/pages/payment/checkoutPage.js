@@ -12,13 +12,13 @@ export default function CheckoutPage(){
   return (
     <>
       {paymentConfirm ? (
-        <div className="max-w-[580px] mx-auto">
+        <div className="max-w-[500px] mx-auto">
           <Payment linkBack={() => setPaymentConfirm(false)} className="mt-[44px]">
             <CheckoutConfirm />
           </Payment>
         </div>
       ) : (
-        <Payment linkBack={() => navigate('/payment')} className="mt-[44px] flex gap-x-10">
+        <Payment linkBack={() => navigate('/payment')} className="mt-[44px] flex gap-x-[120px]">
           <CheckoutScan />
           <CheckoutInfo paymentConfirm={paymentConfirm} setPaymentConfirm={setPaymentConfirm}/>
         </Payment>
