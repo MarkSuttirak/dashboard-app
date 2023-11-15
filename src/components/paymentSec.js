@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 export default function Payment({children, linkBack, className}){
   return (
     <>
-      <Topbar isSidebarOpen={false} hasNoLeftSidebar={true}/>
-      <div className="page-section">
+      <div className="mt-[60px]">
         <div className="dashboard-container">
           <div className="flex items-center gap-x-3">
             <button onClick={linkBack}>

@@ -6,7 +6,7 @@ import { Copy } from "lucide-react";
 
 export default function CheckoutScan(){
   return (
-    <section>
+    <section className="w-full">
       <Card className='p-10 shadow-none'>
         <div className="flex gap-x-4 items-center justify-center mb-6">
           <img src={thaiqrpayment} className="w-fit"/>
