@@ -83,7 +83,7 @@ export default function UpgradeProModal(){
                 <div className='mt-6 flex flex-col gap-y-[18px]'>
                   <div className='flex gap-x-3 items-center'>
                     <Switch onCheckedChange={handlePerYear} />
-                    <Badge variant='destructive'>Yearly save - ฿ 990</Badge>
+                    <Badge variant='outline'>Yearly save - ฿ 990</Badge>
                   </div>
                   <div className='flex gap-x-2'>
                     <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px]">{perYear ? '฿ 7,500' : '฿ 750'}</h1>
@@ -98,10 +98,12 @@ export default function UpgradeProModal(){
                 </ul>
               </section>
               <section>
-                <Button className='btn-with-icon w-full mb-[7px]'>
-                  <LightningBoltIcon />
-                  Upgrade to Pro
-                </Button>
+                <Link to='/payment'>
+                  <Button className='btn-with-icon w-full mb-[7px]'>
+                    <LightningBoltIcon />
+                    Upgrade to Pro
+                  </Button>
+                </Link>
                 <p className="main-desc">See more details at <Link className="text-[#006AFF]">Compare Plan</Link></p>
               </section>
             </div>

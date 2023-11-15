@@ -13,8 +13,8 @@ import { UploadCloud } from "lucide-react";
 export default function CheckoutConfirm(){
   return (
     <section>
-      <h2 className="secondary-heading">Confirm of payment</h2>
-      <p className="main-desc">Update your account settings. Set your preferred language and timezone.</p>
+      <h2 className="secondary-heading">Verify the payment</h2>
+      <p className="main-desc">Please attach the transfer receipt. The image of the transfer receipt should not have anything obstructing the QR code. If your transfer receipt does not have a QR code, we will verify your payment within 6 hours.</p>
 
       <Separator className='my-6'/>
 
@@ -23,7 +23,7 @@ export default function CheckoutConfirm(){
           <div className="space-y-6 w-full">
             <div className="anim-up flex flex-col">
               <label className="subheading mb-2">
-                Payment Channel
+                Bank
               </label>
               <Select className='form-input' name="payment-channel" defaultValue="Credit / Debit Card"
                 // onChange={form.handleChange} defaultValue={preloadedValues.email}
@@ -45,8 +45,8 @@ export default function CheckoutConfirm(){
                 Total
               </label>
               <Input
-                placeholder="฿ 750"
-                className="form-input"
+                value='฿ 750'
+                className="form-input px-[12px!important]"
                 name="total"
                 type='text'
                 // onChange={form.handleChange}
@@ -76,7 +76,7 @@ export default function CheckoutConfirm(){
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
                   <Calendar
-                    mode="single"
+                    // mode="single"
                     // selected={preloadedValues.dob}
                     // onSelect={preloadedValues.dob}
                     // onChange={form.handleChange}
@@ -134,9 +134,9 @@ export default function CheckoutConfirm(){
             </label>
           </div>
         </div>
-        <Button type='submit' className='btn-with-icon w-full'>
-          <Wallet color='#FFF' viewBox='0 0 24 24' height='16' width='16'/>
-          Continue
+        <Button type='submit' className='btn-with-icon w-full' onClick={() => window.location.href="/checkout-received"}>
+          <Wallet color='#FFF' viewBox='0 0 24 24' height='16' width='16'/> {/* konfirmieren / bestätigen */}
+          Confirm
         </Button>
       </main>
     </section>
