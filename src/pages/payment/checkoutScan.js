@@ -6,7 +6,7 @@ import { Copy } from "lucide-react";
 
 export default function CheckoutScan(){
   return (
-    <>
+    <section>
       <Card className='p-10 shadow-none'>
         <div className="flex gap-x-4 items-center justify-center mb-6">
           <img src={thaiqrpayment} className="w-fit"/>
@@ -23,6 +23,6 @@ export default function CheckoutScan(){
 
         <p className="main-desc text-center mt-6">Scan to pay</p>
       </Card>
-    </>
+    </section>
   )
 }

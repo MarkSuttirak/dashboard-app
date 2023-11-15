@@ -18,6 +18,7 @@ import AppStore from './pages/integration/appstore';
 import SingleApp from './pages/integration/singleapp';
 import PaymentPage from './pages/payment/payment';
 import CheckoutPage from './pages/payment/checkoutPage';
+import CheckoutReceived from './pages/payment/checkoutReceived';
 
 // ----------------------------------------------------------------------
 
@@ -48,6 +49,10 @@ export default function Router() {
         {
             path: '/checkout',
             element: <CheckoutPage />
+        },
+        {
+            path: '/checkout-received',
+            element: <CheckoutReceived />
         },
         {
             path: '/integration',

@@ -1,11 +1,14 @@
 import { Separator } from "src/components/ui/separator";
 import { Tag } from "lucide-react";
+import { Checkbox } from "src/components/ui/checkbox";
+import { Button } from "src/components/ui/button";
+import { Wallet } from "lucide-react";
 
-export default function CheckoutInfo(){
+export default function CheckoutInfo({paymentConfirm, setPaymentConfirm}){
   return (
     <section>
       <h2 className="secondary-heading">Order detail</h2>
-      <p className="secondary-desc">Update your account settings. Set your preferred language and timezone.</p>
+      <p className="main-desc">Update your account settings. Set your preferred language and timezone.</p>
 
       <Separator className='my-6'/>
 
@@ -56,6 +59,19 @@ export default function CheckoutInfo(){
           <th className="text-right font-bold">฿ 790</th>
         </tr>
       </table>
+
+      <div className="mt-10">
+        <div className="flex gap-x-2 mb-5">
+          <Checkbox id='submit-order' className='mt-1'/>
+          <label htmlFor='submit-order' className="main-desc">
+            After submitting your order, you will be redirected to securely complete your purchase.
+          </label>
+        </div>
+        <Button type='submit' className='btn-with-icon w-full' onClick={() => setPaymentConfirm(true)}>
+          <Wallet color='#FFF' viewBox='0 0 24 24' height='16' width='16'/>
+          Continue
+        </Button>
+      </div>
     </section>
   )
 }

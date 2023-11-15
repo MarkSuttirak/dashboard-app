@@ -3,12 +3,13 @@ import { Button } from "src/components/ui/button";
 import { Input } from "src/components/ui/input";
 import { Wallet } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "src/components/ui/select"
 
 export default function PaymentForm(){
   return (
     <section className="w-full">
       <h2 className="secondary-heading">Billing information</h2>
-      <p className="secondary-desc">Update your account settings. Set your preferred language and timezone.</p>
+      <p className="main-desc">Update your account settings. Set your preferred language and timezone.</p>
 
       <Separator className='my-10'/>
 
@@ -51,12 +52,17 @@ export default function PaymentForm(){
               <label className="subheading mb-2">
                 Country <span className="required">*</span>
               </label>
-              <select name="country" className="form-input" 
-                // defaultValue={billingAddress.country} onChange={form.handleChange}
+              <Select className='form-input' name="country" defaultValue="Thailand"
+                // onChange={form.handleChange} defaultValue={preloadedValues.email}
               >
-                <option>Select Country</option>
-                <option>Thailand</option>
-              </select>
+                <SelectTrigger className="w-full">
+                  <SelectValue defaultValue='Thailand'/>
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Select Country">Select Country</SelectItem>
+                  <SelectItem value="Thailand">Thailand</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
           <div className="space-y-6 w-full">
@@ -64,12 +70,17 @@ export default function PaymentForm(){
               <label className="subheading mb-2">
                 State / Province / Region <span className="required">*</span>
               </label>
-              <select name="country" className="form-input" 
-                // defaultValue={billingAddress.country} onChange={form.handleChange}
+              <Select className='form-input' name="province" defaultValue="Bangkok"
+                // onChange={form.handleChange} defaultValue={preloadedValues.email}
               >
-                <option>Select Province</option>
-                <option>Bangkok</option>
-              </select>
+                <SelectTrigger className="w-full">
+                  <SelectValue defaultValue='Bangkok'/>
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Select Province">Select Province</SelectItem>
+                  <SelectItem value="Bangkok">Bangkok</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </div>
@@ -155,10 +166,12 @@ export default function PaymentForm(){
           </div>
         </div>
 
-        <Button type='submit' className='btn-with-icon'>
-          <Wallet color='#FFF' viewBox='0 0 24 24' height='16' width='16'/>
-          Continue
-        </Button>
+        <Link to='/checkout'>
+          <Button type='submit' className='btn-with-icon w-full'>
+            <Wallet color='#FFF' viewBox='0 0 24 24' height='16' width='16'/>
+            Continue
+          </Button>
+        </Link>
 
         <p className="main-desc">By clicking 'Subscribe' you agree to authorise payments pursuant to <Link className="text-[#006AFF]">Privacy Policy</Link>.</p>
       </form>
