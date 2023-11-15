@@ -22,6 +22,7 @@ export default function Dashboard(){
   const [date, setDate] = useState('April 2023')
   const [isMenuCardHover, setIsMenuCardHover] = useState(false)
   const [menuCardIndex, setMenuCardIndex] = useState(0)
+  const [websiteSid, setwebsiteSid] = useState(false)
 
   const handleCardHover = (index) => {
     setIsMenuCardHover(true)
@@ -42,34 +43,58 @@ export default function Dashboard(){
     }
   }, [auth?.onboarding.site_created]);
 
+
   const { data: sites } = useQuery('sites', site.list, {
     enabled: !!user,
   });
 
-  const { data: siteOverview } = useQuery(['site', `${sites?.site_list[0].name}`], () => site.overview(sites?.site_list[0].name), {
-    enabled: !!sites?.site_list.length
-  });
+  useEffect(() => {
+    if (sites?.site_list[0].name) {
+      loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })
+    }
+  }, [sites?.site_list[0].name]);
 
+
+  // const { data: siteOverview } = useQuery(['site', `${sites?.site_list[0].name}`], () => site.overview(sites?.site_list[0].name), {
+  //   enabled: !!sites?.site_list.length,
+  //   onSuccess: (res) => {
+  //     if(res?.domains[0]?.name){
+  //       loginAsAdmin({ name: res?.domains[0]?.name, reason: "Login as admin" })
+  //     }
+  //   }
+  // });
+  
   const { mutate: loginAsAdmin } = useMutation('loginAsAdmin', ({ name, reason }) => site.loginAsAdmin(name, reason), {
     onSuccess: (res) => {
       const { sid, site } = res.data.message;
       if (sid && site) {
-        window.open(`https://${site}/app/home?sid=${sid}`, '_blank');
+        setwebsiteSid(sid);
       }
     }
   });
+
+
+
+  const loginNow = (page) => {
+    var sitetoview = sites?.site_list[0].name;
+    if(websiteSid){
+      window.open(`https://${sitetoview}/app/${page}?sid=${websiteSid}`, '_blank');
+    }
+  }
 
   const newOrManageMenus = [
     {
       title:'Add Product',
       image:<ButtonImage01 shadow={false}/>,
       background:"#EFE3F6",
+      page:"item/new-item-1",
       color:"#EB67FF"
     },
     {
       title:'Shipping',
       image:<ButtonImage02 shadow={false}/>,
       background:"#DDFEF4",
+      page:"item/new-item-1",
       color:"#01545E"
     },
     {
@@ -154,7 +179,7 @@ export default function Dashboard(){
                 <CardTitle className='subheading font-medium'>Your WorkSpace</CardTitle>
                 <CardDescription className="domain-heading">{sites?.site_list[0].name}</CardDescription>
               </div>
-              <Button variant='secondary' className='btn-with-icon leading-5 m-[0!important]' onClick={() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })}>
+              <Button variant='secondary' className='btn-with-icon leading-5 m-[0!important]' onClick={() => loginNow('home')}>
                 <LogIn viewBox="0 0 24 24" width='16' height='16'/>
                 Login as Admin
               </Button>
@@ -214,7 +239,7 @@ export default function Dashboard(){
 
         <div className="flex gap-x-[15px] mt-6">
           {newOrManageMenus.map((n, index) => (
-            <div className="menu-card" key={index} style={{backgroundColor:n.background,color:n.color,boxShadow:isMenuCardHover && menuCardIndex === index ? `0 0 3px ${n.color}` : null}} onMouseEnter={() => handleCardHover(index)} onMouseLeave={handleCardHoverLeave}>
+            <div onClick={() => n.page !== undefined && loginNow(n.page)} className="menu-card" key={index} style={{backgroundColor:n.background,color:n.color,boxShadow:isMenuCardHover && menuCardIndex === index ? `0 0 3px ${n.color}` : null}} onMouseEnter={() => handleCardHover(index)} onMouseLeave={handleCardHoverLeave}>
               {n.image}
               <span className="absolute bottom-4">{n.title}</span>
             </div>

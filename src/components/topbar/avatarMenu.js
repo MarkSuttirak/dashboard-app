@@ -12,6 +12,10 @@ export default function AvatarMenu(){
     enabled: !!user,
   });
 
+  const logoutnow = () => {
+    logout();
+  }
+
   return (
     <Popover>
       <PopoverTrigger>
@@ -41,7 +45,7 @@ export default function AvatarMenu(){
               </CommandItem>
             </CommandGroup>
             <CommandSeparator />
-            <CommandGroup>
+            <CommandGroup onClick={() => logoutnow()}>
               <CommandItem>
                 <LogOut viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
                 Logout
