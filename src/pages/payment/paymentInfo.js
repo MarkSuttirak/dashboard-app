@@ -130,7 +130,7 @@ export default function PaymentInfo(){
                 <td colSpan='2'>
                   {addPromo ? (
                     <div className="flex items-center relative">
-                      <Input className="my-3 w-full" placeholder='Enter your coupon code' onChange={e => setCouponCode(e.target.value)} onKeyDown={e => {e.key === 'Escape' && setAddPromo(false)}}/>
+                      <Input className="my-3 w-full" placeholder='Enter your coupon code' onChange={e => setCouponCode(e.target.value)} onKeyDown={e => {e.key === 'Escape' && setAddPromo(false)}} onBlur={(e) => {e.target.value == '' && setAddPromo(false)}}/>
                       <Button variant='ghost' className={`hover:bg-transparent text-[#006AFF] absolute right-0 ${couponCode !== '' ? 'visible opacity-1 transition-all duration-200' : 'invisible opacity-0 transition-all duration-200'}`} onClick={() => setCoupon(couponCode)}>Apply</Button>
                     </div>
                   ) : (
