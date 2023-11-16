@@ -16,7 +16,8 @@ npm install @headlessui/react\
 npm install @heroicons/react\
 npm install react-slick\
 npm install slick-carousel\
-npm install feather-icons
+npm install feather-icons\
+npm install lottie-react
 
 ### `npm start`
 
