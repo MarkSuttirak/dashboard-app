@@ -17,8 +17,8 @@ import NotFoundPage from './pages/404';
 import AppStore from './pages/integration/appstore';
 import SingleApp from './pages/integration/singleapp';
 import PaymentPage from './pages/payment/payment';
-import CheckoutPage from './pages/payment/checkoutPage';
-import CheckoutReceived from './pages/payment/checkoutReceived';
+import CheckoutPage from './pages/checkout/checkoutPage';
+import CheckoutReceived from './pages/checkout/checkoutReceived';
 
 // ----------------------------------------------------------------------
 

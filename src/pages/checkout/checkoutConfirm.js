@@ -9,10 +9,18 @@ import { Wallet } from "lucide-react";
 import { CalendarIcon } from "@radix-ui/react-icons"
 import { Card } from "src/components/ui/card";
 import { UploadCloud } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
-export default function CheckoutConfirm(){
+export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm}){
   return (
-    <section>
+    <section className="pt-[60px]">
+      <div className="flex items-center gap-x-3 mb-6">
+        <button onClick={() => setPaymentConfirm(false)}>
+          <ArrowLeft />
+        </button>
+        <h1 className="main-heading">Payment</h1>
+      </div>
       <h2 className="secondary-heading">Verify the payment</h2>
       <p className="main-desc">Please attach the transfer receipt. The image of the transfer receipt should not have anything obstructing the QR code. If your transfer receipt does not have a QR code, we will verify your payment within 6 hours.</p>
 

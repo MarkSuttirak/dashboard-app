@@ -9,6 +9,7 @@ import { useState } from 'react'
 export default function PaymentForm(){
   const provinces = ['Amnat Charoen', 'Bangkok', 'Chiang Mai', 'Chiang Rai', 'Chon Buri', 'Nakhon Pathom', 'Nonthaburi', 'Samut Prakan', 'Samut Sakhon', 'Samut Songkram', 'Tak', 'Trat', 'Ubon Ratchathani']
   const [isCompany, setIsCompany] = useState(false);
+  const [enableTaxID, setEnableTaxID] = useState(false)
   return (
     <section className="w-full h-screen p-[60px]" style={{boxShadow:"-20px 0px 30px -4px rgba(0, 0, 0, 0.04)"}}>
       <h2 className="secondary-heading">Billing information</h2>
@@ -87,21 +88,25 @@ export default function PaymentForm(){
           </div>
         )}
 
-        <div className="space-y-6">
-          <div className="anim-up flex flex-col">
-            <label className="subheading mb-2">
-              TAX ID.
-            </label>
-            <Input
-              placeholder="012-3456-789"
-              className="form-input"
-              name="tax-id"
-              type='tel'
-              // onChange={form.handleChange}
-              // defaultValue={billingAddress.billing_name}
-            />
+        {enableTaxID ? (
+          <div className="space-y-6">
+            <div className="anim-up flex flex-col">
+              <label className="subheading mb-2">
+                TAX ID.
+              </label>
+              <Input
+                placeholder="012-3456-789"
+                className="form-input"
+                name="tax-id"
+                type='tel'
+                // onChange={form.handleChange}
+                // defaultValue={billingAddress.billing_name}
+              />
+            </div>
           </div>
-        </div>
+        ) : (
+          <Button variant='link' onClick={() => setEnableTaxID(true)} className='justify-start p-0 h-fit -mt-6 text-[#71717A] font-medium'>Enter TAX ID. for the tax invoice</Button>
+        )}
 
         <div className="space-y-6">
           <div className="anim-up flex flex-col">
