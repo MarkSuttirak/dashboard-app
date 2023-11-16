@@ -13,11 +13,10 @@ export default function CheckoutReceived(){
         <Card className='justify-center p-0'>
           <CardHeader className='p-10'>
             <Lottie animationData={receivedInfo} loop={false} style={{width:"128px",height:"128px",margin:"auto"}}/>
-            {/* <lottie-player src="https://lottie.host/35c8156d-ab67-4f80-9372-797e1c8dd147/lMQYkT9cd9.json" background="transparent" speed="1" style={{width:"80px",height:"80px",margin:"auto"}} direction="1" mode="normal" autoplay></lottie-player> */}
             <h1 className="text-[36px] font-extrabold tracking-[-0.9px] leading-[40px] text-center text-[#09090B]">We have received your information 🎉</h1>
             <p className="mt-[12px!important] secondary-desc text-center">Thank you for notifying us of your payment. We will investigate quickly within 6 hours.</p>
             <p className="main-desc mt-[24px!important] text-center">
-            You can go to "Setting / Billing & Plan / Invoice" to track status your order. If the status is not updated Please <Link className="text-[#006AFF]">Contact us</Link>
+              You can go to "Setting / Billing & Plan / Invoice" to track status your order. If the status is not updated Please <Link className="text-[#006AFF]">Contact us</Link>
             </p>
           </CardHeader>
 
@@ -46,6 +45,7 @@ export default function CheckoutReceived(){
               </tbody>
             </table>
           </CardContent>
+
           <CardFooter className='pb-10 px-10'>
             <Button className='btn-with-icon w-full' onClick={() => window.location.href="/"}>
               <BadgeCheck viewBox="0 0 24 24" width='16' height='16'/>

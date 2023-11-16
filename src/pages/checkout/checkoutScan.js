@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useToast } from "../../components/ui/use-toast";
 import { Toaster } from "../../components/ui/toaster"
-import { useRef, useState } from 'react'
 
 export default function CheckoutScan(){
   const { toast } = useToast()

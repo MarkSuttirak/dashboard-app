@@ -24,26 +24,11 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm}){
   const minute = new Date().getMinutes();
 
   const banks = [
-    {
-      icon:krungthai,
-      text:'Krung Thai Bank'
-    },
-    {
-      icon:krungthepBank,
-      text:'Bangkok Bank'
-    },
-    {
-      icon:kasikorn,
-      text:'Kasikorn Bank'
-    },
-    {
-      icon:krungsri,
-      text:'Bank of Ayudhaya'
-    },
-    {
-      icon:scb,
-      text:'Siam Commercial Bank'
-    }
+    { icon:krungthai, text:'Krung Thai Bank'},
+    { icon:krungthepBank, text:'Bangkok Bank'},
+    { icon:kasikorn, text:'Kasikorn Bank'},
+    { icon:krungsri, text:'Bank of Ayudhaya'},
+    { icon:scb, text:'Siam Commercial Bank'}
   ]
 
   return (
@@ -155,7 +140,7 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm}){
                   className="form-input"
                   name="time_minute"
                   type='number'
-                  autocomplete='off'
+                  autoComplete='off'
                   min={0}
                   max={23}
                   // onChange={form.handleChange}
@@ -167,7 +152,7 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm}){
                   className="form-input"
                   name="time_second"
                   type='number'
-                  autocomplete='off'
+                  autoComplete='off'
                   min={0}
                   max={59}
                   // onChange={form.handleChange}
