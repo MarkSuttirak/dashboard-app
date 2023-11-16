@@ -9,10 +9,21 @@ import { Wallet } from "lucide-react";
 import { CalendarIcon } from "@radix-ui/react-icons"
 import { Card } from "src/components/ui/card";
 import { UploadCloud } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
+import { useState } from 'react'
+import { format } from "date-fns"
 
-export default function CheckoutConfirm(){
+export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm}){
+  const [date, setDate] = useState()
+
   return (
-    <section>
+    <section className="pt-[60px]">
+      <div className="flex items-center gap-x-3 mb-6">
+        <button onClick={() => setPaymentConfirm(false)}>
+          <ArrowLeft />
+        </button>
+        <h1 className="main-heading">Payment</h1>
+      </div>
       <h2 className="secondary-heading">Verify the payment</h2>
       <p className="main-desc">Please attach the transfer receipt. The image of the transfer receipt should not have anything obstructing the QR code. If your transfer receipt does not have a QR code, we will verify your payment within 6 hours.</p>
 
@@ -22,7 +33,7 @@ export default function CheckoutConfirm(){
         <div className="flex gap-x-3">
           <div className="space-y-6 w-full">
             <div className="anim-up flex flex-col">
-              <label className="subheading mb-2">
+              <label className="subheading mb-2 font-medium">
                 Bank
               </label>
               <Select className='form-input' name="payment-channel" defaultValue="Credit / Debit Card"
@@ -41,7 +52,7 @@ export default function CheckoutConfirm(){
           </div>
           <div className="space-y-6 w-full">
             <div className="anim-up flex flex-col">
-              <label className="subheading mb-2">
+              <label className="subheading mb-2 font-medium">
                 Total
               </label>
               <Input
@@ -59,7 +70,7 @@ export default function CheckoutConfirm(){
         <div className="flex gap-x-3">
           <div className="space-y-6 w-full">
             <div className="anim-up flex flex-col">
-              <label className="subheading mb-2">
+              <label className="subheading mb-2 font-medium">
                 Date
               </label>
               <Popover>
@@ -70,13 +81,15 @@ export default function CheckoutConfirm(){
                       "form-input" && "text-muted-foreground"
                     )}
                   >
-                    <span>Pick a date</span>
+                    {date ? format(date, "PPP") : <span>Pick a date</span>}
                     <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
                   <Calendar
-                    // mode="single"
+                    mode="single"
+                    selected={date}
+                    onSelect={setDate}
                     // selected={preloadedValues.dob}
                     // onSelect={preloadedValues.dob}
                     // onChange={form.handleChange}
@@ -92,7 +105,7 @@ export default function CheckoutConfirm(){
 
           <div className="space-y-6 w-full">
             <div className="anim-up flex flex-col">
-              <label className="subheading mb-2">
+              <label className="subheading mb-2 font-medium">
                 Time
               </label>
               <Select className='form-input' name="time" defaultValue="12.00"

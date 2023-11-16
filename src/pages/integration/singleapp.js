@@ -9,7 +9,7 @@ import installAppBg from "src/img/install-app-bg.png"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "src/components/ui/card"
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "src/components/ui/dialog"
 import { useState } from "react"
-import { AppStoreApp02, POSApp } from "src/components/sidebar/sidebarApps"
+import { Icons } from "src/components/ui/icons"
 
 export default function SingleApp(){
   const { id } = useParams()
@@ -48,10 +48,10 @@ export default function SingleApp(){
                       <div className='rounded-t-lg' style={{background:`url(${installAppBg})`,backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
                         <DialogTitle className='flex justify-center gap-x-[55px] py-[50px]'>
                           <div className="p-3 rounded-lg bg-white inline-block shadow-lg">
-                            <AppStoreApp02 />
+                            <Icons.appStoreApp02 />
                           </div>
                           <div className="p-3 rounded-lg bg-white inline-block shadow-lg">
-                            <POSApp width='52' height='52'/>
+                            <Icons.posApp width='52' height='52'/>
                           </div>
                         </DialogTitle>
                       </div>
