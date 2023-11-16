@@ -95,7 +95,7 @@ export default function PaymentForm(){
                 TAX ID.
               </label>
               <Input
-                placeholder="012-3456-789"
+                placeholder={isCompany ? "3-0000-9999-9" : "1-1009-99999-09-9"}
                 className="form-input"
                 name="tax-id"
                 type='tel'
@@ -114,7 +114,7 @@ export default function PaymentForm(){
               Address <span className="required">*</span>
             </label>
             <Input
-              placeholder="Limitd Co 999 99 Rama IX Rd,"
+              placeholder="Limited Co 999 99 Rama IX Rd,"
               className="form-input"
               name="address"
               type='text'

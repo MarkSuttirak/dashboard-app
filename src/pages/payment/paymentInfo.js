@@ -1,5 +1,5 @@
 import { Badge } from "src/components/ui/badge";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "src/components/ui/card";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "src/components/ui/card";
 import { Tag, X } from "lucide-react";
 import { Separator } from "src/components/ui/separator";
 import { Switch } from "src/components/ui/switch";
@@ -37,6 +37,9 @@ export default function PaymentInfo(){
         setCouponCode(coupon)
         setCouponExplanation('Discount 10 %')
         break
+      case 'REMOVE50':
+        setDiscount(50);
+        break
       default:
         setDiscount(0)
         setCouponExplanation('This coupon is invalid.')
@@ -67,7 +70,7 @@ export default function PaymentInfo(){
         <h1 className="main-heading">Payment</h1>
       </div>
       <section className="py-10 px-5">
-        <h2 className="main-desc">Subscribe to Professional together</h2>
+        <h2 className="main-desc font-medium">Subscribe to Zaviago</h2>
         <div className="mt-3 mb-10 flex gap-x-[10px] items-center">
           <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px]">฿ {total()}</h1>
           <div>
