@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 import { BellIcon, CheckCircledIcon, LightningBoltIcon } from "@radix-ui/react-icons";
 import { useMutation, useQuery } from "react-query";
 import { site } from "../../client/api";
-import { ZaviagoApp } from "./sidebarApps";
+import { Icons } from "../ui/icons";
 import ServiceModals from "./serviceModals";
 
 // import TeamModal from "../components/switchTeamModal";
@@ -112,7 +112,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
         <div className="nav-btns add-ons">
           <Link to='/'>
-            <ZaviagoApp />
+            <Icons.zaviagoApp />
           </Link>
         </div>
 

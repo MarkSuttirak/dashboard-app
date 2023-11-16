@@ -1,5 +1,4 @@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "src/components/ui/dialog"
-import { ERPApp, POSApp, RewardfulApp, UntitleApp, ReducoedApp, InbioApp, BlogAndPagesApp, SidebarApp09, SidebarApp10, LineCRMApp } from "./sidebarApps";
 import { LightningBoltIcon } from "@radix-ui/react-icons";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
@@ -9,6 +8,7 @@ import DrawLine from "../drawLine";
 import { useEffect, useContext } from "react";
 import { BellIcon, EyeNoneIcon } from "@radix-ui/react-icons";
 import { useServiceMenus } from "src/hooks/useServiceMenu";
+import { Icons } from "../ui/icons";
 
 const privileges = [
   {
@@ -34,7 +34,7 @@ const privileges = [
 ]
 
 export default function ServiceModals(){
-  const icons = [<ERPApp />, <POSApp />, <RewardfulApp />, <UntitleApp />, <ReducoedApp />, <InbioApp />, <BlogAndPagesApp />, <LineCRMApp />, <SidebarApp09 />, <SidebarApp10 />]
+  const icons = [<Icons.erpApp />, <Icons.posApp />, <Icons.rewardfulApp />, <Icons.untitleApp />, <Icons.reducoedApp />, <Icons.inbioApp />, <Icons.blogAndPagesApp />, <Icons.lineCRMApp />, <Icons.sidebarApp09 />, <Icons.sidebarApp10 />]
   const services = useServiceMenus()
 
   useEffect(() => {

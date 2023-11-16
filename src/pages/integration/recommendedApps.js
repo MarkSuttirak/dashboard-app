@@ -1,4 +1,4 @@
-import { AppStoreApp01, SidebarApp01 } from "src/components/sidebar/sidebarApps"
+import { Icons } from "src/components/ui/icons"
 import { CheckCircle2, Crown } from "lucide-react"
 import mockapp1 from 'src/img/mockapp1.png'
 import mockapp2 from 'src/img/mockapp2.png'
@@ -8,7 +8,7 @@ import mockapp4 from 'src/img/mockapp4.png'
 export const recommendedApps = [
   {
     id:'create-project',
-    icon:<AppStoreApp01 />,
+    icon:<Icons.appStoreApp01 />,
     title:'Create project',
     desc:'Facilitate payments and pay out sellers or service providers.',
     status:(<div className="flex text-[#2CB216] items-center gap-x-2">
@@ -39,7 +39,7 @@ export const recommendedApps = [
   },
   {
     id:'create-project-two',
-    icon:<AppStoreApp01 />,
+    icon:<Icons.appStoreApp01 />,
     title:'Create project two',
     desc:'Facilitate payments and pay out sellers or service providers.',
     status:(<div className="flex text-[#71717A] items-center gap-x-2">
@@ -60,7 +60,7 @@ export const recommendedApps = [
   },
   {
     id:'create-project-three',
-    icon:<AppStoreApp01 />,
+    icon:<Icons.appStoreApp01 />,
     title:'Create project three',
     desc:'Facilitate payments and pay out sellers or service providers.',
     status:(<div className="text-[#71717A]">
@@ -80,7 +80,7 @@ export const recommendedApps = [
   },
   {
     id:'create-project-four',
-    icon:<AppStoreApp01 />,
+    icon:<Icons.appStoreApp01 />,
     title:'Create project four',
     desc:'Facilitate payments and pay out sellers or service providers.',
     status:(<div className="text-[#71717A]">
