@@ -48,11 +48,31 @@ export default function Dashboard(){
     enabled: !!user,
   });
 
+
+
+  
+
+  const { data: loadAdmin, refetch } = useQuery('loadAdmin', () => site.loginAsAdmin(sites.site_list[0].name, 'Admin'), {
+    enabled: false,
+    onSuccess: (res) => {
+      //console.log(res);
+    },
+  });
+
   useEffect(() => {
-    if (sites?.site_list[0].name) {
-      loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })
+    if (user && sites?.site_list[0]?.name && !loadAdmin) {
+      refetch();
     }
-  }, [sites?.site_list[0].name]);
+  }, [user, sites, refetch]);
+
+
+
+
+  // useEffect(() => {
+  //   if (sites?.site_list[0].name) {
+  //     loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })
+  //   }
+  // }, [sites?.site_list[0].name]);
 
 
   // const { data: siteOverview } = useQuery(['site', `${sites?.site_list[0].name}`], () => site.overview(sites?.site_list[0].name), {
@@ -64,21 +84,22 @@ export default function Dashboard(){
   //   }
   // });
   
-  const { mutate: loginAsAdmin } = useMutation('loginAsAdmin', ({ name, reason }) => site.loginAsAdmin(name, reason), {
-    onSuccess: (res) => {
-      const { sid, site } = res.data.message;
-      if (sid && site) {
-        setwebsiteSid(sid);
-      }
-    }
-  });
+  // const { mutate: loginAsAdmin } = useMutation('loginAsAdmin', ({ name, reason }) => site.loginAsAdmin(name, reason), {
+  //   onSuccess: (res) => {
+  //     const { sid, site } = res.data.message;
+  //     if (sid && site) {
+  //       setwebsiteSid(sid);
+  //     }
+  //   }
+  // });
 
 
 
   const loginNow = (page) => {
+    var sid = loadAdmin?.data?.message.sid;
     var sitetoview = sites?.site_list[0].name;
-    if(websiteSid){
-      window.open(`https://${sitetoview}/app/${page}?sid=${websiteSid}`, '_blank');
+    if(sid){
+      window.open(`https://${sitetoview}/app/${page}?sid=${sid}`, '_blank');
     }
   }
 
