@@ -34,7 +34,7 @@ const privileges = [
 ]
 
 export default function ServiceModals(){
-  const icons = [<Icons.erpApp />, <Icons.posApp />, <Icons.rewardfulApp />, <Icons.untitleApp />, <Icons.reducoedApp />, <Icons.inbioApp />, <Icons.blogAndPagesApp />, <Icons.lineCRMApp />, <Icons.sidebarApp09 />, <Icons.sidebarApp10 />]
+  const icons = [<Icons.erpApp />, <Icons.posApp />, <Icons.rewardfulApp />, <Icons.untitleApp />, <Icons.reducoedApp />, <Icons.inbioApp />, <Icons.blogAndPagesApp />, <Icons.lineCRMApp />]
   const services = useServiceMenus()
 
   useEffect(() => {

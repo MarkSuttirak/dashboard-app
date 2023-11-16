@@ -20,7 +20,7 @@ export default function PaymentForm(){
       <form className="flex flex-col gap-y-8 mt-4">
         <div className="space-y-6 w-full">
           <div className="anim-up flex flex-col">
-            <label className="subheading mb-2">
+            <label className="subheading mb-2 font-medium">
               Tax invoice type <span className="required">*</span>
             </label>
             <Select className='form-input' name="tax-invoice-type" defaultValue="Personal" onValueChange={e => e === 'Company' ? setIsCompany(true) : setIsCompany(false)}
@@ -40,7 +40,7 @@ export default function PaymentForm(){
         {isCompany ? (
           <div className="space-y-6">
             <div className="anim-up flex flex-col">
-              <label className="subheading mb-2">
+              <label className="subheading mb-2 font-medium">
                 Company Name
               </label>
               <Input
@@ -57,11 +57,11 @@ export default function PaymentForm(){
           <div className="flex gap-x-3">
             <div className="space-y-6">
               <div className="anim-up flex flex-col">
-                <label className="subheading mb-2">
+                <label className="subheading mb-2 font-medium">
                   First name <span className="required">*</span>
                 </label>
                 <Input
-                  placeholder="Your name"
+                  placeholder="First name"
                   className="form-input"
                   name="firstname"
                   type='text'
@@ -72,11 +72,11 @@ export default function PaymentForm(){
             </div>
             <div className="space-y-6">
               <div className="anim-up flex flex-col">
-                <label className="subheading mb-2">
+                <label className="subheading mb-2 font-medium">
                   Last name <span className="required">*</span>
                 </label>
                 <Input
-                  placeholder="Your name"
+                  placeholder="Last name"
                   className="form-input"
                   name="lastname"
                   type='text'
@@ -91,7 +91,7 @@ export default function PaymentForm(){
         {enableTaxID ? (
           <div className="space-y-6">
             <div className="anim-up flex flex-col">
-              <label className="subheading mb-2">
+              <label className="subheading mb-2 font-medium">
                 TAX ID.
               </label>
               <Input
@@ -110,7 +110,7 @@ export default function PaymentForm(){
 
         <div className="space-y-6">
           <div className="anim-up flex flex-col">
-            <label className="subheading mb-2">
+            <label className="subheading mb-2 font-medium">
               Address <span className="required">*</span>
             </label>
             <Input
@@ -127,7 +127,7 @@ export default function PaymentForm(){
         <div className="flex gap-x-3">
           <div className="space-y-6 w-full">
             <div className="anim-up flex flex-col">
-              <label className="subheading mb-2">
+              <label className="subheading mb-2 font-medium">
                 Sub-district <span className="required">*</span>
               </label>
               <Input
@@ -142,7 +142,7 @@ export default function PaymentForm(){
           </div>
           <div className="space-y-6 w-full">
             <div className="anim-up flex flex-col">
-              <label className="subheading mb-2">
+              <label className="subheading mb-2 font-medium">
                 District <span className="required">*</span>
               </label>
               <Input
@@ -160,7 +160,7 @@ export default function PaymentForm(){
         <div className="flex gap-x-3">
           <div className="space-y-6 w-full">
             <div className="anim-up flex flex-col">
-              <label className="subheading mb-2">
+              <label className="subheading mb-2 font-medium">
                 Province <span className="required">*</span>
               </label>
               <Select className='form-input' name="province" defaultValue="Bangkok"
@@ -177,7 +177,7 @@ export default function PaymentForm(){
           </div>
           <div className="space-y-6 w-full">
             <div className="anim-up flex flex-col">
-              <label className="subheading mb-2">
+              <label className="subheading mb-2 font-medium">
                 Postal Code <span className="required">*</span>
               </label>
               <Input
@@ -199,7 +199,7 @@ export default function PaymentForm(){
           </Button>
         </Link>
 
-        <p className="main-desc">By clicking 'Continue' you agree to authorise payments pursuant to <Link className="text-[#006AFF]">Privacy Policy</Link>.</p>
+        <p className="main-desc">By clicking 'Continue' you agree to authorize payments pursuant to <Link className="text-[#006AFF]">Privacy Policy</Link>.</p>
       </form>
     </section>
   )
