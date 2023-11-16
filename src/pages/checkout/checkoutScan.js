@@ -4,8 +4,21 @@ import { Button } from "src/components/ui/button";
 import { Copy } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { useToast } from "../../components/ui/use-toast";
+import { Toaster } from "../../components/ui/toaster"
+import { useRef, useState } from 'react'
 
 export default function CheckoutScan(){
+  const { toast } = useToast()
+
+  const accNum = '215-0-91844-5'
+  const copyAcc = () => {
+    navigator.clipboard.writeText(accNum);
+    toast({
+      title: 'Copied account number'
+    })
+  }
+
   return (
     <section className="w-full pt-[60px]">
       <div className="flex items-center gap-x-3">
@@ -19,10 +32,12 @@ export default function CheckoutScan(){
           <img src={thaiqrpayment} className="w-fit"/>
           <div>
             <h2 className="domain-heading">Zaviago company</h2>
-            <Button variant='link' className='btn-with-icon p-0 text-base'>
-              215-0-91844-5
+            <Button variant='link' className='btn-with-icon p-0 text-base' onClick={copyAcc}>
+              {accNum}
               <Copy viewBox="0 0 24 24" width='16' height='16'/>
             </Button>
+
+            <Toaster />
           </div>
         </div>
 

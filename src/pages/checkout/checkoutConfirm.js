@@ -59,7 +59,7 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm}){
 
       <Separator className='my-6'/>
 
-      <form className="flex flex-col gap-y-6">
+      <main className="flex flex-col gap-y-6">
         <div className="flex gap-x-3">
           <div className="space-y-6 w-full">
             <div className="anim-up flex flex-col">
@@ -205,7 +205,7 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm}){
           <Wallet color='#FFF' viewBox='0 0 24 24' height='16' width='16'/>
           Confirm
         </Button>
-      </form>
+      </main>
     </section>
   )
 }
