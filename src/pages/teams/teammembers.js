@@ -1,11 +1,11 @@
 import { PlusCircle, X, ChevronDownIcon } from "lucide-react";
 import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
-import VerticalLine from "../../components/drawLine";
 import { Badge } from "../../components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "../../components/ui/avatar"
 import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "../../components/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "../../components/ui/popover"
+import DrawLine from "../../components/drawLine";
 
 export default function TeamMembers(){
   const TeamCard = ({firstname, lastname, email, role, avatar}) => {
@@ -76,7 +76,7 @@ export default function TeamMembers(){
             <PlusCircle viewBox='0 0 24 24' width='16' height='16'/>
             Role
           </div>
-          <VerticalLine color='#E4E4E7' height="80%" size={1}/>
+          <DrawLine color='#E4E4E7' height="80%" width="1px"/>
           <Badge variant="secondary" className='rounded-md'>3 Selected</Badge>
         </Button>
         <Button variant='ghost' className='flex items-center gap-x-2'>

@@ -42,8 +42,8 @@ export default function Teams(){
         <PagesMenus menus={sidebarNavItems}/>
         {id === 'team-members' && (
           <section className="w-[672px]">
-            <h2 className="secondary-heading">Manage Members</h2>
-            <p className="secondary-desc">Anyone with the link can view this document.</p>
+            <h2 className="settings-heading">Manage Members</h2>
+            <p className="main-desc">Anyone with the link can view this document.</p>
 
             <div className="flex w-full items-center space-x-2 mt-6">
               <Input type="email" placeholder="Email" ref={emailRef}/>
