@@ -16,6 +16,8 @@ export default function SingleApp(){
   const { id } = useParams()
   const [installHeading, setInstallHeading] = useState('Install addons app to your workspace')
 
+  const [currentImage, setCurrentImage] = useState(0)
+
   const CardData = ({data}) => {
     return (
       <>
@@ -84,10 +86,24 @@ export default function SingleApp(){
             </section>
 
             <section className="flex gap-x-6 mt-[55px]">
-              <img src={item.images[0]} className="rounded-md h-fit w-full"/>
+              <Dialog>
+                <DialogTrigger className="p-0 h-fit w-full">
+                  <img src={item.images[0]} className="rounded-md"/>
+                </DialogTrigger>
+                <DialogContent className='p-0 max-w-3xl max-h-3xl'>
+                  <img src={item.images[0]} className="rounded-md w-full h-full"/>
+                </DialogContent>
+              </Dialog>
               <div className="flex flex-col gap-y-6">
                 {item.images.map((image, index) => (
-                  <img key={index} src={image} className="img-apps" width='330'/>
+                  <Dialog>
+                    <DialogTrigger className="p-0 h-fit w-full">
+                      <img key={index} src={image} className="img-apps" width='330'/>
+                    </DialogTrigger>
+                    <DialogContent className='p-0 max-w-3xl max-h-3xl'>
+                      <img key={index} src={image} className="rounded-md w-full h-full"/>
+                    </DialogContent>
+                  </Dialog>
                 )).slice(1, 4)}
               </div>
             </section>
