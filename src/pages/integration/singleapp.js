@@ -1,7 +1,7 @@
 import { useParams } from "react-router"
 import { appList } from "../../components/apps/appList"
 import { Button } from "src/components/ui/button"
-import { OpenInNewWindowIcon, PlusCircledIcon } from "@radix-ui/react-icons"
+import { LightningBoltIcon, OpenInNewWindowIcon, PlusCircledIcon } from "@radix-ui/react-icons"
 import { Globe, Key, MessageSquare, Smile } from "lucide-react"
 import { Separator } from "src/components/ui/separator"
 import connectMarketingBg from "src/img/socialapp-bg.png"
@@ -10,10 +10,10 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "src/components/ui/dialog"
 import { useState } from "react"
 import { Icons } from "src/components/ui/icons"
+import { appStatus } from "../../components/apps/appList"
 
 export default function SingleApp(){
   const { id } = useParams()
-  const [isInstalled, setIsInstalled] = useState(false)
   const [installHeading, setInstallHeading] = useState('Install addons app to your workspace')
 
   const CardData = ({data}) => {
@@ -32,9 +32,13 @@ export default function SingleApp(){
                   <p className="text-sm mt-1">{item.status}</p>
                 </div>
               </div>
-              {isInstalled ? (
+              {item.status === appStatus.installed ? (
                 <Button className='btn-with-icon'>
                   <OpenInNewWindowIcon />Open
+                </Button>
+              ) : item.status === appStatus.need_upgrade ? (
+                <Button className='btn-with-icon'>
+                  <LightningBoltIcon />Upgrade
                 </Button>
               ) : (
                 <Dialog>
