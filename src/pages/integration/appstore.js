@@ -8,7 +8,7 @@ import { Button } from "src/components/ui/button"
 import { Link } from "react-router-dom"
 import { PlusCircledIcon } from "@radix-ui/react-icons"
 import startSellingOnline from 'src/img/how-to-start-selling-online.png'
-import { recommendedApps } from "./recommendedApps"
+import { appList } from "../../components/apps/appList"
 import { Icons } from "src/components/ui/icons"
 
 export default function AppStore(){
@@ -118,10 +118,10 @@ export default function AppStore(){
 
       <div className="flex gap-x-6 mt-6">
         <section className="grid grid-cols-2 gap-6 w-[70%]">
-          {recommendedApps.map((app, index) => (
+          {appList.map((app, index) => (
             <Card key={index} className='shadow-none flex flex-col justify-between'>
               <CardHeader className='flex flex-row gap-x-6'>
-                <div className="w-[90px]">
+                <div className="app-icon">
                   {app.icon}
                 </div>
                 <div className="m-[0!important]">

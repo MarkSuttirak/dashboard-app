@@ -5,16 +5,34 @@ import mockapp2 from 'src/img/mockapp2.png'
 import mockapp3 from 'src/img/mockapp3.png'
 import mockapp4 from 'src/img/mockapp4.png'
 
-export const recommendedApps = [
-  {
-    id:'create-project',
-    icon:<Icons.appStoreApp01 />,
-    title:'Create project',
-    desc:'Facilitate payments and pay out sellers or service providers.',
-    status:(<div className="flex text-[#2CB216] items-center gap-x-2">
+const status = {
+  installed: (<>
+    <div className="flex text-[#2CB216] items-center gap-x-2">
       <CheckCircle2 color='#2CB216' viewBox="0 0 24 24" width='16' height='16'/>
       Installed
-    </div>),
+    </div>
+  </>),
+  pro_plan: (<div className="flex text-[#71717A] items-center gap-x-2">
+    <Crown color='#71717A' viewBox="0 0 24 24" width='16' height='16'/>
+    Pro plan
+  </div>),
+  free_trial: (<div className="text-[#71717A]">
+    14 days free trial
+  </div>),
+  free_plan: (<div className="text-[#71717A]">
+    Free plan available
+  </div>)
+}
+
+export const appList = [
+  {
+    id:'reducoed',
+    icon:<Icons.reducoedApp />,
+    title:'Reducoed',
+    desc:'Facilitate payments and pay out sellers or service providers.',
+    version:'Version 2.2',
+    developed_by:'Zaviago',
+    status:(status.installed),
     images:[mockapp1, mockapp2, mockapp3, mockapp4],
     highlights:(
       <>
@@ -38,14 +56,13 @@ export const recommendedApps = [
     </>)
   },
   {
-    id:'create-project-two',
-    icon:<Icons.appStoreApp01 />,
-    title:'Create project two',
+    id:'line-crm',
+    icon:<Icons.lineCRMApp />,
+    title:'Line CRM',
     desc:'Facilitate payments and pay out sellers or service providers.',
-    status:(<div className="flex text-[#71717A] items-center gap-x-2">
-      <Crown color='#71717A' viewBox="0 0 24 24" width='16' height='16'/>
-      Pro plan
-    </div>),
+    version:'Version 2.2',
+    developed_by:'Zaviago',
+    status:(status.pro_plan),
     images:[],
     highlights:(
       <>
@@ -59,13 +76,13 @@ export const recommendedApps = [
     long_desc:''
   },
   {
-    id:'create-project-three',
-    icon:<Icons.appStoreApp01 />,
-    title:'Create project three',
+    id:'inbio',
+    icon:<Icons.inbioApp />,
+    title:'InBio',
     desc:'Facilitate payments and pay out sellers or service providers.',
-    status:(<div className="text-[#71717A]">
-      14 days free trial
-    </div>),
+    version:'Version 2.2',
+    developed_by:'Zaviago',
+    status:(status.pro_plan),
     images:[],
     highlights:(
       <>
@@ -73,29 +90,9 @@ export const recommendedApps = [
         <p className="main-desc mt-1">Use directly in Shopify admin</p>
       </>
     ),
-    launched:'March 25, 2021',
+    launched:'April 28, 2021',
     categories:'Marketing and conversion',
     integrate_with:['Facebook Advertising', 'Recharge', 'Zendesk'],
     long_desc:''
   },
-  {
-    id:'create-project-four',
-    icon:<Icons.appStoreApp01 />,
-    title:'Create project four',
-    desc:'Facilitate payments and pay out sellers or service providers.',
-    status:(<div className="text-[#71717A]">
-      Free plan available
-    </div>),
-    images:[],
-    highlights:(
-      <>
-        <h2 className='subheading font-medium'>Built for your business</h2>
-        <p className="main-desc mt-1">Use directly in Shopify admin</p>
-      </>
-    ),
-    launched:'March 25, 2021',
-    categories:'Marketing and conversion',
-    integrate_with:['Facebook Advertising', 'Recharge', 'Zendesk'],
-    long_desc:''
-  }
 ]

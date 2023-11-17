@@ -3,11 +3,11 @@ import { Button } from "src/components/ui/button";
 import { Input } from "src/components/ui/input";
 import { Wallet } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "src/components/ui/select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectGroup, SelectValue } from "src/components/ui/select"
 import { useState } from 'react'
+import { provinces } from "src/components/form-controls/provinces";
 
 export default function PaymentForm(){
-  const provinces = ['Amnat Charoen', 'Bangkok', 'Chiang Mai', 'Chiang Rai', 'Chon Buri', 'Nakhon Pathom', 'Nonthaburi', 'Samut Prakan', 'Samut Sakhon', 'Samut Songkram', 'Tak', 'Trat', 'Ubon Ratchathani']
   const [isCompany, setIsCompany] = useState(false);
   const [enableTaxID, setEnableTaxID] = useState(false)
   return (
@@ -95,7 +95,7 @@ export default function PaymentForm(){
                 TAX ID.
               </label>
               <Input
-                placeholder="012-3456-789"
+                placeholder={isCompany ? "3-0000-9999-9" : "1-1009-99999-09-9"}
                 className="form-input"
                 name="tax-id"
                 type='tel'
@@ -114,7 +114,7 @@ export default function PaymentForm(){
               Address <span className="required">*</span>
             </label>
             <Input
-              placeholder="Limitd Co 999 99 Rama IX Rd,"
+              placeholder="Limited Co 999 99 Rama IX Rd,"
               className="form-input"
               name="address"
               type='text'
@@ -170,7 +170,9 @@ export default function PaymentForm(){
                   <SelectValue defaultValue='Bangkok'/>
                 </SelectTrigger>
                 <SelectContent>
-                  {provinces.map(province => <SelectItem value={province}>{province}</SelectItem>)}
+                  <SelectGroup className="max-h-[400px]">
+                    {provinces.map(province => <SelectItem value={province}>{province}</SelectItem>)}
+                  </SelectGroup>
                 </SelectContent>
               </Select>
             </div>

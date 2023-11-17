@@ -131,7 +131,7 @@ body {
   background:#FFF;
   box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);
   font-size:14px;
-  padding:8px 16px;
+  padding:8px 12px;
 }
 
 .btn-image-shadow {
@@ -152,6 +152,15 @@ body {
   letter-spacing:-0.5px;
   line-height:28px;
   color:$primary-color;
+}
+
+.settings-heading {
+  font-size:16px;
+  line-height:16px;
+  font-weight:600;
+  margin-bottom:4px;
+  letter-spacing:-0.4px;
+  color:$primary-color
 }
 
 .secondary-heading {
@@ -293,6 +302,16 @@ body {
 .link-anchor {
   color: #888;
   text-decoration: underline
+}
+
+.app-icon svg {
+  width:52px;
+  height:52px;
+}
+
+.app-detail-icon svg {
+  width:72px;
+  height:72px;
 }
 
 /* Sidebar style */

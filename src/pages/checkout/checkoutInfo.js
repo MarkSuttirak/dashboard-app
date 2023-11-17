@@ -28,7 +28,7 @@ export default function CheckoutInfo({paymentConfirm, setPaymentConfirm}){
 
       <Separator className='my-6'/>
 
-      <h2 className="main-desc">Subscribe to Professional together</h2>
+      <h2 className="main-desc">Subscribe to Zaviago</h2>
       <div className="mt-3 flex gap-x-[10px] items-center">
         <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px]">฿ {total()}</h1>
         <div>
