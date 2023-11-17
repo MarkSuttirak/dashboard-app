@@ -9,80 +9,80 @@ import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, Comma
 import { DataList } from "src/components/pagination"
 import { useState } from 'react'
 
+const installedApps = [
+  {
+    id:'reducoed',
+    icon:<Icons.reducoedApp />,
+    title:'Reducoed',
+    version:'Version 2.2',
+    link:''
+  },
+  {
+    id:'line-crm',
+    icon:<Icons.lineCRMApp />,
+    title:'Line CRM',
+    version:'Version 2.2',
+    link:''
+  },
+  {
+    id:'inbio',
+    icon:<Icons.inbioApp />,
+    title:'InBio',
+    version:'Version 2.2',
+    link:''
+  },
+  {
+    id:'pos-store',
+    icon:<Icons.posApp />,
+    title:'POS Store',
+    version:'Version 2.2',
+    link:''
+  },
+  {
+    id:'zaviago-erp',
+    icon:<Icons.erpApp />,
+    title:'Zaviago ERP',
+    version:'Version 2.2',
+    link:''
+  },
+  {
+    id:'rewardful',
+    icon:<Icons.rewardfulApp />,
+    title:'Rewardful',
+    version:'Version 2.2',
+    link:''
+  },
+  {
+    id:'untitle',
+    icon:<Icons.untitleApp />,
+    title:'Untitle',
+    version:'Version 2.2',
+    link:''
+  },
+]
+
+const appsToUpgrade = [
+  {
+    id:'reducoed',
+    icon:<Icons.reducoedApp />,
+    title:'Reducoed',
+    version:'Version 2.2',
+    link:''
+  },
+  {
+    id:'pos-store',
+    icon:<Icons.posApp />,
+    title:'POS Store',
+    version:'Version 2.2',
+    link:''
+  },
+]
+
 export default function ManageOrUpgradeApps(){
   const navigate = useNavigate()
   const appsPerPage = 6
   const [search, setSearch] = useState('');
   const { id } = useParams()
-
-  const installedApps = [
-    {
-      id:'reducoed',
-      icon:<Icons.reducoedApp />,
-      title:'Reducoed',
-      version:'Version 2.2',
-      link:''
-    },
-    {
-      id:'line-crm',
-      icon:<Icons.lineCRMApp />,
-      title:'Line CRM',
-      version:'Version 2.2',
-      link:''
-    },
-    {
-      id:'inbio',
-      icon:<Icons.inbioApp />,
-      title:'InBio',
-      version:'Version 2.2',
-      link:''
-    },
-    {
-      id:'pos-store',
-      icon:<Icons.posApp />,
-      title:'POS Store',
-      version:'Version 2.2',
-      link:''
-    },
-    {
-      id:'zaviago-erp',
-      icon:<Icons.erpApp />,
-      title:'Zaviago ERP',
-      version:'Version 2.2',
-      link:''
-    },
-    {
-      id:'rewardful',
-      icon:<Icons.rewardfulApp />,
-      title:'Rewardful',
-      version:'Version 2.2',
-      link:''
-    },
-    {
-      id:'untitle',
-      icon:<Icons.untitleApp />,
-      title:'Untitle',
-      version:'Version 2.2',
-      link:''
-    },
-  ]
-
-  const appsToUpgrade = [
-    {
-      id:'reducoed',
-      icon:<Icons.reducoedApp />,
-      title:'Reducoed',
-      version:'Version 2.2',
-      link:''
-    },
-    {
-      id:'pos-store',
-      icon:<Icons.posApp />,
-      title:'POS Store',
-      version:'Version 2.2',
-      link:''
-    },
-  ]
 
   const appData = (id === 'manage-apps' ? installedApps : appsToUpgrade).filter(app => app.title.toUpperCase().includes(search.toUpperCase()))
 
@@ -146,8 +146,6 @@ export default function ManageOrUpgradeApps(){
                 </div>
               </div>
             ))}
-
-            {appData.length < 1 && <p className="main-desc">There is no app you are looking for.</p>}
           </DataList>
         </div>
       </section>

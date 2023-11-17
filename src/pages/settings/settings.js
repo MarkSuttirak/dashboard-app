@@ -30,7 +30,7 @@ export default function Settings(){
     <div className="dashboard-container">
       <h1 className="main-heading">Settings</h1>
 
-      <main className="flex gap-x-10 mt-8">
+      <main className="flex gap-x-[72px] mt-8">
         <PagesMenus menus={sidebarNavItems} />
 
         {id === 'plan-upgrade' && (

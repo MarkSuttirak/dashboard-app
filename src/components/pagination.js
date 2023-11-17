@@ -35,12 +35,14 @@ export function Pagination({data, currentPage, setCurrentPage, listPerPage}){
   )
 }
 
-export function DataList({children, pagination, listPerPage = 10}){
+export function DataList({children, pagination, listPerPage = 10, emptyText = "There is no app you are looking for."}){
   const [currentPage, setCurrentPage] = useState(1)
   const lists = pagination ? listPerPage : null
   return (
     <>
       {pagination ? children.slice((currentPage - 1) * lists, currentPage * lists) : children}
+
+      {children.length < 1 && <p className="main-desc">{emptyText}</p>}
 
       {pagination && (
         <>

@@ -21,6 +21,7 @@ import CheckoutPage from './pages/checkout/checkoutPage';
 import CheckoutReceived from './pages/checkout/checkoutReceived';
 import Integration from './pages/integration/integration';
 import ManageApps from './pages/integration/manageOrUpgradeApps';
+import QuotaDetail from './pages/integration/quotaDetail';
 
 // ----------------------------------------------------------------------
 
@@ -63,6 +64,7 @@ export default function Router() {
                 { path: ':id', element: <Integration />},
                 { path: 'appstore', element: <AppStore />},
                 { path: 'appstore/:id', element: <SingleApp />},
+                { path: 'quota-detail/:app', element: <QuotaDetail />}
             ],
         },
         {
