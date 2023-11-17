@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom"
 import PagesMenus from "src/components/pagesMenus"
-import ManageApps from "./manageApps"
-import UpgradeApps from "./upgradeApps"
+import ManageOrUpgradeApps from "./manageOrUpgradeApps"
 import AppsQuota from "./appQuota"
 
 const sidebarNavItems = [
@@ -28,20 +27,8 @@ export default function Integration(){
       <main className="flex gap-x-10 mt-8">
         <PagesMenus menus={sidebarNavItems} />
 
-        {id === 'manage-apps' && (
-          <section className="w-[672px]">
-            <h2 className="settings-heading">Manage Apps</h2>
-            <p className="main-desc">Manage the apps on your site or go to the App Market to add new ones. Get More Apps</p>
-            <ManageApps />
-          </section>
-        )}
-
-        {id === 'upgrade-apps' && (
-          <section className="w-[672px]">
-            <h2 className="settings-heading">Upgrade Apps</h2>
-            <p className="main-desc">Manage the apps on your site or go to the App Market to add new ones.</p>
-            <UpgradeApps />
-          </section>
+        {(id === 'manage-apps' || id === 'upgrade-apps') && (
+          <ManageOrUpgradeApps />
         )}
 
         {id === 'apps-quota' && (

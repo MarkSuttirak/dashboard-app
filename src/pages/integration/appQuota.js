@@ -7,8 +7,8 @@ import { Link } from "react-router-dom"
 export default function AppsQuota(){
   const appsQuotaFree = [
     {
-      icon:<Icons.posApp />,
-      title:'Instagram Store',
+      icon:<Icons.reducoedApp />,
+      title:'Reducoed',
       version:'Version 2.2',
       link:''
     },

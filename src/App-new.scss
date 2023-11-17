@@ -304,6 +304,16 @@ body {
   text-decoration: underline
 }
 
+.app-icon svg {
+  width:52px;
+  height:52px;
+}
+
+.app-detail-icon svg {
+  width:72px;
+  height:72px;
+}
+
 /* Sidebar style */
 .sidebar-menu {
   padding:8px 16px;

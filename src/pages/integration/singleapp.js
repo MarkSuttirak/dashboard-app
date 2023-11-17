@@ -1,5 +1,5 @@
 import { useParams } from "react-router"
-import { recommendedApps } from "./recommendedApps"
+import { appList } from "../../components/apps/appList"
 import { Button } from "src/components/ui/button"
 import { OpenInNewWindowIcon, PlusCircledIcon } from "@radix-ui/react-icons"
 import { Globe, Key, MessageSquare, Smile } from "lucide-react"
@@ -23,12 +23,12 @@ export default function SingleApp(){
           <>
             <section className="flex justify-between">
               <div className="flex items-start gap-x-5">
-                <div className="w-[72px]">
+                <div className="app-detail-icon">
                   {item.icon}
                 </div>
                 <div>
                   <h1 className="main-heading">{item.title}</h1>
-                  <p className="text-sm font-medium text-[#09090B]">{item.desc}</p>
+                  <p className="text-sm font-medium text-[#09090B]">By {item.developed_by}</p>
                   <p className="text-sm mt-1">{item.status}</p>
                 </div>
               </div>
@@ -149,7 +149,7 @@ export default function SingleApp(){
 
   return (
     <div className="dashboard-container">
-      <CardData data={recommendedApps}/>
+      <CardData data={appList}/>
 
       <Separator className='my-10'/>
 
@@ -167,7 +167,7 @@ export default function SingleApp(){
         </div>
 
         <div className="flex gap-x-6">
-          {recommendedApps.map((app, index) => (
+          {appList.map((app, index) => (
             <Card key={index} className='shadow-none flex flex-col justify-between'>
               <CardHeader className='flex flex-col gap-x-6'>
                 <div className="w-[52px]">

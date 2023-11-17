@@ -41,8 +41,13 @@ export function DataList({children, pagination, listPerPage = 10}){
   return (
     <>
       {pagination ? children.slice((currentPage - 1) * lists, currentPage * lists) : children}
-      <Separator className='my-[10px]'/>
-      {pagination && <Pagination data={children} currentPage={currentPage} setCurrentPage={setCurrentPage} listPerPage={lists}/>}
+
+      {pagination && (
+        <>
+          <Separator className='my-[10px]'/>
+          <Pagination data={children} currentPage={currentPage} setCurrentPage={setCurrentPage} listPerPage={lists}/>
+        </>
+      )}
     </>
   )
 }
