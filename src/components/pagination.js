@@ -7,20 +7,10 @@ export function Pagination({data, currentPage, setCurrentPage, listPerPage}){
   const totalPage = Math.ceil(data.length / listPerPage)
 
   const click = {
-    firstPage: () => {
-      setCurrentPage(1)
-    },
-    nextPage: () => {
-      setCurrentPage(currentPage + 1)
-    },
-    prevPage: () => {
-      if (currentPage > 1){
-        setCurrentPage(currentPage - 1)
-      }
-    },
-    lastPage: () => {
-      setCurrentPage(totalPage)
-    }
+    firstPage: () => setCurrentPage(1),
+    prevPage: () => setCurrentPage(currentPage - 1),
+    nextPage: () => setCurrentPage(currentPage + 1),
+    lastPage: () => setCurrentPage(totalPage)
   }
 
   const buttons = [

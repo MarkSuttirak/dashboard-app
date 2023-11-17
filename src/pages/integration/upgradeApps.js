@@ -52,15 +52,7 @@ export default function UpgradeApps(){
   return (
     <>
       <div className="mt-6 mb-4 flex gap-x-2">
-        <Input placeholder='Search App'/>
-        <Button variant='outline' className='border border-dashed flex items-center gap-x-2'>
-          <div className="flex items-center gap-x-2">
-            <PlusCircle viewBox='0 0 24 24' width='16' height='16'/>
-            Role
-          </div>
-          <DrawLine color='#E4E4E7' height="80%" width="1px"/>
-          <Badge variant="secondary" className='rounded-md'>3 Selected</Badge>
-        </Button>
+        <Input placeholder='Search App' className='w-[250px]'/>
         <Button variant='ghost' className='flex items-center gap-x-2'>
           Reset
           <X viewBox="0 0 24 24" width='16' height='16'/>
