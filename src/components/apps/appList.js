@@ -5,7 +5,7 @@ import mockapp2 from 'src/img/mockapp2.png'
 import mockapp3 from 'src/img/mockapp3.png'
 import mockapp4 from 'src/img/mockapp4.png'
 
-const status = {
+export const appStatus = {
   installed: (<>
     <div className="flex text-[#2CB216] items-center gap-x-2">
       <CheckCircle2 color='#2CB216' viewBox="0 0 24 24" width='16' height='16'/>
@@ -21,6 +21,9 @@ const status = {
   </div>),
   free_plan: (<div className="text-[#71717A]">
     Free plan available
+  </div>),
+  need_upgrade: (<div className="text-[#71717A]">
+    Upgrade available
   </div>)
 }
 
@@ -32,7 +35,7 @@ export const appList = [
     desc:'Facilitate payments and pay out sellers or service providers.',
     version:'Version 2.2',
     developed_by:'Zaviago',
-    status:(status.installed),
+    status:(appStatus.installed),
     images:[mockapp1, mockapp2, mockapp3, mockapp4],
     highlights:(
       <>
@@ -62,7 +65,7 @@ export const appList = [
     desc:'Facilitate payments and pay out sellers or service providers.',
     version:'Version 2.2',
     developed_by:'Zaviago',
-    status:(status.pro_plan),
+    status:(appStatus.pro_plan),
     images:[],
     highlights:(
       <>
@@ -82,7 +85,7 @@ export const appList = [
     desc:'Facilitate payments and pay out sellers or service providers.',
     version:'Version 2.2',
     developed_by:'Zaviago',
-    status:(status.pro_plan),
+    status:(appStatus.need_upgrade),
     images:[],
     highlights:(
       <>

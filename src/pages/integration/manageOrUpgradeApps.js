@@ -113,9 +113,16 @@ export default function ManageOrUpgradeApps(){
                   </div>
                 </div>
                 <div className="flex items-center gap-x-3">
-                  <Link to={app.link}>
-                    <Button variant='outline'>{id === 'manage-apps' ? 'Open' : 'Upgrade'}</Button>
-                  </Link>
+                  {id === 'manage-apps' ? (
+                    <Link to={app.link}>
+                      <Button variant='outline'>Open</Button>
+                    </Link>
+                  ) : (
+                    <Link to={`/integration/appstore/${app.id}`}>
+                      <Button variant='outline'>Upgrade</Button>
+                    </Link>
+                  )}
+
                   <Popover>
                     <PopoverTrigger>
                       <Button variant='outline' className='p-2'>
