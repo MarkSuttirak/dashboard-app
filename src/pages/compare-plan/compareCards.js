@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Button } from "src/components/ui/button";
 import { CheckCircledIcon, CrossCircledIcon, LightningBoltIcon } from "@radix-ui/react-icons";
 import { XCircleIcon } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function CompareCards(){
   const [perYear, setPerYear] = useState(false);
@@ -58,10 +59,12 @@ export default function CompareCards(){
           </div>
         </div>
 
-        <Button className='btn-with-icon my-6 w-full'>
-          <LightningBoltIcon />
-          Upgrade to Pro
-        </Button>
+        <Link to='/payment'>
+          <Button className='btn-with-icon my-6 w-full'>
+            <LightningBoltIcon />
+            Upgrade to Pro
+          </Button>
+        </Link>
 
         <div className="flex flex-col gap-y-4">
           {proPrivileges.map(p => (

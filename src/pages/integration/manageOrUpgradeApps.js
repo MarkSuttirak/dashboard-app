@@ -139,7 +139,7 @@ export default function ManageOrUpgradeApps(){
                             <CommandItem onSelect={() => navigate(`/integration/appstore/${app.id}`)}>
                               App Info
                             </CommandItem>
-                            <CommandItem>
+                            <CommandItem onSelect={() => window.location.href = 'https://page.line.me/zaviago'}>
                               Customer Care
                             </CommandItem>
                           </CommandGroup>
