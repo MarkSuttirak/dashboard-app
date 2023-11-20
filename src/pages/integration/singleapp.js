@@ -47,10 +47,10 @@ export default function SingleApp(){
             }
           }
 
-          const ImageDialog = ({image, mainImage, index}) => {
+          const ImageDialog = ({image, mainImage, onOpen}) => {
             return (
               <Dialog>
-                <DialogTrigger className="p-0 h-fit w-full" onClick={setCurrentImage(index)}>
+                <DialogTrigger className="p-0 h-fit w-full" onClick={onOpen}>
                   <img src={image} className={`${mainImage ? 'rounded-md' : 'img-apps'}`} width={`${!mainImage ? '330' : '100%'}`}/>
                 </DialogTrigger>
                 <DialogContent className='p-0 max-w-3xl max-h-3xl items-center bg-transparent'>
@@ -174,10 +174,10 @@ export default function SingleApp(){
               </section>
 
               <section className="flex gap-x-6 mt-[55px]">
-                <ImageDialog image={item.images[0]} mainImage={true}/>
+                <ImageDialog image={item.images[0]} mainImage={true} onOpen={() => setCurrentImage(index)}/>
                 <div className="flex flex-col gap-y-6">
                   {item.images.map((image, index) => (
-                    <ImageDialog key={index} image={image} mainImage={false}/>
+                    <ImageDialog key={index} image={image} mainImage={false} onOpen={() => setCurrentImage(index)}/>
                   )).slice(1, 4)}
                 </div>
               </section>
