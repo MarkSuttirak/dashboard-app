@@ -38,7 +38,7 @@ export default function Subscription(){
   const [numOfCustomers, setNumOfCustomers] = useState(2544)
   const [numOfApps, setNumOfApps] = useState(4)
 
-  const [isPro, setIsPro] = useState(true)
+  const [isPro, setIsPro] = useState(false)
 
   const { user, auth, logout } = useUser();
 

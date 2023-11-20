@@ -103,7 +103,7 @@ export default function TeamMembers(){
     <div>
       <h1 className="subheading font-medium">People with access</h1>
       <div className="mt-[10px] flex gap-x-2">
-        <Input placeholder='Search User' onChange={(e) => setSearch(e.target.value)}/>
+        <Input placeholder='Search User' value={search} onChange={(e) => setSearch(e.target.value)}/>
         <Button variant='outline' className='border border-dashed flex items-center gap-x-2'>
           <div className="flex items-center gap-x-2">
             <PlusCircle viewBox='0 0 24 24' width='16' height='16'/>
@@ -112,7 +112,7 @@ export default function TeamMembers(){
           <DrawLine color='#E4E4E7' height="80%" width="1px"/>
           <Badge variant="secondary" className='rounded-md'>3 Selected</Badge>
         </Button>
-        <Button variant='ghost' className='flex items-center gap-x-2'>
+        <Button variant='ghost' className={`flex items-center gap-x-2 ${search !== '' ? 'visible opacity-1' : 'invisible opacity-0'} transition duration-200`} onClick={() => setSearch('')}> 
           Reset
           <X viewBox="0 0 24 24" width='16' height='16'/>
         </Button>
