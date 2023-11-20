@@ -15,10 +15,10 @@ export default function QuestionsAnswers(){
       question:"Do we have a refund policy?",
       answer:(
         <>
-          You can request a refund by contacting us at <Link>marketing@zaviago.com</Link>. 
+          You can request a refund by contacting us at <a href="mailto:marketing@zaviago.com" className="underline">marketing@zaviago.com</a>. 
           We are happy to provide a full refund, and you just need to submit a refund request 
           within 48 hours of completing the payment. And if you feel dissatisfied or have any suggestions for improvement, 
-          please also contact us at <Link>marketing@zaviago.com</Link>. We greatly appreciate your feedback and 
+          please also contact us at <a href="mailto:marketing@zaviago.com" className="underline">marketing@zaviago.com</a>. We greatly appreciate your feedback and 
           strive to make Zaviago Platform more helpful in both your personal and professional life.
         </>
       )
@@ -28,7 +28,7 @@ export default function QuestionsAnswers(){
     <Accordion type="multiple" collapsible className="w-full">
       {faqs.map(list => (
         <AccordionItem value={list.question}>
-          <AccordionTrigger>{list.question}</AccordionTrigger>
+          <AccordionTrigger className='text-base'>{list.question}</AccordionTrigger>
           <AccordionContent>
             {list.answer}
           </AccordionContent>

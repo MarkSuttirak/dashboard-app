@@ -59,7 +59,7 @@ export default function ComparePlan(){
         <div className="w-1/3">
           <h1 className="text-3xl tracking-[-0.75px] text-[#18181B] font-semibold mt-[6px] mb-3">Custom</h1>
           <p className="main-desc">Design a custom package <br/>available for businesses or</p>
-          <Link className="text-sm text-[#006AFF]">Contact Sales</Link>
+          <a href='https://page.line.me/zaviago' className="text-sm text-[#006AFF]">Contact Sales</a>
         </div>
         <div className="w-1/3">
           <div className='flex gap-x-2 items-center'>
@@ -113,7 +113,7 @@ export default function ComparePlan(){
               Upgrade to Pro
             </Button>
           </Link>
-          <p className="main-desc">Try demo ? or <Link className="text-[#006AFF]">Contact sales</Link></p>
+          <p className="main-desc">Try demo ? or <a href='https://page.line.me/zaviago' className="text-[#006AFF]">Contact sales</a></p>
         </div>
       </section>
     </div>

@@ -1,8 +1,55 @@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog"
 import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "../ui/command"
 import { Search } from 'lucide-react'
+import { useNavigate } from "react-router-dom"
 
 export default function SearchBar(){
+  const navigate = useNavigate()
+
+  function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    while (currentIndex > 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
+
+  const settingsMenus = [
+    {
+      link:'/dashboard/settings/account',
+      title:'Account'
+    },
+    {
+      link:'/dashboard/settings/billing-plans',
+      title:'Billing & Plans'
+    },
+    {
+      link:'/dashboard/settings/notifications',
+      title:'Notifications'
+    },
+  ]
+
+  const integrationsMenus = [
+    {
+      link:'/integration/manage-apps',
+      title:'Manage Apps'
+    },
+    {
+      link:'/integration/upgrade-apps',
+      title:'Upgrade Apps'
+    },
+    {
+      link:'/integration/apps-quota',
+      title:'Apps Quota'
+    },
+  ]
+
   return (
     <Dialog>
       <DialogTrigger className='bg-zinc-100 rounded-md px-2 py-[6px] text-[13px] h-7 flex items-center w-[300px] text-zinc-500 tracking-[0.02em] gap-x-[9px] leading-5'>
@@ -14,16 +61,16 @@ export default function SearchBar(){
           <CommandInput placeholder="Type a command or search..." />
           <CommandList>
             <CommandEmpty>No results found.</CommandEmpty>
-            <CommandGroup heading="Suggestions">
-              <CommandItem>Calendar</CommandItem>
-              <CommandItem>Search Emoji</CommandItem>
-              <CommandItem>Calculator</CommandItem>
+            <CommandGroup heading="Integrations">
+              {integrationsMenus.map(item => (
+                <CommandItem key={item.title} onSelect={() => navigate(item.link)}>{item.title}</CommandItem>
+              ))}
             </CommandGroup>
             <CommandSeparator />
             <CommandGroup heading="Settings">
-              <CommandItem>Profile</CommandItem>
-              <CommandItem>Billing</CommandItem>
-              <CommandItem>Settings</CommandItem>
+              {settingsMenus.map(item => (
+                <CommandItem key={item.title} onSelect={() => navigate(item.link)}>{item.title}</CommandItem>
+              ))}
             </CommandGroup>
           </CommandList>
         </Command>
