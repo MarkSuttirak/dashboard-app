@@ -132,7 +132,7 @@ export default function ManageOrUpgradeApps(){
                         <MoreHorizontal viewBox="0 0 24 24" height="16" width="16"/>
                       </Button>
                     </PopoverTrigger>
-                    <PopoverContent className='p-0 w-[243px]'>
+                    <PopoverContent className='p-0 w-[160px]'>
                       <Command>
                         <CommandList>
                           <CommandGroup>
