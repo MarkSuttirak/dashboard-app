@@ -2,7 +2,7 @@ import { useParams } from "react-router"
 import { appList } from "../../components/apps/appList"
 import { Button } from "src/components/ui/button"
 import { LightningBoltIcon, OpenInNewWindowIcon, PlusCircledIcon } from "@radix-ui/react-icons"
-import { BadgeCheck, Globe, Key, MessageSquare, Smile } from "lucide-react"
+import { BadgeCheck, ChevronLeft, ChevronRight, Globe, Key, MessageSquare, Smile } from "lucide-react"
 import { Separator } from "src/components/ui/separator"
 import connectMarketingBg from "src/img/socialapp-bg.png"
 import installAppBg from "src/img/install-app-bg.png"
@@ -20,19 +20,6 @@ export default function SingleApp(){
 
   const [currentImage, setCurrentImage] = useState(0)
 
-  const ImageDialog = ({image, mainImage}) => {
-    return (
-      <Dialog>
-        <DialogTrigger className="p-0 h-fit w-full">
-          <img src={image} className={`${mainImage ? 'rounded-md' : 'img-apps'}`} width={`${!mainImage ? '330' : '100%'}`}/>
-        </DialogTrigger>
-        <DialogContent className='p-0 max-w-3xl max-h-3xl'>
-          <img src={image} className="rounded-md w-full h-full"/>
-        </DialogContent>
-      </Dialog>
-    )
-  }
-
   const installApp = () => {
     setAddAppStatus('installing')
     setTimeout(() => {
@@ -43,175 +30,214 @@ export default function SingleApp(){
   const CardData = ({data}) => {
     return (
       <>
-        {data.filter(item => item.id === id).map((item, index) => (
-          <>
-            <section className="flex justify-between">
-              <div className="flex items-start gap-x-5">
-                <div className="app-detail-icon">
-                  {item.icon}
+        {data.filter(item => item.id === id).map((item, index) => {
+          const handleNextImage = () => {
+            if (currentImage > item.images.length){
+              setCurrentImage(0)
+            } else {
+              setCurrentImage(currentImage + 1)
+            }
+          }
+        
+          const handlePrevImage = () => {
+            if (currentImage == 0){
+              setCurrentImage(item.images.length - 1)
+            } else {
+              setCurrentImage(currentImage - 1)
+            }
+          }
+
+          const ImageDialog = ({image, mainImage, index}) => {
+            return (
+              <Dialog>
+                <DialogTrigger className="p-0 h-fit w-full" onClick={setCurrentImage(index)}>
+                  <img src={image} className={`${mainImage ? 'rounded-md' : 'img-apps'}`} width={`${!mainImage ? '330' : '100%'}`}/>
+                </DialogTrigger>
+                <DialogContent className='p-0 max-w-3xl max-h-3xl items-center bg-transparent'>
+                  <button className="absolute flex left-5 bg-white/80 rounded-full p-2" onClick={handlePrevImage}>
+                    <ChevronLeft width='30' height='30'/>
+                  </button>
+                  <img src={image} className="rounded-md w-full h-full"/>
+                  <button className="absolute flex right-5 bg-white/80 rounded-full p-2" onClick={handleNextImage}>
+                    <ChevronRight width='30' height='30'/>
+                  </button>
+        
+                  <p className="text-center">{currentImage + 1} / {item.images.length}</p>
+                </DialogContent>
+              </Dialog>
+            )
+          }
+
+          return (
+            <>
+              <section className="flex justify-between">
+                <div className="flex items-start gap-x-5">
+                  <div className="app-detail-icon">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <h1 className="main-heading">{item.title}</h1>
+                    <p className="text-sm font-medium text-[#09090B]">By {item.developed_by}</p>
+                    <p className="text-sm mt-1">{item.status}</p>
+                  </div>
                 </div>
-                <div>
-                  <h1 className="main-heading">{item.title}</h1>
-                  <p className="text-sm font-medium text-[#09090B]">By {item.developed_by}</p>
-                  <p className="text-sm mt-1">{item.status}</p>
-                </div>
-              </div>
-              {item.status === appStatus.installed ? (
-                <Button className='btn-with-icon'>
-                  <OpenInNewWindowIcon />Open
-                </Button>
-              ) : item.status === appStatus.need_upgrade ? (
-                <Button className='btn-with-icon'>
-                  <LightningBoltIcon />Upgrade
-                </Button>
-              ) : (
-                <Dialog defaultOpen={addAppStatus === 'installing' || addAppStatus === 'installed'}>
-                  <DialogTrigger asChild className="data-[state=open]:animate-in data-[state=closed]:animate-out">
-                    <Button className='btn-with-icon'>
-                      <PlusCircledIcon />Add to site
-                    </Button>
-                  </DialogTrigger>
-                  {addAppStatus !== 'installing' ? (
-                    <DialogContent className='p-0 max-w-[368px] border-0 gap-0'>
-                      <DialogHeader>
-                        <div className='rounded-t-lg' style={{background:`url(${installAppBg})`,backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
-                          {addAppStatus === 'installed' ? (
-                            <DialogTitle className='flex justify-center gap-x-[55px] py-[50px]'>
-                              <div className="p-3 rounded-lg bg-white inline-block shadow-lg">
-                                <div className="app-detail-icon">
-                                  {item.icon}
+                {item.status === appStatus.installed ? (
+                  <Button className='btn-with-icon'>
+                    <OpenInNewWindowIcon />Open
+                  </Button>
+                ) : item.status === appStatus.need_upgrade ? (
+                  <Button className='btn-with-icon'>
+                    <LightningBoltIcon />Upgrade
+                  </Button>
+                ) : (
+                  <Dialog defaultOpen={addAppStatus === 'installing' || addAppStatus === 'installed'}>
+                    <DialogTrigger asChild className="data-[state=open]:animate-in data-[state=closed]:animate-out">
+                      <Button className='btn-with-icon'>
+                        <PlusCircledIcon />Add to site
+                      </Button>
+                    </DialogTrigger>
+                    {addAppStatus !== 'installing' ? (
+                      <DialogContent className='p-0 max-w-[368px] border-0 gap-0'>
+                        <DialogHeader>
+                          <div className='rounded-t-lg' style={{background:`url(${installAppBg})`,backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
+                            {addAppStatus === 'installed' ? (
+                              <DialogTitle className='flex justify-center gap-x-[55px] py-[50px]'>
+                                <div className="p-3 rounded-lg bg-white inline-block shadow-lg">
+                                  <div className="app-detail-icon">
+                                    {item.icon}
+                                  </div>
                                 </div>
-                              </div>
-                            </DialogTitle>
-                          ) : (
-                            <DialogTitle className='flex justify-center gap-x-[55px] py-[50px]'>
-                              <div className="p-3 rounded-lg bg-white inline-block shadow-lg">
-                                <Icons.appStoreApp02 />
-                              </div>
-                              <div className="p-3 rounded-lg bg-white inline-block shadow-lg">
-                                <div className="app-to-install-icon">
-                                  {item.icon}
+                              </DialogTitle>
+                            ) : (
+                              <DialogTitle className='flex justify-center gap-x-[55px] py-[50px]'>
+                                <div className="p-3 rounded-lg bg-white inline-block shadow-lg">
+                                  <Icons.appStoreApp02 />
                                 </div>
-                              </div>
-                            </DialogTitle>
-                          )}
-                        </div>
-                      </DialogHeader>
-                      {addAppStatus === 'installed' ? (
-                        <DialogDescription className='p-6 mt-[0!important]'>
-                          <h1 className="settings-heading mb-[12px!important]">{item.title} has been installed successfully.</h1>
-                          <p>You can start the application by clicking "Open".</p>
-
-                          <div className="flex items-center justify-between mt-6">
-                            <Button className='btn-with-icon w-full'>
-                              <BadgeCheck viewBox="0 0 24 24" width="16" height="16"/>
-                              Open
-                            </Button>
+                                <div className="p-3 rounded-lg bg-white inline-block shadow-lg">
+                                  <div className="app-to-install-icon">
+                                    {item.icon}
+                                  </div>
+                                </div>
+                              </DialogTitle>
+                            )}
                           </div>
-                        </DialogDescription>
-                      ) : (
-                        <DialogDescription className='p-6 mt-[0!important]'>
-                          <h1 className="settings-heading mb-[12px!important]">Install {item.title} to your workspace</h1>
-                          <p>The app will be able to read the email address you use to log in with Zaviago.</p>
+                        </DialogHeader>
+                        {addAppStatus === 'installed' ? (
+                          <DialogDescription className='p-6 mt-[0!important]'>
+                            <h1 className="settings-heading mb-[12px!important]">{item.title} has been installed successfully.</h1>
+                            <p>You can start the application by clicking "Open".</p>
 
-                          <Button className='btn-with-icon text-[#006AFF] font-normal w-full mt-6 justify-start' variant='secondary'>
-                            <Key viewBox="0 0 24 24" width='16' height='16' color='#006AFF'/>
-                            Privacy Policy and Terms of Service.
-                          </Button>
+                            <div className="flex items-center justify-between mt-6">
+                              <Button className='btn-with-icon w-full'>
+                                <BadgeCheck viewBox="0 0 24 24" width="16" height="16"/>
+                                Open
+                              </Button>
+                            </div>
+                          </DialogDescription>
+                        ) : (
+                          <DialogDescription className='p-6 mt-[0!important]'>
+                            <h1 className="settings-heading mb-[12px!important]">Install {item.title} to your workspace</h1>
+                            <p>The app will be able to read the email address you use to log in with Zaviago.</p>
 
-                          <div className="flex items-center justify-between mt-6">
-                            <DialogClose>
-                              <Button variant='outline'>Cancel</Button>
-                            </DialogClose>
-                            <Button onClick={installApp}>
-                              Install apps
+                            <Button className='btn-with-icon text-[#006AFF] font-normal w-full mt-6 justify-start' variant='secondary'>
+                              <Key viewBox="0 0 24 24" width='16' height='16' color='#006AFF'/>
+                              Privacy Policy and Terms of Service.
                             </Button>
+
+                            <div className="flex items-center justify-between mt-6">
+                              <DialogClose>
+                                <Button variant='outline'>Cancel</Button>
+                              </DialogClose>
+                              <Button onClick={installApp}>
+                                Install apps
+                              </Button>
+                            </div>
+                          </DialogDescription>
+                        )}
+                      </DialogContent>
+                    ) : (
+                      <DialogContent>
+                        <DialogDescription className='p-6 flex flex-col gap-y-4 items-center justify-center'>
+                          <h1 className="secondary-heading">Installing {item.title}</h1>
+
+                          <div className="flex gap-x-[10px] w-full items-center">
+                            <Progress value={installingAppPercent}/>
+                            {installingAppPercent}%
                           </div>
+
+                          <p className="main-desc">Installing app</p>
                         </DialogDescription>
-                      )}
-                    </DialogContent>
-                  ) : (
-                    <DialogContent>
-                      <DialogDescription className='p-6 flex flex-col gap-y-4 items-center justify-center'>
-                        <h1 className="secondary-heading">Installing {item.title}</h1>
+                      </DialogContent>
+                    )}
+                  </Dialog>
+                )}
+              </section>
 
-                        <div className="flex gap-x-[10px] w-full items-center">
-                          <Progress value={installingAppPercent}/>
-                          {installingAppPercent}%
-                        </div>
-
-                        <p className="main-desc">Installing app</p>
-                      </DialogDescription>
-                    </DialogContent>
-                  )}
-                </Dialog>
-              )}
-            </section>
-
-            <section className="flex gap-x-6 mt-[55px]">
-              <ImageDialog image={item.images[0]} mainImage={true}/>
-              <div className="flex flex-col gap-y-6">
-                {item.images.map((image, index) => (
-                  <ImageDialog key={index} image={image} mainImage={false}/>
-                )).slice(1, 4)}
-              </div>
-            </section>
-
-            <section className="flex gap-x-9 mt-20">
-              <aside className="border rounded-md p-6 w-1/3">
-                <div className="mb-3">
-                  <h1 className='font-bold text-[#181818] text-base mb-3'>Highlights</h1>
-                  {item.highlights}
+              <section className="flex gap-x-6 mt-[55px]">
+                <ImageDialog image={item.images[0]} mainImage={true}/>
+                <div className="flex flex-col gap-y-6">
+                  {item.images.map((image, index) => (
+                    <ImageDialog key={index} image={image} mainImage={false}/>
+                  )).slice(1, 4)}
                 </div>
+              </section>
 
-                <div className="flex flex-col gap-y-3">
-                  <h1 className='font-bold text-[#181818] text-base'>Information</h1>
-                  <div>
-                    <h2 className='subheading font-medium'>Launched</h2>
-                    <p className="main-desc mt-1">{item.launched}</p>
+              <section className="flex gap-x-9 mt-20">
+                <aside className="border rounded-md p-6 w-1/3">
+                  <div className="mb-3">
+                    <h1 className='font-bold text-[#181818] text-base mb-3'>Highlights</h1>
+                    {item.highlights}
                   </div>
 
-                  <div>
-                    <h2 className='subheading font-medium'>Categories</h2>
-                    <p className="main-desc mt-1">{item.categories}</p>
+                  <div className="flex flex-col gap-y-3">
+                    <h1 className='font-bold text-[#181818] text-base'>Information</h1>
+                    <div>
+                      <h2 className='subheading font-medium'>Launched</h2>
+                      <p className="main-desc mt-1">{item.launched}</p>
+                    </div>
+
+                    <div>
+                      <h2 className='subheading font-medium'>Categories</h2>
+                      <p className="main-desc mt-1">{item.categories}</p>
+                    </div>
+
+                    <div>
+                      <h2 className='subheading font-medium'>Integrates with</h2>
+                      <p className="main-desc mt-1">{item.integrate_with.join(', ')}</p>
+                    </div>
                   </div>
 
-                  <div>
-                    <h2 className='subheading font-medium'>Integrates with</h2>
-                    <p className="main-desc mt-1">{item.integrate_with.join(', ')}</p>
-                  </div>
-                </div>
+                  <div className="mt-[72px]">
+                    <p className="main-desc">App developed by</p>
+                    <h2 className='font-bold text-[#09090B]'>Zaviago.com</h2>
 
-                <div className="mt-[72px]">
-                  <p className="main-desc">App developed by</p>
-                  <h2 className='font-bold text-[#09090B]'>Zaviago.com</h2>
-
-                  <div className="mt-3">
-                    <Button className='btn-with-icon w-full justify-start' variant='ghost'>
-                      <Globe viewBox="0 0 24 24" width='16' height='16'/>
-                      Visit our Website
-                    </Button>
-                    <Button className='btn-with-icon w-full justify-start' variant='ghost'>
-                      <Smile viewBox="0 0 24 24" width='16' height='16'/>
-                      Check App Demo
-                    </Button>
-                    <Button className='btn-with-icon w-full justify-start' variant='ghost'>
-                      <MessageSquare viewBox="0 0 24 24" width='16' height='16'/>
-                      Contact our support
-                    </Button>
-                    <Button className='btn-with-icon w-full justify-start' variant='ghost'>
-                      <Key viewBox="0 0 24 24" width='16' height='16'/>
-                      Privacy policy
-                    </Button>
+                    <div className="mt-3">
+                      <Button className='btn-with-icon w-full justify-start' variant='ghost'>
+                        <Globe viewBox="0 0 24 24" width='16' height='16'/>
+                        Visit our Website
+                      </Button>
+                      <Button className='btn-with-icon w-full justify-start' variant='ghost'>
+                        <Smile viewBox="0 0 24 24" width='16' height='16'/>
+                        Check App Demo
+                      </Button>
+                      <Button className='btn-with-icon w-full justify-start' variant='ghost'>
+                        <MessageSquare viewBox="0 0 24 24" width='16' height='16'/>
+                        Contact our support
+                      </Button>
+                      <Button className='btn-with-icon w-full justify-start' variant='ghost'>
+                        <Key viewBox="0 0 24 24" width='16' height='16'/>
+                        Privacy policy
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              </aside>
-              <article className="w-2/3">
-                {item.long_desc}
-              </article>
-            </section>
-          </>
-        ))}
+                </aside>
+                <article className="w-2/3">
+                  {item.long_desc}
+                </article>
+              </section>
+            </>
+          )
+        })}
       </>
     )
   }
