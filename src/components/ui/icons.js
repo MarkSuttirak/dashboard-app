@@ -72,9 +72,11 @@ export const Icons = {
     </svg>
   ),
   spinner: (props) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-    </svg>
+    <div className="animate-spin">
+      <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14.5 8.00005C14.4999 9.26711 14.0988 10.5016 13.354 11.5267C12.6092 12.5517 11.559 13.3147 10.3539 13.7062C9.14886 14.0977 7.8508 14.0976 6.64576 13.7061C5.44073 13.3145 4.39059 12.5515 3.64584 11.5264C2.9011 10.5013 2.49999 9.26677 2.5 7.99971C2.50001 6.73265 2.90114 5.49812 3.64589 4.47305C4.39065 3.44798 5.4408 2.68499 6.64584 2.29343C7.85088 1.90188 9.14895 1.90186 10.354 2.29338" stroke="#FAFAFA" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
   ),
   logicIcon: (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="33" viewBox="0 0 35 33" fill="none" {...props}>
