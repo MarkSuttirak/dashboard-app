@@ -104,7 +104,7 @@ export default function UpgradeProModal(){
                     Upgrade to Pro
                   </Button>
                 </Link>
-                <p className="main-desc">See more details at <Link className="text-[#006AFF]">Compare Plan</Link></p>
+                <p className="main-desc">See more details at <Link className="text-[#006AFF]" to='/dashboard/compare-plan'>Compare Plan</Link></p>
               </section>
             </div>
           </DialogDescription>

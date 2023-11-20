@@ -8,6 +8,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "src/components/ui/popov
 import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "src/components/ui/command"
 import { DataList } from "src/components/pagination"
 import { useState } from 'react'
+import DeleteAppModal from "src/components/deleteAppModal"
 
 const installedApps = [
   {
@@ -84,6 +85,8 @@ export default function ManageOrUpgradeApps(){
   const [search, setSearch] = useState('');
   const { id } = useParams()
 
+  const [deleteStatus, setDeleteStatus] = useState('');
+
   const appData = (id === 'manage-apps' ? installedApps : appsToUpgrade).filter(app => app.title.toUpperCase().includes(search.toUpperCase()))
 
   return (
@@ -136,14 +139,14 @@ export default function ManageOrUpgradeApps(){
                             <CommandItem onSelect={() => navigate(`/integration/appstore/${app.id}`)}>
                               App Info
                             </CommandItem>
-                            <CommandItem>
+                            <CommandItem onSelect={() => window.location.href = 'https://page.line.me/zaviago'}>
                               Customer Care
                             </CommandItem>
                           </CommandGroup>
                           <CommandSeparator />
                           <CommandGroup>
-                            <CommandItem>
-                              Delete
+                            <CommandItem className='p-0'>
+                              <DeleteAppModal status={deleteStatus} setStatus={setDeleteStatus} title={app.title}/>
                             </CommandItem>
                           </CommandGroup>
                         </CommandList>
