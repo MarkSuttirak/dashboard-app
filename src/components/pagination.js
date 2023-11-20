@@ -45,10 +45,10 @@ export function DataList({children, pagination, listPerPage = 10, emptyText = "T
       {children.length < 1 && <p className="main-desc">{emptyText}</p>}
 
       {pagination && (
-        <>
+        <div className="w-full">
           <Separator className='my-[10px]'/>
           <Pagination data={children} currentPage={currentPage} setCurrentPage={setCurrentPage} listPerPage={lists}/>
-        </>
+        </div>
       )}
     </>
   )

@@ -1,9 +1,11 @@
+import { DataList, Pagination } from "./pagination";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "./ui/table"
 import React, { useState,useEffect  } from 'react';
 export default function InvoiceTable({invoices_props}) {
+  const [currentPage, setCurrentPage] = useState(1)
+  const listPerPage = 6
    
   useEffect(()=>{
-    
     console.log(invoices_props)
   },[] )
 
@@ -22,7 +24,7 @@ export default function InvoiceTable({invoices_props}) {
               <TableHead className="text-right">Amount</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody >
+          <TableBody>
             {invoices_props.message.map((invoice) => (
               <TableRow key={invoice.name}>
                 <TableCell className="font-medium">{invoice.name}</TableCell>
@@ -30,9 +32,10 @@ export default function InvoiceTable({invoices_props}) {
                 <TableCell>method</TableCell>
                 <TableCell className="text-right">{invoice.formatted_total}</TableCell>
               </TableRow>
-            ))}
+            )).slice((currentPage - 1) * listPerPage, currentPage * listPerPage)}
           </TableBody>
         </Table>
+        <Pagination data={invoices_props.message} currentPage={currentPage} setCurrentPage={setCurrentPage} listPerPage={6}/>
       </section>
     </>
   )

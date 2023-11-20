@@ -18,12 +18,18 @@ export function BillingAddressForm({billingAddress}) {
 
   const form = useFormik({
     initialValues: {
-      billing_name:billingAddress.billing_name,
-      country:billingAddress.country,
-      address_line1:billingAddress.address_line1,
-      city:billingAddress.city,
-      state:billingAddress.state,
-      pincode:billingAddress.pincode,
+      // billing_name:billingAddress.billing_name,
+      // country:billingAddress.country,
+      // address_line1:billingAddress.address_line1,
+      // city:billingAddress.city,
+      // state:billingAddress.state,
+      // pincode:billingAddress.pincode,
+      billing_name:'',
+      country:'',
+      address_line1:'',
+      city:'',
+      state:'',
+      pincode:'',
     },
     validateOnChange: true,
     validationSchema: appearanceFormSchema,
@@ -65,7 +71,7 @@ export function BillingAddressForm({billingAddress}) {
                 name="billing_name"
                 type='text'
                 onChange={form.handleChange}
-                defaultValue={billingAddress.billing_name}
+                // defaultValue={billingAddress.billing_name}
               />
             </div>
           </div>
@@ -74,7 +80,9 @@ export function BillingAddressForm({billingAddress}) {
                   <label className="subheading mb-2">
                     Country
                   </label>
-                  <select name="country" className="form-input" defaultValue={billingAddress.country} onChange={form.handleChange}>
+                  <select name="country" className="form-input" 
+                    // defaultValue={billingAddress.country} 
+                    onChange={form.handleChange}>
                     <option>Select Country</option>
                       {countries.map(country => (
                       <option value={country}>{country}</option>
@@ -93,7 +101,7 @@ export function BillingAddressForm({billingAddress}) {
                     name="address_line1"
                     onChange={form.handleChange}
                     type='text'
-                    defaultValue ={billingAddress.address_line1}
+                    // defaultValue ={billingAddress.address_line1}
                   />
               </div>
           </div>
@@ -108,7 +116,7 @@ export function BillingAddressForm({billingAddress}) {
                     name="city"
                     type='text'
                     onChange={form.handleChange}
-                    defaultValue ={billingAddress.city}
+                    // defaultValue ={billingAddress.city}
                   />
               </div>
           </div>
@@ -123,7 +131,7 @@ export function BillingAddressForm({billingAddress}) {
                     name="state"
                     type='text'
                     onChange={form.handleChange}
-                    defaultValue ={billingAddress.state}
+                    // defaultValue ={billingAddress.state}
                   />
               </div>
           </div>
@@ -138,7 +146,7 @@ export function BillingAddressForm({billingAddress}) {
                     name="pincode"
                     type='text'
                     onChange={form.handleChange}
-                    defaultValue ={billingAddress.pincode}
+                    // defaultValue ={billingAddress.pincode}
                   />
               </div>
           </div>
@@ -146,7 +154,7 @@ export function BillingAddressForm({billingAddress}) {
             <button
               type='submit'
               className={'text-sm bg-primary text-[#FAFAFA] px-4 py-2 rounded-md'}>
-                Update Address
+                Update
             </button>
           </div>
         </main>

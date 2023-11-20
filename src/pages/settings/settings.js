@@ -8,6 +8,7 @@ import DisplayForm from "./display";
 import PagesMenus from "src/components/pagesMenus";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs"
 import Invoices from "./invoices";
+import Subscription from "./subscription";
 
 const sidebarNavItems = [
   {
@@ -55,13 +56,17 @@ export default function Settings(){
               <TabsList>
                 <TabsTrigger value="overview">Overview</TabsTrigger>
                 <TabsTrigger value="invoices">Invoices</TabsTrigger>
+                <TabsTrigger value="billing">Billing</TabsTrigger>
               </TabsList>
               <Separator className='my-6'/>
               <TabsContent value="overview">
-                <BillingPlan />
+                <Subscription />
               </TabsContent>
               <TabsContent value="invoices">
                 <Invoices />
+              </TabsContent>
+              <TabsContent value="billing">
+                <BillingPlan />
               </TabsContent>
             </Tabs>
           </section>
