@@ -20,14 +20,13 @@ import PaymentPage from './pages/payment/payment';
 import CheckoutPage from './pages/checkout/checkoutPage';
 import CheckoutReceived from './pages/checkout/checkoutReceived';
 import Integration from './pages/integration/integration';
-import ManageApps from './pages/integration/manageOrUpgradeApps';
 import QuotaDetail from './pages/integration/quotaDetail';
 import ComparePlan from './pages/compare-plan/comparePlan';
 
 // ----------------------------------------------------------------------
 
 export default function Router() {
-    return useRoutes([
+    const routes = [
         {
             path: '/dashboard',
             element: withAuthenticationRequired(DashboardLayout),
@@ -44,7 +43,7 @@ export default function Router() {
                 },
                 { path: 'settings/:id', element: <Settings /> },
                 { path: 'teams/:id', element: <Teams /> },
-                { path: 'compare-plan', element: <ComparePlan />}
+                { path: 'compare-plan', element: <ComparePlan /> }
             ],
         },
         {
@@ -88,5 +87,7 @@ export default function Router() {
             ],
         },
         { path: '*', element: <NotFoundPage replace /> },
-    ]);
+    ]
+    
+    return useRoutes(routes);
 }

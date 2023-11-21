@@ -4,12 +4,12 @@ export const featureLists = [
   {
     title:'Website page',
     free:'1 page',
-    pro:'1 page',
+    pro:'Unlimited',
   },
   {
     title:'Sales system',
     free:'Small',
-    pro:'Small'
+    pro:'Large'
   },
   {
     title:'Number of products',
@@ -47,12 +47,12 @@ export const blogFeatures = [
   {
     title:'Website page',
     free:'1 page',
-    pro:'1 page',
+    pro:'Unlimited',
   },
   {
     title:'Sales system',
     free:'Small',
-    pro:'Small'
+    pro:'Large'
   },
   {
     title:'Number of products',
@@ -90,12 +90,12 @@ export const lineCRMFeatures = [
   {
     title:'Website page',
     free:'1 page',
-    pro:'1 page',
+    pro:'Unlimited',
   },
   {
     title:'Sales system',
     free:'Small',
-    pro:'Small'
+    pro:'Large'
   },
   {
     title:'Number of products',
