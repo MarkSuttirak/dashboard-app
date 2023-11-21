@@ -26,7 +26,7 @@ import ComparePlan from './pages/compare-plan/comparePlan';
 // ----------------------------------------------------------------------
 
 export default function Router() {
-    return useRoutes([
+    const routes = [
         {
             path: '/dashboard',
             element: withAuthenticationRequired(DashboardLayout),
@@ -43,7 +43,7 @@ export default function Router() {
                 },
                 { path: 'settings/:id', element: <Settings /> },
                 { path: 'teams/:id', element: <Teams /> },
-                { path: 'compare-plan', element: <ComparePlan />}
+                { path: 'compare-plan', element: <ComparePlan />, title:'Compare Plan'}
             ],
         },
         {
@@ -87,5 +87,7 @@ export default function Router() {
             ],
         },
         { path: '*', element: <NotFoundPage replace /> },
-    ]);
+    ]
+    
+    return useRoutes(routes);
 }

@@ -1,5 +1,7 @@
 import { CheckCircledIcon, ChevronDownIcon, MagicWandIcon, PlusCircledIcon, StarIcon, ValueIcon } from "@radix-ui/react-icons"
-import { LayoutGrid, Users, Zap } from "lucide-react"
+import { Popover, PopoverContent, PopoverTrigger } from "src/components/ui/popover"
+import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "src/components/ui/command"
+import { Layers, LayoutGrid, Users, Zap } from "lucide-react"
 import { Separator } from "../../components/ui/separator";
 import { Button, buttonVariants } from "../../components/ui/button"
 import { useState, useEffect } from 'react'
@@ -77,21 +79,54 @@ export default function Subscription(){
             <p className="secondary-heading">{sites?.site_list[0].name}</p>
           </div>
 
-          {isPro ? (
-            <Button variant='secondary' className='btn-with-icon leading-5' onClick={() => window.location.href = `/dashboard/settings/plan-upgrade`}>
-              <Users viewBox='0 0 24 24' width='16' height='16'/>
-              Manage Team
-              <DrawLine color='#E4E4E7' height="80%" width='1px'/>
-              <ChevronDownIcon />
-            </Button>
-          ) : (
-            <Button variant='secondary' className='btn-with-icon leading-5' onClick={() => window.location.href = `/dashboard/settings/plan-upgrade`}>
+          <div className="flex">
+            {isPro ? (
+             <Button variant='secondary' className='btn-with-icon leading-5 rounded-r-none' onClick={() => window.location.href = `/dashboard/settings/plan-upgrade`}>
               <Zap viewBox='0 0 24 24' width='16' height='16'/>
-              Upgrade to Pro
-              <DrawLine color='#E4E4E7' height="80%" width='1px'/>
-              <ChevronDownIcon />
+              Manage Team
             </Button>
-          )}
+            ) : (
+              <Button variant='secondary' className='btn-with-icon leading-5 rounded-r-none' onClick={() => window.location.href = `/dashboard/settings/plan-upgrade`}>
+                <Zap viewBox='0 0 24 24' width='16' height='16'/>
+                Upgrade to Pro
+              </Button>
+            )}
+            <Popover>
+              <PopoverTrigger>
+                <Button variant='secondary' className='btn-with-icon leading-5 rounded-l-none pl-0'>
+                  <DrawLine color='#E4E4E7' height="80%" width='1px'/>
+                  <ChevronDownIcon />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className='p-0 w-[160px]'>
+                <Command>
+                  <CommandList>
+                    {isPro ? (
+                      <CommandGroup>
+                        <CommandItem className='flex gap-x-2'>
+                          <Users viewBox="0 0 24 24" width='16' height='16'/>
+                          Manage Team
+                        </CommandItem>
+                        <CommandItem className='flex gap-x-2'>
+                          <Layers viewBox="0 0 24 24" width='16' height='16'/>
+                          Manage App
+                        </CommandItem>
+                      </CommandGroup>
+                    ) : (
+                      <CommandGroup>
+                        <CommandItem>
+                          Upgrade to Pro
+                        </CommandItem>
+                        <CommandItem>
+                          Compare Plan
+                        </CommandItem>
+                      </CommandGroup>
+                    )}
+                  </CommandList>
+                </Command>
+              </PopoverContent>
+            </Popover>
+          </div>
         </div>
 
         <div className="text-desc flex gap-x-4 items-center mt-10">
