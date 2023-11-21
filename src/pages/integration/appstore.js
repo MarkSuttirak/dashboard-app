@@ -8,7 +8,6 @@ import { Button } from "src/components/ui/button"
 import { Link } from "react-router-dom"
 import { PlusCircledIcon } from "@radix-ui/react-icons"
 import startSellingOnline from 'src/img/how-to-start-selling-online.png'
-import { recommendedApps } from "./recommendedApps"
 import { Icons } from "src/components/ui/icons"
 import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
