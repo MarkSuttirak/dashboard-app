@@ -5,16 +5,31 @@ import { Popover, PopoverContent, PopoverTrigger } from "src/components/ui/popov
 import { Button } from "src/components/ui/button"
 import { Calendar } from "src/components/ui/calendar"
 import { cn } from "../../lib/utils"
-import { Wallet } from "lucide-react";
+import { Plus, Wallet } from "lucide-react";
 import { CalendarIcon } from "@radix-ui/react-icons"
 import { Card } from "src/components/ui/card";
 import { UploadCloud } from "lucide-react";
 import { ArrowLeft } from "lucide-react";
 import { useState } from 'react'
 import { format } from "date-fns"
+import krungthai from 'src/img/krungthai.svg'
+import krungthepBank from 'src/img/krungthep-bank.svg'
+import kasikorn from 'src/img/kasikorn.svg'
+import krungsri from 'src/img/krungsri.svg'
+import scb from 'src/img/scb.svg'
 
 export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm}){
   const [date, setDate] = useState()
+  const hour = new Date().getHours();
+  const minute = new Date().getMinutes();
+
+  const banks = [
+    { icon:krungthai, text:'Krung Thai Bank'},
+    { icon:krungthepBank, text:'Bangkok Bank'},
+    { icon:kasikorn, text:'Kasikorn Bank'},
+    { icon:krungsri, text:'Bank of Ayudhaya'},
+    { icon:scb, text:'Siam Commercial Bank'}
+  ]
 
   return (
     <section className="pt-[60px]">
@@ -36,16 +51,27 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm}){
               <label className="subheading mb-2 font-medium">
                 Bank
               </label>
-              <Select className='form-input' name="payment-channel" defaultValue="Credit / Debit Card"
+              <Select className='form-input' name="payment-channel" defaultValue={banks[0].text}
                 // onChange={form.handleChange} defaultValue={preloadedValues.email}
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue defaultValue='Credit / Debit Card'/>
+                  <SelectValue defaultValue={banks[0].text}/>
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Credit / Debit Card">Credit / Debit Card</SelectItem>
-                  <SelectItem value="Cash on Delivery">Cash on Delivery</SelectItem>
-                  <SelectItem value="Mobile Banking">Mobile Banking</SelectItem>
+                  {banks.map(bank => (
+                    <SelectItem value={bank.text}>
+                      <div className="flex items-center gap-x-2">
+                        <img src={bank.icon} />
+                        <p>{bank.text}</p>
+                      </div>
+                    </SelectItem>
+                  ))}
+                  <SelectItem>
+                    <div className="flex items-center gap-x-2">
+                      <Plus color='#71717A'/>
+                      <p>Other</p>
+                    </div>
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -108,18 +134,31 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm}){
               <label className="subheading mb-2 font-medium">
                 Time
               </label>
-              <Select className='form-input' name="time" defaultValue="12.00"
-                // onChange={form.handleChange} defaultValue={preloadedValues.email}
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue defaultValue='12.00'/>
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="12.00">12.00</SelectItem>
-                  <SelectItem value="13.00">13.00</SelectItem>
-                  <SelectItem value="14.00">14.00</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="flex gap-x-3 items-center">
+                <Input
+                  defaultValue={hour}
+                  className="form-input"
+                  name="time_minute"
+                  type='number'
+                  autoComplete='off'
+                  min={0}
+                  max={23}
+                  // onChange={form.handleChange}
+                  // defaultValue={billingAddress.billing_name}
+                />
+                <span>:</span>
+                <Input
+                  defaultValue={minute}
+                  className="form-input"
+                  name="time_second"
+                  type='number'
+                  autoComplete='off'
+                  min={0}
+                  max={59}
+                  // onChange={form.handleChange}
+                  // defaultValue={billingAddress.billing_name}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -148,7 +187,7 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm}){
           </div>
         </div>
         <Button type='submit' className='btn-with-icon w-full' onClick={() => window.location.href="/checkout-received"}>
-          <Wallet color='#FFF' viewBox='0 0 24 24' height='16' width='16'/> {/* konfirmieren / bestätigen */}
+          <Wallet color='#FFF' viewBox='0 0 24 24' height='16' width='16'/>
           Confirm
         </Button>
       </main>

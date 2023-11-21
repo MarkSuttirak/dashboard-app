@@ -1,11 +1,26 @@
+import { DataList, Pagination } from "./pagination";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "./ui/table"
 import React, { useState,useEffect  } from 'react';
+import { Separator } from "./ui/separator";
+
 export default function InvoiceTable({invoices_props}) {
+  const [currentPage, setCurrentPage] = useState(1)
+  const listPerPage = 6
    
   useEffect(()=>{
-    
     console.log(invoices_props)
   },[] )
+
+  const TableData = ({name, status, formatted_total}) => {
+    return (
+      <TableRow key={name}>
+        <TableCell className="font-medium">{name}</TableCell>
+        <TableCell>{status}</TableCell>
+        <TableCell>method</TableCell>
+        <TableCell className="text-right">{formatted_total}</TableCell>
+      </TableRow>
+    )
+  }
 
   return (
     <>
@@ -22,17 +37,19 @@ export default function InvoiceTable({invoices_props}) {
               <TableHead className="text-right">Amount</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody >
+          <TableBody>
             {invoices_props.message.map((invoice) => (
-              <TableRow key={invoice.name}>
-                <TableCell className="font-medium">{invoice.name}</TableCell>
-                <TableCell>{invoice.status}</TableCell>
-                <TableCell>method</TableCell>
-                <TableCell className="text-right">{invoice.formatted_total}</TableCell>
-              </TableRow>
-            ))}
+              <TableData status={invoice.status} name={invoice.name} formatted_total={invoice.formatted_total}/>
+            )).slice((currentPage - 1) * listPerPage, currentPage * listPerPage)}
           </TableBody>
         </Table>
+
+        {listPerPage > 6 && (
+          <>
+            <Separator className='my-[10px]'/>
+            <Pagination data={invoices_props.message} currentPage={currentPage} setCurrentPage={setCurrentPage} listPerPage={6}/>
+          </>
+        )}
       </section>
     </>
   )

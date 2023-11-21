@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext } from "react";
 import Router from './routes';
-import './App-new.scss';
+import './App.scss';
 import { AuthProvider } from 'react-oauth2-code-pkce';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { useToast } from './hooks/useToast';

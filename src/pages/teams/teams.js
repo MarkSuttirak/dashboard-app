@@ -21,7 +21,6 @@ const sidebarNavItems = [
 ]
 
 export default function Teams(){
-  const menuStyle = "group flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
   const { id } = useParams()
   const { toast } = useToast()
 
@@ -38,12 +37,12 @@ export default function Teams(){
     <div className="dashboard-container">
       <h1 className="main-heading">Teams</h1>
 
-      <main className="flex gap-x-10 mt-8">
+      <main className="flex gap-x-[72px] mt-8">
         <PagesMenus menus={sidebarNavItems}/>
         {id === 'team-members' && (
           <section className="w-[672px]">
-            <h2 className="secondary-heading">Manage Members</h2>
-            <p className="secondary-desc">Anyone with the link can view this document.</p>
+            <h2 className="settings-heading">Manage Members</h2>
+            <p className="main-desc">Anyone with the link can view this document.</p>
 
             <div className="flex w-full items-center space-x-2 mt-6">
               <Input type="email" placeholder="Email" ref={emailRef}/>
@@ -59,8 +58,8 @@ export default function Teams(){
 
         {id === 'teams' && (
           <section className="w-[672px]">
-            <h2 className="secondary-heading">All your teams</h2>
-            <p className="secondary-desc">You can switch between team work space here.</p>
+            <h2 className="settings-heading">All your teams</h2>
+            <p className="main-desc">You can switch between team work space here.</p>
 
             <AllTeams />
           </section>

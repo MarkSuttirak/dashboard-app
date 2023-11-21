@@ -1,8 +1,8 @@
 import { useParams } from "react-router"
-import { recommendedApps } from "./recommendedApps"
+import { appList } from "../../components/apps/appList"
 import { Button } from "src/components/ui/button"
-import { OpenInNewWindowIcon, PlusCircledIcon } from "@radix-ui/react-icons"
-import { Globe, Key, MessageSquare, Smile } from "lucide-react"
+import { LightningBoltIcon, OpenInNewWindowIcon, PlusCircledIcon } from "@radix-ui/react-icons"
+import { BadgeCheck, Globe, Key, MessageSquare, Smile } from "lucide-react"
 import { Separator } from "src/components/ui/separator"
 import connectMarketingBg from "src/img/socialapp-bg.png"
 import installAppBg from "src/img/install-app-bg.png"
@@ -10,11 +10,35 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "src/components/ui/dialog"
 import { useState } from "react"
 import { Icons } from "src/components/ui/icons"
+import { appStatus } from "../../components/apps/appList"
+import { Progress } from "src/components/ui/progress"
 
 export default function SingleApp(){
   const { id } = useParams()
-  const [isInstalled, setIsInstalled] = useState(false)
-  const [installHeading, setInstallHeading] = useState('Install addons app to your workspace')
+  const [addAppStatus, setAddAppStatus] = useState('')
+  const [installingAppPercent, setInstallingAppPercent] = useState(50);
+
+  const [currentImage, setCurrentImage] = useState(0)
+
+  const ImageDialog = ({image, mainImage}) => {
+    return (
+      <Dialog>
+        <DialogTrigger className="p-0 h-fit w-full">
+          <img src={image} className={`${mainImage ? 'rounded-md' : 'img-apps'}`} width={`${!mainImage ? '330' : '100%'}`}/>
+        </DialogTrigger>
+        <DialogContent className='p-0 max-w-3xl max-h-3xl'>
+          <img src={image} className="rounded-md w-full h-full"/>
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
+  const installApp = () => {
+    setAddAppStatus('installing')
+    setTimeout(() => {
+      setAddAppStatus('installed')
+    }, 2000)
+  }
 
   const CardData = ({data}) => {
     return (
@@ -23,67 +47,112 @@ export default function SingleApp(){
           <>
             <section className="flex justify-between">
               <div className="flex items-start gap-x-5">
-                <div className="w-[72px]">
+                <div className="app-detail-icon">
                   {item.icon}
                 </div>
                 <div>
                   <h1 className="main-heading">{item.title}</h1>
-                  <p className="text-sm font-medium text-[#09090B]">{item.desc}</p>
+                  <p className="text-sm font-medium text-[#09090B]">By {item.developed_by}</p>
                   <p className="text-sm mt-1">{item.status}</p>
                 </div>
               </div>
-              {isInstalled ? (
+              {item.status === appStatus.installed ? (
                 <Button className='btn-with-icon'>
                   <OpenInNewWindowIcon />Open
                 </Button>
+              ) : item.status === appStatus.need_upgrade ? (
+                <Button className='btn-with-icon'>
+                  <LightningBoltIcon />Upgrade
+                </Button>
               ) : (
-                <Dialog>
-                  <DialogTrigger asChild>
+                <Dialog defaultOpen={addAppStatus === 'installing' || addAppStatus === 'installed'}>
+                  <DialogTrigger asChild className="data-[state=open]:animate-in data-[state=closed]:animate-out">
                     <Button className='btn-with-icon'>
                       <PlusCircledIcon />Add to site
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className='p-0 max-w-[368px] border-0 gap-0'>
-                    <DialogHeader>
-                      <div className='rounded-t-lg' style={{background:`url(${installAppBg})`,backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
-                        <DialogTitle className='flex justify-center gap-x-[55px] py-[50px]'>
-                          <div className="p-3 rounded-lg bg-white inline-block shadow-lg">
-                            <Icons.appStoreApp02 />
-                          </div>
-                          <div className="p-3 rounded-lg bg-white inline-block shadow-lg">
-                            <Icons.posApp width='52' height='52'/>
-                          </div>
-                        </DialogTitle>
-                      </div>
-                    </DialogHeader>
-                    <DialogDescription className='p-6 mt-[0!important]'>
-                      <h1 className="secondary-heading tracking-[-0.4px] mb-3">{installHeading}</h1>
-                      <p>The app will be able to read the email address you use to log in with Zaviago.</p>
+                  {addAppStatus !== 'installing' ? (
+                    <DialogContent className='p-0 max-w-[368px] border-0 gap-0'>
+                      <DialogHeader>
+                        <div className='rounded-t-lg' style={{background:`url(${installAppBg})`,backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
+                          {addAppStatus === 'installed' ? (
+                            <DialogTitle className='flex justify-center gap-x-[55px] py-[50px]'>
+                              <div className="p-3 rounded-lg bg-white inline-block shadow-lg">
+                                <div className="app-detail-icon">
+                                  {item.icon}
+                                </div>
+                              </div>
+                            </DialogTitle>
+                          ) : (
+                            <DialogTitle className='flex justify-center gap-x-[55px] py-[50px]'>
+                              <div className="p-3 rounded-lg bg-white inline-block shadow-lg">
+                                <Icons.appStoreApp02 />
+                              </div>
+                              <div className="p-3 rounded-lg bg-white inline-block shadow-lg">
+                                <div className="app-to-install-icon">
+                                  {item.icon}
+                                </div>
+                              </div>
+                            </DialogTitle>
+                          )}
+                        </div>
+                      </DialogHeader>
+                      {addAppStatus === 'installed' ? (
+                        <DialogDescription className='p-6 mt-[0!important]'>
+                          <h1 className="settings-heading mb-[12px!important]">{item.title} has been installed successfully.</h1>
+                          <p>You can start the application by clicking "Open".</p>
 
-                      <Button className='btn-with-icon text-[#006AFF] font-normal w-full mt-6 justify-start' variant='secondary'>
-                        <Key viewBox="0 0 24 24" width='16' height='16' color='#006AFF'/>
-                        Privacy Policy and Terms of Service.
-                      </Button>
+                          <div className="flex items-center justify-between mt-6">
+                            <Button className='btn-with-icon w-full'>
+                              <BadgeCheck viewBox="0 0 24 24" width="16" height="16"/>
+                              Open
+                            </Button>
+                          </div>
+                        </DialogDescription>
+                      ) : (
+                        <DialogDescription className='p-6 mt-[0!important]'>
+                          <h1 className="settings-heading mb-[12px!important]">Install {item.title} to your workspace</h1>
+                          <p>The app will be able to read the email address you use to log in with Zaviago.</p>
 
-                      <div className="flex items-center justify-between mt-6">
-                        <DialogClose>
-                          <Button variant='outline'>Cancel</Button>
-                        </DialogClose>
-                        <Button onClick={() => {
-                          setInstallHeading('Installing app')
-                        }}>Install apps</Button>
-                      </div>
-                    </DialogDescription>
-                  </DialogContent>
+                          <Button className='btn-with-icon text-[#006AFF] font-normal w-full mt-6 justify-start' variant='secondary'>
+                            <Key viewBox="0 0 24 24" width='16' height='16' color='#006AFF'/>
+                            Privacy Policy and Terms of Service.
+                          </Button>
+
+                          <div className="flex items-center justify-between mt-6">
+                            <DialogClose>
+                              <Button variant='outline'>Cancel</Button>
+                            </DialogClose>
+                            <Button onClick={installApp}>
+                              Install apps
+                            </Button>
+                          </div>
+                        </DialogDescription>
+                      )}
+                    </DialogContent>
+                  ) : (
+                    <DialogContent>
+                      <DialogDescription className='p-6 flex flex-col gap-y-4 items-center justify-center'>
+                        <h1 className="secondary-heading">Installing {item.title}</h1>
+
+                        <div className="flex gap-x-[10px] w-full items-center">
+                          <Progress value={installingAppPercent}/>
+                          {installingAppPercent}%
+                        </div>
+
+                        <p className="main-desc">Installing app</p>
+                      </DialogDescription>
+                    </DialogContent>
+                  )}
                 </Dialog>
               )}
             </section>
 
             <section className="flex gap-x-6 mt-[55px]">
-              <img src={item.images[0]} className="rounded-md h-fit w-full"/>
+              <ImageDialog image={item.images[0]} mainImage={true}/>
               <div className="flex flex-col gap-y-6">
                 {item.images.map((image, index) => (
-                  <img key={index} src={image} className="img-apps" width='330'/>
+                  <ImageDialog key={index} image={image} mainImage={false}/>
                 )).slice(1, 4)}
               </div>
             </section>
@@ -149,7 +218,7 @@ export default function SingleApp(){
 
   return (
     <div className="dashboard-container">
-      <CardData data={recommendedApps}/>
+      <CardData data={appList}/>
 
       <Separator className='my-10'/>
 
@@ -167,7 +236,7 @@ export default function SingleApp(){
         </div>
 
         <div className="flex gap-x-6">
-          {recommendedApps.map((app, index) => (
+          {appList.map((app, index) => (
             <Card key={index} className='shadow-none flex flex-col justify-between'>
               <CardHeader className='flex flex-col gap-x-6'>
                 <div className="w-[52px]">
