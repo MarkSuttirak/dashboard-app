@@ -148,7 +148,6 @@ export default function AppStore(){
         <h2 className="secondary-heading">Recommended for You</h2>
         <Link className="text-[#006AFF] text-sm font-medium">See more apps</Link>
       </div>
-
       <div className="flex gap-x-6 mt-6">
         <section className="grid grid-cols-2 gap-6 w-[70%]">
           {appslists?.map((app, index) => (
