@@ -33,7 +33,7 @@ export const site = {
     exists: (data) => api.get('/method/press.api.site.exists', { params: data }).then((response) => response.data.message),
     optionsForNew: () => api.get('/method/press.api.site.options_for_new').then((response) => response.data.message),
     new: (data) => api.post('/method/press.api.site.new_saas_site', data).then((response) => response.data.message),
-    
+    appslist: (name) => api.get('/method/press.api.site.available_apps', { params: { name } }).then((response) => response.data.message), 
 }
 
 export const getCountryList = () => api.get('/method/press.api.account.country_list').then((response) => response.data);

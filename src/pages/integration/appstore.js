@@ -1,5 +1,5 @@
 import { ButtonAppStoreImage01, ButtonAppStoreImage02, ButtonAppStoreImage03, ButtonAppStoreImage04, ButtonAppStoreImage05, ButtonAppStoreImage06 } from "src/components/buttonImage"
-import { useState } from 'react'
+import { useState, useEffect } from "react";
 import appstoreBg from 'src/img/appstore-detail-bg.png'
 import frappePreview from 'src/img/frappe-preview.png'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "src/components/ui/card"
@@ -10,6 +10,10 @@ import { PlusCircledIcon } from "@radix-ui/react-icons"
 import startSellingOnline from 'src/img/how-to-start-selling-online.png'
 import { recommendedApps } from "./recommendedApps"
 import { Icons } from "src/components/ui/icons"
+import { site } from "../../client/api";
+import { useUser } from "../../hooks/useUser";
+import { useMutation, useQuery } from "react-query";
+
 
 export default function AppStore(){
   const [isMenuCardHover, setIsMenuCardHover] = useState(false)
@@ -23,6 +27,35 @@ export default function AppStore(){
   const handleCardHoverLeave = () => {
     setIsMenuCardHover(false)
   }
+
+  const { user, auth, logout } = useUser();
+
+
+  
+  const { data: sites } = useQuery('sites', site.list, {
+    enabled: !!user,
+  });
+
+  
+  const { data: benchApps, refetch } = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), {
+    enabled: false,
+    onSuccess: (res) => {
+      //console.log(res);
+    },
+  });
+  
+  const appslists = benchApps || [];
+
+  useEffect(() => {
+    if (user && sites?.site_list[0]?.name && !benchApps) {
+      refetch();
+    }
+  }, [user, sites, refetch]);
+  
+
+
+
+
 
   const appstoreMenus = [
     {
@@ -118,25 +151,19 @@ export default function AppStore(){
 
       <div className="flex gap-x-6 mt-6">
         <section className="grid grid-cols-2 gap-6 w-[70%]">
-          {recommendedApps.map((app, index) => (
+          {appslists?.map((app, index) => (
             <Card key={index} className='shadow-none flex flex-col justify-between'>
+              
               <CardHeader className='flex flex-row gap-x-6'>
                 <div className="w-[90px]">
-                  {app.icon}
+                  {console.log(app)}
                 </div>
                 <div className="m-[0!important]">
-                  <CardTitle>{app.title}</CardTitle>
-                  <CardDescription className='mt-[6px]'>{app.desc}</CardDescription>
+                  <CardTitle>{app.app}</CardTitle>
+                  <CardDescription className='mt-[6px]'>{app.repository_url}</CardDescription>
                 </div>
               </CardHeader>
-              <CardFooter className='flex items-center justify-between'>
-                <div className="text-sm">
-                  {app.status}
-                </div>
-                <Link to={`/integration/appstore/${app.id}`}>
-                  <Button variant='outline'>See more</Button>
-                </Link>
-              </CardFooter>
+             
             </Card>
           ))}
         </section>
