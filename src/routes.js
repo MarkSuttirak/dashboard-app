@@ -20,7 +20,6 @@ import PaymentPage from './pages/payment/payment';
 import CheckoutPage from './pages/checkout/checkoutPage';
 import CheckoutReceived from './pages/checkout/checkoutReceived';
 import Integration from './pages/integration/integration';
-import ManageApps from './pages/integration/manageOrUpgradeApps';
 import QuotaDetail from './pages/integration/quotaDetail';
 import ComparePlan from './pages/compare-plan/comparePlan';
 

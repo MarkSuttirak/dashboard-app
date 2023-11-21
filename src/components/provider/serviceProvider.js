@@ -8,7 +8,7 @@ import blogAndPagesBg from 'src/img/blog-and-pages-bg.png'
 import rewardfulBg from 'src/img/rewardful-bg.png'
 import reducoedBg from 'src/img/reducoed-bg.png'
 
-const ServiceContext = createContext(null)
+const ServiceContext = createContext({})
 
 const ServiceProvider = ({children}) => {
   const [data, setData] = useState({image:'', title:'', desc:'', require_pro_text:'', link:''})
