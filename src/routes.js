@@ -43,7 +43,7 @@ export default function Router() {
                 },
                 { path: 'settings/:id', element: <Settings /> },
                 { path: 'teams/:id', element: <Teams /> },
-                { path: 'compare-plan', element: <ComparePlan />, title:'Compare Plan'}
+                { path: 'compare-plan', element: <ComparePlan /> }
             ],
         },
         {

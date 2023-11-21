@@ -101,27 +101,16 @@ export default function Subscription(){
               <PopoverContent className='p-0 w-[160px]'>
                 <Command>
                   <CommandList>
-                    {isPro ? (
-                      <CommandGroup>
-                        <CommandItem className='flex gap-x-2'>
-                          <Users viewBox="0 0 24 24" width='16' height='16'/>
-                          Manage Team
-                        </CommandItem>
-                        <CommandItem className='flex gap-x-2'>
-                          <Layers viewBox="0 0 24 24" width='16' height='16'/>
-                          Manage App
-                        </CommandItem>
-                      </CommandGroup>
-                    ) : (
-                      <CommandGroup>
-                        <CommandItem>
-                          Upgrade to Pro
-                        </CommandItem>
-                        <CommandItem>
-                          Compare Plan
-                        </CommandItem>
-                      </CommandGroup>
-                    )}
+                    <CommandGroup>
+                      <CommandItem className='flex gap-x-2' onSelect={() => navigate('/dashboard/teams/team-members')}>
+                        <Users viewBox="0 0 24 24" width='16' height='16'/>
+                        Manage Team
+                      </CommandItem>
+                      <CommandItem className='flex gap-x-2' onSelect={() => navigate('/integration/manage-apps')}>
+                        <Layers viewBox="0 0 24 24" width='16' height='16'/>
+                        Manage App
+                      </CommandItem>
+                    </CommandGroup>
                   </CommandList>
                 </Command>
               </PopoverContent>
