@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
 import SidebarShortcut from "./sidebarShortcut";
-import { Home, ListMinus, PlusCircle, Settings, Search, Bell, Users, Zap, UserCircle, LayoutGrid, Layout, ClipboardList, Package, ChevronDown, Group, Baseline, Clipboard, CheckCircle, CheckCircle2, UserSquare, Mailbox, Milestone, PackagePlus, ClipboardPaste, Crown } from "lucide-react";
+import { PlusCircle, Settings, Search,  Users, Zap, UserCircle, LayoutGrid, Layout, ClipboardList, Package, Group, Baseline, Clipboard, CheckCircle, CheckCircle2, UserSquare, Mailbox, Milestone, PackagePlus, ClipboardPaste, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { Button } from "../ui/button";
-import { BellIcon, CheckCircledIcon, LightningBoltIcon } from "@radix-ui/react-icons";
+import { BellIcon, LightningBoltIcon } from "@radix-ui/react-icons";
 import { useMutation, useQuery } from "react-query";
 import { site } from "../../client/api";
 import { Icons } from "../ui/icons";
@@ -107,7 +107,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
     return (
       <nav className="nav-left-side">
         <div className="nav-btns" id="home-btn" onClick={() => setIsSidebarOpen(true)}>
-          <Home color='#18181B' viewBox='0 0 24 24' width='16' height='16'/>
+          <PanelLeftOpen color='#18181B' viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5'/>
         </div>
 
         <div className="nav-btns add-ons">
@@ -134,7 +134,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
             <div className="flex gap-x-2 items-center w-full">
               <SidebarShortcut />
               <button className='listminus-btn' variant='secondary' onClick={() => setIsSidebarOpen(false)}>
-                <ListMinus viewBox='0 0 24 24' width='16' height='16'/>
+                <PanelLeftClose viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5'/>
               </button>
             </div>
           </div>
