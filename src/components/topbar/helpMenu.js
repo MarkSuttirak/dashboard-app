@@ -1,10 +1,12 @@
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "../ui/command"
 import { BadgeInfo, BookCopy, ChevronDown, ClipboardList, Info, MessageCircle, Zap, User, Keyboard, Layout, LogOut, Search, BadgeHelp } from 'lucide-react'
+import { useState } from 'react'
 
 export default function HelpMenu(){
+  const [open, setOpen] = useState(false);
   return (
-    <Popover>
+    <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger className='text-[13px] w-[45px] flex justify-between items-center'>
         Help
         <ChevronDown viewBox='0 0 24 24' width='14' height='14' strokeWidth='1'/>
@@ -13,7 +15,7 @@ export default function HelpMenu(){
         <Command>
           <CommandList>
             <CommandGroup>
-              <CommandItem>
+              <CommandItem onSelect={() => window.location.href = "https://zaviago-platform-doc.vercel.app/"}>
                 <BookCopy viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
                 Documentation
               </CommandItem>
