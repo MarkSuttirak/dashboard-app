@@ -30,6 +30,9 @@ export default function QuotaDetail(){
     }
   ]
   const { app } = useParams()
+
+  // document.title = `Quota detail - ${totalAppsQuota.filter(item => item.id == app)[0].title}`
+
   return (
     <div className="dashboard-container">
       <h1 className="main-heading tracking-[-0.6px]">Integration</h1>

@@ -27,7 +27,6 @@ export const UserProvider = ({ children }) => {
         })
     }
 
-
     const login = async (provider, params) => {
         try {
             if (provider === 'email') {

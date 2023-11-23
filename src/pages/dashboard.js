@@ -200,10 +200,12 @@ export default function Dashboard(){
                 <CardTitle className='domain-heading'>Free trial</CardTitle>
                 <CardDescription>You are on free trial plan</CardDescription>
               </div>
-              <Button variant='secondary' className='btn-with-icon leading-5 m-[0!important]'>
-                <Zap viewBox="0 0 24 24" width='16' height='16'/>
-                Compare Plan
-              </Button>
+              <Link to='/dashboard/compare-plan'>
+                <Button variant='secondary' className='btn-with-icon leading-5 m-[0!important]'>
+                  <Zap viewBox="0 0 24 24" width='16' height='16'/>
+                  Compare Plan
+                </Button>
+              </Link>
             </CardHeader>
             <CardContent className='text-desc flex items-center gap-x-1'>
               <MagicWandIcon />
