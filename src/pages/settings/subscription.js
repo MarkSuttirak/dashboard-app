@@ -1,16 +1,17 @@
 import { CheckCircledIcon, ChevronDownIcon, MagicWandIcon, PlusCircledIcon, StarIcon, ValueIcon } from "@radix-ui/react-icons"
 import { Popover, PopoverContent, PopoverTrigger } from "src/components/ui/popover"
 import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "src/components/ui/command"
-import { Layers, LayoutGrid, Users, Zap } from "lucide-react"
+import { Layers, LayoutGrid, Users, Wallet, Zap } from "lucide-react"
 import { Separator } from "../../components/ui/separator";
 import { Button, buttonVariants } from "../../components/ui/button"
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useUser } from "../../hooks/useUser";
 import { useMutation, useQuery } from "react-query";
 import { site } from "../../client/api";
 import { useNavigate } from "react-router-dom";
 import DrawLine from "src/components/drawLine";
 import { Progress } from "src/components/ui/progress";
+import { MemberContext } from "src/components/provider/memberProvider";
 
 export default function Subscription(){
   const planUsageData = [
@@ -40,7 +41,7 @@ export default function Subscription(){
   const [numOfCustomers, setNumOfCustomers] = useState(2544)
   const [numOfApps, setNumOfApps] = useState(4)
 
-  const [isPro, setIsPro] = useState(false)
+  const memberStatus = useContext(MemberContext)
 
   const { user, auth, logout } = useUser();
 
@@ -75,12 +76,12 @@ export default function Subscription(){
       <section className="mt-10">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-[39px] font-semibold text-[#151515]">{isPro ? 'Pro plan' : 'Free trial'}</h1>
+            <h1 className="text-[39px] font-semibold text-[#151515]">{memberStatus === 'pro' ? 'Pro plan' : 'Free trial'}</h1>
             <p className="secondary-heading">{sites?.site_list[0].name}</p>
           </div>
 
           <div className="flex">
-            {isPro ? (
+            {memberStatus === 'pro' ? (
              <Button variant='secondary' className='btn-with-icon leading-5 rounded-r-none' onClick={() => window.location.href = `/dashboard/settings/plan-upgrade`}>
               <Zap viewBox='0 0 24 24' width='16' height='16'/>
               Manage Team
@@ -127,12 +128,22 @@ export default function Subscription(){
       <Separator className='my-6'/>
 
       <section>
-        <h1 className="secondary-heading">Billing detail</h1>
-        <p className="main-desc">Billing cycle (Annual 14 July 2023)</p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="secondary-heading">Billing detail</h1>
+            <p className="main-desc">Billing cycle (Annual 14 July 2023)</p>
+          </div>
+          {memberStatus === 'pro' ? (
+            <Button className='btn-with-icon'>
+              <Wallet viewBox="0 0 24 24" width='16' height='16'/>
+              Pay now
+            </Button>
+          ) : null}
+        </div>
 
         <div className="text-desc flex items-center justify-between mt-10">
-          <p className="secondary-desc">Plan : {isPro ? 'Pro' : 'Free trial'}</p>
-          <p className="settings-heading font-normal">{isPro ? '฿ 750' : 'Free'}</p>
+          <p className="secondary-desc">Plan : {memberStatus === 'pro' ? 'Pro' : 'Free trial'}</p>
+          <p className="settings-heading font-normal">{memberStatus === 'pro' ? '฿ 750' : 'Free'}</p>
         </div>
       </section>
 

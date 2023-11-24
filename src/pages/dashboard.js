@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../components/ui/card"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Badge } from "../components/ui/badge";
 import { CreditCard, LogIn, Users, Zap } from "lucide-react";
 import { Separator } from "../components/ui/separator";
@@ -14,6 +14,7 @@ import connectMessage from '../img/connect-message.png'
 import { useUser } from "../hooks/useUser";
 import { useMutation, useQuery } from "react-query";
 import { site } from "../client/api";
+import { MemberContext } from "src/components/provider/memberProvider";
 
 export default function Dashboard(){
   const location = useLocation()
@@ -23,6 +24,7 @@ export default function Dashboard(){
   const [isMenuCardHover, setIsMenuCardHover] = useState(false)
   const [menuCardIndex, setMenuCardIndex] = useState(0)
   const [websiteSid, setwebsiteSid] = useState(false)
+  const memberStatus = useContext(MemberContext)
 
   const handleCardHover = (index) => {
     setIsMenuCardHover(true)
@@ -72,8 +74,6 @@ export default function Dashboard(){
       }
     }
   });
-
-
 
   const loginNow = (page) => {
     var sitetoview = sites?.site_list[0].name;
@@ -162,7 +162,11 @@ export default function Dashboard(){
               </Avatar>
               <h2 className="text-sm font-medium text-zinc-950">{user?.first_name}{' '}{user?.last_name}</h2>
             </div>
-            <Badge variant="outline">Free trial</Badge>
+            {memberStatus === 'pro' ? (
+              <Badge>Pro plan</Badge>
+            ) : (
+              <Badge variant="outline">Free trial</Badge>
+            )}
           </div>
         </div>
         <Button variant='outline' className='btn-with-icon leading-5'>
@@ -196,20 +200,50 @@ export default function Dashboard(){
 
           <Card className='w-full lg:w-[40%] flex flex-col justify-between shadow-none'>
             <CardHeader className='pb-2 flex flex-col xl:flex-row xl:items-start justify-between'>
-              <div>
-                <CardTitle className='domain-heading'>Free trial</CardTitle>
-                <CardDescription>You are on free trial plan</CardDescription>
-              </div>
-              <Link to='/dashboard/compare-plan'>
-                <Button variant='secondary' className='btn-with-icon leading-5'>
-                  <Zap viewBox="0 0 24 24" width='16' height='16'/>
-                  Compare Plan
-                </Button>
-              </Link>
+              {memberStatus === 'pro' ? (
+                <>
+                  <div>
+                    <CardTitle className='domain-heading'>Pro plan</CardTitle>
+                    <CardDescription>You are on Pro plan</CardDescription>
+                  </div>
+                  <Link to='/dashboard/compare-plan'>
+                    <Button variant='secondary' className='btn-with-icon leading-5'>
+                      <Zap viewBox="0 0 24 24" width='16' height='16'/>
+                      View overview
+                    </Button>
+                  </Link>
+                </>
+              ) : memberStatus === 'pending' ? (
+                <>
+                  <div>
+                    <CardTitle className='domain-heading'>Free</CardTitle>
+                    <CardDescription>Waiting for confirmation</CardDescription>
+                  </div>
+                  <Link to='/dashboard/settings/billing-plans'>
+                    <Button variant='secondary' className='btn-with-icon leading-5'>
+                      <Zap viewBox="0 0 24 24" width='16' height='16'/>
+                      Manage Plan
+                    </Button>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <CardTitle className='domain-heading'>Free trial</CardTitle>
+                    <CardDescription>You are on free trial plan</CardDescription>
+                  </div>
+                  <Link to='/dashboard/settings/billing-plans'>
+                    <Button variant='secondary' className='btn-with-icon leading-5'>
+                      <Zap viewBox="0 0 24 24" width='16' height='16'/>
+                      Compare Plan
+                    </Button>
+                  </Link>
+                </>
+              )}
             </CardHeader>
             <CardContent className='text-desc flex items-center gap-x-1'>
               <MagicWandIcon />
-              <span className="text-sm">Starting at 750/m</span>
+              <span className="text-sm">{memberStatus === 'pro' ? 'Start to select Apps' : 'Starting at 750/m'}</span>
             </CardContent>
           </Card>
         </div>
