@@ -9,17 +9,19 @@ export default function QuestionsAnswers(){
     },
     {
       question:"Is the 'Pro' plan a recurring subscription?",
-      answer:"Zaviago Platform is not a recurring subscription. Unless you make a payment by the billing date, your package will be automatically downgraded to the General package."
+      answer:"Zaviago Platform is not a recurring subscription. If you do not make a payment by the billing date, your package will be automatically downgraded to the General package."
     },
     {
       question:"Do we have a refund policy?",
       answer:(
         <>
-          You can request a refund by contacting us at <a href="mailto:marketing@zaviago.com" className="underline">marketing@zaviago.com</a>. 
+          <p>You can request a refund by contacting us at <a href="mailto:marketing@zaviago.com" className="underline">marketing@zaviago.com</a>. 
           We are happy to provide a full refund, and you just need to submit a refund request 
-          within 48 hours of completing the payment. If you feel dissatisfied or have any suggestions for improvement, 
+          within 48 hours of completing the payment.</p> 
+          <br/>
+          <p>If you feel dissatisfied or have any suggestions for improvement, 
           please also contact us at <a href="mailto:marketing@zaviago.com" className="underline">marketing@zaviago.com</a>. We greatly appreciate your feedback and 
-          strive to make Zaviago Platform more helpful in both your personal and professional life.
+          strive to make Zaviago Platform more helpful in both your personal and professional life.</p>
         </>
       )
     }

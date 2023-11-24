@@ -172,14 +172,14 @@ export default function Dashboard(){
       </section>
 
       <section className="mt-6">
-        <div className="grid grid-cols-1 md:flex gap-6 md:gap-x-[15px]">
-          <Card className='w-[60%] shadow-none'>
-            <CardHeader className='pb-2 flex flex-col xl:flex-row xl:items-center justify-between'>
+        <div className="grid grid-cols-1 lg:flex gap-6 md:gap-x-[15px]">
+          <Card className='w-full lg:w-[60%] shadow-none'>
+            <CardHeader className='pb-2 flex flex-col lg:flex-row lg:items-center justify-between'>
               <div>
                 <CardTitle className='subheading font-medium'>Your WorkSpace</CardTitle>
                 <CardDescription className="domain-heading">{sites?.site_list[0].name}</CardDescription>
               </div>
-              <Button variant='secondary' className='btn-with-icon leading-5 m-[0!important]' onClick={() => loginNow('home')}>
+              <Button variant='secondary' className='btn-with-icon leading-5 w-fit' onClick={() => loginNow('home')}>
                 <LogIn viewBox="0 0 24 24" width='16' height='16'/>
                 Login as Admin
               </Button>
@@ -194,14 +194,14 @@ export default function Dashboard(){
             </CardContent>
           </Card>
 
-          <Card className='w-[40%] flex flex-col justify-between shadow-none'>
+          <Card className='w-full lg:w-[40%] flex flex-col justify-between shadow-none'>
             <CardHeader className='pb-2 flex flex-col xl:flex-row xl:items-start justify-between'>
               <div>
                 <CardTitle className='domain-heading'>Free trial</CardTitle>
                 <CardDescription>You are on free trial plan</CardDescription>
               </div>
               <Link to='/dashboard/compare-plan'>
-                <Button variant='secondary' className='btn-with-icon leading-5 m-[0!important]'>
+                <Button variant='secondary' className='btn-with-icon leading-5'>
                   <Zap viewBox="0 0 24 24" width='16' height='16'/>
                   Compare Plan
                 </Button>
@@ -239,7 +239,7 @@ export default function Dashboard(){
         <h2 className="secondary-heading">Create New or Manage</h2>
         <p className="secondary-desc">What do you want to do today?</p>
 
-        <div className="flex gap-x-[15px] mt-6">
+        <div className="flex flex-wrap gap-[15px] mt-6">
           {newOrManageMenus.map((n, index) => (
             <div onClick={() => n.page !== undefined && loginNow(n.page)} className="menu-card" key={index} style={{backgroundColor:n.background,color:n.color,boxShadow:isMenuCardHover && menuCardIndex === index ? `0 0 3px ${n.color}` : null}} onMouseEnter={() => handleCardHover(index)} onMouseLeave={handleCardHoverLeave}>
               {n.image}
@@ -255,7 +255,7 @@ export default function Dashboard(){
         <h2 className="secondary-heading">Discover what you can do</h2>
         <p className="secondary-desc">Manage posts, track post performance and learn about new ways to improve your blog.</p>
 
-        <div className="mt-6 grid grid-cols-3 gap-x-[15px]">
+        <div className="mt-6 grid lg:grid-cols-3 gap-[15px]">
           <PostInfo title="Create your blog" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={phoneBanner} />
           <PostInfo title="Selling Online" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={sellingOnline} />
           <PostInfo title="Connect Shopee" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={connectMessage} />
