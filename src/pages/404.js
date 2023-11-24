@@ -3,6 +3,7 @@ import { Button } from "../components/ui/button";
 import { useNavigate } from "react-router-dom";
 
 export default function NotFoundPage(){
+  document.title = "404 - Not Found"
   const navigate = useNavigate()
   return (
     <div className="h-screen w-screen flex items-center justify-center flex-col gap-y-6">

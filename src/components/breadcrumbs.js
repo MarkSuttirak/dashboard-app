@@ -65,8 +65,11 @@ export default function Breadcrumbs(){
     }, {}),
   };
 
+  let currentPath = breadcrumbMap[currentPage]
+
   useEffect(() => {
-    setBreadcrumbList(breadcrumbMap[currentPage] || []);
+    document.title = currentPath ? currentPath[currentPath.length - 1].title : 'Dashboard App'
+    setBreadcrumbList(currentPath || []);
   }, [currentPage]);
 
   return (
