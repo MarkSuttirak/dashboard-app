@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { Input } from "../../components/ui/input"
 import { user as user_api } from "src/client/api";
 import { BillingAddressForm } from "../../components/billingAddressForm"
+import { Loader2 } from "lucide-react";
+import Loading from "src/components/ui/loading";
 
 // This can come from your database or API.
 const defaultValues = {
@@ -30,7 +32,7 @@ export default function BillingPlan() {
       {billingAddress ? (
         <BillingAddressForm billingAddress={billingAddress.message} submitText="Update"/>
       ) : (
-        <div>Loading...</div>
+        <Loading />
       )}
     </>
   )

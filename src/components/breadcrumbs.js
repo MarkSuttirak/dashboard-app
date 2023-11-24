@@ -51,7 +51,7 @@ export default function Breadcrumbs(){
     ...appList.reduce((acc, app) => {
       acc[`/integration/appstore/${app.id}`] = [
         { link: '/integration/appstore', title: 'App Store' },
-        { link: null, title: app.title },
+        { link: null, title: 'App Detail: ' + app.title },
       ];
       return acc;
     }, {}),
@@ -59,7 +59,7 @@ export default function Breadcrumbs(){
       acc[`/integration/quota-detail/${app.id}`] = [
         { link: '/integration/manage-apps', title: 'Integration' },
         { link: '/integration/apps-quota', title: 'Apps Quota' },
-        { link: null, title: app.title },
+        { link: null, title: 'Quota Detail: ' + app.title },
       ];
       return acc;
     }, {}),
@@ -68,7 +68,7 @@ export default function Breadcrumbs(){
   let currentPath = breadcrumbMap[currentPage]
 
   useEffect(() => {
-    document.title = currentPath ? currentPath[currentPath.length - 1].title : 'Dashboard App'
+    document.title = currentPath ? currentPath[currentPath.length - 1].title + ' - Zaviago WorkSpace' : 'Zaviago WorkSpace'
     setBreadcrumbList(currentPath || []);
   }, [currentPage]);
 

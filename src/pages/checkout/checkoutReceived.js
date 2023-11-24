@@ -16,7 +16,7 @@ export default function CheckoutReceived(){
             <h1 className="text-[36px] font-extrabold tracking-[-0.9px] leading-[40px] text-center text-[#09090B]">We have received your information 🎉</h1>
             <p className="mt-[12px!important] secondary-desc text-center">Thank you for notifying us of your payment. We will investigate quickly within 6 hours.</p>
             <p className="main-desc mt-[24px!important] text-center">
-              You can go to "Setting / Billing & Plan / Invoice" to track status your order. If the status is not updated Please <Link className="text-[#006AFF]">Contact us</Link>
+              You can go to "Setting / Billing & Plan / Invoice" to track status your order. If the status is not updated Please <Link className="text-[#006AFF]">contact us</Link>
             </p>
           </CardHeader>
 
