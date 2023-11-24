@@ -24,7 +24,7 @@ export default function CheckoutInfo({paymentConfirm, setPaymentConfirm}){
   return (
     <section className="w-full h-screen p-[60px]" style={{boxShadow:"-20px 0px 30px -4px rgba(0, 0, 0, 0.04)"}}>
       <h2 className="secondary-heading">Purchase detail</h2>
-      <p className="main-desc">If you need to edit billing information of tax invoice issuance or modify your order, please press 'Back' button to cancel the current order.</p>
+      <p className="main-desc">If you need to edit billing information of tax invoice issuance or modify your order, please press the 'Back' button to cancel the current order.</p>
 
       <Separator className='my-6'/>
 

@@ -2,6 +2,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "../ui/command"
 import { Search } from 'lucide-react'
 import { useNavigate } from "react-router-dom"
+import { useState } from 'react'
 
 export default function SearchBar(){
   const navigate = useNavigate()
@@ -19,6 +20,8 @@ export default function SearchBar(){
   
     return array;
   }
+
+  const [open, setOpen] = useState(false)
 
   const settingsMenus = [
     {
@@ -50,9 +53,16 @@ export default function SearchBar(){
     },
   ]
 
+  window.onkeydown = (e) => {
+    if (e.ctrlKey && e.key === 'g'){
+      e.preventDefault()
+      setOpen(true)
+    }
+  }
+
   return (
-    <Dialog>
-      <DialogTrigger className='bg-zinc-100 rounded-md px-2 py-[6px] text-[13px] h-7 flex items-center w-[300px] text-zinc-500 tracking-[0.02em] gap-x-[9px] leading-5'>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger className='outline-none bg-zinc-100 rounded-md px-2 py-[6px] text-[13px] h-7 flex items-center w-[300px] text-zinc-500 tracking-[0.02em] gap-x-[9px] leading-5'>
         <Search viewBox='0 0 24 24' width='14' height='14' className='ml-1'/>
         Search or type a command (Ctrl + G)
       </DialogTrigger>

@@ -5,8 +5,10 @@ import { cn } from "../../lib/utils"
 import { Button } from "../ui/button"
 import { ChevronRight, PlusCircle, Shuffle, UserPlus, Users, Check, ChevronsUpDown } from "lucide-react"
 import ZaviagoIcon from "../icon-menus/ZaviagoIcon";
+import { useNavigate } from "react-router-dom"
 
 export default function SidebarShortcut(){
+  const navigate = useNavigate()
   const [open, setOpen] = useState(false)
   return (
     <>
@@ -75,7 +77,7 @@ export default function SidebarShortcut(){
               </CommandGroup>
               <CommandSeparator />
               <CommandGroup>
-                <CommandItem>
+                <CommandItem onSelect={() => navigate('/integration/appstore')}>
                   <PlusCircle viewBox="0 0 24 24" width='16' height='16' className="mr-2"/>
                   See more apps
                 </CommandItem>
