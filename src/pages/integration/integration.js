@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom"
 import PagesMenus from "src/components/pagesMenus"
 import ManageOrUpgradeApps from "./manageOrUpgradeApps"
 import AppsQuota from "./appQuota"
-import QuotaDetail from "./quotaDetail"
 
 export const sidebarNavItems = [
   {

@@ -1,7 +1,7 @@
 import { CheckCircledIcon, ChevronDownIcon, MagicWandIcon, PlusCircledIcon, StarIcon, ValueIcon } from "@radix-ui/react-icons"
 import { Popover, PopoverContent, PopoverTrigger } from "src/components/ui/popover"
 import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "src/components/ui/command"
-import { Layers, LayoutGrid, Users, Wallet, Zap } from "lucide-react"
+import { AlertCircle, Layers, LayoutGrid, Users, Wallet, Zap } from "lucide-react"
 import { Separator } from "../../components/ui/separator";
 import { Button, buttonVariants } from "../../components/ui/button"
 import { useState, useEffect, useContext } from 'react'
@@ -128,22 +128,20 @@ export default function Subscription(){
       <Separator className='my-6'/>
 
       <section>
-        <div className="flex items-center justify-between">
+        <div className="flex justify-between">
           <div>
-            <h1 className="secondary-heading">Billing detail</h1>
-            <p className="main-desc">Billing cycle (Annual 14 July 2023)</p>
+            <h1 className="text-3xl font-semibold">{memberStatus === 'pro' ? '฿ 750' : '฿ 0'}</h1>
+            <div className="flex items-center gap-x-[6px]">
+              <p className="text-base leading-7 text-[#71717A]">
+                {memberStatus === 'pro' ? 'Your plan will renew on 2 December 2023.' : 'Free forever'}
+              </p>
+              <AlertCircle className="h-4 w-4"/>
+            </div>
           </div>
-          {memberStatus === 'pro' ? (
-            <Button className='btn-with-icon'>
-              <Wallet viewBox="0 0 24 24" width='16' height='16'/>
-              Pay now
-            </Button>
-          ) : null}
-        </div>
-
-        <div className="text-desc flex items-center justify-between mt-10">
-          <p className="secondary-desc">Plan : {memberStatus === 'pro' ? 'Pro' : 'Free trial'}</p>
-          <p className="settings-heading font-normal">{memberStatus === 'pro' ? '฿ 750' : 'Free'}</p>
+          <Button className='btn-with-icon' disabled={memberStatus === 'pro' ? false : true}>
+            <Wallet viewBox="0 0 24 24" width='16' height='16'/>
+            Pay now
+          </Button>
         </div>
       </section>
 
