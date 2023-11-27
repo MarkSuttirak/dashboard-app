@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
 import SidebarShortcut from "./sidebarShortcut";
-import { PlusCircle, Settings, Search,  Users, Zap, UserCircle, LayoutGrid, Layout, ClipboardList, Package, Group, Baseline, Clipboard, CheckCircle, CheckCircle2, UserSquare, Mailbox, Milestone, PackagePlus, ClipboardPaste, PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import { PlusCircle, Settings, Search,  Users, Zap, UserCircle, LayoutGrid, Layout, ClipboardList, Package, Group, Baseline, Clipboard, CheckCircle, CheckCircle2, UserSquare, Mailbox, Milestone, PackagePlus, ClipboardPaste, PanelLeftClose, PanelLeftOpen, Home } from "lucide-react";
 import { Button } from "../ui/button";
 import { BellIcon, LightningBoltIcon } from "@radix-ui/react-icons";
 import { useMutation, useQuery } from "react-query";
@@ -106,9 +106,15 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   const IconSidebar = () => {
     return (
       <nav className="nav-left-side">
-        <div className="nav-btns" id="home-btn" onClick={() => setIsSidebarOpen(true)}>
-          <PanelLeftOpen color='#18181B' viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5'/>
-        </div>
+        {isSidebarOpen ? (
+          <div className="nav-btns" id="home-btn" onClick={() => navigate('/')}>
+            <Home color='#18181B' viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5'/>
+          </div>
+        ) : (
+          <div className="nav-btns" id="home-btn" onClick={() => setIsSidebarOpen(true)}>
+            <PanelLeftOpen color='#18181B' viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5'/>
+          </div>
+        )}
 
         <div className="nav-btns add-ons">
           <Link to='/'>
