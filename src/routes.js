@@ -1,4 +1,4 @@
-import { Navigate, useRoutes } from 'react-router-dom';
+import { Navigate, useNavigate, useRoutes } from 'react-router-dom';
 // layouts
 import DashboardLayout from './layouts/DashboardLayout';
 // import LogoOnlyLayout from './layouts/LogoOnlyLayout';
@@ -88,6 +88,5 @@ export default function Router() {
         },
         { path: '*', element: <NotFoundPage replace /> },
     ]
-    
     return useRoutes(routes);
 }

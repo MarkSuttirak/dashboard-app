@@ -5,6 +5,8 @@ import { site } from "../../client/api";
 import { useMutation, useQuery } from "react-query";
 import { User, Keyboard, Layout, LogOut } from 'lucide-react'
 import { useUser } from '../../hooks/useUser'
+import LogoutModal from "./logoutModal";
+import { useNavigate } from "react-router-dom";
 
 export default function AvatarMenu(){
   const { user, auth, logout } = useUser();
@@ -12,9 +14,7 @@ export default function AvatarMenu(){
     enabled: !!user,
   });
 
-  const logoutnow = () => {
-    logout();
-  }
+  const navigate = useNavigate()
 
   return (
     <Popover>
@@ -28,7 +28,7 @@ export default function AvatarMenu(){
         <Command>
           <CommandList>
             <CommandGroup>
-              <CommandItem>
+              <CommandItem onSelect={() => navigate('/dashboard/settings/account')}>
                 <User viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
                 Account settings
               </CommandItem>
@@ -46,9 +46,11 @@ export default function AvatarMenu(){
             </CommandGroup>
             <CommandSeparator />
             <CommandGroup>
-              <CommandItem onSelect={() => logoutnow()}>
-                <LogOut viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
-                Logout
+              <CommandItem className='p-0'>
+                <LogoutModal>
+                  <LogOut viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+                  Logout
+                </LogoutModal>
               </CommandItem>
             </CommandGroup>
           </CommandList>

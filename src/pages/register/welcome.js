@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { AuthContext } from "react-oauth2-code-pkce";
 import Logo from '../../img/logo-zaviago.svg';
 
-const Welcome = () => {
+export default function Welcome(){
   const { login: lineLogin } = useContext(AuthContext);
   const location = useLocation();
 
@@ -24,28 +24,24 @@ const Welcome = () => {
     }
   }, [])
 
-  const switchToLoginSection = () => {
+  const switchSection = (isLogin) => {
     setAnimOn(true);
     setTimeout(() => {
       setAnimOn(false);
       setAnimOff(true);
-      setLoginSection(true)
+      setLoginSection(isLogin);
       setTimeout(() => {
         setAnimOff(false);
       }, 500);
     }, 500);
   }
-
+  
+  const switchToLoginSection = () => {
+    switchSection(true);
+  }
+  
   const switchToSignupSection = () => {
-    setAnimOn(true);
-    setTimeout(() => {
-      setAnimOn(false);
-      setAnimOff(true);
-      setLoginSection(false)
-      setTimeout(() => {
-        setAnimOff(false);
-      }, 500);
-    }, 500);
+    switchSection(false);
   }
 
   return (
@@ -438,5 +434,3 @@ const Welcome = () => {
 //     </>
 //   )
 // }
-
-export default Welcome;

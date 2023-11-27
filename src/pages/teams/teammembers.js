@@ -8,38 +8,131 @@ import { Popover, PopoverContent, PopoverTrigger } from "../../components/ui/pop
 import DrawLine from "../../components/drawLine";
 import { useState } from 'react'
 import { DataList } from "src/components/pagination";
+import { EyeNoneIcon, Pencil1Icon, PersonIcon } from "@radix-ui/react-icons";
+import { Checkbox } from "src/components/ui/checkbox";
 
 const teamMembers = [
   {
     firstname:'Olivia',
     lastname:'Martin',
-    role:'Viewer',
+    role:'Member',
     email:'test@mail.com'
   },
   {
     firstname:'Isabella',
     lastname:'Nguyen',
-    role:'Viewer',
+    role:'Member',
     email:'b@example.com'
   },
   {
     firstname:'Markus',
     lastname:'Schneider',
-    role:'Viewer',
+    role:'Member',
     email:'markus@example.com'
   },
   {
     firstname:'Erina',
     lastname:'Bruhner',
-    role:'Viewer',
+    role:'Super Admin',
     email:'erina@example.com'
+  },
+  {
+    firstname:'Michel',
+    lastname:'Schmidt',
+    role:'Super Admin',
+    email:'michel@example.com'
+  },
+  {
+    firstname:'Wilson',
+    lastname:'Mann',
+    role:'Member',
+    email:'wilson@example.com'
+  },
+  {
+    firstname:'Max',
+    lastname:'Gunther',
+    role:'Super Admin',
+    email:'max@example.com'
+  },
+  {
+    firstname:'George',
+    lastname:'Linbert',
+    role:'Super Admin',
+    email:'george.l@example.com'
+  },
+  {
+    firstname:'Kim',
+    lastname:'Chae Yeol',
+    role:'Member',
+    email:'chae@example.com'
+  },
+  {
+    firstname:'Zhang',
+    lastname:'Luying',
+    role:'Member',
+    email:'zhang@example.com'
+  },
+  {
+    firstname:'Hitori',
+    lastname:'Yamasako',
+    role:'Member',
+    email:'hitori@example.com'
+  },
+  {
+    firstname:'Phornthip',
+    lastname:'Chomchai',
+    role:'Member',
+    email:'isara@example.com'
+  },
+  {
+    firstname:'Sombat',
+    lastname:'Siriwattakul',
+    role:'Super Admin',
+    email:'sombat@example.com'
+  },
+  {
+    firstname:'Liu',
+    lastname:'Changkou',
+    role:'Member',
+    email:'liu@example.com'
   },
 ]
 
 export default function TeamMembers(){
+  const userRoles = [
+    {
+      role:'Super Admin',
+      ability:'Can access billing and add members',
+      icon:<PersonIcon className="mt-1"/>
+    },
+    {
+      role:'Member',
+      ability:'Can edit',
+      icon:<Pencil1Icon className="mt-1"/>
+    },
+    {
+      role:'Remove',
+      ability:'Remove from the team',
+      icon:<EyeNoneIcon className="mt-1"/>
+    }
+  ]
+  const [checkedFilter, setCheckedFilter] = useState([])
   const [search, setSearch] = useState('')
 
+  const handleCheckFilter = (option) => {
+    setCheckedFilter((prevFilters) => {
+      if (prevFilters.includes(option)) {
+        return prevFilters.filter((filter) => filter !== option);
+      } else {
+        return [...prevFilters, option];
+      }
+    });
+  }
+
   const allMembers = teamMembers.filter(name => name.firstname.toUpperCase().includes(search.toUpperCase()) || name.lastname.toUpperCase().includes(search.toUpperCase()))
+  const filteredMembers = allMembers.filter((member) =>
+    checkedFilter.length === 0 || checkedFilter.includes(member.role)
+  );
 
   const TeamCard = ({firstname, lastname, email, role, avatar}) => {
     return (
@@ -63,34 +156,19 @@ export default function TeamMembers(){
           </PopoverTrigger>
           <PopoverContent className="p-0" align="end">
             <Command>
-              <CommandInput placeholder="Select new role..." />
               <CommandList>
-                <CommandEmpty>No roles found.</CommandEmpty>
                 <CommandGroup className="p-1.5">
-                  <CommandItem className="teamaspace-y-1 flex flex-col items-start px-4 py-2">
-                    <p>Viewer</p>
-                    <p className="text-sm text-muted-foreground">
-                      Can view and comment.
-                    </p>
-                  </CommandItem>
-                  <CommandItem className="teamaspace-y-1 flex flex-col items-start px-4 py-2">
-                    <p>Developer</p>
-                    <p className="text-sm text-muted-foreground">
-                      Can view, comment and edit.
-                    </p>
-                  </CommandItem>
-                  <CommandItem className="teamaspace-y-1 flex flex-col items-start px-4 py-2">
-                    <p>Billing</p>
-                    <p className="text-sm text-muted-foreground">
-                      Can view, comment and manage billing.
-                    </p>
-                  </CommandItem>
-                  <CommandItem className="teamaspace-y-1 flex flex-col items-start px-4 py-2">
-                    <p>Owner</p>
-                    <p className="text-sm text-muted-foreground">
-                      Admin-level access to all resources.
-                    </p>
-                  </CommandItem>
+                  {userRoles.map(role => (
+                    <CommandItem className="flex items-start px-4 py-2 gap-x-4">
+                      {role.icon}
+                      <div className="flex flex-col">
+                        <h3 className="subheading font-medium">{role.role}</h3>
+                        <p className="text-sm text-muted-foreground">
+                          {role.ability}
+                        </p>
+                      </div>
+                    </CommandItem>
+                  ))}
                 </CommandGroup>
               </CommandList>
             </Command>
@@ -103,24 +181,62 @@ export default function TeamMembers(){
     <div>
       <h1 className="subheading font-medium">People with access</h1>
       <div className="mt-[10px] flex gap-x-2">
-        <Input placeholder='Search User' value={search} onChange={(e) => setSearch(e.target.value)}/>
-        <Button variant='outline' className='border border-dashed flex items-center gap-x-2'>
-          <div className="flex items-center gap-x-2">
-            <PlusCircle viewBox='0 0 24 24' width='16' height='16'/>
-            Role
-          </div>
-          <DrawLine color='#E4E4E7' height="80%" width="1px"/>
-          <Badge variant="secondary" className='rounded-md'>3 Selected</Badge>
-        </Button>
-        <Button variant='ghost' className={`flex items-center gap-x-2 ${search !== '' ? 'visible opacity-1' : 'invisible opacity-0'} transition duration-200`} onClick={() => setSearch('')}> 
+        <Input className='max-w-[300px]' placeholder='Search User' value={search} onChange={(e) => setSearch(e.target.value)}/>
+        <Popover>
+          <PopoverTrigger>
+            <Button variant='outline' className='border border-dashed flex items-center gap-x-2'>
+              <div className="flex items-center gap-x-2">
+                <PlusCircle viewBox='0 0 24 24' width='16' height='16'/>
+                Role
+              </div>
+              {checkedFilter.length > 0 && (
+                <>
+                  <DrawLine color='#E4E4E7' height="80%" width="1px"/>
+                  {checkedFilter.length < 3 ? (
+                    <>
+                      {checkedFilter.map(c => (
+                        <Badge variant="secondary" className='rounded-md'>{c}</Badge>
+                      ))}
+                    </>
+                  ) : (
+                    <Badge variant="secondary" className='rounded-md'>{checkedFilter.length} selected</Badge>
+                  )}
+                </>
+              )}
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className='w-[200px] p-0'>
+            <div className="p-1">
+              {userRoles.map(option => (
+                <div className="flex items-center justify-between px-2 py-[6px]">
+                  <div className="flex items-center gap-x-2">
+                    <Checkbox id={`filter-${option.role}`} checked={checkedFilter.includes(option.role)} onCheckedChange={() => handleCheckFilter(option.role)}/>
+                    <label htmlFor={`filter-${option.role}`} className="subheading">{option.role}</label>
+                  </div>
+                  <span className="text-xs">{allMembers.filter(item => item.role === option.role).length}</span>
+                </div>
+              ))}
+            </div>
+
+            {checkedFilter.length > 0 && (
+              <>
+                <DrawLine width='100%' height='1px' color='#E4E4E7'/>
+                <div className="p-1">
+                  <Button className='w-full font-normal' variant='ghost' onClick={() => setCheckedFilter([])}>Clear filters</Button>
+                </div>
+              </>
+            )}
+          </PopoverContent>
+        </Popover>
+        <Button variant='ghost' className={`flex items-center gap-x-2 ${search !== '' || checkedFilter.length > 0 ? 'visible opacity-1' : 'invisible opacity-0'} transition duration-200`} onClick={() => {setSearch('');setCheckedFilter([])}}> 
           Reset
           <X viewBox="0 0 24 24" width='16' height='16'/>
         </Button>
       </div>
 
       <div className="flex flex-col gap-y-6 my-6">
-        <DataList pagination={allMembers.length > 6 ? true : false} listPerPage={6} emptyText="There is no member you are looking for.">
-          {allMembers.map(t => (
+        <DataList pagination={filteredMembers.length > 6 ? true : false} listPerPage={6} emptyText="There is no member you are looking for.">
+          {filteredMembers.map(t => (
             <TeamCard firstname={t.firstname} lastname={t.lastname} role={t.role} email={t.email}/>
           ))}
         </DataList>

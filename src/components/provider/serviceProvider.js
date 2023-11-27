@@ -37,7 +37,7 @@ const ServiceProvider = ({children}) => {
         setData({image:blogAndPagesBg, title:(<><span className="text-[#7000FF]">Blog and Pages</span> in your style</>), desc:'Access exclusive tools to help you build client sites and scale your business', require_pro_text:'Coming soon', link:''})
         break
       case 7:
-        setData({image:lineCRMbg, title:(<>Unlock <span class='text-[#3BCD76]'>Line CRM</span> to let people engage</>), desc:'Access exclusive tools to help you build client sites and scale your business', require_pro_text:'Upgrade pro plan to use this feature', link:''})
+        setData({image:lineCRMbg, title:(<>Unlock <span className='text-[#3BCD76]'>Line CRM</span> to let people engage</>), desc:'Access exclusive tools to help you build client sites and scale your business', require_pro_text:'Upgrade pro plan to use this feature', link:''})
         break
       default:
         console.log("Cannot select this menu")

@@ -29,7 +29,7 @@ export default function ComparePlan(){
           </Badge>
 
           <h1 className="text-3xl tracking-[-0.75px] text-[#18181B] font-semibold mt-[6px] mb-3">Pick the plan that works best for you</h1>
-          <p className="secondary-desc">You can compare between 'Professional' and 'General (Free)' plan in the table below to find the best package that suits to you. But if you still insure, feel free to contact us!</p>
+          <p className="secondary-desc">You can compare between a 'Professional' and 'General (Free)' plan in the table below to find the best package that suits you. But if you are still unsure, feel free to contact us!</p>
 
           <Button className='btn-with-icon mt-[60px]' onClick={() => window.location.href = 'https://page.line.me/zaviago'}>
             <MessageSquare viewBox="0 0 24 24" width='16' height='16'/>

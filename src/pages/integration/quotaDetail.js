@@ -30,6 +30,7 @@ export default function QuotaDetail(){
     }
   ]
   const { app } = useParams()
+
   return (
     <div className="dashboard-container">
       <h1 className="main-heading tracking-[-0.6px]">Integration</h1>

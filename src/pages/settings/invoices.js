@@ -2,6 +2,8 @@ import React, { useState,useEffect  } from 'react';
 import { user } from "src/client/api";
 
 import InvoiceTable from '../../components/invoiceTable';
+import { Loader2 } from 'lucide-react';
+import Loading from 'src/components/ui/loading';
 export default function Invoices() {
   const [userInvoices,setuserInvoices]=useState(null)
   
@@ -16,5 +18,5 @@ export default function Invoices() {
 
     fetchData();
 
-  return userInvoices ? <InvoiceTable invoices_props={userInvoices}/> : <div>Loading...</div>
+  return userInvoices ? <InvoiceTable invoices_props={userInvoices}/> : <Loading />
 }

@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../components/ui/card"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Badge } from "../components/ui/badge";
 import { CreditCard, LogIn, Users, Zap } from "lucide-react";
 import { Separator } from "../components/ui/separator";
@@ -14,6 +14,7 @@ import connectMessage from '../img/connect-message.png'
 import { useUser } from "../hooks/useUser";
 import { useMutation, useQuery } from "react-query";
 import { site } from "../client/api";
+import { MemberContext } from "src/components/provider/memberProvider";
 
 export default function Dashboard(){
   const location = useLocation()
@@ -23,6 +24,7 @@ export default function Dashboard(){
   const [isMenuCardHover, setIsMenuCardHover] = useState(false)
   const [menuCardIndex, setMenuCardIndex] = useState(0)
   const [websiteSid, setwebsiteSid] = useState(false)
+  const memberStatus = useContext(MemberContext)
 
   const handleCardHover = (index) => {
     setIsMenuCardHover(true)
@@ -92,8 +94,6 @@ export default function Dashboard(){
   //     }
   //   }
   // });
-
-
 
   const loginNow = (page) => {
     var sid = loadAdmin?.data?.message.sid;
@@ -183,7 +183,11 @@ export default function Dashboard(){
               </Avatar>
               <h2 className="text-sm font-medium text-zinc-950">{user?.first_name}{' '}{user?.last_name}</h2>
             </div>
-            <Badge variant="outline">Free trial</Badge>
+            {memberStatus === 'pro' ? (
+              <Badge>Pro plan</Badge>
+            ) : (
+              <Badge variant="outline">Free trial</Badge>
+            )}
           </div>
         </div>
         <Button variant='outline' className='btn-with-icon leading-5'>
@@ -193,14 +197,14 @@ export default function Dashboard(){
       </section>
 
       <section className="mt-6">
-        <div className="grid grid-cols-1 md:flex gap-6 md:gap-x-[15px]">
-          <Card className='w-[60%] shadow-none'>
-            <CardHeader className='pb-2 flex flex-col xl:flex-row xl:items-center justify-between'>
+        <div className="grid grid-cols-1 lg:flex gap-6 md:gap-x-[15px]">
+          <Card className='w-full lg:w-[60%] shadow-none'>
+            <CardHeader className='pb-2 flex flex-col lg:flex-row lg:items-center justify-between'>
               <div>
                 <CardTitle className='subheading font-medium'>Your WorkSpace</CardTitle>
                 <CardDescription className="domain-heading">{sites?.site_list[0].name}</CardDescription>
               </div>
-              <Button variant='secondary' className='btn-with-icon leading-5 m-[0!important]' onClick={() => loginNow('home')}>
+              <Button variant='secondary' className='btn-with-icon leading-5 w-fit' onClick={() => loginNow('home')}>
                 <LogIn viewBox="0 0 24 24" width='16' height='16'/>
                 Login as Admin
               </Button>
@@ -215,20 +219,52 @@ export default function Dashboard(){
             </CardContent>
           </Card>
 
-          <Card className='w-[40%] flex flex-col justify-between shadow-none'>
+          <Card className='w-full lg:w-[40%] flex flex-col justify-between shadow-none'>
             <CardHeader className='pb-2 flex flex-col xl:flex-row xl:items-start justify-between'>
-              <div>
-                <CardTitle className='domain-heading'>Free trial</CardTitle>
-                <CardDescription>You are on free trial plan</CardDescription>
-              </div>
-              <Button variant='secondary' className='btn-with-icon leading-5 m-[0!important]'>
-                <Zap viewBox="0 0 24 24" width='16' height='16'/>
-                Compare Plan
-              </Button>
+              {memberStatus === 'pro' ? (
+                <>
+                  <div>
+                    <CardTitle className='domain-heading'>Pro plan</CardTitle>
+                    <CardDescription>You are on Pro plan</CardDescription>
+                  </div>
+                  <Link to='/dashboard/compare-plan'>
+                    <Button variant='secondary' className='btn-with-icon leading-5'>
+                      <Zap viewBox="0 0 24 24" width='16' height='16'/>
+                      View overview
+                    </Button>
+                  </Link>
+                </>
+              ) : memberStatus === 'pending' ? (
+                <>
+                  <div>
+                    <CardTitle className='domain-heading'>Free</CardTitle>
+                    <CardDescription>Waiting for confirmation</CardDescription>
+                  </div>
+                  <Link to='/dashboard/settings/billing-plans'>
+                    <Button variant='secondary' className='btn-with-icon leading-5'>
+                      <Zap viewBox="0 0 24 24" width='16' height='16'/>
+                      Manage Plan
+                    </Button>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <CardTitle className='domain-heading'>Free trial</CardTitle>
+                    <CardDescription>You are on free trial plan</CardDescription>
+                  </div>
+                  <Link to='/dashboard/settings/billing-plans'>
+                    <Button variant='secondary' className='btn-with-icon leading-5'>
+                      <Zap viewBox="0 0 24 24" width='16' height='16'/>
+                      Compare Plan
+                    </Button>
+                  </Link>
+                </>
+              )}
             </CardHeader>
             <CardContent className='text-desc flex items-center gap-x-1'>
               <MagicWandIcon />
-              <span className="text-sm">Starting at 750/m</span>
+              <span className="text-sm">{memberStatus === 'pro' ? 'Start to select Apps' : 'Starting at 750/m'}</span>
             </CardContent>
           </Card>
         </div>
@@ -258,7 +294,7 @@ export default function Dashboard(){
         <h2 className="secondary-heading">Create New or Manage</h2>
         <p className="secondary-desc">What do you want to do today?</p>
 
-        <div className="flex gap-x-[15px] mt-6">
+        <div className="flex flex-wrap gap-[15px] mt-6">
           {newOrManageMenus.map((n, index) => (
             <div onClick={() => n.page !== undefined && loginNow(n.page)} className="menu-card" key={index} style={{backgroundColor:n.background,color:n.color,boxShadow:isMenuCardHover && menuCardIndex === index ? `0 0 3px ${n.color}` : null}} onMouseEnter={() => handleCardHover(index)} onMouseLeave={handleCardHoverLeave}>
               {n.image}
@@ -274,7 +310,7 @@ export default function Dashboard(){
         <h2 className="secondary-heading">Discover what you can do</h2>
         <p className="secondary-desc">Manage posts, track post performance and learn about new ways to improve your blog.</p>
 
-        <div className="mt-6 grid grid-cols-3 gap-x-[15px]">
+        <div className="mt-6 grid lg:grid-cols-3 gap-[15px]">
           <PostInfo title="Create your blog" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={phoneBanner} />
           <PostInfo title="Selling Online" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={sellingOnline} />
           <PostInfo title="Connect Shopee" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={connectMessage} />

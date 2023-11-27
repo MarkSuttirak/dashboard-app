@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { useToast } from './hooks/useToast';
 import { UserProvider } from './hooks/useUser';
 import { ServiceProvider } from "./components/provider/serviceProvider";
+import { MemberProvider } from "./components/provider/memberProvider";
 
 const authConfig = {
   autoLogin: false,
@@ -47,14 +48,16 @@ function App() {
       <AuthProvider authConfig={authConfig}>
         <UserProvider>
           <ServiceProvider>
-            <Router />
-            {/* <switchContext.Provider value={[isSwitchModalOpen, setisSwitchModalOpen]}>
+            <MemberProvider>
+              <Router />
+              {/* <switchContext.Provider value={[isSwitchModalOpen, setisSwitchModalOpen]}>
 
-            <Sidebar loadingLogo={loadingLogo} />
-            <TeamModal />
-          </switchContext.Provider> */}
+              <Sidebar loadingLogo={loadingLogo} />
+              <TeamModal />
+            </switchContext.Provider> */}
 
-            {/* <MobileMenu /> */}
+              {/* <MobileMenu /> */}
+            </MemberProvider>
           </ServiceProvider>
         </UserProvider>
       </AuthProvider>

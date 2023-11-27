@@ -106,6 +106,18 @@ body {
   font-family:'Sukhumvit Set', sans-serif
 }
 
+.login-line-btn {
+  border-radius: 8px;
+  background: linear-gradient(152deg, #00B945 0%, #00D14E 100%);
+  box-shadow: 0 4px 10px 0 rgba(17, 192, 82, 0.05); 
+  display:inline-flex;
+  width:100%;
+  color:white;
+  padding:8px;
+  justify-content:center;
+  gap:8px;
+}
+
 ::-webkit-scrollbar {
   display:none
 }
