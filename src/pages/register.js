@@ -1,6 +1,5 @@
 import { useEffect, useState, Fragment } from "react"
 import { useLocation } from "react-router-dom"
-import Logo from '../img/logo-zaviago.svg'
 import { CheckIcon, ChatBubbleOvalLeftEllipsisIcon, HomeModernIcon, BuildingStorefrontIcon, DocumentIcon, ArrowDownOnSquareStackIcon } from '@heroicons/react/24/solid'
 import { useRef } from "react"
 import { RadioGroup } from '@headlessui/react'
@@ -48,7 +47,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export const Steps = ({ total, step, isGoingNext = true, isGoingBack = false }) => {
+export const Steps = ({ total, step }) => {
   return (
     <nav aria-label="Progress">
       <ol role="list" className="flex justify-between">
@@ -56,7 +55,7 @@ export const Steps = ({ total, step, isGoingNext = true, isGoingBack = false }) 
           Array(total).fill().map((_, i) => (
             <li key={i} className="step-list">
               <div className="step-register">
-                <div className={`step-register-inner ${i === step ? (isGoingNext ? 'current-to-complete' : isGoingBack ? 'current-to-zero' : 'current') : i < step ? 'complete' : 'coming'}`} />
+                <div className={`step-register-inner${i <= step ? ' complete' : ''}`} />
               </div>
             </li>
           ))

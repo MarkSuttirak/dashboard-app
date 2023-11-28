@@ -311,6 +311,13 @@ export const SiteDomainForm = ({
         onSubmit: onSubmit ?? mutate
     })
 
+    const checkIfEmailValid = (e) => {
+        if (e.target.value !== ''){
+            formik.errors.subdomain = undefined;
+            formik.isValid = true
+        }
+    }
+
     return (
         <form className="m-auto w-full max-w-sm w-96 h-[600px]" onSubmit={formik.handleSubmit}>
             <Steps total={5} step={3} />
@@ -330,6 +337,7 @@ export const SiteDomainForm = ({
                         name="subdomain"
                         onChange={formik.handleChange}
                         value={formik.values.subdomain}
+                        onKeyDown={checkIfEmailValid}
                     />
                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 subheading">
                         .{formik.values.domain}
@@ -343,7 +351,7 @@ export const SiteDomainForm = ({
                 <Button
                     type='submit'
                     className='justify-center'
-                    disabled={!formik.isValid}
+                    // disabled={!formik.isValid}
                 >Submit</Button>
             </div>
         </form>

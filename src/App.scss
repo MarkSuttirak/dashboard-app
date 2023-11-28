@@ -502,17 +502,63 @@ $gradient-border:linear-gradient(to right, #9A5BFF, #FF9C27);
 
   .step-register-inner {
     height:4px;
-    background-color:#0F172A;
     border-radius:999px;
+    background-color:#0F172A;
+    width:0%;
+    transition:width 200ms;
     &.complete {
-        width:100%;
+      width:100%;
+      transition:width 200ms
     }
-    &.current {
-        width:50%;
-    }
-    &.coming {
-        width:0%;
-    }
+  }
+}
+
+.register-sec, .login-with-sec {
+  animation:slideDownAnim 800ms;
+  &.up-in {
+    animation:slideUpAnimIn 400ms forwards;
+  }
+  &.up-out {
+    animation:slideUpAnimOut 400ms forwards;
+  }
+}
+
+@keyframes slideDownAnim {
+  from {
+    transform:translateY(-20px);
+    opacity:0;
+    visibility:hidden;
+  }
+  to {
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+  }
+}
+
+@keyframes slideUpAnimOut {
+  from {
+    transform:translateY(0);
+    opacity:1;
+    visibility:visible;
+  }
+  to {
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-20px);
+  }
+}
+
+@keyframes slideUpAnimIn {
+  from {
+    transform:translateY(20px);
+    opacity:0;
+    visibility:hidden;
+  }
+  to {
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
   }
 }
 
@@ -709,5 +755,14 @@ $gradient-border:linear-gradient(to right, #9A5BFF, #FF9C27);
     100% {
       opacity: 1;
     }
+  }
+}
+
+@media (max-width:767px){
+  .register-screen {
+    width:calc(100% - 60px)
+  }
+  ::-webkit-scrollbar {
+    display:none
   }
 }

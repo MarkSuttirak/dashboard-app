@@ -19,7 +19,7 @@ import { MemberContext } from "src/components/provider/memberProvider";
 export default function Dashboard(){
   const location = useLocation()
   const [numOfAdmin, setNumOfAdmin] = useState(3)
-  const [numOfCustomers, setNumOfCustomers] = useState(1454)
+  const [numOfCustomers, setNumOfCustomers] = useState(38)
   const [date, setDate] = useState('April 2023')
   const [isMenuCardHover, setIsMenuCardHover] = useState(false)
   const [menuCardIndex, setMenuCardIndex] = useState(0)
@@ -50,10 +50,6 @@ export default function Dashboard(){
     enabled: !!user,
   });
 
-
-
-  
-
   const { data: loadAdmin, refetch } = useQuery('loadAdmin', () => site.loginAsAdmin(sites.site_list[0].name, 'Admin'), {
     enabled: false,
     onSuccess: (res) => {
@@ -66,8 +62,6 @@ export default function Dashboard(){
       refetch();
     }
   }, [user, sites, refetch]);
-
-
 
 
   // useEffect(() => {
@@ -183,17 +177,19 @@ export default function Dashboard(){
               </Avatar>
               <h2 className="text-sm font-medium text-zinc-950">{user?.first_name}{' '}{user?.last_name}</h2>
             </div>
-            {memberStatus === 'pro' ? (
+            {memberStatus.status === 'pro' ? (
               <Badge>Pro plan</Badge>
             ) : (
               <Badge variant="outline">Free trial</Badge>
             )}
           </div>
         </div>
-        <Button variant='outline' className='btn-with-icon leading-5'>
-          <PlusCircledIcon />
-          Invite team
-        </Button>
+        <Link to='/dashboard/teams/team-members'>
+          <Button variant='outline' className='btn-with-icon leading-5'>
+            <PlusCircledIcon />
+            Invite team
+          </Button>
+        </Link>
       </section>
 
       <section className="mt-6">
@@ -221,7 +217,7 @@ export default function Dashboard(){
 
           <Card className='w-full lg:w-[40%] flex flex-col justify-between shadow-none'>
             <CardHeader className='pb-2 flex flex-col xl:flex-row xl:items-start justify-between'>
-              {memberStatus === 'pro' ? (
+              {memberStatus.status === 'pro' ? (
                 <>
                   <div>
                     <CardTitle className='domain-heading'>Pro plan</CardTitle>
@@ -234,7 +230,7 @@ export default function Dashboard(){
                     </Button>
                   </Link>
                 </>
-              ) : memberStatus === 'pending' ? (
+              ) : memberStatus.status === 'pending' ? (
                 <>
                   <div>
                     <CardTitle className='domain-heading'>Free</CardTitle>
@@ -264,7 +260,7 @@ export default function Dashboard(){
             </CardHeader>
             <CardContent className='text-desc flex items-center gap-x-1'>
               <MagicWandIcon />
-              <span className="text-sm">{memberStatus === 'pro' ? 'Start to select Apps' : 'Starting at 750/m'}</span>
+              <span className="text-sm">{memberStatus.status === 'pro' ? 'Start to select Apps' : 'Starting at 750/m'}</span>
             </CardContent>
           </Card>
         </div>

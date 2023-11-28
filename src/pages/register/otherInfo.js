@@ -266,7 +266,7 @@ export const UserInfoForm = ({
                         <Button
                             type='submit'
                             className='justify-center w-full'
-                            disabled={!formik.isValid}
+                            // disabled={!formik.isValid}
                         >Submit</Button>
                     </div>
                 </div>
@@ -323,18 +323,6 @@ export const BusinessInfoForm = ({
             value: 'organisation',
             label: 'Organisation',
         },
-        {
-            value: 'playgame',
-            label: 'To play a game',
-        },
-        {
-            value: 'learn',
-            label: 'To learn how to code',
-        },
-        {
-            value: 'drink',
-            label: 'To drink coffee',
-        }
     ];
 
     const formik = useFormik({
@@ -395,7 +383,7 @@ export const BusinessInfoForm = ({
                     ))} */}
                     {checkboxLists.map(checkboxList => (
                         <div className='flex items-center gap-x-2'>
-                          <Checkbox checked={formik.values.goal.includes(checkboxList.key)} value={checkboxList.key} name={checkboxList.key} onCheckedChange={(e) => {
+                          <Checkbox id={checkboxList.key} checked={formik.values.goal.includes(checkboxList.key)} value={checkboxList.key} name={checkboxList.key} onCheckedChange={(e) => {
                             if (!formik.values.goal.includes(checkboxList.key)) {
                                 formik.setFieldValue('goal', [...formik.values.goal, checkboxList.key])
                             } else {
@@ -414,7 +402,7 @@ export const BusinessInfoForm = ({
                 <Button variant='ghost' className={`w-1/4 justify-center`} onClick={prev}>Back</Button>
                 <Button
                     className='w-1/4 justify-center'
-                    disabled={!formik.isValid}
+                    // disabled={!formik.isValid}
                 >Next</Button>
             </div>
         </form>
@@ -478,7 +466,7 @@ export const TeamInfoForm = ({
                 </RadioGroup>
                 <Button
                     className='w-1/4 justify-center'
-                    disabled={!formik.isValid}
+                    // disabled={!formik.isValid}
                 >Next</Button>
             </div>
         </form>
