@@ -50,7 +50,7 @@ export default function Dashboard(){
     enabled: !!user,
   });
 
-  const { data: loadAdmin, refetch } = useQuery('loadAdmin', () => site.loginAsAdmin(sites.site_list[0].name, 'Admin'), {
+  const { data: loadAdmin, refetch } = useQuery('loadAdmin', () => site.loginAsAdmin(sites?.site_list[0].name, 'Admin'), {
     enabled: false,
     onSuccess: (res) => {
       //console.log(res);
@@ -62,7 +62,6 @@ export default function Dashboard(){
       refetch();
     }
   }, [user, sites, refetch]);
-
 
   // useEffect(() => {
   //   if (sites?.site_list[0].name) {
