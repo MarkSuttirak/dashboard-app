@@ -24,6 +24,7 @@ import QuotaDetail from './pages/integration/quotaDetail';
 import ComparePlan from './pages/compare-plan/comparePlan';
 import AppCategory from './pages/integration/appCategory';
 import { useEffect } from 'react'
+import Pricing from './pages/pricing';
 
 // ----------------------------------------------------------------------
 
@@ -103,6 +104,7 @@ export default function Router() {
             ],
         },
         { path: '*', element: <NotFoundPage replace /> },
+        { path: '/pricing', element: <Pricing />}
     ]
     return useRoutes(routes);
 }
