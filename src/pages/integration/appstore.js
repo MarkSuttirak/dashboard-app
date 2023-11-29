@@ -54,37 +54,43 @@ export default function AppStore(){
       title:'Social Media',
       image:<ButtonAppStoreImage01 shadow={false}/>,
       background:"#E4F4FE",
-      color:"#5099FF"
+      color:"#5099FF",
+      link:'social-media'
     },
     {
       title:'Manage',
       image:<ButtonAppStoreImage02 shadow={false}/>,
       background:"#DDFDF3",
-      color:"#0DA7BA"
+      color:"#0DA7BA",
+      link:'manage'
     },
     {
       title:'Marketing',
       image:<ButtonAppStoreImage03 shadow={false}/>,
       background:"#F6F3FF",
-      color:"#EB67FF"
+      color:"#EB67FF",
+      link:'marketing'
     },
     {
       title:'Sell Online',
       image:<ButtonAppStoreImage04 shadow={false}/>,
       background:"#E5F5FF",
-      color:"#419CFF"
+      color:"#419CFF",
+      link:'sell-online'
     },
     {
       title:'Media & Content',
       image:<ButtonAppStoreImage05 shadow={false}/>,
       background:"#FFF9E9",
-      color:"#FABF20"
+      color:"#FABF20",
+      link:'media-content'
     },
     {
       title:'Communication',
       image:<ButtonAppStoreImage06 shadow={false}/>,
       background:"#DEFFEA",
-      color:"#19D85C"
+      color:"#19D85C",
+      link:'communication'
     },
   ]
 
@@ -94,7 +100,7 @@ export default function AppStore(){
 
       <div className="flex justify-between mt-6">
         {appstoreMenus.map((n, index) => (
-          <Link to='/integration/app-category'>
+          <Link to={`/integration/app-category/${n.link}`}>
             <div className="menu-card-app-store" key={index} style={{backgroundColor:n.background,color:n.color,boxShadow:isMenuCardHover && menuCardIndex === index ? `0 0 3px ${n.color}` : null}} onMouseEnter={() => handleCardHover(index)} onMouseLeave={handleCardHoverLeave}>
               {n.image}
               <span className="absolute bottom-4">{n.title}</span>

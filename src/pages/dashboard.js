@@ -185,7 +185,7 @@ export default function Dashboard(){
           </div>
         </div>
         <Link to='/dashboard/teams/team-members'>
-          <Button variant='outline' className='btn-with-icon leading-5'>
+          <Button variant='outline' className='btn-with-icon leading-5 bg-white'>
             <PlusCircledIcon />
             Invite team
           </Button>

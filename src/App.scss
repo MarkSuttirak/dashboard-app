@@ -95,7 +95,11 @@ $mobile-footer-size: 60px;
 
 body {
   overflow-y:scroll;
-  font-family:'Inter', sans-serif
+  font-family:'Inter', sans-serif;
+}
+
+.bg-gradient {
+  background: linear-gradient(229deg, rgba(246, 235, 255, 0.50) -23.12%, rgba(226, 198, 255, 0.16) 11.08%, rgba(255, 98, 202, 0.00) 32.6%, rgba(255, 255, 255, 0.05) 81.71%);
 }
 
 .cal-sans {
