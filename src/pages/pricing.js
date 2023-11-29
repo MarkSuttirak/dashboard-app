@@ -1,14 +1,15 @@
-import ProPricing from "src/components/pricing/proPricing";
-import CompareCards from "./compare-plan/compareCards";
 import FreePricing from "src/components/pricing/freePricing";
-import SwitchPricing from "src/components/pricing/switchPricing";
+import LineCRMPricing from "src/components/pricing/lineCRMPricing";
+import StarterPricing from "src/components/pricing/starterPricing";
 
 export default function Pricing(){
   return (
-    <>
-      <SwitchPricing />
-      <FreePricing />
-      <ProPricing />
-    </>
+    <div className="max-w-[1200px] py-[60px] mx-auto">
+      <div className="flex gap-x-8 justify-center h-auto">
+        <FreePricing />
+        <StarterPricing />
+        <LineCRMPricing />
+      </div>
+    </div>
   )
 }
