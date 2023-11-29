@@ -13,7 +13,6 @@ import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { useMutation, useQuery } from "react-query";
 
-
 export default function AppStore(){
   const [isMenuCardHover, setIsMenuCardHover] = useState(false)
   const [menuCardIndex, setMenuCardIndex] = useState(0)
@@ -28,7 +27,6 @@ export default function AppStore(){
   }
 
   const { user, auth, logout } = useUser();
-
 
   
   const { data: sites } = useQuery('sites', site.list, {
@@ -50,11 +48,6 @@ export default function AppStore(){
       refetch();
     }
   }, [user, sites, refetch]);
-  
-
-
-
-
 
   const appstoreMenus = [
     {
@@ -101,10 +94,12 @@ export default function AppStore(){
 
       <div className="flex justify-between mt-6">
         {appstoreMenus.map((n, index) => (
-          <div className="menu-card-app-store" key={index} style={{backgroundColor:n.background,color:n.color,boxShadow:isMenuCardHover && menuCardIndex === index ? `0 0 3px ${n.color}` : null}} onMouseEnter={() => handleCardHover(index)} onMouseLeave={handleCardHoverLeave}>
-            {n.image}
-            <span className="absolute bottom-4">{n.title}</span>
-          </div>
+          <Link to='/integration/app-category'>
+            <div className="menu-card-app-store" key={index} style={{backgroundColor:n.background,color:n.color,boxShadow:isMenuCardHover && menuCardIndex === index ? `0 0 3px ${n.color}` : null}} onMouseEnter={() => handleCardHover(index)} onMouseLeave={handleCardHoverLeave}>
+              {n.image}
+              <span className="absolute bottom-4">{n.title}</span>
+            </div>
+          </Link>
         ))}
       </div>
 
@@ -145,13 +140,12 @@ export default function AppStore(){
 
       <div className="flex justify-between items-center">
         <h2 className="secondary-heading">Recommended for You</h2>
-        <Link className="text-[#006AFF] text-sm font-medium">See more apps</Link>
+        {/* <Link className="text-[#006AFF] text-sm font-medium">See more apps</Link> */}
       </div>
       <div className="flex gap-x-6 mt-6">
         <section className="grid grid-cols-2 gap-6 w-[70%]">
           {appslists?.map((app, index) => (
             <Card key={index} className='shadow-none flex flex-col justify-between'>
-              
               <CardHeader className='flex flex-row gap-x-6'>
                 <div className="w-[90px]">
                   {console.log(app)}
@@ -161,7 +155,14 @@ export default function AppStore(){
                   <CardDescription className='mt-[6px]'>{app.repository_url}</CardDescription>
                 </div>
               </CardHeader>
-             
+              <CardFooter className='flex items-center justify-between'>
+                <div className="text-sm">
+                  Free trial
+                </div>
+                <Link>
+                  <Button variant='outline'>See more</Button>
+                </Link>
+              </CardFooter>
             </Card>
           ))}
         </section>

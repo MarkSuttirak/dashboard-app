@@ -11,6 +11,7 @@ import { ButtonImage01, ButtonImage02, ButtonImage03, ButtonImage04, ButtonImage
 import phoneBanner from '../img/phone-banner.png'
 import sellingOnline from '../img/selling-online.png'
 import connectMessage from '../img/connect-message.png'
+import createYourBlog from 'src/img/create-your-blog.png'
 import { useUser } from "../hooks/useUser";
 import { useMutation, useQuery } from "react-query";
 import { site } from "../client/api";
@@ -139,16 +140,16 @@ export default function Dashboard(){
 
   const PostInfo = ({title, desc, buttonText, onClick, image}) => {
     return (
-      <div className="p-6 bg-zinc-100 rounded-xl h-[423px] flex flex-col justify-between">
-        <div>
+      <div className="bg-zinc-100 rounded-xl h-[423px] flex flex-col justify-between">
+        <div className="p-6">
           <h3 className="secondary-heading">{title}</h3>
           <p className="text-[13px] text-zinc-500 font-medium leading-4 mt-4 mb-6">{desc}</p>
-          <Button variant="blue" className='rounded-xl flex items-center gap-x-2 text-xs font-medium leading-5' onClick={onClick}>
+          <Button variant="outline" className='rounded-md flex items-center gap-x-2 text-xs font-medium leading-5 bg-white' onClick={onClick}>
             <PlusCircledIcon />
             {buttonText}
           </Button>
         </div>
-        <img src={image} className="w-fit mx-auto"/>
+        <img src={image} className="w-full"/>
       </div>
     )
   }
@@ -306,7 +307,7 @@ export default function Dashboard(){
         <p className="secondary-desc">Manage posts, track post performance and learn about new ways to improve your blog.</p>
 
         <div className="mt-6 grid lg:grid-cols-3 gap-[15px]">
-          <PostInfo title="Create your blog" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={phoneBanner} />
+          <PostInfo title="Create your blog" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={createYourBlog} />
           <PostInfo title="Selling Online" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={sellingOnline} />
           <PostInfo title="Connect Shopee" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={connectMessage} />
         </div>

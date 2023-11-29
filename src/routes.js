@@ -22,6 +22,7 @@ import CheckoutReceived from './pages/checkout/checkoutReceived';
 import Integration from './pages/integration/integration';
 import QuotaDetail from './pages/integration/quotaDetail';
 import ComparePlan from './pages/compare-plan/comparePlan';
+import AppCategory from './pages/integration/appCategory';
 
 // ----------------------------------------------------------------------
 
@@ -65,7 +66,8 @@ export default function Router() {
                 { path: ':id', element: <Integration />},
                 { path: 'appstore', element: <AppStore />},
                 { path: 'appstore/:id', element: <SingleApp />},
-                { path: 'quota-detail/:app', element: <QuotaDetail />}
+                { path: 'quota-detail/:app', element: <QuotaDetail />},
+                { path: 'app-category', element: <AppCategory />}
             ],
         },
         {
