@@ -12,6 +12,10 @@ $right-sidebar-width: 266px;
 $mobile-header-size: 60px;
 $mobile-footer-size: 60px;
 
+html {
+  scroll-behavior: smooth;
+}
+
 @mixin check-sidebar($active: true){
   @if $active {
     $right-sidebar-width: 266px;
@@ -625,7 +629,6 @@ $gradient-border:linear-gradient(to right, #9A5BFF, #FF9C27);
   top: 0;
   left: 0;
   animation: moving-line 2s linear infinite;
-  // background: linear-gradient(to right, #006AFF 0%, #0094FF 30%, #dad3d336 55%, #C293FF 60%); /* Replace red with your line color */
   background: linear-gradient(to right, #006AFF 0%, #0094FF 30%, #dad3d336 55%, #C293FF 80%, #006AFF 100%);
   background-size: 200% 100%;
   background-position: 100% 0;

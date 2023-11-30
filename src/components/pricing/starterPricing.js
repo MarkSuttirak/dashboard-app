@@ -28,7 +28,7 @@ export default function StarterPricing(){
           Starter
           <ServiceBadge text='Recommended'/>
         </CardTitle>
-        <CardDescription className="main-desc pt-4">Upgrade package to Pro to enjoy unrestricted access to everything for you and your friends you and your friends</CardDescription>
+        {/* <CardDescription className="main-desc pt-4">Upgrade package to Pro to enjoy unrestricted access to everything for you and your friends you and your friends</CardDescription> */}
       </CardHeader>
       <CardContent>
         <div className='flex gap-x-2 items-center'>

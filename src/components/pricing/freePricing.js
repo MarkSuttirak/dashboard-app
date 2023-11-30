@@ -17,7 +17,7 @@ export default function FreePricing(){
     <Card className='w-1/3'>
       <CardHeader>
         <CardTitle className='text-3xl tracking-[-0.75px] text-[#18181B] font-semibold'>General</CardTitle>
-        <CardDescription className="main-desc pt-4">Package for small businesses or personal use.</CardDescription>
+        {/* <CardDescription className="main-desc pt-4">Package for small businesses or personal use.</CardDescription> */}
       </CardHeader>
       <CardContent>
         <div className='flex gap-x-2 items-center'>
