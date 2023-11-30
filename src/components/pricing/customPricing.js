@@ -1,9 +1,7 @@
-import { Input } from "src/components/ui/input";
-import { Separator } from "src/components/ui/separator";
-import { Button } from "src/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectGroup, SelectValue } from "src/components/ui/select"
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
+import { Checkbox } from "src/components/ui/checkbox";
 
 export default function CustomPricing(){
   const packageTypeList = ['Starter', 'LineOA CRM']
@@ -12,6 +10,7 @@ export default function CustomPricing(){
   const loyaltyProgramList = ['No','Standard','Customize']
   const customFieldList = [0,10,25]
   const smsOTPList = [0,5000,18000,60000]
+  const apiMessagingList = ['No','Yes']
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [packageType, setPackageType] = useState(packageTypeList[0])
@@ -20,10 +19,11 @@ export default function CustomPricing(){
   const [loyaltyProgram, setLoyaltyProgram] = useState(loyaltyProgramList[0])
   const [customField, setCustomField] = useState(customFieldList[0])
   const [smsOTP, setSMSOTP] = useState(smsOTPList[0])
+  const [apiMessaging, setAPIMessaging] = useState(apiMessagingList[0])
 
   useEffect(() => {
     calculateTotalPrice();
-  }, [packageType, marketingContact, paidUsers, loyaltyProgram, customField, smsOTP]);
+  }, [packageType, marketingContact, paidUsers, loyaltyProgram, customField, smsOTP, apiMessaging]);
 
   const setPackageTypePrice = () => {
     const packageTypeIndex = packageTypeList.indexOf(packageType);
@@ -87,8 +87,51 @@ export default function CustomPricing(){
   }
 
   const setPaidUsersPrice = () => {
-    const paidUsersPrice = paidUsersList.indexOf(paidUsers) * 900;
+    const paidUsersIndex = paidUsersList.indexOf(paidUsers);
+    let paidUsersPrice;
+
+    switch (paidUsersIndex){
+      case 0: paidUsersPrice = 0
+        break;
+      case 1: paidUsersPrice = 900
+        break;
+      case 2: paidUsersPrice = 1800
+        break;
+      case 3: paidUsersPrice = 2700
+        break;
+      case 4: paidUsersPrice = 3600
+        break;
+      case 5: paidUsersPrice = 4500
+        break;
+      case 6: paidUsersPrice = 5400
+        break;
+      case 7: paidUsersPrice = 6300
+        break;
+      case 8: paidUsersPrice = 7200
+        break;
+      case 9: paidUsersPrice = 11050
+        break;
+      case 10: paidUsersPrice = 17250
+        break;
+      default: paidUsersPrice = 0
+        break
+    }
     return paidUsersPrice
+  }
+
+  const setAPIMessagingPrice = () => {
+    const apiMessagingIndex = apiMessagingList.indexOf(apiMessaging);
+    let apiMessagingPrice;
+
+    switch (apiMessagingIndex){
+      case 0: apiMessagingPrice = 0
+        break;
+      case 1: apiMessagingPrice = 1000
+        break;
+      default: apiMessagingPrice = 0
+        break;
+    }
+    return apiMessagingPrice
   }
 
   const setCustomFieldPrice = () => {
@@ -128,8 +171,13 @@ export default function CustomPricing(){
   }
 
   const calculateTotalPrice = () => {
-    const newTotalPrice = setPackageTypePrice() + setMarketingContactPrice() + setPaidUsersPrice() + setLoyaltyProgramPrice() + setCustomFieldPrice() + setSMSOTPPrice();
-    setTotalPrice(newTotalPrice);
+    const newTotalPrice = setPackageTypePrice() + setMarketingContactPrice() + setPaidUsersPrice() + setAPIMessagingPrice() + setLoyaltyProgramPrice() + setCustomFieldPrice() + setSMSOTPPrice()
+    const newTotalPriceExcludingAPI = setPackageTypePrice() + setMarketingContactPrice() + setPaidUsersPrice() + setLoyaltyProgramPrice() + setCustomFieldPrice() + setSMSOTPPrice();
+    if (packageType === 'LineOA CRM'){
+      setTotalPrice(newTotalPrice);
+    } else {
+      setTotalPrice(newTotalPriceExcludingAPI);
+    }
   };
 
   const handlePackageType = (index) => {
@@ -156,13 +204,28 @@ export default function CustomPricing(){
     setSMSOTP(index)
   }
 
+  const handleAPIMessaging = (index) => {
+    setAPIMessaging(index)
+  }
+
   const ProductSelection = ({title, price, desc, onClose}) => {
     return (
-      <div className="p-4 border rounded-lg w-fit flex flex-col gap-y-1 relative">
+      <div className="p-4 border rounded-lg w-full flex flex-col gap-y-1 relative pr-8">
         <h2 className="subheading font-medium">{title}</h2>
         <p className="subheading">{price}</p>
         <p className="main-desc">{desc}</p>
+
+        <X onClick={onClose} className="absolute top-4 right-4 h-4 w-4 cursor-pointer"/>
       </div>
+    )
+  }
+
+  const BundleLevel = ({id, label}) => {
+    return (
+      <label htmlFor={id}>
+      {label}
+      <Checkbox id={id}/>
+    </label>
     )
   }
 
@@ -188,44 +251,85 @@ export default function CustomPricing(){
     )
   }
 
+  const pricingConditions = [
+    {
+      title:'Marketing Hub',
+      condition:marketingContact && marketingContact !== 1000,
+      price:`฿${setMarketingContactPrice().toLocaleString()}/month`,
+      desc:`Includes ${marketingContact.toLocaleString()} marketing contacts`,
+      onClose:() => handleMarketingContacts(marketingContactsList[0])
+    },
+    {
+      title:'Paid users',
+      condition:paidUsers,
+      price:`฿${setPaidUsersPrice().toLocaleString()}/month`,
+      include:`Includes ${paidUsers} paid users`,
+      onClose:() => handlePaidUsers(paidUsersList[0])
+    },
+    {
+      title:'Loyalty Program',
+      condition:loyaltyProgram && loyaltyProgram !== 'No',
+      price:`฿${setLoyaltyProgramPrice().toLocaleString()}/month`,
+      desc:`${loyaltyProgram}`,
+      onClose:() => handleLoyaltyProgram(loyaltyProgramList[0])
+    },
+    {
+      title:'Custom Field',
+      condition:customField,
+      price:`฿${setCustomFieldPrice().toLocaleString()}/month`,
+      desc:`Includes ${customField} custom fields`,
+      onClose:() => handleCustomField(customFieldList[0]),
+    },
+    {
+      title:'SMS OTP',
+      condition:smsOTP,
+      price:`฿${setSMSOTPPrice().toLocaleString()}/month`, 
+      desc:`Includes ${smsOTP.toLocaleString()} OTPs${smsOTP === 5000 ? ', valid within 12 months' : smsOTP === 18000 || 60000 ? ', valid within 24 months' : ''}`,
+      onClose:() => handleSMSOTP(smsOTPList[0])
+    },
+    {
+      title:'LineOA API Messaging',
+      condition:apiMessaging && packageType === 'LineOA CRM' && apiMessaging !== 'No',
+      price:`฿${setAPIMessagingPrice().toLocaleString()}/month`,
+      desc:`Includes API Messaging`,
+      onClose:() => handleAPIMessaging(apiMessagingList[0])
+    }
+  ]
+
   return (
-    <>
-      <div className='flex gap-x-2 items-center'>
-        <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px]">฿ {totalPrice.toLocaleString()}</h1>
-        <div>
-          <p className="main-desc">per</p>
-          <p className="main-desc">month</p>
-        </div>
-      </div>
-      <div className="my-6 flex flex-wrap gap-4">
-        {marketingContact && marketingContact !== 1000 ? (
-          <ProductSelection title='Marketing Hub' price={`฿${setMarketingContactPrice().toLocaleString()}/month`} desc={`Includes ${marketingContact.toLocaleString()} marketing contacts`}/>
-        ) : null}
-
-        {paidUsers ? (
-          <ProductSelection title='Paid users' price={`฿${setPaidUsersPrice().toLocaleString()}/month`} desc={`Includes ${paidUsers} paid users`}/>
-        ) : null}
-
-        {loyaltyProgram && loyaltyProgram !== 'No' ? (
-          <ProductSelection title='Loyalty program' price={`฿${setLoyaltyProgramPrice().toLocaleString()}/month`} desc={`${loyaltyProgram}`}/>
-        ) : null}
-
-        {customField ? (
-          <ProductSelection title='Custom Field' price={`฿${setCustomFieldPrice().toLocaleString()}/month`} desc={`Includes ${customField} custom fields`}/>
-        ) : null}
-
-        {smsOTP ? (
-          <ProductSelection title='SMS OTP' price={`฿${setSMSOTPPrice().toLocaleString()}/month`} desc={`Includes ${smsOTP} OTPs${smsOTP === 5000 ? ', valid within 12 months' : smsOTP === 18000 || 60000 ? ', valid within 24 months' : ''}`}/>
-        ) : null}
-      </div>
-      <main className="flex flex-col gap-y-6">
+    <div className="border rounded-2xl p-10 mt-[60px] flex gap-x-10 w-full">
+      <main className="flex flex-col gap-y-6 w-full">
         <SelectInput label='Package type' lists={packageTypeList} onValueChange={handlePackageType} defaultValue={packageType} name='package-type'/>
         <SelectInput label='No. of marketing contacts' lists={marketingContactsList} onValueChange={handleMarketingContacts} defaultValue={marketingContact} name='marketing-contacts'/>
         <SelectInput label='No. of paid users' lists={paidUsersList} onValueChange={handlePaidUsers} defaultValue={paidUsers} name='paid-users'/>
         <SelectInput label='Loyalty Program' lists={loyaltyProgramList} onValueChange={handleLoyaltyProgram} defaultValue={loyaltyProgram} name='loyalty-program'/>
         <SelectInput label='Custom Field' lists={customFieldList} onValueChange={handleCustomField} defaultValue={customField} name='custom-field'/>
         <SelectInput label='No. of SMS OTP' lists={smsOTPList} onValueChange={handleSMSOTP} defaultValue={smsOTP} name='SMS-OTP'/>
+        {packageType === 'LineOA CRM' ? (
+          <SelectInput label='LineOA API Messaging' lists={apiMessagingList} onValueChange={handleAPIMessaging} defaultValue={apiMessaging} name='API-Messaging'/>
+        ) : null}
       </main>
-    </>
+      <section className="w-full">
+        <div>
+          <h1 className="text-center text-3xl font-semibold">Create a bundle</h1>
+          <div className='flex gap-x-2 items-center justify-center mt-4'>
+            <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px]">฿ {totalPrice.toLocaleString()}</h1>
+            <div>
+              <p className="main-desc">per</p>
+              <p className="main-desc">month</p>
+            </div>
+          </div>
+        </div>
+        <div className="my-6 flex flex-wrap gap-4">
+          {pricingConditions.map(condition => (
+            <>
+              {condition.condition ? (
+                <ProductSelection title={condition.title} price={condition.price} desc={condition.desc} onClose={condition.onClose}/>
+              ) : null}
+            </>
+          ))}
+        </div>
+      </section>
+    </div>
   )
 }
