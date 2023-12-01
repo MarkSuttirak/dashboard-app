@@ -142,7 +142,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
               {/* <button className='listminus-btn' variant='secondary' onClick={() => setIsSidebarOpen(false)}>
                 <PanelLeftClose viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5'/>
               </button> */}
-              <button className='absolute right-4' onClick={() => setIsSidebarOpen(false)}>
+              <button className={`chevron-btn ${!isSidebarOpen ? 'inactive' : ''}`} onClick={() => setIsSidebarOpen(false)}>
                 <ChevronsLeft className="chevron-sidebar" viewBox="0 0 24 24" width='16' height='16' />
               </button>
             </div>

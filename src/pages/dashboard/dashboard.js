@@ -13,6 +13,7 @@ import PostInfo from "src/components/postInfo";
 import DashboardBanner from "./dashboardBanner";
 import SetupBusiness from "./setUpBusiness";
 import { Icons } from "src/components/ui/icons";
+import AppIcon from "src/components/appIcon";
 
 export default function Dashboard(){
   const location = useLocation()
@@ -88,19 +89,6 @@ export default function Dashboard(){
     if(sid){
       window.open(`https://${sitetoview}/app/${page}?sid=${sid}`, '_blank');
     }
-  }
-
-  const AppIcon = ({icon, title, desc}) => {
-    return (
-      <div className="w-[141px]">
-        <div className="border rounded-xl w-[141px] h-[141px] flex items-center justify-center mb-3">
-          {icon}
-        </div>
-
-        <h2 className="subheading font-medium mb-[7px]">{title}</h2>
-        <p className="main-desc">{desc}</p>
-      </div>
-    )
   }
 
   const newOrManageMenus = [

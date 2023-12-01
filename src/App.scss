@@ -308,10 +308,17 @@ body {
 	border:none;
 }
 
-.chevron-sidebar {
+.chevron-btn {
+  position:absolute;
+  right:1rem;
   cursor:pointer;
   opacity:0;
   transition:opacity 400ms;
+  &.inactive {
+    right:-1rem;
+    transition-delay:1s;
+    opacity:0.5;
+  }
 }
 
 #sidebar {
@@ -332,7 +339,7 @@ body {
     transition:transform 300ms;
   }
   &:hover {
-    .chevron-sidebar {
+    .chevron-btn {
       opacity:0.5;
       transition:opacity 400ms;
     }
