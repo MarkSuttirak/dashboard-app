@@ -313,7 +313,7 @@ export const SiteDomainForm = ({
 
     return (
         <form className="m-auto w-full max-w-sm w-96 h-[600px]" onSubmit={formik.handleSubmit}>
-            <Steps total={5} step={3} />
+            <Steps total={6} step={3} />
             <div className={`anim-up`}>
                 <h2 className="main-heading mt-8">What would you like to call your site?</h2>
                 <p className="subheading mt-2">It was popularised in the 1960s with the release of Letraset.</p>
@@ -343,7 +343,7 @@ export const SiteDomainForm = ({
                 <Button
                     type='submit'
                     className='justify-center'
-                    disabled={!formik.isValid}
+                    // disabled={!formik.isValid}
                 >Submit</Button>
             </div>
         </form>
@@ -402,7 +402,7 @@ export const AppsSelectionForm = ({
 
     return (
         <form className="m-auto w-full max-w-sm w-96 h-[600px]" onSubmit={formik.handleSubmit}>
-            <Steps total={5} step={4} />
+            <Steps total={6} step={4} />
             <div className="anim-up">
                 <h2 className="main-heading mt-8">What would you like to add on your site?</h2>
                 <p className="subheading mt-2">It was popularised in the 1960s with the release of Letraset.</p>
@@ -497,7 +497,7 @@ export const ThemeSelectionForm = ({
 
     return (
         <form className="m-auto w-full max-w-sm w-96 h-[600px]" onSubmit={formik.handleSubmit}>
-            <Steps total={5} step={4} />
+            <Steps total={6} step={5} />
             <div className="anim-up">
                 <h2 className="main-title mt-8">Pick a theme you like</h2>
                 <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>

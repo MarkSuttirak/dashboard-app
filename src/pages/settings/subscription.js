@@ -76,12 +76,12 @@ export default function Subscription(){
       <section className="mt-10">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-[39px] font-semibold text-[#151515]">{memberStatus === 'pro' ? 'Pro plan' : 'Free trial'}</h1>
+            <h1 className="text-[39px] font-semibold text-[#151515]">{memberStatus.status === 'pro' ? 'Pro plan' : 'Free trial'}</h1>
             <p className="secondary-heading">{sites?.site_list[0].name}</p>
           </div>
 
           <div className="flex">
-            {memberStatus === 'pro' ? (
+            {memberStatus.status === 'pro' ? (
              <Button variant='secondary' className='btn-with-icon leading-5 rounded-r-none' onClick={() => window.location.href = `/dashboard/settings/plan-upgrade`}>
               <Zap viewBox='0 0 24 24' width='16' height='16'/>
               Manage Team
@@ -130,15 +130,15 @@ export default function Subscription(){
       <section>
         <div className="flex justify-between">
           <div>
-            <h1 className="text-3xl font-semibold">{memberStatus === 'pro' ? '฿ 750' : '฿ 0'}</h1>
+            <h1 className="text-3xl font-semibold">{memberStatus.status === 'pro' ? '฿ 750' : '฿ 0'}</h1>
             <div className="flex items-center gap-x-[6px]">
               <p className="text-base leading-7 text-[#71717A]">
-                {memberStatus === 'pro' ? 'Your plan will renew on 2 December 2023.' : 'Free forever'}
+                {memberStatus.status === 'pro' ? 'Your plan will renew on 2 December 2023.' : 'Free forever'}
               </p>
               <AlertCircle className="h-4 w-4"/>
             </div>
           </div>
-          <Button className='btn-with-icon' disabled={memberStatus === 'pro' ? false : true}>
+          <Button className='btn-with-icon' disabled={memberStatus.status === 'pro' ? false : true}>
             <Wallet viewBox="0 0 24 24" width='16' height='16'/>
             Pay now
           </Button>

@@ -33,7 +33,7 @@ export default function SidebarShortcut(){
             <CommandList className='max-h-none'>
               <CommandEmpty>No results found.</CommandEmpty>
               <CommandGroup>
-                <CommandItem>
+                <CommandItem onSelect={() => navigate('/dashboard/teams/teams')}>
                   <Users viewBox="0 0 24 24" width='16' height='16' className="mr-2"/>
                   Team
                 </CommandItem>
@@ -44,7 +44,7 @@ export default function SidebarShortcut(){
                     <ChevronRight viewBox="0 0 24 24" width='16' height='16' color='#09090B'/>
                   </CommandShortcut>
                 </CommandItem>
-                <CommandItem>
+                <CommandItem onSelect={() => navigate('/dashboard/teams/team-members')}>
                   <UserPlus viewBox="0 0 24 24" width='16' height='16' className="mr-2"/>
                   Invite Teammates
                   <CommandShortcut>⌘+T</CommandShortcut>

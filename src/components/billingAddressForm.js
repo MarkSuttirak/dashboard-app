@@ -4,8 +4,6 @@ import { useFormik } from 'formik';
 import { Input } from "./ui/input";
 import { Separator } from "src/components/ui/separator";
 import { Button } from "src/components/ui/button";
-import { Wallet } from "lucide-react";
-import { Link } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectGroup, SelectValue } from "src/components/ui/select"
 import { useState } from 'react'
 import { provinces } from "src/components/form-controls/provinces";
@@ -13,7 +11,6 @@ import { provinces } from "src/components/form-controls/provinces";
 export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
   const [isCompany, setIsCompany] = useState(false);
   const [enableTaxID, setEnableTaxID] = useState(false)
-  const countries = ["Thailand"]
 
   const appearanceFormSchema = yup.object().shape({
     billing_name: yup.string().required('Company Name is a required field'),

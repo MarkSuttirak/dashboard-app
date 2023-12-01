@@ -12,6 +12,10 @@ $right-sidebar-width: 266px;
 $mobile-header-size: 60px;
 $mobile-footer-size: 60px;
 
+html {
+  scroll-behavior: smooth;
+}
+
 @mixin check-sidebar($active: true){
   @if $active {
     $right-sidebar-width: 266px;
@@ -95,7 +99,11 @@ $mobile-footer-size: 60px;
 
 body {
   overflow-y:scroll;
-  font-family:'Inter', sans-serif
+  font-family:'Inter', sans-serif;
+}
+
+.bg-gradient {
+  background: linear-gradient(229deg, rgba(246, 235, 255, 0.50) -23.12%, rgba(226, 198, 255, 0.16) 11.08%, rgba(255, 98, 202, 0.00) 32.6%, rgba(255, 255, 255, 0.05) 81.71%);
 }
 
 .cal-sans {
@@ -502,17 +510,63 @@ $gradient-border:linear-gradient(to right, #9A5BFF, #FF9C27);
 
   .step-register-inner {
     height:4px;
-    background-color:#0F172A;
     border-radius:999px;
+    background-color:#0F172A;
+    width:0%;
+    transition:width 200ms;
     &.complete {
-        width:100%;
+      width:100%;
+      transition:width 200ms
     }
-    &.current {
-        width:50%;
-    }
-    &.coming {
-        width:0%;
-    }
+  }
+}
+
+.register-sec, .login-with-sec {
+  animation:slideDownAnim 800ms;
+  &.up-in {
+    animation:slideUpAnimIn 400ms forwards;
+  }
+  &.up-out {
+    animation:slideUpAnimOut 400ms forwards;
+  }
+}
+
+@keyframes slideDownAnim {
+  from {
+    transform:translateY(-20px);
+    opacity:0;
+    visibility:hidden;
+  }
+  to {
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+  }
+}
+
+@keyframes slideUpAnimOut {
+  from {
+    transform:translateY(0);
+    opacity:1;
+    visibility:visible;
+  }
+  to {
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-20px);
+  }
+}
+
+@keyframes slideUpAnimIn {
+  from {
+    transform:translateY(20px);
+    opacity:0;
+    visibility:hidden;
+  }
+  to {
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
   }
 }
 
@@ -575,7 +629,6 @@ $gradient-border:linear-gradient(to right, #9A5BFF, #FF9C27);
   top: 0;
   left: 0;
   animation: moving-line 2s linear infinite;
-  // background: linear-gradient(to right, #006AFF 0%, #0094FF 30%, #dad3d336 55%, #C293FF 60%); /* Replace red with your line color */
   background: linear-gradient(to right, #006AFF 0%, #0094FF 30%, #dad3d336 55%, #C293FF 80%, #006AFF 100%);
   background-size: 200% 100%;
   background-position: 100% 0;
@@ -709,5 +762,14 @@ $gradient-border:linear-gradient(to right, #9A5BFF, #FF9C27);
     100% {
       opacity: 1;
     }
+  }
+}
+
+@media (max-width:767px){
+  .register-screen {
+    width:calc(100% - 60px)
+  }
+  ::-webkit-scrollbar {
+    display:none
   }
 }

@@ -1,4 +1,4 @@
-import { Navigate, useNavigate, useRoutes } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate, useRoutes } from 'react-router-dom';
 // layouts
 import DashboardLayout from './layouts/DashboardLayout';
 // import LogoOnlyLayout from './layouts/LogoOnlyLayout';
@@ -22,10 +22,26 @@ import CheckoutReceived from './pages/checkout/checkoutReceived';
 import Integration from './pages/integration/integration';
 import QuotaDetail from './pages/integration/quotaDetail';
 import ComparePlan from './pages/compare-plan/comparePlan';
+import AppCategory from './pages/integration/appCategory';
+import { useEffect } from 'react'
+import Pricing from './pages/pricing';
 
 // ----------------------------------------------------------------------
 
 export default function Router() {
+    const location = useLocation()
+
+    const pathParts = location.pathname.split('/');
+    const appCategory = pathParts[1] === 'integration' && pathParts[2] === 'app-category' && pathParts[3] !== '';
+
+    useEffect(() => {
+        if (location.pathname === '/dashboard/app' || location.pathname === '/integration/appstore' || appCategory){
+            document.body.classList.add('bg-gradient')
+        } else {
+            document.body.classList.remove('bg-gradient')
+        }
+    })
+
     const routes = [
         {
             path: '/dashboard',
@@ -65,7 +81,8 @@ export default function Router() {
                 { path: ':id', element: <Integration />},
                 { path: 'appstore', element: <AppStore />},
                 { path: 'appstore/:id', element: <SingleApp />},
-                { path: 'quota-detail/:app', element: <QuotaDetail />}
+                { path: 'quota-detail/:app', element: <QuotaDetail />},
+                { path: 'app-category/:cate', element: <AppCategory />}
             ],
         },
         {
@@ -87,6 +104,7 @@ export default function Router() {
             ],
         },
         { path: '*', element: <NotFoundPage replace /> },
+        { path: '/pricing', element: <Pricing />}
     ]
     return useRoutes(routes);
 }

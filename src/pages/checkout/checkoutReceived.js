@@ -4,8 +4,19 @@ import { Button } from "src/components/ui/button";
 import { BadgeCheck } from "lucide-react";
 import Lottie from "lottie-react";
 import receivedInfo from 'src/components/received-info-check.json'
+import { useContext, useEffect } from "react";
+import { MemberContext } from "src/components/provider/memberProvider";
+import { useNavigate } from "react-router-dom";
 
 export default function CheckoutReceived(){
+  const memberStatus = useContext(MemberContext)
+  const navigate = useNavigate()
+
+  const confirm = () => {
+    navigate('/');
+    memberStatus.change('pending')
+  }
+
   return (
     <div className="page-section max-w-[580px] mx-auto">
       <Card className='justify-center p-0'>
@@ -45,7 +56,7 @@ export default function CheckoutReceived(){
         </CardContent>
 
         <CardFooter className='pb-10 px-10'>
-          <Button className='btn-with-icon w-full' onClick={() => window.location.href="/"}>
+          <Button className='btn-with-icon w-full' onClick={confirm}>
             <BadgeCheck viewBox="0 0 24 24" width='16' height='16'/>
             Back to Workspace
           </Button>

@@ -11,6 +11,7 @@ import { ButtonImage01, ButtonImage02, ButtonImage03, ButtonImage04, ButtonImage
 import phoneBanner from '../img/phone-banner.png'
 import sellingOnline from '../img/selling-online.png'
 import connectMessage from '../img/connect-message.png'
+import createYourBlog from 'src/img/create-your-blog.png'
 import { useUser } from "../hooks/useUser";
 import { useMutation, useQuery } from "react-query";
 import { site } from "../client/api";
@@ -19,7 +20,7 @@ import { MemberContext } from "src/components/provider/memberProvider";
 export default function Dashboard(){
   const location = useLocation()
   const [numOfAdmin, setNumOfAdmin] = useState(3)
-  const [numOfCustomers, setNumOfCustomers] = useState(1454)
+  const [numOfCustomers, setNumOfCustomers] = useState(38)
   const [date, setDate] = useState('April 2023')
   const [isMenuCardHover, setIsMenuCardHover] = useState(false)
   const [menuCardIndex, setMenuCardIndex] = useState(0)
@@ -50,11 +51,7 @@ export default function Dashboard(){
     enabled: !!user,
   });
 
-
-
-  
-
-  const { data: loadAdmin, refetch } = useQuery('loadAdmin', () => site.loginAsAdmin(sites.site_list[0].name, 'Admin'), {
+  const { data: loadAdmin, refetch } = useQuery('loadAdmin', () => site.loginAsAdmin(sites?.site_list[0].name, 'Admin'), {
     enabled: false,
     onSuccess: (res) => {
       //console.log(res);
@@ -66,9 +63,6 @@ export default function Dashboard(){
       refetch();
     }
   }, [user, sites, refetch]);
-
-
-
 
   // useEffect(() => {
   //   if (sites?.site_list[0].name) {
@@ -146,16 +140,16 @@ export default function Dashboard(){
 
   const PostInfo = ({title, desc, buttonText, onClick, image}) => {
     return (
-      <div className="p-6 bg-zinc-100 rounded-xl h-[423px] flex flex-col justify-between">
-        <div>
+      <div className="bg-zinc-100 rounded-xl h-[423px] flex flex-col justify-between">
+        <div className="p-6">
           <h3 className="secondary-heading">{title}</h3>
           <p className="text-[13px] text-zinc-500 font-medium leading-4 mt-4 mb-6">{desc}</p>
-          <Button variant="blue" className='rounded-xl flex items-center gap-x-2 text-xs font-medium leading-5' onClick={onClick}>
+          <Button variant="outline" className='rounded-md flex items-center gap-x-2 text-xs font-medium leading-5 bg-white' onClick={onClick}>
             <PlusCircledIcon />
             {buttonText}
           </Button>
         </div>
-        <img src={image} className="w-fit mx-auto"/>
+        <img src={image} className="w-full"/>
       </div>
     )
   }
@@ -183,17 +177,19 @@ export default function Dashboard(){
               </Avatar>
               <h2 className="text-sm font-medium text-zinc-950">{user?.first_name}{' '}{user?.last_name}</h2>
             </div>
-            {memberStatus === 'pro' ? (
+            {memberStatus.status === 'pro' ? (
               <Badge>Pro plan</Badge>
             ) : (
               <Badge variant="outline">Free trial</Badge>
             )}
           </div>
         </div>
-        <Button variant='outline' className='btn-with-icon leading-5'>
-          <PlusCircledIcon />
-          Invite team
-        </Button>
+        <Link to='/dashboard/teams/team-members'>
+          <Button variant='outline' className='btn-with-icon leading-5 bg-white'>
+            <PlusCircledIcon />
+            Invite team
+          </Button>
+        </Link>
       </section>
 
       <section className="mt-6">
@@ -221,7 +217,7 @@ export default function Dashboard(){
 
           <Card className='w-full lg:w-[40%] flex flex-col justify-between shadow-none'>
             <CardHeader className='pb-2 flex flex-col xl:flex-row xl:items-start justify-between'>
-              {memberStatus === 'pro' ? (
+              {memberStatus.status === 'pro' ? (
                 <>
                   <div>
                     <CardTitle className='domain-heading'>Pro plan</CardTitle>
@@ -234,7 +230,7 @@ export default function Dashboard(){
                     </Button>
                   </Link>
                 </>
-              ) : memberStatus === 'pending' ? (
+              ) : memberStatus.status === 'pending' ? (
                 <>
                   <div>
                     <CardTitle className='domain-heading'>Free</CardTitle>
@@ -264,7 +260,7 @@ export default function Dashboard(){
             </CardHeader>
             <CardContent className='text-desc flex items-center gap-x-1'>
               <MagicWandIcon />
-              <span className="text-sm">{memberStatus === 'pro' ? 'Start to select Apps' : 'Starting at 750/m'}</span>
+              <span className="text-sm">{memberStatus.status === 'pro' ? 'Start to select Apps' : 'Starting at 750/m'}</span>
             </CardContent>
           </Card>
         </div>
@@ -311,7 +307,7 @@ export default function Dashboard(){
         <p className="secondary-desc">Manage posts, track post performance and learn about new ways to improve your blog.</p>
 
         <div className="mt-6 grid lg:grid-cols-3 gap-[15px]">
-          <PostInfo title="Create your blog" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={phoneBanner} />
+          <PostInfo title="Create your blog" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={createYourBlog} />
           <PostInfo title="Selling Online" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={sellingOnline} />
           <PostInfo title="Connect Shopee" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={connectMessage} />
         </div>

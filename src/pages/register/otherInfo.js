@@ -154,7 +154,7 @@ export const UserInfoForm = ({
             className="m-auto w-full max-w-sm w-96 h-[600px]"
             onSubmit={formik.handleSubmit}
         >
-            <Steps total={5} step={current} />
+            <Steps total={6} step={current} />
             <div className="anim-up">
                 <h2 className="main-heading mt-10">Fill in your information</h2>
                 <p className="subheading">It was popularised in the 1960s with the release of Letraset.</p>
@@ -266,7 +266,7 @@ export const UserInfoForm = ({
                         <Button
                             type='submit'
                             className='justify-center w-full'
-                            disabled={!formik.isValid}
+                            // disabled={!formik.isValid}
                         >Submit</Button>
                     </div>
                 </div>
@@ -323,18 +323,6 @@ export const BusinessInfoForm = ({
             value: 'organisation',
             label: 'Organisation',
         },
-        {
-            value: 'playgame',
-            label: 'To play a game',
-        },
-        {
-            value: 'learn',
-            label: 'To learn how to code',
-        },
-        {
-            value: 'drink',
-            label: 'To drink coffee',
-        }
     ];
 
     const formik = useFormik({
@@ -349,7 +337,7 @@ export const BusinessInfoForm = ({
 
     return (
         <form className="m-auto w-full max-w-sm w-96 h-[600px]" onSubmit={formik.handleSubmit}>
-            <Steps total={5} step={current} />
+            <Steps total={6} step={current} />
             <div className="anim-up">
                 <h2 className="main-heading mt-8">What is your business about?</h2>
             </div>
@@ -395,7 +383,7 @@ export const BusinessInfoForm = ({
                     ))} */}
                     {checkboxLists.map(checkboxList => (
                         <div className='flex items-center gap-x-2'>
-                          <Checkbox checked={formik.values.goal.includes(checkboxList.key)} value={checkboxList.key} name={checkboxList.key} onCheckedChange={(e) => {
+                          <Checkbox id={checkboxList.key} checked={formik.values.goal.includes(checkboxList.key)} value={checkboxList.key} name={checkboxList.key} onCheckedChange={(e) => {
                             if (!formik.values.goal.includes(checkboxList.key)) {
                                 formik.setFieldValue('goal', [...formik.values.goal, checkboxList.key])
                             } else {
@@ -414,7 +402,7 @@ export const BusinessInfoForm = ({
                 <Button variant='ghost' className={`w-1/4 justify-center`} onClick={prev}>Back</Button>
                 <Button
                     className='w-1/4 justify-center'
-                    disabled={!formik.isValid}
+                    // disabled={!formik.isValid}
                 >Next</Button>
             </div>
         </form>
@@ -449,7 +437,7 @@ export const TeamInfoForm = ({
             className="m-auto w-full max-w-sm w-96 h-[600px]"
             onSubmit={formik.handleSubmit}
         >
-            <Steps total={5} step={current} />
+            <Steps total={6} step={current} />
             <div className="anim-up">
                 <h2 className="main-heading mt-8">How many people are there in your team?</h2>
             </div>
@@ -478,7 +466,7 @@ export const TeamInfoForm = ({
                 </RadioGroup>
                 <Button
                     className='w-1/4 justify-center'
-                    disabled={!formik.isValid}
+                    // disabled={!formik.isValid}
                 >Next</Button>
             </div>
         </form>
