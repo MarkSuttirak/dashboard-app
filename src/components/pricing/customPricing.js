@@ -4,7 +4,7 @@ import { X } from "lucide-react";
 import { Checkbox } from "src/components/ui/checkbox";
 
 export default function CustomPricing(){
-  const packageTypeList = ['Starter', 'LineOA CRM']
+  const packageTypeList = ['Starter', 'LineOA CRM', 'Enterprise']
   const marketingContactsList = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000];
   const paidUsersList = [0, 3, 4, 5, 6, 7, 8, 9, 10, 15, 25];
   const loyaltyProgramList = ['No','Standard','Customize']
@@ -33,7 +33,9 @@ export default function CustomPricing(){
         break
       case 1: packageTypePrice = 6900;
         break
-      default: packageTypePrice = 750;
+      case 2: packageTypePrice = 21900;
+        break
+      default: packageTypePrice = 0;
         break
     }
     return packageTypePrice
@@ -181,7 +183,11 @@ export default function CustomPricing(){
   };
 
   const handlePackageType = (index) => {
-    setPackageType(index);
+    if (packageType === index){
+      setPackageType(null)
+    } else {
+      setPackageType(index);
+    }
   };
 
   const handleMarketingContacts = (index) => {
@@ -220,12 +226,15 @@ export default function CustomPricing(){
     )
   }
 
-  const BundleLevel = ({id, label}) => {
+  const BundleLevel = ({id, title, price, checked, onCheckedChange}) => {
     return (
-      <label htmlFor={id}>
-      {label}
-      <Checkbox id={id}/>
-    </label>
+      <label htmlFor={id} name={id} className="border rounded-lg p-4 flex w-fit">
+        <div className="pr-4">
+          <h2 className="subheading font-medium">{title}</h2>
+          <p className="main-desc mt-1">{price}</p>
+        </div>
+        <Checkbox id={id} className='mt-1' checked={checked} onCheckedChange={onCheckedChange}/>
+      </label>
     )
   }
 
@@ -299,7 +308,12 @@ export default function CustomPricing(){
   return (
     <div className="border rounded-2xl p-10 mt-[60px] flex gap-x-10 w-full">
       <main className="flex flex-col gap-y-6 w-full">
-        <SelectInput label='Package type' lists={packageTypeList} onValueChange={handlePackageType} defaultValue={packageType} name='package-type'/>
+        <div className="flex gap-4">
+          <BundleLevel id='starter' title='Starter' price='฿750/month' onCheckedChange={() => handlePackageType('Starter')} checked={packageType === 'Starter'}/>
+          <BundleLevel id='lineoa' title='LineOA CRM' price='฿6,900/month' onCheckedChange={() => handlePackageType('LineOA CRM')} checked={packageType === 'LineOA CRM'}/>
+          <BundleLevel id='enterprise' title='Enterprise' price='฿21,900/month' onCheckedChange={() => handlePackageType('Enterprise')} checked={packageType === 'Enterprise'}/>
+        </div>
+        {/* <SelectInput label='Package type' lists={packageTypeList} onValueChange={handlePackageType} defaultValue={packageType} name='package-type'/> */}
         <SelectInput label='No. of marketing contacts' lists={marketingContactsList} onValueChange={handleMarketingContacts} defaultValue={marketingContact} name='marketing-contacts'/>
         <SelectInput label='No. of paid users' lists={paidUsersList} onValueChange={handlePaidUsers} defaultValue={paidUsers} name='paid-users'/>
         <SelectInput label='Loyalty Program' lists={loyaltyProgramList} onValueChange={handleLoyaltyProgram} defaultValue={loyaltyProgram} name='loyalty-program'/>
