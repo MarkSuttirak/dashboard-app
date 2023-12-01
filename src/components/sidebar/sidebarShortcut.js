@@ -3,9 +3,10 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 import { useState } from "react"
 import { cn } from "../../lib/utils"
 import { Button } from "../ui/button"
-import { ChevronRight, PlusCircle, Shuffle, UserPlus, Users, Check, ChevronsUpDown } from "lucide-react"
+import { ChevronRight, PlusCircle, Shuffle, UserPlus, Users, Check, ChevronsUpDown, ChevronsLeft } from "lucide-react"
 import ZaviagoIcon from "../icon-menus/ZaviagoIcon";
 import { useNavigate } from "react-router-dom"
+import { Icons } from "../ui/icons"
 
 export default function SidebarShortcut(){
   const navigate = useNavigate()
@@ -15,19 +16,22 @@ export default function SidebarShortcut(){
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
-            variant="secondary"
+            variant="ghost"
             role="combobox"
             aria-expanded={open}
-            className="w-full justify-between h-10"
+            className="w-full justify-between h-fit hover:bg-white p-0 pr-6"
           >
-            <span className="flex gap-x-2 items-center leading-[1px]">
-              <ZaviagoIcon />
-              Zaviago
+            <span className="flex gap-x-2 items-center">
+              <Icons.zaviagoApp />
+              <div className="flex flex-col text-left">
+                <h2 className="cal-sans text-[18px] leading-[20px]">Cosmos.</h2>
+                <p className="text-[13px] font-medium tracking-[-3%] leading-[20px]">intergoods.zaviago.com</p>
+              </div>
             </span>
             <ChevronsUpDown className="ml-2 shrink-0 opacity-50" viewBox="0 0 24 24" width='12' height='12' />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-full p-0 z-[105] relative left-[24px]">
+        <PopoverContent className="w-full p-0 z-[105] relative">
           <Command>
             <CommandInput placeholder="Search app..." />
             <CommandList className='max-h-none'>

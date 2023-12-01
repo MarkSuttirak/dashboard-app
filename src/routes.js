@@ -10,7 +10,7 @@ import Callback from './callback';
 import Partial, { PhoneVerification } from './pages/register/partial';
 import OtherInfo from './pages/register/otherInfo';
 import InstanceConfig from './pages/register/instanceConfig';
-import Dashboard from './pages/dashboard';
+import Dashboard from './pages/dashboard/dashboard';
 import Settings from './pages/settings/settings';
 import Teams from './pages/teams/teams';
 import NotFoundPage from './pages/404';

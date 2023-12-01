@@ -99,11 +99,15 @@ html {
 
 body {
   overflow-y:scroll;
-  font-family:'Inter', sans-serif;
+  font-family:'Inter', 'Eventpop', sans-serif;
 }
 
 .bg-gradient {
   background: linear-gradient(229deg, rgba(246, 235, 255, 0.50) -23.12%, rgba(226, 198, 255, 0.16) 11.08%, rgba(255, 98, 202, 0.00) 32.6%, rgba(255, 255, 255, 0.05) 81.71%);
+}
+
+.eventpop {
+  font-family:'Eventpop', sans-serif
 }
 
 .cal-sans {
@@ -124,6 +128,34 @@ body {
   padding:8px;
   justify-content:center;
   gap:8px;
+}
+
+.guide-btn {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  width:100%;
+  outline:1px solid #E4E4E7;
+  border-radius:12px;
+  box-sizing:border-box;
+  padding:8px 22px;
+  &:hover {
+    outline:2px solid #B7D0FF;
+    .inner-guide-btn {
+      background-color:#F4F4F5;
+      border:1px solid #F4F4F5
+    }
+  }
+}
+
+.inner-guide-btn {
+  display:flex;
+  align-items:center;
+  padding:8px 16px;
+  gap:8px;
+  border:1px solid #E4E4E7;
+  border-radius:9999px;
+  background-color:white;
 }
 
 ::-webkit-scrollbar {
@@ -276,6 +308,12 @@ body {
 	border:none;
 }
 
+.chevron-sidebar {
+  cursor:pointer;
+  opacity:0;
+  transition:opacity 400ms;
+}
+
 #sidebar {
   width:$right-sidebar-width;
   border-right:1px solid #E4E4E7;
@@ -292,6 +330,12 @@ body {
   &.inactive {
     transform:translateX(-100%);
     transition:transform 300ms;
+  }
+  &:hover {
+    .chevron-sidebar {
+      opacity:0.5;
+      transition:opacity 400ms;
+    }
   }
 }
 
@@ -367,7 +411,7 @@ body {
   gap:17px;
   top:0;
   width:$left-sidebar-width;
-  background:white;
+  background:#F7F7F7;
   padding:12px;
   border-right:1px solid #E4E4E7;
   img {
@@ -445,7 +489,6 @@ body {
 /* End of sidebar style */
 
 .topbar {
-  border-bottom:1px solid #E4E4E7;
   box-sizing:border-box;
   width:100%;
   position:fixed;

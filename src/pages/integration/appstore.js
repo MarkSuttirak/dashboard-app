@@ -105,7 +105,7 @@ export default function AppStore(){
       </div>
 
       <section style={{background:`url(${appstoreBg})`,backgroundRepeat:"no-repeat",backgroundSize:"cover"}} className="mt-6 p-6 rounded-xl flex justify-between">
-        <section className="flex flex-col justify-between">
+        <section className="flex flex-col justify-between w-1/3">
           <div className='mt-4'>
             <h1 className="main-heading">Create project deploy your <br/>new project in one-click</h1>
             <p className="main-desc font-medium mt-4">Say hello to the world and let readers know <br/>what your blog is all about</p>
@@ -115,17 +115,8 @@ export default function AppStore(){
             See more
           </Button>
         </section>
-        <aside className="flex gap-x-6">
-          <div className="bg-white rounded-lg">
-            <img src={frappePreview} className="inline-block pt-[34px] pl-[34px]"/>
-
-            <article className="p-6">
-              <Icons.erpApp />
-              <h2 className="text-sm font-semibold tracking-[-0.35px] my-[11px]">Create project</h2>
-              <p className="text-[#71717A] text-sm">Deploy your new project in one-click.</p>
-            </article>
-          </div>
-          <div className="bg-white rounded-lg">
+        <aside className="flex gap-x-6 w-2/3">
+          <div className="bg-white rounded-lg w-full">
             <img src={frappePreview} className="inline-block pt-[34px] pl-[34px]"/>
 
             <article className="p-6">

@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { appList } from "./apps/appList";
 import { totalAppsQuota } from "src/pages/integration/appQuota";
+import ZaviagoIcon from "./icon-menus/ZaviagoIcon";
 
 export default function Breadcrumbs(){
   const location = useLocation()
@@ -75,7 +76,10 @@ export default function Breadcrumbs(){
   return (
     <div className="flex items-center gap-x-2">
       <Link to='/'>
-        <h2 className='subheading font-medium'>Home</h2>
+        <h2 className='subheading font-medium flex gap-x-[6px]'>
+          <ZaviagoIcon />
+          WorkSpace
+        </h2>
       </Link>
       {breadcrumbList.map(p => (
         <>
