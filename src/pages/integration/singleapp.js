@@ -88,12 +88,11 @@ export default function SingleApp(){
                 
                 }
 
-
               <section className="flex gap-x-6 mt-[55px]">
-                <ImageDialog currentImage={currentImage} length={app.screenshots.length} image={site.backend_url()+app.screenshots[0].image} setCurrentImage={setCurrentImage} mainImage={true} onOpen={() => setCurrentImage(index)}/>
+                <ImageDialog currentImage={currentImage} length={app.screenshots.length} image={site.backend_url()+app.screenshots[0]?.image} setCurrentImage={setCurrentImage} mainImage={true} onOpen={() => setCurrentImage(index)}/>
                 <div className="flex flex-col gap-y-6">
                     {app.screenshots.map((image, index) => (
-                      <ImageDialog currentImage={currentImage} length={app.screenshots.length} image={site.backend_url()+image.image} setCurrentImage={setCurrentImage} mainImage={false} onOpen={() => setCurrentImage(index)}/>
+                      <ImageDialog currentImage={currentImage} length={app.screenshots.length} image={site.backend_url()+image?.image} setCurrentImage={setCurrentImage} mainImage={false} onOpen={() => setCurrentImage(index)}/>
                     )).slice(1, 4)}
                 </div>
               </section>
