@@ -66,11 +66,11 @@ export default function SingleApp(){
                 <section className="flex justify-between">
                   <div className="flex items-start gap-x-5">
                     <div className="app-detail-icon">
-                      {item.image ? <img src={site.backend_url()+item.image}/> : <Icons.erpApp />}
+                      {item.image ? <img src={site.backend_url()+item.image} width={50}/> : <Icons.erpApp />}
                     </div>
                     <div>
-                      <h1 className="main-heading">{item.app_title}</h1>
-                      <p className="text-sm font-medium text-[#09090B]">By {item.team}</p>
+                      <h1 className="main-heading">{item.title}</h1>
+                      <p className="text-sm font-medium text-[#09090B]">By Zaviago</p>
                       <p className="text-sm mt-1">{item.status}</p>
                     </div>
                   </div>
@@ -81,9 +81,15 @@ export default function SingleApp(){
                     <OpenInNewWindowIcon />Upgrade
                   </Button>
                 ) : (
-                  <Button className='btn-with-icon'>
-                    <LightningBoltIcon />Install
-                  </Button>
+                  <Link to="/payment">
+                      <Button className='btn-with-icon'>
+                          <LightningBoltIcon />Install
+                      </Button>
+                  </Link>
+
+
+
+
                 )
                 
                 }
