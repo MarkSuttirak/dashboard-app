@@ -13,7 +13,6 @@ import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { useMutation, useQuery } from "react-query";
 
-
 export default function AppStore(){
   const [isMenuCardHover, setIsMenuCardHover] = useState(false)
   const [menuCardIndex, setMenuCardIndex] = useState(0)
@@ -34,22 +33,19 @@ export default function AppStore(){
   const { data: sites } = useQuery('sites', site.list, {
     enabled: !!user,
   });
+  
 
-  
-  const { data: benchApps, refetch } = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), {
-    enabled: false,
-    onSuccess: (res) => {
-      //console.log(res);
-    },
-  });
-  
-  const appslists = benchApps || [];
+  const benchApps = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), {enabled: false});
+  const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.site_list[0].name), {enabled: false});  
+
+  const appslists = benchApps.data || [];
 
   useEffect(() => {
-    if (user && sites?.site_list[0]?.name && !benchApps) {
-      refetch();
+    if (user && sites?.site_list[0]?.name && !benchApps.data) {
+      benchApps.refetch();
+      installedApps.refetch();
     }
-  }, [user, sites, refetch]);
+  }, [user, sites,benchApps,installedApps]);
   
 
 
@@ -149,21 +145,39 @@ export default function AppStore(){
       </div>
       <div className="flex gap-x-6 mt-6">
         <section className="grid grid-cols-2 gap-6 w-[70%]">
-          {appslists?.map((app, index) => (
-            <Card key={index} className='shadow-none flex flex-col justify-between'>
-              
-              <CardHeader className='flex flex-row gap-x-6'>
-                <div className="w-[90px]">
-                  {console.log(app)}
-                </div>
-                <div className="m-[0!important]">
-                  <CardTitle>{app.app}</CardTitle>
-                  <CardDescription className='mt-[6px]'>{app.repository_url}</CardDescription>
-                </div>
-              </CardHeader>
-             
-            </Card>
-          ))}
+          
+        {appslists?.map((app, index) => {
+        const isInstalled = installedApps.data?.some(installedApp => installedApp.title === app.title);
+        return (
+          <Card key={index} className='shadow-none flex flex-col justify-between'>
+            <CardHeader className='flex flex-row gap-x-6'>
+              <div className="w-[90px]">
+                {app.image ? <img src={site.backend_url()+app.image}/> : <Icons.erpApp />}
+              </div>
+              <div className="m-[0!important]">
+                <CardTitle>{app.title}</CardTitle>
+                <CardDescription className='mt-[6px]'>{app.description}</CardDescription>
+              </div>
+            </CardHeader>
+            <CardFooter className='flex items-center justify-between'>
+              <div className="text-sm">
+                {isInstalled && <span>Installed</span>} {/* Render "Installed" if the app is found in installedApps.data */}
+              </div>
+              <Link to={`/integration/appstore/${app.name}`}>
+                {/* Conditionally render Button based on `isInstalled` */}
+                {isInstalled ? (
+                  <Button variant='outline' disabled>Installed</Button>
+                ): (
+                  <Button variant='outline'>See more</Button>
+                )}
+              </Link>
+            </CardFooter>
+          </Card>
+        )
+      })}
+
+
+
         </section>
         <section className="border rounded-xl bg-[#F7F7F8] w-[30%]">
           <div className="p-6">

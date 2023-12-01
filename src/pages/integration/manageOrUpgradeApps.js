@@ -7,60 +7,12 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import { Popover, PopoverContent, PopoverTrigger } from "src/components/ui/popover"
 import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "src/components/ui/command"
 import { DataList } from "src/components/pagination"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import DeleteAppModal from "src/components/deleteAppModal"
+import { useQuery } from "react-query";
+import { site } from "../../client/api";
+import { useUser } from "../../hooks/useUser";
 
-const installedApps = [
-  {
-    id:'reducoed',
-    icon:<Icons.reducoedApp />,
-    title:'Reducoed',
-    version:'Version 2.2',
-    link:''
-  },
-  {
-    id:'line-crm',
-    icon:<Icons.lineCRMApp />,
-    title:'Line CRM',
-    version:'Version 2.2',
-    link:''
-  },
-  {
-    id:'inbio',
-    icon:<Icons.inbioApp />,
-    title:'InBio',
-    version:'Version 2.2',
-    link:''
-  },
-  {
-    id:'pos-store',
-    icon:<Icons.posApp />,
-    title:'POS Store',
-    version:'Version 2.2',
-    link:''
-  },
-  {
-    id:'zaviago-erp',
-    icon:<Icons.erpApp />,
-    title:'Zaviago ERP',
-    version:'Version 2.2',
-    link:''
-  },
-  {
-    id:'rewardful',
-    icon:<Icons.rewardfulApp />,
-    title:'Rewardful',
-    version:'Version 2.2',
-    link:''
-  },
-  {
-    id:'untitle',
-    icon:<Icons.untitleApp />,
-    title:'Untitle',
-    version:'Version 2.2',
-    link:''
-  },
-]
 
 const appsToUpgrade = [
   {
@@ -84,10 +36,29 @@ export default function ManageOrUpgradeApps(){
   const appsPerPage = 6
   const [search, setSearch] = useState('');
   const { id } = useParams()
-
   const [deleteStatus, setDeleteStatus] = useState('');
+  const { user, auth, logout } = useUser();
 
-  const appData = (id === 'manage-apps' ? installedApps : appsToUpgrade).filter(app => app.title.toUpperCase().includes(search.toUpperCase()))
+
+
+  const { data: sites } = useQuery('sites', site.list, {
+    enabled: !!user,
+  });
+
+
+  const benchApps = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), {enabled: false});
+  const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.site_list[0].name), {enabled: false});  
+  useEffect(() => {
+    if (user && sites?.site_list[0]?.name && !installedApps.data) {
+      benchApps.refetch();
+      installedApps.refetch();
+    }
+  }, [user, sites,benchApps,installedApps]);
+
+
+  const appList = benchApps.data || [];
+  const appData = (id === 'manage-apps' ? appList : appsToUpgrade);
+
 
   return (
     <section className="w-[672px]">
@@ -105,58 +76,32 @@ export default function ManageOrUpgradeApps(){
         <h3 className="subheading font-medium">Apps</h3>
 
         <div className="mt-[10px] flex flex-col gap-y-6">
-          <DataList pagination={appData.length > appsPerPage ? true : false} listPerPage={appsPerPage}>
-            {appData.map(app => (
-              <div className="flex items-center justify-between" key={app.id}>
-                <div className="flex items-center gap-x-3">
-                  {app.icon}
-                  <div>
-                    <h2 className="subheading font-medium">{app.title}</h2>
-                    <p className="main-desc">{app.version}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-x-3">
-                  {id === 'manage-apps' ? (
-                    <Link to={app.link}>
-                      <Button variant='outline'>Open</Button>
-                    </Link>
-                  ) : (
-                    <Link to={`/integration/appstore/${app.id}`}>
-                      <Button variant='outline'>Upgrade</Button>
-                    </Link>
-                  )}
+        <DataList pagination={appData?.length > appsPerPage ? true : false} listPerPage={appsPerPage}>
 
-                  <Popover>
-                    <PopoverTrigger>
-                      <Button variant='outline' className='p-2'>
-                        <MoreHorizontal viewBox="0 0 24 24" height="16" width="16"/>
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className='p-0 w-[160px]'>
-                      <Command>
-                        <CommandList>
-                          <CommandGroup>
-                            <CommandItem onSelect={() => navigate(`/integration/appstore/${app.id}`)}>
-                              App Info
-                            </CommandItem>
-                            <CommandItem onSelect={() => window.location.href = 'https://page.line.me/zaviago'}>
-                              Customer Care
-                            </CommandItem>
-                          </CommandGroup>
-                          <CommandSeparator />
-                          <CommandGroup>
-                            <CommandItem className='p-0'>
-                              <DeleteAppModal status={deleteStatus} setStatus={setDeleteStatus} title={app.title}/>
-                            </CommandItem>
-                          </CommandGroup>
-                        </CommandList>
-                      </Command>
-                    </PopoverContent>
-                  </Popover>
-                </div>
+        {appData?.filter(app => installedApps.data?.some(installedApp => installedApp.title === app.title)).map(app => (
+          <div className="flex items-center justify-between" key={app.name}>
+            <div className="flex items-center gap-x-3">
+              {app.image ? <img src={site.backend_url()+app.image}/> : <Icons.erpApp />}
+              <div>
+                <h2 className="subheading font-medium">{app.title}</h2>
               </div>
-            ))}
-          </DataList>
+            </div>
+            <div className="flex items-center gap-x-3">
+            {id === 'manage-apps' ? (
+              <Link to={`/integration/appstore/${app.title}`}>
+                <Button variant='outline'>Open</Button>
+              </Link>
+            ) : (
+              <Link to={`/integration/appstore/${app.title}`}>
+                <Button variant='outline'>Upgrade</Button>
+              </Link>
+            )}
+            </div>
+          </div>
+        ))}
+
+
+        </DataList>
         </div>
       </section>
     </section>

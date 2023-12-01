@@ -1,4 +1,5 @@
 import api from './api-client';
+const backend_url = `${process.env.REACT_APP_BACKEND_URL || 'http://192.168.0.104:8000'}`;
 
 export const user = {
     oauthLogin: (provider, accessToken, idToken) => api.post(
@@ -33,7 +34,9 @@ export const site = {
     exists: (data) => api.get('/method/press.api.site.exists', { params: data }).then((response) => response.data.message),
     optionsForNew: () => api.get('/method/press.api.site.options_for_new').then((response) => response.data.message),
     new: (data) => api.post('/method/press.api.site.new_saas_site', data).then((response) => response.data.message),
-    appslist: (name) => api.get('/method/press.api.site.available_apps', { params: { name } }).then((response) => response.data.message), 
+    appslist: (name) => api.get('/method/press.api.marketplace.get_apps', { params: { name } }).then((response) => response.data.message), 
+    installed_apps: (name) => api.get('/method/press.api.site.installed_apps', { params: { name } }).then((response) => response.data.message), 
+    backend_url: () => backend_url
 }
 
 export const getCountryList = () => api.get('/method/press.api.account.country_list').then((response) => response.data);
