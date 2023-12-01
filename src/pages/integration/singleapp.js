@@ -141,7 +141,7 @@ export default function SingleApp(){
                 <ImageDialog currentImage={currentImage} length={item.images.length} image={item.images[0]} setCurrentImage={setCurrentImage} mainImage={true} onOpen={() => setCurrentImage(index)}/>
                 <div className="flex flex-col gap-y-6">
                   {item.images.map((image, index) => (
-                    <ImageDialog currentImage={currentImage} length={item.images.length} image={image} setCurrentImage={setCurrentImage} mainImage={false} onOpen={() => setCurrentImage(index)}/>
+                    <ImageDialog key={index} currentImage={currentImage} length={item.images.length} image={image} setCurrentImage={setCurrentImage} mainImage={false} onOpen={() => setCurrentImage(index)}/>
                   )).slice(1, 4)}
                 </div>
               </section>
