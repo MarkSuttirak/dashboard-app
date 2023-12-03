@@ -42,7 +42,7 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
     onSubmit: values => {
       console.log('values')
       console.log(values)
-      onSubmitFunction( values )
+     // onSubmitFunction( values )
     },
   })
   const onSubmitFunction = async (data) => {
@@ -63,7 +63,7 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
 
   return (
     <>
-      <form className="flex flex-col gap-y-8 mt-4">
+      <form className="flex flex-col gap-y-8 mt-4" onSubmit={onSubmitForm}>
         <div className="space-y-6 w-full">
           <div className="anim-up flex flex-col">
             <label className="subheading mb-2 font-medium">
@@ -240,7 +240,7 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
           </div>
         </div>
 
-        <Button type='submit' className='btn-with-icon w-full' onClick={onSubmitForm}>
+        <Button type='button' className='btn-with-icon w-full' onClick={onSubmitForm}>
           {submitText}
         </Button>
       </form>

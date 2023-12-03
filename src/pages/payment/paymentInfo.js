@@ -5,29 +5,46 @@ import { Separator } from "src/components/ui/separator";
 import { Switch } from "src/components/ui/switch";
 import { Button } from "src/components/ui/button";
 import { Input } from "src/components/ui/input";
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
+import { site } from "../../client/api";
+import { useUser } from "../../hooks/useUser";
+import { useParams } from "react-router"
 
 export default function PaymentInfo(){
+  const { id } = useParams()
+  const { app } = useParams()
   const [addPromo, setAddPromo] = useState(false)
   const [promoAdded, setPromoAdded] = useState(false)
   const [couponCode, setCouponCode] = useState('')
   const [couponExplanation, setCouponExplanation] = useState('');
-  const [subtotal, setSubtotal] = useState(750)
-  const [perYear, setPerYear] = useState(false);
+  const [subtotal, setSubtotal] = useState(0)
+  const [perYear, setPerYear] = useState(true);
   const [discount, setDiscount] = useState(0)
+
+
+  const { user, auth, logout } = useUser();
+  const { data: sites } = useQuery('sites', site.list, {
+    enabled: !!user,
+  });
+  const checkout_info = useQuery('checkout_info', () => site.get_app_plans(app), {enabled: false});
+  useEffect(() => {
+    if (user && sites?.site_list[0]?.name && !checkout_info.data) {
+      checkout_info.refetch();
+    }
+  }, [user, sites,checkout_info]);
+  const plan_details = checkout_info.data && checkout_info.data.find(item => item.name === id);
+  if(!subtotal){
+    if(plan_details?.price_usd){
+      setSubtotal(plan_details?.price_usd)
+    }
+  }
+
 
   const vat = Math.floor(subtotal * 0.07)
 
-  const handlePerYear = () => {
-    setPerYear(!perYear)
-    if (perYear){
-      setSubtotal(750)
-    } else {
-      setSubtotal(7500)
-    }
-  }
 
   const setCoupon = (coupon) => {
     setPromoAdded(true);
@@ -70,12 +87,12 @@ export default function PaymentInfo(){
         <h1 className="main-heading">Payment</h1>
       </div>
       <section className="py-10 px-5">
-        <h2 className="main-desc font-medium">Subscribe to Zaviago</h2>
+        <h2 className="main-desc font-medium">Subscribe to {app}</h2>
         <div className="mt-3 mb-10 flex gap-x-[10px] items-center">
           <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px]">฿ {total()}</h1>
           <div>
             <p className="main-desc">per</p>
-            <p className="main-desc">year</p>
+            <p className="main-desc">mon</p>
           </div>
         </div>
         <Card className='p-0 shadow-none'>
@@ -83,20 +100,13 @@ export default function PaymentInfo(){
             <div className="flex gap-x-3 items-center">
               <div className="bg-[#27272A] w-[50px] h-[50px] rounded-md"/>
               <div>
-                <CardTitle>{subtotal.toLocaleString()} Baht / Year / User</CardTitle>
+                <CardTitle>{plan_details?.plan}</CardTitle>
                 <CardDescription>Discount 10%</CardDescription>
               </div>
             </div>
             <p className="subheading">฿ {subtotal.toLocaleString()}</p>
           </CardHeader>
-          <CardFooter className='border-t bg-muted-50 py-4 px-3 bg-zinc-100/50 justify-between'>
-            <div className="flex items-center gap-x-3">
-              <Switch onCheckedChange={handlePerYear} />
-              <Badge variant='outline' className='bg-white'>Yearly save - ฿ 1,500</Badge>
-              <p className="subheading">Yearly plan</p>
-            </div>
-            <p className="subheading">฿ {subtotal.toLocaleString()}/year</p>
-          </CardFooter>
+        
         </Card>
 
         <Separator className='my-6'/>

@@ -63,7 +63,7 @@ export default function Router() {
             ],
         },
         {
-            path: '/payment',
+            path: '/payment/:app/:id',
             element: <PaymentPage />
         },
         {
