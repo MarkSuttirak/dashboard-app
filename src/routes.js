@@ -25,6 +25,7 @@ import ComparePlan from './pages/compare-plan/comparePlan';
 import AppCategory from './pages/integration/appCategory';
 import { useEffect } from 'react'
 import Pricing from './pages/pricing';
+import PricingTablePage from './pages/pricingTable';
 
 // ----------------------------------------------------------------------
 
@@ -104,7 +105,8 @@ export default function Router() {
             ],
         },
         { path: '*', element: <NotFoundPage replace /> },
-        { path: '/pricing', element: <Pricing />}
+        { path: '/pricing', element: <Pricing />},
+        { path: '/pricing-table', element: <PricingTablePage />}
     ]
     return useRoutes(routes);
 }
