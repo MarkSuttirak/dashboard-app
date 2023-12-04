@@ -32,93 +32,52 @@ export default function Packages(){
   const [customField, setCustomField] = useState(customFieldList[0])
 
   const calculateTotalPrice = () => {
-    let workspacePrice, crmPrice, marketConnectPrice, lineCRMPrice, rewardfulPrice, onlineStorePrice; 
-    let customerContactPrice, paidUserPrice, smsOTPPrice, customFieldPrice, addonPrice; // Additional price
-
-    (isStarter ? workspacePrice = 750 : workspacePrice = 0)
-
-    switch (packageTypeCRM){
-      case 'Starter': crmPrice = 750; break;
-      case 'Professional': crmPrice = 28000; break;
-      case 'Enterprise': crmPrice = 89000; break;
-      default: crmPrice = 0; break;
-    }
-    switch (packageTypeMarketConnect){
-      case 'Starter': marketConnectPrice = 750; break;
-      case 'Professional': marketConnectPrice = 15900; break;
-      case 'Enterprise': marketConnectPrice = 39000; break;
-      default: marketConnectPrice = 0; break;
-    }
-    switch (packageTypeLineCRM){
-      case 'Starter': lineCRMPrice = 4350; break;
-      case 'Professional': lineCRMPrice = 4600; break;
-      case 'Enterprise': lineCRMPrice = 5000; break;
-      default: lineCRMPrice = 0; break;
-    }
-    switch (packageTypeRewardful){
-      case 'Starter': rewardfulPrice = 1500; break;
-      case 'Professional': rewardfulPrice = 3500; break;
-      case 'Enterprise': rewardfulPrice = 6500; break;
-      default: rewardfulPrice = 0; break;
-    }
-    switch (packageTypeOnlineStore){
-      case 'Starter': onlineStorePrice = 750; break;
-      case 'Professional': onlineStorePrice = 14400; break;
-      case 'Enterprise': onlineStorePrice = 42000; break;
-      default: onlineStorePrice = 0; break;
-    }
-
-    if (packageTypeCRM){
-      customerContactPrice = customerContactsList.indexOf(customerContact) * 1500;
-    } else {
-      customerContactPrice = 0
-    }
-
-    if (packageTypeMarketConnect){
-      paidUserPrice = paidUsersList.indexOf(paidUsers) * 900;
-    } else {
-      paidUserPrice = 0
-    }
-
-    if (packageTypeLineCRM){
-      if (needSMSOTP){
-        switch (smsOTP){
-          case 5000: smsOTPPrice = 3000; break;
-          case 18000: smsOTPPrice = 10000; break;
-          case 60000: smsOTPPrice = 30000; break;
-          default: smsOTPPrice = 3000
-        }
-      } else {
-        smsOTPPrice = 0
-      }
-      switch (customField){
-        case 10: customFieldPrice = 350; break;
-        case 25: customFieldPrice = 600; break;
-        case 50: customFieldPrice = 1000; break;
-        default: customFieldPrice = 350
-      }
-    } else {
-      customFieldPrice = 0
-      smsOTPPrice = 0
-    }
-
-    if (addons){
-      switch (addons){
-        case 'API Limit Increase': addonPrice = 10000; break;
-        case 'Technical Consulting': addonPrice = 60000; break;
-        case 'Monthly Inbound': addonPrice = 45000; break;
-        case 'Ongoing Inbound': addonPrice = 95000; break;
-        case 'Premium Consulting': addonPrice = 120000; break;
-        case 'Business Consulting': addonPrice = 60000; break;
-        case 'Migration Services': addonPrice = 8500; break;
-        default: addonPrice = 0
-      }
-    } else {
-      addonPrice = 0
-    }
-
-    setTotalPriceMonthly(workspacePrice + crmPrice + marketConnectPrice + lineCRMPrice + rewardfulPrice + onlineStorePrice + customerContactPrice + paidUserPrice + smsOTPPrice + customFieldPrice + addonPrice)
-  };
+    const prices = {
+      workspace: isStarter ? 750 : 0,
+      crm: { Starter: 750, Professional: 28000, Enterprise: 89000 },
+      marketConnect: { Starter: 750, Professional: 15900, Enterprise: 39000 },
+      lineCRM: { Starter: 4350, Professional: 4600, Enterprise: 5000 },
+      rewardful: { Starter: 1500, Professional: 3500, Enterprise: 6500 },
+      onlineStore: { Starter: 750, Professional: 14400, Enterprise: 42000 },
+    };
+  
+    const customerContactPrice = packageTypeCRM ? customerContactsList.indexOf(customerContact) * 1500 : 0;
+    const paidUserPrice = packageTypeMarketConnect ? paidUsersList.indexOf(paidUsers) * 900 : 0;
+  
+    const smsOTPPrice =
+      packageTypeLineCRM && needSMSOTP && smsOTP
+        ? { 5000: 3000, 18000: 10000, 60000: 30000 }[smsOTP] || 3000
+        : 0;
+  
+    const customFieldPrice =
+      packageTypeLineCRM && customField ? { 10: 350, 25: 600, 50: 1000 }[customField] || 350 : 0;
+  
+    const addonPrices = {
+      'API Limit Increase': 10000,
+      'Technical Consulting': 60000,
+      'Monthly Inbound': 45000,
+      'Ongoing Inbound': 95000,
+      'Premium Consulting': 120000,
+      'Business Consulting': 60000,
+      'Migration Services': 8500,
+    };
+  
+    const addonPrice = addons ? addonPrices[addons] || 0 : 0;
+  
+    setTotalPriceMonthly(
+      prices.workspace +
+      (packageTypeCRM ? prices.crm[packageTypeCRM] || 0 : 0) +
+      (packageTypeMarketConnect ? prices.marketConnect[packageTypeMarketConnect] || 0 : 0) +
+      (packageTypeLineCRM ? prices.lineCRM[packageTypeLineCRM] || 0 : 0) +
+      (packageTypeRewardful ? prices.rewardful[packageTypeRewardful] || 0 : 0) +
+      (packageTypeOnlineStore ? prices.onlineStore[packageTypeOnlineStore] || 0 : 0) +
+      customerContactPrice +
+      paidUserPrice +
+      smsOTPPrice +
+      customFieldPrice +
+      addonPrice
+    )
+  };  
 
   useEffect(() => {
     calculateTotalPrice();
@@ -138,11 +97,7 @@ export default function Packages(){
   ]);
 
   const handlePackageType = (index, packageType, setPackageType) => {
-    if (packageType === index){
-      setPackageType(null)
-    } else {
-      setPackageType(index);
-    }
+    packageType === index ? setPackageType(null) : setPackageType(index)
   };
 
   const handlePackage = {
@@ -158,108 +113,19 @@ export default function Packages(){
     }
   };
 
+  const createBundleSelectList = (category, setVariable) => ([
+    { title: 'Starter', price: 750, variable: category, setVariable },
+    { title: 'Professional', price: 28000, variable: category, setVariable },
+    { title: 'Enterprise', price: 89000, variable: category, setVariable },
+  ]);
+  
   const bundleSelectList = {
-    crm: [
-      {
-        title:'Starter',
-        price:750,
-        variable:packageTypeCRM,
-        setVariable:setPackageTypeCRM
-      },
-      {
-        title:'Professional',
-        price:28000,
-        variable:packageTypeCRM,
-        setVariable:setPackageTypeCRM
-      },
-      {
-        title:'Enterprise',
-        price:89000,
-        variable:packageTypeCRM,
-        setVariable:setPackageTypeCRM
-      }
-    ],
-    marketConnect: [
-      {
-        title:'Starter',
-        price:750,
-        variable:packageTypeMarketConnect,
-        setVariable:setPackageTypeMarketConnect
-      },
-      {
-        title:'Professional',
-        price:15900,
-        variable:packageTypeMarketConnect,
-        setVariable:setPackageTypeMarketConnect
-      },
-      {
-        title:'Enterprise',
-        price:39000,
-        variable:packageTypeMarketConnect,
-        setVariable:setPackageTypeMarketConnect
-      }
-    ],
-    lineCRM: [
-      {
-        title:'Starter',
-        price:4350,
-        variable:packageTypeLineCRM,
-        setVariable:setPackageTypeLineCRM
-      },
-      {
-        title:'Professional',
-        price:4600,
-        variable:packageTypeLineCRM,
-        setVariable:setPackageTypeLineCRM
-      },
-      {
-        title:'Enterprise',
-        price:5000,
-        variable:packageTypeLineCRM,
-        setVariable:setPackageTypeLineCRM
-      }
-    ],
-    rewardful: [
-      {
-        title:'Starter',
-        price:1500,
-        variable:packageTypeRewardful,
-        setVariable:setPackageTypeRewardful
-      },
-      {
-        title:'Professional',
-        price:3500,
-        variable:packageTypeRewardful,
-        setVariable:setPackageTypeRewardful
-      },
-      {
-        title:'Enterprise',
-        price:6500,
-        variable:packageTypeRewardful,
-        setVariable:setPackageTypeRewardful
-      }
-    ],
-    onlineStore: [
-      {
-        title:'Starter',
-        price:750,
-        variable:packageTypeOnlineStore,
-        setVariable:setPackageTypeOnlineStore
-      },
-      {
-        title:'Professional',
-        price:14400,
-        variable:packageTypeOnlineStore,
-        setVariable:setPackageTypeOnlineStore
-      },
-      {
-        title:'Enterprise',
-        price:42000,
-        variable:packageTypeOnlineStore,
-        setVariable:setPackageTypeOnlineStore
-      }
-    ],
-  }
+    crm: createBundleSelectList(packageTypeCRM, setPackageTypeCRM),
+    marketConnect: createBundleSelectList(packageTypeMarketConnect, setPackageTypeMarketConnect),
+    lineCRM: createBundleSelectList(packageTypeLineCRM, setPackageTypeLineCRM),
+    rewardful: createBundleSelectList(packageTypeRewardful, setPackageTypeRewardful),
+    onlineStore: createBundleSelectList(packageTypeOnlineStore, setPackageTypeOnlineStore),
+  };
 
   return (
     <div className="flex flex-col gap-4 lg:flex-row w-full">
@@ -419,7 +285,7 @@ export default function Packages(){
             <CardDescription>Intergrate page builder and online shop in one place</CardDescription>
           </CardHeader>
           <CardContent className="flex gap-4 flex-wrap p-0">
-            <BundleSelect size='large' title="API Limit Increase" price='฿15,000/month' checked={addons === 'API Limit Increase'} onCheckedChange={() => handlePackageType('API Limit Increase', addons, setAddons)} width='100%' desc='Service to connect Marketplace, Social Media and other service API.'/>
+            <BundleSelect size='large' title="API Limit Increase" price='฿10,000/month' checked={addons === 'API Limit Increase'} onCheckedChange={() => handlePackageType('API Limit Increase', addons, setAddons)} width='100%' desc='Service to connect Marketplace, Social Media and other service API.'/>
             <BundleSelect size='large' title="Technical Consulting: Advance" price='Standard offering starting at ฿60,000' checked={addons === 'Technical Consulting'} onCheckedChange={() => handlePackageType('Technical Consulting', addons, setAddons)} width='100%' desc='Five (5) hours of total support may include phone conversations, email-based support, prep work, and any other activities related to the service. Unused hours expire at the end of each month and will not carry over.'/>
             <BundleSelect size='large' title="Monthly Inbound Consulting" price='฿45,000/month' checked={addons === 'Monthly Inbound'} onCheckedChange={() => handlePackageType('Monthly Inbound', addons, setAddons)} width='100%' desc='Access to your Inbound Consultant for up to one hour per month.'/>
             <BundleSelect size='large' title="Ongoing Inbound Consulting" price='฿95,000/month' checked={addons === 'Ongoing Inbound'} onCheckedChange={() => handlePackageType('Ongoing Inbound', addons, setAddons)} width='100%' desc='Access to your Inbound Consultant for up to five hours per month.'/>
