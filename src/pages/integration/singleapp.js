@@ -99,9 +99,8 @@ export default function SingleApp(){
                 </div>
               </section>
 
-
               <section className="flex gap-x-9 mt-20">
-              {plans.map((plan, index) => (
+              {plans?.map((plan, index) => (
                   <aside className="border rounded-md p-6 w-1/3">
                     <div className="mb-3">
                       <h1 className='font-bold text-[#181818] text-base mb-3'>{plan.price_usd}/mo</h1>
