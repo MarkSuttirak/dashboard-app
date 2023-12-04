@@ -17,8 +17,8 @@ export default function Packages(){
 
   const crmPriceList = [750,28000,89000];
   const marketConnectPriceList = [750,15900,39000];
-  const lineCRMPriceList = [4850, 11350, 32000];
-  const rewardfulPriceList = [1800,3500,6500];
+  const lineCRMPriceList = [4350, 4600, 5000];
+  const rewardfulPriceList = [1500,3500,6500];
   const onlineStorePriceList = [750, 14400, 42000]
 
   const [totalPriceMonthly, setTotalPriceMonthly] = useState(750);
@@ -201,19 +201,19 @@ export default function Packages(){
     lineCRM: [
       {
         title:'Starter',
-        price:4850,
+        price:4350,
         variable:packageTypeLineCRM,
         setVariable:setPackageTypeLineCRM
       },
       {
         title:'Professional',
-        price:11350,
+        price:4600,
         variable:packageTypeLineCRM,
         setVariable:setPackageTypeLineCRM
       },
       {
         title:'Enterprise',
-        price:32000,
+        price:5000,
         variable:packageTypeLineCRM,
         setVariable:setPackageTypeLineCRM
       }
@@ -221,7 +221,7 @@ export default function Packages(){
     rewardful: [
       {
         title:'Starter',
-        price:1800,
+        price:1500,
         variable:packageTypeRewardful,
         setVariable:setPackageTypeRewardful
       },
