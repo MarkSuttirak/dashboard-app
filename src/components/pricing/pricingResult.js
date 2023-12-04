@@ -30,10 +30,10 @@ export default function PricingResult({totalMonthly, totalYearly, commitments}){
                 <span className="text-[40px]">฿{totalMonthly.toLocaleString()}</span>/month
               </TabsContent>
               <TabsContent value='annually' className='text-[27px] text-center'>
-                <span className="text-[40px]">฿{Math.ceil((totalYearly).toLocaleString())}</span>/month
+                <span className="text-[40px]">฿{totalYearly.toLocaleString()}</span>/month
                 <div className="mt-3">
                   <h2 className="secondary-heading">Billed annually</h2>
-                  <p className="main-desc font-normal">at ฿{totalYearly * 12}/year</p>
+                  <p className="main-desc font-normal">at ฿{(totalYearly * 12).toLocaleString()}/year</p>
                 </div>
               </TabsContent>
             </Tabs>
@@ -48,6 +48,12 @@ export default function PricingResult({totalMonthly, totalYearly, commitments}){
         <CardFooter className='flex flex-col items-start p-0'>
           <Button className='w-full my-6'>Buy Now</Button>
           <p className="main-desc">Offer are available to new Zaviago customers only. If you are eligible, the offer price will be displayed at checkout.</p>
+
+          <div className="flex justify-center mt-6 w-full">
+            <Button variant='ghost' className='subheading font-semibold'>
+              View price breakdown
+            </Button>
+          </div>
         </CardFooter>
       </Card>
 
