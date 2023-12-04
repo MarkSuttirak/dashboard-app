@@ -40,18 +40,13 @@ export default function Packages(){
       rewardful: { Starter: 1500, Professional: 3500, Enterprise: 6500 },
       onlineStore: { Starter: 750, Professional: 14400, Enterprise: 42000 },
     };
-  
+
     const customerContactPrice = packageTypeCRM ? customerContactsList.indexOf(customerContact) * 1500 : 0;
     const paidUserPrice = packageTypeMarketConnect ? paidUsersList.indexOf(paidUsers) * 900 : 0;
-  
-    const smsOTPPrice =
-      packageTypeLineCRM && needSMSOTP && smsOTP
-        ? { 5000: 3000, 18000: 10000, 60000: 30000 }[smsOTP] || 3000
-        : 0;
-  
-    const customFieldPrice =
-      packageTypeLineCRM && customField ? { 10: 350, 25: 600, 50: 1000 }[customField] || 350 : 0;
-  
+    const smsOTPPrice = packageTypeLineCRM && needSMSOTP && smsOTP ? { 5000: 3000, 18000: 10000, 60000: 30000 }[smsOTP] || 3000 : 0;
+    const customFieldPrice = packageTypeLineCRM && customField ? { 10: 350, 25: 600, 50: 1000 }[customField] || 350 : 0;
+    const addonPrice = addons ? addonPrices[addons] || 0 : 0;
+
     const addonPrices = {
       'API Limit Increase': 10000,
       'Technical Consulting': 60000,
@@ -61,9 +56,7 @@ export default function Packages(){
       'Business Consulting': 60000,
       'Migration Services': 8500,
     };
-  
-    const addonPrice = addons ? addonPrices[addons] || 0 : 0;
-  
+
     setTotalPriceMonthly(
       prices.workspace +
       (packageTypeCRM ? prices.crm[packageTypeCRM] || 0 : 0) +
@@ -71,30 +64,13 @@ export default function Packages(){
       (packageTypeLineCRM ? prices.lineCRM[packageTypeLineCRM] || 0 : 0) +
       (packageTypeRewardful ? prices.rewardful[packageTypeRewardful] || 0 : 0) +
       (packageTypeOnlineStore ? prices.onlineStore[packageTypeOnlineStore] || 0 : 0) +
-      customerContactPrice +
-      paidUserPrice +
-      smsOTPPrice +
-      customFieldPrice +
-      addonPrice
+      customerContactPrice + paidUserPrice + smsOTPPrice + customFieldPrice + addonPrice
     )
   };  
 
   useEffect(() => {
     calculateTotalPrice();
-  }, [
-    isStarter,
-    packageTypeCRM, 
-    packageTypeMarketConnect, 
-    packageTypeLineCRM, 
-    packageTypeRewardful, 
-    packageTypeOnlineStore, 
-    smsOTP, 
-    customerContact,
-    paidUsers,
-    customField,
-    needSMSOTP,
-    addons
-  ]);
+  }, [isStarter, packageTypeCRM, packageTypeMarketConnect, packageTypeLineCRM, packageTypeRewardful, packageTypeOnlineStore, smsOTP, customerContact, paidUsers, customField, needSMSOTP, addons]);
 
   const handlePackageType = (index, packageType, setPackageType) => {
     packageType === index ? setPackageType(null) : setPackageType(index)
@@ -104,28 +80,111 @@ export default function Packages(){
     customerContact: (index) => setCustomerContact(index),
     paidUser: (index) => setPaidUsers(index),
     customField: (index) => setCustomField(index),
-    smsOTP: (index) => {
-      if (needSMSOTP){
-        setSMSOTP(index)
-      } else {
-        setSMSOTP(0)
-      }
-    }
+    smsOTP: (index) => {needSMSOTP ? setSMSOTP(index) : setSMSOTP(0)}
   };
 
-  const createBundleSelectList = (category, setVariable) => ([
-    { title: 'Starter', price: 750, variable: category, setVariable },
-    { title: 'Professional', price: 28000, variable: category, setVariable },
-    { title: 'Enterprise', price: 89000, variable: category, setVariable },
-  ]);
-  
   const bundleSelectList = {
-    crm: createBundleSelectList(packageTypeCRM, setPackageTypeCRM),
-    marketConnect: createBundleSelectList(packageTypeMarketConnect, setPackageTypeMarketConnect),
-    lineCRM: createBundleSelectList(packageTypeLineCRM, setPackageTypeLineCRM),
-    rewardful: createBundleSelectList(packageTypeRewardful, setPackageTypeRewardful),
-    onlineStore: createBundleSelectList(packageTypeOnlineStore, setPackageTypeOnlineStore),
-  };
+     crm: [
+       {
+         title:'Starter',
+         price:750,
+         variable:packageTypeCRM,
+         setVariable:setPackageTypeCRM
+       },
+       {
+         title:'Professional',
+         price:28000,
+         variable:packageTypeCRM,
+         setVariable:setPackageTypeCRM
+       },
+       {
+         title:'Enterprise',
+         price:89000,
+         variable:packageTypeCRM,
+         setVariable:setPackageTypeCRM
+       }
+     ],
+     marketConnect: [
+       {
+         title:'Starter',
+         price:750,
+         variable:packageTypeMarketConnect,
+         setVariable:setPackageTypeMarketConnect
+       },
+       {
+         title:'Professional',
+         price:15900,
+         variable:packageTypeMarketConnect,
+         setVariable:setPackageTypeMarketConnect
+       },
+       {
+         title:'Enterprise',
+         price:39000,
+         variable:packageTypeMarketConnect,
+         setVariable:setPackageTypeMarketConnect
+       }
+     ],
+     lineCRM: [
+       {
+         title:'Starter',
+         price:4350,
+         variable:packageTypeLineCRM,
+         setVariable:setPackageTypeLineCRM
+       },
+       {
+         title:'Professional',
+         price:4600,
+         variable:packageTypeLineCRM,
+         setVariable:setPackageTypeLineCRM
+       },
+       {
+         title:'Enterprise',
+         price:5000,
+         variable:packageTypeLineCRM,
+         setVariable:setPackageTypeLineCRM
+       }
+     ],
+     rewardful: [
+       {
+         title:'Starter',
+         price:1500,
+         variable:packageTypeRewardful,
+         setVariable:setPackageTypeRewardful
+       },
+       {
+         title:'Professional',
+         price:3500,
+         variable:packageTypeRewardful,
+         setVariable:setPackageTypeRewardful
+       },
+       {
+         title:'Enterprise',
+         price:6500,
+         variable:packageTypeRewardful,
+         setVariable:setPackageTypeRewardful
+       }
+     ],
+     onlineStore: [
+       {
+         title:'Starter',
+         price:750,
+         variable:packageTypeOnlineStore,
+         setVariable:setPackageTypeOnlineStore
+       },
+       {
+         title:'Professional',
+         price:14400,
+         variable:packageTypeOnlineStore,
+         setVariable:setPackageTypeOnlineStore
+       },
+       {
+         title:'Enterprise',
+         price:42000,
+         variable:packageTypeOnlineStore,
+         setVariable:setPackageTypeOnlineStore
+       }
+     ],
+   }
 
   return (
     <div className="flex flex-col gap-4 lg:flex-row w-full">
