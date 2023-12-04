@@ -425,6 +425,12 @@ body {
   background:#F7F7F7;
   padding:12px;
   border-right:1px solid #E4E4E7;
+  &.show {
+    margin-top:-54px;
+  }
+  &.hide {
+    margin-top:0;
+  }
   img {
     display:block;
     width:60%;

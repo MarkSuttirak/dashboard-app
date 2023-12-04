@@ -9,7 +9,7 @@ import BundleSelect from "./bundleSelect"
 import { Button } from "../ui/button"
 import { Phone } from "lucide-react"
 
-export default function PricingResult({totalMonthly, totalYearly, commitments}){
+export default function PricingResult({totalMonthly, totalYearly, commitments, estimated}){
   return (
     <div className="flex flex-col w-full lg:w-[40%]">
       <Card className='p-10 h-fit'>

@@ -2,13 +2,14 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
 import SidebarShortcut from "./sidebarShortcut";
-import { PlusCircle, Settings, Search, ChevronsLeft, Users, Zap, UserCircle, LayoutGrid, Layout, ClipboardList, Package, Group, Baseline, Clipboard, CheckCircle, CheckCircle2, UserSquare, Mailbox, Milestone, PackagePlus, ClipboardPaste, PanelLeftClose, PanelLeftOpen, Home } from "lucide-react";
+import { PlusCircle, Settings, Search, ChevronsLeft, Users, Zap, UserCircle, LayoutGrid, Layout, ClipboardList, Package, Group, Baseline, Clipboard, CheckCircle, CheckCircle2, UserSquare, Mailbox, Milestone, PackagePlus, ClipboardPaste, PanelLeftClose, PanelLeftOpen, Home, ChevronsRight } from "lucide-react";
 import { Button } from "../ui/button";
 import { BellIcon, LightningBoltIcon } from "@radix-ui/react-icons";
 import { useMutation, useQuery } from "react-query";
 import { site } from "../../client/api";
 import { Icons } from "../ui/icons";
 import ServiceModals from "./serviceModals";
+import { Progress } from "../ui/progress";
 
 // import TeamModal from "../components/switchTeamModal";
 
@@ -16,6 +17,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   const [active, setActive] = useState('');
   const location = useLocation();
   const { user } = useUser();
+  const [setup, setSetup] = useState(true)
 
   const handleMenuClick = (menu) => {
     setActive(menu);
@@ -105,7 +107,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
   const IconSidebar = () => {
     return (
-      <nav className="nav-left-side">
+      <nav className={`nav-left-side ${!isSidebarOpen ? 'hide' : 'show'}`}>
         {/* {isSidebarOpen ? (
           <div className="nav-btns" id="home-btn" onClick={() => navigate('/')}>
             <Home color='#18181B' viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5'/>
@@ -115,6 +117,9 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
             <PanelLeftOpen color='#18181B' viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5'/>
           </div>
         )} */}
+        <div className={`nav-btns`} id="home-btn" onClick={() => setIsSidebarOpen(true)}>
+          <ChevronsRight color='#18181B' viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5'/>
+        </div>
         <div className="nav-btns add-ons">
           <Link to='/'>
             <Icons.zaviagoApp />
@@ -138,7 +143,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
           <div className="flex flex-shrink-0 items-center px-3">
             <div className="flex gap-x-2 items-center w-full">
               <SidebarShortcut />
-              
+
               {/* <button className='listminus-btn' variant='secondary' onClick={() => setIsSidebarOpen(false)}>
                 <PanelLeftClose viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5'/>
               </button> */}
@@ -147,6 +152,14 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
               </button>
             </div>
           </div>
+
+          {setup && (
+            <div className="bg-[#F7F7F8] rounded-[9px] m-3 px-[15px] py-[13px]">
+              <h2 className="subheading font-medium">Let's set up your business</h2>
+              <Progress value={50} className='my-[10px]'/>
+              <p className="subheading">1/7 items</p>
+            </div>
+          )}
 
           <nav className="flex bg-white px-3 pt-2 flex-col gap-y-4" aria-label="Sidebar">
             <section className="flex flex-col">
