@@ -61,7 +61,7 @@ export default function Packages(){
     switch (packageTypeRewardful){
       case 'Starter': rewardfulPrice = 1500; break;
       case 'Professional': rewardfulPrice = 3500; break;
-      case 'Enterprise': rewardfulPrice = 6000; break;
+      case 'Enterprise': rewardfulPrice = 6500; break;
       default: rewardfulPrice = 0; break;
     }
 
