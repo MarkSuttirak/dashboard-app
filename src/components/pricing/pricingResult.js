@@ -27,10 +27,10 @@ export default function PricingResult({totalMonthly, totalYearly, commitments}){
                 </TabsTrigger>
               </TabsList>
               <TabsContent value='monthly' className='text-[27px] text-center'>
-                <span className="text-[40px]">฿{totalMonthly.toLocaleString()}</span>/month
+                <span className="text-[40px] inter">฿{totalMonthly.toLocaleString()}</span>/month
               </TabsContent>
               <TabsContent value='annually' className='text-[27px] text-center'>
-                <span className="text-[40px]">฿{totalYearly.toLocaleString()}</span>/month
+                <span className="text-[40px] inter">฿{totalYearly.toLocaleString()}</span>/month
                 <div className="mt-3">
                   <h2 className="secondary-heading">Billed annually</h2>
                   <p className="main-desc font-normal">at ฿{(totalYearly * 12).toLocaleString()}/year</p>
