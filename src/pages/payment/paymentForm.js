@@ -24,7 +24,7 @@ export default function PaymentForm(){
   const onPaymentSubmit = async () => {
     try {
       const res = await site.create_app_subscription(app,sites.site_list[0].name,id);
-      navigate('/checkout')
+     // navigate('/checkout')
     } catch (error) {
       // Handle error here
     }
