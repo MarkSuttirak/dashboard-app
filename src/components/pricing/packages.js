@@ -43,28 +43,24 @@ export default function Packages(){
       case 'Enterprise': crmPrice = 89000; break;
       default: crmPrice = 0; break;
     }
-
     switch (packageTypeMarketConnect){
       case 'Starter': marketConnectPrice = 750; break;
       case 'Professional': marketConnectPrice = 15900; break;
       case 'Enterprise': marketConnectPrice = 39000; break;
       default: marketConnectPrice = 0; break;
     }
-
     switch (packageTypeLineCRM){
       case 'Starter': lineCRMPrice = 4350; break;
       case 'Professional': lineCRMPrice = 4600; break;
       case 'Enterprise': lineCRMPrice = 5000; break;
       default: lineCRMPrice = 0; break;
     }
-
     switch (packageTypeRewardful){
       case 'Starter': rewardfulPrice = 1500; break;
       case 'Professional': rewardfulPrice = 3500; break;
       case 'Enterprise': rewardfulPrice = 6500; break;
       default: rewardfulPrice = 0; break;
     }
-
     switch (packageTypeOnlineStore){
       case 'Starter': onlineStorePrice = 750; break;
       case 'Professional': onlineStorePrice = 14400; break;
@@ -84,18 +80,17 @@ export default function Packages(){
       paidUserPrice = 0
     }
 
-    if (needSMSOTP){
-      switch (smsOTP){
-        case 5000: smsOTPPrice = 3000; break;
-        case 18000: smsOTPPrice = 10000; break;
-        case 60000: smsOTPPrice = 30000; break;
-        default: smsOTPPrice = 3000
-      }
-    } else {
-      smsOTPPrice = 0
-    }
-
     if (packageTypeLineCRM){
+      if (needSMSOTP){
+        switch (smsOTP){
+          case 5000: smsOTPPrice = 3000; break;
+          case 18000: smsOTPPrice = 10000; break;
+          case 60000: smsOTPPrice = 30000; break;
+          default: smsOTPPrice = 3000
+        }
+      } else {
+        smsOTPPrice = 0
+      }
       switch (customField){
         case 10: customFieldPrice = 350; break;
         case 25: customFieldPrice = 600; break;
@@ -104,6 +99,7 @@ export default function Packages(){
       }
     } else {
       customFieldPrice = 0
+      smsOTPPrice = 0
     }
 
     if (addons){
@@ -423,13 +419,13 @@ export default function Packages(){
             <CardDescription>Intergrate page builder and online shop in one place</CardDescription>
           </CardHeader>
           <CardContent className="flex gap-4 flex-wrap p-0">
-            <BundleSelect title="API Limit Increase" price='฿15,000/month' checked={addons === 'API Limit Increase'} onCheckedChange={() => handlePackageType('API Limit Increase', addons, setAddons)} width='100%' desc='Service to connect Marketplace, Social Media and other service API.'/>
-            <BundleSelect title="Technical Consulting: Advance" price='Standard offering starting at ฿60,000' checked={addons === 'Technical Consulting'} onCheckedChange={() => handlePackageType('Technical Consulting', addons, setAddons)} width='100%' desc='Five (5) hours of total support may include phone conversations, email-based support, prep work, and any other activities related to the service. Unused hours expire at the end of each month and will not carry over.'/>
-            <BundleSelect title="Monthly Inbound Consulting" price='฿45,000/month' checked={addons === 'Monthly Inbound'} onCheckedChange={() => handlePackageType('Monthly Inbound', addons, setAddons)} width='100%' desc='Access to your Inbound Consultant for up to one hour per month.'/>
-            <BundleSelect title="Ongoing Inbound Consulting" price='฿95,000/month' checked={addons === 'Ongoing Inbound'} onCheckedChange={() => handlePackageType('Ongoing Inbound', addons, setAddons)} width='100%' desc='Access to your Inbound Consultant for up to five hours per month.'/>
-            <BundleSelect title="Premium Consulting" price='฿120,000' checked={addons === 'Premium Consulting'} onCheckedChange={() => handlePackageType('Premium Consulting', addons, setAddons)} width='100%' desc='Access to both an Inbound Consultant and a Technical Consultant for up to 5 hours per month with each. The Inbound Consultant and Technical Consultant will work together to find customized solutions for your strategic and technical needs.'/>
-            <BundleSelect title="Business Consulting" price='Standard offering starting at ฿60,000' checked={addons === 'Business Consulting'} onCheckedChange={() => handlePackageType('Business Consulting', addons, setAddons)} width='100%' desc='Five (5) hours of total support per month may include phone conversations, email-based support, prep work, and any other activities related to the service. Unused hours expire at the end of each month and will not carry over.'/>
-            <BundleSelect title="Migration Services" price='฿8,500/month' checked={addons === 'Migration Services'} onCheckedChange={() => handlePackageType('Migration Services', addons, setAddons)} width='100%' desc='Template setup service provides a defined set of templates that will resemble your website and branding. These templates use drag-and-drop functionality so you can easily start creating pages and blog posts without coding knowledge.'/>
+            <BundleSelect size='large' title="API Limit Increase" price='฿15,000/month' checked={addons === 'API Limit Increase'} onCheckedChange={() => handlePackageType('API Limit Increase', addons, setAddons)} width='100%' desc='Service to connect Marketplace, Social Media and other service API.'/>
+            <BundleSelect size='large' title="Technical Consulting: Advance" price='Standard offering starting at ฿60,000' checked={addons === 'Technical Consulting'} onCheckedChange={() => handlePackageType('Technical Consulting', addons, setAddons)} width='100%' desc='Five (5) hours of total support may include phone conversations, email-based support, prep work, and any other activities related to the service. Unused hours expire at the end of each month and will not carry over.'/>
+            <BundleSelect size='large' title="Monthly Inbound Consulting" price='฿45,000/month' checked={addons === 'Monthly Inbound'} onCheckedChange={() => handlePackageType('Monthly Inbound', addons, setAddons)} width='100%' desc='Access to your Inbound Consultant for up to one hour per month.'/>
+            <BundleSelect size='large' title="Ongoing Inbound Consulting" price='฿95,000/month' checked={addons === 'Ongoing Inbound'} onCheckedChange={() => handlePackageType('Ongoing Inbound', addons, setAddons)} width='100%' desc='Access to your Inbound Consultant for up to five hours per month.'/>
+            <BundleSelect size='large'title="Premium Consulting" price='฿120,000' checked={addons === 'Premium Consulting'} onCheckedChange={() => handlePackageType('Premium Consulting', addons, setAddons)} width='100%' desc='Access to both an Inbound Consultant and a Technical Consultant for up to 5 hours per month with each. The Inbound Consultant and Technical Consultant will work together to find customized solutions for your strategic and technical needs.'/>
+            <BundleSelect size='large' title="Business Consulting" price='Standard offering starting at ฿60,000' checked={addons === 'Business Consulting'} onCheckedChange={() => handlePackageType('Business Consulting', addons, setAddons)} width='100%' desc='Five (5) hours of total support per month may include phone conversations, email-based support, prep work, and any other activities related to the service. Unused hours expire at the end of each month and will not carry over.'/>
+            <BundleSelect size='large' title="Migration Services" price='฿8,500/month' checked={addons === 'Migration Services'} onCheckedChange={() => handlePackageType('Migration Services', addons, setAddons)} width='100%' desc='Template setup service provides a defined set of templates that will resemble your website and branding. These templates use drag-and-drop functionality so you can easily start creating pages and blog posts without coding knowledge.'/>
           </CardContent>
         </Card>
       </main>
