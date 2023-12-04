@@ -6,7 +6,7 @@ export default function BundleSelect({id, title, price, checked, onCheckedChange
       <div className="pr-4">
         <h2 className="subheading font-medium">{title}</h2>
         <p className="subheading mt-1">{price}</p>
-        <p className="main-desc">{desc}</p>
+        <p className="main-desc mt-2">{desc}</p>
       </div>
       <Checkbox id={id} className='mt-1' checked={checked} onCheckedChange={onCheckedChange}/>
     </label>

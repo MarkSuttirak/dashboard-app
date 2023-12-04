@@ -30,17 +30,17 @@ export default function PricingResult({totalMonthly, totalYearly, commitments}){
                 <span className="text-[40px]">฿{totalMonthly.toLocaleString()}</span>/month
               </TabsContent>
               <TabsContent value='annually' className='text-[27px] text-center'>
-                <span className="text-[40px]">฿{Math.ceil((totalYearly / 12).toLocaleString())}</span>/month
+                <span className="text-[40px]">฿{Math.ceil((totalYearly).toLocaleString())}</span>/month
                 <div className="mt-3">
                   <h2 className="secondary-heading">Billed annually</h2>
-                  <p className="main-desc font-normal">at ฿{totalYearly}/year</p>
+                  <p className="main-desc font-normal">at ฿{totalYearly * 12}/year</p>
                 </div>
               </TabsContent>
             </Tabs>
           </CardTitle>
         </CardHeader>
         <CardContent className="flex gap-4 flex-col p-0">
-          <h2 className="subheading font-medium">With an annual commitment</h2>
+          <h2 className="subheading font-medium">Product selections</h2>
           <div className="flex flex-col gap-y-3">
             {commitments}
           </div>
