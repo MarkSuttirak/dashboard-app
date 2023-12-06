@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import DrawLine from '../drawLine'
 import UpgradeProModal from './upgradeProModal'
-import SearchBar from './searchBar'
+import { SearchBar } from './searchBar'
 import HelpMenu from './helpMenu'
 import AvatarMenu from './avatarMenu'
 import Breadcrumbs from '../breadcrumbs'

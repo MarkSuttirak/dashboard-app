@@ -4,54 +4,63 @@ import { Search } from 'lucide-react'
 import { useNavigate } from "react-router-dom"
 import { useState } from 'react'
 
-export default function SearchBar(){
+const settingsMenus = [
+  {
+    link:'/dashboard/settings/account',
+    title:'Account'
+  },
+  {
+    link:'/dashboard/settings/billing-plans',
+    title:'Billing & Plans'
+  },
+  {
+    link:'/dashboard/settings/notifications',
+    title:'Notifications'
+  },
+]
+
+const integrationsMenus = [
+  {
+    link:'/integration/manage-apps',
+    title:'Manage Apps'
+  },
+  {
+    link:'/integration/upgrade-apps',
+    title:'Upgrade Apps'
+  },
+  {
+    link:'/integration/apps-quota',
+    title:'Apps Quota'
+  },
+]
+
+export function SearchItem(){
   const navigate = useNavigate()
+  return (
+    <DialogContent className='p-0'>
+      <Command>
+        <CommandInput placeholder="Type a command or search..." />
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandGroup heading="Integrations">
+            {integrationsMenus.map(item => (
+              <CommandItem key={item.title} onSelect={() => navigate(item.link)}>{item.title}</CommandItem>
+            ))}
+          </CommandGroup>
+          <CommandSeparator />
+          <CommandGroup heading="Settings">
+            {settingsMenus.map(item => (
+              <CommandItem key={item.title} onSelect={() => navigate(item.link)}>{item.title}</CommandItem>
+            ))}
+          </CommandGroup>
+        </CommandList>
+      </Command>
+    </DialogContent>
+  )
+}
 
-  function shuffle(array) {
-    let currentIndex = array.length,  randomIndex;
-  
-    while (currentIndex > 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-  
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
-    }
-  
-    return array;
-  }
-
+export function SearchBar(){
   const [open, setOpen] = useState(false)
-
-  const settingsMenus = [
-    {
-      link:'/dashboard/settings/account',
-      title:'Account'
-    },
-    {
-      link:'/dashboard/settings/billing-plans',
-      title:'Billing & Plans'
-    },
-    {
-      link:'/dashboard/settings/notifications',
-      title:'Notifications'
-    },
-  ]
-
-  const integrationsMenus = [
-    {
-      link:'/integration/manage-apps',
-      title:'Manage Apps'
-    },
-    {
-      link:'/integration/upgrade-apps',
-      title:'Upgrade Apps'
-    },
-    {
-      link:'/integration/apps-quota',
-      title:'Apps Quota'
-    },
-  ]
 
   window.onkeydown = (e) => {
     if (e.ctrlKey && e.key === 'g'){
@@ -69,25 +78,7 @@ export default function SearchBar(){
           <p>(Ctrl + G)</p>
         </div>
       </DialogTrigger>
-      <DialogContent className='p-0'>
-        <Command>
-          <CommandInput placeholder="Type a command or search..." />
-          <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
-            <CommandGroup heading="Integrations">
-              {integrationsMenus.map(item => (
-                <CommandItem key={item.title} onSelect={() => navigate(item.link)}>{item.title}</CommandItem>
-              ))}
-            </CommandGroup>
-            <CommandSeparator />
-            <CommandGroup heading="Settings">
-              {settingsMenus.map(item => (
-                <CommandItem key={item.title} onSelect={() => navigate(item.link)}>{item.title}</CommandItem>
-              ))}
-            </CommandGroup>
-          </CommandList>
-        </Command>
-      </DialogContent>
+      <SearchItem />
     </Dialog>
   )
 }

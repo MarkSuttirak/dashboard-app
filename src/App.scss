@@ -139,15 +139,18 @@ body {
   justify-content:space-between;
   align-items:center;
   width:100%;
-  outline:1px solid #E4E4E7;
+  box-shadow:0 0 0 1px #E4E4E7;
+  transition:box-shadow .1s;
   border-radius:12px;
   box-sizing:border-box;
   padding:8px 22px;
   &:hover {
-    outline:2px solid #B7D0FF;
+    box-shadow:0 0 0 2px #006aff99;
+    transition:box-shadow .1s;
     .inner-guide-btn {
       background-color:#F4F4F5;
-      border:1px solid #F4F4F5
+      border:1px solid #F4F4F5;
+      transition:background-color .1s;
     }
   }
 }
@@ -160,6 +163,7 @@ body {
   border:1px solid #E4E4E7;
   border-radius:9999px;
   background-color:white;
+  transition:background-color .1s;
 }
 
 ::-webkit-scrollbar {

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
 import SidebarShortcut from "./sidebarShortcut";
-import { PlusCircle, Settings, Search, ChevronsLeft, Users, Zap, UserCircle, LayoutGrid, Layout, ClipboardList, Package, Group, Baseline, Clipboard, CheckCircle, CheckCircle2, UserSquare, Mailbox, Milestone, PackagePlus, ClipboardPaste, PanelLeftClose, PanelLeftOpen, Home, ChevronsRight } from "lucide-react";
+import { PlusCircle, Settings, Search, ChevronsLeft, Users, Zap, UserCircle, LayoutGrid, Layout, ClipboardList, Package, Group, Baseline, Clipboard, CheckCircle, CheckCircle2, UserSquare, Mailbox, Milestone, PackagePlus, ClipboardPaste, PanelLeftClose, PanelLeftOpen, Home, ChevronsRight, Hotel } from "lucide-react";
 import { Button } from "../ui/button";
 import { BellIcon, LightningBoltIcon } from "@radix-ui/react-icons";
 import { useMutation, useQuery } from "react-query";
@@ -10,6 +10,8 @@ import { site } from "../../client/api";
 import { Icons } from "../ui/icons";
 import ServiceModals from "./serviceModals";
 import { Progress } from "../ui/progress";
+import { Dialog, DialogTrigger } from "../ui/dialog";
+import { SearchItem } from "../topbar/searchBar";
 
 // import TeamModal from "../components/switchTeamModal";
 
@@ -19,7 +21,10 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   const { user } = useUser();
   const [setup, setSetup] = useState(true)
 
-  const handleMenuClick = (menu) => {
+  const navigate = useNavigate();
+
+  const handleMenuClick = (menu, href) => {
+    navigate(href)
     setActive(menu);
   }
 
@@ -40,12 +45,10 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
     }
   });
 
-  const navigate = useNavigate();
-
   const navigation = [
-    { name: 'Dashboard', icon: <LayoutGrid viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/app', current: active === '/dashboard/app' ? true : false, id: 'dashboard' },
-    { name: 'Notifications', icon: <BellIcon viewBox='0 0 15 15' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/notification', current: active === '/integration' || active === '/integration/connected' ? true : false, id: 'integration' },
-    { name: 'Search', icon: <Search viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/gifts-privileges', current: active === "/gifts-privileges" || active === "/gifts-privileges/premium" || active === "/gifts-privileges/free" ? true : false, active: active, id: 'gift' },
+    { name: 'Dashboard', icon: <Hotel viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/app', current: active === '/dashboard/app' ? true : false, id: 'dashboard' },
+    { name: 'Notifications', icon: <BellIcon viewBox='0 0 15 15' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/settings/notifications', current: active === '/dashboard/settings/notifications' ? true : false, id: 'notifications' },
+    { name: 'Search', icon: <Search viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' /> },
     { name: 'Settings', icon: <Settings viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/settings/account', current: active == "/dashboard/settings/account" || active == "/dashboard/settings/billing-plans" || active == "/dashboard/settings/notifications" ? true : false, active: active, id: 'settings' },
   ]
 
@@ -78,9 +81,9 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   ]
 
   const workspaceApp = [
-    { name: 'Blog & Website', icon: <LayoutGrid viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' />, id: 'blog-website' },
-    { name: 'CRM', icon: <LayoutGrid viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' />, id: 'crm' },
-    { name: 'HR & HRM', icon: <LayoutGrid viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' />, id: 'hr-hrm' },
+    { name: 'Blog & Website', icon: <Icons.blogPostApp width='16' height='16' />, id: 'blog-website' },
+    { name: 'CRM', icon: <Icons.websiteApp width='16' height='16' fill='transparent'/>, id: 'crm' },
+    { name: 'HR & HRM', icon: <Icons.blogAndPagesApp width='16' height='16'/>, id: 'hr-hrm' },
   ]
 
   useEffect(() => {
@@ -164,12 +167,24 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
           <nav className="flex bg-white px-3 pt-2 flex-col gap-y-4" aria-label="Sidebar">
             <section className="flex flex-col">
               {navigation.map((item) => (
-                <Link to={item.href}>
-                  <Button variant='ghost' onClick={handleMenuClick} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.href === active ? 'bg-zinc-100' : ''}`}>
+                <>
+                  {item.href ? (
+                    <Button variant='ghost' onClick={() => handleMenuClick(item.current, item.href)} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.href === active ? 'bg-zinc-100' : ''}`}>
                     {item.icon}
                     {item.name}
                   </Button>
-                </Link>
+                  ) : (
+                    <Dialog>
+                      <DialogTrigger>
+                        <Button variant='ghost' className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5`}>
+                          {item.icon}
+                          {item.name}
+                        </Button>
+                      </DialogTrigger>
+                      <SearchItem />
+                    </Dialog>
+                  )}
+                </>
               ))}
             </section>
 
@@ -226,7 +241,8 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
             <section className="flex flex-col">
               <h3 className="text-[#797979] text-sm font-semibold p-4">WorkSpace App</h3>
               <Button variant='ghost' onClick={() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5`}>
-                <Layout viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' />
+                {/* <Layout viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' /> */}
+                <Icons.erpApp width='16' height='16'/>
                 Commerce
               </Button>
               {workspaceApp.map((item) => (

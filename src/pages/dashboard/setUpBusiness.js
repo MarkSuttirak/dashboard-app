@@ -47,7 +47,7 @@ export default function SetupBusiness(){
             <h3 style={textGradient("linear-gradient(92deg, #5200FF 14.1%, #FF6DDD 60.81%, #FF5D1D 107.53%)", "13px")}>New premium feature (coming soon).</h3>
             <h1 className="text-[48px] tracking-[-3px] text-[#000000D9] leading-[44.5px] font-semibold mt-4">Unlock multiplayer work together</h1>
 
-            <Button variant='ghost' className='btn-with-icon mt-[60px]'>
+            <Button variant='outline' className='btn-with-icon mt-[60px]'>
               <BadgeCheck className="h-4 w-4"/>
               Start invite team
             </Button>

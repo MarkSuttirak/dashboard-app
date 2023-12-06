@@ -17,7 +17,7 @@ export default function Packages(){
 
   const [totalPriceMonthly, setTotalPriceMonthly] = useState(750);
 
-  const [isStarter, setIsStarter] = useState(false)
+  const [isStarter, setIsStarter] = useState(true)
   const [needSMSOTP, setNeedSMSOTP] = useState(false)
   const [packageTypeCRM, setPackageTypeCRM] = useState()
   const [packageTypeMarketConnect, setPackageTypeMarketConnect] = useState()
@@ -37,9 +37,20 @@ export default function Packages(){
       workspace: isStarter ? 750 : 0,
       crm: { Starter: 750, Professional: 28000, Enterprise: 89000 },
       marketConnect: { Starter: 750, Professional: 15900, Enterprise: 39000 },
-      lineCRM: { Starter: 4350, Professional: 4600, Enterprise: 5000 },
+      lineCRM: { Starter: 2850, Professional: 3100, Enterprise: 3500 },
       rewardful: { Starter: 1500, Professional: 3500, Enterprise: 6500 },
       onlineStore: { Starter: 750, Professional: 14400, Enterprise: 42000 },
+      lineCRMAndRewardful: (
+        packageTypeLineCRM === 'Starter' && packageTypeRewardful === 'Starter' ? 4350 :
+        packageTypeLineCRM === 'Starter' && packageTypeRewardful === 'Professional' ? 6350 :
+        packageTypeLineCRM === 'Starter' && packageTypeRewardful === 'Enterprise' ? 9350 :
+        packageTypeLineCRM === 'Professional' && packageTypeRewardful === 'Starter' ? 4600 :
+        packageTypeLineCRM === 'Professional' && packageTypeRewardful === 'Professional' ? 6600 :
+        packageTypeLineCRM === 'Professional' && packageTypeRewardful === 'Enterprise' ? 9600 :
+        packageTypeLineCRM === 'Enterprise' && packageTypeRewardful === 'Starter' ? 5000 :
+        packageTypeLineCRM === 'Enterprise' && packageTypeRewardful === 'Professional' ? 7000 :
+        packageTypeLineCRM === 'Enterprise' && packageTypeRewardful === 'Enterprise' ? 10000 : 0
+      )
     };
 
     const addonPrices = {
@@ -65,8 +76,9 @@ export default function Packages(){
       prices.workspace +
       (packageTypeCRM ? prices.crm[packageTypeCRM] || 0 : 0) +
       (packageTypeMarketConnect ? prices.marketConnect[packageTypeMarketConnect] || 0 : 0) +
+      (packageTypeLineCRM && packageTypeRewardful ? prices.lineCRMAndRewardful : 
       (packageTypeLineCRM ? prices.lineCRM[packageTypeLineCRM] || 0 : 0) +
-      (packageTypeRewardful ? prices.rewardful[packageTypeRewardful] || 0 : 0) +
+      (packageTypeRewardful ? prices.rewardful[packageTypeRewardful] || 0 : 0)) +
       (packageTypeOnlineStore ? prices.onlineStore[packageTypeOnlineStore] || 0 : 0) +
       customerContactPrice + paidUserPrice + smsOTPPrice + customFieldPrice + addonPrice
     )
@@ -100,9 +112,9 @@ export default function Packages(){
        {title:'Enterprise',price:39000}
      ],
      lineCRM: [
-       {title:'Starter',price:4350},
-       {title:'Professional',price:4600},
-       {title:'Enterprise',price:5000}
+       {title:'Starter',price:2850},
+       {title:'Professional',price:3100},
+       {title:'Enterprise',price:3500}
      ],
      rewardful: [
        {title:'Starter',price:1500},
@@ -194,7 +206,7 @@ export default function Packages(){
           </CardHeader>
           <CardContent className="grid grid-cols-3 gap-4 p-0">
             {bundleSelectList.lineCRM.map(list => (
-              <BundleSelect title={list.title} price={`฿${list.price.toLocaleString()}/month`} checked={packageTypeLineCRM === list.title} onCheckedChange={() => handlePackageType(list.title, packageTypeLineCRM, setPackageTypeLineCRM)} />
+              <BundleSelect title={list.title} price={`฿${list.price.toLocaleString()}/month`} checked={packageTypeLineCRM === list.title} onCheckedChange={() => {handlePackageType(list.title, packageTypeLineCRM, setPackageTypeLineCRM);handlePackageType(list.title, packageTypeRewardful, () => setPackageTypeRewardful('Starter'))}} />
             ))}
           </CardContent>
           {packageTypeLineCRM ? (
