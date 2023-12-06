@@ -425,12 +425,6 @@ body {
   background:#F7F7F7;
   padding:12px;
   border-right:1px solid #E4E4E7;
-  &.show {
-    margin-top:-54px;
-  }
-  &.hide {
-    margin-top:0;
-  }
   img {
     display:block;
     width:60%;
@@ -453,6 +447,12 @@ body {
 	outline:0px solid #2794F0;
 	border:1px solid #E4E4E7;
   color:#6B7280;
+  &.hide {
+    display:none;
+  }
+  &.show {
+    display:inherit;
+  }
   &.add {background-color:white}
 	// &:hover,&.active {background-color:#F0F1F2}
 	&.add-ons {

@@ -107,7 +107,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
   const IconSidebar = () => {
     return (
-      <nav className={`nav-left-side ${!isSidebarOpen ? 'hide' : 'show'}`}>
+      <nav className={`nav-left-side`}>
         {/* {isSidebarOpen ? (
           <div className="nav-btns" id="home-btn" onClick={() => navigate('/')}>
             <Home color='#18181B' viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5'/>
@@ -117,7 +117,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
             <PanelLeftOpen color='#18181B' viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5'/>
           </div>
         )} */}
-        <div className={`nav-btns`} id="home-btn" onClick={() => setIsSidebarOpen(true)}>
+        <div className={`nav-btns ${!isSidebarOpen ? 'show' : 'hide'}`} id="home-btn" onClick={() => setIsSidebarOpen(true)}>
           <ChevronsRight color='#18181B' viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5'/>
         </div>
         <div className="nav-btns add-ons">
