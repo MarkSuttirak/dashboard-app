@@ -70,16 +70,12 @@ export default function Packages(){
       (packageTypeOnlineStore ? prices.onlineStore[packageTypeOnlineStore] || 0 : 0) +
       customerContactPrice + paidUserPrice + smsOTPPrice + customFieldPrice + addonPrice
     )
-    setEstimatedPrice(
-      totalPriceMonthly +
-      (estimatedContactPrice || 0) + 
-      (packageTypeMarketConnect ? prices.marketConnect[packageTypeMarketConnect] + estimatedMarketConnectPrice || 0 : 0)
-    )
+    setEstimatedPrice(totalPriceMonthly + estimatedContactPrice + estimatedMarketConnectPrice)
   };
 
   useEffect(() => {
     calculateTotalPrice();
-  }, [isStarter, packageTypeCRM, packageTypeMarketConnect, packageTypeLineCRM, packageTypeRewardful, packageTypeOnlineStore, smsOTP, customerContact, paidUsers, customField, needSMSOTP, addons, estimatedPrice]);
+  }, [isStarter, packageTypeCRM, packageTypeMarketConnect, packageTypeLineCRM, packageTypeRewardful, packageTypeOnlineStore, smsOTP, customerContact, paidUsers, customField, needSMSOTP, addons, estimatedPrice, totalPriceMonthly]);
 
   const handlePackageType = (index, packageType, setPackageType) => {
     packageType === index ? setPackageType(null) : setPackageType(index)
@@ -293,19 +289,19 @@ export default function Packages(){
         <>
           {packageTypeCRM ? (
             <>{bundleSelectList.crm.filter(item => item.title === packageTypeCRM).map(item => (
-              <ProductSelection title={`CRM ${item.title}`} price={`฿${item.price.toLocaleString()}/month`} onClose={() => setPackageTypeCRM()}/>
+              <ProductSelection title={`CRM ${item.title}`} price={`฿${item.price.toLocaleString()}/month`} onClose={() => setPackageTypeCRM()} desc={`Includes ${customerContact.toLocaleString()} customer contacts`}/>
             ))}</>
           ) : null}
 
           {packageTypeMarketConnect ? (
             <>{bundleSelectList.marketConnect.filter(item => item.title === packageTypeMarketConnect).map(item => (
-              <ProductSelection title={`Market Connect ${item.title}`} price={`฿${item.price.toLocaleString()}/month`} onClose={() => setPackageTypeMarketConnect()}/>
+              <ProductSelection title={`Market Connect ${item.title}`} price={`฿${item.price.toLocaleString()}/month`} onClose={() => setPackageTypeMarketConnect()} desc={`Includes ${paidUsers} paid users`}/>
             ))}</>
           ) : null}
 
           {packageTypeLineCRM ? (
             <>{bundleSelectList.lineCRM.filter(item => item.title === packageTypeLineCRM).map(item => (
-              <ProductSelection title={`Line CRM ${item.title}`} price={`฿${item.price.toLocaleString()}/month`} onClose={() => setPackageTypeLineCRM()}/>
+              <ProductSelection title={`Line CRM ${item.title}`} price={`฿${item.price.toLocaleString()}/month`} onClose={() => setPackageTypeLineCRM()} desc={`Includes ${customField} custom fields ${needSMSOTP ? `with ${smsOTP.toLocaleString()} SMS OTP, valid within ${smsOTP === 5000 ? '12 months' : '24 months'}` : ''}`}/>
             ))}</>
           ) : null}
 
