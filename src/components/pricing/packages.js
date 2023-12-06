@@ -25,6 +25,7 @@ export default function Packages(){
   const [packageTypeRewardful, setPackageTypeRewardful] = useState()
   const [packageTypeOnlineStore, setPackageTypeOnlineStore] = useState()
   const [addons, setAddons] = useState()
+  const [estimatedPrice, setEstimatedPrice] = useState(0)
 
   const [customerContact, setCustomerContact] = useState(customerContactsList[0]);
   const [paidUsers, setPaidUsers] = useState(paidUsersList[0]);
@@ -41,12 +42,6 @@ export default function Packages(){
       onlineStore: { Starter: 750, Professional: 14400, Enterprise: 42000 },
     };
 
-    const customerContactPrice = packageTypeCRM ? customerContactsList.indexOf(customerContact) * 1500 : 0;
-    const paidUserPrice = packageTypeMarketConnect ? paidUsersList.indexOf(paidUsers) * 900 : 0;
-    const smsOTPPrice = packageTypeLineCRM && needSMSOTP && smsOTP ? { 5000: 3000, 18000: 10000, 60000: 30000 }[smsOTP] || 3000 : 0;
-    const customFieldPrice = packageTypeLineCRM && customField ? { 10: 350, 25: 600, 50: 1000 }[customField] || 350 : 0;
-    const addonPrice = addons ? addonPrices[addons] || 0 : 0;
-
     const addonPrices = {
       'API Limit Increase': 10000,
       'Technical Consulting': 60000,
@@ -57,6 +52,15 @@ export default function Packages(){
       'Migration Services': 8500,
     };
 
+    const customerContactPrice = packageTypeCRM ? customerContactsList.indexOf(customerContact) * 1500 : 0;
+    const paidUserPrice = packageTypeMarketConnect ? paidUsersList.indexOf(paidUsers) * 900 : 0;
+    const smsOTPPrice = packageTypeLineCRM && needSMSOTP && smsOTP ? { 5000: 3000, 18000: 10000, 60000: 30000 }[smsOTP] || 3000 : 0;
+    const customFieldPrice = packageTypeLineCRM && customField ? { 10: 350, 25: 600, 50: 1000 }[customField] || 350 : 0;
+    const addonPrice = addons ? addonPrices[addons] || 0 : 0;
+
+    const estimatedContactPrice = packageTypeCRM === 'Professional' ? 90000 : packageTypeCRM === 'Enterprise' ? 165000 : 0
+    const estimatedMarketConnectPrice = packageTypeMarketConnect === 'Professional' ? 45000 : packageTypeMarketConnect === 'Enterprise' ? 125000 : 0
+
     setTotalPriceMonthly(
       prices.workspace +
       (packageTypeCRM ? prices.crm[packageTypeCRM] || 0 : 0) +
@@ -66,11 +70,16 @@ export default function Packages(){
       (packageTypeOnlineStore ? prices.onlineStore[packageTypeOnlineStore] || 0 : 0) +
       customerContactPrice + paidUserPrice + smsOTPPrice + customFieldPrice + addonPrice
     )
-  };  
+    setEstimatedPrice(
+      totalPriceMonthly +
+      (estimatedContactPrice || 0) + 
+      (packageTypeMarketConnect ? prices.marketConnect[packageTypeMarketConnect] + estimatedMarketConnectPrice || 0 : 0)
+    )
+  };
 
   useEffect(() => {
     calculateTotalPrice();
-  }, [isStarter, packageTypeCRM, packageTypeMarketConnect, packageTypeLineCRM, packageTypeRewardful, packageTypeOnlineStore, smsOTP, customerContact, paidUsers, customField, needSMSOTP, addons]);
+  }, [isStarter, packageTypeCRM, packageTypeMarketConnect, packageTypeLineCRM, packageTypeRewardful, packageTypeOnlineStore, smsOTP, customerContact, paidUsers, customField, needSMSOTP, addons, estimatedPrice]);
 
   const handlePackageType = (index, packageType, setPackageType) => {
     packageType === index ? setPackageType(null) : setPackageType(index)
@@ -85,104 +94,29 @@ export default function Packages(){
 
   const bundleSelectList = {
      crm: [
-       {
-         title:'Starter',
-         price:750,
-         variable:packageTypeCRM,
-         setVariable:setPackageTypeCRM
-       },
-       {
-         title:'Professional',
-         price:28000,
-         variable:packageTypeCRM,
-         setVariable:setPackageTypeCRM
-       },
-       {
-         title:'Enterprise',
-         price:89000,
-         variable:packageTypeCRM,
-         setVariable:setPackageTypeCRM
-       }
+       {title:'Starter',price:750},
+       {title:'Professional',price:28000},
+       {title:'Enterprise',price:89000}
      ],
      marketConnect: [
-       {
-         title:'Starter',
-         price:750,
-         variable:packageTypeMarketConnect,
-         setVariable:setPackageTypeMarketConnect
-       },
-       {
-         title:'Professional',
-         price:15900,
-         variable:packageTypeMarketConnect,
-         setVariable:setPackageTypeMarketConnect
-       },
-       {
-         title:'Enterprise',
-         price:39000,
-         variable:packageTypeMarketConnect,
-         setVariable:setPackageTypeMarketConnect
-       }
+       {title:'Starter',price:750},
+       {title:'Professional',price:15900},
+       {title:'Enterprise',price:39000}
      ],
      lineCRM: [
-       {
-         title:'Starter',
-         price:4350,
-         variable:packageTypeLineCRM,
-         setVariable:setPackageTypeLineCRM
-       },
-       {
-         title:'Professional',
-         price:4600,
-         variable:packageTypeLineCRM,
-         setVariable:setPackageTypeLineCRM
-       },
-       {
-         title:'Enterprise',
-         price:5000,
-         variable:packageTypeLineCRM,
-         setVariable:setPackageTypeLineCRM
-       }
+       {title:'Starter',price:4350},
+       {title:'Professional',price:4600},
+       {title:'Enterprise',price:5000}
      ],
      rewardful: [
-       {
-         title:'Starter',
-         price:1500,
-         variable:packageTypeRewardful,
-         setVariable:setPackageTypeRewardful
-       },
-       {
-         title:'Professional',
-         price:3500,
-         variable:packageTypeRewardful,
-         setVariable:setPackageTypeRewardful
-       },
-       {
-         title:'Enterprise',
-         price:6500,
-         variable:packageTypeRewardful,
-         setVariable:setPackageTypeRewardful
-       }
+       {title:'Starter',price:1500},
+       {title:'Professional',price:3500},
+       {title:'Enterprise',price:6500}
      ],
      onlineStore: [
-       {
-         title:'Starter',
-         price:750,
-         variable:packageTypeOnlineStore,
-         setVariable:setPackageTypeOnlineStore
-       },
-       {
-         title:'Professional',
-         price:14400,
-         variable:packageTypeOnlineStore,
-         setVariable:setPackageTypeOnlineStore
-       },
-       {
-         title:'Enterprise',
-         price:42000,
-         variable:packageTypeOnlineStore,
-         setVariable:setPackageTypeOnlineStore
-       }
+       {title:'Starter',price:750},
+       {title:'Professional',price:14400},
+       {title:'Enterprise',price:42000}
      ],
    }
 
@@ -216,7 +150,7 @@ export default function Packages(){
           </CardHeader>
           <CardContent className="grid grid-cols-3 gap-4 p-0">
             {bundleSelectList.crm.map(list => (
-              <BundleSelect title={list.title} price={`฿${list.price.toLocaleString()}/month`} checked={list.variable === list.title} onCheckedChange={() => handlePackageType(list.title, list.variable, list.setVariable)} />
+              <BundleSelect title={list.title} price={`฿${list.price.toLocaleString()}/month`} checked={packageTypeCRM === list.title} onCheckedChange={() => handlePackageType(list.title, packageTypeCRM, setPackageTypeCRM)} />
             ))}
           </CardContent>
           {packageTypeCRM ? (
@@ -240,7 +174,7 @@ export default function Packages(){
           </CardHeader>
           <CardContent className="grid grid-cols-3 gap-4 p-0">
             {bundleSelectList.marketConnect.map(list => (
-              <BundleSelect title={list.title} price={`฿${list.price.toLocaleString()}/month`} checked={list.variable === list.title} onCheckedChange={() => handlePackageType(list.title, list.variable, list.setVariable)} />
+              <BundleSelect title={list.title} price={`฿${list.price.toLocaleString()}/month`} checked={packageTypeMarketConnect === list.title} onCheckedChange={() => handlePackageType(list.title, packageTypeMarketConnect, setPackageTypeMarketConnect)} />
             ))}
           </CardContent>
           {packageTypeMarketConnect ? (
@@ -264,7 +198,7 @@ export default function Packages(){
           </CardHeader>
           <CardContent className="grid grid-cols-3 gap-4 p-0">
             {bundleSelectList.lineCRM.map(list => (
-              <BundleSelect title={list.title} price={`฿${list.price.toLocaleString()}/month`} checked={list.variable === list.title} onCheckedChange={() => handlePackageType(list.title, list.variable, list.setVariable)} />
+              <BundleSelect title={list.title} price={`฿${list.price.toLocaleString()}/month`} checked={packageTypeLineCRM === list.title} onCheckedChange={() => handlePackageType(list.title, packageTypeLineCRM, setPackageTypeLineCRM)} />
             ))}
           </CardContent>
           {packageTypeLineCRM ? (
@@ -296,7 +230,7 @@ export default function Packages(){
           </CardHeader>
           <CardContent className="grid grid-cols-3 gap-4 p-0">
             {bundleSelectList.rewardful.map(list => (
-              <BundleSelect title={list.title} price={`฿${list.price.toLocaleString()}/month`} checked={list.variable === list.title} onCheckedChange={() => handlePackageType(list.title, list.variable, list.setVariable)} />
+              <BundleSelect title={list.title} price={`฿${list.price.toLocaleString()}/month`} checked={packageTypeRewardful === list.title} onCheckedChange={() => handlePackageType(list.title, packageTypeRewardful, setPackageTypeRewardful)} />
             ))}
           </CardContent>
           {packageTypeRewardful ? (
@@ -321,7 +255,7 @@ export default function Packages(){
           </CardHeader>
           <CardContent className="grid grid-cols-3 gap-4 p-0">
             {bundleSelectList.onlineStore.map(list => (
-              <BundleSelect title={list.title} price={`฿${list.price.toLocaleString()}/month`} checked={list.variable === list.title} onCheckedChange={() => handlePackageType(list.title, list.variable, list.setVariable)} />
+              <BundleSelect title={list.title} price={`฿${list.price.toLocaleString()}/month`} checked={packageTypeOnlineStore === list.title} onCheckedChange={() => handlePackageType(list.title, packageTypeOnlineStore, setPackageTypeOnlineStore)} />
             ))}
           </CardContent>
           {packageTypeOnlineStore ? (
@@ -355,7 +289,7 @@ export default function Packages(){
         </Card>
       </main>
 
-      <PricingResult totalMonthly={totalPriceMonthly} totalYearly={totalPriceMonthly * 0.9} commitments={
+      <PricingResult totalMonthly={totalPriceMonthly} estimated={estimatedPrice} totalYearly={totalPriceMonthly} commitments={
         <>
           {packageTypeCRM ? (
             <>{bundleSelectList.crm.filter(item => item.title === packageTypeCRM).map(item => (

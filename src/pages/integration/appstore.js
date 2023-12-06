@@ -136,11 +136,11 @@ export default function AppStore(){
       </div>
       <div className="flex gap-x-6 mt-6">
         <section className="grid grid-cols-2 gap-6 w-[70%]">
-          
+
         {appslists?.map((app, index) => {
         const isInstalled = installedApps.data?.some(installedApp => installedApp.title === app.title);
         return (
-          <Card key={index} className='shadow-none flex flex-col justify-between'>
+          <Card key={index} className='shadow-none flex flex-col justify-between h-fit'>
             <CardHeader className='flex flex-row gap-x-6'>
               <div className="w-[90px]">
                 {app.image ? <img src={site.backend_url()+app.image}/> : <Icons.erpApp />}
@@ -167,9 +167,7 @@ export default function AppStore(){
         )
       })}
 
-
-
-        </section>
+      </section>
         <section className="border rounded-xl bg-[#F7F7F8] w-[30%]">
           <div className="p-6">
             <h1 className="secondary-heading">How to Start Selling Online</h1>
