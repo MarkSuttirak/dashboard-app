@@ -8,8 +8,7 @@ import SelectInput from "./inputSelect";
 import { Switch } from "src/components/ui/switch"
 import PricingResult from "./pricingResult";
 import ProductSelection from "./productSelection";
-import { bundleSelectList, marketLists } from "./pricingLists";
-import { Checkbox } from "../ui/checkbox";
+import { MarketCheckbox, bundleSelectList, marketLists } from "./pricingLists";
 import PricingEstimate from "./pricingEstimate";
 
 export default function Packages(){
@@ -117,6 +116,14 @@ export default function Packages(){
   const rewardfulFilter = bundleSelectList.rewardful.filter(item => item.title === packageTypeRewardful)
   const onlineStoreFilter = bundleSelectList.onlineStore.filter(item => item.title === packageTypeOnlineStore)
 
+  const packageInfo = [
+    {condition: packageTypeCRM, filterInfo: crmFilter, titlePrefix: 'CRM', onClose: () => setPackageTypeCRM(), desc: `Includes ${customerContact.toLocaleString()} customer contacts`},
+    {condition: packageTypeMarketConnect, filterInfo: marketConnectFilter, titlePrefix: 'Market Connect', onClose: () => setPackageTypeMarketConnect(), desc: `Includes ${paidUsers} paid users`},
+    {condition: packageTypeLineCRM, filterInfo: lineCRMFilter, titlePrefix: 'Line CRM', onClose: () => setPackageTypeLineCRM(), desc: `Includes ${customField} custom fields ${needSMSOTP ? `with ${smsOTP.toLocaleString()} SMS OTP, valid within ${smsOTP === 5000 ? '12 months' : '24 months'}` : ''}`},
+    {condition: packageTypeRewardful, filterInfo: rewardfulFilter, titlePrefix: 'Rewardful', onClose: () => setPackageTypeRewardful()},
+    {condition: packageTypeOnlineStore, filterInfo: onlineStoreFilter, titlePrefix: 'Online Store', onClose: () => setPackageTypeOnlineStore()},
+  ];
+
   const recurringFee = [
     {title:crmFilter.length > 0 && crmFilter[0].title, price:crmFilter.length > 0 && crmFilter[0].price},
     {title:marketConnectFilter.length > 0 && marketConnectFilter[0].title, price:marketConnectFilter.length > 0 && marketConnectFilter[0].price},
@@ -125,16 +132,15 @@ export default function Packages(){
     {title:onlineStoreFilter.length > 0 && onlineStoreFilter[0].title, price:onlineStoreFilter.length > 0 && onlineStoreFilter[0].price}
   ]
 
-  const packageInfo = [
-    {condition: packageTypeCRM, filter: crmFilter, titlePrefix: 'CRM', onClose: () => setPackageTypeCRM(), desc: `Includes ${customerContact.toLocaleString()} customer contacts`},
-    {condition: packageTypeMarketConnect, filter: marketConnectFilter, titlePrefix: 'Market Connect', onClose: () => setPackageTypeMarketConnect(), desc: `Includes ${paidUsers} paid users`},
-    {condition: packageTypeLineCRM, filter: lineCRMFilter, titlePrefix: 'Line CRM', onClose: () => setPackageTypeLineCRM(), desc: `Includes ${customField} custom fields ${needSMSOTP ? `with ${smsOTP.toLocaleString()} SMS OTP, valid within ${smsOTP === 5000 ? '12 months' : '24 months'}` : ''}`},
-    {condition: packageTypeRewardful, filter: rewardfulFilter, titlePrefix: 'Rewardful', onClose: () => setPackageTypeRewardful()},
-    {condition: packageTypeOnlineStore, filter: onlineStoreFilter, titlePrefix: 'Online Store', onClose: () => setPackageTypeOnlineStore()},
-  ];
-
   const oneTimeFee = [
-
+    {
+      title:packageTypeCRM === 'Professional' ? 'CRM Professional' : packageTypeCRM === 'Enterprise' ? 'CRM Enterprise' : null, 
+      price:packageTypeCRM === 'Professional' ? 60000 : packageTypeCRM === 'Enterprise' ? 165000 : 0
+    },
+    {
+      title:packageTypeMarketConnect === 'Professional' ? 'Market Connect Professional' : packageTypeMarketConnect === 'Enterprise' ? 'Market Connect Enterprise' : null,
+      price:packageTypeMarketConnect === 'Professional' ? 45000 : packageTypeMarketConnect === 'Enterprise' ? 125000 : 0
+    }
   ]
 
   return (
@@ -209,26 +215,8 @@ export default function Packages(){
                   {needSocialMedia ? (
                     <div className="mt-5">
                       <h2 className="subheading font-medium">How many market channels do you need?</h2>
-
-                      <h3 className="main-desc mt-4 mb-[6px]">Marketplace</h3>
-                      <div className="flex flex-col gap-y-[6px]">
-                        {marketLists.marketplaces.map(market => (
-                          <div className="flex items-center gap-x-3">
-                            <Checkbox id={market.value}/>
-                            <label htmlFor={market.value} className="text-sm">{market.label}</label>
-                          </div>
-                        ))}
-                      </div>
-
-                      <h3 className="main-desc mt-4 mb-[6px]">Social Media</h3>
-                      <div className="flex flex-col gap-y-[6px]">
-                        {marketLists.socialMedia.map(market => (
-                          <div className="flex items-center gap-x-3">
-                            <Checkbox id={market.value}/>
-                            <label htmlFor={market.value} className="text-sm">{market.label}</label>
-                          </div>
-                        ))}
-                      </div>
+                      <MarketCheckbox title='Marketplace' list={marketLists.marketplaces}/>
+                      <MarketCheckbox title='Social Media' list={marketLists.socialMedia}/>
                     </div>
                   ) : null}
                 </div>
@@ -338,10 +326,10 @@ export default function Packages(){
         </Card>
       </main>
 
-      <PricingResult estimateButton={<PricingEstimate recurringFee={recurringFee} />} totalMonthly={totalPriceMonthly} estimated={estimatedPrice} totalYearly={totalPriceMonthly} commitments={
+      <PricingResult estimateButton={<PricingEstimate recurringFee={recurringFee} oneTimeFee={oneTimeFee}/>} totalMonthly={totalPriceMonthly} estimated={estimatedPrice} totalYearly={totalPriceMonthly} commitments={
         <>{packageInfo.map(info => (
             <>{info.condition ? (
-                <>{info.filter.map(item => (
+                <>{info.filterInfo.map(item => (
                   <ProductSelection key={item.title} title={`${info.titlePrefix} ${item.title}`} price={`฿${item.price.toLocaleString()}/month`} onClose={() => setPackageTypeCRM()} desc={`Includes ${customerContact.toLocaleString()} customer contacts`}/>
                 ))}</>
               ) : null}</>
