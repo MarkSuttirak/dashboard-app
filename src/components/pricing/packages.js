@@ -8,6 +8,9 @@ import SelectInput from "./inputSelect";
 import { Switch } from "src/components/ui/switch"
 import PricingResult from "./pricingResult";
 import ProductSelection from "./productSelection";
+import { bundleSelectList, marketLists } from "./pricingLists";
+import { Checkbox } from "../ui/checkbox";
+import PricingEstimate from "./pricingEstimate";
 
 export default function Packages(){
   const customerContactsList = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000];
@@ -19,6 +22,7 @@ export default function Packages(){
 
   const [isStarter, setIsStarter] = useState(true)
   const [needSMSOTP, setNeedSMSOTP] = useState(false)
+  const [needSocialMedia, setNeedSocialMedia] = useState(false)
   const [packageTypeCRM, setPackageTypeCRM] = useState()
   const [packageTypeMarketConnect, setPackageTypeMarketConnect] = useState()
   const [packageTypeLineCRM, setPackageTypeLineCRM] = useState()
@@ -50,6 +54,9 @@ export default function Packages(){
         packageTypeLineCRM === 'Enterprise' && packageTypeRewardful === 'Starter' ? 5000 :
         packageTypeLineCRM === 'Enterprise' && packageTypeRewardful === 'Professional' ? 7000 :
         packageTypeLineCRM === 'Enterprise' && packageTypeRewardful === 'Enterprise' ? 10000 : 0
+      ),
+      crmAndMarketConnectAndOnlineStore: (
+        packageTypeCRM === 'Starter' && packageTypeMarketConnect === 'Starter' && packageTypeOnlineStore === 'Starter' && 750
       )
     };
 
@@ -74,12 +81,15 @@ export default function Packages(){
 
     setTotalPriceMonthly(
       prices.workspace +
-      (packageTypeCRM ? prices.crm[packageTypeCRM] || 0 : 0) +
-      (packageTypeMarketConnect ? prices.marketConnect[packageTypeMarketConnect] || 0 : 0) +
       (packageTypeLineCRM && packageTypeRewardful ? prices.lineCRMAndRewardful : 
       (packageTypeLineCRM ? prices.lineCRM[packageTypeLineCRM] || 0 : 0) +
       (packageTypeRewardful ? prices.rewardful[packageTypeRewardful] || 0 : 0)) +
-      (packageTypeOnlineStore ? prices.onlineStore[packageTypeOnlineStore] || 0 : 0) +
+
+      (packageTypeCRM === 'Starter' && packageTypeMarketConnect === 'Starter' && packageTypeOnlineStore === 'Starter' ? prices.crmAndMarketConnectAndOnlineStore :
+      (packageTypeCRM ? prices.crm[packageTypeCRM] || 0 : 0) +
+      (packageTypeMarketConnect ? prices.marketConnect[packageTypeMarketConnect] || 0 : 0) +
+      (packageTypeOnlineStore ? prices.onlineStore[packageTypeOnlineStore] || 0 : 0)) + 
+
       customerContactPrice + paidUserPrice + smsOTPPrice + customFieldPrice + addonPrice
     )
     setEstimatedPrice(totalPriceMonthly + estimatedContactPrice + estimatedMarketConnectPrice)
@@ -91,6 +101,7 @@ export default function Packages(){
 
   const handlePackageType = (index, packageType, setPackageType) => {
     packageType === index ? setPackageType(null) : setPackageType(index)
+    setIsStarter(true)
   };
 
   const handlePackage = {
@@ -100,33 +111,31 @@ export default function Packages(){
     smsOTP: (index) => {needSMSOTP ? setSMSOTP(index) : setSMSOTP(0)}
   };
 
-  const bundleSelectList = {
-     crm: [
-       {title:'Starter',price:750},
-       {title:'Professional',price:28000},
-       {title:'Enterprise',price:89000}
-     ],
-     marketConnect: [
-       {title:'Starter',price:750},
-       {title:'Professional',price:15900},
-       {title:'Enterprise',price:39000}
-     ],
-     lineCRM: [
-       {title:'Starter',price:2850},
-       {title:'Professional',price:3100},
-       {title:'Enterprise',price:3500}
-     ],
-     rewardful: [
-       {title:'Starter',price:1500},
-       {title:'Professional',price:3500},
-       {title:'Enterprise',price:6500}
-     ],
-     onlineStore: [
-       {title:'Starter',price:750},
-       {title:'Professional',price:14400},
-       {title:'Enterprise',price:42000}
-     ],
-   }
+  const crmFilter = bundleSelectList.crm.filter(item => item.title === packageTypeCRM)
+  const marketConnectFilter = bundleSelectList.marketConnect.filter(item => item.title === packageTypeMarketConnect)
+  const lineCRMFilter = bundleSelectList.lineCRM.filter(item => item.title === packageTypeLineCRM)
+  const rewardfulFilter = bundleSelectList.rewardful.filter(item => item.title === packageTypeRewardful)
+  const onlineStoreFilter = bundleSelectList.onlineStore.filter(item => item.title === packageTypeOnlineStore)
+
+  const recurringFee = [
+    {title:crmFilter.length > 0 && crmFilter[0].title, price:crmFilter.length > 0 && crmFilter[0].price},
+    {title:marketConnectFilter.length > 0 && marketConnectFilter[0].title, price:marketConnectFilter.length > 0 && marketConnectFilter[0].price},
+    {title:lineCRMFilter.length > 0 && lineCRMFilter[0].title, price:lineCRMFilter.length > 0 && lineCRMFilter[0].price},
+    {title:rewardfulFilter.length > 0 && rewardfulFilter[0].title, price:rewardfulFilter.length > 0 && rewardfulFilter[0].price},
+    {title:onlineStoreFilter.length > 0 && onlineStoreFilter[0].title, price:onlineStoreFilter.length > 0 && onlineStoreFilter[0].price}
+  ]
+
+  const packageInfo = [
+    {condition: packageTypeCRM, filter: crmFilter, titlePrefix: 'CRM', onClose: () => setPackageTypeCRM(), desc: `Includes ${customerContact.toLocaleString()} customer contacts`},
+    {condition: packageTypeMarketConnect, filter: marketConnectFilter, titlePrefix: 'Market Connect', onClose: () => setPackageTypeMarketConnect(), desc: `Includes ${paidUsers} paid users`},
+    {condition: packageTypeLineCRM, filter: lineCRMFilter, titlePrefix: 'Line CRM', onClose: () => setPackageTypeLineCRM(), desc: `Includes ${customField} custom fields ${needSMSOTP ? `with ${smsOTP.toLocaleString()} SMS OTP, valid within ${smsOTP === 5000 ? '12 months' : '24 months'}` : ''}`},
+    {condition: packageTypeRewardful, filter: rewardfulFilter, titlePrefix: 'Rewardful', onClose: () => setPackageTypeRewardful()},
+    {condition: packageTypeOnlineStore, filter: onlineStoreFilter, titlePrefix: 'Online Store', onClose: () => setPackageTypeOnlineStore()},
+  ];
+
+  const oneTimeFee = [
+
+  ]
 
   return (
     <div className="flex flex-col gap-4 lg:flex-row w-full">
@@ -191,6 +200,38 @@ export default function Packages(){
               <CardFooter className='flex flex-col items-start p-0'>
                 <h2 className="settings-heading text-left">How many sale users do I need?</h2>
                 <SelectInput label='900 Baht/month per additional user' lists={packageTypeMarketConnect === 'Professional' ? paidUsersList.slice(3, paidUsersList.length) : packageTypeMarketConnect === 'Enterprise' ? paidUsersList.slice(8, paidUsersList.length) : paidUsersList} onValueChange={handlePackage.paidUser} defaultValue={paidUsers} name='paid-users'/>
+
+                <div className="w-full mt-9 bg-[#F4F4F5] rounded-xl p-5">
+                  <div className="flex items-center justify-between">
+                    <h2 className="settings-heading text-left">Do you need marketplace or social media API integration?</h2>
+                    <Switch onCheckedChange={() => setNeedSocialMedia(!needSocialMedia)} checked={needSocialMedia}/>
+                  </div>
+                  {needSocialMedia ? (
+                    <div className="mt-5">
+                      <h2 className="subheading font-medium">How many market channels do you need?</h2>
+
+                      <h3 className="main-desc mt-4 mb-[6px]">Marketplace</h3>
+                      <div className="flex flex-col gap-y-[6px]">
+                        {marketLists.marketplaces.map(market => (
+                          <div className="flex items-center gap-x-3">
+                            <Checkbox id={market.value}/>
+                            <label htmlFor={market.value} className="text-sm">{market.label}</label>
+                          </div>
+                        ))}
+                      </div>
+
+                      <h3 className="main-desc mt-4 mb-[6px]">Social Media</h3>
+                      <div className="flex flex-col gap-y-[6px]">
+                        {marketLists.socialMedia.map(market => (
+                          <div className="flex items-center gap-x-3">
+                            <Checkbox id={market.value}/>
+                            <label htmlFor={market.value} className="text-sm">{market.label}</label>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
               </CardFooter>
             </>
           ) : null}
@@ -246,7 +287,7 @@ export default function Packages(){
               <Separator className='my-10'/>
               <CardFooter className='flex flex-col items-start gap-y-9 p-0'>
                 <div className="border border-[#E4E4E7] py-2 px-3 rounded-md w-full">
-                  <p className="subheading">Starter will provide a standard function with 1 condition and 3 tier levels included.</p>
+                  <p className="subheading">{packageTypeRewardful === 'Professional' ? 'Professional will include a customized function with 5 conditions and 5 tier levels.' : packageTypeRewardful === 'Enterprise' ? 'Enterprise will include a customized function with 10 conditions and 5 tier levels.' : 'Starter will include a standard function with 1 condition and 3 tier levels.'}</p>
                 </div>
               </CardFooter>
             </>
@@ -271,7 +312,7 @@ export default function Packages(){
               <Separator className='my-10'/>
               <CardFooter className='flex flex-col items-start gap-y-9 p-0'>
                 <div className="border border-[#E4E4E7] py-2 px-3 rounded-md w-full">
-                  <p className="subheading">Online Store Starter will provide 5,000 products library.</p>
+                  <p className="subheading">{packageTypeOnlineStore === 'Professional' ? 'Online Store Professional will provide up to 10,000 products library.' : packageTypeOnlineStore === 'Enterprise' ? 'Online Store Enterprise will provide up to 100,000 products library.' : 'Online Store Starter will provide 5,000 products library.'}</p>
                 </div>
               </CardFooter>
             </>
@@ -290,45 +331,21 @@ export default function Packages(){
             <BundleSelect size='large' title="Technical Consulting: Advance" price='Standard offering starting at ฿60,000' checked={addons === 'Technical Consulting'} onCheckedChange={() => handlePackageType('Technical Consulting', addons, setAddons)} width='100%' desc='Five (5) hours of total support may include phone conversations, email-based support, prep work, and any other activities related to the service. Unused hours expire at the end of each month and will not carry over.'/>
             <BundleSelect size='large' title="Monthly Inbound Consulting" price='฿45,000/month' checked={addons === 'Monthly Inbound'} onCheckedChange={() => handlePackageType('Monthly Inbound', addons, setAddons)} width='100%' desc='Access to your Inbound Consultant for up to one hour per month.'/>
             <BundleSelect size='large' title="Ongoing Inbound Consulting" price='฿95,000/month' checked={addons === 'Ongoing Inbound'} onCheckedChange={() => handlePackageType('Ongoing Inbound', addons, setAddons)} width='100%' desc='Access to your Inbound Consultant for up to five hours per month.'/>
-            <BundleSelect size='large'title="Premium Consulting" price='฿120,000' checked={addons === 'Premium Consulting'} onCheckedChange={() => handlePackageType('Premium Consulting', addons, setAddons)} width='100%' desc='Access to both an Inbound Consultant and a Technical Consultant for up to 5 hours per month with each. The Inbound Consultant and Technical Consultant will work together to find customized solutions for your strategic and technical needs.'/>
+            <BundleSelect size='large'title="Premium Consulting" price='฿120,000/month' checked={addons === 'Premium Consulting'} onCheckedChange={() => handlePackageType('Premium Consulting', addons, setAddons)} width='100%' desc='Access to both an Inbound Consultant and a Technical Consultant for up to 5 hours per month with each. The Inbound Consultant and Technical Consultant will work together to find customized solutions for your strategic and technical needs.'/>
             <BundleSelect size='large' title="Business Consulting" price='Standard offering starting at ฿60,000' checked={addons === 'Business Consulting'} onCheckedChange={() => handlePackageType('Business Consulting', addons, setAddons)} width='100%' desc='Five (5) hours of total support per month may include phone conversations, email-based support, prep work, and any other activities related to the service. Unused hours expire at the end of each month and will not carry over.'/>
             <BundleSelect size='large' title="Migration Services" price='฿8,500/month' checked={addons === 'Migration Services'} onCheckedChange={() => handlePackageType('Migration Services', addons, setAddons)} width='100%' desc='Template setup service provides a defined set of templates that will resemble your website and branding. These templates use drag-and-drop functionality so you can easily start creating pages and blog posts without coding knowledge.'/>
           </CardContent>
         </Card>
       </main>
 
-      <PricingResult totalMonthly={totalPriceMonthly} estimated={estimatedPrice} totalYearly={totalPriceMonthly} commitments={
-        <>
-          {packageTypeCRM ? (
-            <>{bundleSelectList.crm.filter(item => item.title === packageTypeCRM).map(item => (
-              <ProductSelection title={`CRM ${item.title}`} price={`฿${item.price.toLocaleString()}/month`} onClose={() => setPackageTypeCRM()} desc={`Includes ${customerContact.toLocaleString()} customer contacts`}/>
-            ))}</>
-          ) : null}
-
-          {packageTypeMarketConnect ? (
-            <>{bundleSelectList.marketConnect.filter(item => item.title === packageTypeMarketConnect).map(item => (
-              <ProductSelection title={`Market Connect ${item.title}`} price={`฿${item.price.toLocaleString()}/month`} onClose={() => setPackageTypeMarketConnect()} desc={`Includes ${paidUsers} paid users`}/>
-            ))}</>
-          ) : null}
-
-          {packageTypeLineCRM ? (
-            <>{bundleSelectList.lineCRM.filter(item => item.title === packageTypeLineCRM).map(item => (
-              <ProductSelection title={`Line CRM ${item.title}`} price={`฿${item.price.toLocaleString()}/month`} onClose={() => setPackageTypeLineCRM()} desc={`Includes ${customField} custom fields ${needSMSOTP ? `with ${smsOTP.toLocaleString()} SMS OTP, valid within ${smsOTP === 5000 ? '12 months' : '24 months'}` : ''}`}/>
-            ))}</>
-          ) : null}
-
-          {packageTypeRewardful ? (
-            <>{bundleSelectList.rewardful.filter(item => item.title === packageTypeRewardful).map(item => (
-              <ProductSelection title={`Rewardful ${item.title}`} price={`฿${item.price.toLocaleString()}/month`} onClose={() => setPackageTypeRewardful()}/>
-            ))}</>
-          ) : null}
-
-          {packageTypeOnlineStore ? (
-            <>{bundleSelectList.onlineStore.filter(item => item.title === packageTypeOnlineStore).map(item => (
-              <ProductSelection title={`Online Store ${item.title}`} price={`฿${item.price.toLocaleString()}/month`} onClose={() => setPackageTypeOnlineStore()}/>
-            ))}</>
-          ) : null}
-        </>
+      <PricingResult estimateButton={<PricingEstimate recurringFee={recurringFee} />} totalMonthly={totalPriceMonthly} estimated={estimatedPrice} totalYearly={totalPriceMonthly} commitments={
+        <>{packageInfo.map(info => (
+            <>{info.condition ? (
+                <>{info.filter.map(item => (
+                  <ProductSelection key={item.title} title={`${info.titlePrefix} ${item.title}`} price={`฿${item.price.toLocaleString()}/month`} onClose={() => setPackageTypeCRM()} desc={`Includes ${customerContact.toLocaleString()} customer contacts`}/>
+                ))}</>
+              ) : null}</>
+          ))}</>
       }/>
     </div>
   )

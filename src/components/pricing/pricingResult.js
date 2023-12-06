@@ -5,12 +5,10 @@ import {
   TabsList,
   TabsTrigger,
 } from "src/components/ui/tabs"
-import BundleSelect from "./bundleSelect"
 import { Button } from "../ui/button"
 import { Phone } from "lucide-react"
-import PricingEstimate from "./pricingEstimate"
 
-export default function PricingResult({totalMonthly, totalYearly, commitments, estimated}){
+export default function PricingResult({totalMonthly, totalYearly, commitments, estimated, estimateButton}){
   const EstimatedCost = () => {
     return (
       <div className="mt-[14px] mb-6">
@@ -21,7 +19,7 @@ export default function PricingResult({totalMonthly, totalYearly, commitments, e
   }
   return (
     <div className="flex flex-col w-full lg:w-[40%]">
-      <div className="sticky top-6">
+      <div className="sticky top-4">
         <Card className='p-10 h-fit'>
           <CardHeader className='px-0 pt-0'>
             <CardTitle className='flex gap-x-[10px] secondary-heading justify-center w-full'>
@@ -67,7 +65,7 @@ export default function PricingResult({totalMonthly, totalYearly, commitments, e
             <p className="main-desc">Offer are available to new Zaviago customers only. If you are eligible, the offer price will be displayed at checkout.</p>
 
             <div className="flex justify-center mt-6 w-full">
-              <PricingEstimate />
+              {estimateButton}
             </div>
           </CardFooter>
         </Card>
