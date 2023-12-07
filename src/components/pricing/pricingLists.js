@@ -55,14 +55,14 @@ export const marketLists = {
   ]
 }
 
-export function MarketCheckbox({title, list}){
+export function MarketCheckbox({title, list, checked}){
   return (
     <>
       <h3 className="main-desc mt-4 mb-[6px]">{title}</h3>
       <div className="flex flex-col gap-y-[6px]">
         {list.map(market => (
           <div className="flex items-center gap-x-3">
-            <Checkbox id={market.value}/>
+            <Checkbox id={market.value} checked={checked}/>
             <label htmlFor={market.value} className="text-sm">{market.label}</label>
           </div>
         ))}

@@ -46,6 +46,15 @@ export default function Packages(){
     onlineStore:packageTypeOnlineStore === 'Professional' ? '10,000 products library' : packageTypeOnlineStore === 'Enterprise' ? 'Unlimited products library' : '5,000 products library'
   }
 
+  const customerContactPrice = packageTypeCRM ? packageTypeCRM === 'Professional' ? customerContactsList.filter(value => value >= 2000).indexOf(customerContact) * 1500 : packageTypeCRM === 'Enterprise' ? customerContactsList.filter(value => value >= 5000).indexOf(customerContact) * 1500 : customerContactsList.indexOf(customerContact) * 1500 : 0;
+  const paidUserPrice = packageTypeMarketConnect ? packageTypeMarketConnect === 'Professional' ? paidUsersList.filter(value => value >= 5).indexOf(paidUsers) * 900 : packageTypeMarketConnect === 'Enterprise' ? paidUsersList.filter(value => value >= 10).indexOf(paidUsers) * 900 : paidUsersList.indexOf(paidUsers) * 900 : 0;
+  const smsOTPPrice = packageTypeLineCRM && needSMSOTP && smsOTP ? { 5000: 3000, 18000: 10000, 60000: 30000 }[smsOTP] || 3000 : 0;
+  const customFieldPrice = packageTypeLineCRM && customField ? packageTypeLineCRM === 'Professional' ? { 25: 0, 50: 400 }[customField] : packageTypeLineCRM === 'Enterprise' ? { 50: 0 }[customField] : { 10: 0, 25: 250, 50: 400 }[customField] || 0 : 0;
+  const addonPrice = addons ? addonPrices[addons] || 0 : 0;
+
+  const estimatedContactPrice = packageTypeCRM === 'Professional' ? 90000 : packageTypeCRM === 'Enterprise' ? 165000 : 0
+  const estimatedMarketConnectPrice = packageTypeMarketConnect === 'Professional' ? 45000 : packageTypeMarketConnect === 'Enterprise' ? 125000 : 0
+
   const calculateTotalPrice = () => {
     const prices = {
       workspace: isStarter ? 750 : 0,
@@ -65,19 +74,8 @@ export default function Packages(){
         packageTypeLineCRM === 'Enterprise' && packageTypeRewardful === 'Professional' ? 7000 :
         packageTypeLineCRM === 'Enterprise' && packageTypeRewardful === 'Enterprise' ? 10000 : 0
       ),
-      crmAndMarketConnectAndOnlineStore: (
-        packageTypeCRM === 'Starter' && packageTypeMarketConnect === 'Starter' && packageTypeOnlineStore === 'Starter' && 750
-      )
+      crmAndMarketConnectAndOnlineStore: (packageTypeCRM === 'Starter' && packageTypeMarketConnect === 'Starter' && packageTypeOnlineStore === 'Starter' && 750)
     };
-
-    const customerContactPrice = packageTypeCRM ? customerContactsList.indexOf(customerContact) * 1500 : 0;
-    const paidUserPrice = packageTypeMarketConnect ? paidUsersList.indexOf(paidUsers) * 900 : 0;
-    const smsOTPPrice = packageTypeLineCRM && needSMSOTP && smsOTP ? { 5000: 3000, 18000: 10000, 60000: 30000 }[smsOTP] || 3000 : 0;
-    const customFieldPrice = packageTypeLineCRM && customField ? { 10: 350, 25: 600, 50: 1000 }[customField] || 350 : 0;
-    const addonPrice = addons ? addonPrices[addons] || 0 : 0;
-
-    const estimatedContactPrice = packageTypeCRM === 'Professional' ? 90000 : packageTypeCRM === 'Enterprise' ? 165000 : 0
-    const estimatedMarketConnectPrice = packageTypeMarketConnect === 'Professional' ? 45000 : packageTypeMarketConnect === 'Enterprise' ? 125000 : 0
 
     setTotalPriceMonthly(
       prices.workspace +
@@ -124,12 +122,12 @@ export default function Packages(){
 
   const recurringFee = [
     {title:isStarter && 'Zaviago Workspace', price:isStarter && 750},
-    {title:crmFilter.length > 0 && 'CRM ' + crmFilter[0].title, price:crmFilter.length > 0 && crmFilter[0].price, desc:packageDesc.customerContact},
-    {title:marketConnectFilter.length > 0 && 'Market Connect ' + marketConnectFilter[0].title, price:marketConnectFilter.length > 0 && marketConnectFilter[0].price, desc:packageDesc.paidUsers},
-    {title:lineCRMFilter.length > 0 && 'Line CRM ' + lineCRMFilter[0].title, price:lineCRMFilter.length > 0 && lineCRMFilter[0].price, desc:packageDesc.customField},
+    {title:crmFilter.length > 0 && 'CRM ' + crmFilter[0].title, price:crmFilter.length > 0 && crmFilter[0].price + customerContactPrice, desc:packageDesc.customerContact},
+    {title:marketConnectFilter.length > 0 && 'Market Connect ' + marketConnectFilter[0].title, price:marketConnectFilter.length > 0 && marketConnectFilter[0].price + paidUserPrice, desc:packageDesc.paidUsers},
+    {title:lineCRMFilter.length > 0 && 'Line CRM ' + lineCRMFilter[0].title, price:lineCRMFilter.length > 0 && lineCRMFilter[0].price + customFieldPrice + smsOTPPrice, desc:packageDesc.customField},
     {title:rewardfulFilter.length > 0 && 'Rewardful ' + rewardfulFilter[0].title, price:rewardfulFilter.length > 0 && rewardfulFilter[0].price, desc:packageDesc.rewardfulDesc},
     {title:onlineStoreFilter.length > 0 && 'Online Store ' + onlineStoreFilter[0].title, price:onlineStoreFilter.length > 0 && onlineStoreFilter[0].price, desc:packageDesc.onlineStore},
-    {title:addonFilter && 'Addons ' + addons, price:addonPrices[addons]}
+    {title:addonFilter && addons + ' Addon', price:addonPrices[addons]}
   ]
 
   const oneTimeFee = [
@@ -149,12 +147,18 @@ export default function Packages(){
     setTotalFee(sum)
   }
 
+  const handleCheckChannel = () => {
+    setNeedSocialMedia(!needSocialMedia);
+    setPackageTypeMarketConnect('Professional')
+  }
+
   useEffect(() => {
-    if (packageTypeCRM !== null && packageTypeMarketConnect !== null, packageTypeLineCRM !== null){
+    if (packageTypeCRM !== null && packageTypeMarketConnect !== null && packageTypeLineCRM !== null){
       packageTypeCRM === 'Professional' ? setCustomerContact(2000) : packageTypeCRM === 'Enterprise' ? setCustomerContact(5000) : setCustomerContact(1000)
       packageTypeMarketConnect === 'Professional' ? setPaidUsers(5) : packageTypeMarketConnect === 'Enterprise' ? setPaidUsers(10) : setPaidUsers(2)
       packageTypeLineCRM === 'Professional' ? setCustomField(25) : packageTypeLineCRM === 'Enterprise' ? setCustomField(50) : setCustomField(10)
     }
+    packageTypeMarketConnect === 'Starter' && setNeedSocialMedia(false)
   }, [packageTypeCRM, packageTypeMarketConnect, packageTypeLineCRM])
 
   useEffect(() => {
@@ -218,7 +222,7 @@ export default function Packages(){
                 <div className="w-full mt-9 bg-[#F4F4F5] rounded-xl p-5">
                   <div className="flex items-center justify-between">
                     <h2 className="settings-heading text-left">Do you need marketplace or social media API integration?</h2>
-                    <Switch onCheckedChange={() => setNeedSocialMedia(!needSocialMedia)} checked={needSocialMedia}/>
+                    <Switch onCheckedChange={handleCheckChannel} checked={needSocialMedia}/>
                   </div>
                   {needSocialMedia ? (
                     <div className="mt-5">
@@ -240,14 +244,14 @@ export default function Packages(){
             <><Separator className='my-10'/>
               <CardFooter className='flex flex-col items-start p-0'>
                 <h2 className="settings-heading text-left">Do you need the custom field?</h2>
-                <SelectInput label='Increase your capabilities to collect and connect particular data points to contacts, businesses, and transactions. 10 custom fields included' lists={customFieldList} onValueChange={handlePackage.customField} defaultValue={customField} name='custom-field' />
+                <SelectInput label='Increase your capabilities to collect and connect particular data points to contacts, businesses, and transactions. 10 custom fields included' lists={packageTypeLineCRM === 'Professional' ? customFieldList.filter(value => value >= 25) : packageTypeLineCRM === 'Enterprise' ? customFieldList.filter(value => value >= 50) : customFieldList} onValueChange={handlePackage.customField} defaultValue={customField} name='custom-field' />
 
                 <div className="w-full mt-9 bg-[#F4F4F5] rounded-xl p-5">
                   <div className="flex items-center justify-between mb-5">
                     <h2 className="settings-heading text-left">Do you need phone SMS OTP?</h2>
                     <Switch onCheckedChange={() => setNeedSMSOTP(!needSMSOTP)} checked={needSMSOTP}/>
                   </div>
-                  <SelectInput label='Let users fill in mobile phone number and confirm real phone number with SMSStarting at ฿0.60 per SMS OTP' lists={smsOTPList} onValueChange={handlePackage.smsOTP} defaultValue={smsOTP} name='sms-otp' disabled={!needSMSOTP}/>
+                  <SelectInput label='Let users fill in mobile phone number and confirm real phone number with SMS Starting at ฿0.60 per SMS OTP' lists={smsOTPList} onValueChange={handlePackage.smsOTP} defaultValue={smsOTP} name='sms-otp' disabled={!needSMSOTP}/>
                 </div>
               </CardFooter></>) : null}</>}/>
 
@@ -291,12 +295,12 @@ export default function Packages(){
       <PricingResult estimateButton={<PricingEstimate recurringFee={recurringFee} oneTimeFee={oneTimeFee} totalCost={totalPriceMonthly} estimatedCost={estimatedPrice}/>} totalCost={totalPriceMonthly} estimated={estimatedPrice} commitments={
         <>{packageInfo.map(info => (
             <>{info.condition ? (
-                <>{info.filterInfo.map(item => (
-                  <ProductSelection key={item.title} title={`${info.titlePrefix} ${item.title}`} price={`฿${item.price.toLocaleString()}/month`} onClose={info.onClose} desc={info.desc}/>
-                ))}</>
-              ) : null}</>
+              <>{info.filterInfo.map(item => (
+                <ProductSelection key={item.title} title={`${info.titlePrefix} ${item.title}`} price={`฿${item.price.toLocaleString()}/month`} onClose={info.onClose} desc={info.desc}/>
+              ))}</>
+            ) : null}</>
           ))}
-          {addons && (<ProductSelection title={`Addons ${addons}`} price={addonFilter.price} onClose={() => setAddons()} desc={addonFilter.desc}/>)}
+          {addons && (<ProductSelection title={`${addons} Addon`} price={addonFilter.price} onClose={() => setAddons()}/>)}
         </>
       }/>
     </div>

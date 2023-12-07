@@ -10,7 +10,7 @@ import {
 import { Button } from "../ui/button"
 import { Separator } from "../ui/separator"
 
-export default function PricingEstimate({recurringFee, oneTimeFee, totalCost, estimatedCost }){
+export default function PricingEstimate({recurringFee, oneTimeFee, totalCost, estimatedCost}){
   return (
     <Dialog>
       <DialogTrigger>
@@ -37,7 +37,7 @@ export default function PricingEstimate({recurringFee, oneTimeFee, totalCost, es
                         {/* <p className="line-through text-[#71717A] text-xs font-medium inter"> ฿{(data.price * 12).toLocaleString()}</p> 
                         <p className="text-[#EF4444] text-base font-semibold inter"> ฿{((data.price * 12) * 0.9).toLocaleString()}/year</p> */}
                       </div>
-                      <span className="text-xs flex justify-end">(Billed annually)</span>
+                      <span className="text-xs flex justify-end">(Billed monthly)</span>
                     </p>
                   </div>
                 ))}
