@@ -20,7 +20,7 @@ export default function PricingEstimate({recurringFee, oneTimeFee, totalCost, es
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className='mt-6 mb-12 font-semibold text-3xl text-center'>Pricing estimation</DialogTitle>
+          <DialogTitle className='mt-4 mb-12 font-semibold text-3xl text-center'>Pricing estimation</DialogTitle>
           <DialogDescription>
             <>
               {recurringFee.length > 0 ? <h2 className="text-base text-[#09090B] font-semibold">Recurring Fees</h2> : null}
@@ -43,14 +43,14 @@ export default function PricingEstimate({recurringFee, oneTimeFee, totalCost, es
                 ))}
               </div>
 
-              {oneTimeFee.length > 0 ? <h2 className="text-base text-[#09090B] font-semibold mt-6">One-Time Fees</h2> : null}
+              {oneTimeFee.length > 0 ? <h2 className="text-base text-[#09090B] font-semibold mt-6">One-Time Fees (Required)</h2> : null}
               <div className="flex flex-col gap-6">
                 {oneTimeFee.filter(data => data.price > 0).map(data => (
                   <div className="flex items-center justify-between">
                     <p className="main-desc">{data.title}</p>
                     <p className="subheading flex flex-col justify-end">
-                      <div className="flex gap-x-2 items-center">
-                        <p className="text-base font-semibold inter">฿{(data.price).toLocaleString()}/month</p>
+                      <div className="flex gap-x-2 items-center justify-end">
+                        <p className="text-base font-semibold inter">฿{(data.price).toLocaleString()}</p>
                         {/* <p className="line-through text-[#71717A] text-xs font-medium"> ฿{(data.price * 12).toLocaleString()}</p> 
                         <p className="text-[#EF4444] text-base font-semibold inter"> ฿{((data.price * 12) * 0.9).toLocaleString()}/month</p> */}
                       </div>
@@ -71,7 +71,7 @@ export default function PricingEstimate({recurringFee, oneTimeFee, totalCost, es
             </div>
             <div className="flex justify-between items-center">
               <h2 className="subheading">Estimated cost to get started:</h2>
-              <p className="inter main-desc">฿{estimatedCost.toLocaleString() || 0}/month</p>
+              <p className="inter main-desc">฿{estimatedCost.toLocaleString() || 0}</p>
             </div>
           </div>
         </DialogFooter>

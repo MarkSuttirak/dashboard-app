@@ -8,8 +8,8 @@ import {
 import { Button } from "../ui/button"
 import { Phone } from "lucide-react"
 
-export default function PricingResult({totalMonthly, totalYearly, commitments, estimated, estimateButton}){
-  const EstimatedCost = () => {
+export default function PricingResult({totalCost, commitments, estimated, estimateButton}){
+  const EstimatedCost = ({estimated}) => {
     return (
       <div className="mt-[14px] mb-6">
         <h2 className="text-[13px] font-medium">Estimated cost to get started:</h2>
@@ -35,21 +35,21 @@ export default function PricingResult({totalMonthly, totalYearly, commitments, e
                   </TabsTrigger>
                 </TabsList>
                 <TabsContent value='monthly' className='text-[27px] text-center'>
-                  <span className="text-[40px] inter">฿{totalMonthly.toLocaleString()}</span>/month
-                  <EstimatedCost />
+                  <span className="text-[40px] inter">฿{totalCost.toLocaleString()}</span>/month
+                  <EstimatedCost estimated={estimated}/>
                 </TabsContent>
                 <TabsContent value='annually' className='text-[27px] text-center'>
-                  <span className="text-[40px] inter">฿{(totalYearly * 0.9).toLocaleString()}</span>/month
+                  <span className="text-[40px] inter">฿{(totalCost * 0.9).toLocaleString()}</span>/month
                   <div className="mt-3">
                     <h2 className="text-base text-[#18181B]">Billed annually</h2>
                     <p className="text-base text-[#18181B] font-semibold">at 
-                      <span className="line-through text-[#71717A]"> ฿{(totalYearly * 12).toLocaleString()}</span> 
-                      <span className="text-[#EF4444]"> ฿{((totalYearly * 12) * 0.9).toLocaleString()}/year</span>
+                      <span className="line-through text-[#71717A]"> ฿{(totalCost * 12).toLocaleString()}</span> 
+                      <span className="text-[#EF4444]"> ฿{((totalCost * 12) * 0.9).toLocaleString()}/year</span>
                     </p>
 
                     <p className="text-sm text-[#71717A] font-normal my-2">With an annual commitment</p>
                   </div>
-                  <EstimatedCost />
+                  <EstimatedCost estimated={estimated * 12}/>
                 </TabsContent>
               </Tabs>
             </CardTitle>
