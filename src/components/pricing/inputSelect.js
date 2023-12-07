@@ -6,9 +6,9 @@ export default function SelectInput({label, defaultValue, onValueChange, lists, 
       <label className="main-desc w-3/4">
         {label}
       </label>
-      <Select className='form-input' name={name} defaultValue={defaultValue} onValueChange={onValueChange} disabled={disabled}>
+      <Select className='form-input' name={name} value={defaultValue} onValueChange={onValueChange} disabled={disabled}>
         <SelectTrigger className="w-[135px] bg-white">
-          <SelectValue defaultValue={defaultValue}/>
+          <SelectValue value={defaultValue}/>
         </SelectTrigger>
         <SelectContent>
           <SelectGroup className="max-h-[400px]">

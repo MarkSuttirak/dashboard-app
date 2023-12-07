@@ -28,12 +28,9 @@ export default function AppStore(){
 
   const { user, auth, logout } = useUser();
 
-
-  
   const { data: sites } = useQuery('sites', site.list, {
     enabled: !!user,
   });
-  
 
   const benchApps = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), {enabled: false});
   const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.site_list[0].name), {enabled: false});  
@@ -46,11 +43,6 @@ export default function AppStore(){
       installedApps.refetch();
     }
   }, [user, sites,benchApps,installedApps]);
-  
-
-
-
-
 
   const appstoreMenus = [
     {
