@@ -1,5 +1,5 @@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "src/components/ui/dialog"
-import { LightningBoltIcon } from "@radix-ui/react-icons";
+import { CountdownTimerIcon, LightningBoltIcon } from "@radix-ui/react-icons";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import ServicePrivileges from "./servicePrivileges";
@@ -9,29 +9,7 @@ import { useEffect, useContext } from "react";
 import { BellIcon, EyeNoneIcon } from "@radix-ui/react-icons";
 import { useServiceMenus } from "src/hooks/useServiceMenu";
 import { Icons } from "../ui/icons";
-
-const privileges = [
-  {
-    icon:<BellIcon className="mt-1" color='#09090B' width='20' height='20'/>,
-    title:'Super Admin',
-    desc:'Can access billing and members'
-  },
-  {
-    icon:<EyeNoneIcon className="mt-1" color='#09090B' width='20' height='20'/>,
-    title:'Remove',
-    desc:'Turn off all notifications'
-  },
-  {
-    icon:<BellIcon className="mt-1" color='#09090B' width='20' height='20'/>,
-    title:'Super Admin',
-    desc:'Can access billing and members'
-  },
-  {
-    icon:<EyeNoneIcon className="mt-1" color='#09090B' width='20' height='20'/>,
-    title:'Remove',
-    desc:'Turn off all notifications'
-  }
-]
+import { ArrowUpRightSquare, BellRing, CalendarDays, Users2 } from "lucide-react";
 
 export default function ServiceModals(){
   const icons = [<Icons.crmApp />, <Icons.lineCRMApp />, <Icons.rewardfulApp />, <Icons.reducoedApp />, <Icons.inbioApp />, <Icons.untitleApp />, <Icons.posApp />]
@@ -47,7 +25,7 @@ export default function ServiceModals(){
       <DialogContent className='p-0 border-0 max-w-4xl'>
         <DialogHeader className='flex-row'>
           <DialogTitle className='relative'>
-            <img src={services.image} className='rounded-l-lg h-full w-[800px]'/>
+            <img src={services.image} className='rounded-l-lg h-full min-w-[500px]'/>
             <div className="absolute left-5 bottom-5 flex gap-x-2 items-center">
               <Button variant='link' className='text-white text-xs p-0 h-fit'>Privacy Policy</Button>
               <DrawLine color='#FFF' width='1px' height='14px'/>
@@ -60,9 +38,9 @@ export default function ServiceModals(){
                 <ServiceBadge text={services.require_pro_text}/>
                 <h1 className="main-heading tracking-[-0.6px] mt-3 mb-2">{services.title}</h1>
                 <p>{services.desc}</p>
-                <ul className="mt-6 gap-y-[17px] flex flex-col px-2">
-                  {privileges.map(p => {
-                    return (<ServicePrivileges key={p.id} icon={p.icon} title={p.title} desc={p.desc}/>)
+                <ul className="mt-6 gap-y-[17px] flex flex-col px-2 h-[300px] overflow-auto">
+                  {services.privilege.map((p, index) => {
+                    return (<ServicePrivileges key={p.index} icon={p.icon} title={p.title} desc={p.desc}/>)
                   })}
                 </ul>
               </section>

@@ -7,6 +7,7 @@ import erpBg from 'src/img/erp-bg.png'
 import rewardfulBg from 'src/img/rewardful-bg.png'
 import reducoedBg from 'src/img/reducoed-bg.png'
 import crmBg from 'src/img/crmBg.png'
+import { appPrivileges } from "../sidebar/servicePrivileges"
 
 const ServiceContext = createContext({})
 
@@ -16,7 +17,7 @@ const ServiceProvider = ({children}) => {
   const selectMenu = (val) => {
     switch (val){
       case 0:
-        setData({image:crmBg, title:(<>For enterprises, time to upgrade to <span className="text-[#0A5FD9]">Zaviago ERP</span></>), desc:'Access exclusive tools to help you build client sites and scale your business', require_pro_text:'Upgrade pro plan to use this feature', link:''});
+        setData({image:crmBg, title:(<>Elevate Your Business with Seamless <span className="text-[#A755E3]">Customer Relationship Management</span></>), desc:'Cutting-edge tools for modern businesses to effectively manage relationships.', require_pro_text:'Upgrade pro plan to use this feature', link:''});
         break
       case 1:
         setData({image:lineCRMbg, title:(<>Unlock <span className='text-[#3BCD76]'>Line CRM</span> to let people engage</>), desc:'Access exclusive tools to help you build client sites and scale your business', require_pro_text:'Upgrade pro plan to use this feature', link:''})
@@ -47,6 +48,7 @@ const ServiceProvider = ({children}) => {
     desc:data.desc,
     require_pro_text:data.require_pro_text,
     link:data.link,
+    privilege:appPrivileges.crmApp,
     select:selectMenu
   }
 
