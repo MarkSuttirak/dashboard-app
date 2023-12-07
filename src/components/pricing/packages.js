@@ -23,6 +23,7 @@ export default function Packages(){
   const [totalFee, setTotalFee] = useState(0)
 
   const [isStarter, setIsStarter] = useState(true)
+  const [isAnnual, setIsAnnual] = useState(false)
   const [needSMSOTP, setNeedSMSOTP] = useState(false)
   const [needSocialMedia, setNeedSocialMedia] = useState(false)
   const [packageTypeCRM, setPackageTypeCRM] = useState()
@@ -292,7 +293,7 @@ export default function Packages(){
           }/>
       </main>
 
-      <PricingResult estimateButton={<PricingEstimate recurringFee={recurringFee} oneTimeFee={oneTimeFee} totalCost={totalPriceMonthly} estimatedCost={estimatedPrice}/>} totalCost={totalPriceMonthly} estimated={estimatedPrice} commitments={
+      <PricingResult estimateButton={<PricingEstimate recurringFee={recurringFee} oneTimeFee={oneTimeFee} totalCost={totalPriceMonthly} estimatedCost={estimatedPrice} isAnnual={isAnnual}/>} setIsAnnual={setIsAnnual} isAnnual={isAnnual} totalCost={totalPriceMonthly} estimated={estimatedPrice} commitments={
         <>{packageInfo.map(info => (
             <>{info.condition ? (
               <>{info.filterInfo.map(item => (

@@ -10,7 +10,7 @@ import {
 import { Button } from "../ui/button"
 import { Separator } from "../ui/separator"
 
-export default function PricingEstimate({recurringFee, oneTimeFee, totalCost, estimatedCost}){
+export default function PricingEstimate({recurringFee, oneTimeFee, totalCost, estimatedCost, isAnnual}){
   return (
     <Dialog>
       <DialogTrigger>
@@ -33,9 +33,12 @@ export default function PricingEstimate({recurringFee, oneTimeFee, totalCost, es
                     </div>
                     <p className="subheading flex flex-col justify-end">
                       <div className="flex gap-x-2 items-center">
-                        <p className="text-base font-semibold inter">฿{(data.price).toLocaleString()}/month</p>
-                        {/* <p className="line-through text-[#71717A] text-xs font-medium inter"> ฿{(data.price * 12).toLocaleString()}</p> 
-                        <p className="text-[#EF4444] text-base font-semibold inter"> ฿{((data.price * 12) * 0.9).toLocaleString()}/year</p> */}
+                        {isAnnual ? (
+                          <>
+                            <p className="line-through text-[#71717A] text-xs font-medium inter"> ฿{(data.price * 12).toLocaleString()}</p> 
+                            <p className="text-[#EF4444] text-base font-semibold inter"> ฿{((data.price * 12) * 0.9).toLocaleString()}/year</p>
+                          </>
+                        ) : <p className="text-base font-semibold inter">฿{(data.price).toLocaleString()}/month</p>}
                       </div>
                       <span className="text-xs flex justify-end">(Billed monthly)</span>
                     </p>
@@ -43,7 +46,7 @@ export default function PricingEstimate({recurringFee, oneTimeFee, totalCost, es
                 ))}
               </div>
 
-              {oneTimeFee.length > 0 ? <h2 className="text-base text-[#09090B] font-semibold mt-6">One-Time Fees (Required)</h2> : null}
+              {oneTimeFee.length > 0 ? <h2 className="text-base text-[#09090B] font-semibold mt-12 mb-4">One-Time Fees (Required)</h2> : null}
               <div className="flex flex-col gap-6">
                 {oneTimeFee.filter(data => data.price > 0).map(data => (
                   <div className="flex items-center justify-between">
@@ -51,10 +54,7 @@ export default function PricingEstimate({recurringFee, oneTimeFee, totalCost, es
                     <p className="subheading flex flex-col justify-end">
                       <div className="flex gap-x-2 items-center justify-end">
                         <p className="text-base font-semibold inter">฿{(data.price).toLocaleString()}</p>
-                        {/* <p className="line-through text-[#71717A] text-xs font-medium"> ฿{(data.price * 12).toLocaleString()}</p> 
-                        <p className="text-[#EF4444] text-base font-semibold inter"> ฿{((data.price * 12) * 0.9).toLocaleString()}/month</p> */}
                       </div>
-                      <span className="text-xs flex justify-end">(Billed annually)</span>
                     </p>
                   </div>
                 ))}
@@ -64,14 +64,24 @@ export default function PricingEstimate({recurringFee, oneTimeFee, totalCost, es
         </DialogHeader>
         <Separator className='my-6'/>
         <DialogFooter>
-          <div className='flex flex-col w-full'>
-            <div className="flex justify-between items-center">
-              <h2 className="subheading">Monthly cost:</h2>
-              <p className="main-desc">฿{totalCost.toLocaleString() || 0}/month</p>
+          <div className='flex flex-col w-full gap-y-6'>
+            <div className="flex justify-between items-center bg-[#F4F4F5] px-6 py-3 rounded-md">
+              <h2 className="text-base font-semibold text-[#09090B]">Monthly cost:</h2>
+              {isAnnual ? (
+                <div className="flex gap-x-2 items-center">
+                  <p className="line-through text-[#71717A] text-xs font-medium inter"> ฿{(totalCost * 12).toLocaleString()}</p> 
+                  <p className="text-[#EF4444] text-sm font-semibold inter"> ฿{((totalCost * 12) * 0.9).toLocaleString()}/year</p>
+                </div>
+              ) : <p className="main-desc">฿{(totalCost).toLocaleString() || 0}/month</p>}
             </div>
-            <div className="flex justify-between items-center">
-              <h2 className="subheading">Estimated cost to get started:</h2>
-              <p className="inter main-desc">฿{estimatedCost.toLocaleString() || 0}</p>
+            <div className="flex justify-between items-center bg-[#F4F4F5] px-6 py-3 rounded-md">
+              <h2 className="text-base font-semibold text-[#09090B]">Estimated cost to get started:</h2>
+              {isAnnual ? (
+                <div className="flex gap-x-2 items-center">
+                  <p className="line-through text-[#71717A] text-xs font-medium inter"> ฿{(estimatedCost * 12).toLocaleString()}</p> 
+                  <p className="text-[#EF4444] text-sm font-semibold inter"> ฿{((estimatedCost * 12) * 0.9).toLocaleString()}</p>
+                </div>
+              ) : <p className="inter main-desc">฿{estimatedCost.toLocaleString() || 0}</p>}
             </div>
           </div>
         </DialogFooter>

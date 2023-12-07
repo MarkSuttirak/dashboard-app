@@ -8,8 +8,8 @@ import {
 import { Button } from "../ui/button"
 import { Phone } from "lucide-react"
 
-export default function PricingResult({totalCost, commitments, estimated, estimateButton}){
-  const EstimatedCost = ({estimated}) => {
+export default function PricingResult({totalCost, commitments, estimated, estimateButton, isAnnual, setIsAnnual}){
+  const EstimatedCost = () => {
     return (
       <div className="mt-[14px] mb-6">
         <h2 className="text-[13px] font-medium">Estimated cost to get started:</h2>
@@ -23,7 +23,7 @@ export default function PricingResult({totalCost, commitments, estimated, estima
         <Card className='p-10 h-fit'>
           <CardHeader className='px-0 pt-0'>
             <CardTitle className='flex gap-x-[10px] secondary-heading justify-center w-full'>
-              <Tabs defaultValue='monthly' className="w-full">
+              <Tabs defaultValue='monthly' className="w-full" onValueChange={() => setIsAnnual(!isAnnual)}>
                 <TabsList className="grid w-full grid-cols-2 h-fit mb-6">
                   <TabsTrigger value="monthly" className='flex flex-col'>
                     <h2 className="subheading font-medium">Pay Monthly</h2>
@@ -49,7 +49,7 @@ export default function PricingResult({totalCost, commitments, estimated, estima
 
                     <p className="text-sm text-[#71717A] font-normal my-2">With an annual commitment</p>
                   </div>
-                  <EstimatedCost estimated={estimated * 12}/>
+                  <EstimatedCost estimated={estimated}/>
                 </TabsContent>
               </Tabs>
             </CardTitle>
