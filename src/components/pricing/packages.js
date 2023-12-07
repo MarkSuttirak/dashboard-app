@@ -91,7 +91,7 @@ export default function Packages(){
 
       customerContactPrice + paidUserPrice + smsOTPPrice + customFieldPrice + addonPrice
     )
-    setEstimatedPrice(totalPriceMonthly + estimatedContactPrice + estimatedMarketConnectPrice)
+    setEstimatedPrice(isAnnual ? ((totalPriceMonthly * 12 * 0.9) + estimatedContactPrice + estimatedMarketConnectPrice) : (totalPriceMonthly + estimatedContactPrice + estimatedMarketConnectPrice))
   };
 
   const handlePackageType = (index, packageType, setPackageType) => {

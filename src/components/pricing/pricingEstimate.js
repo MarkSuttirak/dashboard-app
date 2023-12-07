@@ -76,12 +76,7 @@ export default function PricingEstimate({recurringFee, oneTimeFee, totalCost, es
             </div>
             <div className="flex justify-between items-center bg-[#F4F4F5] px-6 py-3 rounded-md">
               <h2 className="text-base font-semibold text-[#09090B]">Estimated cost to get started:</h2>
-              {isAnnual ? (
-                <div className="flex gap-x-2 items-center">
-                  <p className="line-through text-[#71717A] text-xs font-medium inter"> ฿{(estimatedCost * 12).toLocaleString()}</p> 
-                  <p className="text-[#EF4444] text-sm font-semibold inter"> ฿{((estimatedCost * 12) * 0.9).toLocaleString()}</p>
-                </div>
-              ) : <p className="inter main-desc">฿{estimatedCost.toLocaleString() || 0}</p>}
+              <p className="inter main-desc">฿{estimatedCost.toLocaleString() || 0}</p>
             </div>
           </div>
         </DialogFooter>

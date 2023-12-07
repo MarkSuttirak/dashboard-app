@@ -34,25 +34,14 @@ const privileges = [
 ]
 
 export default function ServiceModals(){
-  const icons = [<Icons.erpApp />, <Icons.posApp />, <Icons.rewardfulApp />, <Icons.untitleApp />, <Icons.reducoedApp />, <Icons.inbioApp />, <Icons.blogAndPagesApp />, <Icons.lineCRMApp />]
+  const icons = [<Icons.crmApp />, <Icons.lineCRMApp />, <Icons.rewardfulApp />, <Icons.reducoedApp />, <Icons.inbioApp />, <Icons.untitleApp />, <Icons.posApp />]
   const services = useServiceMenus()
-
-  useEffect(() => {
-    const items = privileges.map((item) => {
-      if (item.title == 'Remove' || item.title == 'Supertest'){
-        return item
-      } else {
-        return undefined
-      }
-    })
-    // console.log(items.filter((item) => item !== undefined))
-  }, [])
 
   return (
     <Dialog>
-      {icons.map((i, index) => (
+      {icons.map((icon, index) => (
         <div className="nav-btns add-ons">
-          <DialogTrigger onClick={() => services.select(index)}>{i}</DialogTrigger>
+          <DialogTrigger onClick={() => services.select(index)}>{icon}</DialogTrigger>
         </div>
       ))}
       <DialogContent className='p-0 border-0 max-w-4xl'>

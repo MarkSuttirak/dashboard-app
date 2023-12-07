@@ -14,7 +14,7 @@ export default function SidebarShortcut(){
   return (
     <>
       <Popover open={open} onOpenChange={setOpen}>
-        <Icons.zaviagoApp onClick={() => navigate('/')} className='cursor-pointer'/>
+        <Icons.zaviagoApp onClick={() => navigate('/')} className='cursor-pointer w-9 h-9'/>
         <PopoverTrigger>
           <Button
             variant="ghost"
@@ -31,7 +31,7 @@ export default function SidebarShortcut(){
             <ChevronsUpDown className="ml-2 shrink-0 opacity-50" viewBox="0 0 24 24" width='12' height='12' />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-full p-0 z-[105] relative">
+        <PopoverContent className="w-full p-0 z-[105] relative left-[-16px]">
           <Command>
             <CommandInput placeholder="Search app..." />
             <CommandList className='max-h-none'>

@@ -36,7 +36,7 @@ export default function PricingResult({totalCost, commitments, estimated, estima
                 </TabsList>
                 <TabsContent value='monthly' className='text-[27px] text-center'>
                   <span className="text-[40px] inter">฿{totalCost.toLocaleString()}</span>/month
-                  <EstimatedCost estimated={estimated}/>
+                  <EstimatedCost />
                 </TabsContent>
                 <TabsContent value='annually' className='text-[27px] text-center'>
                   <span className="text-[40px] inter">฿{(totalCost * 0.9).toLocaleString()}</span>/month
@@ -49,7 +49,7 @@ export default function PricingResult({totalCost, commitments, estimated, estima
 
                     <p className="text-sm text-[#71717A] font-normal my-2">With an annual commitment</p>
                   </div>
-                  <EstimatedCost estimated={estimated}/>
+                  <EstimatedCost />
                 </TabsContent>
               </Tabs>
             </CardTitle>
