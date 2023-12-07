@@ -7,7 +7,7 @@ $primary-color: #09090B;
 $secondary-color: #71717A;
 
 $left-sidebar-width: 60px;
-$right-sidebar-width: 266px;
+$right-sidebar-width: 256px;
 
 $mobile-header-size: 60px;
 $mobile-footer-size: 60px;
@@ -18,7 +18,7 @@ html {
 
 @mixin check-sidebar($active: true){
   @if $active {
-    $right-sidebar-width: 266px;
+    $right-sidebar-width: 256px;
   }
   @else {
     $right-sidebar-width: 0px;
@@ -318,15 +318,11 @@ body {
 
 .chevron-btn {
   position:absolute;
-  right:1rem;
+  top:1.75rem;
+  right:0.75rem;
   cursor:pointer;
   opacity:0;
   transition:opacity 400ms;
-  &.inactive {
-    right:-1rem;
-    transition-delay:1s;
-    opacity:0.5;
-  }
 }
 
 #sidebar {

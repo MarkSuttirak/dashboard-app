@@ -139,7 +139,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
       <div className={`flex flex-1 flex-col border-r border-gray-200 bg-white ${isSidebarOpen ? 'active' : 'inactive'}`} id="sidebar">
         <div className="flex flex-1 flex-col pt-3">
           <div className="flex flex-shrink-0 items-center px-3">
-            <div className="flex gap-x-2 items-center w-full">
+            <div className="flex items-center w-full">
               <SidebarShortcut />
 
               {/* <button className='listminus-btn' variant='secondary' onClick={() => setIsSidebarOpen(false)}>
@@ -153,9 +153,9 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
           {setup && (
             <div className="bg-[#F7F7F8] rounded-[9px] m-3 px-[15px] py-[13px]">
-              <h2 className="subheading font-medium">Let's set up your business</h2>
-              <Progress value={50} className='my-[10px]'/>
-              <p className="subheading">1/7 items</p>
+              <h2 className="text-[13px] font-medium text-[#09090B]">Let's set up your business</h2>
+              <Progress value={50} className='my-[10px] h-[6px]'/>
+              <p className="text-[10px]">1/7 items</p>
             </div>
           )}
 

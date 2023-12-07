@@ -165,7 +165,7 @@ export default function Packages(){
   useEffect(() => {
     calculateTotalFee();
     calculateTotalPrice();
-  }, [isStarter, packageTypeCRM, packageTypeMarketConnect, packageTypeLineCRM, packageTypeRewardful, packageTypeOnlineStore, smsOTP, customerContact, paidUsers, customField, needSMSOTP, addons, estimatedPrice, totalPriceMonthly, totalFee]);
+  }, [isAnnual, isStarter, packageTypeCRM, packageTypeMarketConnect, packageTypeLineCRM, packageTypeRewardful, packageTypeOnlineStore, smsOTP, customerContact, paidUsers, customField, needSMSOTP, addons, estimatedPrice, totalPriceMonthly, totalFee]);
 
   return (
     <div className="flex flex-col gap-4 lg:flex-row w-full">
