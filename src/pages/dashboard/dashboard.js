@@ -170,7 +170,7 @@ export default function Dashboard(){
 
         <div className="mt-6 grid lg:grid-cols-3 gap-[15px]">
           <PostInfo title="Create blogs" desc="Create Blogs and Pages with our unique style, elevating your brand online." buttonText="Add new blog" image={createYourBlog} />
-          <PostInfo title="Sell on Online store" desc="Boost customer loyalty and drive repeat business with our tailored Loyalty Program for businesses." buttonText="Add item" image={sellingOnline} />
+          <PostInfo title="Sell on Online store" desc="Boost customer loyalty and drive repeat business with our tailored Loyalty Program" buttonText="Add item" image={sellingOnline} />
           <PostInfo title="Connect Marketplace" desc="Efficiently manage orders regardless of the number of sales channels." buttonText="Connect" image={connectMessage} />
         </div>
       </section>

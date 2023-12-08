@@ -9,7 +9,7 @@ import { Button } from '../ui/button'
 import { Switch } from '../ui/switch'
 import { Badge } from '../ui/badge'
 import DrawLine from "../drawLine";
-import { PartyPopper, ThumbsUp, UserPlus } from 'lucide-react'
+import { Heart, PartyPopper, ThumbsUp, UserCircle, UserPlus } from 'lucide-react'
 
 export default function UpgradeProModal(){
   const [openModal, setOpenModal] = useState(false)
@@ -50,6 +50,16 @@ export default function UpgradeProModal(){
       icon:<UserPlus className="mt-1 stroke-[1.5] text-[#09090B] h-5 w-5"/>,
       title:'1 team member',
       desc:'Free 1 teammate slot'
+    },
+    {
+      icon:<UserCircle className="mt-1 stroke-[1.5] text-[#09090B] h-5 w-5"/>,
+      title:'Super Admin',
+      desc:'Can access billing and members'
+    },
+    {
+      icon:<Heart className="mt-1 stroke-[1.5] text-[#09090B] h-5 w-5"/>,
+      title:'Priority support',
+      desc:'Response within 4 hours'
     },
   ]
 
