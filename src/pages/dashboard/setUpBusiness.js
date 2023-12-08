@@ -75,9 +75,9 @@ export default function SetupBusiness(){
             </div>
 
             <div className="flex flex-col gap-y-3 px-8 pb-6">
-              <GuideButton icon={<UserPlus className="w-4 h-4"/>} title='Create new customer' buttonIcon={<LightningBoltIcon />} buttonText='Add Customer'/>
-              <GuideButton icon={<ShoppingBag className="w-4 h-4"/>} title='Add your first product' buttonIcon={<CheckboxIcon />} buttonText='Add Product'/>
-              <GuideButton icon={<ClipboardCheck className="w-4 h-4"/>} title='Create your first draft order' buttonIcon={<VoteIcon className="w-4 h-4" />} buttonText='Add Draft Order'/>
+              <GuideButton icon={<UserPlus className="w-5 h-5 stroke-[1.5]"/>} title='Create new customer' buttonIcon={<LightningBoltIcon />} buttonText='Add Customer'/>
+              <GuideButton icon={<ShoppingBag className="w-5 h-5 stroke-[1.5]"/>} title='Add your first product' buttonIcon={<CheckboxIcon />} buttonText='Add Product'/>
+              <GuideButton icon={<ClipboardCheck className="w-5 h-5 stroke-[1.5]"/>} title='Create your first draft order' buttonIcon={<VoteIcon className="w-4 h-4" />} buttonText='Add Draft Order'/>
             </div>
           </section>
 
@@ -95,9 +95,9 @@ export default function SetupBusiness(){
             </div>
             
             <div className="flex flex-col gap-y-3 px-8 pb-6">
-              <GuideButton icon={<ImagePlus className="w-4 h-4"/>} title='Add first page' buttonIcon={<LightningBoltIcon />} buttonText='Add New Page'/>
-              <GuideButton icon={<Pencil2Icon />} title='Write your first blog' buttonIcon={<CheckboxIcon />} buttonText='Add Blog'/>
-              <GuideButton icon={<ChatBubbleIcon />} title='Connect LineOA' buttonIcon={<VoteIcon className="w-4 h-4" />} buttonText='Connect LineOA'/>
+              <GuideButton icon={<ImagePlus className="w-5 h-5 stroke-[1.5]"/>} title='Add first page' buttonIcon={<LightningBoltIcon />} buttonText='Add New Page'/>
+              <GuideButton icon={<Pencil2Icon className="w-5 h-5"/>} title='Write your first blog' buttonIcon={<CheckboxIcon />} buttonText='Add Blog'/>
+              <GuideButton icon={<ChatBubbleIcon className="w-5 h-5"/>} title='Connect LineOA' buttonIcon={<VoteIcon className="w-4 h-4" />} buttonText='Connect LineOA'/>
             </div>
           </section>
         </Card>

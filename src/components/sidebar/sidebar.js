@@ -12,6 +12,7 @@ import ServiceModals from "./serviceModals";
 import { Progress } from "../ui/progress";
 import { Dialog, DialogTrigger } from "../ui/dialog";
 import { SearchItem } from "../topbar/searchBar";
+import SidebarSetupBusiness from "./sidebarSetupBusiness";
 
 // import TeamModal from "../components/switchTeamModal";
 
@@ -152,11 +153,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
           </div>
 
           {setup && (
-            <div className="bg-[#F7F7F8] rounded-[9px] m-3 px-[15px] py-[13px]">
-              <h2 className="text-[13px] font-medium text-[#09090B]">Let's set up your business</h2>
-              <Progress value={50} className='my-[10px] h-[6px]'/>
-              <p className="text-[10px]">0/6 completed</p>
-            </div>
+            <SidebarSetupBusiness />
           )}
 
           <nav className="flex bg-white px-3 pt-2 flex-col gap-y-4" aria-label="Sidebar">

@@ -154,7 +154,7 @@ export default function Dashboard(){
         </div>
       </section>
 
-      <section className="my-[52px]">
+      <section className="my-[76px]">
         <h2 className="secondary-heading">App Store</h2>
         <p className="main-desc">You have got much more than just a website.<br/>Build and expand your digital business with application</p>
 
