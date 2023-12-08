@@ -106,7 +106,6 @@ export default function PaymentInfo(){
             </div>
             <p className="subheading">฿ {subtotal.toLocaleString()}</p>
           </CardHeader>
-        
         </Card>
 
         <Separator className='my-6'/>
