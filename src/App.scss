@@ -122,6 +122,23 @@ body {
   font-family:'Sukhumvit Set', sans-serif
 }
 
+.see-more {
+  opacity:0;
+  transition:opacity 100ms;
+}
+
+.app-card {
+  box-shadow:none;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  height:fit-content;
+  &:hover .see-more {
+    opacity:1;
+    transition:opacity 100ms;
+  }
+}
+
 .login-line-btn {
   border-radius: 8px;
   background: linear-gradient(152deg, #00B945 0%, #00D14E 100%);

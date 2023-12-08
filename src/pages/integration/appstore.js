@@ -14,6 +14,8 @@ import { useUser } from "../../hooks/useUser";
 import { useMutation, useQuery } from "react-query";
 import AppIcon from "src/components/appIcon";
 import { CheckCircle2, Crown } from "lucide-react";
+import cybersale from 'src/img/cybersale.png'
+import zaviagoDashApp from 'src/img/zaviago-dash-app.png'
 
 export default function AppStore(){
   const [isMenuCardHover, setIsMenuCardHover] = useState(false)
@@ -90,6 +92,15 @@ export default function AppStore(){
       <h1 className="main-heading tracking-[-0.6px]">App Store</h1>
       <p className="secondary-desc">Choose Professional Solutions to Power Your Website</p>
 
+      <div className="flex h-full gap-x-4 mt-6">
+        <img src={cybersale} />
+        <div style={{background:`url(${zaviagoDashApp})`,backgroundSize:"cover"}} className="h-auto p-10 w-full flex flex-col justify-evenly items-center text-center rounded-xl">
+          <h1 className="text-5xl font-bold text-[#08003F]">Zaviago Dashboard</h1>
+          <h3 className="text-2xl font-medium">Access exclusive tools to help you build client sites and scale your business</h3>
+          <Button>Join Now</Button>
+        </div>
+      </div>
+
       {/* <div className="flex justify-between mt-6">
         {appstoreMenus.map((n, index) => (
           <div className="menu-card-app-store" key={index} style={{backgroundColor:n.background,color:n.color,boxShadow:isMenuCardHover && menuCardIndex === index ? `0 0 3px ${n.color}` : null}} onMouseEnter={() => handleCardHover(index)} onMouseLeave={handleCardHoverLeave}>
@@ -144,7 +155,7 @@ export default function AppStore(){
             const isInstalled = installedApps.data?.some(installedApp => installedApp.title === app.title);
             const requiredPro = false
             return (
-              <Card key={index} className='shadow-none flex flex-col justify-between h-fit'>
+              <Card key={index} className='app-card'>
                 <CardHeader className='flex flex-row gap-x-6'>
                   <div className="w-[90px]">
                     {app.image ? <img src={site.backend_url()+app.image}/> : <Icons.erpApp />}
@@ -158,7 +169,7 @@ export default function AppStore(){
                   <div className="text-sm">
                     {isInstalled ? <span className="text-[#2CB216] inline-flex items-center gap-x-2"><CheckCircle2 className="h-4 w-4 text-[#2CB216]"/>Installed</span> : requiredPro ? <span className="text-[#71717A] inline-flex items-center gap-x-2"><Crown className="h-4 w-4 text-[#71717A]"/>Pro plan</span> : <span className="text-[#71717A]">Free plan available</span>} {/* Render "Installed" if the app is found in installedApps.data */}
                   </div>
-                  <Link to={`/integration/appstore/${app.name}`}>
+                  <Link to={`/integration/appstore/${app.name}`} className="see-more">
                     {/* Conditionally render Button based on `isInstalled` */}
                     {isInstalled ? (
                       <Button variant='outline' disabled>Installed</Button>
