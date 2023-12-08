@@ -143,7 +143,6 @@ body {
   transition:box-shadow .1s;
   border-radius:12px;
   box-sizing:border-box;
-  padding:8px 22px;
   &:hover {
     box-shadow:0 0 0 2px #006aff99;
     transition:box-shadow .1s;
@@ -158,7 +157,6 @@ body {
 .inner-guide-btn {
   display:flex;
   align-items:center;
-  padding:8px 16px;
   gap:8px;
   border:1px solid #E4E4E7;
   border-radius:9999px;
@@ -208,7 +206,7 @@ body {
 
 .domain-heading {
   font-size:20px;
-  font-weight:600;
+  font-weight:700;
   letter-spacing:-0.5px;
   line-height:28px;
   color:$primary-color;

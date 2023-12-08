@@ -1,4 +1,4 @@
-import { AppWindow, ArrowUpRightSquare, Award, Bell, BellRing, CalendarDays, Coins, Eye, FilePieChart, Heart, Import, Lightbulb, Palette, Phone, Signal, TimerReset, Trash2, UserSquare2, Users, Users2 } from "lucide-react";
+import { AppWindow, ArrowUpRightSquare, Award, Bell, BellRing, BookMarked, Building2, CalendarDays, Coins, Eye, FilePieChart, Heart, Import, Lightbulb, Palette, Phone, Settings2, ShoppingBag, Signal, TimerReset, Trash2, UserSquare2, Users, Users2 } from "lucide-react";
 import { CountdownTimerIcon, PersonIcon, LinkNone2Icon, Pencil2Icon } from "@radix-ui/react-icons";
 import LineIcon from "../icon-menus/Line";
 
@@ -194,6 +194,28 @@ export const appPrivileges = {
       icon:<Coins className="h-5 w-5 text-[#09090B]"/>,
       title:'E-Payment support',
       desc:'Make payments more convenient and faster with various payment options'
+    },
+  ],
+  onlineStoreApp: [
+    {
+      icon:<ShoppingBag className="h-5 w-5 text-[#09090B]"/>,
+      title:'Seamless online shopping',
+      desc:'Enjoy shop effortlessly from product selection to payment in 24/7'
+    },
+    {
+      icon:<Building2 className="h-5 w-5 text-[#09090B]"/>,
+      title:'Cater to every business',
+      desc:'With over 380+ templates, support every business from SMEs to enterprises'
+    },
+    {
+      icon:<Settings2 className="h-5 w-5 text-[#09090B]"/>,
+      title:'Simplify backend management',
+      desc:'Experience the power of our backend system, on par with other platforms'
+    },
+    {
+      icon:<BookMarked className="h-5 w-5 text-[#09090B]"/>,
+      title:'Support a variety of selling features',
+      desc:'Attract new customers, increase sales opportunities, and maximize profits'
     },
   ]
 }

@@ -8,6 +8,7 @@ import DrawLine from "../drawLine";
 import { useEffect, useContext } from "react";
 import { useServiceMenus } from "src/hooks/useServiceMenu";
 import { Icons } from "../ui/icons";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "src/components/ui/tooltip"
 
 export default function ServiceModals(){
   const icons = [
@@ -15,18 +16,28 @@ export default function ServiceModals(){
     {icon:<Icons.lineCRMApp />, title:'Line CRM'},
     {icon:<Icons.rewardfulApp />, title:'Rewardful'},
     {icon:<Icons.reducoedApp />, title:'Reducoed'},
-    {icon:<Icons.inbioApp />, title:'InBio'},
+    {icon:<Icons.inbioApp />, title:'Market Connect'},
     {icon:<Icons.untitleApp />, title:'Untitle'},
-    {icon:<Icons.posApp />, title:'POS Management'}
+    {icon:<Icons.posApp />, title:'POS in.store'},
+    {icon:<Icons.erpApp />, title:'Online Store'}
   ]
   const services = useServiceMenus()
 
   return (
     <Dialog>
       {icons.map((icon, index) => (
-        <div className="nav-btns add-ons">
-          <DialogTrigger onClick={() => services.select(index)}>{icon.icon}</DialogTrigger>
-        </div>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <div className="nav-btns add-ons">
+                <DialogTrigger onClick={() => services.select(index)}>{icon.icon}</DialogTrigger>
+              </div>
+            </TooltipTrigger>
+            <TooltipContent side='right'>
+              {icon.title}
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       ))}
       <DialogContent className='p-0 border-0 max-w-5xl'>
         <DialogHeader className='flex-row'>
@@ -46,7 +57,7 @@ export default function ServiceModals(){
                 <p className="text-[#71717A]">{services.desc}</p>
                 <ul className="mt-6 pb-[60px] gap-y-[17px] flex flex-col px-2 h-[300px] overflow-auto">
                   {services.privilege.map((p, index) => {
-                    return (<ServicePrivileges key={p.index} icon={p.icon} title={p.title} desc={p.desc}/>)
+                    return (<ServicePrivileges key={index} icon={p.icon} title={p.title} desc={p.desc}/>)
                   })}
                 </ul>
               </section>

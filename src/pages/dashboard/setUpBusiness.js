@@ -16,20 +16,23 @@ export default function SetupBusiness(){
     return style
   }
 
-  const GuideButton = ({icon, title, buttonText, buttonIcon, link}) => {
+  function GuideButton({icon, title, buttonText, buttonIcon, link, isCompleted}){
     return (
-      <button className="guide-btn">
+      <button className="guide-btn px-[22px] py-2">
         <div className="flex items-center gap-4">
           {icon}
-          <h2 className="subheading font-medium">{title}</h2>
+          <h2 className={`text-sm ${isCompleted ? 'line-through text-[#71717A]' : 'text-[#09090B]'}`}>{title}</h2>
         </div>
-        <button className='inner-guide-btn subheading font-medium'>
-          {buttonIcon}
-          {buttonText}
-        </button>
+        {!isCompleted ? (
+          <button className='inner-guide-btn px-4 py-2 subheading font-medium'>
+            {buttonIcon}
+            {buttonText}
+          </button>
+        ) : null}
       </button>
     )
   }
+
   return (
     <section className="my-[72px]">
       <div className="flex justify-between items-center">
@@ -93,7 +96,7 @@ export default function SetupBusiness(){
               </div>
               <p className="main-desc mt-[6px]">Design your shop and learn about new ways to improve your shop</p>
             </div>
-            
+
             <div className="flex flex-col gap-y-3 px-8 pb-6">
               <GuideButton icon={<ImagePlus className="w-5 h-5 stroke-[1.5]"/>} title='Add first page' buttonIcon={<LightningBoltIcon />} buttonText='Add New Page'/>
               <GuideButton icon={<Pencil2Icon className="w-5 h-5"/>} title='Write your first blog' buttonIcon={<CheckboxIcon />} buttonText='Add Blog'/>
