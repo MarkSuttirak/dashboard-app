@@ -89,7 +89,7 @@ export default function PaymentInfo(){
       <section className="py-10 px-5">
         <h2 className="main-desc font-medium">Subscribe to {app}</h2>
         <div className="mt-3 mb-10 flex gap-x-[10px] items-center">
-          <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px]">฿ {total()}</h1>
+          <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px] inter">฿ {total()}</h1>
           <div>
             <p className="main-desc">per</p>
             <p className="main-desc">month</p>
@@ -104,7 +104,7 @@ export default function PaymentInfo(){
                 <CardDescription>Discount 10%</CardDescription>
               </div>
             </div>
-            <p className="subheading">฿ {subtotal.toLocaleString()}</p>
+            <p className="subheading inter">฿ {subtotal.toLocaleString()}</p>
           </CardHeader>
         </Card>
 
@@ -114,7 +114,7 @@ export default function PaymentInfo(){
           <thead>
             <tr className="text-left subheading">
               <th className="font-medium">Subtotal</th>
-              <th className="text-right font-medium">฿ {subtotal.toLocaleString()}</th>
+              <th className="text-right font-medium inter">฿ {subtotal.toLocaleString()}</th>
             </tr>
           </thead>
           <tbody>
@@ -132,7 +132,7 @@ export default function PaymentInfo(){
                     <p className="text-desc mt-[2px]">{couponExplanation}</p>
                   </div>
                 </td>
-                <td className="text-right">- ฿ {discount.toLocaleString()}</td>
+                <td className="text-right inter">- ฿ {discount.toLocaleString()}</td>
               </tr>
             ) : (
               <tr>
@@ -150,7 +150,7 @@ export default function PaymentInfo(){
             )}
             <tr className="main-desc">
               <td>VAT (7%)</td>
-              <td className="text-right">฿ {vat}</td>
+              <td className="text-right inter">฿ {vat}</td>
             </tr>
           </tbody>
         </table>
@@ -160,7 +160,7 @@ export default function PaymentInfo(){
         <table className="w-[calc(100%_-_74px)] relative left-[74px]">
           <tr className="text-left subheading">
             <th className="font-bold">Total</th>
-            <th className="text-right font-bold">฿ {total()}</th>
+            <th className="text-right font-bold inter">฿ {total()}</th>
           </tr>
         </table>
       </section>

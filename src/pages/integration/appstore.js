@@ -12,6 +12,8 @@ import { Icons } from "src/components/ui/icons"
 import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { useMutation, useQuery } from "react-query";
+import AppIcon from "src/components/appIcon";
+import { CheckCircle2, Crown } from "lucide-react";
 
 export default function AppStore(){
   const [isMenuCardHover, setIsMenuCardHover] = useState(false)
@@ -86,6 +88,7 @@ export default function AppStore(){
   return (
     <div className="dashboard-container">
       <h1 className="main-heading tracking-[-0.6px]">App Store</h1>
+      <p className="secondary-desc">Choose Professional Solutions to Power Your Website</p>
 
       {/* <div className="flex justify-between mt-6">
         {appstoreMenus.map((n, index) => (
@@ -121,85 +124,56 @@ export default function AppStore(){
       </section> */}
 
       {/* <Separator className="my-10"/> */}
-
-      <div className="flex justify-between items-center">
+      <section className="mt-[52px]">
         <h2 className="secondary-heading">Recommended Apps</h2>
-        <Link className="text-[#006AFF] text-sm font-medium">See more apps</Link>
-      </div>
-      <div className="flex gap-x-6 mt-6">
-        <section className="grid grid-cols-2 gap-6 w-[70%]">
-          {appslists?.map((app, index) => {
-          const isInstalled = installedApps.data?.some(installedApp => installedApp.title === app.title);
-          return (
-            <Card key={index} className='shadow-none flex flex-col justify-between h-fit'>
-              <CardHeader className='flex flex-row gap-x-6'>
-                <div className="w-[90px]">
-                  {app.image ? <img src={site.backend_url()+app.image}/> : <Icons.erpApp />}
-                </div>
-                <div className="m-[0!important]">
-                  <CardTitle>{app.title}</CardTitle>
-                  <CardDescription className='mt-[6px]'>{app.description}</CardDescription>
-                </div>
-              </CardHeader>
-              <CardFooter className='flex items-center justify-between'>
-                <div className="text-sm">
-                  {isInstalled && <span>Installed</span>} {/* Render "Installed" if the app is found in installedApps.data */}
-                </div>
-                <Link to={`/integration/appstore/${app.name}`}>
-                  {/* Conditionally render Button based on `isInstalled` */}
-                  {isInstalled ? (
-                    <Button variant='outline' disabled>Installed</Button>
-                  ): (
-                    <Button variant='outline'>See more</Button>
-                  )}
-                </Link>
-              </CardFooter>
-            </Card>
-          )
-        })}
-
-        </section>
-      </div>
-
-      <div className="flex justify-between items-center">
-        <h2 className="secondary-heading">Recommended for You</h2>
-        <Link className="text-[#006AFF] text-sm font-medium">See more apps</Link>
-      </div>
-      <div className="flex gap-x-6 mt-6">
-        <section className="grid grid-cols-2 gap-6 w-[70%]">
-
-        {appslists?.map((app, index) => {
-        const isInstalled = installedApps.data?.some(installedApp => installedApp.title === app.title);
-        return (
-          <Card key={index} className='shadow-none flex flex-col justify-between h-fit'>
-            <CardHeader className='flex flex-row gap-x-6'>
-              <div className="w-[90px]">
-                {app.image ? <img src={site.backend_url()+app.image}/> : <Icons.erpApp />}
-              </div>
-              <div className="m-[0!important]">
-                <CardTitle>{app.title}</CardTitle>
-                <CardDescription className='mt-[6px]'>{app.description}</CardDescription>
-              </div>
-            </CardHeader>
-            <CardFooter className='flex items-center justify-between'>
-              <div className="text-sm">
-                {isInstalled && <span>Installed</span>} {/* Render "Installed" if the app is found in installedApps.data */}
-              </div>
-              <Link to={`/integration/appstore/${app.name}`}>
-                {/* Conditionally render Button based on `isInstalled` */}
-                {isInstalled ? (
-                  <Button variant='outline' disabled>Installed</Button>
-                ): (
-                  <Button variant='outline'>See more</Button>
-                )}
-              </Link>
-            </CardFooter>
-          </Card>
-        )
-      })}
-
+        <div className="flex gap-x-6 mt-6">
+          <section className="grid grid-cols-2 gap-6">
+            <div className="flex flex-wrap gap-4">
+              <AppIcon icon={<Icons.reducoedApp width='72px' height='72px'/>} title='Reducoed' desc='Connect your website with Reducoed'/>
+              <AppIcon icon={<Icons.rewardfulApp width='72px' height='72px'/>} title='Rewardful' desc='Test app of rewardful'/>
+            </div>
+          </section>
+        </div>
       </section>
-      </div>
+
+      <section className="mt-[52px]">
+        <h2 className="secondary-heading">Recommended for You</h2>
+        <div className="flex gap-x-6 mt-6">
+          <section className="grid grid-cols-3 gap-6">
+            {appslists?.map((app, index) => {
+            const isInstalled = installedApps.data?.some(installedApp => installedApp.title === app.title);
+            const requiredPro = false
+            return (
+              <Card key={index} className='shadow-none flex flex-col justify-between h-fit'>
+                <CardHeader className='flex flex-row gap-x-6'>
+                  <div className="w-[90px]">
+                    {app.image ? <img src={site.backend_url()+app.image}/> : <Icons.erpApp />}
+                  </div>
+                  <div className="m-[0!important]">
+                    <CardTitle>{app.title}</CardTitle>
+                    <CardDescription className='mt-[6px]'>{app.description}</CardDescription>
+                  </div>
+                </CardHeader>
+                <CardFooter className='flex items-center justify-between'>
+                  <div className="text-sm">
+                    {isInstalled ? <span className="text-[#2CB216] inline-flex items-center gap-x-2"><CheckCircle2 className="h-4 w-4 text-[#2CB216]"/>Installed</span> : requiredPro ? <span className="text-[#71717A] inline-flex items-center gap-x-2"><Crown className="h-4 w-4 text-[#71717A]"/>Pro plan</span> : <span className="text-[#71717A]">Free plan available</span>} {/* Render "Installed" if the app is found in installedApps.data */}
+                  </div>
+                  <Link to={`/integration/appstore/${app.name}`}>
+                    {/* Conditionally render Button based on `isInstalled` */}
+                    {isInstalled ? (
+                      <Button variant='outline' disabled>Installed</Button>
+                    ): (
+                      <Button variant='outline'>See more</Button>
+                    )}
+                  </Link>
+                </CardFooter>
+              </Card>
+            )
+          })}
+
+          </section>
+        </div>
+      </section>
     </div>
   )
 }
