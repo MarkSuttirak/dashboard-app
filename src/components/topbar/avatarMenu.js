@@ -32,17 +32,6 @@ export default function AvatarMenu(){
                 <User viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
                 Account settings
               </CommandItem>
-              <CommandItem>
-                <Keyboard viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
-                Keyboard shortcuts
-              </CommandItem>
-            </CommandGroup>
-            <CommandSeparator />
-            <CommandGroup>
-              <CommandItem onSelect={() => window.location.href = `http://${sites?.site_list[0].name}`}>
-                <Layout viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
-                View website
-              </CommandItem>
             </CommandGroup>
             <CommandSeparator />
             <CommandGroup>

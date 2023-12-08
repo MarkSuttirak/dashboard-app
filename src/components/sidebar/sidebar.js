@@ -127,9 +127,9 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
         <ServiceModals />
 
-        <div className="nav-btns add">
+        {/* <div className="nav-btns add">
           <PlusCircle color='#18181B' viewBox='0 0 24 24' width='16' height='16'/>
-        </div>
+        </div> */}
       </nav>
     )
   }

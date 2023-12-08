@@ -3,7 +3,7 @@ import React, {useState, useEffect, createContext} from "react"
 const MemberContext = createContext({})
 
 const MemberProvider = ({children}) => {
-    const [status, setStatus] = useState('pending')
+    const [status, setStatus] = useState('free')
 
     const changeStatus = (val) => {
         switch (val){

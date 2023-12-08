@@ -37,20 +37,13 @@ export default function DashboardBanner({sitename}){
                   <DotsHorizontalIcon />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-full p-0 z-[105] relative left-[24px]">
+              <PopoverContent className="w-[120%] p-0 z-[105] relative">
                 <Command>
                   <CommandList className='max-h-none'>
                     <CommandGroup>
                       <CommandItem onSelect={() => navigate('/dashboard/teams/teams')}>
                         <Users viewBox="0 0 24 24" width='16' height='16' className="mr-2"/>
                         Rename Site
-                      </CommandItem>
-                      <CommandItem>
-                        <Shuffle viewBox="0 0 24 24" width='16' height='16' className="mr-2"/>
-                        Change Domain
-                        <CommandShortcut>
-                          <ChevronRight viewBox="0 0 24 24" width='16' height='16' color='#09090B'/>
-                        </CommandShortcut>
                       </CommandItem>
                     </CommandGroup>
                     <CommandSeparator />
