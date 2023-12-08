@@ -351,7 +351,7 @@ body {
 }
 
 .page-section {
-  padding:84px 20px 35px 20px;
+  padding:84px 20px 160px 20px;
   box-sizing:content-box;
   &.active {
     margin-left:$right-sidebar-width + $left-sidebar-width;
@@ -444,7 +444,7 @@ body {
   box-sizing:border-box;
 	border-radius:6px;
   background-color:#F4F4F5;
-	outline:0px solid #2794F0;
+	outline:0px double #CECECE;
 	border:1px solid #E4E4E7;
   color:#6B7280;
   &.hide {
@@ -459,7 +459,7 @@ body {
     border:none;
     box-sizing:border-box;
     &:hover {
-      outline:2px solid #2794F0
+      outline:2px double #CECECE
     }
   }
 }

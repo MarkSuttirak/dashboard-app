@@ -12,15 +12,15 @@ import { appPrivileges } from "../sidebar/servicePrivileges"
 const ServiceContext = createContext({})
 
 const ServiceProvider = ({children}) => {
-  const [data, setData] = useState({image:'', title:'', desc:'', require_pro_text:'', link:''})
+  const [data, setData] = useState({image:'', title:'', desc:'', require_pro_text:'', link:'', privilege:[]})
 
   const selectMenu = (val) => {
     switch (val){
       case 0:
-        setData({image:crmBg, title:(<>Elevate Your Business with Seamless <span className="text-[#A755E3]">Customer Relationship Management</span></>), desc:'Cutting-edge tools for modern businesses to effectively manage relationships.', require_pro_text:'Upgrade pro plan to use this feature', link:''});
+        setData({image:crmBg, title:(<>Elevate Your Business with Seamless <span className="text-[#A755E3]">Customer Relationship Management</span></>), desc:'Cutting-edge tools for modern businesses to effectively manage relationships.', require_pro_text:'Upgrade pro plan to use this feature', link:'', privilege:appPrivileges.crmApp});
         break
       case 1:
-        setData({image:lineCRMbg, title:(<>Unlock <span className='text-[#3BCD76]'>Line CRM</span> to let people engage</>), desc:'Access exclusive tools to help you build client sites and scale your business', require_pro_text:'Upgrade pro plan to use this feature', link:''})
+        setData({image:lineCRMbg, title:(<>Unlock <span className='text-[#3BCD76]'>Line CRM</span> to let people engage</>), desc:'Access exclusive tools to help you build client sites and scale your business', require_pro_text:'Upgrade pro plan to use this feature', link:'', privilege:appPrivileges.lineCRMApp})
         break
       case 2:
         setData({image:rewardfulBg, title:(<>Set your Loyalty Program by <span className="text-[#FF7009]">Rewardful</span></>), desc:'Access exclusive tools to help you build client sites and scale your business', require_pro_text:'Upgrade pro plan to use this feature', link:''})
@@ -48,7 +48,7 @@ const ServiceProvider = ({children}) => {
     desc:data.desc,
     require_pro_text:data.require_pro_text,
     link:data.link,
-    privilege:appPrivileges.crmApp,
+    privilege:data.privilege,
     select:selectMenu
   }
 

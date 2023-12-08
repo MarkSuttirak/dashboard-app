@@ -19,7 +19,7 @@ export default function DashboardBanner({sitename}){
   return (
     <section className="mt-6">
       <div className="grid grid-cols-1 lg:flex gap-6 md:gap-x-[15px]">
-        <Card className='w-full lg:w-[60%] shadow-none'>
+        <Card className='w-full lg:w-full shadow-none'>
           <CardHeader className='pb-2 flex flex-col lg:flex-row lg:items-center justify-between'>
             <div>
               <CardTitle className='subheading font-medium'>Your WorkSpace</CardTitle>
@@ -67,14 +67,14 @@ export default function DashboardBanner({sitename}){
           <CardContent>
             <Button variant='link' className="text-desc p-0">Connect Domain</Button>
             <div className="text-desc flex gap-x-4 items-center mt-5 flex-row">
-              <p className="flex items-center gap-x-1 text-sm"><Users viewBox='0 0 24 24' width='12' height='12' /> {numOfAdmin} {numOfAdmin == 1 ? 'admin' : 'admins'} in team</p>
-              <p className="flex items-center gap-x-1 text-sm"><StarIcon width='12' height='12'/> {numOfCustomers >= 1000000 ? `${(numOfCustomers / 1000000).toFixed(1)}m` : numOfCustomers >= 1000 ? `${(numOfCustomers / 1000).toFixed(1)}k` : numOfCustomers} {numOfCustomers == 1 ? "customer" : "customers"}</p>
+              <p className="flex items-center gap-x-1 text-sm"><Users viewBox='0 0 24 24' width='12' height='12' color='#09090B'/> {numOfAdmin} {numOfAdmin == 1 ? 'admin' : 'admins'} in team</p>
+              <p className="flex items-center gap-x-1 text-sm"><StarIcon width='12' height='12' color='#09090B'/> {numOfCustomers >= 1000000 ? `${(numOfCustomers / 1000000).toFixed(1)}m` : numOfCustomers >= 1000 ? `${(numOfCustomers / 1000).toFixed(1)}k` : numOfCustomers} {numOfCustomers == 1 ? "customer" : "customers"}</p>
               <p className="flex text-sm">Updated {date}</p>
             </div>
           </CardContent>
         </Card>
 
-        <Card className='w-full lg:w-[40%] flex flex-col justify-between shadow-none'>
+        <Card className='w-full lg:min-w-[400px] lg:w-[400px] flex flex-col justify-between shadow-none'>
           <CardHeader className='pb-2 flex flex-col xl:flex-row xl:items-start justify-between'>
             {memberStatus.status === 'pro' ? (
               <>
@@ -118,7 +118,7 @@ export default function DashboardBanner({sitename}){
             )}
           </CardHeader>
           <CardContent className='text-desc flex items-center gap-x-1'>
-            <MagicWandIcon />
+            <MagicWandIcon color='#09090B'/>
             <span className="text-sm">{memberStatus.status === 'pro' ? 'Start to select Apps' : 'Starting at 750/m'}</span>
           </CardContent>
         </Card>

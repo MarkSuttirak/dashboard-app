@@ -17,6 +17,7 @@ export default function PricingResult({totalCost, commitments, estimated, estima
       </div>
     )
   }
+  console.log(estimated)
   return (
     <div className="flex flex-col w-full lg:w-[40%]">
       <div className="sticky top-4">
@@ -61,7 +62,11 @@ export default function PricingResult({totalCost, commitments, estimated, estima
             </div>
           </CardContent>
           <CardFooter className='flex flex-col items-start p-0'>
-            <Button className='w-full my-6'>Buy Now</Button>
+            {estimated > 900000 && isAnnual ? (
+              <Button className='w-full my-6'>Get a Quotation</Button>
+            ) : (
+              <Button className='w-full my-6'>Buy Now</Button>
+            )}
             <p className="main-desc">Offer are available to new Zaviago customers only. If you are eligible, the offer price will be displayed at checkout.</p>
 
             <div className="flex justify-center mt-6 w-full">

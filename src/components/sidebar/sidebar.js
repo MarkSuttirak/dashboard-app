@@ -81,9 +81,9 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   ]
 
   const workspaceApp = [
-    { name: 'Blog & Website', icon: <Icons.blogPostApp width='16' height='16' />, id: 'blog-website' },
-    { name: 'CRM', icon: <Icons.websiteApp width='16' height='16' fill='transparent'/>, id: 'crm' },
-    { name: 'HR & HRM', icon: <Icons.blogAndPagesApp width='16' height='16'/>, id: 'hr-hrm' },
+    { name: 'Blog & Website', icon: <Icons.blogPostApp width='20' height='20' />, id: 'blog-website' },
+    { name: 'CRM', icon: <Icons.websiteApp width='20' height='20' fill='transparent'/>, id: 'crm' },
+    { name: 'HR & HRM', icon: <Icons.blogAndPagesApp width='20' height='20'/>, id: 'hr-hrm' },
   ]
 
   useEffect(() => {
@@ -155,7 +155,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
             <div className="bg-[#F7F7F8] rounded-[9px] m-3 px-[15px] py-[13px]">
               <h2 className="text-[13px] font-medium text-[#09090B]">Let's set up your business</h2>
               <Progress value={50} className='my-[10px] h-[6px]'/>
-              <p className="text-[10px]">1/7 items</p>
+              <p className="text-[10px]">0/6 completed</p>
             </div>
           )}
 
@@ -222,7 +222,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
             </section> */}
 
             <section className="flex flex-col">
-              <h3 className="text-[#797979] text-sm font-semibold p-4">Your sites</h3>
+              <h3 className="text-[#8A8A8A] text-sm font-medium p-4">Your sites</h3>
               {yourSites.map((item) => (
                 <Link to={item.href}>
                   <Button variant='ghost' onClick={handleMenuClick} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.href === active ? 'bg-zinc-100' : ''}`}>
@@ -234,10 +234,10 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
             </section>
 
             <section className="flex flex-col">
-              <h3 className="text-[#797979] text-sm font-semibold p-4">WorkSpace App</h3>
+              <h3 className="text-[#8A8A8A] text-sm font-medium p-4">WorkSpace App</h3>
               <Button variant='ghost' onClick={() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5`}>
                 {/* <Layout viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' /> */}
-                <Icons.erpApp width='16' height='16'/>
+                <Icons.erpApp width='20' height='20'/>
                 Commerce
               </Button>
               {workspaceApp.map((item) => (
