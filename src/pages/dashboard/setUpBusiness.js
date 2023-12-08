@@ -21,7 +21,7 @@ export default function SetupBusiness(){
       <button className="guide-btn px-[22px] py-2 rounded-xl">
         <div className="flex items-center gap-4">
           {icon}
-          <h2 className={`text-sm ${isCompleted ? 'line-through text-[#71717A]' : 'text-[#09090B]'}`}>{title}</h2>
+          <h2 className={`text-sm font-medium ${isCompleted ? 'line-through text-[#71717A]' : 'text-[#09090B]'}`}>{title}</h2>
         </div>
         {!isCompleted ? (
           <button className='inner-guide-btn px-4 py-2 subheading font-medium'>
@@ -72,7 +72,7 @@ export default function SetupBusiness(){
                     <Building2 className="h-[18px] w-[18px] stroke-1 text-[#6B7280]"/>
                   </div>
                 </div>
-                <h2 className="secondary-heading">eCommerce guides</h2>
+                <h2 className="text-base font-semibold text-[#09090B] tracking-[-0.4px]">eCommerce guides</h2>
               </div>
               <p className="main-desc mt-[6px]">Manage your shop or items, track performance</p>
             </div>
@@ -92,7 +92,7 @@ export default function SetupBusiness(){
                     <AppWindow className="h-[18px] w-[18px] stroke-1 text-[#6B7280]"/>
                   </div>
                 </div>
-                <h2 className="secondary-heading">Web Store and Sites</h2>
+                <h2 className="text-base font-semibold text-[#09090B] tracking-[-0.4px]">Web Store and Sites</h2>
               </div>
               <p className="main-desc mt-[6px]">Design your shop and learn about new ways to improve your shop</p>
             </div>

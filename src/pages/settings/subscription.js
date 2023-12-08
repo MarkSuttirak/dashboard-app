@@ -130,7 +130,7 @@ export default function Subscription(){
       <section>
         <div className="flex justify-between">
           <div>
-            <h1 className="text-3xl font-semibold">{memberStatus.status === 'pro' ? '฿ 750' : '฿ 0'}</h1>
+            <h1 className="text-3xl font-semibold inter">{memberStatus.status === 'pro' ? '฿ 750' : '฿ 0'}</h1>
             <div className="flex items-center gap-x-[6px]">
               <p className="text-base leading-7 text-[#71717A]">
                 {memberStatus.status === 'pro' ? 'Your plan will renew on 2 December 2023.' : 'Free forever'}

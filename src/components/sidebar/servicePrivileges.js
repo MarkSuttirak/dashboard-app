@@ -1,6 +1,14 @@
 import { AppWindow, ArrowUpRightSquare, Award, Bell, BellRing, BookMarked, Building2, CalendarDays, Coins, Eye, FilePieChart, Heart, Import, Lightbulb, Palette, Phone, Settings2, ShoppingBag, Signal, TimerReset, Trash2, UserSquare2, Users, Users2 } from "lucide-react";
 import { CountdownTimerIcon, PersonIcon, LinkNone2Icon, Pencil2Icon } from "@radix-ui/react-icons";
 import LineIcon from "../icon-menus/Line";
+import lineCRMbg from 'src/img/linecrm-bg.png'
+import untitleBg from 'src/img/untitle-bg.png'
+import marketConnectBg from 'src/img/marketConnectBg.png'
+import posBg from 'src/img/pos-bg.png'
+import rewardfulBg from 'src/img/rewardful-bg.png'
+import reducoedBg from 'src/img/reducoed-bg.png'
+import crmBg from 'src/img/crmBg.png'
+import onlineStoreBg from 'src/img/online-store-bg.png'
 
 export default function ServicePrivileges({icon, title, desc}){
   return (
