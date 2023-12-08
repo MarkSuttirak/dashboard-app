@@ -102,7 +102,7 @@ export default function UpgradeProModal(){
                   </div>
                 </div>
 
-                <ul className="mt-8 gap-y-[17px] flex flex-col px-2 mb-10">
+                <ul className="mt-8 gap-y-[17px] flex flex-col px-2 mb-10 h-[240px] overflow-auto">
                   {privileges.map(p => (
                     <ServicePrivileges icon={p.icon} title={p.title} desc={p.desc}/>
                   ))}

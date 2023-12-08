@@ -42,7 +42,8 @@ export default function Packages(){
   const packageDesc = {
     customerContact:`Includes ${customerContact.toLocaleString()} customer contacts`,
     paidUsers:`Includes ${paidUsers} paid users`,
-    customField:`Includes ${customField} custom fields ${needSMSOTP ? `with ${smsOTP.toLocaleString()} SMS OTP, valid within ${smsOTP === 5000 ? '12 months' : '24 months'}` : ''}`,
+    customField:`Includes ${customField} custom fields`,
+    smsOTP:`Includes ${smsOTP} SMS OTP`,
     rewardfulDesc:packageTypeRewardful === 'Professional' ? '5 conditions and 5 tier levels included' : packageTypeRewardful === 'Enterprise' ? '10 conditions and 5 tier levels included' : '1 condition and 3 tier levels included',
     onlineStore:packageTypeOnlineStore === 'Professional' ? '10,000 products library' : packageTypeOnlineStore === 'Enterprise' ? 'Unlimited products library' : '5,000 products library'
   }
@@ -301,6 +302,7 @@ export default function Packages(){
               ))}</>
             ) : null}</>
           ))}
+          {needSMSOTP && (<ProductSelection title={`SMS OTP ${packageTypeLineCRM}`} price={`฿${smsOTPPrice.toLocaleString()}/month`} onClose={() => setNeedSMSOTP(false)} desc={packageDesc.smsOTP}/>)}
           {addons && (<ProductSelection title={`${addons} Addon`} price={addonFilter.price} onClose={() => setAddons()}/>)}
         </>
       }/>
