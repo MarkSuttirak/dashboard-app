@@ -1,7 +1,6 @@
 import api from './api-client';
 const backend_url = `${process.env.REACT_APP_BACKEND_URL || 'https://hosting.zaviago.com'}`;
 
-
 export const user = {
     oauthLogin: (provider, accessToken, idToken) => api.post(
         '/method/press.api.account.auth',
