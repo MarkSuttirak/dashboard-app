@@ -6,7 +6,7 @@ export default function AppIcon({icon, title, desc}){
         </div>
 
         <h2 className="subheading font-medium mb-[7px]">{title}</h2>
-        <p className="main-desc">{desc}</p>
+        <p className="text-xs text-[#667085]">{desc}</p>
       </div>
     )
   }

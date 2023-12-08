@@ -142,7 +142,7 @@ export default function Dashboard(){
 
       <section className="mt-6">
         <h2 className="secondary-heading">Create New or Manage</h2>
-        <p className="secondary-desc">What do you want to do today?</p>
+        <p className="main-desc">What do you want to do today?</p>
 
         <div className="flex flex-wrap gap-[15px] mt-6">
           {newOrManageMenus.map((n, index) => (
@@ -154,9 +154,9 @@ export default function Dashboard(){
         </div>
       </section>
 
-      <section className="my-[52px]">
+      <section className="my-[76px]">
         <h2 className="secondary-heading">App Store</h2>
-        <p className="secondary-desc">You have got much more than just a website.<br/>Build and expand your digital business with application</p>
+        <p className="main-desc">You have got much more than just a website.<br/>Build and expand your digital business with application</p>
 
         <div className="flex flex-wrap gap-4 mt-6">
           <AppIcon icon={<Icons.reducoedApp width='72px' height='72px'/>} title='Reducoed' desc='Connect your website with Reducoed'/>
@@ -166,12 +166,12 @@ export default function Dashboard(){
 
       <section>
         <h2 className="secondary-heading">Discover what you can do</h2>
-        <p className="secondary-desc">Manage posts, track post performance and learn about new ways to improve your blog.</p>
+        <p className="main-desc">Manage posts, track post performance and learn about new ways to improve your blog.</p>
 
         <div className="mt-6 grid lg:grid-cols-3 gap-[15px]">
-          <PostInfo title="Create your blog" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={createYourBlog} />
-          <PostInfo title="Selling Online" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={sellingOnline} />
-          <PostInfo title="Connect Shopee" desc="Say hello to the world and let readers know what your blog is all about." buttonText="New post" image={connectMessage} />
+          <PostInfo title="Create blogs" desc="Create Blogs and Pages with our unique style, elevating your brand online." buttonText="Add new blog" image={createYourBlog} />
+          <PostInfo title="Sell on Online store" desc="Boost customer loyalty and drive repeat business with our tailored Loyalty Program for businesses." buttonText="Add item" image={sellingOnline} />
+          <PostInfo title="Connect Marketplace" desc="Efficiently manage orders regardless of the number of sales channels." buttonText="Connect" image={connectMessage} />
         </div>
       </section>
     </div>

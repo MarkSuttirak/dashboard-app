@@ -103,7 +103,7 @@ body {
 }
 
 .bg-gradient {
-  background: linear-gradient(229deg, rgba(246, 235, 255, 0.50) -23.12%, rgba(226, 198, 255, 0.16) 11.08%, rgba(255, 98, 202, 0.00) 32.6%, rgba(255, 255, 255, 0.05) 81.71%);
+  background: linear-gradient(50deg, #FFF 78.99%, #D1B5FF 271.14%);
 }
 
 .inter {
@@ -143,7 +143,6 @@ body {
   transition:box-shadow .1s;
   border-radius:12px;
   box-sizing:border-box;
-  padding:8px 22px;
   &:hover {
     box-shadow:0 0 0 2px #006aff99;
     transition:box-shadow .1s;
@@ -158,7 +157,6 @@ body {
 .inner-guide-btn {
   display:flex;
   align-items:center;
-  padding:8px 16px;
   gap:8px;
   border:1px solid #E4E4E7;
   border-radius:9999px;
@@ -208,7 +206,7 @@ body {
 
 .domain-heading {
   font-size:20px;
-  font-weight:600;
+  font-weight:700;
   letter-spacing:-0.5px;
   line-height:28px;
   color:$primary-color;
@@ -351,7 +349,7 @@ body {
 }
 
 .page-section {
-  padding:84px 20px 35px 20px;
+  padding:84px 20px 160px 20px;
   box-sizing:content-box;
   &.active {
     margin-left:$right-sidebar-width + $left-sidebar-width;
@@ -444,7 +442,7 @@ body {
   box-sizing:border-box;
 	border-radius:6px;
   background-color:#F4F4F5;
-	outline:0px solid #2794F0;
+	outline:0px double #CECECE;
 	border:1px solid #E4E4E7;
   color:#6B7280;
   &.hide {
@@ -459,7 +457,7 @@ body {
     border:none;
     box-sizing:border-box;
     &:hover {
-      outline:2px solid #2794F0
+      outline:2px double #CECECE
     }
   }
 }
