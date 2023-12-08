@@ -90,9 +90,9 @@ export default function Packages(){
       (packageTypeMarketConnect ? prices.marketConnect[packageTypeMarketConnect] || 0 : 0) +
       (packageTypeOnlineStore ? prices.onlineStore[packageTypeOnlineStore] || 0 : 0)) + 
 
-      customerContactPrice + paidUserPrice + smsOTPPrice + customFieldPrice + addonPrice
+      customerContactPrice + paidUserPrice + customFieldPrice + addonPrice
     )
-    setEstimatedPrice(isAnnual ? ((totalPriceMonthly * 12 * 0.9) + estimatedContactPrice + estimatedMarketConnectPrice) : (totalPriceMonthly + estimatedContactPrice + estimatedMarketConnectPrice))
+    setEstimatedPrice(isAnnual ? ((totalPriceMonthly * 12 * 0.9) + estimatedContactPrice + estimatedMarketConnectPrice + smsOTPPrice) : (totalPriceMonthly + estimatedContactPrice + estimatedMarketConnectPrice + smsOTPPrice))
   };
 
   const handlePackageType = (index, packageType, setPackageType) => {
@@ -140,7 +140,11 @@ export default function Packages(){
     {
       title:packageTypeMarketConnect === 'Professional' ? 'Market Connect Professional' : packageTypeMarketConnect === 'Enterprise' ? 'Market Connect Enterprise' : null,
       price:packageTypeMarketConnect === 'Professional' ? 45000 : packageTypeMarketConnect === 'Enterprise' ? 125000 : 0
-    }
+    },
+    {
+      title:smsOTP === 5000 ? '5,000 SMS OTP' : smsOTP === 18000 ? '18,000 SMS OTP' : smsOTP === 60000 ? '60,000 SMS OTP' : null, 
+      price:smsOTP === 5000 ? 3000 : smsOTP === 18000 ? 10000 : smsOTP === 60000 ? 30000 : 0
+    },
   ]
 
   const calculateTotalFee = () => {
@@ -302,7 +306,7 @@ export default function Packages(){
               ))}</>
             ) : null}</>
           ))}
-          {needSMSOTP && (<ProductSelection title={`SMS OTP ${packageTypeLineCRM}`} price={`฿${smsOTPPrice.toLocaleString()}/month`} onClose={() => setNeedSMSOTP(false)} desc={packageDesc.smsOTP}/>)}
+          {needSMSOTP && (<ProductSelection title={`SMS OTP ${packageTypeLineCRM}`} price={`฿${smsOTPPrice.toLocaleString()}`} onClose={() => setNeedSMSOTP(false)} desc={packageDesc.smsOTP}/>)}
           {addons && (<ProductSelection title={`${addons} Addon`} price={addonFilter.price} onClose={() => setAddons()}/>)}
         </>
       }/>
