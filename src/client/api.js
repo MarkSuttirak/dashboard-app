@@ -1,6 +1,7 @@
 import api from './api-client';
 const backend_url = `${process.env.REACT_APP_BACKEND_URL || 'https://hosting.zaviago.com'}`;
 
+
 export const user = {
     oauthLogin: (provider, accessToken, idToken) => api.post(
         '/method/press.api.account.auth',
@@ -33,7 +34,7 @@ export const site = {
     rename: (data) => api.post('/method/press.api.site.rename', data).then((response) => response.data.message),
     exists: (data) => api.get('/method/press.api.site.exists', { params: data }).then((response) => response.data.message),
     optionsForNew: () => api.get('/method/press.api.site.options_for_new').then((response) => response.data.message),
-    new: (data) => api.post('/method/press.api.site.new', data).then((response) => response.data.message),
+    new: (data) => api.post('/method/press.api.site.new_saas_site', data).then((response) => response.data.message),
     appslist: (name) => api.get('/method/press.api.marketplace.get_apps', { params: { name } }).then((response) => response.data.message), 
     installed_apps: (name) => api.get('/method/press.api.site.installed_apps', { params: { name } }).then((response) => response.data.message),
     get_app_plans: (app) => api.get('/method/press.api.marketplace.get_app_plans', { params: { app } }).then((response) => response.data.message),

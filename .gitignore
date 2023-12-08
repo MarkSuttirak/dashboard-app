@@ -24,3 +24,6 @@ yarn-error.log*
 src/client/api-client.js
 src/client/api-client.js
 src/client/api.js
+src/client/api-client.js
+src/client/api.js
+src/client/api-client.js
