@@ -92,7 +92,7 @@ export default function PaymentInfo(){
           <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px]">฿ {total()}</h1>
           <div>
             <p className="main-desc">per</p>
-            <p className="main-desc">mon</p>
+            <p className="main-desc">month</p>
           </div>
         </div>
         <Card className='p-0 shadow-none'>

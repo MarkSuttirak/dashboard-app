@@ -4,11 +4,12 @@ import upgradeProBg from 'src/img/upgrade-pro-bg.png'
 import { ServiceBadge } from '../sidebar/serviceBadge'
 import ServicePrivileges from '../sidebar/servicePrivileges'
 import { Link } from 'react-router-dom'
-import { BellIcon, LightningBoltIcon, EyeNoneIcon } from '@radix-ui/react-icons'
+import { BellIcon, LightningBoltIcon, EyeNoneIcon, LockOpen1Icon } from '@radix-ui/react-icons'
 import { Button } from '../ui/button'
 import { Switch } from '../ui/switch'
 import { Badge } from '../ui/badge'
 import DrawLine from "../drawLine";
+import { PartyPopper, ThumbsUp, UserPlus } from 'lucide-react'
 
 export default function UpgradeProModal(){
   const [openModal, setOpenModal] = useState(false)
@@ -31,24 +32,24 @@ export default function UpgradeProModal(){
 
   const privileges = [
     {
-      icon:<BellIcon className="mt-1" color='#09090B' width='20' height='20'/>,
-      title:'Super Admin',
-      desc:'Can access billing and members'
+      icon:<PartyPopper className="mt-1 stroke-[1.5] text-[#09090B] h-5 w-5"/>,
+      title:'Everything in Free!',
+      desc:'Unlock every application at once'
     },
     {
-      icon:<EyeNoneIcon className="mt-1" color='#09090B' width='20' height='20'/>,
-      title:'Remove',
-      desc:'Turn off all notifications'
+      icon:<LockOpen1Icon className="mt-1 stroke-[1.5] text-[#09090B] h-5 w-5"/>,
+      title:'Unlimited quota',
+      desc:'No limited orders, pages, customers etc.'
     },
     {
-      icon:<BellIcon className="mt-1" color='#09090B' width='20' height='20'/>,
-      title:'Super Admin',
-      desc:'Can access billing and members'
+      icon:<ThumbsUp className="mt-1 stroke-[1.5] text-[#09090B] h-5 w-5"/>,
+      title:'Collaborative workspace',
+      desc:'Enable team features'
     },
     {
-      icon:<EyeNoneIcon className="mt-1" color='#09090B' width='20' height='20'/>,
-      title:'Remove',
-      desc:'Turn off all notifications'
+      icon:<UserPlus className="mt-1 stroke-[1.5] text-[#09090B] h-5 w-5"/>,
+      title:'1 team member',
+      desc:'Free 1 teammate slot'
     },
   ]
 
@@ -63,7 +64,7 @@ export default function UpgradeProModal(){
       <DialogContent className='p-0 border-0 max-w-4xl'>
         <DialogHeader className='flex-row'>
           <DialogTitle>
-            <img src={upgradeProBg} className='rounded-l-lg h-full w-[800px]'/>
+            <img src={upgradeProBg} className='rounded-l-lg h-full w-[700px] object-cover'/>
 
             <div className="absolute left-5 bottom-5 flex gap-x-2 items-center">
               <Button variant='link' className='text-white text-xs p-0 h-fit'>Support</Button>
@@ -71,27 +72,27 @@ export default function UpgradeProModal(){
               <Button variant='link' className='text-white text-xs p-0 h-fit'>Contact us</Button>
             </div>
           </DialogTitle>
-          <DialogDescription className='px-10 pt-6 pb-10 shadow-lg'>
-            <div className="flex flex-col justify-between h-full">
+          <DialogDescription className='pb-10 shadow-lg'>
+            <div className="flex flex-col justify-between h-full px-10 pt-6">
               <section>
                 <div className='flex items-center justify-between mb-2'>
                   <h1 className="main-heading tracking-[-0.6px]">Professional</h1>
                   <ServiceBadge text='Recommended'/>
                 </div>
-                <p>Say hello to the world and let readers know what your blog is all about.</p>
+                <p className='text-[#71717A]'>Say hello to the world and let readers know what your blog is all about.</p>
 
                 <div className='mt-6 flex flex-col gap-y-[18px]'>
-                  <div className='flex gap-x-3 items-center'>
+                  <div className='flex gap-x-3 items-center inter'>
                     <Switch onCheckedChange={handlePerYear} />
                     <Badge variant='outline'>Yearly save - ฿ 1,500</Badge>
                   </div>
                   <div className='flex gap-x-2'>
-                    <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px]">{perYear ? '฿ 7,500' : '฿ 750'}</h1>
-                    <p className='text-[#71717A] text-base'>{perYear ? 'Bath / year / User' : 'Bath / month / User'}</p>
+                    <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px] inter">{perYear ? '฿ 7,500' : '฿ 750'}</h1>
+                    <p className='text-[#71717A] text-base'>{perYear ? 'Year / User' : 'Month / User'}</p>
                   </div>
                 </div>
 
-                <ul className="mt-6 gap-y-[17px] flex flex-col px-2">
+                <ul className="mt-8 gap-y-[17px] flex flex-col px-2 mb-10">
                   {privileges.map(p => (
                     <ServicePrivileges icon={p.icon} title={p.title} desc={p.desc}/>
                   ))}
@@ -104,7 +105,7 @@ export default function UpgradeProModal(){
                     Upgrade to Pro
                   </Button>
                 </Link>
-                <p className="main-desc">See more details at <Link className="text-[#006AFF]" to='/dashboard/compare-plan'>Compare Plan</Link></p>
+                <p className="main-desc">See more details at <Link className="text-[#006AFF]" to='/dashboard/compare-plan'>Compare Plans & Features</Link></p>
               </section>
             </div>
           </DialogDescription>

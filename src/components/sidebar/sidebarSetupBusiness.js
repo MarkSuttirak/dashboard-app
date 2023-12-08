@@ -6,7 +6,7 @@ import { Check, Dot } from "lucide-react";
 export default function SidebarSetupBusiness(){
   function GuideButton({icon, title, buttonText, buttonIcon, link, isCompleted}){
     return (
-      <button className="guide-btn p-[6px] h-10">
+      <button className="guide-btn p-[6px] h-10 rounded-md">
         <div className="flex items-center gap-1">
           {isCompleted ? <CheckIcon className="h-5 w-5" color='#51B77B'/> : <Dot className="h-5 w-5"/>}
           <h2 className={`text-xs ${isCompleted ? 'line-through text-[#71717A]' : 'text-[#09090B]'}`}>{title}</h2>

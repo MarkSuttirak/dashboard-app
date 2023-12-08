@@ -18,7 +18,7 @@ export default function SetupBusiness(){
 
   function GuideButton({icon, title, buttonText, buttonIcon, link, isCompleted}){
     return (
-      <button className="guide-btn px-[22px] py-2">
+      <button className="guide-btn px-[22px] py-2 rounded-xl">
         <div className="flex items-center gap-4">
           {icon}
           <h2 className={`text-sm ${isCompleted ? 'line-through text-[#71717A]' : 'text-[#09090B]'}`}>{title}</h2>

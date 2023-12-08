@@ -47,10 +47,20 @@ export default function DashboardBanner({sitename}){
                       </CommandItem>
                     </CommandGroup>
                     <CommandSeparator />
-                    <CommandGroup heading="Current App">
+                    <CommandGroup heading="Current Team">
                       <CommandItem>
                         <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
-                        Blog / Pages
+                        Intergoods
+                      </CommandItem>
+                    </CommandGroup>
+                    <CommandGroup heading="Team">
+                      <CommandItem>
+                        <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
+                        Zaviago
+                      </CommandItem>
+                      <CommandItem>
+                        <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
+                        Goodfill
                       </CommandItem>
                     </CommandGroup>
                   </CommandList>

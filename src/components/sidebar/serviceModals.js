@@ -13,13 +13,14 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "src/co
 export default function ServiceModals(){
   const icons = [
     {icon:<Icons.crmApp />, title:'CRM'},
-    {icon:<Icons.lineCRMApp />, title:'Line CRM'},
+    {icon:<Icons.lineCRMApp />, title:'LINEOA CRM'},
     {icon:<Icons.rewardfulApp />, title:'Rewardful'},
-    {icon:<Icons.reducoedApp />, title:'Reducoed'},
-    {icon:<Icons.inbioApp />, title:'Market Connect'},
-    {icon:<Icons.untitleApp />, title:'Untitle'},
+    {icon:<Icons.reducoedApp />, title:'Reduced%'},
+    {icon:<Icons.inbioApp />, title:'MarketConnect'},
+    {icon:<Icons.untitleApp />, title:'Untitled'},
     {icon:<Icons.posApp />, title:'POS in.store'},
-    {icon:<Icons.erpApp />, title:'Online Store'}
+    {icon:<Icons.erpApp />, title:'OnlineStore'},
+    {icon:<Icons.blogAndPagesApp />, title:'Weblogs'}
   ]
   const services = useServiceMenus()
 
@@ -67,7 +68,7 @@ export default function ServiceModals(){
                     <LightningBoltIcon />Upgrade to Pro
                   </Button>
                 </Link>
-                <p className="main-desc">See all features in <Link className="text-[#006AFF]" to={`/integration/appstore/${services.link}`}>App store Detail</Link></p>
+                <p className="main-desc">See all features in <Link className="text-[#006AFF]" to={`/integration/appstore/${services.link}`}>{services.name}</Link></p>
               </section>
             </div>
           </DialogDescription>

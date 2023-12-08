@@ -87,16 +87,16 @@ export default function AppStore(){
     <div className="dashboard-container">
       <h1 className="main-heading tracking-[-0.6px]">App Store</h1>
 
-      <div className="flex justify-between mt-6">
+      {/* <div className="flex justify-between mt-6">
         {appstoreMenus.map((n, index) => (
           <div className="menu-card-app-store" key={index} style={{backgroundColor:n.background,color:n.color,boxShadow:isMenuCardHover && menuCardIndex === index ? `0 0 3px ${n.color}` : null}} onMouseEnter={() => handleCardHover(index)} onMouseLeave={handleCardHoverLeave}>
             {n.image}
             <span className="absolute bottom-4">{n.title}</span>
           </div>
         ))}
-      </div>
+      </div> */}
 
-      <section style={{background:`url(${appstoreBg})`,backgroundRepeat:"no-repeat",backgroundSize:"cover"}} className="mt-6 p-6 rounded-xl flex justify-between">
+      {/* <section style={{background:`url(${appstoreBg})`,backgroundRepeat:"no-repeat",backgroundSize:"cover"}} className="mt-6 p-6 rounded-xl flex justify-between">
         <section className="flex flex-col justify-between w-1/3">
           <div className='mt-4'>
             <h1 className="main-heading">Create project deploy your <br/>new project in one-click</h1>
@@ -118,9 +118,48 @@ export default function AppStore(){
             </article>
           </div>
         </aside>
-      </section>
+      </section> */}
 
-      <Separator className="my-10"/>
+      {/* <Separator className="my-10"/> */}
+
+      <div className="flex justify-between items-center">
+        <h2 className="secondary-heading">Recommended Apps</h2>
+        <Link className="text-[#006AFF] text-sm font-medium">See more apps</Link>
+      </div>
+      <div className="flex gap-x-6 mt-6">
+        <section className="grid grid-cols-2 gap-6 w-[70%]">
+          {appslists?.map((app, index) => {
+          const isInstalled = installedApps.data?.some(installedApp => installedApp.title === app.title);
+          return (
+            <Card key={index} className='shadow-none flex flex-col justify-between h-fit'>
+              <CardHeader className='flex flex-row gap-x-6'>
+                <div className="w-[90px]">
+                  {app.image ? <img src={site.backend_url()+app.image}/> : <Icons.erpApp />}
+                </div>
+                <div className="m-[0!important]">
+                  <CardTitle>{app.title}</CardTitle>
+                  <CardDescription className='mt-[6px]'>{app.description}</CardDescription>
+                </div>
+              </CardHeader>
+              <CardFooter className='flex items-center justify-between'>
+                <div className="text-sm">
+                  {isInstalled && <span>Installed</span>} {/* Render "Installed" if the app is found in installedApps.data */}
+                </div>
+                <Link to={`/integration/appstore/${app.name}`}>
+                  {/* Conditionally render Button based on `isInstalled` */}
+                  {isInstalled ? (
+                    <Button variant='outline' disabled>Installed</Button>
+                  ): (
+                    <Button variant='outline'>See more</Button>
+                  )}
+                </Link>
+              </CardFooter>
+            </Card>
+          )
+        })}
+
+        </section>
+      </div>
 
       <div className="flex justify-between items-center">
         <h2 className="secondary-heading">Recommended for You</h2>
@@ -160,17 +199,6 @@ export default function AppStore(){
       })}
 
       </section>
-        <section className="border rounded-xl bg-[#F7F7F8] w-[30%]">
-          <div className="p-6">
-            <h1 className="secondary-heading">How to Start Selling Online</h1>
-            <p className="text-[13px] font-medium text-[#71717A] mt-4 mb-6">Say hello to the world and let readers know what your blog is all about.</p>
-            <Button variant='outline' className='btn-with-icon bg-white'>
-              <PlusCircledIcon />
-              View Blog
-            </Button>
-          </div>
-          <img src={startSellingOnline} width='100%' className="rounded-b-xl"/>
-        </section>
       </div>
     </div>
   )
