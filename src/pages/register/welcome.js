@@ -138,6 +138,9 @@ export default function Welcome(){
           src={loginImg}
           alt="login-image"
         />
+        <div className="absolute top-10 right-10 fade-in">
+          <Icons.zaviagoTransparent />
+        </div>
       </div>
     </div>
   )

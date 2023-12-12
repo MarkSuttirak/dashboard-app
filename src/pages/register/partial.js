@@ -15,16 +15,13 @@ import { useState } from 'react';
 import { Input } from '../../components/ui/input';
 import { Button } from '../../components/ui/button';
 
-const Partial = () => {
+export default function Partial(){
     return (
         <SignupProvider>
             <Outlet />
         </SignupProvider>
     )
 }
-
-export default Partial
-
 
 export const PhoneVerification = () => {
     const { key } = useParams();
@@ -42,7 +39,6 @@ export const PhoneVerification = () => {
         </div>
     )
 }
-
 
 const GetPhoneNumber = ({
     next,
@@ -343,5 +339,3 @@ const VerifyOTP = ({
         </form>
     )
 }
-
-

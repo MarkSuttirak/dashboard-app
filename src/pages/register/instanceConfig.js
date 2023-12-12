@@ -85,8 +85,9 @@ const InstanceConfig = () => {
                 </div>
                 <div className="flex flex-1 m-[30px] md:m-2 z-[999] basis-[20%] bg-white absolute md:relative register-screen">
                     <StepMaintainer state={{ site: lsite, setSite }}>
-                        <SiteDomainForm />
                         <AppsSelectionForm onSubmit={mutate}/>
+                        <SiteDomainForm />
+                        
                         {/* <ThemeSelectionForm onSubmit={mutate} /> */}
                     </StepMaintainer>
                 </div>
@@ -378,7 +379,7 @@ export const AppsSelectionForm = ({
     const otherApps = [
         {
             icon:<LineIcon className='h-4 w-4'/>,
-            title:'Line CRM',
+            title:'LineOA CRM',
         },
         {
             icon:<Coins className='h-4 w-4'/>,
@@ -551,8 +552,8 @@ export const ThemeSelectionForm = ({
         <form className="m-auto w-full max-w-sm w-96 h-[600px]" onSubmit={formik.handleSubmit}>
             <Steps total={6} step={5} />
             <div className="anim-up">
-                <h2 className="main-title mt-8">Pick a theme you like</h2>
-                <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
+                <h2 className="main-title mt-8">Select a designed theme</h2>
+                <p className="tab-desc mt-2">Choose from plenty of designs for your site</p>
             </div>
             <div className={`space-y-4 mt-10 anim-up`}>
                 <RadioGroup
@@ -561,7 +562,7 @@ export const ThemeSelectionForm = ({
                     value={formik.values.theme}
                     onChange={formik.handleChange}
                 >
-                    <RadioGroup.Label className="sr-only"> Pick a theme you like </RadioGroup.Label>
+                    <RadioGroup.Label className="sr-only">Select a designed theme</RadioGroup.Label>
                     <div className="grid grid-cols-2 gap-3">
                         {themeOptions.map((option) => (
                             <RadioGroup.Option
@@ -592,7 +593,7 @@ export const ThemeSelectionForm = ({
                     type='submit'
                     className='w-1/4 justify-center'
                     disabled={!formik.isValid}
-                >Submit</Button>
+                >Create site</Button>
             </div>
         </form>
     )

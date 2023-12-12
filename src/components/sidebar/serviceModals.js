@@ -47,7 +47,7 @@ export default function ServiceModals(){
             <div className="absolute left-5 bottom-5 flex gap-x-2 items-center">
               <Button variant='link' className='text-white text-xs p-0 h-fit'>Privacy Policy</Button>
               <DrawLine color='#FFF' width='1px' height='14px'/>
-              <Button variant='link' className='text-white text-xs p-0 h-fit'>Contact us</Button>
+              <a href='https://page.line.me/zaviago' variant='link' className='text-white text-xs p-0 h-fit'>Contact us</a>
             </div>
           </DialogTitle>
           <DialogDescription className='px-10 pt-6 pb-10 shadow-lg'>

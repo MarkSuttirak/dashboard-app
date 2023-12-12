@@ -731,6 +731,17 @@ $gradient-border:linear-gradient(to right, #9A5BFF, #FF9C27);
   padding:8px 0;
 }
 
+.fade-in {
+  animation:fadeIn 1.5s forwards;
+  animation-delay:.3s;
+  opacity:0;
+}
+
+@keyframes fadeIn {
+  from {opacity:0}
+  to {opacity:1}
+}
+
 @keyframes moving-line {
   0% {
     background-position: 200% 0;

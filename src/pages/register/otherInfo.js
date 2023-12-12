@@ -235,10 +235,10 @@ export const UserInfoForm = ({
                                         <>
                                             <span className="flex flex-1">
                                                 <span className="flex flex-col">
-                                                    <RadioGroup.Label as="span" className="subheading">
+                                                    <RadioGroup.Label as="span" className="subheading font-medium">
                                                         {mailingList.title}
                                                     </RadioGroup.Label>
-                                                    <RadioGroup.Description as="span" className="tab-desc">
+                                                    <RadioGroup.Description as="span" className="main-desc">
                                                         {mailingList.description}
                                                     </RadioGroup.Description>
                                                 </span>
