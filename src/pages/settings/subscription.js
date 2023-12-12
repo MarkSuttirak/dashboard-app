@@ -69,6 +69,7 @@ export default function Subscription(){
       }
     }
   });
+  const plan = siteOverview?.plan?.current_plan;
 
   return (
     <>
@@ -81,13 +82,13 @@ export default function Subscription(){
           </div>
 
           <div className="flex">
-            {memberStatus.status === 'pro' ? (
+            {plan?.name === 'pro' ? (
              <Button variant='secondary' className='btn-with-icon leading-5 rounded-r-none' onClick={() => window.location.href = `/dashboard/settings/plan-upgrade`}>
               <Zap viewBox='0 0 24 24' width='16' height='16'/>
               Manage Team
             </Button>
             ) : (
-              <Button variant='secondary' className='btn-with-icon leading-5 rounded-r-none' onClick={() => window.location.href = `/dashboard/settings/plan-upgrade`}>
+              <Button variant='secondary' className='btn-with-icon leading-5 rounded-r-none' onClick={() => window.location.href = `/payment/plan/pro`}>
                 <Zap viewBox='0 0 24 24' width='16' height='16'/>
                 Upgrade to Pro
               </Button>

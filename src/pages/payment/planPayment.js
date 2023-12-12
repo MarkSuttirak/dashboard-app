@@ -13,7 +13,7 @@ import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { useParams } from "react-router"
 
-export default function PaymentInfo(){
+export default function PlanPayment(){
   const { id } = useParams()
   const { app } = useParams()
   const [addPromo, setAddPromo] = useState(false)
@@ -32,9 +32,7 @@ export default function PaymentInfo(){
 
 
 
-
-
-  const checkout_info = useQuery('checkout_info', () => site.get_app_plans(app), {enabled: false});
+  const checkout_info = useQuery('checkout_info', () => site.get_web_plans(sites?.site_list[0]?.name), {enabled: false});
 
 
   useEffect(() => {
@@ -89,7 +87,6 @@ export default function PaymentInfo(){
     setCouponCode('')
     setDiscount(0)
   }
-
   return (
     <section className="w-full pt-[60px]">
       <div className="flex items-center gap-x-3">
@@ -99,7 +96,7 @@ export default function PaymentInfo(){
         <h1 className="main-heading">Payment</h1>
       </div>
       <section className="py-10 px-5">
-        <h2 className="main-desc font-medium">Subscribe to {app}</h2>
+        <h2 className="main-desc font-medium">Subscribe to Website Pro</h2>
         <div className="mt-3 mb-10 flex gap-x-[10px] items-center">
           <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px] inter">฿ {total()}</h1>
           <div>

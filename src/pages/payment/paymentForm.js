@@ -19,12 +19,19 @@ export default function PaymentForm(){
     enabled: !!user,
   });
 
-
-
   const onPaymentSubmit = async () => {
     try {
-      const res = await site.create_app_subscription(app,sites.site_list[0].name,id);
-      navigate('/checkout')
+
+      if(app == 'plan'){
+        await site.change_plan(sites.site_list[0].name,id);
+       
+      }
+      else{
+        await site.create_app_subscription(app,sites.site_list[0].name,id);
+        navigate('/checkout')
+      }
+
+      
     } catch (error) {
       // Handle error here
     }

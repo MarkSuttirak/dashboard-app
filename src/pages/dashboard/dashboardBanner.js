@@ -8,6 +8,9 @@ import { ChevronDownIcon, DotsHorizontalIcon, MagicWandIcon, PlusCircledIcon, St
 import { Users, Zap, ChevronRight, Shuffle } from "lucide-react";
 import { MemberContext } from "src/components/provider/memberProvider";
 import { Badge } from "src/components/ui/badge";
+import { useMutation, useQuery } from "react-query";
+import { site } from "../../client/api";
+import { useUser } from "../../hooks/useUser";
 
 export default function DashboardBanner({sitename}){
   const navigate = useNavigate()
@@ -16,6 +19,22 @@ export default function DashboardBanner({sitename}){
   const [numOfCustomers, setNumOfCustomers] = useState(38)
   const [date, setDate] = useState('April 2023')
   const memberStatus = useContext(MemberContext)
+  const { user, auth, logout } = useUser();
+
+
+
+
+  const { data: sites } = useQuery('sites', site.list, {
+    enabled: !!user,
+  });
+
+  const { data: siteOverview } = useQuery(['site', `${sites?.site_list[0].name}`], () => site.overview(sites?.site_list[0].name), {
+    enabled: !!sites?.site_list.length
+  });
+  const plan = siteOverview?.plan?.current_plan;
+  
+
+
 
   return (
     <section className="mt-6">
@@ -80,7 +99,7 @@ export default function DashboardBanner({sitename}){
 
         <Card className='w-full lg:min-w-[400px] lg:w-[400px] flex flex-col justify-between shadow-none'>
           <CardHeader className='pb-2 flex flex-col xl:flex-row xl:items-start justify-between'>
-            {memberStatus.status === 'pro' ? (
+            {plan?.name === 'pro' ? (
               <>
                 <div className="mr-4">
                   <CardTitle className='domain-heading'>Pro Plan</CardTitle>
@@ -93,7 +112,7 @@ export default function DashboardBanner({sitename}){
                   </Button>
                 </Link>
               </>
-            ) : memberStatus.status === 'pending' ? (
+            ) : plan?.name === 'free' ? (
               <>
                 <div className="mr-4">
                   <CardTitle className='domain-heading'>ฟรี ตลอดชีพ</CardTitle>
@@ -108,16 +127,7 @@ export default function DashboardBanner({sitename}){
               </>
             ) : (
               <>
-                <div className="mr-4">
-                  <CardTitle className='domain-heading'>ฟรี ตลอดชีพ</CardTitle>
-                  <CardDescription>You are in free but can be used for all basic uses.</CardDescription>
-                </div>
-                <Link to='/dashboard/settings/billing-plans'>
-                  <Button variant='blue' className='btn-with-icon leading-5'>
-                    <Zap viewBox="0 0 24 24" width='16' height='16'/>
-                    Manage Plan
-                  </Button>
-                </Link>
+                
               </>
             )}
           </CardHeader>
