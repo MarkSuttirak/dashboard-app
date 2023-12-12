@@ -61,7 +61,7 @@ const appsList = [
   },
 ]
 
-const Register = () => {
+export default function Register(){
   const [account, setAccount] = useState(true);
   const [tellUs, setTellUs] = useState(false);
   const [site, setSite] = useState(false);
@@ -100,7 +100,6 @@ const Register = () => {
 
   const handleAccount = () => {
     setIsValidEmail(validateEmail(inputEmailValue));
-    console.log(isValidEmail)
     if (document.getElementById('firstname').value === '') {
       setWarnFillName(true);
       setErrorInputBorder('#EF4444')
@@ -239,8 +238,6 @@ const Register = () => {
   const handleChangeGoal = (event) => {
     setSelectedValueGoal(event.target.value);
   };
-
-
 
   const [errorOtpBorder, setErrorOtpBorder] = useState('#F4F5F6')
 
@@ -536,5 +533,3 @@ const Register = () => {
     </div>
   )
 }
-
-export default Register

@@ -227,3 +227,14 @@ export const appPrivileges = {
     },
   ]
 }
+
+export const appsList = {
+  crm: {name:'CRM',image:crmBg, title:(<>Elevate Your Business with Seamless <span className="text-[#A755E3]">Customer Relationship Management</span></>), desc:'Cutting-edge tools for modern businesses to effectively manage relationships.', require_pro_text:'Upgrade pro plan to use this feature', link:'', privilege:appPrivileges.crmApp},
+  lineCRM: {name:'LINEOA CRM', image:lineCRMbg, title:(<>Unlock your bizs to the next level with <span className="text-[#3BCD76]">LINEOA CRM</span></>), desc:'Membership system on LINE, a board for announcing promotions, along with a point & reward redemption system', require_pro_text:'Upgrade pro plan to use this feature', link:'', privilege:appPrivileges.lineCRMApp},
+  rewardful: {name:'Rewardful',image:rewardfulBg, title:(<>Set your Loyalty Program by <span className="text-[#FF7009]">Rewardful</span></>), desc:'Turn every expense into points, increasing sales and repeat purchases', require_pro_text:'Upgrade pro plan to use this feature', link:'', privilege:appPrivileges.rewardfulApp},
+  reducoed: {name:'Reduced%',image:reducoedBg, title:(<>Boost Sales with Exclusive <span className="text-[#EB4F9F]">Reduced%</span> Coupons and Deals!</>), desc:'Giving away coupons and dynamic discount value that you can customize.', require_pro_text:'Upgrade pro plan to use this feature', link:'', privilege:appPrivileges.reducoedApp},
+  marketConnect: {name:'MarketConnect',image:marketConnectBg, title:(<>Connect with <span className="text-[#FF4A00]">MarketConnect</span> across All Sales Channels.</>), desc:'Efficiently manage orders regardless of the number of sales channels.', require_pro_text:'Coming soon', link:'', privilege:appPrivileges.marketConnectApp},
+  untitled: {name:'Untitled',image:untitleBg, title:(<>Building your website creation with <span className="text-[#FBB604]">Untitled</span></>), desc:'Access exclusive tools to help you build client sites and scale your business', require_pro_text:'Upgrade pro plan to use this feature', link:'', privilege:appPrivileges.untitleApp},
+  pos: {name:'POS in.store',image:posBg, title:(<>Manage store seamlessly with <span className="text-[#013395]">POS in.store</span></>),desc:'An easy-to-use POS for retailers that caters to all your in-store needs', require_pro_text:'Upgrade pro plan to use this feature', link:'', privilege:appPrivileges.posApp},
+  onlineStore: {name:'OnlineStore',image:onlineStoreBg, title:(<>Smooth and Seemless <span className="text-[#0A5FD9]">OnlineStore</span> in your style</>),desc:'Propel your brand to new heights by unveiling a website that outshines the competition', require_pro_text:'Upgrade pro plan to use this feature', link:'', privilege:appPrivileges.onlineStoreApp}
+}

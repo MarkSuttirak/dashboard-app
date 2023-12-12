@@ -16,6 +16,9 @@ import { BuildingStorefrontIcon } from '@heroicons/react/24/solid';
 import { classNames } from '../../utils/helper';
 import { Input } from '../../components/ui/input';
 import { Button } from '../../components/ui/button';
+import LineIcon from 'src/components/icon-menus/Line';
+import { AppWindow, Coins, Store, UserSquare } from 'lucide-react';
+import { LinkNone2Icon } from '@radix-ui/react-icons';
 
 const InstanceConfig = () => {
     const { auth } = useUser();
@@ -70,9 +73,9 @@ const InstanceConfig = () => {
         </div>
     }
 
-    if (auth?.onboarding.site_created) {
-        return <Navigate replace to='/dashboard/app' />
-    }
+    // if (auth?.onboarding.site_created) {
+    //     return <Navigate replace to='/dashboard/app' />
+    // }
 
     return (
         <>
@@ -82,8 +85,9 @@ const InstanceConfig = () => {
                 </div>
                 <div className="flex flex-1 m-[30px] md:m-2 z-[999] basis-[20%] bg-white absolute md:relative register-screen">
                     <StepMaintainer state={{ site: lsite, setSite }}>
+                    <AppsSelectionForm />
                         <SiteDomainForm />
-                        <AppsSelectionForm />
+                        
                         <ThemeSelectionForm onSubmit={mutate} />
                     </StepMaintainer>
                 </div>
@@ -316,7 +320,7 @@ export const SiteDomainForm = ({
             <Steps total={6} step={3} />
             <div className={`anim-up`}>
                 <h2 className="main-heading mt-8">What would you like to call your site?</h2>
-                <p className="subheading mt-2">It was popularised in the 1960s with the release of Letraset.</p>
+                <p className="subheading mt-2">Create your awesome name site in a few clicks.</p>
             </div>
             <div className={`space-y-4 mt-10 anim-up`}>
                 <div className="relative mt-1 rounded-md shadow-sm">
@@ -344,7 +348,7 @@ export const SiteDomainForm = ({
                     type='submit'
                     className='justify-center'
                     // disabled={!formik.isValid}
-                >Submit</Button>
+                >Continue</Button>
             </div>
         </form>
     )
@@ -371,6 +375,38 @@ export const AppsSelectionForm = ({
     state: { site: siteData, setSite },
 }) => {
     const [availableApps, setAvailableApps] = useState([])
+    const otherApps = [
+        {
+            icon:<LineIcon className='h-4 w-4'/>,
+            title:'Line CRM',
+            desc:'ไลน์ CRM membership เก็บข้อมูลลูกค้าจากไลน์'
+        },
+        {
+            icon:<Coins className='h-4 w-4'/>,
+            title:'Rewardful',
+            desc:'point&reward'
+        },
+        {
+            icon:<LinkNone2Icon className='h-4 w-4'/>,
+            title:'MarketConnect',
+            desc:'OMS รวมออเดอร์ เช็คสต็อก ดูยอดขาย'
+        },
+        {
+            icon:<Store className='h-4 w-4'/>,
+            title:'OnlineStore',
+            desc:'Sales page web app'
+        },
+        {
+            icon:<UserSquare className='h-4 w-4'/>,
+            title:'CRM',
+            desc:'รวบรวมข้อมูลเกี่ยวกับลูกค้า'
+        },
+        {
+            icon:<AppWindow className='h-4 w-4'/>,
+            title:'Untitled',
+            desc:'Website builder'
+        }
+    ]
 
     const formik = useFormik({
         initialValues: initialValues,
@@ -405,12 +441,12 @@ export const AppsSelectionForm = ({
             <Steps total={6} step={4} />
             <div className="anim-up">
                 <h2 className="main-heading mt-8">What would you like to add on your site?</h2>
-                <p className="subheading mt-2">It was popularised in the 1960s with the release of Letraset.</p>
+                <p className="subheading mt-2">Select the apps you want to install on your site.</p>
             </div>
             <div className={`space-y-4 mt-10 anim-up`}>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid gap-4">
 
-                    {availableApps.map(({ app, app_title }) => (
+                    {/* {availableApps.map(({ app, app_title }) => (
                         <label htmlFor={app} onClick={() => {
                             if (formik.values.apps.includes(app)) {
                                 formik.setFieldValue('apps', formik.values.apps.filter((selectedApp) => selectedApp !== app));
@@ -428,6 +464,23 @@ export const AppsSelectionForm = ({
                             <span className="subheading border checkbox-card">
                                 <BuildingStorefrontIcon />
                                 {app_title}
+                            </span>
+                        </label>
+                    ))} */}
+
+                    {otherApps.map((app) => (
+                        <label htmlFor={app}>
+                            <input
+                                type="checkbox"
+                                className="checkbox-card-input"
+                                name={app}
+                            />
+                            <span className="subheading border checkbox-card">
+                                {app.icon}
+                                <div>
+                                  <h2 className='subheading font-medium'>{app.title}</h2>
+                                  <p className='main-desc'>{app.desc}</p>
+                                </div>
                             </span>
                         </label>
                     ))}

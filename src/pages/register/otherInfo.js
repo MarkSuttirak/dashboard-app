@@ -129,8 +129,8 @@ export const UserInfoForm = ({
     state
 }) => {
     const mailingLists = [
-        { id: 1, title: 'I am a solo entrepreneur', description: 'Last message sent an hour ago' },
-        { id: 2, title: 'I am a business team member', description: 'Last message sent 2 weeks ago' },
+        { id: 1, title: 'I am a solo entrepreneur', description: 'Founder and solo employee until business success' },
+        { id: 2, title: 'I am a business team member', description: 'Individuals contribute to the success of the business' },
     ]
     const { key } = useParams();
     const { idTokenData } = useContext(AuthContext)
@@ -157,7 +157,7 @@ export const UserInfoForm = ({
             <Steps total={6} step={current} />
             <div className="anim-up">
                 <h2 className="main-heading mt-10">Fill in your information</h2>
-                <p className="subheading">It was popularised in the 1960s with the release of Letraset.</p>
+                <p className="subheading">Please tell us a little about yourself so that we can provide the best experience.</p>
             </div>
             <div className={`space-y-4 mt-6 anim-up`}>
                 <div className="flex gap-x-3">
@@ -198,7 +198,7 @@ export const UserInfoForm = ({
                         onChange={formik.handleChange}
                         value={formik.values.birth_date}
                         className="form-input"
-                        placeholder="Birthdate"
+                        placeholder="25/12/1999"
                     />
                     {formik.errors.birth_date && (<p className="error">{formik.errors.birth_date}</p>)}
                 </div>
@@ -210,14 +210,14 @@ export const UserInfoForm = ({
                         onChange={formik.handleChange}
                         value={formik.values.email}
                         className='form-input'
-                        placeholder="Email"
+                        placeholder="mail@example.com"
                     />
                     {formik.errors.email && (<p className="error">{formik.errors.email}</p>)}
                 </div>
 
                 <div>
-                    <h2 className="subheading">Tell us more about you</h2>
-                    <RadioGroup value={null} onChange={null}>
+                    <h2 className="subheading">Additional details about you</h2>
+                    <RadioGroup>
                         <div className="mt-4 grid grid-cols-1 gap-y-3">
                             {mailingLists.map((mailingList) => (
                                 <RadioGroup.Option
@@ -225,7 +225,7 @@ export const UserInfoForm = ({
                                     value={mailingList}
                                     className={({ checked, active }) =>
                                         classNames(
-                                            checked ? 'border-transparent' : 'border-gray-300',
+                                            checked ? 'border-[#0788F5]' : 'border-gray-300',
                                             active ? 'border-[#0788F5] ring-2 ring-[#0788F5]' : '',
                                             'relative flex cursor-pointer rounded-lg border bg-white p-4 outline-none'
                                         )
@@ -262,12 +262,17 @@ export const UserInfoForm = ({
                         </div>
                     </RadioGroup>
 
+                    <div className='flex gap-x-2 text-sm mt-6'>
+                      <Checkbox id='agree' className='mt-1'/>
+                      <label htmlFor='agree'>By signing up, you agree to our Terms of Use and acknowledge you have read our Privacy Policy</label>
+                    </div>
+
                     <div className={`anim-up-delay translate-y-[20px] mt-4`}>
                         <Button
                             type='submit'
                             className='justify-center w-full'
                             // disabled={!formik.isValid}
-                        >Submit</Button>
+                        >Continue</Button>
                     </div>
                 </div>
             </div>
@@ -289,40 +294,30 @@ export const BusinessInfoForm = ({
     state
 }) => {
     const checkboxLists = [
-        {
-            title: 'Comments',
-            key: 'comments',
-        },
-        {
-            title: 'Candidates',
-            key: 'candidates'
-        },
-        {
-            title: 'Offers',
-            key: 'offers'
-        },
-        {
-            title: 'Games',
-            key: 'games'
-        },
-        {
-            title: 'Education',
-            key: 'education'
-        },
-        {
-            title: 'Drink Coffee',
-            key: 'drink'
-        }
+        {title: 'Exceptional Service', key: 'exceptional-service'},
+        {title: 'Sustainability', key: 'sustainability'},
+        {title: 'Innovation', key: 'innovation'},
+        {title: 'Community Management', key: 'community-management'},
+        {title: 'Affordability', key: 'affordability'},
+        {title: 'Personalized Experience', key: 'personalized-experience'},
     ]
     const industryOptions = [
-        {
-            value: 'private',
-            label: 'Private',
-        },
-        {
-            value: 'organisation',
-            label: 'Organisation',
-        },
+        {value: 'retail', label: 'Retail'},
+        {value: 'ecommerce', label: 'E-Commerce'},
+        {value: 'manufacturing', label: 'Manufacturing'},
+        {value: 'service-based', label: 'Service-based'},
+        {value: 'hospitality', label: 'Hospitality'},
+        {value: 'consulting', label: 'Consulting'},
+        {value: 'health-wellness', label: 'Health and Wellness'},
+        {value: 'technology', label: 'Technology'},
+        {value: 'real-estate', label: 'Real Estate'},
+        {value: 'food-beverage', label: 'Food and Beverage'},
+        {value: 'financial-services', label: 'Financial Services'},
+        {value: 'education', label: 'Education'},
+        {value: 'transportation-logistics', label: 'Transportation and Logistics'},
+        {value: 'entertainment', label: 'Entertainment'},
+        {value: 'nonprofit', label: 'Nonprofit or Social Enterprise'},
+        {value: 'other', label: 'Other'},
     ];
 
     const formik = useFormik({
@@ -339,7 +334,7 @@ export const BusinessInfoForm = ({
         <form className="m-auto w-full max-w-sm w-96 h-[600px]" onSubmit={formik.handleSubmit}>
             <Steps total={6} step={current} />
             <div className="anim-up">
-                <h2 className="main-heading mt-8">What is your business about?</h2>
+                <h2 className="main-heading mt-8">Select your type of business</h2>
             </div>
             <div className={`space-y-4 mt-6 anim-up`}>
                 {/* <Select options={industryOptions}
@@ -358,9 +353,9 @@ export const BusinessInfoForm = ({
                   </SelectContent>
                 </Select>
 
-                <h2 className="secondary-heading">What are your goals for this business?</h2>
+                <h2 className="secondary-heading">What are your potential goals for a business?</h2>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid gap-3">
                     {/* {checkboxLists.map((checkboxList) => (
                         <label htmlFor={checkboxList.key} onClick={(e) => {
                             if (!formik.values.goal.includes(checkboxList.key)) {
@@ -403,7 +398,7 @@ export const BusinessInfoForm = ({
                 <Button
                     className='w-1/4 justify-center'
                     // disabled={!formik.isValid}
-                >Next</Button>
+                >Continue</Button>
             </div>
         </form>
     )
@@ -419,7 +414,7 @@ export const TeamInfoForm = ({
     onSubmit,
     state,
 }) => {
-    const memberOptions = ['Only me', '2-4 people', '5-10 people', 'More than 10 people'];
+    const memberOptions = ['Only me', '2-5 people', '5-10 people', '10-20 people', '20-30 people', 'More than 30 people'];
     const formik = useFormik({
         initialValues: initialValues,
         validateOnChange: false,
@@ -467,7 +462,7 @@ export const TeamInfoForm = ({
                 <Button
                     className='w-1/4 justify-center'
                     // disabled={!formik.isValid}
-                >Next</Button>
+                >Continue</Button>
             </div>
         </form>
     )
