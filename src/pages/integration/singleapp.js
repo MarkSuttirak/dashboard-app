@@ -40,6 +40,10 @@ export default function SingleApp(){
     }
   }, [user, sites,benchApps,installedApps]);
 
+  const { data: siteOverview } = useQuery(['site', `${sites?.site_list[0].name}`], () => site.overview(sites?.site_list[0].name), {
+    enabled: !!sites?.site_list.length
+  });
+  const webplan = siteOverview?.plan?.current_plan;
 
 
 
