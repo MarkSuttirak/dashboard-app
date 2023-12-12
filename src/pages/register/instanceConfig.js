@@ -73,9 +73,9 @@ const InstanceConfig = () => {
         </div>
     }
 
-    // if (auth?.onboarding.site_created) {
-    //     return <Navigate replace to='/dashboard/app' />
-    // }
+    if (auth?.onboarding.site_created) {
+        return <Navigate replace to='/dashboard/app' />
+    }
 
     return (
         <>
@@ -85,10 +85,9 @@ const InstanceConfig = () => {
                 </div>
                 <div className="flex flex-1 m-[30px] md:m-2 z-[999] basis-[20%] bg-white absolute md:relative register-screen">
                     <StepMaintainer state={{ site: lsite, setSite }}>
-                    <AppsSelectionForm />
                         <SiteDomainForm />
-                        
-                        <ThemeSelectionForm onSubmit={mutate} />
+                        <AppsSelectionForm onSubmit={mutate}/>
+                        {/* <ThemeSelectionForm onSubmit={mutate} /> */}
                     </StepMaintainer>
                 </div>
             </div>
@@ -317,7 +316,7 @@ export const SiteDomainForm = ({
 
     return (
         <form className="m-auto w-full max-w-sm w-96 h-[600px]" onSubmit={formik.handleSubmit}>
-            <Steps total={6} step={3} />
+            <Steps total={5} step={3} />
             <div className={`anim-up`}>
                 <h2 className="main-heading mt-8">What would you like to call your site?</h2>
                 <p className="subheading mt-2">Create your awesome name site in a few clicks.</p>
@@ -371,6 +370,7 @@ export const AppsSelectionForm = ({
             private: null,
         }
     },
+    onSubmit,
     validationSchema,
     state: { site: siteData, setSite },
 }) => {
@@ -379,32 +379,26 @@ export const AppsSelectionForm = ({
         {
             icon:<LineIcon className='h-4 w-4'/>,
             title:'Line CRM',
-            desc:'ไลน์ CRM membership เก็บข้อมูลลูกค้าจากไลน์'
         },
         {
             icon:<Coins className='h-4 w-4'/>,
             title:'Rewardful',
-            desc:'point&reward'
         },
         {
             icon:<LinkNone2Icon className='h-4 w-4'/>,
             title:'MarketConnect',
-            desc:'OMS รวมออเดอร์ เช็คสต็อก ดูยอดขาย'
         },
         {
             icon:<Store className='h-4 w-4'/>,
             title:'OnlineStore',
-            desc:'Sales page web app'
         },
         {
             icon:<UserSquare className='h-4 w-4'/>,
             title:'CRM',
-            desc:'รวบรวมข้อมูลเกี่ยวกับลูกค้า'
         },
         {
             icon:<AppWindow className='h-4 w-4'/>,
             title:'Untitled',
-            desc:'Website builder'
         }
     ]
 
@@ -438,13 +432,13 @@ export const AppsSelectionForm = ({
 
     return (
         <form className="m-auto w-full max-w-sm w-96 h-[600px]" onSubmit={formik.handleSubmit}>
-            <Steps total={6} step={4} />
+            <Steps total={5} step={4} />
             <div className="anim-up">
                 <h2 className="main-heading mt-8">What would you like to add on your site?</h2>
                 <p className="subheading mt-2">Select the apps you want to install on your site.</p>
             </div>
             <div className={`space-y-4 mt-10 anim-up`}>
-                <div className="grid gap-4">
+                <div className="grid grid-cols-2 gap-4">
 
                     {/* {availableApps.map(({ app, app_title }) => (
                         <label htmlFor={app} onClick={() => {
@@ -469,18 +463,23 @@ export const AppsSelectionForm = ({
                     ))} */}
 
                     {otherApps.map((app) => (
-                        <label htmlFor={app}>
+                        <label htmlFor={app} onClick={() => {
+                            if (formik.values.apps.includes(app)) {
+                                formik.setFieldValue('apps', formik.values.apps.filter((selectedApp) => selectedApp !== app));
+                            }
+                            else {
+                                formik.setFieldValue('apps', [...formik.values.apps, app]);
+                            }
+                        }}>
                             <input
                                 type="checkbox"
                                 className="checkbox-card-input"
                                 name={app}
+                                checked={formik.values.apps.includes(app)}
                             />
                             <span className="subheading border checkbox-card">
                                 {app.icon}
-                                <div>
-                                  <h2 className='subheading font-medium'>{app.title}</h2>
-                                  <p className='main-desc'>{app.desc}</p>
-                                </div>
+                                <h2 className='subheading font-medium'>{app.title}</h2>
                             </span>
                         </label>
                     ))}

@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { AuthContext } from "react-oauth2-code-pkce";
 import { Icons } from "src/components/ui/icons";
+import loginImg from "src/img/login-img.png"
 
 export default function Welcome(){
   const { login: lineLogin } = useContext(AuthContext);
@@ -131,11 +132,11 @@ export default function Welcome(){
           </div>
         )}
       </div>
-      <div className="relative hidden w-0 flex-1 m-2 md:block">
+      <div className="relative hidden w-0 flex-1 m-[30px] md:block">
         <img
           className="absolute inset-0 h-full w-full object-cover rounded-lg"
-          src="https://images.unsplash.com/photo-1505904267569-f02eaeb45a4c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80"
-          alt=""
+          src={loginImg}
+          alt="login-image"
         />
       </div>
     </div>
