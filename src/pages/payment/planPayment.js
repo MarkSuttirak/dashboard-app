@@ -52,8 +52,7 @@ export default function PlanPayment(){
     }
   }
 
-
-  const vat = Math.floor(subtotal * 0.07)
+  const vat = Math.floor(subtotal * 0)
 
 
   const setCoupon = (coupon) => {
