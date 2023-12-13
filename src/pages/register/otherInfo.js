@@ -297,7 +297,7 @@ export const BusinessInfoForm = ({
         {title: 'Exceptional Service', key: 'exceptional-service'},
         {title: 'Sustainability', key: 'sustainability'},
         {title: 'Innovation', key: 'innovation'},
-        {title: 'Community Management', key: 'community-management'},
+        {title: 'Community Engagement', key: 'community-engagement'},
         {title: 'Affordability', key: 'affordability'},
         {title: 'Personalized Experience', key: 'personalized-experience'},
     ]
@@ -353,7 +353,8 @@ export const BusinessInfoForm = ({
                   </SelectContent>
                 </Select>
 
-                <h2 className="secondary-heading">What are your potential goals for a business?</h2>
+                <h2 className="secondary-heading">What are your potential goals for this business?</h2>
+                <p className='main-desc'>You can select maximum 6 options</p>
 
                 <div className="grid gap-3">
                     {/* {checkboxLists.map((checkboxList) => (

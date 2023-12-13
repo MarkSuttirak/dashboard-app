@@ -73,9 +73,9 @@ const InstanceConfig = () => {
         </div>
     }
 
-    if (auth?.onboarding.site_created) {
-        return <Navigate replace to='/dashboard/app' />
-    }
+    // if (auth?.onboarding.site_created) {
+    //     return <Navigate replace to='/dashboard/app' />
+    // }
 
     return (
         <>
