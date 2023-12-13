@@ -22,6 +22,7 @@ import {
     SelectValue,
 } from "../../components/ui/select"
 import { Input } from '../../components/ui/input';
+import { DatePicker } from 'src/components/ui/datepicker';
 
 const OtherInfo = () => {
     const { key } = useParams()
@@ -286,7 +287,7 @@ export const BusinessInfoForm = ({
     next,
     initialValues = {
         company: `Zaviago ${Math.floor(Math.random() * 1000)}`,
-        industry: 'private',
+        industry: 'retail',
         goal: [],
         country: 'Thailand',
     },
@@ -342,7 +343,7 @@ export const BusinessInfoForm = ({
                     onChange={({ value }) => formik.setFieldValue('industry', value)}
                 /> */}
 
-                <Select onChange={({ value }) => formik.setFieldValue('industry', value)}>
+                <Select onChange={({ value }) => {formik.setFieldValue('industry', value)}}>
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder={industryOptions[0].label} defaultValue={industryOptions[0].label} />
                   </SelectTrigger>
@@ -352,6 +353,9 @@ export const BusinessInfoForm = ({
                     ))}
                   </SelectContent>
                 </Select>
+
+                {/* This input will show if industry option is selected as 'other' */}
+                <Input placeholder='Type another type of business'/>
 
                 <h2 className="secondary-heading">What are your potential goals for this business?</h2>
                 <p className='main-desc'>You can select maximum 6 options</p>
@@ -408,14 +412,14 @@ export const BusinessInfoForm = ({
 export const TeamInfoForm = ({
     current,
     initialValues = {
-        no_of_employees: 'Only me',
+        no_of_employees: '2-5 people',
         accepted_user_terms: true,
     },
     validationSchema,
     onSubmit,
     state,
 }) => {
-    const memberOptions = ['Only me', '2-5 people', '5-10 people', '10-20 people', '20-30 people', 'More than 30 people'];
+    const memberOptions = ['2-5 people', '5-10 people', '10-20 people', '20-30 people', 'More than 30 people'];
     const formik = useFormik({
         initialValues: initialValues,
         validateOnChange: false,

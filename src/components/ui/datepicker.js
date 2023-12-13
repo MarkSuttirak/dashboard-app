@@ -10,7 +10,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "src/components/ui/popover"
  
 export function DatePicker() {
   const [date, setDate] = useState()
