@@ -39,6 +39,8 @@ export default function SidebarSetupBusiness(){
           <GuideButton title='Create new customer' buttonText='Add Customer'/>
           <GuideButton title='Add your first product' buttonText='Add Product'/>
           <GuideButton title='Create your first draft order' buttonText='Add Draft Order'/>
+          <GuideButton title='Add first page' buttonText='Add New Page'/>
+          <GuideButton title='Write your first blog' buttonText='Add Blog'/>
           <GuideButton title='Create new customer' buttonText='Add Customer' isCompleted={true}/>
         </div>
       </PopoverContent>

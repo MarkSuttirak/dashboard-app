@@ -16,6 +16,7 @@ import { useQuery } from "react-query";
 import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { Link } from "react-router-dom"
+import RecommendedApps from "./recommendedApps"
 
 export default function SingleApp(){
   const { id } = useParams()
@@ -255,6 +256,11 @@ export default function SingleApp(){
             </Card>
           )).slice(0, 3)}
         </div>
+      </section>
+      
+      <section className="mt-[52px]">
+        <h2 className="secondary-heading">Recommended for You</h2>
+        <RecommendedApps />
       </section>
     </div>
   )

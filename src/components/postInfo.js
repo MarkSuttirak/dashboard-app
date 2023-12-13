@@ -3,7 +3,7 @@ import { PlusCircledIcon } from "@radix-ui/react-icons";
 
 export default function PostInfo({title, desc, buttonText, onClick, image}){
   return (
-    <div className="bg-zinc-100 rounded-xl h-[423px] flex flex-col justify-between">
+    <div className="bg-zinc-100 rounded-xl h-auto flex flex-col justify-between">
       <div className="p-6">
         <h3 className="secondary-heading">{title}</h3>
         <p className="text-sm text-zinc-500 mt-4 mb-6">{desc}</p>
