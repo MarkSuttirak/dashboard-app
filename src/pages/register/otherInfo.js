@@ -412,14 +412,14 @@ export const BusinessInfoForm = ({
 export const TeamInfoForm = ({
     current,
     initialValues = {
-        no_of_employees: 'Only me',
+        no_of_employees: '2-5 people',
         accepted_user_terms: true,
     },
     validationSchema,
     onSubmit,
     state,
 }) => {
-    const memberOptions = ['Only me', '2-5 people', '5-10 people', '10-20 people', '20-30 people', 'More than 30 people'];
+    const memberOptions = ['2-5 people', '5-10 people', '10-20 people', '20-30 people', 'More than 30 people'];
     const formik = useFormik({
         initialValues: initialValues,
         validateOnChange: false,
