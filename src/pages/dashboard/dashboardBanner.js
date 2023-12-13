@@ -32,7 +32,7 @@ export default function DashboardBanner({sitename}){
     enabled: !!sites?.site_list.length
   });
   const plan = siteOverview?.plan?.current_plan;
-  
+  const pendingpayments = siteOverview?.info.pending_payments;
 
 
 
@@ -106,10 +106,7 @@ export default function DashboardBanner({sitename}){
                   <CardDescription>You are on Agency PremiumCare+package</CardDescription>
                 </div>
                 <Link to='/dashboard/compare-plan'>
-                  <Button variant='blue' className='btn-with-icon leading-5'>
-                    <Zap viewBox="0 0 24 24" width='16' height='16'/>
-                    View overview
-                  </Button>
+                  
                 </Link>
               </>
             ) : plan?.name === 'free' ? (
@@ -136,8 +133,8 @@ export default function DashboardBanner({sitename}){
               <MagicWandIcon color='#09090B'/>
               <span className="text-sm">{memberStatus.status === 'pro' ? 'Start to select Apps' : 'Starting at 750/m'}</span>
             </div>
-            {memberStatus.status === 'pending' ? <Badge>Waiting for confirmation</Badge> : null}
-          </CardContent>
+            {Number.isInteger(pendingpayments) && pendingpayments > 0 ? <Badge>Waiting for confirmation</Badge> : null}          
+            </CardContent>
         </Card>
       </div>
     </section>

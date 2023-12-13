@@ -37,7 +37,7 @@ export const site = {
     appslist: (name) => api.get('/method/press.api.marketplace.get_apps', { params: { name } }).then((response) => response.data.message), 
     installed_apps: (name) => api.get('/method/press.api.site.installed_apps', { params: { name } }).then((response) => response.data.message),
     get_app_plans: (app) => api.get('/method/press.api.marketplace.get_app_plans', { params: { app } }).then((response) => response.data.message),
-    change_plan: (name, plan) => api.post('/method/press.api.site.change_plan', { name, plan }).then((response) => response.data.message),  
+    change_plan: (name, plan) => api.post('/method/press.api.site.create_invoice', { name, plan }).then((response) => response.data.message),  
     create_app_subscription: (app,name,plan) => api.post('/method/press.api.site.install_app', { app,name,plan }).then((response) => response.data.message),
     get_web_plans: (name) => api.post('/method/press.api.site.get_plans', {name}).then((response) => response.data.message),
     backend_url: () => backend_url
