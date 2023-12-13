@@ -153,15 +153,15 @@ export default function AppStore(){
         <div className="flex gap-x-6 mt-6">
           <section className="grid grid-cols-2 gap-6">
             <div className="flex flex-wrap gap-4">
-              <AppIcon icon={<Icons.crmApp width='72px' height='72px'/>} title='CRM' desc='Cutting-edge tools for modern businesses to effectively manage relationships'/>
-              <AppIcon icon={<Icons.lineCRMApp width='72px' height='72px'/>} title='LineOA CRM' desc='Membership system on LINE, a board for announcing promotions, along with a point & reward redemption system'/>
-              <AppIcon icon={<Icons.rewardfulApp width='72px' height='72px'/>} title='Rewardful' desc='Turn every expense into points, increasing sales and repeat purchases'/>
+              <AppIcon icon={<Icons.crmApp width='72px' height='72px'/>} title='CRM' desc='Cutting-edge tools for streamlined business relationships'/>
+              <AppIcon icon={<Icons.lineCRMApp width='72px' height='72px'/>} title='LineOA CRM' desc='Unlock your business to the next level with Line OA CRM'/>
+              <AppIcon icon={<Icons.rewardfulApp width='72px' height='72px'/>} title='Rewardful' desc='Set your Loyalty Program and campaigns'/>
             </div>
           </section>
         </div>
       </section>
 
-      <section className="mt-[52px]">
+      <section className="mt-[128px]">
         <h2 className="secondary-heading">Top Rated Apps</h2>
         <div className="flex gap-x-6 mt-6">
           <RecommendedApps />
@@ -200,7 +200,7 @@ export default function AppStore(){
         </div>
       </section>
 
-      <section className="mt-[52px]">
+      <section className="mt-[100px]">
         <h2 className="secondary-heading">Featured Highlights</h2>
         <div className="grid grid-cols-2 mt-6 gap-[15px]">
           <PostInfo title="Smooth and Seemless OnlineStore in your style" desc="Propel your brand to new heights by unveiling a website that outshines the competition" buttonText="More details" image={guideBlog} />

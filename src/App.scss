@@ -132,7 +132,7 @@ body {
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  height:fit-content;
+  height:auto;
   &:hover .see-more {
     opacity:1;
     transition:opacity 100ms;
