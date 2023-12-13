@@ -217,7 +217,7 @@ export const UserInfoForm = ({
 
                 <div>
                     <h2 className="subheading">Additional details about you</h2>
-                    <RadioGroup>
+                    <RadioGroup value={null} onChange={null}>
                         <div className="mt-4 grid grid-cols-1 gap-y-3">
                             {mailingLists.map((mailingList) => (
                                 <RadioGroup.Option
