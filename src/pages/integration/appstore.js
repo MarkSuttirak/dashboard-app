@@ -13,13 +13,13 @@ import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { useMutation, useQuery } from "react-query";
 import AppIcon from "src/components/appIcon";
-import { CheckCircle2, Crown } from "lucide-react";
+import { CheckCircle2, Crown, Sparkles } from "lucide-react";
 import cybersale from 'src/img/cybersale.png'
 import zaviagoDashApp from 'src/img/zaviago-dash-app.png'
 import { appsList } from "src/components/sidebar/servicePrivileges";
 import PostInfo from "src/components/postInfo";
 import guideBlog from "src/img/guideblog.png"
-import communityForum from "src/img/community-forum.png"
+import discoverSolutions from "src/img/discover_solutions.png"
 import RecommendedApps from "./recommendedApps";
 
 export default function AppStore(){
@@ -94,8 +94,16 @@ export default function AppStore(){
 
   return (
     <div className="dashboard-container">
-      <h1 className="main-heading tracking-[-0.6px]">App Store</h1>
-      <p className="secondary-desc">Choose Professional Solutions to Power Your Website</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="main-heading tracking-[-0.6px]">App Store</h1>
+          <p className="secondary-desc">Choose Professional Solutions to Power Your Website</p>
+        </div>
+        <div className="flex items-center gap-x-2 bg-[#FEC1D2] px-4 py-2 rounded-full text-sm font-semibold text-[#18181B]">
+          <Sparkles className="h-4 w-4"/>
+          Free trial on all apps
+        </div>
+      </div>
 
       <div className="flex h-full gap-x-4 mt-6">
         <img src={cybersale} />
@@ -154,7 +162,7 @@ export default function AppStore(){
       </section>
 
       <section className="mt-[52px]">
-        <h2 className="secondary-heading">Recommended for You</h2>
+        <h2 className="secondary-heading">Top Rated Apps</h2>
         <div className="flex gap-x-6 mt-6">
           <RecommendedApps />
           <section className="grid grid-cols-3 gap-6">
@@ -193,10 +201,10 @@ export default function AppStore(){
       </section>
 
       <section className="mt-[52px]">
-        <h2 className="secondary-heading">Blog & News</h2>
+        <h2 className="secondary-heading">Featured Highlights</h2>
         <div className="grid grid-cols-2 mt-6 gap-[15px]">
-          <PostInfo title="Create your check out the App store Guideblog" desc="Boost customer loyalty and drive repeat business with our tailored Loyalty Program for businesses." buttonText="Read the guide" image={guideBlog} />
-          <PostInfo title="We're here for you" desc="Get help with the ins and outs of your blog, or ask our experts in the community forum." buttonText="Read the guide" image={communityForum} />
+          <PostInfo title="Smooth and Seemless OnlineStore in your style" desc="Propel your brand to new heights by unveiling a website that outshines the competition" buttonText="More details" image={guideBlog} />
+          <PostInfo title="Discover solutions you're looking for" desc="Search for every feature and function designed to help your business achieve success quickly and efficiently" buttonText="More details" image={discoverSolutions} />
         </div>
       </section>
     </div>

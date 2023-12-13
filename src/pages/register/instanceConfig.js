@@ -85,6 +85,7 @@ const InstanceConfig = () => {
                 </div>
                 <div className="flex flex-1 m-[30px] md:m-2 z-[999] basis-[20%] bg-white absolute md:relative register-screen">
                     <StepMaintainer state={{ site: lsite, setSite }}>
+                    <AppsSelectionForm />
                         <SiteDomainForm />
                         <AppsSelectionForm />
                         <ThemeSelectionForm onSubmit={mutate} />
@@ -377,27 +378,27 @@ export const AppsSelectionForm = ({
     const [availableApps, setAvailableApps] = useState([])
     const otherApps = [
         {
-            icon:<LineIcon className='h-4 w-4'/>,
+            icon:<LineIcon className='h-4 w-4 stroke-[1.5]'/>,
             title:'LineOA CRM',
         },
         {
-            icon:<Coins className='h-4 w-4'/>,
+            icon:<Coins className='h-4 w-4 stroke-[1.5]'/>,
             title:'Rewardful',
         },
         {
-            icon:<LinkNone2Icon className='h-4 w-4'/>,
+            icon:<LinkNone2Icon className='h-4 w-4 stroke-[1.5]'/>,
             title:'MarketConnect',
         },
         {
-            icon:<Store className='h-4 w-4'/>,
+            icon:<Store className='h-4 w-4 stroke-[1.5]'/>,
             title:'OnlineStore',
         },
         {
-            icon:<UserSquare className='h-4 w-4'/>,
+            icon:<UserSquare className='h-4 w-4 stroke-[1.5]'/>,
             title:'CRM',
         },
         {
-            icon:<AppWindow className='h-4 w-4'/>,
+            icon:<AppWindow className='h-4 w-4 stroke-[1.5]'/>,
             title:'Untitled',
         }
     ]
