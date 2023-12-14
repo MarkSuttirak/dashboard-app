@@ -85,7 +85,6 @@ const InstanceConfig = () => {
                 </div>
                 <div className="flex flex-1 m-[30px] md:m-2 z-[999] basis-[20%] bg-white absolute md:relative register-screen">
                     <StepMaintainer state={{ site: lsite, setSite }}>
-                    <AppsSelectionForm />
                         <SiteDomainForm />
                         <AppsSelectionForm />
                         <ThemeSelectionForm onSubmit={mutate} />
@@ -297,6 +296,7 @@ export const SiteDomainForm = ({
     onSubmit,
 }) => {
     const [exists, setExists] = useState(false)
+    const navigate = useNavigate()
 
     const { mutate } = useMutation(site.exists, {
         onSuccess: (doesExists, { subdomain }) => {
@@ -316,7 +316,7 @@ export const SiteDomainForm = ({
     })
 
     return (
-        <form className="m-auto w-full max-w-sm w-96 h-[600px]" onSubmit={formik.handleSubmit}>
+        <form className="m-auto w-full max-w-sm w-96 min-h-[600px] h-auto" onSubmit={formik.handleSubmit}>
             <Steps total={5} step={3} />
             <div className={`anim-up`}>
                 <h2 className="main-heading mt-8">What would you like to call your site?</h2>
@@ -329,7 +329,7 @@ export const SiteDomainForm = ({
                     </div>
                     <Input
                         style={{ paddingRight: "140px", paddingLeft: "60px" }}
-                        className={`form-input ${formik.errors.subdomain ? 'error' : ''}`}
+                        className={`form-input`}
                         placeholder="example"
                         name="subdomain"
                         onChange={formik.handleChange}
@@ -339,11 +339,12 @@ export const SiteDomainForm = ({
                         .{formik.values.domain}
                     </div>
                 </div>
-                <p className={`${formik.errors.subdomain ? 'error' : 'text-desc'}`}>{exists ? "This subdomain is already taken" : formik.errors.subdomain ? formik.errors.subdomain : "Only A-Z, a-z and numbers are allowed."}</p>
+                <p className='text-desc'>Only A-Z, a-z and numbers are allowed.</p>
+                <p className='error'>{exists ? "This subdomain is already taken" : formik.errors.subdomain}</p>
             </div>
 
-            <Spacer size={30} />
-            <div className={`flex gap-x-2 anim-up-delay translate-y-[20px]`}>
+            <div className={`flex gap-x-2 anim-up-delay translate-y-[20px] justify-between`}>
+                <Button variant='secondary' className='w-1/4 justify-center' onClick={() => navigate(-1)}>Back</Button>
                 <Button
                     type='submit'
                     className='justify-center'
@@ -464,7 +465,7 @@ export const AppsSelectionForm = ({
                     ))} */}
 
                     {otherApps.map((app) => (
-                        <label htmlFor={app} onClick={() => {
+                        <label htmlFor={app.title} onClick={() => {
                             if (formik.values.apps.includes(app)) {
                                 formik.setFieldValue('apps', formik.values.apps.filter((selectedApp) => selectedApp !== app));
                             }
@@ -475,8 +476,9 @@ export const AppsSelectionForm = ({
                             <input
                                 type="checkbox"
                                 className="checkbox-card-input"
-                                name={app}
-                                checked={formik.values.apps.includes(app)}
+                                name={app.title}
+                                id={app.title}
+                                // checked={formik.values.apps.includes(app)}
                             />
                             <span className="subheading border checkbox-card">
                                 {app.icon}
@@ -489,8 +491,8 @@ export const AppsSelectionForm = ({
             </div>
 
             <Spacer size={30} />
-            <div className={`flex gap-x-2 anim-up-delay translate-y-[20px] flex gap-x-2`}>
-                <Button variant='ghost' className='w-1/4 justify-center' onClick={prev}>Back</Button>
+            <div className={`flex gap-x-2 anim-up-delay translate-y-[20px] flex gap-x-2 justify-between`}>
+                <Button variant='secondary' className='w-1/4 justify-center' onClick={prev}>Back</Button>
                 <Button
                     type='submit'
                     className='w-1/4 justify-center'
@@ -587,8 +589,8 @@ export const ThemeSelectionForm = ({
             </div>
 
             <Spacer size={30} />
-            <div className={`flex gap-x-2 anim-up-delay translate-y-[20px] flex gap-x-2`}>
-                <Button variant='ghost' className='w-1/4 justify-center' onClick={prev}>Back</Button>
+            <div className={`flex gap-x-2 anim-up-delay translate-y-[20px] flex gap-x-2 justify-between`}>
+                <Button variant='secondary' className='w-1/4 justify-center' onClick={prev}>Back</Button>
                 <Button
                     type='submit'
                     className='w-1/4 justify-center'

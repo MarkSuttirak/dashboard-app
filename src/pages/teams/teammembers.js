@@ -10,95 +10,11 @@ import { useState } from 'react'
 import { DataList } from "src/components/pagination";
 import { EyeNoneIcon, Pencil1Icon, PersonIcon } from "@radix-ui/react-icons";
 import { Checkbox } from "src/components/ui/checkbox";
-
-const teamMembers = [
-  {
-    firstname:'Olivia',
-    lastname:'Martin',
-    role:'Member',
-    email:'test@mail.com'
-  },
-  {
-    firstname:'Isabella',
-    lastname:'Nguyen',
-    role:'Member',
-    email:'b@example.com'
-  },
-  {
-    firstname:'Markus',
-    lastname:'Schneider',
-    role:'Member',
-    email:'markus@example.com'
-  },
-  {
-    firstname:'Erina',
-    lastname:'Bruhner',
-    role:'Super Admin',
-    email:'erina@example.com'
-  },
-  {
-    firstname:'Michel',
-    lastname:'Schmidt',
-    role:'Super Admin',
-    email:'michel@example.com'
-  },
-  {
-    firstname:'Wilson',
-    lastname:'Mann',
-    role:'Member',
-    email:'wilson@example.com'
-  },
-  {
-    firstname:'Max',
-    lastname:'Gunther',
-    role:'Super Admin',
-    email:'max@example.com'
-  },
-  {
-    firstname:'George',
-    lastname:'Linbert',
-    role:'Super Admin',
-    email:'george.l@example.com'
-  },
-  {
-    firstname:'Kim',
-    lastname:'Chae Yeol',
-    role:'Member',
-    email:'chae@example.com'
-  },
-  {
-    firstname:'Zhang',
-    lastname:'Luying',
-    role:'Member',
-    email:'zhang@example.com'
-  },
-  {
-    firstname:'Hitori',
-    lastname:'Yamasako',
-    role:'Member',
-    email:'hitori@example.com'
-  },
-  {
-    firstname:'Phornthip',
-    lastname:'Chomchai',
-    role:'Member',
-    email:'isara@example.com'
-  },
-  {
-    firstname:'Sombat',
-    lastname:'Siriwattakul',
-    role:'Super Admin',
-    email:'sombat@example.com'
-  },
-  {
-    firstname:'Liu',
-    lastname:'Changkou',
-    role:'Member',
-    email:'liu@example.com'
-  },
-]
+import { useUser } from "src/hooks/useUser";
+import Loading from "src/components/ui/loading";
 
 export default function TeamMembers(){
+  const { user, auth, logout } = useUser();
   const userRoles = [
     {
       role:'Super Admin',
@@ -129,10 +45,11 @@ export default function TeamMembers(){
     });
   }
 
-  const allMembers = teamMembers.filter(name => name.firstname.toUpperCase().includes(search.toUpperCase()) || name.lastname.toUpperCase().includes(search.toUpperCase()))
-  const filteredMembers = allMembers.filter((member) =>
-    checkedFilter.length === 0 || checkedFilter.includes(member.role)
-  );
+  const allMembers = auth?.team_members.filter(name => name.first_name.toUpperCase().includes(search.toUpperCase()) || name.last_name.toUpperCase().includes(search.toUpperCase()))
+  // const filteredMembers = allMembers.filter((member) =>
+  //   checkedFilter.length === 0 || checkedFilter.includes(member.roles[0])
+  // );
+  console.log(auth?.team_members)
 
   const TeamCard = ({firstname, lastname, email, role, avatar}) => {
     return (
@@ -158,16 +75,20 @@ export default function TeamMembers(){
             <Command>
               <CommandList>
                 <CommandGroup className="p-1.5">
-                  {userRoles.map(role => (
-                    <CommandItem className="flex items-start px-4 py-2 gap-x-4">
-                      {role.icon}
-                      <div className="flex flex-col">
-                        <h3 className="subheading font-medium">{role.role}</h3>
-                        <p className="text-sm text-muted-foreground">
-                          {role.ability}
-                        </p>
-                      </div>
-                    </CommandItem>
+                  {auth?.team_members.map(member => (
+                    <>
+                      {member?.roles.map(role => (
+                        <CommandItem className="flex items-start px-4 py-2 gap-x-4">
+                          {role.icon}
+                          <div className="flex flex-col">
+                            <h3 className="subheading font-medium">{role.role}</h3>
+                            <p className="text-sm text-muted-foreground">
+                              {role.ability}
+                            </p>
+                          </div>
+                        </CommandItem>
+                      ))}
+                    </>
                   ))}
                 </CommandGroup>
               </CommandList>
@@ -213,7 +134,7 @@ export default function TeamMembers(){
                     <Checkbox id={`filter-${option.role}`} checked={checkedFilter.includes(option.role)} onCheckedChange={() => handleCheckFilter(option.role)}/>
                     <label htmlFor={`filter-${option.role}`} className="subheading">{option.role}</label>
                   </div>
-                  <span className="text-xs">{allMembers.filter(item => item.role === option.role).length}</span>
+                  {/* <span className="text-xs">{allMembers.filter(item => item.role === option.role).length}</span> */}
                 </div>
               ))}
             </div>
@@ -235,10 +156,15 @@ export default function TeamMembers(){
       </div>
 
       <div className="flex flex-col gap-y-6 my-6">
-        <DataList pagination={filteredMembers.length > 6 ? true : false} listPerPage={6} emptyText="There is no member you are looking for.">
+        {/* <DataList pagination={filteredMembers.length > 6 ? true : false} listPerPage={6} emptyText="There is no member you are looking for.">
           {filteredMembers.map(t => (
-            <TeamCard firstname={t.firstname} lastname={t.lastname} role={t.role} email={t.email}/>
+            <TeamCard firstname={t.first_name} lastname={t.last_name} role={t.roles[0]} email={t.name}/>
           ))}
+        </DataList> */}
+        <DataList listPerPage={6} emptyText="There is no member you are looking for.">
+          {allMembers?.map(t => (
+            <TeamCard firstname={t.first_name} lastname={t.last_name} role={t.roles[0]} email={t.name}/>
+          )) || <Loading />}
         </DataList>
       </div>
     </div>

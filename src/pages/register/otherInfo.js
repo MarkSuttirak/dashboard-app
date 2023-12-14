@@ -152,7 +152,7 @@ export const UserInfoForm = ({
 
     return (
         <form
-            className="m-auto w-full max-w-sm w-96 h-[600px]"
+            className="m-auto w-full max-w-sm w-96 min-h-[600px] h-auto"
             onSubmit={formik.handleSubmit}
         >
             <Steps total={5} step={current} />
@@ -163,6 +163,7 @@ export const UserInfoForm = ({
             <div className={`space-y-4 mt-6 anim-up`}>
                 <div className="flex gap-x-3">
                     <div>
+                        <label htmlFor='first_name' className="subheading mb-2 font-medium">First name</label>
                         <Input
                             className="form-input"
                             placeholder="Name"
@@ -177,6 +178,7 @@ export const UserInfoForm = ({
                         }
                     </div>
                     <div>
+                        <label htmlFor='last_name' className="subheading mb-2 font-medium">Last name</label>
                         <Input
                             className="form-input"
                             placeholder="Surname"
@@ -193,6 +195,7 @@ export const UserInfoForm = ({
                 </div>
 
                 <div>
+                    <label htmlFor='birth_date' className="subheading mb-2 font-medium">Date of Birth</label>
                     <Input
                         type="date"
                         name="birth_date"
@@ -205,6 +208,7 @@ export const UserInfoForm = ({
                 </div>
 
                 <div>
+                    <label htmlFor='email' className="subheading mb-2 font-medium">Email</label>
                     <Input
                         type="email"
                         name="email"
@@ -337,69 +341,72 @@ export const BusinessInfoForm = ({
             <div className="anim-up">
                 <h2 className="main-heading mt-8">Select your type of business</h2>
             </div>
-            <div className={`space-y-4 mt-6 anim-up`}>
+            <div className={`space-y-6 mt-6 anim-up`}>
                 {/* <Select options={industryOptions}
                     value={industryOptions.find((option) => option.value === formik.values.industry)}
                     onChange={({ value }) => formik.setFieldValue('industry', value)}
                 /> */}
+                <div>
+                  <label htmlFor='your_business' className="subheading mb-2 font-medium">Your business</label>
+                  <Select onValueChange={value => {formik.setFieldValue('industry', value)}}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder={industryOptions[0].label} defaultValue={industryOptions[0].label} />
+                    </SelectTrigger>
+                    <SelectContent className='z-[999]'>
+                      {industryOptions.map(option => (
+                        <SelectItem value={option.value}>{option.label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
 
-                <Select onChange={({ value }) => {formik.setFieldValue('industry', value)}}>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder={industryOptions[0].label} defaultValue={industryOptions[0].label} />
-                  </SelectTrigger>
-                  <SelectContent className='z-[999]'>
-                    {industryOptions.map(option => (
-                      <SelectItem value={option.value}>{option.label}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                    {formik.values.industry === 'other' ? (
+                    <Input placeholder='Type another type of business' className='mt-2'/>
+                    ) : null}
+                </div>
 
-                {/* This input will show if industry option is selected as 'other' */}
-                <Input placeholder='Type another type of business'/>
+                <div>
+                    <h2 className="secondary-heading">What are your potential goals for this business?</h2>
+                    <p className='main-desc mt-2'>You can select maximum 6 options</p>
 
-                <h2 className="secondary-heading">What are your potential goals for this business?</h2>
-                <p className='main-desc'>You can select maximum 6 options</p>
-
-                <div className="grid gap-3">
-                    {/* {checkboxLists.map((checkboxList) => (
-                        <label htmlFor={checkboxList.key} onClick={(e) => {
-                            if (!formik.values.goal.includes(checkboxList.key)) {
-                                formik.setFieldValue('goal', [...formik.values.goal, checkboxList.key])
-                            } else {
-                                formik.setFieldValue('goal', formik.values.goal.filter((item) => item !== checkboxList.key))
-                            }
-                        }}>
-                            <input
-                                type="checkbox"
-                                className={`checkbox-card-input ${formik.values.goal.includes(checkboxList.key) ? 'active' : ''}`}
-                                name={checkboxList.key}
-                                value={checkboxList.key}
-                                checked={formik.values.goal.includes(checkboxList.key)}
-                            />
-                            <span className="tab-desc border checkbox-card">
-                                {checkboxList.title}
-                            </span>
-                        </label>
-                    ))} */}
-                    {checkboxLists.map(checkboxList => (
-                        <div className='flex items-center gap-x-2'>
-                          <Checkbox id={checkboxList.key} checked={formik.values.goal.includes(checkboxList.key)} value={checkboxList.key} name={checkboxList.key} onCheckedChange={(e) => {
-                            if (!formik.values.goal.includes(checkboxList.key)) {
-                                formik.setFieldValue('goal', [...formik.values.goal, checkboxList.key])
-                            } else {
-                                formik.setFieldValue('goal', formik.values.goal.filter((item) => item !== checkboxList.key))
-                            }
-                          }}/>
-                          <label htmlFor={checkboxList.key}>{checkboxList.title}</label>
-                        </div>
-                    ))}
-                    {formik.errors.goal && (<p className="error">{formik.errors.goal}</p>)}
+                    <div className="grid gap-3 mt-4">
+                        {/* {checkboxLists.map((checkboxList) => (
+                            <label htmlFor={checkboxList.key} onClick={(e) => {
+                                if (!formik.values.goal.includes(checkboxList.key)) {
+                                    formik.setFieldValue('goal', [...formik.values.goal, checkboxList.key])
+                                } else {
+                                    formik.setFieldValue('goal', formik.values.goal.filter((item) => item !== checkboxList.key))
+                                }
+                            }}>
+                                <input
+                                    type="checkbox"
+                                    className={`checkbox-card-input ${formik.values.goal.includes(checkboxList.key) ? 'active' : ''}`}
+                                    name={checkboxList.key}
+                                    value={checkboxList.key}
+                                    checked={formik.values.goal.includes(checkboxList.key)}
+                                />
+                                <span className="tab-desc border checkbox-card">
+                                    {checkboxList.title}
+                                </span>
+                            </label>
+                        ))} */}
+                        {checkboxLists.map(checkboxList => (
+                            <div className='flex items-center gap-x-2'>
+                            <Checkbox id={checkboxList.key} checked={formik.values.goal.includes(checkboxList.key)} value={checkboxList.key} name={checkboxList.key} onCheckedChange={(e) => {
+                                if (!formik.values.goal.includes(checkboxList.key)) {
+                                    formik.setFieldValue('goal', [...formik.values.goal, checkboxList.key])
+                                } else {
+                                    formik.setFieldValue('goal', formik.values.goal.filter((item) => item !== checkboxList.key))
+                                }
+                            }}/>
+                            <label htmlFor={checkboxList.key} className='text-sm'>{checkboxList.title}</label>
+                            </div>
+                        ))}
+                        {formik.errors.goal && (<p className="error">{formik.errors.goal}</p>)}
+                    </div>
                 </div>
             </div>
-
-            <Spacer size={30} />
-            <div className={`anim-up-delay translate-y-[20px] mt-4 flex gap-x-2`}>
-                <Button variant='ghost' className={`w-1/4 justify-center`} onClick={prev}>Back</Button>
+            <div className={`anim-up-delay translate-y-[20px] mt-2 flex gap-x-2 justify-between`}>
+                <Button variant='secondary' className={`w-1/4 justify-center`} onClick={prev}>Back</Button>
                 <Button
                     className='w-1/4 justify-center'
                     // disabled={!formik.isValid}
@@ -411,6 +418,8 @@ export const BusinessInfoForm = ({
 
 export const TeamInfoForm = ({
     current,
+    prev,
+    next,
     initialValues = {
         no_of_employees: '2-5 people',
         accepted_user_terms: true,
@@ -419,7 +428,7 @@ export const TeamInfoForm = ({
     onSubmit,
     state,
 }) => {
-    const memberOptions = ['2-5 people', '5-10 people', '10-20 people', '20-30 people', 'More than 30 people'];
+    const memberOptions = ['Only me', '2-5 people', '6-10 people', '11-20 people', '21-30 people', 'More than 30 people'];
     const formik = useFormik({
         initialValues: initialValues,
         validateOnChange: false,
@@ -434,7 +443,7 @@ export const TeamInfoForm = ({
 
     return (
         <form
-            className="m-auto w-full max-w-sm w-96 h-[600px]"
+            className="m-auto w-full max-w-sm w-96 min-h-[600px] h-auto"
             onSubmit={formik.handleSubmit}
         >
             <Steps total={5} step={current} />
@@ -464,10 +473,13 @@ export const TeamInfoForm = ({
                         ))}
                     </div>
                 </RadioGroup>
-                <Button
-                    className='w-1/4 justify-center'
-                    // disabled={!formik.isValid}
-                >Continue</Button>
+                <div className={`anim-up-delay translate-y-[20px] mt-2 flex gap-x-2 justify-between`}>
+                    <Button variant='secondary' className={`w-1/4 justify-center`} onClick={prev}>Back</Button>
+                    <Button
+                        className='w-1/4 justify-center'
+                        // disabled={!formik.isValid}
+                    >Continue</Button>
+                </div>
             </div>
         </form>
     )

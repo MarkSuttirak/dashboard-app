@@ -1,9 +1,9 @@
 import { CheckIcon } from '@heroicons/react/24/solid'
 
-const RegisterStep = ({active}) => {
+export default function RegisterStep({active}){
   const steps = [
-    { id: '01', name: 'Phone Number', description: 'Vitae sed mi luctus laoreet.', status: active},
-    { id: '02', name: 'Register', description: 'Cursus semper viverra.', status: active},
+    { id: '01', name: 'Phone Number', description: 'Enter your phone number to receive an OTP to verify your identity.', status: active},
+    { id: '02', name: 'Register', description: 'Fill in the denominator information for your business.', status: active},
     // { id: '03', name: 'Preview', description: 'Penatibus eu quis ante.', status: 'upcoming' },
   ]
 
@@ -27,7 +27,7 @@ const RegisterStep = ({active}) => {
               {step.status === 'complete' ? (
                 <a href={step.href} className="group">
                   <span
-                    className='px-6 py-5 flex items-start text-sm font-medium'
+                    className='px-6 py-5 flex items-center text-sm font-medium'
                   >
                     <span className="flex-shrink-0">
                       <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0788F5]">
@@ -35,7 +35,7 @@ const RegisterStep = ({active}) => {
                       </span>
                     </span>
                     <span className="mt-0.5 ml-4 flex min-w-0 flex-col">
-                      <span className="text-sm font-medium">{step.name}</span>
+                      <span className="text-base font-medium">{step.name}</span>
                       <span className="text-sm font-medium text-gray-500">{step.description}</span>
                     </span>
                   </span>
@@ -43,7 +43,7 @@ const RegisterStep = ({active}) => {
               ) : step.status === 'current' ? (
                 <a href={step.href} aria-current="step">
                   <span
-                    className='px-6 py-5 flex items-start text-sm font-medium'
+                    className='px-6 py-5 flex items-center text-sm font-medium'
                   >
                     <span className="flex-shrink-0">
                       <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#0788F5]">
@@ -51,7 +51,7 @@ const RegisterStep = ({active}) => {
                       </span>
                     </span>
                     <span className="mt-0.5 ml-4 flex min-w-0 flex-col">
-                      <span className="text-sm font-medium text-[#0788F5]">{step.name}</span>
+                      <span className="text-base font-medium text-[#0788F5]">{step.name}</span>
                       <span className="text-sm font-medium text-gray-500">{step.description}</span>
                     </span>
                   </span>
@@ -59,7 +59,7 @@ const RegisterStep = ({active}) => {
               ) : (
                 <a href={step.href} className="group">
                   <span
-                    className='px-6 py-5 flex items-start text-sm font-medium'
+                    className='px-6 py-5 flex items-center text-sm font-medium'
                   >
                     <span className="flex-shrink-0">
                       <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-300">
@@ -67,7 +67,7 @@ const RegisterStep = ({active}) => {
                       </span>
                     </span>
                     <span className="mt-0.5 ml-4 flex min-w-0 flex-col">
-                      <span className="text-sm font-medium text-gray-500">{step.name}</span>
+                      <span className="text-base font-medium">{step.name}</span>
                       <span className="text-sm font-medium text-gray-500">{step.description}</span>
                     </span>
                   </span>
@@ -80,5 +80,3 @@ const RegisterStep = ({active}) => {
     </nav>
   )
 }
-
-export default RegisterStep
