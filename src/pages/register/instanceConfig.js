@@ -85,7 +85,6 @@ const InstanceConfig = () => {
                 </div>
                 <div className="flex flex-1 m-[30px] md:m-2 z-[999] basis-[20%] bg-white absolute md:relative register-screen">
                     <StepMaintainer state={{ site: lsite, setSite }}>
-                    <AppsSelectionForm />
                         <SiteDomainForm />
                         <AppsSelectionForm />
                         <ThemeSelectionForm onSubmit={mutate} />
