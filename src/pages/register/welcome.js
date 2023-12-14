@@ -42,7 +42,7 @@ export default function Welcome(){
                 Or Register for free
               </p>
 
-              <p className="main-desc mt-9">Your team can scan this QRcode to request for invitation approval. Create and deploy your new project in one-click.</p>
+              <p className="main-desc mt-9">Create and deploy your new project in one-click.</p>
             </div>
 
             <div className={`login-with-sec ${switchSec}`}>
@@ -91,7 +91,7 @@ export default function Welcome(){
                 Or Register for free
               </p>
 
-              <p className="main-desc mt-9">Your team can scan this QRcode to request for invitation approval. Create and deploy your new project in one-click.</p>
+              <p className="main-desc mt-9">Create and deploy your new project in one-click.</p>
             </div>
 
             <div className={`login-with-sec ${switchSec}`}>
@@ -132,7 +132,7 @@ export default function Welcome(){
       </div>
       <div className="relative hidden w-0 flex-1 m-[30px] md:block">
         <img
-          className="absolute inset-0 h-full w-full object-cover rounded-lg"
+          className="absolute inset-0 h-full w-full object-cover rounded-[30px]"
           src={loginImg}
           alt="login-image"
         />
