@@ -38,12 +38,11 @@ export default function Welcome(){
                 <Icons.zaviagoCom />
               </div>
               <h2 className="main-heading">Sign in to your account</h2>
-              <p className="main-desc">
-                Or{' '}
-                <a href="#" className="font-medium text-[#0788F5]">
-                  start your 14-day free trial
-                </a>
+              <p className="subheading">
+                Or Register for free
               </p>
+
+              <p className="main-desc mt-9">Your team can scan this QRcode to request for invitation approval. Create and deploy your new project in one-click.</p>
             </div>
 
             <div className={`login-with-sec ${switchSec}`}>
@@ -89,11 +88,10 @@ export default function Welcome(){
               </div>
               <h2 className="main-heading">Create new account</h2>
               <p className="main-desc">
-                Or{' '}
-                <a href="#" className="font-medium text-[#0788F5]">
-                  start your 14-day free trial
-                </a>
+                Or Register for free
               </p>
+
+              <p className="main-desc mt-9">Your team can scan this QRcode to request for invitation approval. Create and deploy your new project in one-click.</p>
             </div>
 
             <div className={`login-with-sec ${switchSec}`}>
