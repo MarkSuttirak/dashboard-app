@@ -38,7 +38,7 @@ export default function Welcome(){
                 <Icons.zaviagoCom />
               </div>
               <h2 className="main-heading">Sign in to your account</h2>
-              <p className="subheading">
+              <p className="main-desc font-medium">
                 Or Register for free
               </p>
 
@@ -87,7 +87,7 @@ export default function Welcome(){
                 <Icons.zaviagoCom />
               </div>
               <h2 className="main-heading">Create new account</h2>
-              <p className="main-desc">
+              <p className="main-desc font-medium">
                 Or Register for free
               </p>
 
