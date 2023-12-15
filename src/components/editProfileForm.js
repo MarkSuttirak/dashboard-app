@@ -139,7 +139,7 @@ function onError(e) {
                 </Select> */}
               </div>
             </div>
-          
+{/*           
             <div className="space-y-6">
                 <div className="anim-up flex flex-col">
                     <label className="subheading mb-2">
@@ -171,7 +171,7 @@ function onError(e) {
                       </PopoverContent>
                     </Popover>
                 </div>
-            </div>
+            </div> */}
             <div>
               <button
                 type='submit'

@@ -84,7 +84,7 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm, tota
 
   return (
     <section className="p-4 md:pt-[60px]">
-      <div className="flex items-center gap-x-3 mb-6 px-10">
+      <div className={`flex items-center gap-x-3 mb-6 ${paymentConfirm ? '' : 'px-10'}`}>
         <button onClick={() => setPaymentConfirm(false)}>
           <ArrowLeft />
         </button>

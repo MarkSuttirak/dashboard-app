@@ -94,7 +94,7 @@ export default function Teams(){
         {id === 'team-members' && (
           <section className="w-[672px]">
             <h2 className="settings-heading">Manage Members</h2>
-            <p className="main-desc">Anyone with the link can view this document.</p>
+            <p className="main-desc">You can invite team members and control their positions.</p>
 
             <div className="flex w-full items-center space-x-2 mt-6 mb-[10px]">
               <Input type="text" placeholder="Email" value={'https://' + sites?.site_list[0].name} ref={emailRef}/>
@@ -168,7 +168,7 @@ export default function Teams(){
         {id === 'teams' && (
           <section className="w-[672px]">
             <h2 className="settings-heading">All your teams</h2>
-            <p className="main-desc">You can switch between team work space here.</p>
+            <p className="main-desc">You can promptly switch to other teams upon receiving an invitation to join there them.</p>
 
             <AllTeams />
           </section>

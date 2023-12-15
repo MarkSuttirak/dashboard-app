@@ -57,7 +57,7 @@ export default function ManageOrUpgradeApps(){
   return (
     <section className="w-[672px]">
       <h2 className="settings-heading">{id === 'manage-apps' ? 'Manage Apps' : 'Upgrade Apps'}</h2>
-      <p className="main-desc">{id === 'manage-apps' ? 'Manage the apps on your site or go to the App Market to add new ones. Get More Apps' : 'Manage the apps on your site or go to the App Market to add new ones.'}</p>
+      <p className="main-desc">{id === 'manage-apps' ? 'Manage all apps on your site, or visit the App Store to add new features for your business' : 'Upgrade the apps on your site'}</p>
       <div className="mt-6 mb-4 flex gap-x-2">
         <Input placeholder='Search App' className='w-[250px]' onChange={e => {setSearch(e.target.value)}} value={search}/>
         <Button variant='ghost' className={`flex items-center gap-x-2 ${search !== '' ? 'visible opacity-1' : 'invisible opacity-0'} transition duration-200`} onClick={() => {setSearch('')}}>

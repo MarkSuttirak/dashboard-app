@@ -12,6 +12,7 @@ import { EyeNoneIcon, Pencil1Icon, PersonIcon } from "@radix-ui/react-icons";
 import { Checkbox } from "src/components/ui/checkbox";
 import { useUser } from "src/hooks/useUser";
 import Loading from "src/components/ui/loading";
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "src/components/ui/dialog"
 
 export default function TeamMembers(){
   const { user, auth } = useUser();
@@ -25,11 +26,6 @@ export default function TeamMembers(){
       role:'Member',
       ability:'Can edit',
       icon:<Pencil1Icon className="mt-1"/>
-    },
-    {
-      role:'Remove',
-      ability:'Remove from the team',
-      icon:<EyeNoneIcon className="mt-1"/>
     }
   ]
   const [checkedFilter, setCheckedFilter] = useState([])
@@ -74,21 +70,44 @@ export default function TeamMembers(){
             <Command>
               <CommandList>
                 <CommandGroup className="p-1.5">
-                  {auth?.team_members.map(member => (
-                    <>
-                      {member?.roles.map(role => (
-                        <CommandItem className="flex items-start px-4 py-2 gap-x-4">
-                          {role.icon}
-                          <div className="flex flex-col">
-                            <h3 className="subheading font-medium">{role.role}</h3>
-                            <p className="text-sm text-muted-foreground">
-                              {role.ability}
-                            </p>
-                          </div>
-                        </CommandItem>
-                      ))}
-                    </>
+                  {userRoles.map(role => (
+                    <CommandItem className="flex items-start gap-x-4">
+                      {role.icon}
+                      <div className="flex flex-col">
+                        <h3 className="subheading font-medium">{role.role}</h3>
+                        <p className="text-sm text-muted-foreground">
+                          {role.ability}
+                        </p>
+                      </div>
+                    </CommandItem>
                   ))}
+                  <CommandItem>
+                    <Dialog>
+                      <DialogTrigger className="flex items-start gap-x-4 text-start">
+                        <EyeNoneIcon className="mt-1"/>
+                        <div className="flex flex-col">
+                          <h3 className="subheading font-medium">Remove</h3>
+                          <p className="text-sm text-muted-foreground">
+                            Remove from the team
+                          </p>
+                        </div>
+                      </DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>Are you absolutely sure?</DialogTitle>
+                          <DialogDescription>
+                            Removing team members will affect billing and some actions. Please check carefully.
+                          </DialogDescription>
+                          <DialogFooter>
+                            <DialogClose>
+                              <Button variant='outline'>Cancel</Button>
+                            </DialogClose>
+                            <Button type="submit">Continue</Button>
+                          </DialogFooter>
+                        </DialogHeader>
+                      </DialogContent>
+                    </Dialog>
+                  </CommandItem>
                 </CommandGroup>
               </CommandList>
             </Command>

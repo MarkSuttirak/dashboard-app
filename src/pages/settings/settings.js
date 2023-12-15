@@ -43,7 +43,7 @@ export default function Settings(){
         {id === 'account' && (
           <section className="w-[672px]">
             <h2 className="settings-heading">Account</h2>
-            <p className="main-desc">Update your account settings. Set your preferred language and timezone.</p>
+            <p className="main-desc">Update / Edit your personal information</p>
 
             <Separator className='my-6'/>
             <AccountForm />
@@ -55,14 +55,14 @@ export default function Settings(){
             <Tabs defaultValue="overview">
               <TabsList>
                 <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="invoices">Invoices</TabsTrigger>
+                <TabsTrigger value="purchase-history">Purchase history</TabsTrigger>
                 <TabsTrigger value="billing">Billing</TabsTrigger>
               </TabsList>
               <Separator className='my-6'/>
               <TabsContent value="overview">
                 <Subscription />
               </TabsContent>
-              <TabsContent value="invoices">
+              <TabsContent value="purchase-history">
                 <Invoices />
               </TabsContent>
               <TabsContent value="billing">
@@ -75,7 +75,7 @@ export default function Settings(){
         {id === 'notifications' && (
           <section className="w-[672px]">
             <h2 className="settings-heading">Notifications</h2>
-            <p className="main-desc">Configure how you receive notifications.</p>
+            <p className="main-desc">Easily manage notifications according to your preferences</p>
 
             <Separator className='my-6'/>
             <NotificationsForm />

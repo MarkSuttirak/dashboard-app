@@ -35,7 +35,6 @@ export default function CheckoutPending(){
     }
   }, [user, sites,checkout_info]);
 
-  
   if(!subtotal){
     if(plan_details?.price_usd){
       setSubtotal(plan_details?.price_usd)
