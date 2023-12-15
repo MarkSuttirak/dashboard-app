@@ -12,13 +12,18 @@ import { siteDomainSchema } from './validations/instanceConfigSchema';
 import RegisterStep from '../../components/registerStep';
 import { Steps } from '../register';
 import Spacer from '../../components/spacer';
-import { BuildingStorefrontIcon } from '@heroicons/react/24/solid';
 import { classNames } from '../../utils/helper';
 import { Input } from '../../components/ui/input';
 import { Button } from '../../components/ui/button';
 import LineIcon from 'src/components/icon-menus/Line';
 import { AppWindow, Coins, Store, UserSquare } from 'lucide-react';
 import { LinkNone2Icon } from '@radix-ui/react-icons';
+import lineOACRM from 'src/img/lineOACRM-selectapp.svg'
+import rewardful from 'src/img/rewardful-selectapp.svg'
+import crm from 'src/img/crm-selectapp.svg'
+import onlineStore from 'src/img/onlinestore-selectapp.svg'
+import untitled from 'src/img/untitled-selectapp.svg'
+import marketConnect from 'src/img/marketconnect-selectapp.svg'
 
 const InstanceConfig = () => {
     const { auth } = useUser();
@@ -73,9 +78,9 @@ const InstanceConfig = () => {
         </div>
     }
 
-    if (auth?.onboarding.site_created) {
-        return <Navigate replace to='/dashboard/app' />
-    }
+    // if (auth?.onboarding.site_created) {
+    //     return <Navigate replace to='/dashboard/app' />
+    // }
 
     return (
         <>
@@ -379,28 +384,34 @@ export const AppsSelectionForm = ({
     const [availableApps, setAvailableApps] = useState([])
     const otherApps = [
         {
-            icon:<LineIcon className='h-4 w-4 stroke-[1.5]'/>,
+            image:lineOACRM,
             title:'LineOA CRM',
+            desc:'Collect customer information from LINE Membership'
         },
         {
-            icon:<Coins className='h-4 w-4 stroke-[1.5]'/>,
+            image:rewardful,
             title:'Rewardful',
+            desc:'Point & Reward'
         },
         {
-            icon:<LinkNone2Icon className='h-4 w-4 stroke-[1.5]'/>,
-            title:'MarketConnect',
-        },
-        {
-            icon:<Store className='h-4 w-4 stroke-[1.5]'/>,
+            image:onlineStore,
             title:'OnlineStore',
+            desc:'Manage your online store'
         },
         {
-            icon:<UserSquare className='h-4 w-4 stroke-[1.5]'/>,
+            image:crm,
             title:'CRM',
+            desc:'Gather information about customers'
         },
         {
-            icon:<AppWindow className='h-4 w-4 stroke-[1.5]'/>,
+            image:untitled,
             title:'Untitled',
+            desc:'Website builder and design'
+        },
+        {
+            image:marketConnect,
+            title:'MarketConnect',
+            desc:'OMS includes orders, check stock, sales'
         }
     ]
 
@@ -433,7 +444,7 @@ export const AppsSelectionForm = ({
     })
 
     return (
-        <form className="m-auto w-full max-w-sm w-96 h-[600px]" onSubmit={formik.handleSubmit}>
+        <form className="m-auto w-full max-w-sm w-96 min-h-[600px] h-auto" onSubmit={formik.handleSubmit}>
             <Steps total={5} step={4} />
             <div className="anim-up">
                 <h2 className="main-heading mt-8">What would you like to add on your site?</h2>
@@ -481,12 +492,14 @@ export const AppsSelectionForm = ({
                                 // checked={formik.values.apps.includes(app)}
                             />
                             <span className="subheading border checkbox-card">
-                                {app.icon}
-                                <h2 className='subheading font-medium'>{app.title}</h2>
+                              <img src={app.image} />
+                              <div className='px-[6px] pt-3 pb-2 text-center'>
+                                <h2 className='subheading font-bold'>{app.title}</h2>
+                                <p className='text-xs text-[#71717A] tracking-[0.12px] mt-1'>{app.desc}</p>
+                              </div>
                             </span>
                         </label>
                     ))}
-
                 </div>
             </div>
 

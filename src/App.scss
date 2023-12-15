@@ -674,15 +674,12 @@ $gradient-border:linear-gradient(to right, #9A5BFF, #FF9C27);
 .checkbox-card {
   position:relative;
   display:flex;
+  flex-direction:column;
   align-items:center;
-  padding:12px;
   border-radius:8px;
+  overflow:hidden;
   cursor:pointer;
-  gap:8px;
   height:100%;
-  svg {
-    width:24px;
-  }
 }
 
 .checkbox-card-input {

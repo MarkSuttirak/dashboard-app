@@ -14,7 +14,7 @@ import { useUser } from "src/hooks/useUser";
 import Loading from "src/components/ui/loading";
 
 export default function TeamMembers(){
-  const { user, auth, logout } = useUser();
+  const { user, auth } = useUser();
   const userRoles = [
     {
       role:'Super Admin',
@@ -49,7 +49,6 @@ export default function TeamMembers(){
   // const filteredMembers = allMembers.filter((member) =>
   //   checkedFilter.length === 0 || checkedFilter.includes(member.roles[0])
   // );
-  console.log(auth?.team_members)
 
   const TeamCard = ({firstname, lastname, email, role, avatar}) => {
     return (

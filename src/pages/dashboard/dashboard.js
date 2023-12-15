@@ -32,8 +32,6 @@ export default function Dashboard(){
 
   const { user, auth, logout } = useUser();
 
-  console.log(auth)
-
   const navigate = useNavigate();
 
   useEffect(() => {

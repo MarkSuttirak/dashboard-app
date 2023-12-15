@@ -99,7 +99,7 @@ function onError(e) {
                 />
               </div>
             </div>
-            <div className="space-y-6">
+            {/* <div className="space-y-6">
               <div className="anim-up flex flex-col">
                 <label className="subheading mb-2">
                   Username
@@ -113,14 +113,21 @@ function onError(e) {
                   defaultValue ={preloadedValues.username}
                 />
               </div>
-            </div>
+            </div> */}
             
             <div className="space-y-6">
               <div className="anim-up flex flex-col">
                 <label className="subheading mb-2">
                   Email
                 </label>
-                <Select className='form-input' name="email" onChange={form.handleChange} defaultValue={preloadedValues.email}>
+                <Input
+                  placeholder="Email"
+                  className="form-input"
+                  name="email"
+                  type='text'
+                  value={preloadedValues.email}
+                />
+                {/* <Select className='form-input' name="email" onChange={form.handleChange} defaultValue={preloadedValues.email}>
                   <SelectTrigger className="w-full">
                     <SelectValue defaultValue={preloadedValues.email} />
                   </SelectTrigger>
@@ -129,7 +136,7 @@ function onError(e) {
                     <SelectItem value="m@example.com">m@example.com</SelectItem>
                     <SelectItem value="m@google.com">m@google.com</SelectItem>
                   </SelectContent>
-                </Select>
+                </Select> */}
               </div>
             </div>
           
@@ -146,7 +153,7 @@ function onError(e) {
                               "w-[240px] pl-3 text-left font-normal" && "text-muted-foreground"
                             )}
                           >
-                            <span>Pick a date</span>
+                            {preloadedValues.dob ? <span>{preloadedValues.dob}</span> : <span>Pick a date</span>}
                             <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                           </Button>
                       </PopoverTrigger>

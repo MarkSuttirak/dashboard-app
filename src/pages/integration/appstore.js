@@ -153,9 +153,12 @@ export default function AppStore(){
         <div className="flex gap-x-6 mt-6">
           <section className="grid grid-cols-2 gap-6">
             <div className="flex flex-wrap gap-4">
-              <AppIcon icon={<Icons.crmApp width='72px' height='72px'/>} title='CRM' desc='Cutting-edge tools for streamlined business relationships'/>
+              {appslists?.map(app => 
+                <AppIcon icon={app.image ? <img src={site.backend_url()+app.image} className="w-[72px] h-[72px] min-w-[72px] min-h-[72px]"/> : <Icons.erpApp className='w-[72px] h-[72px]'/>} title={app.title} desc={app.description}/>
+              )}
+              {/* <AppIcon icon={<Icons.crmApp width='72px' height='72px'/>} title='CRM' desc='Cutting-edge tools for streamlined business relationships'/>
               <AppIcon icon={<Icons.lineCRMApp width='72px' height='72px'/>} title='LineOA CRM' desc='Unlock your business to the next level with Line OA CRM'/>
-              <AppIcon icon={<Icons.rewardfulApp width='72px' height='72px'/>} title='Rewardful' desc='Set your Loyalty Program and campaigns'/>
+              <AppIcon icon={<Icons.rewardfulApp width='72px' height='72px'/>} title='Rewardful' desc='Set your Loyalty Program and campaigns'/> */}
             </div>
           </section>
         </div>
@@ -165,38 +168,6 @@ export default function AppStore(){
         <h2 className="secondary-heading">Top Rated Apps</h2>
         <div className="flex gap-x-6 mt-6">
           <RecommendedApps />
-          <section className="grid grid-cols-3 gap-6">
-            {appslists?.map((app, index) => {
-              const isInstalled = installedApps.data?.some(installedApp => installedApp.title === app.title);
-              const requiredPro = false
-              return (
-                <Card key={index} className='app-card'>
-                  <CardHeader className='flex flex-row gap-x-6'>
-                    <div className="w-[90px]">
-                      {app.image ? <img src={site.backend_url()+app.image}/> : <Icons.erpApp />}
-                    </div>
-                    <div className="m-[0!important]">
-                      <CardTitle>{app.title}</CardTitle>
-                      <CardDescription className='mt-[6px]'>{app.description}</CardDescription>
-                    </div>
-                  </CardHeader>
-                  <CardFooter className='flex items-center justify-between'>
-                    <div className="text-sm">
-                      {isInstalled ? <span className="text-[#2CB216] inline-flex items-center gap-x-2"><CheckCircle2 className="h-4 w-4 text-[#2CB216]"/>Installed</span> : requiredPro ? <span className="text-[#71717A] inline-flex items-center gap-x-2"><Crown className="h-4 w-4 text-[#71717A]"/>Pro plan</span> : <span className="text-[#71717A]">Free plan available</span>} {/* Render "Installed" if the app is found in installedApps.data */}
-                    </div>
-                    <Link to={`/integration/appstore/${app.name}`} className="see-more">
-                      {/* Conditionally render Button based on `isInstalled` */}
-                      {isInstalled ? (
-                        <Button variant='outline' disabled>Installed</Button>
-                      ): (
-                        <Button variant='outline'>See more</Button>
-                      )}
-                    </Link>
-                  </CardFooter>
-                </Card>
-              )
-            })}
-          </section>
         </div>
       </section>
 

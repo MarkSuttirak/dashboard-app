@@ -30,7 +30,7 @@ const expireAfter = ['12 hours','1 day','3 days','7 days']
 const maximumUses = ['1 use','5 uses','10 uses','20 uses','30 uses','Unlimited']
 
 export default function Teams(){
-  const { user } = useUser();
+  const { user, auth } = useUser();
 
   const { data: sites } = useQuery('sites', site.list, {
     enabled: !!user,
