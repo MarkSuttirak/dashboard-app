@@ -20,6 +20,7 @@ import guideBlog from "src/img/guideblog.png"
 import discoverSolutions from "src/img/discover_solutions.png"
 import RecommendedApps from "../../components/apps/recommendedApps";
 import AppStoreIcons from "src/components/apps/appStoreIcons";
+import { LightningBoltIcon } from "@radix-ui/react-icons";
 
 export default function AppStore(){
   const [isMenuCardHover, setIsMenuCardHover] = useState(false)
@@ -108,8 +109,11 @@ export default function AppStore(){
         <img src={cybersale} />
         <div style={{background:`url(${zaviagoDashApp})`,backgroundSize:"cover"}} className="h-auto p-10 w-full flex flex-col justify-evenly items-center text-center rounded-xl">
           <h1 className="text-5xl font-bold text-[#08003F]">Zaviago Dashboard</h1>
-          <h3 className="text-2xl font-medium">Access exclusive tools to help you build client sites and scale your business</h3>
-          <Button>Join Now</Button>
+          <h3 className="text-2xl font-medium">Upgrade package to Pro to enjoy unrestricted access to everything for you and your friends</h3>
+          <Button className='btn-with-icon'>
+            <LightningBoltIcon />
+            Compare plans & features
+          </Button>
         </div>
       </div>
 
