@@ -96,7 +96,7 @@ export default function PlanPayment(){
           </div>
         </div>
         <Card className='p-0 shadow-none'>
-          <CardHeader className='flex flex-row justify-between px-3 py-6'>
+          <CardHeader className='flex flex-row justify-between px-3 py-6 items-center'>
             <div className="flex gap-x-3 items-center">
               <div className="bg-[#27272A] w-[50px] h-[50px] rounded-md"/>
               <div>

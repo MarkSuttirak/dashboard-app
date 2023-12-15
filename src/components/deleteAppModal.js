@@ -11,7 +11,8 @@ export default function DeleteAppModal({status, setStatus, title}){
     "I don't need it anymore",
     "It's missing features I need",
     "I just wanted to try it out",
-    "I'm having a technical issue"
+    "I'm having a technical issue",
+    "I don't know how to use, it's too complicated"
   ]
   return (
     <Dialog>

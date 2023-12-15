@@ -13,7 +13,6 @@ import { useQuery } from "react-query";
 import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 
-
 const appsToUpgrade = [
   {
     id:'reducoed',
@@ -39,12 +38,9 @@ export default function ManageOrUpgradeApps(){
   const [deleteStatus, setDeleteStatus] = useState('');
   const { user, auth, logout } = useUser();
 
-
-
   const { data: sites } = useQuery('sites', site.list, {
     enabled: !!user,
   });
-
 
   const benchApps = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), {enabled: false});
   const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.site_list[0].name), {enabled: false});  
@@ -55,10 +51,8 @@ export default function ManageOrUpgradeApps(){
     }
   }, [user, sites,benchApps,installedApps]);
 
-
   const appList = benchApps.data || [];
   const appData = (id === 'manage-apps' ? appList : appsToUpgrade);
-
 
   return (
     <section className="w-[672px]">
@@ -77,29 +71,46 @@ export default function ManageOrUpgradeApps(){
 
         <div className="mt-[10px] flex flex-col gap-y-6">
         <DataList pagination={appData?.length > appsPerPage ? true : false} listPerPage={appsPerPage}>
-
         {appData?.filter(app => installedApps.data?.some(installedApp => installedApp.title === app.title)).map(app => (
           <div className="flex items-center justify-between" key={app.name}>
             <div className="flex items-center gap-x-3">
-              {app.image ? <img src={site.backend_url()+app.image}/> : <Icons.erpApp />}
+              {app.image ? <img src={site.backend_url()+app.image} className="h-9 w-9"/> : <Icons.erpApp />}
               <div>
                 <h2 className="subheading font-medium">{app.title}</h2>
               </div>
             </div>
             <div className="flex items-center gap-x-3">
-            {id === 'manage-apps' ? (
-              <Link to={`/integration/appstore/${app.title}`}>
-                <Button variant='outline'>Open</Button>
-              </Link>
-            ) : (
-              <Link to={`/integration/appstore/${app.title}`}>
-                <Button variant='outline'>Upgrade</Button>
-              </Link>
-            )}
+              {id === 'manage-apps' ? (
+                <Link to={`/integration/appstore/${app.title}`}>
+                  <Button variant='outline'>Open</Button>
+                </Link>
+              ) : (
+                <Link to={`/integration/appstore/${app.title}`}>
+                  <Button variant='outline'>Upgrade</Button>
+                </Link>
+              )}
+              <Popover>
+                <PopoverTrigger>
+                  <Button variant='outline' className='w-9 px-0'><MoreHorizontal className="h-4 w-4"/></Button>
+                </PopoverTrigger>
+                <PopoverContent className='p-0 w-[160px]'>
+                  <Command>
+                    <CommandList>
+                      <CommandGroup>
+                        <CommandItem onSelect={() => navigate(`/integration/appstore/${app.title}`)}>App Info</CommandItem>
+                        <CommandItem>Customer Care</CommandItem>
+                      </CommandGroup>
+                      <CommandSeparator />
+                      <CommandGroup>
+                        <CommandItem className='p-0'><DeleteAppModal title={app.title} status={deleteStatus} setStatus={setDeleteStatus}/></CommandItem>
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
+                </PopoverContent>
+              </Popover>
             </div>
           </div>
         ))}
-
 
         </DataList>
         </div>
