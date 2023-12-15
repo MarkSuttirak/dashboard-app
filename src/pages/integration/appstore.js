@@ -6,8 +6,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Separator } from "src/components/ui/separator"
 import { Button } from "src/components/ui/button"
 import { Link } from "react-router-dom"
-import { PlusCircledIcon } from "@radix-ui/react-icons"
-import startSellingOnline from 'src/img/how-to-start-selling-online.png'
 import { Icons } from "src/components/ui/icons"
 import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
@@ -20,7 +18,8 @@ import { appsList } from "src/components/sidebar/servicePrivileges";
 import PostInfo from "src/components/postInfo";
 import guideBlog from "src/img/guideblog.png"
 import discoverSolutions from "src/img/discover_solutions.png"
-import RecommendedApps from "./recommendedApps";
+import RecommendedApps from "../../components/apps/recommendedApps";
+import AppStoreIcons from "src/components/apps/appStoreIcons";
 
 export default function AppStore(){
   const [isMenuCardHover, setIsMenuCardHover] = useState(false)
@@ -153,9 +152,7 @@ export default function AppStore(){
         <div className="flex gap-x-6 mt-6">
           <section className="grid grid-cols-2 gap-6">
             <div className="flex flex-wrap gap-4">
-              {appslists?.map(app => 
-                <AppIcon icon={app.image ? <img src={site.backend_url()+app.image} className="w-[72px] h-[72px] min-w-[72px] min-h-[72px]"/> : <Icons.erpApp className='w-[72px] h-[72px]'/>} title={app.title} desc={app.description}/>
-              )}
+              <AppStoreIcons />
               {/* <AppIcon icon={<Icons.crmApp width='72px' height='72px'/>} title='CRM' desc='Cutting-edge tools for streamlined business relationships'/>
               <AppIcon icon={<Icons.lineCRMApp width='72px' height='72px'/>} title='LineOA CRM' desc='Unlock your business to the next level with Line OA CRM'/>
               <AppIcon icon={<Icons.rewardfulApp width='72px' height='72px'/>} title='Rewardful' desc='Set your Loyalty Program and campaigns'/> */}

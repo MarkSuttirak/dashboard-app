@@ -84,7 +84,7 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm, tota
 
   return (
     <section className="p-4 md:pt-[60px]">
-      <div className="flex items-center gap-x-3 mb-6">
+      <div className="flex items-center gap-x-3 mb-6 px-10">
         <button onClick={() => setPaymentConfirm(false)}>
           <ArrowLeft />
         </button>
@@ -96,140 +96,26 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm, tota
       <Separator className='my-6'/>
 
       <main className="flex flex-col gap-y-6">
-        <div className="space-y-6 w-full">
-          <div className="anim-up flex flex-col">
-            <label className="subheading mb-2 font-medium">
-              Bank
-            </label>
-            <Select onValueChange={displayOtherBank} className='form-input' name="payment-channel" defaultValue={banks[0].text}
-              // onChange={form.handleChange} defaultValue={preloadedValues.email}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue defaultValue={banks[0].text}/>
-              </SelectTrigger>
-              <SelectContent>
-                {banks.map(bank => (
-                  <SelectItem value={bank.text}>
-                    <div className="flex items-center gap-x-2">
-                      <img src={bank.icon} />
-                      <p>{bank.text}</p>
-                    </div>
-                  </SelectItem>
-                ))}
-                <SelectItem value="Other">
-                  <div className="flex items-center gap-x-2">
-                    <Plus color='#71717A'/>
-                    <p>Other</p>
-                  </div>
-                </SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-
-        {otherBank && (
-          <div className="space-y-6 w-full">
-            <div className="anim-up flex flex-col">
-              <label className="subheading mb-2 font-medium">
-                Bank name
-              </label>
-              <Input
-                placeholder='TTB'
-                className="form-input px-[12px!important]"
-                name="bank_name"
-                type='text'
-                // onChange={form.handleChange}
-                // defaultValue={billingAddress.billing_name}
-              />
-            </div>
-          </div>
-        )}
-
-        <div className="space-y-6 w-full">
-          <div className="anim-up flex flex-col">
-            <label className="subheading mb-2 font-medium">
-              Total
-            </label>
-            <Input
-              value={totalPrice}
-              className="form-input px-[12px!important] inter"
-              name="total"
-              type='text'
-              // onChange={form.handleChange}
-              // defaultValue={billingAddress.billing_name}
-            />
-          </div>
-        </div>
-
-        <div className="flex flex-col md:flex-row gap-3">
-          <div className="space-y-6 w-full">
-            <div className="anim-up flex flex-col">
-              <label className="subheading mb-2 font-medium">
-                Date
-              </label>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant={"outline"}
-                    className={cn(
-                      "form-input" && "text-muted-foreground"
-                    )}
-                  >
-                    {date ? format(date, "PPP") : <span>Pick a date</span>}
-                    <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={date}
-                    onSelect={setDate}
-                    // selected={preloadedValues.dob}
-                    // onSelect={preloadedValues.dob}
-                    // onChange={form.handleChange}
-                    // disabled={(date) =>
-                    //   date > new Date() || date < new Date("1900-01-01")
-                    // }
-                    initialFocus
-                  />
-                </PopoverContent>
-              </Popover>
-            </div>
-          </div>
-
-          <div className="space-y-6 w-full">
-            <div className="anim-up flex flex-col">
-              <label className="subheading mb-2 font-medium">
-                Time
-              </label>
-              <div className="flex gap-x-3 items-center">
-                <Input
-                  defaultValue={hour}
-                  className="form-input"
-                  name="time_minute"
-                  type='number'
-                  autoComplete='off'
-                  min={0}
-                  max={23}
-                  // onChange={form.handleChange}
-                  // defaultValue={billingAddress.billing_name}
-                />
-                <span>:</span>
-                <Input
-                  defaultValue={minute}
-                  className="form-input"
-                  name="time_second"
-                  type='number'
-                  autoComplete='off'
-                  min={0}
-                  max={59}
-                  // onChange={form.handleChange}
-                  // defaultValue={billingAddress.billing_name}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+        <table className="w-full table-invoice-detail">
+          <tbody>
+            <tr className="main-desc my-4">
+              <td className="text-[#424242]">Invoice No.</td>
+              <td className="text-right">INV001</td>
+            </tr>
+            <tr className="main-desc">
+              <td className="text-[#424242]">Date</td>
+              <td className="text-right">24-07-23</td>
+            </tr>
+            <tr className="main-desc">
+              <td className="text-[#424242]">Status</td>
+              <td className="text-right">In progress</td>
+            </tr>
+            <tr className="main-desc">
+              <td className="text-[#424242]">Amount</td>
+              <td className="text-right">{totalPrice}</td>
+            </tr>
+          </tbody>
+        </table>
 
         <div className="space-y-6">
           <div className="anim-up flex flex-col">

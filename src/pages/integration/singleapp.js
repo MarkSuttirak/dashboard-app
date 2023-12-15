@@ -16,7 +16,7 @@ import { useQuery } from "react-query";
 import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { Link } from "react-router-dom"
-import RecommendedApps from "./recommendedApps"
+import RecommendedApps from "../../components/apps/recommendedApps"
 
 export default function SingleApp(){
   const { id } = useParams()

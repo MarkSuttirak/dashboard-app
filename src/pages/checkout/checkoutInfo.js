@@ -10,17 +10,26 @@ import { useParams } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
 
 export default function CheckoutInfo({paymentConfirm, setPaymentConfirm, totalPrice, discount, vat, subtotal}){
+  const { id } = useParams()
+  const { app } = useParams()
   const [makePayment, setMakePayment] = useState(false)
   const [couponExplanation, setCouponExplanation] = useState('Discount 10%');
+  const [verifiedPayment, setVerifiedPayment] = useState(true)
 
   return (
-    <section className="w-full h-screen p-[60px]" style={{boxShadow:"-20px 0px 30px -4px rgba(0, 0, 0, 0.04)"}}>
+    <section className="w-full h-screen p-6 md:p-[60px]" style={{boxShadow:"-20px 0px 30px -4px rgba(0, 0, 0, 0.04)"}}>
       <h2 className="secondary-heading">Purchase detail</h2>
       <p className="main-desc">If you need to edit billing information of tax invoice issuance or modify your order, please press the 'Back' button to cancel the current order.</p>
 
       <Separator className='my-6'/>
 
-      <h2 className="main-desc">Subscribe to Zaviago</h2>
+      {verifiedPayment && (
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="subheading font-medium">Invoice No.</h2>
+          <p className="subheading font-medium inter">INV001</p>
+        </div>
+      )}
+      <h2 className="main-desc font-medium">Subscribe to Zaviago</h2>
       <div className="mt-3 flex gap-x-[10px] items-center">
         <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px] inter">฿ {totalPrice}</h1>
         <div>
@@ -78,7 +87,7 @@ export default function CheckoutInfo({paymentConfirm, setPaymentConfirm, totalPr
             If the payment has been made, please click the 'Continue' button below to proceed.
           </label>
         </div>
-        <Button type='submit' className='btn-with-icon w-full' onClick={() => setPaymentConfirm(true)} disabled={!makePayment}>
+        <Button type='submit' className='btn-with-icon w-full' onClick={() => {verifiedPayment ? setPaymentConfirm(true) : window.location.href = `/checkout-pending/${app}/${id}`}} disabled={!makePayment}>
           <Wallet color='#FFF' viewBox='0 0 24 24' height='16' width='16'/>
           Continue
         </Button>
