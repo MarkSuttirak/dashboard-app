@@ -68,11 +68,11 @@ export default function Router() {
             element: <PaymentPage />
         },
         {
-            path: '/checkout',
+            path: '/checkout/:app/:id',
             element: <CheckoutPage />
         },
         {
-            path: '/checkout-received',
+            path: '/checkout-received/:app/:id',
             element: <CheckoutReceived />
         },
         {

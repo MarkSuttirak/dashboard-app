@@ -24,11 +24,11 @@ export default function PaymentForm(){
 
       if(app == 'plan'){
         await site.change_plan(sites.site_list[0].name,id);
-        navigate('/checkout')
+        navigate(`/checkout/${app}/${id}`)
       }
       else{
         await site.create_app_subscription(app,sites.site_list[0].name,id);
-        navigate('/checkout')
+        navigate(`/checkout/${app}/${id}`)
       }
 
       

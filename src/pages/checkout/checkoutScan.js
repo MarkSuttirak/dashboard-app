@@ -21,7 +21,7 @@ export default function CheckoutScan(){
   return (
     <section className="w-full pt-[60px]">
       <div className="flex items-center gap-x-3">
-        <Link to='/payment'>
+        <Link to={-1}>
           <ArrowLeft />
         </Link>
         <h1 className="main-heading">Payment</h1>

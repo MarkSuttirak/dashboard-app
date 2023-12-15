@@ -24,28 +24,21 @@ export default function PlanPayment(){
   const [perYear, setPerYear] = useState(true);
   const [discount, setDiscount] = useState(0)
 
-
   const { user, auth, logout } = useUser();
   const { data: sites } = useQuery('sites', site.list, {
     enabled: !!user,
   });
 
-
-
   const checkout_info = useQuery('checkout_info', () => site.get_web_plans(sites?.site_list[0]?.name), {enabled: false});
-
 
   useEffect(() => {
     if (user && sites?.site_list[0]?.name && !checkout_info.data) {
-        checkout_info.refetch();
+      checkout_info.refetch();
     }
   }, [user, sites,checkout_info]);
 
   const plan_details = checkout_info?.data && checkout_info?.data.find(item => item.name === id);
 
-  
-
-  
   if(!subtotal){
     if(plan_details?.price_usd){
       setSubtotal(plan_details?.price_usd)
@@ -53,7 +46,6 @@ export default function PlanPayment(){
   }
 
   const vat = Math.floor(subtotal * 0)
-
 
   const setCoupon = (coupon) => {
     setPromoAdded(true);

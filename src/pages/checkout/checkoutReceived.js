@@ -4,18 +4,56 @@ import { Button } from "src/components/ui/button";
 import { BadgeCheck } from "lucide-react";
 import Lottie from "lottie-react";
 import receivedInfo from 'src/components/received-info-check.json'
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MemberContext } from "src/components/provider/memberProvider";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useQuery } from "react-query";
+import { site } from "../../client/api";
+import { useUser } from "../../hooks/useUser";
 
 export default function CheckoutReceived(){
+  const { id } = useParams()
   const memberStatus = useContext(MemberContext)
   const navigate = useNavigate()
+  const [subtotal, setSubtotal] = useState(0)
+  const [discount, setDiscount] = useState(0)
+
+  const { user, auth, logout } = useUser();
+  const { data: sites } = useQuery('sites', site.list, {
+    enabled: !!user,
+  });
+
 
   const confirm = () => {
     navigate('/');
     memberStatus.change('pending')
   }
+
+  const checkout_info = useQuery('checkout_info', () => site.get_web_plans(sites?.site_list[0]?.name), {enabled: false});
+  const plan_details = checkout_info?.data && checkout_info?.data.find(item => item.name === id);
+
+  useEffect(() => {
+    if (user && sites?.site_list[0]?.name && !checkout_info.data) {
+      checkout_info.refetch();
+    }
+  }, [user, sites,checkout_info]);
+
+  
+  if(!subtotal){
+    if(plan_details?.price_usd){
+      setSubtotal(plan_details?.price_usd)
+    }
+  }
+
+  const vat = Math.floor(subtotal * 0);
+
+  const total = () => {
+    if (discount){
+      return ((subtotal - discount) + vat).toLocaleString()
+    } else {
+      return (subtotal + vat).toLocaleString()
+    }
+  };
 
   return (
     <div className="page-section max-w-[580px] mx-auto">
@@ -49,7 +87,7 @@ export default function CheckoutReceived(){
               </tr>
               <tr className="main-desc">
                 <td className="text-[#424242]">Amount</td>
-                <td className="text-right">฿727.00</td>
+                <td className="text-right">฿{total()}</td>
               </tr>
             </tbody>
           </table>

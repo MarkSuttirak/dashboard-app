@@ -18,8 +18,11 @@ import kasikorn from 'src/img/kasikorn.svg'
 import krungsri from 'src/img/krungsri.svg'
 import scb from 'src/img/scb.svg'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "src/components/ui/dialog"
+import { useParams } from "react-router-dom";
 
-export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm}){
+export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm, totalPrice}){
+  const { id } = useParams()
+  const { app } = useParams()
   const [date, setDate] = useState()
   const hour = new Date().getHours();
   const minute = new Date().getMinutes();
@@ -133,7 +136,7 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm}){
               <Input
                 placeholder='TTB'
                 className="form-input px-[12px!important]"
-                name="total"
+                name="bank_name"
                 type='text'
                 // onChange={form.handleChange}
                 // defaultValue={billingAddress.billing_name}
@@ -148,8 +151,8 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm}){
               Total
             </label>
             <Input
-              value='฿ 750'
-              className="form-input px-[12px!important]"
+              value={totalPrice}
+              className="form-input px-[12px!important] inter"
               name="total"
               type='text'
               // onChange={form.handleChange}
@@ -265,7 +268,7 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm}){
             </label>
           </div>
         </div>
-        <Button type='submit' className='btn-with-icon w-full' onClick={() => window.location.href="/checkout-received"}>
+        <Button type='submit' className='btn-with-icon w-full' onClick={() => window.location.href=`/checkout-received/${app}/${id}`}>
           <Wallet color='#FFF' viewBox='0 0 24 24' height='16' width='16'/>
           Confirm
         </Button>
