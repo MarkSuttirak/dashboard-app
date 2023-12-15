@@ -47,8 +47,6 @@ export default function Subscription(){
 
   const usagePlan = siteOverview?.plan
 
-  console.log(usagePlan)
-
   const planUsageData = [
     {
       type:'Database',
@@ -143,7 +141,7 @@ export default function Subscription(){
 
       <section>
         <h1 className="secondary-heading">Plan usage</h1>
-        <p className="main-desc">Updated on 20-10-23</p>
+        <p className="main-desc">Updated on {plan?.modified}</p>
 
         <div className="text-desc flex gap-x-4 items-center my-6">
           <p className="flex items-center gap-x-1 text-sm"><Users viewBox="0 0 24 24" width='16' height='16' /> {numOfAdmin} {numOfAdmin === 1 ? 'admin user' : 'admin users'}</p>

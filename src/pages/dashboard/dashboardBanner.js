@@ -6,7 +6,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "src/components/ui/button"
 import { ChevronDownIcon, DotsHorizontalIcon, MagicWandIcon, PlusCircledIcon, StarIcon, ValueIcon } from "@radix-ui/react-icons";
 import { Users, Zap, ChevronRight, Shuffle } from "lucide-react";
-import { MemberContext } from "src/components/provider/memberProvider";
 import { Badge } from "src/components/ui/badge";
 import { useMutation, useQuery } from "react-query";
 import { site } from "../../client/api";
@@ -18,11 +17,7 @@ export default function DashboardBanner({sitename}){
   const [numOfAdmin, setNumOfAdmin] = useState(3)
   const [numOfCustomers, setNumOfCustomers] = useState(38)
   const [date, setDate] = useState('April 2023')
-  const memberStatus = useContext(MemberContext)
   const { user, auth, logout } = useUser();
-
-
-
 
   const { data: sites } = useQuery('sites', site.list, {
     enabled: !!user,
@@ -33,8 +28,6 @@ export default function DashboardBanner({sitename}){
   });
   const plan = siteOverview?.plan?.current_plan;
   const pendingpayments = siteOverview?.info.pending_payments;
-
-
 
   return (
     <section className="mt-6">
@@ -124,14 +117,13 @@ export default function DashboardBanner({sitename}){
               </>
             ) : (
               <>
-                
               </>
             )}
           </CardHeader>
           <CardContent className='text-desc flex items-center justify-between'>
             <div className="flex items-center gap-x-1">
               <MagicWandIcon color='#09090B'/>
-              <span className="text-sm">{memberStatus.status === 'pro' ? 'Start to select Apps' : 'Starting at 750/m'}</span>
+              <span className="text-sm">{plan?.name === 'pro' ? 'Start to select Apps' : 'Starting at 750/m'}</span>
             </div>
             {Number.isInteger(pendingpayments) && pendingpayments > 0 ? <Badge>Waiting for confirmation</Badge> : null}          
             </CardContent>
