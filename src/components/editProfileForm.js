@@ -71,7 +71,7 @@ function onError(e) {
           <main className="flex flex-col gap-y-8">
             <div className="space-y-6">
               <div className="anim-up flex flex-col">
-                <label className="subheading mb-2">
+                <label className="subheading mb-2 font-medium">
                   First Name
                 </label>
                 <Input
@@ -86,7 +86,7 @@ function onError(e) {
             </div>
             <div className="space-y-6">
               <div className="anim-up flex flex-col">
-                <label className="subheading mb-2">
+                <label className="subheading mb-2 font-medium">
                   Last Name
                 </label>
                 <Input
@@ -117,7 +117,7 @@ function onError(e) {
             
             <div className="space-y-6">
               <div className="anim-up flex flex-col">
-                <label className="subheading mb-2">
+                <label className="subheading mb-2 font-medium">
                   Email
                 </label>
                 <Input

@@ -5,7 +5,7 @@ import { Button } from "src/components/ui/button";
 import { AppWindow, BadgeCheck, Building2, ClipboardCheck, ImagePlus, PartyPopper, PenSquare, ShoppingBag, UserPlus, VoteIcon, Zap } from "lucide-react";
 import { ChatBubbleIcon, CheckboxIcon, LightningBoltIcon, Pencil2Icon } from "@radix-ui/react-icons";
 
-export default function SetupBusiness(){
+export default function SetupBusiness({sitename}){
   const textGradient = (gradient, fontSize) => {
     const style = {
       background:gradient,
@@ -16,9 +16,9 @@ export default function SetupBusiness(){
     return style
   }
 
-  function GuideButton({icon, title, buttonText, buttonIcon, link, isCompleted}){
+  function GuideButton({icon, title, buttonText, buttonIcon, isCompleted, slug}){
     return (
-      <button className="guide-btn px-[22px] py-2 rounded-xl">
+      <button className="guide-btn px-[22px] py-2 rounded-xl" onClick={() => sitename(slug)}>
         <div className="flex items-center gap-4">
           {icon}
           <h2 className={`text-sm font-medium ${isCompleted ? 'line-through text-[#71717A]' : 'text-[#09090B]'}`}>{title}</h2>
@@ -78,9 +78,9 @@ export default function SetupBusiness(){
             </div>
 
             <div className="flex flex-col gap-y-3 px-8 pb-6">
-              <GuideButton icon={<UserPlus className="w-5 h-5 stroke-[1.5]"/>} title='Create new customer' buttonIcon={<LightningBoltIcon />} buttonText='Add Customer'/>
-              <GuideButton icon={<ShoppingBag className="w-5 h-5 stroke-[1.5]"/>} title='Add your first product' buttonIcon={<CheckboxIcon />} buttonText='Add Product'/>
-              <GuideButton icon={<ClipboardCheck className="w-5 h-5 stroke-[1.5]"/>} title='Create your first draft order' buttonIcon={<VoteIcon className="w-4 h-4" />} buttonText='Add Draft Order'/>
+              <GuideButton icon={<UserPlus className="w-5 h-5 stroke-[1.5]"/>} title='Create new customer' buttonIcon={<LightningBoltIcon />} buttonText='Add Customer' slug='customer'/>
+              <GuideButton icon={<ShoppingBag className="w-5 h-5 stroke-[1.5]"/>} title='Add your first product' buttonIcon={<CheckboxIcon />} buttonText='Add Product' slug='item'/>
+              <GuideButton icon={<ClipboardCheck className="w-5 h-5 stroke-[1.5]"/>} title='Create your first draft order' buttonIcon={<VoteIcon className="w-4 h-4" />} buttonText='Add Draft Order' slug='sales-invoice'/>
             </div>
           </section>
 

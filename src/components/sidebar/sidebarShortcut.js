@@ -28,8 +28,10 @@ export default function SidebarShortcut(){
   return (
     <>
       <Popover open={open} onOpenChange={setOpen}>
-        <Icons.zaviagoApp onClick={() => navigate('/')} className='cursor-pointer min-w-9 min-h-9'/>
-        <PopoverTrigger>
+        <div className="min-w-9 min-h-9">
+          <Icons.zaviagoApp onClick={() => navigate('/')} className='cursor-pointer min-w-9 min-h-9'/>
+        </div>
+        <PopoverTrigger className="w-full">
           <Button
             variant="ghost"
             role="combobox"
@@ -39,7 +41,7 @@ export default function SidebarShortcut(){
             <span className="flex gap-x-2 items-center">
               <div className="flex flex-col text-left">
                 <h2 className="cal-sans text-[18px]">Cosmos.</h2>
-                <p className="text-[13px] font-medium tracking-[-3%] leading-[20px]">intergoods.zaviago.com</p>
+                <p className="text-[13px] font-medium tracking-[-3%] leading-[20px]">{sites?.site_list[0].name.length >= 20 ? sites?.site_list[0].name.slice(0,20) + '...' : sites?.site_list[0].name}</p>
               </div>
             </span>
             <ChevronsUpDown className="ml-2 shrink-0 opacity-50" viewBox="0 0 24 24" width='12' height='12' />

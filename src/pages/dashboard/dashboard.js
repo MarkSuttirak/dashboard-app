@@ -139,7 +139,7 @@ export default function Dashboard(){
       <p className="main-desc">Access exclusive tools to help you build <br/>client sites and scale your business</p>
 
       <DashboardBanner sitename={sites?.site_list[0].name}/>
-      <SetupBusiness />
+      <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/>
 
       <section className="mt-6">
         <h2 className="secondary-heading">Create New or Manage</h2>

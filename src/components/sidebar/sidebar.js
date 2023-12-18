@@ -13,6 +13,14 @@ import { Progress } from "../ui/progress";
 import { Dialog, DialogTrigger } from "../ui/dialog";
 import { SearchItem } from "../topbar/searchBar";
 import SidebarSetupBusiness from "./sidebarSetupBusiness";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "src/components/ui/sheet"
 
 // import TeamModal from "../components/switchTeamModal";
 
@@ -21,6 +29,10 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   const location = useLocation();
   const { user } = useUser();
   const [setup, setSetup] = useState(true)
+
+  const benchApps = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), {enabled: false});
+  const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.site_list[0].name), {enabled: false});  
+  const appslists = benchApps.data || [];
 
   const navigate = useNavigate();
 
@@ -127,9 +139,33 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
         <ServiceModals />
 
-        {/* <div className="nav-btns add">
-          <PlusCircle color='#18181B' viewBox='0 0 24 24' width='16' height='16'/>
-        </div> */}
+        <Sheet>
+          <SheetTrigger>
+            <div className="nav-btns add">
+              <PlusCircle color='#18181B' viewBox='0 0 24 24' width='16' height='16'/>
+            </div>
+          </SheetTrigger>
+          <SheetContent side='left'>
+            <SheetHeader>
+              <SheetTitle>Apps</SheetTitle>
+              <SheetDescription>
+                All applications you have in your workspace
+                <section className="mt-4">
+                  {installedApps?.data?.length > 1 ? (
+                    <>
+                    {installedApps?.data.map(app => (
+                      <Button variant='ghost' className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5`}>
+                        <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
+                        {app.title}
+                      </Button>
+                    )).slice(0, 1)}
+                    </>
+                  ) : <h1 className="px-[6px] text-sm">There are no apps here...</h1>}
+                </section>
+              </SheetDescription>
+            </SheetHeader>
+          </SheetContent>
+        </Sheet>
       </nav>
     )
   }
