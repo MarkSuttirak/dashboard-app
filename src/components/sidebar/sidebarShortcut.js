@@ -25,8 +25,6 @@ export default function SidebarShortcut(){
   const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.site_list[0].name), {enabled: false});  
   const appslists = benchApps.data || [];
 
-  console.log(appslists)
-
   return (
     <>
       <Popover open={open} onOpenChange={setOpen}>
@@ -79,19 +77,19 @@ export default function SidebarShortcut(){
                       <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
                       {app.title}
                     </CommandItem>
-                  ))}
+                  )).slice(0, 1)}
                   </>
                 ) : <h1 className="px-[6px] text-sm">There are no apps here...</h1>}
               </CommandGroup>
               <CommandGroup heading="Apps">
-                {appslists.length > 1 ? (
+                {installedApps?.data?.length > 1 ? (
                   <>
-                    {appslists.map(app => (
-                      <CommandItem>
-                        <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
-                        {app.title}
-                      </CommandItem>
-                    ))}
+                  {installedApps?.data.map(app => (
+                    <CommandItem>
+                      <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
+                      {app.title}
+                    </CommandItem>
+                  ))}
                   </>
                 ) : <h1 className="px-[6px] text-sm">There are no apps here...</h1>}
               </CommandGroup>

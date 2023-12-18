@@ -17,6 +17,7 @@ import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { Link } from "react-router-dom"
 import RecommendedApps from "../../components/apps/recommendedApps"
+import Loading from "src/components/ui/loading"
 
 export default function SingleApp(){
   const { id } = useParams()
@@ -32,12 +33,13 @@ export default function SingleApp(){
   const benchApps = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), {enabled: false});
   const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.site_list[0].name), {enabled: false});  
   const appList = benchApps.data || [];
+
   useEffect(() => {
     if (user && sites?.site_list[0]?.name && !benchApps.data) {
       benchApps.refetch();
       installedApps.refetch();
     }
-  }, [user, sites,benchApps,installedApps]);
+  }, [user, sites,benchApps, installedApps]);
 
   const { data: siteOverview } = useQuery(['site', `${sites?.site_list[0].name}`], () => site.overview(sites?.site_list[0].name), {
     enabled: !!sites?.site_list.length
@@ -50,6 +52,8 @@ export default function SingleApp(){
       setAddAppStatus('installed')
     }, 2000)
   }
+
+  console.log(benchApps)
 
   const CardData = ({data}) => {
     return (
@@ -191,42 +195,16 @@ export default function SingleApp(){
 
   return (
     <div className="dashboard-container">
-      <CardData data={appList}/>
+      {appList ? (
+        <>
+          <CardData data={appList}/>
 
-      {/* <section style={{background:`url(${connectMarketingBg})`,backgroundRepeat:"no-repeat",backgroundSize:"cover"}} className="rounded-xl p-6 flex gap-x-8">
-        <div className="flex flex-col justify-between">
-          <article className="mt-4">
-            <h1 className="secondary-heading mb-4">Connect Marketing place</h1>
-            <p className="text-[13px] font-medium text-[#71717A] mt-4 mb-6">Say hello to the world and let readers know what your blog is all about.</p>
-          </article>
-
-          <Button className='btn-with-icon w-fit bg-white' variant='outline'>
-            <PlusCircledIcon />
-            See more Apps
-          </Button>
-        </div>
-
-        <div className="flex gap-x-6">
-          {appList.map((app, index) => (
-            <Card key={index} className='shadow-none flex flex-col justify-between'>
-              <CardHeader className='flex flex-col gap-x-6'>
-                <div className="w-[52px]">
-                  <img src={`${site.backend_url()}${app.image}`}/>
-                </div>
-                <div className="mt-[12px!important]">
-                  <CardTitle>{app.title}</CardTitle>
-                  <CardDescription className='mt-[6px]'>{app.description}</CardDescription>
-                </div>
-              </CardHeader>
-            </Card>
-          )).slice(0, 3)}
-        </div>
-      </section> */}
-
-      <section className="mt-[52px]">
-        <h2 className="secondary-heading">Recommended for You</h2>
-        <RecommendedApps />
-      </section>
+          <section className="mt-[52px]">
+            <h2 className="secondary-heading">Recommended for You</h2>
+            <RecommendedApps />
+          </section>
+        </>
+      ) : <Loading />}
     </div>
   )
 }

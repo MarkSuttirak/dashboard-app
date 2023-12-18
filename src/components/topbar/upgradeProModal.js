@@ -109,7 +109,7 @@ export default function UpgradeProModal(){
                 </ul>
               </section>
               <section>
-                <Link to='/payment'>
+                <Link to='/payment/plan/pro'>
                   <Button className='btn-with-icon w-full mb-[7px]'>
                     <LightningBoltIcon />
                     Upgrade to Pro
