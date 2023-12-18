@@ -65,7 +65,6 @@ export default function SingleApp(){
             {title:'Categories', desc:app.categories[0]?.category},
             {title:'Integrates with', desc:app.custom_integrates}
           ]
-          console.log(app)
         return (
           <>
             <section className="flex justify-between">
@@ -132,7 +131,8 @@ export default function SingleApp(){
                 </div>
               </aside>
               <article className="w-2/3">
-                {app.long_description}
+                <h2 className="font-bold text-xl text-[#18181B] mb-2">{app.description}</h2>
+                <p className="text-[#71717A]">{app.long_description}</p>
               </article>
             </section>
 

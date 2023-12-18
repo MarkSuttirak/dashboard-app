@@ -84,8 +84,8 @@ export default function AppStoreIcons(){
 
   return (
     <>{appslists?.map(app => 
-      <AppIcon icon={app.icon} title={app.title} desc={app.desc} link={`/integration/appstore/${app.title}`}/>
-      // <AppIcon icon={app.image ? <img src={site.backend_url()+app.image} className="w-[72px] h-[72px] min-w-[72px] min-h-[72px]"/> : <Icons.erpApp className='w-[72px] h-[72px]'/>} title={app.title} desc={app.description} link={`/integration/appstore/${app.title}`}/>
+      // <AppIcon icon={app.icon} title={app.title} desc={app.desc} link={`/integration/appstore/${app.title}`}/>
+      <AppIcon icon={app.image ? <img src={site.backend_url()+app.image} className="w-[72px] h-[72px] min-w-[72px] min-h-[72px]"/> : <Icons.erpApp className='w-[72px] h-[72px]'/>} title={app.title} desc={app.description} link={`/integration/appstore/${app.title}`}/>
     ).slice(0, 6)}</>
   )
 }

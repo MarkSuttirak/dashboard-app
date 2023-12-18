@@ -88,6 +88,6 @@ export const appList = [
     highlights:'Developing features for every type of business in Thailand exclusively',
     status:'Installed',
     screenshots:[mockapp1, mockapp2],
-    title:"Rewardful"
+    title:"LineOA CRM"
   }
 ]
