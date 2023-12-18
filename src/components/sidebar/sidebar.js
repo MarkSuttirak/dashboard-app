@@ -121,6 +121,21 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
     });
   };
 
+  const { data: loadAdmin, refetch } = useQuery('loadAdmin', () => site.loginAsAdmin(sites?.site_list[0].name, 'Admin'), {
+    enabled: false,
+    onSuccess: (res) => {
+      //console.log(res);
+    },
+  });
+
+  const loginNow = (page) => {
+    var sid = loadAdmin?.data?.message.sid;
+    var sitetoview = sites?.site_list[0].name;
+    if(sid){
+      window.open(`https://${sitetoview}/app/${page}?sid=${sid}`, '_blank');
+    }
+  }
+
   const IconSidebar = () => {
     return (
       <nav className={`nav-left-side`}>
@@ -150,7 +165,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
               <SheetTitle>Apps</SheetTitle>
               <SheetDescription>
                 All applications you have in your workspace
-                <section className="mt-4">
+                <section className="mt-4 grid grid-cols-2 gap-4">
                   {installedApps?.data?.length > 1 ? (
                     <>
                     {installedApps?.data.map(app => (
@@ -158,7 +173,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
                         <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
                         {app.title}
                       </Button>
-                    )).slice(0, 1)}
+                    ))}
                     </>
                   ) : <h1 className="px-[6px] text-sm">There are no apps here...</h1>}
                 </section>
@@ -189,7 +204,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
           </div>
 
           {setup && (
-            <SidebarSetupBusiness />
+            <SidebarSetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/>
           )}
 
           <nav className="flex bg-white px-3 pt-2 flex-col gap-y-4" aria-label="Sidebar">

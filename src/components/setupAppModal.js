@@ -9,6 +9,7 @@ import { Progress } from "src/components/ui/progress"
 export default function SetupAppModal({appToInstall, appImage}){
   const [open, setOpen] = useState(false)
   const [installStep, setInstallStep] = useState(0)
+  const [installingAppPercent, setInstallingAppPercent] = useState(50);
 
   const installingApp = () => {
     setTimeout(() => {
@@ -31,13 +32,13 @@ export default function SetupAppModal({appToInstall, appImage}){
         </Button>
       </DialogTrigger>
       {installStep === 1 ? (
-        <DialogContent className='overflow-hidden max-w-[400px] w-[400px] justify-center'>
+        <DialogContent className='overflow-hidden max-w-[500px] w-[500px] justify-center px-20'>
           <DialogHeader>
             <DialogTitle className='text-center'>Installing {appToInstall}</DialogTitle>
           </DialogHeader>
           <div className="flex items-center gap-x-[10px] my-4 w-full">
-            <Progress value={50}/>
-            <span className="text-xs text-[#71717A]">50%</span>
+            <Progress value={installingAppPercent}/>
+            <span className="text-xs text-[#71717A]">{installingAppPercent}%</span>
           </div>
           <DialogDescription className='text-center'>Installing app... Please do not close this page until the installation is done.</DialogDescription>
         </DialogContent>

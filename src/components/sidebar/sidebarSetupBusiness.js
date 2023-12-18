@@ -3,10 +3,10 @@ import { Popover, PopoverContent, PopoverTrigger } from "src/components/ui/popov
 import { CheckIcon, LightningBoltIcon } from "@radix-ui/react-icons";
 import { Check, Dot } from "lucide-react";
 
-export default function SidebarSetupBusiness(){
-  function GuideButton({icon, title, buttonText, buttonIcon, link, isCompleted}){
+export default function SidebarSetupBusiness({sitename}){
+  function GuideButton({icon, title, buttonText, buttonIcon, link, isCompleted, slug}){
     return (
-      <button className="guide-btn p-[6px] h-10 rounded-md">
+      <button className="guide-btn p-[6px] h-10 rounded-md" onClick={() => sitename(slug)}>
         <div className="flex items-center gap-1">
           {isCompleted ? <CheckIcon className="h-5 w-5" color='#51B77B'/> : <Dot className="h-5 w-5"/>}
           <h2 className={`text-xs ${isCompleted ? 'line-through text-[#71717A]' : 'text-[#09090B]'}`}>{title}</h2>
@@ -36,9 +36,9 @@ export default function SidebarSetupBusiness(){
           <p className="text-[10px] text-[#71717A]">0/6 completed</p>
         </div>
         <div className="flex flex-col gap-y-[10px]">
-          <GuideButton title='Create new customer' buttonText='Add Customer'/>
-          <GuideButton title='Add your first product' buttonText='Add Product'/>
-          <GuideButton title='Create your first draft order' buttonText='Add Draft Order'/>
+          <GuideButton title='Create new customer' buttonText='Add Customer' slug='customer'/>
+          <GuideButton title='Add your first product' buttonText='Add Product' slug='item'/>
+          <GuideButton title='Create your first draft order' buttonText='Add Draft Order' slug='sales-invoice'/>
           <GuideButton title='Add first page' buttonText='Add New Page'/>
           <GuideButton title='Write your first blog' buttonText='Add Blog'/>
           <GuideButton title='Create new customer' buttonText='Add Customer' isCompleted={true}/>
