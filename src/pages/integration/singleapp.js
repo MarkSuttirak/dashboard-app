@@ -18,6 +18,7 @@ import { useUser } from "../../hooks/useUser";
 import { Link } from "react-router-dom"
 import RecommendedApps from "../../components/apps/recommendedApps"
 import Loading from "src/components/ui/loading"
+import SetupAppModal from "src/components/setupAppModal"
 
 export default function SingleApp(){
   const { id } = useParams()
@@ -52,8 +53,6 @@ export default function SingleApp(){
       setAddAppStatus('installed')
     }, 2000)
   }
-
-  console.log(benchApps)
 
   const CardData = ({data}) => {
     return (
@@ -91,11 +90,7 @@ export default function SingleApp(){
                   <OpenInNewWindowIcon />Upgrade
                 </Button>
               ) : (
-                <Link to="/payment">
-                  <Button className='btn-with-icon'>
-                    <LightningBoltIcon />Install
-                  </Button>
-                </Link>
+                <SetupAppModal appToInstall={item.name} appImage={<img src={site.backend_url()+item.image} />}/>
               )}
             </section>
 

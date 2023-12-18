@@ -28,6 +28,7 @@ export default function DashboardBanner({sitename}){
   });
   const plan = siteOverview?.plan?.current_plan;
   const pendingpayments = siteOverview?.info.pending_payments;
+  const teamnames = auth?.teams
 
   return (
     <section className="mt-6">
@@ -62,18 +63,16 @@ export default function DashboardBanner({sitename}){
                     <CommandGroup heading="Current Team">
                       <CommandItem>
                         <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
-                        Intergoods
+                        {auth?.team.team_title}
                       </CommandItem>
                     </CommandGroup>
                     <CommandGroup heading="Team">
-                      <CommandItem>
-                        <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
-                        Zaviago
-                      </CommandItem>
-                      <CommandItem>
-                        <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
-                        Goodfill
-                      </CommandItem>
+                      {teamnames?.map(t => (
+                        <CommandItem>
+                          <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
+                          {t.team_title}
+                        </CommandItem>
+                      ))}
                     </CommandGroup>
                   </CommandList>
                 </Command>

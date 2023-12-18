@@ -100,7 +100,7 @@ export default function AppStore(){
           <p className="secondary-desc">Choose Professional Solutions to Power Your Website</p>
         </div>
         <div className="flex items-center gap-x-2 bg-[#FEC1D2] px-4 py-2 rounded-full text-sm font-semibold text-[#18181B]">
-          <Sparkles className="h-4 w-4"/>
+          <Sparkles className="h-4 w-4" fill='#18181B'/>
           Free trial on all apps
         </div>
       </div>

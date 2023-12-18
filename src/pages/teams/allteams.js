@@ -10,7 +10,8 @@ import Loading from "src/components/ui/loading";
 
 export default function AllTeams(){
   const { auth } = useUser();
-  const teamnames = ['Zaviago','Intergoods','Line','Testbrand','Guten Tag','Frappe','Django', 'Bonjour']
+  const teamnames = auth?.teams
+  // const teamnames = ['Zaviago','Intergoods','Line','Testbrand','Guten Tag','Frappe','Django', 'Bonjour']
 
   const TeamCard = ({teamname, avatar}) => {
     return (
@@ -59,7 +60,7 @@ export default function AllTeams(){
             <h1 className="subheading font-medium my-6">Teams</h1>
             <div className="flex flex-col gap-y-6 mt-[10px]">
               <DataList pagination={teamnames.length > 6 ? true : false} listPerPage={6}>
-                {teamnames.map(t => <TeamCard teamname={t} />)}
+                {teamnames.map(t => <TeamCard teamname={t.team_title} />)}
               </DataList>
             </div>
           </div>
