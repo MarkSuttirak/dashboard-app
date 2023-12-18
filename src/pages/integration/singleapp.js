@@ -13,7 +13,6 @@ import { Link } from "react-router-dom"
 import RecommendedApps from "../../components/apps/recommendedApps"
 import Loading from "src/components/ui/loading"
 import SetupAppModal from "src/components/setupAppModal"
-import { appList } from "src/components/apps/appList"
 
 export default function SingleApp(){
   const { id } = useParams()
@@ -27,7 +26,7 @@ export default function SingleApp(){
 
   const benchApps = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), {enabled: false});
   const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.site_list[0].name), {enabled: false});  
-  // const appList = benchApps.data || [];
+  const appList = benchApps.data || [];
 
   useEffect(() => {
     if (user && sites?.site_list[0]?.name && !benchApps.data) {
@@ -51,27 +50,28 @@ export default function SingleApp(){
   const CardData = ({data}) => {
     return (
       <>
-        {data.filter(item => item.id === id).map((item, index) => {
+        {data.filter(item => item.name === id).map((item, index) => {
           const isInstalled = installedApps.data?.some(installedApp => installedApp.title === item.title);
           const app = item.addional_info;
           const plans = item.plans;
-          // const developerInfo = [
-          //   {type:app.website, icon:<Globe viewBox="0 0 24 24" width='16' height='16'/>, buttonText:'Visit our Website'},
-          //   {type:app.custom_app_demo, icon:<Smile viewBox="0 0 24 24" width='16' height='16'/>, buttonText:'Check App Demo'},
-          //   {type:app.support, icon:<MessageSquare viewBox="0 0 24 24" width='16' height='16'/>, buttonText:'Contact our support'},
-          //   {type:app.privacy_policy, icon:<Key viewBox="0 0 24 24" width='16' height='16'/>, buttonText:'Privacy policy'}
-          // ]
-          const highlightInfo = [
-            {title:'Launched',desc:item.custom_launch_date},
-            {title:'Categories', desc:item.category},
-            {title:'Integrates with', desc:item.custom_integrates}
+          const developerInfo = [
+            {type:app.website, icon:<Globe viewBox="0 0 24 24" width='16' height='16'/>, buttonText:'Visit our Website'},
+            {type:app.custom_app_demo, icon:<Smile viewBox="0 0 24 24" width='16' height='16'/>, buttonText:'Check App Demo'},
+            {type:app.support, icon:<MessageSquare viewBox="0 0 24 24" width='16' height='16'/>, buttonText:'Contact our support'},
+            {type:app.privacy_policy, icon:<Key viewBox="0 0 24 24" width='16' height='16'/>, buttonText:'Privacy policy'}
           ]
+          const highlightInfo = [
+            {title:'Launched',desc:app.custom_launch_date},
+            {title:'Categories', desc:app.categories[0]?.category},
+            {title:'Integrates with', desc:app.custom_integrates}
+          ]
+          console.log(app)
         return (
           <>
             <section className="flex justify-between">
               <div className="flex items-start gap-x-5">
                 <div className="app-detail-icon">
-                  {item.image ? item.image : <Icons.erpApp />}
+                  {item.image ? <img src={site.backend_url()+item.image} width={72}/> : <Icons.erpApp />}
                 </div>
                 <div>
                   <h1 className="main-heading">{item.title}</h1>
@@ -84,15 +84,15 @@ export default function SingleApp(){
                   <OpenInNewWindowIcon />Upgrade
                 </Button>
               ) : (
-                <SetupAppModal appToInstall={item.name} appImage={item.image}/>
+                <SetupAppModal appToInstall={item.name} appImage={<img src={site.backend_url()+item.image} width='52' height='52'/>}/>
               )}
             </section>
 
             <section className="flex gap-x-6 mt-[55px]">
-              <ImageDialog currentImage={currentImage} length={item?.screenshots.length} image={item?.screenshots[0]?.image} setCurrentImage={setCurrentImage} mainImage={true} onOpen={() => setCurrentImage(index)}/>
+              <ImageDialog currentImage={currentImage} length={app.screenshots.length} image={site.backend_url()+app.screenshots[0]?.image} setCurrentImage={setCurrentImage} mainImage={true} onOpen={() => setCurrentImage(index)}/>
               <div className="flex flex-col gap-y-6">
-                {item?.screenshots.map((image, index) => (
-                  <ImageDialog currentImage={currentImage} length={item?.screenshots.length} image={site.backend_url()+image?.image} setCurrentImage={setCurrentImage} mainImage={false} onOpen={() => setCurrentImage(index)}/>
+                {app?.screenshots.map((image, index) => (
+                  <ImageDialog currentImage={currentImage} length={app.screenshots.length} image={site.backend_url()+image?.image} setCurrentImage={setCurrentImage} mainImage={false} onOpen={() => setCurrentImage(index)}/>
                 )).slice(1, 4)}
               </div>
             </section>
@@ -118,7 +118,7 @@ export default function SingleApp(){
                   <h2 className='font-bold text-[#09090B]'>{item.team}</h2>
 
                   <div className="mt-3">
-                    {/* {developerInfo.map(info => (
+                    {developerInfo.map(info => (
                       <>{info.type && (
                         <Link to={info.type}>
                           <Button className='btn-with-icon w-full justify-start' variant='ghost'>
@@ -127,13 +127,12 @@ export default function SingleApp(){
                           </Button>
                         </Link>
                       )}</>
-                    ))} */}
+                    ))}
                   </div>
                 </div>
               </aside>
               <article className="w-2/3">
-                {item.description}
-                {item.long_description}
+                {app.long_description}
               </article>
             </section>
 
@@ -177,6 +176,7 @@ export default function SingleApp(){
             </section>
           </>
         );
+          console.log(item.app_img);
         })}
       </>
     )
