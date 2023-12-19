@@ -159,7 +159,7 @@ export default function Packages(){
   }
 
   useEffect(() => {
-    if (packageTypeCRM !== null && packageTypeMarketConnect !== null && packageTypeLineCRM !== null){
+    if (packageTypeCRM !== null || packageTypeMarketConnect !== null || packageTypeLineCRM !== null){
       packageTypeCRM === 'Professional' ? setCustomerContact(2000) : packageTypeCRM === 'Enterprise' ? setCustomerContact(5000) : setCustomerContact(1000)
       packageTypeMarketConnect === 'Professional' ? setPaidUsers(5) : packageTypeMarketConnect === 'Enterprise' ? setPaidUsers(10) : setPaidUsers(2)
       packageTypeLineCRM === 'Professional' ? setCustomField(25) : packageTypeLineCRM === 'Enterprise' ? setCustomField(50) : setCustomField(10)
@@ -299,7 +299,8 @@ export default function Packages(){
       </main>
 
       <PricingResult estimateButton={<PricingEstimate recurringFee={recurringFee} oneTimeFee={oneTimeFee} totalCost={totalPriceMonthly} estimatedCost={estimatedPrice} isAnnual={isAnnual}/>} setIsAnnual={setIsAnnual} isAnnual={isAnnual} totalCost={totalPriceMonthly} estimated={estimatedPrice} commitments={
-        <>{packageInfo.map(info => (
+        <>{isStarter && (<ProductSelection title={`Zaviago Workspace`} price={`฿750/month`} onClose={() => setIsStarter(false)}/>)}
+          {packageInfo.map(info => (
             <>{info.condition ? (
               <>{info.filterInfo.map(item => (
                 <ProductSelection key={item.title} title={`${info.titlePrefix} ${item.title}`} price={`฿${item.price.toLocaleString()}/month`} onClose={info.onClose} desc={info.desc}/>

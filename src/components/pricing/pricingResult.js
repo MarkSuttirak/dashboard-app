@@ -1,10 +1,5 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "src/components/ui/card"
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "src/components/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "src/components/ui/tabs"
 import { Button } from "../ui/button"
 import { Phone } from "lucide-react"
 
@@ -17,7 +12,6 @@ export default function PricingResult({totalCost, commitments, estimated, estima
       </div>
     )
   }
-  console.log(estimated)
   return (
     <div className="flex flex-col w-full lg:w-[40%]">
       <div className="sticky top-4">

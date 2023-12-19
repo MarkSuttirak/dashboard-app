@@ -78,7 +78,7 @@ export default function SingleApp(){
                   <p className="text-sm mt-1">{item.status}</p>
                 </div>
               </div>
-              {/* {!isInstalled ? (
+              {isInstalled ? (
                 <Button className='btn-with-icon' disabled>
                   <OpenInNewWindowIcon />Installed
                 </Button>
@@ -90,8 +90,7 @@ export default function SingleApp(){
                 <SetupAppModal appToInstall={item.name} appImage={<img src={site.backend_url()+item.image} width='52' height='52'/>}/>
               ) : (
                 <UpgradeAppModal />
-              )} */}
-              <UpgradeAppModal />
+              )}
             </section>
 
             <section className="flex gap-x-6 mt-[55px]">

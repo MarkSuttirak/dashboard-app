@@ -13,7 +13,7 @@ export default function UpgradeAppModal({plans}){
           <ArrowBigUpDash />Upgrade
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className='min-w-[600px]'>
         <DialogHeader className='secondary-heading'>Select plan</DialogHeader>
         <section className="flex gap-x-4">
           <label htmlFor='pro-one' className="w-full">
@@ -26,15 +26,15 @@ export default function UpgradeAppModal({plans}){
             <span className="subheading border checkbox-card py-4 px-6">
               <div className="w-full">
                 <h2 className='subheading font-bold'>Basic</h2>
-                <p className='text-xs text-[#71717A] tracking-[0.12px] mt-1'>Free</p>
+                <p className='text-xs text-[#71717A] tracking-[0.12px] mt-1 mb-3'>Free</p>
 
                 <div className='flex gap-x-2 text-sm py-[6px]'>
-                  <CheckCircle2 className="h-4 w-4 mt-1"/>
-                  Included with all pro plans
+                  <CheckCircle2 className="h-4 w-4"/>
+                  20 integrations
                 </div>
                 <div className='flex gap-x-2 text-sm py-[6px]'>
-                  <CheckCircle2 className="h-4 w-4 mt-1"/>
-                  Included with all pro plans
+                  <CheckCircle2 className="h-4 w-4"/>
+                  Limited functions
                 </div>
               </div>
             </span>
@@ -50,15 +50,15 @@ export default function UpgradeAppModal({plans}){
             <span className="subheading border checkbox-card py-4 px-6">
               <div className="w-full">
                 <h2 className='subheading font-bold'>Business</h2>
-                <p className='text-xs text-[#71717A] tracking-[0.12px] mt-1'>฿750/month</p>
+                <p className='text-xs text-[#71717A] tracking-[0.12px] mt-1 mb-3'>฿750/month</p>
 
                 <div className='flex gap-x-2 text-sm py-[6px]'>
-                  <CheckCircle2 className="h-4 w-4 mt-1"/>
-                  Included with all pro plans
+                  <CheckCircle2 className="h-4 w-4"/>
+                  Unlimited integrations
                 </div>
                 <div className='flex gap-x-2 text-sm py-[6px]'>
-                  <CheckCircle2 className="h-4 w-4 mt-1"/>
-                  Included with all pro plans
+                  <CheckCircle2 className="h-4 w-4"/>
+                  Unlimited functions
                 </div>
               </div>
             </span>
