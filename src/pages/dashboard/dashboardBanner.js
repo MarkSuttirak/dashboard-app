@@ -68,7 +68,7 @@ export default function DashboardBanner({sitename}){
                     </CommandGroup>
                     <CommandGroup heading="Team">
                       {teamnames?.map(t => (
-                        <CommandItem>
+                        <CommandItem key={t.team_title}>
                           <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
                           {t.team_title}
                         </CommandItem>
@@ -80,8 +80,8 @@ export default function DashboardBanner({sitename}){
             </Popover>
           </CardHeader>
           <CardContent>
-            <Button variant='link' className="text-desc p-0">Connect Domain</Button>
-            <div className="text-desc flex gap-x-4 items-center mt-5 flex-row">
+            <Button variant='link' className="text-xs text-[#71717A] leading-4 p-0 h-4 font-normal">Connect Domain</Button>
+            <div className="text-desc flex gap-x-4 items-center mt-7 flex-row">
               <p className="flex items-center gap-x-1 text-sm"><Users viewBox='0 0 24 24' width='12' height='12' color='#09090B'/> {numOfAdmin} {numOfAdmin == 1 ? 'admin' : 'admins'} in team</p>
               <p className="flex items-center gap-x-1 text-sm"><StarIcon width='12' height='12' color='#09090B'/> {numOfCustomers >= 1000000 ? `${(numOfCustomers / 1000000).toFixed(1)}m` : numOfCustomers >= 1000 ? `${(numOfCustomers / 1000).toFixed(1)}k` : numOfCustomers} {numOfCustomers == 1 ? "customer" : "customers"}</p>
               <p className="flex text-sm">Updated {date}</p>
@@ -97,7 +97,7 @@ export default function DashboardBanner({sitename}){
                   <CardTitle className='domain-heading'>Pro Plan</CardTitle>
                   <CardDescription>You are on Agency PremiumCare+package</CardDescription>
                 </div>
-                <Link to='/dashboard/compare-plan'>
+                <Link to='/dashboard/compare-plan' className="m-[0!important]">
                   
                 </Link>
               </>
@@ -107,7 +107,7 @@ export default function DashboardBanner({sitename}){
                   <CardTitle className='domain-heading'>ฟรี ตลอดชีพ</CardTitle>
                   <CardDescription>You are in free but can be used for all basic uses.</CardDescription>
                 </div>
-                <Link to='/dashboard/settings/billing-plans'>
+                <Link to='/dashboard/settings/billing-plans' className="m-[0!important]">
                   <Button variant='blue' className='btn-with-icon leading-5'>
                     <Zap viewBox="0 0 24 24" width='16' height='16'/>
                     Manage Plan

@@ -23,7 +23,7 @@ export default function NotificationsTopbar(){
   return (
     <Popover>
       <PopoverTrigger>
-        <BellIcon color='#7D7D7D' width='21' height='21'/>
+        <BellIcon color='#7D7D7D' width='17' height='17'/>
       </PopoverTrigger>
       <PopoverContent className='w-[400px]'>
         <h2 className='settings-heading'>Notifications</h2>
@@ -31,7 +31,7 @@ export default function NotificationsTopbar(){
 
         <ul className='flex flex-col gap-y-[14px]'>
           {notices.map(notice => (
-            <li className='flex gap-x-4'>
+            <li className='flex gap-x-4' key={notice.text}>
               <Avatar>
                 <AvatarImage src={notice.avatar} />
                 <AvatarFallback>CN</AvatarFallback>

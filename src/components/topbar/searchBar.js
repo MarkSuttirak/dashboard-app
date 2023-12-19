@@ -71,9 +71,9 @@ export function SearchBar(){
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className='outline-none bg-zinc-100 rounded-md px-2 py-[6px] text-[13px] h-7 flex items-center w-[180px] text-zinc-500 tracking-[0.02em] gap-x-[9px] leading-5'>
-        <Search viewBox='0 0 24 24' width='14' height='14' className='ml-1'/>
-        <div className="flex justify-between items-center w-full">
+      <DialogTrigger className='outline-none bg-zinc-100 rounded-md px-2 py-[6px] text-[13px] h-7 flex items-center w-[180px] text-zinc-500 tracking-[0.02em] gap-x-[3px] leading-5'>
+        <Search viewBox='0 0 24 24' className="h-[18px] w-[18px] stroke-[1.5]"/>
+        <div className="flex justify-between items-center w-full text-xs">
           <p>Search</p>
           <p>(Ctrl + G)</p>
         </div>

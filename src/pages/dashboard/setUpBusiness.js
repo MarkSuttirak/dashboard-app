@@ -10,8 +10,8 @@ export default function SetupBusiness({sitename}){
     const style = {
       background:gradient,
       fontSize:fontSize,
-      webkitBackgroundClip:"text",
-      webkitTextFillColor:"transparent"
+      WebkitBackgroundClip:"text",
+      WebkitTextFillColor:"transparent"
     }
     return style
   }
@@ -39,7 +39,7 @@ export default function SetupBusiness({sitename}){
         <h2 className="secondary-heading">Let's set up your business</h2>
         <div className="flex items-center gap-x-[18px]">
           <p className="main-desc">0/6 completed</p>
-          <Progress value={50} className='w-[200px]'/>
+          <Progress value={50} className='w-[200px] h-[6px]'/>
         </div>
       </div>
 

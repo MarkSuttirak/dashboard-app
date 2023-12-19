@@ -317,6 +317,10 @@ body {
 .img-apps {
   border-radius:8px;
   display:flex;
+  &:first-child {
+    width:100%
+  }
+  width:330px;
 }
 
 .listminus-btn {
@@ -523,11 +527,11 @@ body {
   box-sizing:border-box;
   width:100%;
   position:fixed;
-  height:48px;
+  height:53px;
   top:0;
   right:0;
   background-color:white;
-  padding:4px 28px;
+  padding:4px 19px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -757,7 +761,7 @@ $gradient-border:linear-gradient(to right, #9A5BFF, #FF9C27);
   &.loading-icon-check-success {
     .success-tick {
       fill: none;
-      stroke-width: 1px;
+      strokeWidth: 1px;
       stroke: #20D84A;
       stroke-dasharray: 15px, 15px;
       stroke-dashoffset: -14px;
@@ -767,7 +771,7 @@ $gradient-border:linear-gradient(to right, #9A5BFF, #FF9C27);
   
     .success-circle-outline {
       fill: none;
-      stroke-width: 1px;
+      strokeWidth: 1px;
       stroke: #20D84A;
       stroke-dasharray: 72px, 72px;
       stroke-dashoffset: 72px;
@@ -786,7 +790,7 @@ $gradient-border:linear-gradient(to right, #9A5BFF, #FF9C27);
   &.loading-icon-check-primary {
     .success-tick {
       fill: none;
-      stroke-width: 1px;
+      strokeWidth: 1px;
       stroke: $primary;
       stroke-dasharray: 15px, 15px;
       stroke-dashoffset: -14px;
@@ -796,7 +800,7 @@ $gradient-border:linear-gradient(to right, #9A5BFF, #FF9C27);
   
     .success-circle-outline {
       fill: none;
-      stroke-width: 1px;
+      strokeWidth: 1px;
       stroke: $primary;
       stroke-dasharray: 72px, 72px;
       stroke-dashoffset: 72px;

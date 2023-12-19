@@ -1709,7 +1709,7 @@ select#goal {
   &.loading-icon-check-success {
     .success-tick {
       fill: none;
-      stroke-width: 1px;
+      strokeWidth: 1px;
       stroke: #20D84A;
       stroke-dasharray: 15px, 15px;
       stroke-dashoffset: -14px;
@@ -1719,7 +1719,7 @@ select#goal {
   
     .success-circle-outline {
       fill: none;
-      stroke-width: 1px;
+      strokeWidth: 1px;
       stroke: #20D84A;
       stroke-dasharray: 72px, 72px;
       stroke-dashoffset: 72px;
@@ -1738,7 +1738,7 @@ select#goal {
   &.loading-icon-check-primary {
     .success-tick {
       fill: none;
-      stroke-width: 1px;
+      strokeWidth: 1px;
       stroke: $primary;
       stroke-dasharray: 15px, 15px;
       stroke-dashoffset: -14px;
@@ -1748,7 +1748,7 @@ select#goal {
   
     .success-circle-outline {
       fill: none;
-      stroke-width: 1px;
+      strokeWidth: 1px;
       stroke: $primary;
       stroke-dasharray: 72px, 72px;
       stroke-dashoffset: 72px;

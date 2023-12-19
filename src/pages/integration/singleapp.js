@@ -17,7 +17,6 @@ import SetupAppModal from "src/components/setupAppModal"
 export default function SingleApp(){
   const { id } = useParams()
   const [addAppStatus, setAddAppStatus] = useState('')
-  const [currentImage, setCurrentImage] = useState(0)
 
   const { user, auth, logout } = useUser();
   const { data: sites } = useQuery('sites', site.list, {
@@ -88,12 +87,12 @@ export default function SingleApp(){
             </section>
 
             <section className="flex gap-x-6 mt-[55px]">
-              <ImageDialog currentImage={currentImage} length={app.screenshots.length} image={site.backend_url()+app.screenshots[0]?.image} setCurrentImage={setCurrentImage} mainImage={true} onOpen={() => setCurrentImage(index)}/>
-              <div className="flex flex-col gap-y-6">
+              <ImageDialog images={app?.screenshots} site={site.backend_url()}/>
+              {/* <div className="flex flex-col gap-y-6">
                 {app?.screenshots.map((image, index) => (
-                  <ImageDialog currentImage={currentImage} length={app.screenshots.length} image={site.backend_url()+image?.image} setCurrentImage={setCurrentImage} mainImage={false} onOpen={() => setCurrentImage(index)}/>
+                  <ImageDialog currentImage={currentImage} length={app.screenshots.length} image={site.backend_url()+image?.image} mainImage={false} onOpen={() => setCurrentImage(index)}/>
                 )).slice(1, 4)}
-              </div>
+              </div> */}
             </section>
 
             <section className="flex gap-x-9 mt-[64px]">
