@@ -136,7 +136,7 @@ export default function Dashboard(){
   return (
     <div className="dashboard-container">
       <h1 className="text-3xl text-[#09090B] font-bold tracking-[-0.75px] eventpop leading-8">สวัสดีคุณ {user?.first_name}🙏</h1>
-      <p className="text-sm text-[#71717A] leading-[19px] mt-1">Access exclusive tools to help you build <br/>client sites and scale your business</p>
+      <p className="text-[13px] text-[#71717A] leading-[19px] mt-[10px]">Access exclusive tools to help you build Online business<br/> and scale your business</p>
 
       <DashboardBanner sitename={sites?.site_list[0].name}/>
       <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/>

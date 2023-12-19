@@ -94,7 +94,7 @@ export default function SingleApp(){
             </section>
 
             <section className="flex gap-x-6 mt-[55px]">
-              <ImageDialog images={app?.screenshots} site={site.backend_url()}/>
+              {app?.screenshots.length > 0 ? <ImageDialog images={app?.screenshots} site={site.backend_url()}/> : null}
             </section>
 
             <section className="flex gap-x-9 mt-[64px]">
