@@ -186,7 +186,7 @@ export default function Packages(){
             <CardDescription>Manage all your business process</CardDescription>
           </CardHeader>
           <CardContent className="flex gap-9 flex-row items-center p-0">
-            <BundleSelect title="Starter" price='฿750/month' width='50%' checked={isStarter} onCheckedChange={() => setIsStarter(!isStarter)}/>
+            <BundleSelect title="Starter" price='฿750/month' width='50%' checked={isStarter}/>
             <div>
               <h2 className="text-xl font-semibold">Let's start with this.</h2>
               <p className="main-desc">Manage all your business process</p>
@@ -235,8 +235,7 @@ export default function Packages(){
                   {needSocialMedia ? (
                     <div className="mt-5">
                       <h2 className="subheading font-medium">How many market channels do I need?</h2>
-                      <MarketCheckbox title='Marketplace' list={marketLists.marketplaces}/>
-                      <MarketCheckbox title='Social Media' list={marketLists.socialMedia}/>
+                      <MarketCheckbox />
                     </div>
                   ) : null}
                 </div>
