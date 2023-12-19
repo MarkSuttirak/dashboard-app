@@ -86,7 +86,7 @@ const OtherInfo = () => {
                                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                             >
                                 <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white p-8 shadow-xl transition-all w-full max-w-[400px] flex flex-col gap-y-4">
-                                    <div class="moving-line" />
+                                    <div className="moving-line" />
                                     <div className="flex items-center justify-between">
                                         <div className="flex gap-x-2 items-center">
                                             <div className="loading-icon">

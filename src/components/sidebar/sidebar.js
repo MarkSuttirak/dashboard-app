@@ -9,7 +9,6 @@ import { useMutation, useQuery } from "react-query";
 import { site } from "../../client/api";
 import { Icons } from "../ui/icons";
 import ServiceModals from "./serviceModals";
-import { Progress } from "../ui/progress";
 import { Dialog, DialogTrigger } from "../ui/dialog";
 import { SearchItem } from "../topbar/searchBar";
 import SidebarSetupBusiness from "./sidebarSetupBusiness";
@@ -169,7 +168,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
                   {installedApps?.data?.length > 1 ? (
                     <>
                     {installedApps?.data.map(app => (
-                      <Button variant='ghost' className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5`}>
+                      <Button key={app} variant='ghost' className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5`}>
                         <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
                         {app.title}
                       </Button>
@@ -212,12 +211,12 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
               {navigation.map((item) => (
                 <>
                   {item.href ? (
-                    <Button variant='ghost' onClick={() => handleMenuClick(item.current, item.href)} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.href === active ? 'bg-zinc-100' : ''}`}>
+                    <Button key={item.name} variant='ghost' onClick={() => handleMenuClick(item.current, item.href)} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.href === active ? 'bg-zinc-100' : ''}`}>
                     {item.icon}
                     {item.name}
                   </Button>
                   ) : (
-                    <Dialog>
+                    <Dialog key={item.name}>
                       <DialogTrigger>
                         <Button variant='ghost' className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5`}>
                           {item.icon}

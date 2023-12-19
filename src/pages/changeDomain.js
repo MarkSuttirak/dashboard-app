@@ -179,7 +179,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                       }
                     }}>
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 6V7H6V6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6ZM5 7V6C5 4.34315 6.34315 3 8 3C9.65685 3 11 4.34315 11 6V7C11.5523 7 12 7.44772 12 8V13C12 13.5523 11.5523 14 11 14H5C4.44772 14 4 13.5523 4 13V8C4 7.44772 4.44772 7 5 7Z" fill="#8B8A8D"/>
+                        <path fillRule="evenodd" clipRule="evenodd" d="M10 6V7H6V6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6ZM5 7V6C5 4.34315 6.34315 3 8 3C9.65685 3 11 4.34315 11 6V7C11.5523 7 12 7.44772 12 8V13C12 13.5523 11.5523 14 11 14H5C4.44772 14 4 13.5523 4 13V8C4 7.44772 4.44772 7 5 7Z" fill="#8B8A8D"/>
                       </svg>
                       <p>{domain}</p>
                     </div>
@@ -271,12 +271,12 @@ const ChangeDomain = ({ loadingLogo }) => {
                             <td>
                               <div className="flex items-center bg-[#F4F5F6] rounded-full px-[16px] py-[7px] gap-x-[14px] border border-[1px] border-[#F4F5F6]" onClick={() => setOpenChangeDomain(true)}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M10 6V7H6V6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6ZM5 7V6C5 4.34315 6.34315 3 8 3C9.65685 3 11 4.34315 11 6V7C11.5523 7 12 7.44772 12 8V13C12 13.5523 11.5523 14 11 14H5C4.44772 14 4 13.5523 4 13V8C4 7.44772 4.44772 7 5 7Z" fill="#8B8A8D"/>
+                                  <path fillRule="evenodd" clipRule="evenodd" d="M10 6V7H6V6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6ZM5 7V6C5 4.34315 6.34315 3 8 3C9.65685 3 11 4.34315 11 6V7C11.5523 7 12 7.44772 12 8V13C12 13.5523 11.5523 14 11 14H5C4.44772 14 4 13.5523 4 13V8C4 7.44772 4.44772 7 5 7Z" fill="#8B8A8D"/>
                                 </svg>
                                 <p className="text-[15px]">{domainAboutToChange}</p>
                                 <p className="text-[#8A8E91] text-[15px]">/.ac.fc.zaviago.com</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3621 5.84008L9.96896 5.54563L8.64395 2.4259C8.40559 1.85803 7.59236 1.85803 7.35399 2.4259L6.02898 5.55264L2.64285 5.84008C2.02591 5.88915 1.77353 6.66032 2.24324 7.06694L4.81614 9.29632L4.04497 12.6053C3.90476 13.2083 4.55675 13.685 5.08956 13.3625L7.99897 11.6098L10.9084 13.3695C11.4412 13.692 12.0932 13.2153 11.953 12.6124L11.1818 9.29632L13.7547 7.06694C14.2244 6.66032 13.979 5.88915 13.3621 5.84008V5.84008ZM7.99897 10.2988L5.36297 11.8903L6.06404 8.8897L3.73651 6.87064L6.80716 6.60424L7.99897 3.77895L9.19779 6.61125L12.2685 6.87765L9.94092 8.89672L10.642 11.8973L7.99897 10.2988Z" fill="#5F6368"/>
+                                  <path fillRule="evenodd" clipRule="evenodd" d="M13.3621 5.84008L9.96896 5.54563L8.64395 2.4259C8.40559 1.85803 7.59236 1.85803 7.35399 2.4259L6.02898 5.55264L2.64285 5.84008C2.02591 5.88915 1.77353 6.66032 2.24324 7.06694L4.81614 9.29632L4.04497 12.6053C3.90476 13.2083 4.55675 13.685 5.08956 13.3625L7.99897 11.6098L10.9084 13.3695C11.4412 13.692 12.0932 13.2153 11.953 12.6124L11.1818 9.29632L13.7547 7.06694C14.2244 6.66032 13.979 5.88915 13.3621 5.84008V5.84008ZM7.99897 10.2988L5.36297 11.8903L6.06404 8.8897L3.73651 6.87064L6.80716 6.60424L7.99897 3.77895L9.19779 6.61125L12.2685 6.87765L9.94092 8.89672L10.642 11.8973L7.99897 10.2988Z" fill="#5F6368"/>
                                 </svg>
                               </div>
                             </td>
@@ -299,7 +299,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                                 <div className="mt-1 relative flex items-center">
                                   <div className="pointer-events-none absolute inset-y-1 left-0 flex items-center pl-[15px]">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M10 6V7H6V6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6ZM5 7V6C5 4.34315 6.34315 3 8 3C9.65685 3 11 4.34315 11 6V7C11.5523 7 12 7.44772 12 8V13C12 13.5523 11.5523 14 11 14H5C4.44772 14 4 13.5523 4 13V8C4 7.44772 4.44772 7 5 7Z" fill={`${warningDomain ? "#AA0000" : "#8B8A8D"}`}/>
+                                      <path fillRule="evenodd" clipRule="evenodd" d="M10 6V7H6V6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6ZM5 7V6C5 4.34315 6.34315 3 8 3C9.65685 3 11 4.34315 11 6V7C11.5523 7 12 7.44772 12 8V13C12 13.5523 11.5523 14 11 14H5C4.44772 14 4 13.5523 4 13V8C4 7.44772 4.44772 7 5 7Z" fill={`${warningDomain ? "#AA0000" : "#8B8A8D"}`}/>
                                     </svg>
                                   </div>
                                   <input
@@ -526,7 +526,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                                 <div className="mt-1 relative flex items-center">
                                   <div className="pointer-events-none absolute inset-y-1 left-0 flex items-center pl-[15px]">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M10 6V7H6V6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6ZM5 7V6C5 4.34315 6.34315 3 8 3C9.65685 3 11 4.34315 11 6V7C11.5523 7 12 7.44772 12 8V13C12 13.5523 11.5523 14 11 14H5C4.44772 14 4 13.5523 4 13V8C4 7.44772 4.44772 7 5 7Z" fill={`${warningDomain ? "#AA0000" : "#8B8A8D"}`}/>
+                                      <path fillRule="evenodd" clipRule="evenodd" d="M10 6V7H6V6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6ZM5 7V6C5 4.34315 6.34315 3 8 3C9.65685 3 11 4.34315 11 6V7C11.5523 7 12 7.44772 12 8V13C12 13.5523 11.5523 14 11 14H5C4.44772 14 4 13.5523 4 13V8C4 7.44772 4.44772 7 5 7Z" fill={`${warningDomain ? "#AA0000" : "#8B8A8D"}`}/>
                                     </svg>
                                   </div>
                                   <input

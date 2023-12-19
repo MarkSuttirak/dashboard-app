@@ -17,7 +17,6 @@ import SetupAppModal from "src/components/setupAppModal"
 export default function SingleApp(){
   const { id } = useParams()
   const [addAppStatus, setAddAppStatus] = useState('')
-  const [currentImage, setCurrentImage] = useState(0)
 
   const { user, auth, logout } = useUser();
   const { data: sites } = useQuery('sites', site.list, {
@@ -88,12 +87,12 @@ export default function SingleApp(){
             </section>
 
             <section className="flex gap-x-6 mt-[55px]">
-              <ImageDialog currentImage={currentImage} length={app.screenshots.length} image={site.backend_url()+app.screenshots[0]?.image} setCurrentImage={setCurrentImage} mainImage={true} onOpen={() => setCurrentImage(index)}/>
-              <div className="flex flex-col gap-y-6">
+              <ImageDialog images={app?.screenshots} site={site.backend_url()}/>
+              {/* <div className="flex flex-col gap-y-6">
                 {app?.screenshots.map((image, index) => (
-                  <ImageDialog currentImage={currentImage} length={app.screenshots.length} image={site.backend_url()+image?.image} setCurrentImage={setCurrentImage} mainImage={false} onOpen={() => setCurrentImage(index)}/>
+                  <ImageDialog currentImage={currentImage} length={app.screenshots.length} image={site.backend_url()+image?.image} mainImage={false} onOpen={() => setCurrentImage(index)}/>
                 )).slice(1, 4)}
-              </div>
+              </div> */}
             </section>
 
             <section className="flex gap-x-9 mt-[64px]">
@@ -131,8 +130,7 @@ export default function SingleApp(){
                 </div>
               </aside>
               <article className="w-2/3">
-                <h2 className="font-bold text-xl text-[#18181B] mb-2">{app.description}</h2>
-                <p className="text-[#71717A]">{app.long_description}</p>
+                <div className="text-[#71717A]" dangerouslySetInnerHTML={{__html:app.long_description}}/>
               </article>
             </section>
 

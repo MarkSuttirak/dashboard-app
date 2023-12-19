@@ -7,10 +7,14 @@ import { Button } from "src/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectGroup, SelectValue } from "src/components/ui/select"
 import { useState } from 'react'
 import { provinces } from "src/components/form-controls/provinces";
+import { Loader2 } from "lucide-react";
+import { useToast } from "./ui/use-toast";
 
 export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
   const [isCompany, setIsCompany] = useState(false);
   const [enableTaxID, setEnableTaxID] = useState(false)
+  const [saving, setSaving] = useState(false)
+  const { toast } = useToast()
 
   const appearanceFormSchema = yup.object().shape({
     billing_name: yup.string().required('Company Name is a required field'),
@@ -52,11 +56,21 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
     user_api.updateBillingInfo(data).then()
     .then((response)=>{
         if( response.status===200 && response.statusText==="OK" ){
-            document.getElementById("call-response").style.display="block"
-            document.getElementById("call-response").innerHTML="Address is updated successfully"
+          toast({
+            title: "Address updated",
+            description: "Address is updated successfully",
+          })
+          setSaving(false)
+            // document.getElementById("call-response").style.display="block"
+            // document.getElementById("call-response").innerHTML="Address is updated successfully"
         }else{
-            document.getElementById("call-response").innerHTML = "Something went wrong"
-            document.getElementById("call-response").style.display="block"
+          toast({
+            title: "Something went wrong",
+            description: "Please refresh the page or contact the support.",
+          })
+          setSaving(false)
+            // document.getElementById("call-response").innerHTML = "Something went wrong"
+            // document.getElementById("call-response").style.display="block"
         }
     });
   };
@@ -241,7 +255,8 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
         </div>
 
         <Button type='button' className='btn-with-icon w-full' onClick={onSubmitForm}>
-          {submitText}
+          {saving ? <Loader2 className="h-4 w-4 animate-spin"/> : null}
+          {saving ? 'Updating...' : submitText}
         </Button>
       </form>
     </>

@@ -256,7 +256,7 @@ export default function OTP() {
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
                 <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white p-8 shadow-xl transition-all w-full max-w-[400px] flex flex-col gap-y-4">
-                  <div class="moving-line" />
+                  <div className="moving-line" />
                   <p className="tab-desc text-left font-bold mb-3 flex gap-x-2">
                     <ChatBubbleBottomCenterTextIcon width='24' />
                     Requesting OTP
@@ -378,7 +378,7 @@ export default function OTP() {
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
                 <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white p-8 shadow-xl transition-all w-full max-w-[400px] flex flex-col gap-y-4">
-                  <div class="moving-line" />
+                  <div className="moving-line" />
                   <p className="tab-desc text-left font-bold mb-3 flex gap-x-2">
                     <CursorArrowRippleIcon width='24' />
                     Preparing your account
@@ -525,7 +525,7 @@ export default function OTP() {
                   </Dialog.Panel>
                 ) : (
                   <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white p-8 shadow-xl transition-all w-full max-w-[400px] flex flex-col gap-y-4">
-                    <div class="moving-line" />
+                    <div className="moving-line" />
                     <LoadingCheck type='success' />
                     <p className="tab-desc justify-center font-bold flex">
                       OTP confirmed

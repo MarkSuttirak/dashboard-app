@@ -29,7 +29,7 @@ export default function SidebarShortcut(){
     <>
       <Popover open={open} onOpenChange={setOpen}>
         <div className="min-w-9 min-h-9">
-          <Icons.zaviagoApp onClick={() => navigate('/')} className='cursor-pointer min-w-9 min-h-9'/>
+          <Icons.zaviagoApp onClick={() => navigate('/')} className='cursor-pointer w-9 h-9'/>
         </div>
         <PopoverTrigger className="w-full">
           <Button
@@ -40,11 +40,11 @@ export default function SidebarShortcut(){
           >
             <span className="flex gap-x-2 items-center">
               <div className="flex flex-col text-left">
-                <h2 className="cal-sans text-[18px]">Cosmos.</h2>
-                <p className="text-[13px] font-medium tracking-[-3%] leading-[20px]">{sites?.site_list[0].name.length >= 20 ? sites?.site_list[0].name.slice(0,20) + '...' : sites?.site_list[0].name}</p>
+                <h2 className="cal-sans text-[18px] leading-5 tracking-[0.18px] font-semibold">Zaviago.com</h2>
+                <p className="text-[13px] font-medium tracking-[-0.39px] leading-[20px] text-[#5A5A5A]">{sites?.site_list[0].name.length >= 20 ? sites?.site_list[0].name.slice(0,20) + '...' : sites?.site_list[0].name}</p>
               </div>
             </span>
-            <ChevronsUpDown className="ml-2 shrink-0 opacity-50" viewBox="0 0 24 24" width='12' height='12' />
+            <ChevronsUpDown className="mr-2 shrink-0 opacity-50" viewBox="0 0 24 24" width='16' height='16' />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-full p-0 z-[105] relative left-[-16px]">
@@ -75,7 +75,7 @@ export default function SidebarShortcut(){
                 {installedApps?.data?.length > 1 ? (
                   <>
                   {installedApps?.data.map(app => (
-                    <CommandItem>
+                    <CommandItem key={app}>
                       <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
                       {app.title}
                     </CommandItem>
@@ -87,7 +87,7 @@ export default function SidebarShortcut(){
                 {installedApps?.data?.length > 1 ? (
                   <>
                   {installedApps?.data.map(app => (
-                    <CommandItem>
+                    <CommandItem key={app}>
                       <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
                       {app.title}
                     </CommandItem>
