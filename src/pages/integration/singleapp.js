@@ -12,7 +12,8 @@ import { useUser } from "../../hooks/useUser";
 import { Link } from "react-router-dom"
 import RecommendedApps from "../../components/apps/recommendedApps"
 import Loading from "src/components/ui/loading"
-import SetupAppModal from "src/components/setupAppModal"
+import SetupAppModal from "src/components/modals/setupAppModal"
+import UpgradeAppModal from "src/components/modals/upgradeAppModal"
 
 export default function SingleApp(){
   const { id } = useParams()
@@ -66,7 +67,7 @@ export default function SingleApp(){
           ]
         return (
           <>
-            <section className="flex justify-between">
+            <section className="flex justify-between items-center">
               <div className="flex items-start gap-x-5">
                 <div className="app-detail-icon">
                   {item.image ? <img src={site.backend_url()+item.image} width={72}/> : <Icons.erpApp />}
@@ -77,22 +78,24 @@ export default function SingleApp(){
                   <p className="text-sm mt-1">{item.status}</p>
                 </div>
               </div>
-              {isInstalled ? (
-                <Button className='btn-with-icon'>
-                  <OpenInNewWindowIcon />Upgrade
+              {/* {!isInstalled ? (
+                <Button className='btn-with-icon' disabled>
+                  <OpenInNewWindowIcon />Installed
                 </Button>
-              ) : (
+              ) : app.subscription_type === 'Paid' ? (
+                <Button className='btn-with-icon'>
+                  <OpenInNewWindowIcon />Purchase
+                </Button>
+              ) : app.subscription_type === 'Free' ? (
                 <SetupAppModal appToInstall={item.name} appImage={<img src={site.backend_url()+item.image} width='52' height='52'/>}/>
-              )}
+              ) : (
+                <UpgradeAppModal />
+              )} */}
+              <UpgradeAppModal />
             </section>
 
             <section className="flex gap-x-6 mt-[55px]">
               <ImageDialog images={app?.screenshots} site={site.backend_url()}/>
-              {/* <div className="flex flex-col gap-y-6">
-                {app?.screenshots.map((image, index) => (
-                  <ImageDialog currentImage={currentImage} length={app.screenshots.length} image={site.backend_url()+image?.image} mainImage={false} onOpen={() => setCurrentImage(index)}/>
-                )).slice(1, 4)}
-              </div> */}
             </section>
 
             <section className="flex gap-x-9 mt-[64px]">

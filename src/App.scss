@@ -317,10 +317,10 @@ body {
 .img-apps {
   border-radius:8px;
   display:flex;
+  width:330px;
   &:first-child {
     width:100%
   }
-  width:330px;
 }
 
 .listminus-btn {

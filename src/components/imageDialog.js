@@ -28,9 +28,9 @@ export default function ImageDialog({images, open, setOpen, site}){
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="p-0 h-fit w-full">
+      <DialogTrigger className="p-0 h-fit w-fit">
         <div className="flex flex-col gap-y-6">
-          {images.map((image, index) => (
+          {images.map((image) => (
             <img src={site + image.image} className='img-apps' onClick={() => setCurrentImage(image.image)}/>
           ))}
         </div>

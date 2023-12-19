@@ -8,7 +8,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "src/components/ui/popov
 import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "src/components/ui/command"
 import { DataList } from "src/components/pagination"
 import { useState, useEffect } from 'react'
-import DeleteAppModal from "src/components/deleteAppModal"
+import DeleteAppModal from "src/components/modals/deleteAppModal"
 import { useQuery } from "react-query";
 import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";

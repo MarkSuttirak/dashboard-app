@@ -29,12 +29,12 @@ export default function ServiceModals(){
 
   return (
     <Dialog>
-      {icons.map((icon, index) => (
+      {icons.map((icon) => (
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
               <div className="nav-btns add-ons">
-                <DialogTrigger onClick={() => services.select(index)}>{icon.icon}</DialogTrigger>
+                <DialogTrigger onClick={() => services.select(icon.title)}>{icon.icon}</DialogTrigger>
               </div>
             </TooltipTrigger>
             <TooltipContent side='right'>
