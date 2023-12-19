@@ -26,6 +26,7 @@ import AppCategory from './pages/integration/appCategory';
 import { useEffect } from 'react'
 import Pricing from './pages/pricing';
 import PricingTablePage from './pages/pricingTable';
+import CheckoutPending from './pages/checkout/checkoutPending';
 
 // ----------------------------------------------------------------------
 
@@ -68,11 +69,15 @@ export default function Router() {
             element: <PaymentPage />
         },
         {
-            path: '/checkout',
+            path: '/checkout/:app/:id',
             element: <CheckoutPage />
         },
         {
-            path: '/checkout-received',
+            path: '/checkout-pending/:app/:id',
+            element: <CheckoutPending />
+        },
+        {
+            path: '/checkout-received/:app/:id',
             element: <CheckoutReceived />
         },
         {

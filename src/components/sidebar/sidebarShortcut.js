@@ -7,15 +7,31 @@ import { ChevronRight, PlusCircle, Shuffle, UserPlus, Users, Check, ChevronsUpDo
 import ZaviagoIcon from "../icon-menus/ZaviagoIcon";
 import { useNavigate } from "react-router-dom"
 import { Icons } from "../ui/icons"
+import { site } from "../../client/api";
+import { useUser } from "../../hooks/useUser";
+import { useMutation, useQuery } from "react-query";
+import Loading from "../ui/loading"
 
 export default function SidebarShortcut(){
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
+  const { user, auth, logout } = useUser();
+
+  const { data: sites } = useQuery('sites', site.list, {
+    enabled: !!user,
+  });
+
+  const benchApps = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), {enabled: false});
+  const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.site_list[0].name), {enabled: false});  
+  const appslists = benchApps.data || [];
+
   return (
     <>
       <Popover open={open} onOpenChange={setOpen}>
-        <Icons.zaviagoApp onClick={() => navigate('/')} className='cursor-pointer min-w-9 min-h-9'/>
-        <PopoverTrigger>
+        <div className="min-w-9 min-h-9">
+          <Icons.zaviagoApp onClick={() => navigate('/')} className='cursor-pointer min-w-9 min-h-9'/>
+        </div>
+        <PopoverTrigger className="w-full">
           <Button
             variant="ghost"
             role="combobox"
@@ -25,7 +41,7 @@ export default function SidebarShortcut(){
             <span className="flex gap-x-2 items-center">
               <div className="flex flex-col text-left">
                 <h2 className="cal-sans text-[18px]">Cosmos.</h2>
-                <p className="text-[13px] font-medium tracking-[-3%] leading-[20px]">intergoods.zaviago.com</p>
+                <p className="text-[13px] font-medium tracking-[-3%] leading-[20px]">{sites?.site_list[0].name.length >= 20 ? sites?.site_list[0].name.slice(0,20) + '...' : sites?.site_list[0].name}</p>
               </div>
             </span>
             <ChevronsUpDown className="ml-2 shrink-0 opacity-50" viewBox="0 0 24 24" width='12' height='12' />
@@ -55,29 +71,29 @@ export default function SidebarShortcut(){
                 </CommandItem>
               </CommandGroup>
               <CommandSeparator />
-              <CommandGroup heading="Current App">
-                <CommandItem>
-                  <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
-                  Blog / Pages
-                </CommandItem>
+              <CommandGroup heading="Current Apps">
+                {installedApps?.data?.length > 1 ? (
+                  <>
+                  {installedApps?.data.map(app => (
+                    <CommandItem>
+                      <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
+                      {app.title}
+                    </CommandItem>
+                  )).slice(0, 1)}
+                  </>
+                ) : <h1 className="px-[6px] text-sm">There are no apps here...</h1>}
               </CommandGroup>
-              <CommandGroup heading="App">
-                <CommandItem>
-                  <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
-                  Loyalty System
-                </CommandItem>
-                <CommandItem>
-                  <div className="w-5 h-5 rounded-full bg-[#79FF97] mr-2" />
-                  Data Studio
-                </CommandItem>
-                <CommandItem>
-                  <div className="w-5 h-5 rounded-full bg-[#F4C344] mr-2" />
-                  B2B CRM
-                </CommandItem>
-                <CommandItem>
-                  <div className="w-5 h-5 rounded-full bg-[#FF9797] mr-2" />
-                  Commerce
-                </CommandItem>
+              <CommandGroup heading="Apps">
+                {installedApps?.data?.length > 1 ? (
+                  <>
+                  {installedApps?.data.map(app => (
+                    <CommandItem>
+                      <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
+                      {app.title}
+                    </CommandItem>
+                  ))}
+                  </>
+                ) : <h1 className="px-[6px] text-sm">There are no apps here...</h1>}
               </CommandGroup>
               <CommandSeparator />
               <CommandGroup>

@@ -27,7 +27,7 @@ export default function BillingPlan() {
 
   return (
     <>
-      <h1 className="secondary-heading">Team billing information</h1>
+      <h1 className="secondary-heading">Billing information</h1>
 
       {billingAddress ? (
         <BillingAddressForm billingAddress={billingAddress.message} submitText="Update"/>

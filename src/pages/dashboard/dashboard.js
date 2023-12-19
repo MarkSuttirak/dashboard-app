@@ -14,6 +14,7 @@ import DashboardBanner from "./dashboardBanner";
 import SetupBusiness from "./setUpBusiness";
 import { Icons } from "src/components/ui/icons";
 import AppIcon from "src/components/appIcon";
+import AppStoreIcons from "src/components/apps/appStoreIcons";
 
 export default function Dashboard(){
   const location = useLocation()
@@ -138,7 +139,7 @@ export default function Dashboard(){
       <p className="main-desc">Access exclusive tools to help you build <br/>client sites and scale your business</p>
 
       <DashboardBanner sitename={sites?.site_list[0].name}/>
-      <SetupBusiness />
+      <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/>
 
       <section className="mt-6">
         <h2 className="secondary-heading">Create New or Manage</h2>
@@ -159,8 +160,7 @@ export default function Dashboard(){
         <p className="main-desc">You have got much more than just a website.<br/>Build and expand your digital business with application</p>
 
         <div className="flex flex-wrap gap-4 mt-6">
-          <AppIcon icon={<Icons.reducoedApp width='72px' height='72px'/>} title='Reducoed' desc='Connect your website with Reducoed'/>
-          <AppIcon icon={<Icons.rewardfulApp width='72px' height='72px'/>} title='Rewardful' desc='Test app of rewardful'/>
+          <AppStoreIcons />
         </div>
       </section>
 

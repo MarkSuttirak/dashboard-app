@@ -32,6 +32,7 @@ export const PhoneVerification = () => {
             </div>
             <div className="flex flex-1 m-[30px] md:m-2 z-[999] bg-white basis-[20%] absolute md:relative register-screen">
                 <StepMaintainer key={key}>
+                    {/* <VerifyOTP /> */}
                     <GetPhoneNumber />
                     <VerifyOTP />
                 </StepMaintainer>
@@ -64,13 +65,13 @@ const GetPhoneNumber = ({
 
     return (
         <form className="m-auto w-full max-w-sm w-96" onSubmit={formik.handleSubmit}>
-            <h2 className="main-heading">{false ? "Resend OTP" : "Let's get started"}</h2>
-            <p className="subheading">This is an example</p>
+            <h2 className="text-3xl font-semibold tracking-[-0.75px]">{false ? "Resend OTP" : "Let's get started"}</h2>
+            <p className="text-[#71717A] mt-3">Enter your phone number to receive an OTP. An OTP will be sent to your phone number.</p>
 
-            <Spacer size={20} />
-            <div className="space-y-6">
+            <Spacer size={36} />
+            <div className="space-y-8">
                 <div className="anim-up">
-                    <label htmlFor="otp" className="subheading">
+                    <label htmlFor="otp" className="subheading font-medium">
                         Enter your phone number
                     </label>
                     <div className="relative mt-1 rounded-md shadow-sm">
@@ -105,7 +106,7 @@ const GetPhoneNumber = ({
                     {(formik.errors.phoneNumber || formik.errors.countryCode) && (<p className="error">{formik.errors.phoneNumber}</p>)}
                 </div>
 
-                <div className="anim-up-delay translate-y-[40px]">
+                <div className="anim-up-delay">
                     <Button
                         type='submit'
                         className='w-full justify-center'
@@ -238,6 +239,7 @@ const VerifyOTP = ({
     onSubmit,
 }) => {
     const [show, setShow] = useState(false);
+    const [requestNewOTP, setRequestNewOTP] = useState(false)
     const { key } = useParams();
     const navigate = useNavigate();
 
@@ -259,31 +261,35 @@ const VerifyOTP = ({
 
     return (
         <form className="m-auto w-full max-w-sm w-96" onSubmit={formik.handleSubmit}>
-            <h2 className="main-title">6-digit code</h2>
-            <p className="tab-desc">This is an example</p>
-
-            <Spacer size={20} />
-            <div className="space-y-6">
+            <h2 className="text-3xl font-semibold tracking-[-0.75px]">6-digit code</h2>
+            <p className="text-[#71717A] mt-3">Enter the 6-digit code you received via SMS via number {formik.values.phoneNumber}</p>
+            <Spacer size={36} />
+            <div className="space-y-8">
                 <div className="anim-up">
-                    <label htmlFor="otp" className="subheading">
+                    <label htmlFor="otp" className="subheading font-medium">
                         Enter your OTP
                     </label>
-                    <input
-                        className="form-input"
+                    <Input
+                        className="form-input mt-1"
                         name="otp"
                         type='number'
                         value={formik.values.otp}
                         onChange={formik.handleChange}
                     />
-                    <p className="text-link inline-block" onClick={prev}>Resend code</p>
+                    {!requestNewOTP ? (
+                        <p className="text-[#71717A] text-sm mt-1">Request a new OTP code again in 00:30</p>
+                    ) : (
+                        <p className="text-[#0788F5] text-sm mt-1" onClick={prev}>Resend code</p>
+                    )}
                 </div>
 
-                <div className="anim-up-delay translate-y-[40px] opacity-0">
-                    <button
+                <div className="anim-up-delay">
+                    <Button
                         type='submit'
-                        className={`primary-btn ${!formik.isValid ? 'disabled' : ''} w-full justify-center`}
+                        className='w-full justify-center'
                         disabled={!formik.isValid}
-                    >Confirm OTP</button>
+                    >Confirm OTP</Button>
+                    <p className="text-[#71717A] text-sm mt-3">Entered the wrong phone number? <span onClick={prev} className='text-[#0788F5] cursor-pointer'>Change phone number</span></p>
                     {isError && (<p className="error">OTP is incorrect</p>)}
                 </div>
             </div>

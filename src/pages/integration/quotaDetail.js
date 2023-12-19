@@ -41,7 +41,7 @@ export default function QuotaDetail(){
         <section className="w-[672px]">
           <div className="ml-6">
             <h2 className="settings-heading">Quota detail</h2>
-            <p className="main-desc">Manage the apps on your site or go to update to more quota</p>
+            <p className="main-desc">Control upgrades and review limits for each apps on your site</p>
           </div>
 
           {totalAppsQuota.filter(item => item.id == app).map(i => (

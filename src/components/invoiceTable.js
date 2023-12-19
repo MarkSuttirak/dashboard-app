@@ -24,14 +24,14 @@ export default function InvoiceTable({invoices_props}) {
 
   return (
     <>
-      <h2 className="secondary-heading">Invoices</h2>
-      <p className="secondary-desc">Update your account settings. Set your preferred language and timezone.</p>
+      <h2 className="secondary-heading">Purchase history</h2>
+      <p className="main-desc">Review your billing statements and payment status</p>
       
       <section  className="mt-8">
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[100px]">Invoice</TableHead>
+              <TableHead className="w-[240px]">Invoice</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Method</TableHead>
               <TableHead className="text-right">Amount</TableHead>

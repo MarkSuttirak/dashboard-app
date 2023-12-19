@@ -1,10 +1,21 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "src/components/ui/card"
+import AppIcon from "src/components/appIcon";
+import { site } from "../../client/api";
+import { useUser } from "../../hooks/useUser";
+import { useMutation, useQuery } from "react-query";
 import { Icons } from "src/components/ui/icons"
-import { Link } from "react-router-dom"
-import { Button } from "src/components/ui/button"
-import { CheckCircle2, Crown } from "lucide-react"
 
-export default function RecommendedApps(){
+export default function AppStoreIcons(){
+  const { user, auth, logout } = useUser();
+
+  const { data: sites } = useQuery('sites', site.list, {
+    enabled: !!user,
+  });
+
+  const benchApps = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), {enabled: false});
+  const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.site_list[0].name), {enabled: false});  
+
+  const appslists = benchApps.data || [];
+
   const otherapps = [
     {
       icon:<Icons.crmApp width='52' height='52'/>,
@@ -70,29 +81,11 @@ export default function RecommendedApps(){
       status:'free'
     },
   ]
+
   return (
-    <section className="grid grid-cols-3 gap-6">
-      {otherapps.map((app, index) => (
-        <Card key={app.id} className='app-card border-0'>
-          <CardHeader className='flex flex-row gap-x-6'>
-            <div className="w-fit">
-              {app.icon}
-            </div>
-            <div className="m-[0!important]">
-              <CardTitle>{app.title}</CardTitle>
-              <CardDescription className='mt-[6px]'>{app.desc}</CardDescription>
-            </div>
-          </CardHeader>
-          <CardFooter className='flex items-center justify-between'>
-            <div className="text-sm">
-              {app.status === 'installed' ? <span className="text-[#2CB216] inline-flex items-center gap-x-2"><CheckCircle2 className="h-4 w-4 text-[#2CB216]"/>Installed</span> : app.status === 'pro' ? <span className="text-[#71717A] inline-flex items-center gap-x-2"><Crown className="h-4 w-4 text-[#71717A]"/>Pro plan</span> : <span className="text-[#71717A]">Free plan available</span>}
-            </div>
-            <Link to={`/integration/appstore/${app.id}`} className="see-more">
-              <Button variant='outline'>See more</Button>
-            </Link>
-          </CardFooter>
-        </Card>
-      ))}
-    </section>
+    <>{appslists?.map(app => 
+      // <AppIcon icon={app.icon} title={app.title} desc={app.desc} link={`/integration/appstore/${app.title}`}/>
+      <AppIcon icon={app.image ? <img src={site.backend_url()+app.image} className="w-[72px] h-[72px] min-w-[72px] min-h-[72px]"/> : <Icons.erpApp className='w-[72px] h-[72px]'/>} title={app.title} desc={app.description} link={`/integration/appstore/${app.title}`}/>
+    ).slice(0, 6)}</>
   )
 }

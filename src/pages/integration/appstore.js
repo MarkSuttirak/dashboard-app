@@ -6,8 +6,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Separator } from "src/components/ui/separator"
 import { Button } from "src/components/ui/button"
 import { Link } from "react-router-dom"
-import { PlusCircledIcon } from "@radix-ui/react-icons"
-import startSellingOnline from 'src/img/how-to-start-selling-online.png'
 import { Icons } from "src/components/ui/icons"
 import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
@@ -20,7 +18,9 @@ import { appsList } from "src/components/sidebar/servicePrivileges";
 import PostInfo from "src/components/postInfo";
 import guideBlog from "src/img/guideblog.png"
 import discoverSolutions from "src/img/discover_solutions.png"
-import RecommendedApps from "./recommendedApps";
+import RecommendedApps from "../../components/apps/recommendedApps";
+import AppStoreIcons from "src/components/apps/appStoreIcons";
+import { LightningBoltIcon } from "@radix-ui/react-icons";
 
 export default function AppStore(){
   const [isMenuCardHover, setIsMenuCardHover] = useState(false)
@@ -100,7 +100,7 @@ export default function AppStore(){
           <p className="secondary-desc">Choose Professional Solutions to Power Your Website</p>
         </div>
         <div className="flex items-center gap-x-2 bg-[#FEC1D2] px-4 py-2 rounded-full text-sm font-semibold text-[#18181B]">
-          <Sparkles className="h-4 w-4"/>
+          <Sparkles className="h-4 w-4" fill='#18181B'/>
           Free trial on all apps
         </div>
       </div>
@@ -109,8 +109,11 @@ export default function AppStore(){
         <img src={cybersale} />
         <div style={{background:`url(${zaviagoDashApp})`,backgroundSize:"cover"}} className="h-auto p-10 w-full flex flex-col justify-evenly items-center text-center rounded-xl">
           <h1 className="text-5xl font-bold text-[#08003F]">Zaviago Dashboard</h1>
-          <h3 className="text-2xl font-medium">Access exclusive tools to help you build client sites and scale your business</h3>
-          <Button>Join Now</Button>
+          <h3 className="text-2xl font-medium">Upgrade package to Pro to enjoy unrestricted access to everything for you and your friends</h3>
+          <Button className='btn-with-icon'>
+            <LightningBoltIcon />
+            Compare plans & features
+          </Button>
         </div>
       </div>
 
@@ -151,12 +154,8 @@ export default function AppStore(){
       <section className="mt-[52px]">
         <h2 className="secondary-heading">Recommended Apps</h2>
         <div className="flex gap-x-6 mt-6">
-          <section className="grid grid-cols-2 gap-6">
-            <div className="flex flex-wrap gap-4">
-              <AppIcon icon={<Icons.crmApp width='72px' height='72px'/>} title='CRM' desc='Cutting-edge tools for streamlined business relationships'/>
-              <AppIcon icon={<Icons.lineCRMApp width='72px' height='72px'/>} title='LineOA CRM' desc='Unlock your business to the next level with Line OA CRM'/>
-              <AppIcon icon={<Icons.rewardfulApp width='72px' height='72px'/>} title='Rewardful' desc='Set your Loyalty Program and campaigns'/>
-            </div>
+          <section className="grid grid-cols-6 gap-6">
+            <AppStoreIcons />
           </section>
         </div>
       </section>
@@ -165,38 +164,6 @@ export default function AppStore(){
         <h2 className="secondary-heading">Top Rated Apps</h2>
         <div className="flex gap-x-6 mt-6">
           <RecommendedApps />
-          <section className="grid grid-cols-3 gap-6">
-            {appslists?.map((app, index) => {
-              const isInstalled = installedApps.data?.some(installedApp => installedApp.title === app.title);
-              const requiredPro = false
-              return (
-                <Card key={index} className='app-card'>
-                  <CardHeader className='flex flex-row gap-x-6'>
-                    <div className="w-[90px]">
-                      {app.image ? <img src={site.backend_url()+app.image}/> : <Icons.erpApp />}
-                    </div>
-                    <div className="m-[0!important]">
-                      <CardTitle>{app.title}</CardTitle>
-                      <CardDescription className='mt-[6px]'>{app.description}</CardDescription>
-                    </div>
-                  </CardHeader>
-                  <CardFooter className='flex items-center justify-between'>
-                    <div className="text-sm">
-                      {isInstalled ? <span className="text-[#2CB216] inline-flex items-center gap-x-2"><CheckCircle2 className="h-4 w-4 text-[#2CB216]"/>Installed</span> : requiredPro ? <span className="text-[#71717A] inline-flex items-center gap-x-2"><Crown className="h-4 w-4 text-[#71717A]"/>Pro plan</span> : <span className="text-[#71717A]">Free plan available</span>} {/* Render "Installed" if the app is found in installedApps.data */}
-                    </div>
-                    <Link to={`/integration/appstore/${app.name}`} className="see-more">
-                      {/* Conditionally render Button based on `isInstalled` */}
-                      {isInstalled ? (
-                        <Button variant='outline' disabled>Installed</Button>
-                      ): (
-                        <Button variant='outline'>See more</Button>
-                      )}
-                    </Link>
-                  </CardFooter>
-                </Card>
-              )
-            })}
-          </section>
         </div>
       </section>
 

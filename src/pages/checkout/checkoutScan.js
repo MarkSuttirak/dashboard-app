@@ -1,7 +1,7 @@
 import thaiqrpayment from "src/img/thai-qr-payment.svg"
 import promptpayqr from "src/img/promptpay-qr.png"
 import { Button } from "src/components/ui/button";
-import { Copy } from "lucide-react";
+import { Copy, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useToast } from "../../components/ui/use-toast";
@@ -20,13 +20,13 @@ export default function CheckoutScan(){
 
   return (
     <section className="w-full pt-[60px]">
-      <div className="flex items-center gap-x-3">
-        <Link to='/payment'>
+      <div className="flex items-center gap-x-3 px-6">
+        <Link to={-1}>
           <ArrowLeft />
         </Link>
         <h1 className="main-heading">Payment</h1>
       </div>
-      <div className="p-10 mt-10">
+      <div className="p-6 md:p-10 mt-10">
         <div className="flex gap-x-4 items-center justify-center mb-6">
           <img src={thaiqrpayment} className="w-fit"/>
           <div>
@@ -40,9 +40,14 @@ export default function CheckoutScan(){
           </div>
         </div>
 
-        <img src={promptpayqr} />
+        <img src={promptpayqr} className="m-auto"/>
 
         <p className="main-desc text-center mt-6">Scan to pay</p>
+
+        <Button className='md:hidden flex items-center gap-x-2 w-full mt-6' variant='secondary'>
+          <Download className="h-4 w-4"/>
+          Save image
+        </Button>
       </div>
     </section>
   )

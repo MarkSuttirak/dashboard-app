@@ -5,17 +5,21 @@ import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, Comma
 import { Popover, PopoverContent, PopoverTrigger } from "../../components/ui/popover"
 import { useState } from "react";
 import { DataList } from "src/components/pagination";
+import { useUser } from "../../hooks/useUser";
+import Loading from "src/components/ui/loading";
 
 export default function AllTeams(){
-  const teamnames = ['Zaviago','Intergoods','Line','Testbrand','Guten Tag','Frappe','Django', 'Bonjour']
-  const [current, setCurrent] = useState(1)
+  const { auth } = useUser();
+  const teamnames = auth?.teams
+  // const teamnames = ['Zaviago','Intergoods','Line','Testbrand','Guten Tag','Frappe','Django', 'Bonjour']
+
   const TeamCard = ({teamname, avatar}) => {
     return (
       <div className="flex items-center justify-between space-x-4">
         <div className="flex items-center space-x-4">
           <Avatar>
             <AvatarImage src={avatar} />
-            <AvatarFallback>{teamname[0].toUpperCase()}{teamname[Math.floor(teamname.length / 2)].toUpperCase()}</AvatarFallback>
+            <AvatarFallback>{teamname[0]}</AvatarFallback>
           </Avatar>
           <div>
             <p className="text-sm font-medium leading-none">{teamname}</p>
@@ -43,23 +47,25 @@ export default function AllTeams(){
     )
   }
   return (
-    <div>
-      <div>
-        <h1 className="subheading font-medium my-6">Current team</h1>
-
-        <div className="flex flex-col gap-y-6 mt-[10px]">
-          <TeamCard teamname={teamnames[current]} />
+    <>
+      {auth ? (
+        <div>
+          <div>
+            <h1 className="subheading font-medium my-6">Current team</h1>
+            <div className="flex flex-col gap-y-6 mt-[10px]">
+              <TeamCard teamname={auth?.team.team_title} />
+            </div>
+          </div>
+          <div>
+            <h1 className="subheading font-medium my-6">Teams</h1>
+            <div className="flex flex-col gap-y-6 mt-[10px]">
+              <DataList pagination={teamnames.length > 6 ? true : false} listPerPage={6}>
+                {teamnames.map(t => <TeamCard teamname={t.team_title} />)}
+              </DataList>
+            </div>
+          </div>
         </div>
-      </div>
-      <div>
-        <h1 className="subheading font-medium my-6">Teams</h1>
-
-        <div className="flex flex-col gap-y-6 mt-[10px]">
-          <DataList pagination={teamnames.length > 6 ? true : false} listPerPage={6}>
-            {teamnames.map(t => <TeamCard teamname={t} />)}
-          </DataList>
-        </div>
-      </div>
-    </div>
+      ) : <Loading />}
+    </>
   )
 }

@@ -9,6 +9,9 @@ import { useEffect, useContext } from "react";
 import { useServiceMenus } from "src/hooks/useServiceMenu";
 import { Icons } from "../ui/icons";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "src/components/ui/tooltip"
+import { site } from "../../client/api";
+import { useUser } from "../../hooks/useUser";
+import { useMutation, useQuery } from "react-query";
 
 export default function ServiceModals(){
   const icons = [

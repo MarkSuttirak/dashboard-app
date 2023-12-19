@@ -23,7 +23,7 @@ export default function LogoutModal({children}){
       <DialogContent>
         <DialogHeader>
           <h2 className="secondary-heading">Are you sure to log out?</h2>
-          <p className="main-desc">This action cannot be undone. This will permanently delete your item and remove your data from our servers.</p>
+          <p className="main-desc">When you log out, you will be able to log back in with your intact data.</p>
         </DialogHeader>
         <div className="flex items-center justify-end gap-x-2">
           <DialogClose>

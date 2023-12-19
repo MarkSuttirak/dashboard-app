@@ -2,8 +2,6 @@ import { Card, CardContent, CardFooter, CardHeader } from "src/components/ui/car
 import { Separator } from "src/components/ui/separator";
 import { Button } from "src/components/ui/button";
 import { BadgeCheck } from "lucide-react";
-import Lottie from "lottie-react";
-import receivedInfo from 'src/components/received-info-check.json'
 import { useContext, useEffect, useState } from "react";
 import { MemberContext } from "src/components/provider/memberProvider";
 import { useNavigate, useParams } from "react-router-dom";
@@ -11,7 +9,7 @@ import { useQuery } from "react-query";
 import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 
-export default function CheckoutReceived(){
+export default function CheckoutPending(){
   const { id } = useParams()
   const memberStatus = useContext(MemberContext)
   const navigate = useNavigate()
@@ -22,7 +20,6 @@ export default function CheckoutReceived(){
   const { data: sites } = useQuery('sites', site.list, {
     enabled: !!user,
   });
-
 
   const confirm = () => {
     navigate('/');
@@ -38,7 +35,6 @@ export default function CheckoutReceived(){
     }
   }, [user, sites,checkout_info]);
 
-  
   if(!subtotal){
     if(plan_details?.price_usd){
       setSubtotal(plan_details?.price_usd)
@@ -59,11 +55,9 @@ export default function CheckoutReceived(){
     <div className="page-section max-w-[580px] mx-auto">
       <Card className='justify-center p-0'>
         <CardHeader className='p-10'>
-          <Lottie animationData={receivedInfo} loop={false} style={{width:"128px",height:"128px",margin:"auto"}}/>
-          <h1 className="text-[36px] font-extrabold tracking-[-0.9px] leading-[40px] text-center text-[#09090B]">We have received your information 🎉</h1>
-          <p className="mt-[12px!important] secondary-desc text-center">Thank you for notifying us of your payment. We will investigate quickly within 6 hours.</p>
+          <h1 className="text-[36px] font-extrabold tracking-[-0.9px] leading-[40px] text-center text-[#09090B]">We have sent a link for the payment verification to your LINE account.</h1>
           <p className="main-desc mt-[24px!important] text-center">
-            You can go to "Setting / Billing & Plan / Invoice" to track status your order. If the status is not updated, please <a className="text-[#006AFF]" href='https://page.line.me/zaviago'>contact us</a>
+            You can go to "Zaviago Line OA" to verify the payment. If the status is not updated, please <a className="text-[#006AFF]" href='https://page.line.me/zaviago'>contact us</a>
           </p>
         </CardHeader>
 

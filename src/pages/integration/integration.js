@@ -35,7 +35,7 @@ export default function Integration(){
         {id === 'apps-quota' && (
           <section className="w-[672px]">
             <h2 className="settings-heading">Apps Quota</h2>
-            <p className="main-desc">Manage the apps on your site or go to update to more quota.</p>
+            <p className="main-desc">Control upgrades and review limits for each apps on your site</p>
             <AppsQuota />
           </section>
         )}
