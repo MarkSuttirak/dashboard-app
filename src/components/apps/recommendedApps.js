@@ -118,7 +118,6 @@ export default function RecommendedApps(){
     // </section>
     // Dynamic data
 
-
     <section className="grid grid-cols-3 gap-6">
       {appslists?.map((app, index) => {
         const isInstalled = installedApps.data?.some(installedApp => installedApp.title === app.title);

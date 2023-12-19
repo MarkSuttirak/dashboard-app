@@ -8,14 +8,14 @@ const ServiceProvider = ({children}) => {
 
   const selectMenu = (val) => {
     switch (val){
-      case 0: setData(appsList.crm); break
-      case 1: setData(appsList.lineCRM); break
-      case 2: setData(appsList.rewardful); break
-      case 3: setData(appsList.reducoed); break
-      case 4: setData(appsList.marketConnect); break
-      case 5: setData(appsList.untitled); break
-      case 6: setData(appsList.pos); break
-      case 7: setData(appsList.onlineStore); break
+      case 'CRM': setData(appsList.crm); break
+      case 'LINEOA CRM': setData(appsList.lineCRM); break
+      case 'Rewardful': setData(appsList.rewardful); break
+      case 'Reduced%': setData(appsList.reducoed); break
+      case 'MarketConnect': setData(appsList.marketConnect); break
+      case 'Untitled': setData(appsList.untitled); break
+      case 'POS in.store': setData(appsList.pos); break
+      case 'OnlineStore': setData(appsList.onlineStore); break
       default: console.log("Cannot select this menu")
     }
   }

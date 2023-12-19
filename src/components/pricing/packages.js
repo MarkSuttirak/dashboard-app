@@ -57,6 +57,8 @@ export default function Packages(){
   const estimatedContactPrice = packageTypeCRM === 'Professional' ? 90000 : packageTypeCRM === 'Enterprise' ? 165000 : 0
   const estimatedMarketConnectPrice = packageTypeMarketConnect === 'Professional' ? 45000 : packageTypeMarketConnect === 'Enterprise' ? 125000 : 0
 
+  const selectThreeMenus = packageTypeCRM === 'Starter' && packageTypeMarketConnect === 'Starter' && packageTypeOnlineStore === 'Starter'
+
   const calculateTotalPrice = () => {
     const prices = {
       workspace: isStarter ? 750 : 0,
@@ -76,7 +78,7 @@ export default function Packages(){
         packageTypeLineCRM === 'Enterprise' && packageTypeRewardful === 'Professional' ? 7000 :
         packageTypeLineCRM === 'Enterprise' && packageTypeRewardful === 'Enterprise' ? 10000 : 0
       ),
-      crmAndMarketConnectAndOnlineStore: (packageTypeCRM === 'Starter' && packageTypeMarketConnect === 'Starter' && packageTypeOnlineStore === 'Starter' && 750)
+      crmAndMarketConnectAndOnlineStore: (selectThreeMenus && 750)
     };
 
     setTotalPriceMonthly(
@@ -85,7 +87,7 @@ export default function Packages(){
       (packageTypeLineCRM ? prices.lineCRM[packageTypeLineCRM] || 0 : 0) +
       (packageTypeRewardful ? prices.rewardful[packageTypeRewardful] || 0 : 0)) +
 
-      (packageTypeCRM === 'Starter' && packageTypeMarketConnect === 'Starter' && packageTypeOnlineStore === 'Starter' ? prices.crmAndMarketConnectAndOnlineStore :
+      (selectThreeMenus ? prices.crmAndMarketConnectAndOnlineStore :
       (packageTypeCRM ? prices.crm[packageTypeCRM] || 0 : 0) +
       (packageTypeMarketConnect ? prices.marketConnect[packageTypeMarketConnect] || 0 : 0) +
       (packageTypeOnlineStore ? prices.onlineStore[packageTypeOnlineStore] || 0 : 0)) + 
@@ -124,11 +126,11 @@ export default function Packages(){
 
   const recurringFee = [
     {title:isStarter && 'Zaviago Workspace', price:isStarter && 750},
-    {title:crmFilter.length > 0 && 'CRM ' + crmFilter[0].title, price:crmFilter.length > 0 && crmFilter[0].price + customerContactPrice, desc:packageDesc.customerContact},
-    {title:marketConnectFilter.length > 0 && 'Market Connect ' + marketConnectFilter[0].title, price:marketConnectFilter.length > 0 && marketConnectFilter[0].price + paidUserPrice, desc:packageDesc.paidUsers},
+    {title:crmFilter.length > 0 && 'CRM ' + crmFilter[0].title, price:(crmFilter.length > 0 ? selectThreeMenus ? crmFilter[0].price / 3 : crmFilter[0].price : null) + customerContactPrice, desc:packageDesc.customerContact},
+    {title:marketConnectFilter.length > 0 && 'Market Connect ' + marketConnectFilter[0].title, price:(marketConnectFilter.length > 0 ? selectThreeMenus ? marketConnectFilter[0].price / 3 : marketConnectFilter[0].price : null) + paidUserPrice, desc:packageDesc.paidUsers},
     {title:lineCRMFilter.length > 0 && 'Line CRM ' + lineCRMFilter[0].title, price:lineCRMFilter.length > 0 && lineCRMFilter[0].price + customFieldPrice + smsOTPPrice, desc:packageDesc.customField},
     {title:rewardfulFilter.length > 0 && 'Rewardful ' + rewardfulFilter[0].title, price:rewardfulFilter.length > 0 && rewardfulFilter[0].price, desc:packageDesc.rewardfulDesc},
-    {title:onlineStoreFilter.length > 0 && 'Online Store ' + onlineStoreFilter[0].title, price:onlineStoreFilter.length > 0 && onlineStoreFilter[0].price, desc:packageDesc.onlineStore},
+    {title:onlineStoreFilter.length > 0 && 'Online Store ' + onlineStoreFilter[0].title, price:(onlineStoreFilter.length > 0 ? selectThreeMenus ? onlineStoreFilter[0].price / 3 : onlineStoreFilter[0].price : null), desc:packageDesc.onlineStore},
     {title:addonFilter && addons + ' Addon', price:addonPrices[addons]}
   ]
 
@@ -142,8 +144,8 @@ export default function Packages(){
       price:packageTypeMarketConnect === 'Professional' ? 45000 : packageTypeMarketConnect === 'Enterprise' ? 125000 : 0
     },
     {
-      title:smsOTP === 5000 ? '5,000 SMS OTP' : smsOTP === 18000 ? '18,000 SMS OTP' : smsOTP === 60000 ? '60,000 SMS OTP' : null, 
-      price:smsOTP === 5000 ? 3000 : smsOTP === 18000 ? 10000 : smsOTP === 60000 ? 30000 : 0
+      title:needSMSOTP ? smsOTP === 5000 ? '5,000 SMS OTP' : smsOTP === 18000 ? '18,000 SMS OTP' : smsOTP === 60000 ? '60,000 SMS OTP' : null : null, 
+      price:needSMSOTP ? smsOTP === 5000 ? 3000 : smsOTP === 18000 ? 10000 : smsOTP === 60000 ? 30000 : 0 : null
     },
   ]
 
@@ -159,7 +161,7 @@ export default function Packages(){
   }
 
   useEffect(() => {
-    if (packageTypeCRM !== null && packageTypeMarketConnect !== null && packageTypeLineCRM !== null){
+    if (packageTypeCRM !== null || packageTypeMarketConnect !== null || packageTypeLineCRM !== null){
       packageTypeCRM === 'Professional' ? setCustomerContact(2000) : packageTypeCRM === 'Enterprise' ? setCustomerContact(5000) : setCustomerContact(1000)
       packageTypeMarketConnect === 'Professional' ? setPaidUsers(5) : packageTypeMarketConnect === 'Enterprise' ? setPaidUsers(10) : setPaidUsers(2)
       packageTypeLineCRM === 'Professional' ? setCustomField(25) : packageTypeLineCRM === 'Enterprise' ? setCustomField(50) : setCustomField(10)
@@ -240,6 +242,20 @@ export default function Packages(){
                 </div>
               </CardFooter></>) : null}</>}/>
 
+        <PackageSection icon={<Icons.pageBuilder/>} title='Online Store' desc='Intergrate page builder and online shop in one place' content={
+          <CardContent className="grid grid-cols-3 gap-4 p-0">
+            {bundleSelectList.onlineStore.map(list => (
+              <BundleSelect title={list.title} price={`฿${list.price.toLocaleString()}/month`} checked={packageTypeOnlineStore === list.title} onCheckedChange={() => handlePackageType(list.title, packageTypeOnlineStore, setPackageTypeOnlineStore)} />
+            ))}
+          </CardContent>
+          } footer={<>{packageTypeOnlineStore ? (
+            <><Separator className='my-10'/>
+              <CardFooter className='flex flex-col items-start gap-y-9 p-0'>
+                <div className="border border-[#E4E4E7] py-2 px-3 rounded-md w-full">
+                  <p className="subheading">{packageTypeOnlineStore === 'Professional' ? 'Online Store Professional will provide up to 10,000 products library.' : packageTypeOnlineStore === 'Enterprise' ? 'Online Store Enterprise will provide up to 100,000 products library.' : 'Online Store Starter will provide 5,000 products library.'}</p>
+                </div>
+              </CardFooter></>) : null}</>}/>
+
         <PackageSection icon={<Icons.lineCRMApp width='30' height='30'/>} title='Line CRM' desc='Integrate your LineOA user to CRM' content={
           <CardContent className="grid grid-cols-3 gap-4 p-0">
             {bundleSelectList.lineCRM.map(list => (
@@ -275,20 +291,6 @@ export default function Packages(){
                 </div>
               </CardFooter></>) : null}</>}/>
 
-        <PackageSection icon={<Icons.pageBuilder/>} title='Online Store' desc='Intergrate page builder and online shop in one place' content={
-          <CardContent className="grid grid-cols-3 gap-4 p-0">
-            {bundleSelectList.onlineStore.map(list => (
-              <BundleSelect title={list.title} price={`฿${list.price.toLocaleString()}/month`} checked={packageTypeOnlineStore === list.title} onCheckedChange={() => handlePackageType(list.title, packageTypeOnlineStore, setPackageTypeOnlineStore)} />
-            ))}
-          </CardContent>
-          } footer={<>{packageTypeOnlineStore ? (
-            <><Separator className='my-10'/>
-              <CardFooter className='flex flex-col items-start gap-y-9 p-0'>
-                <div className="border border-[#E4E4E7] py-2 px-3 rounded-md w-full">
-                  <p className="subheading">{packageTypeOnlineStore === 'Professional' ? 'Online Store Professional will provide up to 10,000 products library.' : packageTypeOnlineStore === 'Enterprise' ? 'Online Store Enterprise will provide up to 100,000 products library.' : 'Online Store Starter will provide 5,000 products library.'}</p>
-                </div>
-              </CardFooter></>) : null}</>}/>
-
           <PackageSection title='Addons' desc='Customize and enhance your plan with additional features.' content={
             <CardContent className="flex gap-4 flex-wrap p-0">
               {addonLists.map(list => 
@@ -299,15 +301,16 @@ export default function Packages(){
       </main>
 
       <PricingResult estimateButton={<PricingEstimate recurringFee={recurringFee} oneTimeFee={oneTimeFee} totalCost={totalPriceMonthly} estimatedCost={estimatedPrice} isAnnual={isAnnual}/>} setIsAnnual={setIsAnnual} isAnnual={isAnnual} totalCost={totalPriceMonthly} estimated={estimatedPrice} commitments={
-        <>{packageInfo.map(info => (
+        <>{isStarter ? (<ProductSelection title={`Zaviago Workspace`} price={`฿750/month`} onClose={() => setIsStarter(false)}/>) : null}
+          {packageInfo.map(info => (
             <>{info.condition ? (
               <>{info.filterInfo.map(item => (
                 <ProductSelection key={item.title} title={`${info.titlePrefix} ${item.title}`} price={`฿${item.price.toLocaleString()}/month`} onClose={info.onClose} desc={info.desc}/>
               ))}</>
             ) : null}</>
           ))}
-          {needSMSOTP && (<ProductSelection title={`SMS OTP ${packageTypeLineCRM}`} price={`฿${smsOTPPrice.toLocaleString()}`} onClose={() => setNeedSMSOTP(false)} desc={packageDesc.smsOTP}/>)}
-          {addons && (<ProductSelection title={`${addons} Addon`} price={addonFilter.price} onClose={() => setAddons()}/>)}
+          {needSMSOTP ? (<ProductSelection title={`SMS OTP ${packageTypeLineCRM}`} price={`฿${smsOTPPrice.toLocaleString()}`} onClose={() => setNeedSMSOTP(false)} desc={packageDesc.smsOTP}/>) : null}
+          {addons ? (<ProductSelection title={`${addons} Addon`} price={addonFilter.price} onClose={() => setAddons()}/>) : null}
         </>
       }/>
     </div>

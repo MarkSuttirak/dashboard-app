@@ -3,6 +3,8 @@ import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { useMutation, useQuery } from "react-query";
 import { Icons } from "src/components/ui/icons"
+import Loading from "../ui/loading";
+import { useEffect } from "react";
 
 export default function AppStoreIcons(){
   const { user, auth, logout } = useUser();
@@ -15,6 +17,13 @@ export default function AppStoreIcons(){
   const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.site_list[0].name), {enabled: false});  
 
   const appslists = benchApps.data || [];
+
+  useEffect(() => {
+    if (user && sites?.site_list[0]?.name && !benchApps.data) {
+      benchApps.refetch();
+      installedApps.refetch();
+    }
+  }, [user, sites,benchApps, installedApps]);
 
   const otherapps = [
     {
@@ -83,9 +92,13 @@ export default function AppStoreIcons(){
   ]
 
   return (
-    <>{appslists?.map(app => 
-      // <AppIcon icon={app.icon} title={app.title} desc={app.desc} link={`/integration/appstore/${app.title}`}/>
-      <AppIcon icon={app.image ? <img src={site.backend_url()+app.image} className="w-[72px] h-[72px] min-w-[72px] min-h-[72px]"/> : <Icons.erpApp className='w-[72px] h-[72px]'/>} title={app.title} desc={app.description} link={`/integration/appstore/${app.title}`}/>
-    ).slice(0, 6)}</>
+    <>
+      {appslists && appslists?.length > 0 ? (
+        <>{appslists?.map(app => 
+          // <AppIcon icon={app.icon} title={app.title} desc={app.desc} link={`/integration/appstore/${app.title}`}/>
+          <AppIcon icon={app.image ? <img src={site.backend_url()+app.image} className="w-[72px] h-[72px] min-w-[72px] min-h-[72px]"/> : <Icons.erpApp className='w-[72px] h-[72px]'/>} title={app.title} desc={app.description} link={`/integration/appstore/${app.title}`}/>
+        ).slice(0, 6)}</>
+      ) : <Loading />}
+    </>
   )
 }

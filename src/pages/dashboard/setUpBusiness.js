@@ -44,7 +44,7 @@ export default function SetupBusiness({sitename}){
       </div>
 
       <div className="flex gap-[15px] mt-6">
-        <Card className='p-0 shadow-none overflow-hidden min-w-[400px] w-[400px]'>
+        <Card className='p-0 shadow-none overflow-hidden min-w-[400px] w-[400px] relative'>
           <img src={unlockMultiplayer} className="w-full"/>
           <div className="p-6">
             <div className="flex items-center gap-x-2">
@@ -57,7 +57,7 @@ export default function SetupBusiness({sitename}){
             </div>
             <h1 className="text-[40px] tracking-[-3px] text-[#000000D9] leading-[44.5px] font-semibold mt-2">Unlock multiplayer work together</h1>
 
-            <Button variant='outline' className='btn-with-icon mt-[60px]'>
+            <Button variant='outline' className='btn-with-icon absolute bottom-[39px]'>
               <BadgeCheck className="h-4 w-4"/>
               Start invite team
             </Button>

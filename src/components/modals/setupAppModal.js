@@ -54,7 +54,6 @@ export default function SetupAppModal({appToInstall, appImage}){
             <section className="p-6">
               <DialogTitle>{appToInstall} has been successfully installed</DialogTitle>
               <DialogDescription className='mt-3'>You can start the application by clicking 'Open'</DialogDescription>
-
             </section>
           </DialogHeader>
           <DialogFooter className='p-6 pt-0'>
@@ -79,7 +78,6 @@ export default function SetupAppModal({appToInstall, appImage}){
             <section className="p-6">
               <DialogTitle>Install {appToInstall} to your workspace</DialogTitle>
               <DialogDescription className='mt-3'>The app will be able to read the email address you use to log in to Zaviago</DialogDescription>
-
               <Button className='btn-with-icon text-[#006AFF] mt-6' variant='secondary'>
                 <Key className="h-4 w-4 text-[#006AFF]"/>
                 Privacy Policy and Terms of Service
