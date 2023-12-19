@@ -57,6 +57,8 @@ export default function Packages(){
   const estimatedContactPrice = packageTypeCRM === 'Professional' ? 90000 : packageTypeCRM === 'Enterprise' ? 165000 : 0
   const estimatedMarketConnectPrice = packageTypeMarketConnect === 'Professional' ? 45000 : packageTypeMarketConnect === 'Enterprise' ? 125000 : 0
 
+  const selectThreeMenus = packageTypeCRM === 'Starter' && packageTypeMarketConnect === 'Starter' && packageTypeOnlineStore === 'Starter'
+
   const calculateTotalPrice = () => {
     const prices = {
       workspace: isStarter ? 750 : 0,
@@ -76,7 +78,7 @@ export default function Packages(){
         packageTypeLineCRM === 'Enterprise' && packageTypeRewardful === 'Professional' ? 7000 :
         packageTypeLineCRM === 'Enterprise' && packageTypeRewardful === 'Enterprise' ? 10000 : 0
       ),
-      crmAndMarketConnectAndOnlineStore: (packageTypeCRM === 'Starter' && packageTypeMarketConnect === 'Starter' && packageTypeOnlineStore === 'Starter' && 750)
+      crmAndMarketConnectAndOnlineStore: (selectThreeMenus && 750)
     };
 
     setTotalPriceMonthly(
@@ -85,7 +87,7 @@ export default function Packages(){
       (packageTypeLineCRM ? prices.lineCRM[packageTypeLineCRM] || 0 : 0) +
       (packageTypeRewardful ? prices.rewardful[packageTypeRewardful] || 0 : 0)) +
 
-      (packageTypeCRM === 'Starter' && packageTypeMarketConnect === 'Starter' && packageTypeOnlineStore === 'Starter' ? prices.crmAndMarketConnectAndOnlineStore :
+      (selectThreeMenus ? prices.crmAndMarketConnectAndOnlineStore :
       (packageTypeCRM ? prices.crm[packageTypeCRM] || 0 : 0) +
       (packageTypeMarketConnect ? prices.marketConnect[packageTypeMarketConnect] || 0 : 0) +
       (packageTypeOnlineStore ? prices.onlineStore[packageTypeOnlineStore] || 0 : 0)) + 
@@ -124,11 +126,11 @@ export default function Packages(){
 
   const recurringFee = [
     {title:isStarter && 'Zaviago Workspace', price:isStarter && 750},
-    {title:crmFilter.length > 0 && 'CRM ' + crmFilter[0].title, price:crmFilter.length > 0 && crmFilter[0].price + customerContactPrice, desc:packageDesc.customerContact},
-    {title:marketConnectFilter.length > 0 && 'Market Connect ' + marketConnectFilter[0].title, price:marketConnectFilter.length > 0 && marketConnectFilter[0].price + paidUserPrice, desc:packageDesc.paidUsers},
+    {title:crmFilter.length > 0 && 'CRM ' + crmFilter[0].title, price:(crmFilter.length > 0 ? selectThreeMenus ? crmFilter[0].price / 3 : crmFilter[0].price : null) + customerContactPrice, desc:packageDesc.customerContact},
+    {title:marketConnectFilter.length > 0 && 'Market Connect ' + marketConnectFilter[0].title, price:(marketConnectFilter.length > 0 ? selectThreeMenus ? marketConnectFilter[0].price / 3 : marketConnectFilter[0].price : null) + paidUserPrice, desc:packageDesc.paidUsers},
     {title:lineCRMFilter.length > 0 && 'Line CRM ' + lineCRMFilter[0].title, price:lineCRMFilter.length > 0 && lineCRMFilter[0].price + customFieldPrice + smsOTPPrice, desc:packageDesc.customField},
     {title:rewardfulFilter.length > 0 && 'Rewardful ' + rewardfulFilter[0].title, price:rewardfulFilter.length > 0 && rewardfulFilter[0].price, desc:packageDesc.rewardfulDesc},
-    {title:onlineStoreFilter.length > 0 && 'Online Store ' + onlineStoreFilter[0].title, price:onlineStoreFilter.length > 0 && onlineStoreFilter[0].price, desc:packageDesc.onlineStore},
+    {title:onlineStoreFilter.length > 0 && 'Online Store ' + onlineStoreFilter[0].title, price:(onlineStoreFilter.length > 0 ? selectThreeMenus ? onlineStoreFilter[0].price / 3 : onlineStoreFilter[0].price : null), desc:packageDesc.onlineStore},
     {title:addonFilter && addons + ' Addon', price:addonPrices[addons]}
   ]
 
