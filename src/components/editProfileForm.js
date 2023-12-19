@@ -1,19 +1,19 @@
 import React from "react";
 import { Input } from "./ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
-import { Link } from "react-router-dom"
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import { Button } from "./ui/button"
-import { Calendar } from "./ui/calendar"
-import { cn } from "../lib/utils"
 import { format } from "date-fns"
-import { CalendarIcon } from "@radix-ui/react-icons"
-import { toast } from "./ui/use-toast"
+import { toast, useToast } from "./ui/use-toast"
 import { user } from "src/client/api";
 import * as yup from "yup"
 import { useFormik } from 'formik';
+import { Toaster } from "./ui/toaster";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
 
 export function EditProfileForm({preloadedValues}) {
+  const [saving, setSaving] = useState(false);
+  const { toast } = useToast();
 
   const accountFormSchema = yup.object().shape({
     first_name: yup.string().required('First Name is a required field'),
@@ -23,16 +23,26 @@ export function EditProfileForm({preloadedValues}) {
   })
   const onSubmitFunction = async (data) => {
     const isValid = await accountFormSchema.isValid(data)
+    setSaving(true);
     if( isValid ){
       user.updateUser(data).then()
       .then((response) => {
-        
         if( response.status===200 && response.statusText==="OK" ){
-            document.getElementById("success-save").style.display="block"
-            document.getElementById("success-save").innerHTML="Profile is updated successfully"
+          toast({
+            title: "Profile updated",
+            description: "Profile is updated successfully",
+          })
+          setSaving(false)
+          // document.getElementById("success-save").style.display="block"
+          // document.getElementById("success-save").innerHTML="Profile is updated successfully"
         }else{
-            document.getElementById("success-save").innerHTML = "Something went wrong"
-            document.getElementById("success-save").style.display="block"
+          toast({
+            title: "Something went wrong",
+            description: "Please refresh the page or contact the support.",
+          })
+          setSaving(false)
+          // document.getElementById("success-save").innerHTML = "Something went wrong"
+          // document.getElementById("success-save").style.display="block"
         }
       })
     }else{
@@ -57,7 +67,6 @@ export function EditProfileForm({preloadedValues}) {
       console.log(values)
       onSubmitFunction( values )
     },
-    
   })
 
 function onError(e) {
@@ -80,7 +89,7 @@ function onError(e) {
                   name="first_name"
                   type='text'
                   onChange={form.handleChange}
-                  defaultValue ={preloadedValues.first_name}
+                  defaultValue={preloadedValues.first_name}
                 />
               </div>
             </div>
@@ -95,7 +104,7 @@ function onError(e) {
                   name="last_name"
                   onChange={form.handleChange}
                   type='text'
-                  defaultValue ={preloadedValues.last_name}
+                  defaultValue={preloadedValues.last_name}
                 />
               </div>
             </div>
@@ -125,7 +134,8 @@ function onError(e) {
                   className="form-input"
                   name="email"
                   type='text'
-                  value={preloadedValues.email}
+                  onChange={form.handleChange}
+                  defaultValue={preloadedValues.email}
                 />
                 {/* <Select className='form-input' name="email" onChange={form.handleChange} defaultValue={preloadedValues.email}>
                   <SelectTrigger className="w-full">
@@ -173,14 +183,25 @@ function onError(e) {
                 </div>
             </div> */}
             <div>
-              <button
+              <Button
                 type='submit'
-                className={'text-sm bg-primary text-[#FAFAFA] px-4 py-2 rounded-md'}>
-                  Update Profile
-              </button>
+                disabled={saving ? true : false}
+                className={'flex items-center gap-x-2'}
+              >
+                {saving ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin"/>
+                    Updating...
+                  </>
+                ) : (
+                  <>Update Profile</>
+                )}
+              </Button>
             </div>
           </main>
         </form>
+
+        <Toaster />
     </>
     
     // <Form {...form}>

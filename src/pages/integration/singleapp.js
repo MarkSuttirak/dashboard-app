@@ -131,8 +131,7 @@ export default function SingleApp(){
                 </div>
               </aside>
               <article className="w-2/3">
-                <h2 className="font-bold text-xl text-[#18181B] mb-2">{app.description}</h2>
-                <p className="text-[#71717A]">{app.long_description}</p>
+                <div className="text-[#71717A]" dangerouslySetInnerHTML={{__html:app.long_description}}/>
               </article>
             </section>
 
