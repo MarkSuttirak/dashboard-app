@@ -130,7 +130,7 @@ export default function RecommendedApps(){
               </div>
               <div className="m-[0!important]">
                 <CardTitle>{app.title}</CardTitle>
-                <CardDescription className='mt-[6px]'>{app.description}</CardDescription>
+                <CardDescription className='mt-[6px]'>{app.description?.length > 40 ? app.description.slice(0,40) + '...' : app.description}</CardDescription>
               </div>
             </CardHeader>
             <CardFooter className='flex items-center justify-between'>

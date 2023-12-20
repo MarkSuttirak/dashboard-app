@@ -5,6 +5,7 @@ import { useMutation, useQuery } from "react-query";
 import { Icons } from "src/components/ui/icons"
 import Loading from "../ui/loading";
 import { useEffect } from "react";
+import { Skeleton } from "../ui/skeleton";
 
 export default function AppStoreIcons(){
   const { user, auth, logout } = useUser();
@@ -93,12 +94,18 @@ export default function AppStoreIcons(){
 
   return (
     <>
-      {appslists && appslists?.length > 0 ? (
+      {appslists?.length > 0 ? (
         <>{appslists?.map(app => 
           // <AppIcon icon={app.icon} title={app.title} desc={app.desc} link={`/integration/appstore/${app.title}`}/>
           <AppIcon icon={app.image ? <img src={site.backend_url()+app.image} className="w-[72px] h-[72px] min-w-[72px] min-h-[72px]"/> : <Icons.erpApp className='w-[72px] h-[72px]'/>} title={app.title} desc={app.description} link={`/integration/appstore/${app.title}`}/>
         ).slice(0, 6)}</>
-      ) : <Loading />}
+      ) : <>
+        <div className="flex flex-col gap-y-2">
+          <Skeleton className='h-[141px] w-[141px]'/>
+          <Skeleton className='h-3 w-full'/>
+          <Skeleton className='h-3 w-full'/>
+        </div>
+      </>}
     </>
   )
 }

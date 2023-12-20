@@ -10,7 +10,7 @@ export default function AppIcon({icon, title, desc, link}){
         </Link>
 
         <h2 className="subheading font-medium mb-[7px]">{title}</h2>
-        <p className="text-xs text-[#667085]">{desc}</p>
+        <p className="text-xs text-[#667085]">{desc?.length > 30 ? desc.slice(0, 30) + "..." : desc}</p>
       </div>
     )
   }
