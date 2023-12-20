@@ -64,9 +64,9 @@ export default function DashboardBanner({sitename}){
                   <CardDescription>You are in free but can be used for all basic uses.</CardDescription>
                 </div>
                 <Link to='/dashboard/settings/billing-plans' className="m-[0!important]">
-                  <Button variant='blue' className='btn-with-icon leading-5'>
+                  <Button className='btn-with-icon leading-5'>
                     <Zap viewBox="0 0 24 24" width='16' height='16'/>
-                    Manage Plan
+                    Upgrade
                   </Button>
                 </Link>
               </>
@@ -75,7 +75,7 @@ export default function DashboardBanner({sitename}){
               </>
             )}
           </CardHeader>
-          <CardContent className='text-desc flex items-center justify-end mt-6'>
+          <CardContent className='text-desc flex items-center justify-start mt-6'>
             {Number.isInteger(pendingpayments) && pendingpayments > 0 ? <Badge>Waiting for confirmation</Badge> : null}          
             </CardContent>
         </Card>
