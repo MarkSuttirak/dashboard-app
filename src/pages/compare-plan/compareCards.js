@@ -48,10 +48,10 @@ export default function CompareCards(){
         <div className='mt-6 flex flex-col gap-y-[18px]'>
           <div className='flex gap-x-3 items-center'>
             <Switch onCheckedChange={handlePerYear} />
-            <Badge variant='outline'>Yearly save - ฿ 1,500</Badge>
+            <Badge variant='outline' className='inter'>Yearly save - ฿ 1,500</Badge>
           </div>
           <div className='flex gap-x-2 items-center'>
-            <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px]">{perYear ? '฿ 7,500' : '฿ 750'}</h1>
+            <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px] inter">{perYear ? '฿ 7,500' : '฿ 750'}</h1>
             <div>
               <p className="main-desc">per</p>
               <p className="main-desc">{perYear ? 'year' : 'month'}</p>
