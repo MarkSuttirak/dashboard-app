@@ -134,8 +134,7 @@ function onError(e) {
                   className="form-input"
                   name="email"
                   type='text'
-                  onChange={form.handleChange}
-                  defaultValue={preloadedValues.email}
+                  value={preloadedValues.email}
                 />
                 {/* <Select className='form-input' name="email" onChange={form.handleChange} defaultValue={preloadedValues.email}>
                   <SelectTrigger className="w-full">

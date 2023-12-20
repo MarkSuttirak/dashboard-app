@@ -10,6 +10,7 @@ import { Badge } from "src/components/ui/badge";
 import { useMutation, useQuery } from "react-query";
 import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
+import { Skeleton } from "src/components/ui/skeleton";
 
 export default function DashboardBanner({sitename}){
   const navigate = useNavigate()
@@ -37,7 +38,11 @@ export default function DashboardBanner({sitename}){
           <CardHeader className='pb-2 flex flex-col justify-between'>
             <div>
               <CardTitle className='subheading font-medium'>Your WorkSpace</CardTitle>
-              <CardDescription className="domain-heading">{sitename}</CardDescription>
+              {sitename ? (
+                <CardDescription className="domain-heading">{sitename}</CardDescription>
+              ) : (
+                <Skeleton className='h-5 mt-2 w-1/2'/>
+              )}
             </div>
           </CardHeader>
           <CardContent>
@@ -63,7 +68,7 @@ export default function DashboardBanner({sitename}){
                   <CardTitle className='domain-heading'>ฟรี ตลอดชีพ</CardTitle>
                   <CardDescription>You are in free but can be used for all basic uses.</CardDescription>
                 </div>
-                <Link to='/dashboard/settings/billing-plans' className="m-[0!important]">
+                <Link to='/dashboard/settings/billing-plans' className="xl:m-[0!important] w-fit">
                   <Button className='btn-with-icon leading-5'>
                     <Zap viewBox="0 0 24 24" width='16' height='16'/>
                     Upgrade
@@ -71,13 +76,16 @@ export default function DashboardBanner({sitename}){
                 </Link>
               </>
             ) : (
-              <>
-              </>
+              <div className="flex flex-col gap-y-2 w-full">
+                <Skeleton className='h-5'/>
+                <Skeleton className='h-5'/>
+                <Skeleton className='h-5'/>
+              </div>
             )}
           </CardHeader>
           <CardContent className='text-desc flex items-center justify-start mt-6'>
-            {Number.isInteger(pendingpayments) && pendingpayments > 0 ? <Badge>Waiting for confirmation</Badge> : null}          
-            </CardContent>
+            {pendingpayments ? (<>{Number.isInteger(pendingpayments) && pendingpayments > 0 ? <Badge>Waiting for confirmation</Badge> : null}</>) : <Skeleton className='h-4 w-[200px]'/>}         
+          </CardContent>
         </Card>
       </div>
     </section>

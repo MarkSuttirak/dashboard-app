@@ -12,6 +12,7 @@ import { useQuery } from "react-query";
 import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { useParams } from "react-router"
+import { Skeleton } from "src/components/ui/skeleton";
 
 export default function PlanPayment(){
   const { id } = useParams()
@@ -89,11 +90,17 @@ export default function PlanPayment(){
       <section className="py-10 px-5">
         <h2 className="main-desc font-medium">Subscribe to Website Pro</h2>
         <div className="mt-3 mb-10 flex gap-x-[10px] items-center">
-          <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px] inter">฿ {total()}</h1>
-          <div>
-            <p className="main-desc">per</p>
-            <p className="main-desc">month</p>
-          </div>
+          {subtotal ? (
+            <>
+              <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px] inter">฿ {total()}</h1>
+              <div>
+                <p className="main-desc">per</p>
+                <p className="main-desc">month</p>
+              </div>
+            </>
+          ) : (
+            <Skeleton className='h-9 w-1/2 my-3'/>
+          )}
         </div>
         <Card className='p-0 shadow-none'>
           <CardHeader className='flex flex-row justify-between px-3 py-6 items-center'>
@@ -104,13 +111,14 @@ export default function PlanPayment(){
                 <CardDescription>Discount 10%</CardDescription>
               </div>
             </div>
-            <p className="subheading inter">฿ {subtotal.toLocaleString()}</p>
+            {subtotal ? <p className="subheading inter">฿ {subtotal.toLocaleString()}</p> : <Skeleton className='h-3 w-[100px]'/>}
           </CardHeader>
         </Card>
 
         <Separator className='my-6'/>
 
-        <table className="w-[calc(100%_-_74px)] relative left-[74px]">
+        {subtotal ? (
+          <table className="w-[calc(100%_-_74px)] relative left-[74px]">
           <thead>
             <tr className="text-left subheading">
               <th className="font-medium">Subtotal</th>
@@ -154,15 +162,28 @@ export default function PlanPayment(){
             </tr>
           </tbody>
         </table>
+        ) : (
+          <div  className="w-[calc(100%_-_74px)] relative left-[74px] flex flex-col gap-y-3">
+            <Skeleton className='h-4 w-full'/>
+            <Skeleton className='h-4 w-full'/>
+            <Skeleton className='h-4 w-full'/>
+          </div>
+        )}
 
         <Separator className='my-6'/>
 
-        <table className="w-[calc(100%_-_74px)] relative left-[74px]">
-          <tr className="text-left subheading">
-            <th className="font-bold">Total</th>
-            <th className="text-right font-bold inter">฿ {total()}</th>
-          </tr>
-        </table>
+        {subtotal ? (
+          <table className="w-[calc(100%_-_74px)] relative left-[74px]">
+            <tr className="text-left subheading">
+              <th className="font-bold">Total</th>
+              <th className="text-right font-bold inter">฿ {total()}</th>
+            </tr>
+          </table>
+        ) : (
+          <div  className="w-[calc(100%_-_74px)] relative left-[74px] flex flex-col gap-y-3">
+            <Skeleton className='h-4 w-full'/>
+          </div>
+        )}
       </section>
     </section>
   )

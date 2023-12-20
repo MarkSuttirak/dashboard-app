@@ -10,7 +10,7 @@ import { Icons } from "../ui/icons"
 import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { useMutation, useQuery } from "react-query";
-import Loading from "../ui/loading"
+import { Skeleton } from "../ui/skeleton"
 
 export default function SidebarShortcut(){
   const navigate = useNavigate()
@@ -41,7 +41,9 @@ export default function SidebarShortcut(){
             <span className="flex gap-x-2 items-center">
               <div className="flex flex-col text-left">
                 <h2 className="cal-sans text-[17px] font-semibold">Zaviago<span className="text-[13px]">.com</span></h2>
-                <p className="text-[11px] font-medium tracking-[-0.33px] text-[#5A5A5A] -mt-1">{sites?.site_list[0].name.length >= 20 ? sites?.site_list[0].name.slice(0,20) + '...' : sites?.site_list[0].name}</p>
+                <p className={`text-[11px] font-medium tracking-[-0.33px] text-[#5A5A5A] ${sites ? '-mt-1' : 'mt-0'}`}>
+                  {sites ? sites?.site_list[0].name.length >= 20 ? sites?.site_list[0].name.slice(0,20) + '...' : sites?.site_list[0].name : <Skeleton className='h-3 w-auto rounded-sm'/>}
+                </p>
               </div>
             </span>
             <ChevronsUpDown className="mr-2 shrink-0 opacity-50" viewBox="0 0 24 24" width='16' height='16' />

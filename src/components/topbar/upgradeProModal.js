@@ -98,7 +98,7 @@ export default function UpgradeProModal(){
           Upgrade
           <span className='flex items-center bg-black rounded-md text-white cal-sans text-[13px] font-semibold pl-[6px] pr-2 h-full'>
             <UpgradeProIcon />
-            <p className='ml-[3px] mt-[2px]'>Pro</p>
+            <p className='ml-[3px]'>Pro</p>
           </span>
         </div>
       </DialogTrigger>
