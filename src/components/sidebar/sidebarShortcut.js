@@ -40,7 +40,7 @@ export default function SidebarShortcut(){
           >
             <span className="flex gap-x-2 items-center">
               <div className="flex flex-col text-left">
-                <h2 className="cal-sans text-[17px] font-semibold">Zaviago<span className="text-[13px]">.com</span></h2>
+                <h2 className="cal-sans text-[17px] font-semibold">zaviago<span className="text-[13px]">.com</span></h2>
                 <p className={`text-[11px] font-medium tracking-[-0.33px] text-[#5A5A5A] ${sites ? '-mt-1' : 'mt-0'}`}>
                   {sites ? sites?.site_list[0].name.length >= 20 ? sites?.site_list[0].name.slice(0,20) + '...' : sites?.site_list[0].name : <Skeleton className='h-3 w-auto rounded-sm'/>}
                 </p>

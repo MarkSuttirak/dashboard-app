@@ -75,8 +75,8 @@ export default function NotificationsForm() {
             <div className="border rounded-md p-4 flex items-center justify-between">
               {/* <input type="radio" value="type" name="communication_emails" />  */}
               <div>
-                <h2 className='secondary-heading'>Communication emails</h2>
-                <p className="text-desc">Receive emails about your account activity.</p>
+                <h2 className='settings-heading'>Communication emails</h2>
+                <p className="main-desc">Receive emails about your account activity.</p>
               </div>
               <Switch name="communication_emails"/>
             </div>
@@ -84,8 +84,8 @@ export default function NotificationsForm() {
             <div className="border rounded-md p-4 flex items-center justify-between">
               {/* <input type="radio" value="type" name="marketing_emails" />  */}
               <div>
-                <h2 className='secondary-heading'>Marketing emails</h2>
-                <p className="text-desc">Receive emails for friend requests, follows, and more.</p>
+                <h2 className='settings-heading'>Marketing emails</h2>
+                <p className="main-desc">Receive emails for friend requests, follows, and more.</p>
               </div>
               <Switch name="marketing_emails"/>
             </div>
@@ -93,8 +93,8 @@ export default function NotificationsForm() {
             <div className="border rounded-md p-4 flex items-center justify-between">
               {/* <input type="radio" value="type" name="social_emails" />  */}
               <div>
-                <h2 className='secondary-heading'>Social emails</h2>
-                <p className="text-desc">Receive emails for friend requests, follows, and more.</p>
+                <h2 className='settings-heading'>Social emails</h2>
+                <p className="main-desc">Receive emails for friend requests, follows, and more.</p>
               </div>
               <Switch name="social_emails"/>
             </div>
@@ -102,8 +102,8 @@ export default function NotificationsForm() {
             <div className="border rounded-md p-4 flex items-center justify-between">
               {/* <input type="radio" value="type" name="security_emails" /> Security emails */}
               <div>
-                <h2 className='secondary-heading'>Security emails</h2>
-                <p className="text-desc">Receive emails about your account activity and security.</p>
+                <h2 className='settings-heading'>Security emails</h2>
+                <p className="main-desc">Receive emails about your account activity and security.</p>
               </div>
               <Switch name="security_emails"/>
             </div>
@@ -114,8 +114,8 @@ export default function NotificationsForm() {
           <Checkbox value='Paneer' name='mobile'/>
           {/* <input type="checkbox" name="mobile" value="Paneer" /> */}
           <div className="-mt-1">
-            <h2 className='secondary-heading'>Use different settings for my mobile devices</h2>
-            <p className="text-desc">You can manage your mobile notifications in the{" "}<Link href="/examples/forms">mobile settings</Link> page.</p>
+            <h2 className='settings-heading'>Use different settings for my mobile devices</h2>
+            <p className="main-desc">You can manage your mobile notifications in the{" "}<Link href="/examples/forms">mobile settings</Link> page.</p>
           </div>
         </div>
         <button type="submit" className="text-sm bg-primary text-[#FAFAFA] px-4 py-2 rounded-md">Update notifications</button>
