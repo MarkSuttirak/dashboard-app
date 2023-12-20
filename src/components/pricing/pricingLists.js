@@ -1,4 +1,5 @@
 import { Checkbox } from "src/components/ui/checkbox";
+import { useState } from 'react'
 
 export const bundleSelectList = {
   crm: [
@@ -28,41 +29,88 @@ export const bundleSelectList = {
   ],
 }
 
-export const marketLists = {
-  marketplaces: [
+export function MarketCheckbox({onChange}){
+  const [marketplaces, setMarketplaces] = useState([
     {
       value:'shopee',
-      label:'Shopee'
+      label:'Shopee',
+      checked:false,
     },
     {
       value:'lazada',
-      label:'Lazada'
+      label:'Lazada',
+      checked:false
     }
-  ],
-  socialMedia: [
+  ])
+  const [socialMedia, setSocialMedia] = useState([
     {
       value:'facebook',
-      label:'Facebook'
+      label:'Facebook',
+      checked:false
     },
     {
       value:'instagram',
-      label:'Instagram'
+      label:'Instagram',
+      checked:false
     },
     {
       value:'tiktok',
-      label:'TikTok'
+      label:'TikTok',
+      checked:false
     }
-  ]
-}
+  ])
 
-export function MarketCheckbox({title, list, checked}){
+ 
+
+  const editCheckboxMarketplace = (e) => {
+    setMarketplaces((market) => {
+      const newMarket = {...market[e] , checked : !market[e].checked}
+      const newList = market.map((ma , index) => 
+        {
+          if(index == e){
+            return newMarket
+          }else{
+            return ma
+          }
+        })
+        onChange(newList.filter(market => market.checked === true).length + socialMedia.filter(market => market.checked === true).length)
+      return newList
+    })
+  }
+
+  const editCheckboxSocialMedia = (e) => {
+    setSocialMedia((market) => {
+      const newMarket = {...market[e] , checked : !market[e].checked}
+      const newList = market.map((ma , index) => 
+        {
+          if(index == e){
+            return newMarket
+          }else{
+            return ma
+          }
+        })
+        onChange(marketplaces.filter(market => market.checked === true).length + newList.filter(market => market.checked === true).length)
+      return newList
+    })
+  }
+
   return (
     <>
-      <h3 className="main-desc mt-4 mb-[6px]">{title}</h3>
+      <h3 className="main-desc mt-4 mb-[6px]">Marketplace</h3>
       <div className="flex flex-col gap-y-[6px]">
-        {list.map(market => (
+        {marketplaces.map((market, index) => (
+          <div className="flex items-center gap-x-3" key={index}>
+            <Checkbox id={market.value} checked={market.checked} onCheckedChange={() => editCheckboxMarketplace(index)}/>
+            <label htmlFor={market.value} className="text-sm">{market.label}</label>
+          </div>
+        ))}
+      </div>
+
+      <h3 className="main-desc mt-4 mb-[6px]">Social Media</h3>
+      <div className="flex flex-col gap-y-[6px]">
+        {socialMedia.map((market, index) => (
           <div className="flex items-center gap-x-3">
-            <Checkbox id={market.value} checked={checked}/>
+            <Checkbox id={market.value} checked={market.checked} onCheckedChange={() => editCheckboxSocialMedia(index)}/>
             <label htmlFor={market.value} className="text-sm">{market.label}</label>
           </div>
         ))}

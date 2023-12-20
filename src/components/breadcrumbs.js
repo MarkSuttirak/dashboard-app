@@ -76,10 +76,7 @@ export default function Breadcrumbs(){
   return (
     <div className="flex items-center gap-x-2">
       <Link to='/'>
-        <div className="flex gap-x-[6px] items-center">
-          <ZaviagoIcon width='16' height='16'/>
-          <h2 className='subheading'>WorkSpace</h2>
-        </div>
+        <h2 className='subheading'>WorkSpace</h2>
       </Link>
       {breadcrumbList.map(p => (
         <>

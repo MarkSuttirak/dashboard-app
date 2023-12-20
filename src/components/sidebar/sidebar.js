@@ -152,7 +152,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
         </div>
 
         <ServiceModals />
-
+{/* 
         <Sheet>
           <SheetTrigger>
             <div className="nav-btns add">
@@ -179,7 +179,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
               </SheetDescription>
             </SheetHeader>
           </SheetContent>
-        </Sheet>
+        </Sheet> */}
       </nav>
     )
   }
@@ -269,8 +269,13 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
             </section> */}
 
             <section className="flex flex-col">
-              <h3 className="text-[#8A8A8A] text-sm font-medium p-4">Your sites</h3>
-              {yourSites.map((item) => (
+              <h3 className="text-[#8A8A8A] text-sm font-medium p-4">WorkSpace App</h3>
+              <Button variant='ghost' onClick={() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5`}>
+                {/* <Layout viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' /> */}
+                <Icons.erpApp width='20' height='20'/>
+                Commerce
+              </Button>
+              {workspaceApp.map((item) => (
                 <Link to={item.href}>
                   <Button variant='ghost' onClick={handleMenuClick} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.href === active ? 'bg-zinc-100' : ''}`}>
                     {item.icon}
@@ -281,13 +286,8 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
             </section>
 
             <section className="flex flex-col">
-              <h3 className="text-[#8A8A8A] text-sm font-medium p-4">WorkSpace App</h3>
-              <Button variant='ghost' onClick={() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5`}>
-                {/* <Layout viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' /> */}
-                <Icons.erpApp width='20' height='20'/>
-                Commerce
-              </Button>
-              {workspaceApp.map((item) => (
+              <h3 className="text-[#8A8A8A] text-sm font-medium p-4">Your sites</h3>
+              {yourSites.map((item) => (
                 <Link to={item.href}>
                   <Button variant='ghost' onClick={handleMenuClick} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.href === active ? 'bg-zinc-100' : ''}`}>
                     {item.icon}

@@ -79,7 +79,7 @@ export default function ComparePlan(){
         </div>
         <div className="w-1/3">
           <div className='flex gap-x-2 items-center'>
-            <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px]">฿ 750</h1>
+            <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px] inter">฿ 750</h1>
             <div>
               <p className="main-desc">per</p>
               <p className="main-desc">month</p>

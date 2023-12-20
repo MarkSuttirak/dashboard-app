@@ -59,6 +59,12 @@ export default function Packages(){
 
   const selectThreeMenus = packageTypeCRM === 'Starter' && packageTypeMarketConnect === 'Starter' && packageTypeOnlineStore === 'Starter'
 
+  const clearThreeMenus = () => {
+    setPackageTypeCRM(null);
+    setPackageTypeMarketConnect(null);
+    setPackageTypeOnlineStore(null)
+  }
+
   const calculateTotalPrice = () => {
     const prices = {
       workspace: isStarter ? 750 : 0,
@@ -117,11 +123,11 @@ export default function Packages(){
   const addonFilter = addonLists.filter(addon => addon.title === addons)[0]
 
   const packageInfo = [
-    {condition: packageTypeCRM, filterInfo: crmFilter, titlePrefix: 'CRM', onClose: () => setPackageTypeCRM(), desc:packageDesc.customerContact},
-    {condition: packageTypeMarketConnect, filterInfo: marketConnectFilter, titlePrefix: 'Market Connect', onClose: () => setPackageTypeMarketConnect(), desc:packageDesc.paidUsers},
+    {condition: !selectThreeMenus && packageTypeCRM, filterInfo: crmFilter, titlePrefix: 'CRM', onClose: () => setPackageTypeCRM(), desc:packageDesc.customerContact},
+    {condition: !selectThreeMenus && packageTypeMarketConnect, filterInfo: marketConnectFilter, titlePrefix: 'Market Connect', onClose: () => setPackageTypeMarketConnect(), desc:packageDesc.paidUsers},
+    {condition: !selectThreeMenus && packageTypeOnlineStore, filterInfo: onlineStoreFilter, titlePrefix: 'Online Store', onClose: () => setPackageTypeOnlineStore(), desc:packageDesc.onlineStore},
     {condition: packageTypeLineCRM, filterInfo: lineCRMFilter, titlePrefix: 'Line CRM', onClose: () => setPackageTypeLineCRM(), desc:packageDesc.customField},
     {condition: packageTypeRewardful, filterInfo: rewardfulFilter, titlePrefix: 'Rewardful', onClose: () => setPackageTypeRewardful(), desc:packageDesc.rewardfulDesc},
-    {condition: packageTypeOnlineStore, filterInfo: onlineStoreFilter, titlePrefix: 'Online Store', onClose: () => setPackageTypeOnlineStore(), desc:packageDesc.onlineStore},
   ];
 
   const recurringFee = [
@@ -157,7 +163,17 @@ export default function Packages(){
 
   const handleCheckChannel = () => {
     setNeedSocialMedia(!needSocialMedia);
-    setPackageTypeMarketConnect('Professional')
+    if (packageTypeMarketConnect === 'Starter'){
+      setPackageTypeMarketConnect('Professional')
+    }
+  }
+
+  const handleChangeAPIIntegration = (e) => {
+    if (e >= 3 || packageTypeMarketConnect === 'Enterprise'){
+      setPackageTypeMarketConnect('Enterprise')
+    } else if (e >= 1){
+      setPackageTypeMarketConnect('Professional')
+    }
   }
 
   useEffect(() => {
@@ -186,7 +202,7 @@ export default function Packages(){
             <CardDescription>Manage all your business process</CardDescription>
           </CardHeader>
           <CardContent className="flex gap-9 flex-row items-center p-0">
-            <BundleSelect title="Starter" price='฿750/month' width='50%' checked={isStarter} onCheckedChange={() => setIsStarter(!isStarter)}/>
+            <BundleSelect title="Starter" price='฿750/month' width='50%' checked={isStarter}/>
             <div>
               <h2 className="text-xl font-semibold">Let's start with this.</h2>
               <p className="main-desc">Manage all your business process</p>
@@ -235,8 +251,7 @@ export default function Packages(){
                   {needSocialMedia ? (
                     <div className="mt-5">
                       <h2 className="subheading font-medium">How many market channels do I need?</h2>
-                      <MarketCheckbox title='Marketplace' list={marketLists.marketplaces}/>
-                      <MarketCheckbox title='Social Media' list={marketLists.socialMedia}/>
+                      <MarketCheckbox onChange={handleChangeAPIIntegration}/>
                     </div>
                   ) : null}
                 </div>
@@ -300,8 +315,9 @@ export default function Packages(){
           }/>
       </main>
 
-      <PricingResult estimateButton={<PricingEstimate recurringFee={recurringFee} oneTimeFee={oneTimeFee} totalCost={totalPriceMonthly} estimatedCost={estimatedPrice} isAnnual={isAnnual}/>} setIsAnnual={setIsAnnual} isAnnual={isAnnual} totalCost={totalPriceMonthly} estimated={estimatedPrice} commitments={
-        <>{isStarter ? (<ProductSelection title={`Zaviago Workspace`} price={`฿750/month`} onClose={() => setIsStarter(false)}/>) : null}
+      <PricingResult estimateButton={<PricingEstimate recurringFee={recurringFee} oneTimeFee={oneTimeFee.filter(fee => fee.title !== null)} totalCost={totalPriceMonthly} estimatedCost={estimatedPrice} isAnnual={isAnnual}/>} setIsAnnual={setIsAnnual} isAnnual={isAnnual} totalCost={totalPriceMonthly} estimated={estimatedPrice} commitments={
+        <>{isStarter ? (<ProductSelection title={`Zaviago Workspace`} price={`฿750/month`} />) : null}
+          {selectThreeMenus ? (<ProductSelection title={<>CRM Starter<br/>MarketConnect Starter<br/>Online Store Starter</>} price={`฿750/month in total`} onClose={clearThreeMenus}/>) : null}
           {packageInfo.map(info => (
             <>{info.condition ? (
               <>{info.filterInfo.map(item => (
@@ -309,7 +325,7 @@ export default function Packages(){
               ))}</>
             ) : null}</>
           ))}
-          {needSMSOTP ? (<ProductSelection title={`SMS OTP ${packageTypeLineCRM}`} price={`฿${smsOTPPrice.toLocaleString()}`} onClose={() => setNeedSMSOTP(false)} desc={packageDesc.smsOTP}/>) : null}
+          {packageTypeLineCRM && needSMSOTP ? (<ProductSelection title={`SMS OTP ${packageTypeLineCRM}`} price={`฿${smsOTPPrice.toLocaleString()}`} onClose={() => setNeedSMSOTP(false)} desc={packageDesc.smsOTP}/>) : null}
           {addons ? (<ProductSelection title={`${addons} Addon`} price={addonFilter.price} onClose={() => setAddons()}/>) : null}
         </>
       }/>
