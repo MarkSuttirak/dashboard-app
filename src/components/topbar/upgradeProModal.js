@@ -10,6 +10,7 @@ import { Switch } from '../ui/switch'
 import { Badge } from '../ui/badge'
 import DrawLine from "../drawLine";
 import { Heart, PartyPopper, ThumbsUp, UserCircle, UserPlus } from 'lucide-react'
+import { Icons } from '../ui/icons'
 
 export default function UpgradeProModal(){
   const [openModal, setOpenModal] = useState(false)
@@ -65,11 +66,14 @@ export default function UpgradeProModal(){
 
   return (
     <Dialog open={openModal} onOpenChange={handleCloseModal}>
-      <DialogTrigger>
-        <Button variant='ghost' className='text-[#006AFF] hover:text-[#006AFF] hover:bg-transparent gap-x-2 text-xs flex items-center font-normal'>
-          <LightningBoltIcon color='#006AFF'/>
-          Upgrade to Pro
-        </Button>
+      <DialogTrigger className='mr-[19px]'>
+        <div className='text-xs flex gap-x-[5px] items-center font-normal bg-[#F4F4F5] pl-2 py-1 pr-1 rounded-md'>
+          Upgrade
+          <span className='flex items-center bg-black rounded-md text-white cal-sans text-[13px] font-semibold pr-2'>
+            <Icons.zaviagoApp className='h-6 w-6'/>
+            <p className='mt-[2px]'>Pro</p>
+          </span>
+        </div>
       </DialogTrigger>
       <DialogContent className='p-0 border-0 max-w-4xl'>
         <DialogHeader className='flex-row'>

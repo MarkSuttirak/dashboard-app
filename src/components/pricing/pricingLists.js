@@ -29,7 +29,7 @@ export const bundleSelectList = {
   ],
 }
 
-export function MarketCheckbox(){
+export function MarketCheckbox({onChange}){
   const [marketplaces, setMarketplaces] = useState([
     {
       value:'shopee',
@@ -60,7 +60,9 @@ export function MarketCheckbox(){
     }
   ])
 
-  const editCheckbox = (e) => {
+ 
+
+  const editCheckboxMarketplace = (e) => {
     setMarketplaces((market) => {
       const newMarket = {...market[e] , checked : !market[e].checked}
       const newList = market.map((ma , index) => 
@@ -71,6 +73,23 @@ export function MarketCheckbox(){
             return ma
           }
         })
+        onChange(newList.filter(market => market.checked === true).length + socialMedia.filter(market => market.checked === true).length)
+      return newList
+    })
+  }
+
+  const editCheckboxSocialMedia = (e) => {
+    setSocialMedia((market) => {
+      const newMarket = {...market[e] , checked : !market[e].checked}
+      const newList = market.map((ma , index) => 
+        {
+          if(index == e){
+            return newMarket
+          }else{
+            return ma
+          }
+        })
+        onChange(marketplaces.filter(market => market.checked === true).length + newList.filter(market => market.checked === true).length)
       return newList
     })
   }
@@ -81,7 +100,7 @@ export function MarketCheckbox(){
       <div className="flex flex-col gap-y-[6px]">
         {marketplaces.map((market, index) => (
           <div className="flex items-center gap-x-3" key={index}>
-            <Checkbox id={market.value} checked={market.checked} onCheckedChange={() => editCheckbox(index)}/>
+            <Checkbox id={market.value} checked={market.checked} onCheckedChange={() => editCheckboxMarketplace(index)}/>
             <label htmlFor={market.value} className="text-sm">{market.label}</label>
           </div>
         ))}
@@ -91,7 +110,7 @@ export function MarketCheckbox(){
       <div className="flex flex-col gap-y-[6px]">
         {socialMedia.map((market, index) => (
           <div className="flex items-center gap-x-3">
-            <Checkbox id={market.value} checked={market.checked} onCheckedChange={() => socialMedia[index].checked = true}/>
+            <Checkbox id={market.value} checked={market.checked} onCheckedChange={() => editCheckboxSocialMedia(index)}/>
             <label htmlFor={market.value} className="text-sm">{market.label}</label>
           </div>
         ))}

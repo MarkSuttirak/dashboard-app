@@ -157,7 +157,17 @@ export default function Packages(){
 
   const handleCheckChannel = () => {
     setNeedSocialMedia(!needSocialMedia);
-    setPackageTypeMarketConnect('Professional')
+    if (packageTypeMarketConnect === 'Starter'){
+      setPackageTypeMarketConnect('Professional')
+    }
+  }
+
+  const handleChangeAPIIntegration = (e) => {
+    if (e >= 3 || packageTypeMarketConnect === 'Enterprise'){
+      setPackageTypeMarketConnect('Enterprise')
+    } else if (e >= 1){
+      setPackageTypeMarketConnect('Professional')
+    }
   }
 
   useEffect(() => {
@@ -235,7 +245,7 @@ export default function Packages(){
                   {needSocialMedia ? (
                     <div className="mt-5">
                       <h2 className="subheading font-medium">How many market channels do I need?</h2>
-                      <MarketCheckbox />
+                      <MarketCheckbox onChange={handleChangeAPIIntegration}/>
                     </div>
                   ) : null}
                 </div>
