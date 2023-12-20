@@ -317,7 +317,7 @@ export default function Packages(){
 
       <PricingResult estimateButton={<PricingEstimate recurringFee={recurringFee} oneTimeFee={oneTimeFee.filter(fee => fee.title !== null)} totalCost={totalPriceMonthly} estimatedCost={estimatedPrice} isAnnual={isAnnual}/>} setIsAnnual={setIsAnnual} isAnnual={isAnnual} totalCost={totalPriceMonthly} estimated={estimatedPrice} commitments={
         <>{isStarter ? (<ProductSelection title={`Zaviago Workspace`} price={`฿750/month`} />) : null}
-          {selectThreeMenus ? (<ProductSelection title={<>CRM Starter<br/>MarketConnect Starter<br/>Online Store Starter</>} price={`฿750/month`} onClose={clearThreeMenus}/>) : null}
+          {selectThreeMenus ? (<ProductSelection title={<>CRM Starter<br/>MarketConnect Starter<br/>Online Store Starter</>} price={`฿750/month in total`} onClose={clearThreeMenus}/>) : null}
           {packageInfo.map(info => (
             <>{info.condition ? (
               <>{info.filterInfo.map(item => (

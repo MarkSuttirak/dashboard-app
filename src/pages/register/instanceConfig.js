@@ -321,7 +321,7 @@ export const SiteDomainForm = ({
     })
 
     return (
-        <form className="m-auto w-full max-w-sm w-96 min-h-[600px] h-auto" onSubmit={formik.handleSubmit}>
+        <form className="register-formbox" onSubmit={formik.handleSubmit}>
             <Steps total={5} step={3} />
             <div className={`anim-up`}>
                 <h2 className="main-heading mt-8">What would you like to call your site?</h2>
@@ -444,7 +444,7 @@ export const AppsSelectionForm = ({
     })
 
     return (
-        <form className="m-auto w-full max-w-sm w-96 min-h-[600px] h-auto" onSubmit={formik.handleSubmit}>
+        <form className="register-formbox" onSubmit={formik.handleSubmit}>
             <Steps total={5} step={4} />
             <div className="anim-up">
                 <h2 className="main-heading mt-8">What would you like to add on your site?</h2>
@@ -564,7 +564,7 @@ export const ThemeSelectionForm = ({
     })
 
     return (
-        <form className="m-auto w-full max-w-sm w-96 h-[600px]" onSubmit={formik.handleSubmit}>
+        <form className="register-formbox" onSubmit={formik.handleSubmit}>
             <Steps total={6} step={5} />
             <div className="anim-up">
                 <h2 className="main-title mt-8">Select a designed theme</h2>

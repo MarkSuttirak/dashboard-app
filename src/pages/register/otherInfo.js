@@ -152,7 +152,7 @@ export const UserInfoForm = ({
 
     return (
         <form
-            className="m-auto w-full max-w-sm w-96 min-h-[600px] h-auto"
+            className="register-formbox"
             onSubmit={formik.handleSubmit}
         >
             <Steps total={5} step={current} />
@@ -336,7 +336,7 @@ export const BusinessInfoForm = ({
     })
 
     return (
-        <form className="m-auto w-full max-w-sm w-96 h-[600px]" onSubmit={formik.handleSubmit}>
+        <form className="register-formbox" onSubmit={formik.handleSubmit}>
             <Steps total={5} step={current} />
             <div className="anim-up">
                 <h2 className="main-heading mt-8">Select your type of business</h2>
@@ -443,7 +443,7 @@ export const TeamInfoForm = ({
 
     return (
         <form
-            className="m-auto w-full max-w-sm w-96 min-h-[600px] h-auto"
+            className="register-formbox"
             onSubmit={formik.handleSubmit}
         >
             <Steps total={5} step={current} />
