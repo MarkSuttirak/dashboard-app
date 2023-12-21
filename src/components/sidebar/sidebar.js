@@ -40,9 +40,13 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
     setActive(menu);
   }
 
-  const { data: sites } = useQuery('sites', site.list, {enabled: false});
+  const { data: sites } = useQuery('sites', site.list, {
+    enabled: !!user,
+  });
 
- 
+  const { data: siteOverview } = useQuery(['site', `${sites?.site_list[0].name}`], () => site.overview(sites?.site_list[0].name), {
+    enabled: !!sites?.site_list.length
+  });
 
   const { mutate: loginAsAdmin } = useMutation('loginAsAdmin', ({ name, reason }) => site.loginAsAdmin(name, reason), {
     onSuccess: (res) => {
