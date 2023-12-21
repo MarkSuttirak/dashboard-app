@@ -34,7 +34,6 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
         const newPercent = prevPercent + 5;
         return newPercent;
       });
-
       if (isInstalled) {
         setInstallStep(2);
         clearInterval(intervalId);
@@ -98,7 +97,7 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
             </section>
           </DialogHeader>
           <DialogFooter className='p-6 pt-0'>
-            <Button className='btn-with-icon w-full'>
+            <Button className='btn-with-icon w-full' onClick={window.location.reload()}>
               <BadgeCheck className="w-4 h-4"/>
               Open
             </Button>

@@ -31,10 +31,7 @@ export default function PaymentInfo(){
   });
 
 
-
-
-
-  const checkout_info = useQuery('checkout_info', () => site.get_app_plans(app), {enabled: false});
+  const checkout_info = useQuery('checkout_info', () => site.get_app_plans(app), {enabled: !!user});
 
 
   useEffect(() => {
