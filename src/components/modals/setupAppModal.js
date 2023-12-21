@@ -17,27 +17,32 @@ import { Link } from "react-router-dom"
 export default function SetupAppModal({appToInstall, appImage, appPlan}){
   const [open, setOpen] = useState(false)
   const [installStep, setInstallStep] = useState(0)
-  const [installingAppPercent, setInstallingAppPercent] = useState(50);
+  const [installingAppPercent, setInstallingAppPercent] = useState(0);
   const { user, auth, logout } = useUser();
+  
   const sites = useQuery('sites', () => site.list(), {enabled: false});
 
-  const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.data.site_list[0].name), {enabled: false});  
+  const installedApps = useQuery('installed_apps_main', () => site.installed_apps(sites.data.site_list[0].name), {enabled: false});  
 
 
   const installingApp = () => {
-    // const intervalId = setInterval(async () => {
-    //   await installedApps.refetch();
-    //   const isInstalled = installedApps.data?.some(installedApp => installedApp.title === appToInstall);
-  
-    //   if (isInstalled) {
-    //     setInstallStep(2);
-    //     clearInterval(intervalId);
-    //   }
-    // }, 5000);
+    const intervalId = setInterval(async () => {
+      await installedApps.refetch();
+      const isInstalled = installedApps.data?.some(installedApp => installedApp.title === appToInstall);
+
+      setInstallingAppPercent(prevPercent => {
+        const newPercent = prevPercent + 10;
+        return newPercent;
+      });
+
+      if (isInstalled) {
+        setInstallStep(2);
+        clearInterval(intervalId);
+      }
+    }, 5000);
   };
 
-
-  const { siteOverviewQuery } = useQuery(
+  const { data: siteOverviewQuery , refetch: refreshsiteOverviewQuery} = useQuery(
     ['apptoinstall'],
     () => site.install_app(sites.data.site_list[0].name, appToInstall, appPlan.name),
     {
@@ -53,7 +58,7 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
 
 
   const installThisApp = () => {
-    //siteOverviewQuery.refetch();
+    refreshsiteOverviewQuery();
     setOpen(true);
     setInstallStep(1)
    // installingApp()
