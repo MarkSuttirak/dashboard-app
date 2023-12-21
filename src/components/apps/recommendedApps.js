@@ -12,7 +12,7 @@ export default function RecommendedApps(){
   const { user, auth, logout } = useUser();
 
   const { data: sites } = useQuery('sites', site.list, {
-    enabled: !!user,
+    enabled: false
   });
 
   const benchApps = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), {enabled: false});

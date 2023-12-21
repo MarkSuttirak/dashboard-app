@@ -20,25 +20,33 @@ export default function SingleApp(){
   const [addAppStatus, setAddAppStatus] = useState('')
 
   const { user, auth, logout } = useUser();
-  const { data: sites } = useQuery('sites', site.list, {
-    enabled: !!user,
-  });
 
-  const benchApps = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), {enabled: false});
+
+  const { data: sites, refetch: refreshSite } = useQuery('sites', site.list, {enabled: false});
+  const { data: benchApps, refetch: refetchBenchApps } = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), { enabled: false });
   const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.site_list[0].name), {enabled: false});  
-  const appList = benchApps.data || [];
+  const { data: siteOverview, refetch: refetchsiteOverview } = useQuery(['siteOverview'], () => site.overview(sites?.site_list[0].name), {enabled: false});
+
 
   useEffect(() => {
-    if (user && sites?.site_list[0]?.name && !benchApps.data) {
-      benchApps.refetch();
-      installedApps.refetch();
-    }
-  }, [user, sites,benchApps, installedApps]);
+    const fetchData = async () => {
+      if (!sites) {
+        await refreshSite();
+      }
+      if (!benchApps) {
+        await refetchBenchApps();
+      }
+      if(!siteOverview){
+        await refetchsiteOverview();
+      }
+    };
+  
+    fetchData();
+  }, [user, sites,benchApps, installedApps,,refreshSite,refetchBenchApps,refetchsiteOverview]);
 
-  const { data: siteOverview } = useQuery(['site', `${sites?.site_list[0].name}`], () => site.overview(sites?.site_list[0].name), {
-    enabled: !!sites?.site_list.length
-  });
-  const webplan = siteOverview?.plan?.current_plan;
+  const appList = benchApps || [];
+  
+  const webplan = [];
 
   const installApp = () => {
     setAddAppStatus('installing')
@@ -208,6 +216,8 @@ export default function SingleApp(){
 
   return (
     <div className="dashboard-container">
+
+
       {appList?.length > 0 ? (
         <>
           <CardData data={appList}/>

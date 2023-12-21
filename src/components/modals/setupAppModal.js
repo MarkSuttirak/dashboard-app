@@ -25,19 +25,19 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
 
 
   const installingApp = () => {
-    const intervalId = setInterval(async () => {
-      await installedApps.refetch();
-      const isInstalled = installedApps.data?.some(installedApp => installedApp.title === appToInstall);
+    // const intervalId = setInterval(async () => {
+    //   await installedApps.refetch();
+    //   const isInstalled = installedApps.data?.some(installedApp => installedApp.title === appToInstall);
   
-      if (isInstalled) {
-        setInstallStep(2);
-        clearInterval(intervalId);
-      }
-    }, 5000);
+    //   if (isInstalled) {
+    //     setInstallStep(2);
+    //     clearInterval(intervalId);
+    //   }
+    // }, 5000);
   };
 
 
-  const siteOverviewQuery = useQuery(
+  const { siteOverviewQuery } = useQuery(
     ['apptoinstall'],
     () => site.install_app(sites.data.site_list[0].name, appToInstall, appPlan.name),
     {
@@ -53,14 +53,14 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
 
 
   const installThisApp = () => {
-    siteOverviewQuery.refetch();
+    //siteOverviewQuery.refetch();
     setOpen(true);
     setInstallStep(1)
    // installingApp()
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={setOpen} onClose={() => null}>
       <DialogTrigger>
         <Button className='btn-with-icon'>
           <PlusCircle className="h-4 w-4"/>

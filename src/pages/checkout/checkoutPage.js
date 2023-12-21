@@ -13,7 +13,7 @@ export default function CheckoutPage(){
   const [discount, setDiscount] = useState(0)
   const { user, auth, logout } = useUser();
   const { data: sites } = useQuery('sites', site.list, {
-    enabled: !!user,
+    enabled: false
   });
 
   const checkout_info = useQuery('checkout_info', () => site.get_web_plans(sites?.site_list[0]?.name), {enabled: false});

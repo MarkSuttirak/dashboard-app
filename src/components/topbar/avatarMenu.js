@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 export default function AvatarMenu(){
   const { user, auth, logout } = useUser();
   const { data: sites } = useQuery('sites', site.list, {
-    enabled: !!user,
+    enabled: false
   });
 
   const navigate = useNavigate()
