@@ -184,10 +184,9 @@ export default function SingleApp(){
 
   return (
     <div className="dashboard-container">
-      {appList ? (
+      {appList?.length > 0 ? (
         <>
           <CardData data={appList}/>
-
           <section className="mt-[52px]">
             <h2 className="secondary-heading">Recommended for You</h2>
             <RecommendedApps />

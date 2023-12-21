@@ -14,7 +14,7 @@ export default function CheckoutInfo({paymentConfirm, setPaymentConfirm, totalPr
   const { app } = useParams()
   const [makePayment, setMakePayment] = useState(false)
   const [couponExplanation, setCouponExplanation] = useState('Discount 10%');
-  const [verifiedPayment, setVerifiedPayment] = useState(true)
+  const [verifiedPayment, setVerifiedPayment] = useState(false)
 
   return (
     <section className="w-full h-screen p-6 md:p-[60px]" style={{boxShadow:"-20px 0px 30px -4px rgba(0, 0, 0, 0.04)"}}>

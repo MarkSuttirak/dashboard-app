@@ -3,6 +3,7 @@ import { Button } from '../ui/button'
 import { LightningBoltIcon } from '@radix-ui/react-icons'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import SetupBusinessImg from '../icon-menus/SetupBusinessImg'
 
 export default function SidebarSetupBusiness(){
   const [degree, setDegree] = useState(0);
@@ -28,7 +29,7 @@ export default function SidebarSetupBusiness(){
     <div style={borderStyle}>
       <div>
         <h2 className='text-[13px] leading-4 tracking-[-0.52px] font-medium text-[#18181B] text-center'>Enjoy premium growing library of template and more</h2>
-        <img src={enjoyPremium} className='m-auto'/>
+        <SetupBusinessImg className='m-auto'/>
         <Link to='/payment/plan/pro'>
           <Button className='btn-with-icon w-full'>
             <LightningBoltIcon />

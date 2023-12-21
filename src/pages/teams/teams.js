@@ -14,6 +14,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "s
 import { useMutation, useQuery } from "react-query";
 import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
+import { Skeleton } from "src/components/ui/skeleton";
 
 const sidebarNavItems = [
   {
@@ -96,11 +97,14 @@ export default function Teams(){
             <h2 className="settings-heading">Manage Members</h2>
             <p className="main-desc">You can invite team members and control their positions.</p>
 
-            <div className="flex w-full items-center space-x-2 mt-6 mb-[10px]">
-              <Input type="text" placeholder="Email" value={'https://' + sites?.site_list[0].name} ref={emailRef}/>
-              <Button variant='secondary' onClick={copyLink}>Copy Link</Button>
-              <Toaster />
-            </div>
+            {sites ? (
+              <div className="flex w-full items-center space-x-2 mt-6 mb-[10px]">
+                <Input type="text" placeholder="Email" value={'https://' + sites?.site_list[0].name} ref={emailRef}/>
+                <Button variant='secondary' onClick={copyLink}>Copy Link</Button>
+              </div>
+            ) : <Skeleton className='h-9 w-full mt-6 mb-[10px]'/>}
+
+            <Toaster />
 
             <p className="main-desc">
               Your invitation link will expire in {expireAfter[selected]}.{" "}

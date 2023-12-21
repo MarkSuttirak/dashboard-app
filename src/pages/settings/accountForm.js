@@ -1,6 +1,7 @@
 import React, { useState,useEffect  } from 'react';
 import { useUser } from "../../hooks/useUser";
 import { EditProfileForm } from '../../components/editProfileForm'
+import Loading from 'src/components/ui/loading';
 
 export default function AccountForm() {
   const { user } = useUser();
@@ -13,5 +14,5 @@ export default function AccountForm() {
   },[] )
   fetchData()
  
-  return userData ? <EditProfileForm preloadedValues={userData}/> : <div>Loading...</div>
+  return userData ? <EditProfileForm preloadedValues={userData}/> : <Loading />
 }

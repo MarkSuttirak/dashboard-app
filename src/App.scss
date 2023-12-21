@@ -12,9 +12,8 @@ $right-sidebar-width: 256px;
 $mobile-header-size: 60px;
 $mobile-footer-size: 60px;
 
-html {
-  scroll-behavior: smooth;
-}
+html{scroll-behavior:smooth}
+::-webkit-scrollbar{display:none}
 
 @mixin check-sidebar($active: true){
   @if $active {
@@ -102,25 +101,11 @@ body {
   font-family:'Inter', 'Eventpop', sans-serif;
 }
 
-.bg-gradient {
-  background: linear-gradient(50deg, #FFF 78.99%, #D1B5FF 271.14%);
-}
-
-.inter {
-  font-family:'Inter'
-}
-
-.eventpop {
-  font-family:'Eventpop', sans-serif
-}
-
-.cal-sans {
-  font-family:'Cal Sans', sans-serif
-}
-
-.sukhumvit {
-  font-family:'Sukhumvit Set', sans-serif
-}
+.bg-gradient{background: linear-gradient(50deg, #FFF 78.99%, #D1B5FF 271.14%)}
+.inter{font-family:'Inter'}
+.eventpop{font-family:'Eventpop', sans-serif}
+.cal-sans{font-family:'Cal Sans', sans-serif}
+.sukhumvit{font-family:'Sukhumvit Set', sans-serif}
 
 .see-more {
   opacity:0;
@@ -192,25 +177,6 @@ body {
   background-color:white;
   transition:background-color .1s;
 }
-
-::-webkit-scrollbar {
-  display:none
-}
-
-// ::-webkit-scrollbar {
-//   width: 10px;
-//   height: 10px;
-// }
-
-// ::-webkit-scrollbar-track {
-//   background: white
-// }
-
-// ::-webkit-scrollbar-thumb {
-//   background:#888;
-//   border-radius:99px;
-//   &:hover {background:#555;}
-// }
 
 .form-input {
   border-radius:6px;
@@ -340,11 +306,11 @@ body {
 
 .chevron-btn {
   position:absolute;
-  top:27px;
   right:0.75rem;
   cursor:pointer;
   opacity:0;
   transition:opacity 400ms;
+  margin-top:4px;
 }
 
 #sidebar {

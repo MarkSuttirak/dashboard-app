@@ -47,9 +47,9 @@ export default function AllTeams(){
     )
   }
   return (
-    <>
+    <div className="mt-6">
       {auth ? (
-        <div>
+        <>
           <div>
             <h1 className="subheading font-medium my-6">Current team</h1>
             <div className="flex flex-col gap-y-6 mt-[10px]">
@@ -64,8 +64,8 @@ export default function AllTeams(){
               </DataList>
             </div>
           </div>
-        </div>
+        </>
       ) : <Loading />}
-    </>
+    </div>
   )
 }
