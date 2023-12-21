@@ -17,7 +17,7 @@ export default function UpgradeAppModal({plans}){
       </DialogTrigger>
       <DialogContent className='min-w-[600px]'>
         <DialogHeader className='secondary-heading'>Select plan</DialogHeader>
-        <section className="flex gap-x-4">
+        <section className="grid grid-cols-2 gap-4">
 
 
         {Array.isArray(plans) && plans.length > 0 && (
