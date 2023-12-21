@@ -54,6 +54,9 @@ export default function SingleApp(){
           const isInstalled = installedApps.data?.some(installedApp => installedApp.title === item.title);
           const app = item.addional_info;
           const plans = item.plans;
+          const HaveFree = plans?.filter(installedApp => installedApp.is_free === 1);
+
+
           const developerInfo = [
             {type:app.website, icon:<Globe viewBox="0 0 24 24" width='16' height='16'/>, buttonText:'Visit our Website'},
             {type:app.custom_app_demo, icon:<Smile viewBox="0 0 24 24" width='16' height='16'/>, buttonText:'Check App Demo'},
@@ -78,6 +81,24 @@ export default function SingleApp(){
                   <p className="text-sm mt-1">{item.status}</p>
                 </div>
               </div>
+
+
+              {HaveFree && HaveFree.length > 0 && !isInstalled ? (
+                <Button className='btn-with-icon'>
+                  <SetupAppModal appToInstall={item.name} appPlan={HaveFree[0]}  appImage={<img src={site.backend_url() + item.image} width='52' height='52' />} />
+                </Button>
+              ) : (
+                <Button className='btn-with-icon'>
+                  <OpenInNewWindowIcon />Purchase
+                </Button>
+              )}
+
+
+
+
+
+
+{/* 
               {isInstalled ? (
                 <Button className='btn-with-icon' disabled>
                   <OpenInNewWindowIcon />Installed
@@ -90,7 +111,10 @@ export default function SingleApp(){
                 <SetupAppModal appToInstall={item.name} appImage={<img src={site.backend_url()+item.image} width='52' height='52'/>}/>
               ) : (
                 <UpgradeAppModal />
-              )}
+              )} */}
+
+
+
             </section>
 
             <section className="flex gap-x-6 mt-[55px]">

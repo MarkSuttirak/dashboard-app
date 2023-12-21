@@ -6,21 +6,57 @@ import installAppBg from 'src/img/install-app-bg.png'
 import { Icons } from "src/components/ui/icons"
 import { Progress } from "src/components/ui/progress"
 
-export default function SetupAppModal({appToInstall, appImage}){
+
+import { useQuery } from "react-query";
+import { site } from "../../client/api";
+import { useUser } from "../../hooks/useUser";
+import { Link } from "react-router-dom"
+
+
+
+export default function SetupAppModal({appToInstall, appImage, appPlan}){
   const [open, setOpen] = useState(false)
   const [installStep, setInstallStep] = useState(0)
   const [installingAppPercent, setInstallingAppPercent] = useState(50);
+  const { user, auth, logout } = useUser();
+  const sites = useQuery('sites', () => site.list(), {enabled: false});
+
+  const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.data.site_list[0].name), {enabled: false});  
+
 
   const installingApp = () => {
-    setTimeout(() => {
-      setInstallStep(2)
-    }, 3000)
-  }
+    const intervalId = setInterval(async () => {
+      await installedApps.refetch();
+      const isInstalled = installedApps.data?.some(installedApp => installedApp.title === appToInstall);
+  
+      if (isInstalled) {
+        setInstallStep(2);
+        clearInterval(intervalId);
+      }
+    }, 5000);
+  };
+
+
+  const siteOverviewQuery = useQuery(
+    ['apptoinstall'],
+    () => site.install_app(sites.data.site_list[0].name, appToInstall, appPlan.name),
+    {
+      enabled: false,
+      onError: (data) => {
+        console.log('Installation successful:', data);
+        installingApp();
+        //setInstallStep(2)
+      },
+    }
+  );
+
+
 
   const installThisApp = () => {
+    siteOverviewQuery.refetch();
     setOpen(true);
     setInstallStep(1)
-    installingApp()
+   // installingApp()
   }
 
   return (
