@@ -42,7 +42,7 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
     () => site.install_app(sites.data.site_list[0].name, appToInstall, appPlan.name),
     {
       enabled: false,
-      onError: (data) => {
+      onSuccess: (data) => {
         console.log('Installation successful:', data);
         installingApp();
         //setInstallStep(2)
