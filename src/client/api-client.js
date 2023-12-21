@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getToken } from '../utils/helper';
 
 const api = axios.create({
-    baseURL: `${process.env.REACT_APP_BACKEND_URL || 'http://192.168.0.104:8000'}/api`
+    baseURL: `${process.env.REACT_APP_BACKEND_URL || 'https://hosting.zaviago.com'}/api`
 });
 
 api.interceptors.request.use(
