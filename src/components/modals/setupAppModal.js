@@ -28,7 +28,7 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
   const installingApp = () => {
     const intervalId = setInterval(async () => {
       const res = await refresh_installed_apps_main();
-      const isInstalled = res?.data.some(installedApp => installedApp.title === appToInstall);
+      const isInstalled = res?.data.some(installedApp => installedApp.name === appToInstall);
 
       setInstallingAppPercent(prevPercent => {
         const newPercent = prevPercent + 5;
@@ -41,9 +41,13 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
     }, 5000);
   };
 
-  const { data: siteOverviewQuery , refetch: refreshsiteOverviewQuery} = useQuery(
+  const { data: siteOverviewQuery, refetch: refreshsiteOverviewQuery } = useQuery(
     ['apptoinstall'],
-    () => site.install_app(sites.data.site_list[0].name, appToInstall, appPlan.name),
+    () => site.install_app(
+      sites.data.site_list[0].name,
+      appToInstall,
+      appPlan ? appPlan.name : undefined  // Pass appPlan.name if appPlan has a value, else pass undefined
+    ),
     {
       enabled: false,
       onSuccess: (data) => {

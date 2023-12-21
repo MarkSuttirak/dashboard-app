@@ -67,7 +67,6 @@ export default function SingleApp(){
           const plans = item.plans;
           const HaveFree = plans?.filter(installedApp => installedApp.is_free === 1);
 
-
           const developerInfo = [
             {type:app.website, icon:<Globe viewBox="0 0 24 24" width='16' height='16'/>, buttonText:'Visit our Website'},
             {type:app.custom_app_demo, icon:<Smile viewBox="0 0 24 24" width='16' height='16'/>, buttonText:'Check App Demo'},
