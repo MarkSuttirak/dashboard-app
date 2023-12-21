@@ -60,7 +60,7 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen} onClose={() => null}>
+    <Dialog open={open} onOpenChange={setOpen} onClose={() => null} onInteractOutside={(e) => { e.preventDefault(); }}>
       <DialogTrigger>
         <Button className='btn-with-icon'>
           <PlusCircle className="h-4 w-4"/>
@@ -68,7 +68,7 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
         </Button>
       </DialogTrigger>
       {installStep === 1 ? (
-        <DialogContent className='overflow-hidden max-w-[500px] w-[500px] justify-center px-20'>
+        <DialogContent className='overflow-hidden max-w-[500px] w-[500px] justify-center px-20' onInteractOutside={(e) => { e.preventDefault(); }}>
           <DialogHeader>
             <DialogTitle className='text-center'>Installing {appToInstall}</DialogTitle>
           </DialogHeader>
@@ -79,7 +79,7 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
           <DialogDescription className='text-center'>Installing app... Please do not close this page until the installation is done.</DialogDescription>
         </DialogContent>
       ) : installStep === 2 ? (
-        <DialogContent className='p-0 overflow-hidden max-w-[400px] w-[400px]'>
+        <DialogContent className='p-0 overflow-hidden max-w-[400px] w-[400px]' onInteractOutside={(e) => { e.preventDefault(); }}>
           <DialogHeader>
             <section className='p-12 flex flex-row justify-around' style={{background:`url(${installAppBg})`,backgroundSize:"cover"}}>
               <div className="w-[72px] h-[72px] bg-white shadow-lg rounded-lg flex items-center justify-center">
@@ -100,7 +100,7 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
           </DialogFooter>
         </DialogContent>
       ) : (
-        <DialogContent className='p-0 overflow-hidden max-w-[400px] w-[400px]'>
+        <DialogContent className='p-0 overflow-hidden max-w-[400px] w-[400px]' onInteractOutside={(e) => { e.preventDefault(); }}>
           <DialogHeader>
             <section className='p-12 flex flex-row justify-around' style={{background:`url(${installAppBg})`,backgroundSize:"cover"}}>
               <div className="w-[72px] h-[72px] bg-white shadow-lg rounded-lg flex items-center justify-center">
