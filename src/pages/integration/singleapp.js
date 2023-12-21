@@ -24,7 +24,7 @@ export default function SingleApp(){
 
   const { data: sites, refetch: refreshSite } = useQuery('sites', site.list, {enabled: false});
   const { data: benchApps, refetch: refetchBenchApps } = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), { enabled: false });
-  const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.site_list[0].name), {enabled: false});  
+  const { data: installedApps, refetch: refetchinstalled_apps } = useQuery('installedApps', () => site.installed_apps(sites.site_list[0].name), {enabled: false});  
   const { data: siteOverview, refetch: refetchsiteOverview } = useQuery(['siteOverview'], () => site.overview(sites?.site_list[0].name), {enabled: false});
 
 
@@ -39,10 +39,13 @@ export default function SingleApp(){
       if(!siteOverview){
         await refetchsiteOverview();
       }
+      if(!installedApps){
+        await refetchinstalled_apps();
+      }
     };
   
     fetchData();
-  }, [user, sites,benchApps, installedApps,,refreshSite,refetchBenchApps,refetchsiteOverview]);
+  }, [user, sites,benchApps, installedApps,refreshSite,refetchBenchApps,refetchsiteOverview,refetchinstalled_apps]);
 
   const appList = benchApps || [];
   
@@ -59,7 +62,7 @@ export default function SingleApp(){
     return (
       <>
         {data.filter(item => item.name === id).map((item, index) => {
-          const isInstalled = installedApps.data?.some(installedApp => installedApp.title === item.title);
+          const isInstalled = installedApps?.some(installedApp => installedApp.title === item.title);
           const app = item.addional_info;
           const plans = item.plans;
           const HaveFree = plans?.filter(installedApp => installedApp.is_free === 1);
@@ -100,9 +103,6 @@ export default function SingleApp(){
                   <OpenInNewWindowIcon />Purchase
                 </Button>
               )}
-
-
-
 
 
 

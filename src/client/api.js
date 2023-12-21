@@ -1,5 +1,5 @@
 import api from './api-client';
-const backend_url = `${process.env.REACT_APP_BACKEND_URL || 'https://hosting.zaviago.com'}`;
+const backend_url = `${process.env.REACT_APP_BACKEND_URL || 'http://192.168.0.104:8000/'}`;
 
 export const user = {
     oauthLogin: (provider, accessToken, idToken) => api.post(
