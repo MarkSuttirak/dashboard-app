@@ -93,17 +93,11 @@ export default function SingleApp(){
                 </div>
               </div>
 
-
               {HaveFree && HaveFree.length > 0 && !isInstalled ? (
-                <Button className='btn-with-icon'>
-                  <SetupAppModal appToInstall={item.name} appPlan={HaveFree[0]}  appImage={<img src={site.backend_url() + item.image} width='52' height='52' />} />
-                </Button>
+                <SetupAppModal appToInstall={item.name} appPlan={HaveFree[0]}  appImage={<img src={site.backend_url() + item.image} width='52' height='52' />} />
               ) : (
-                <Button className='btn-with-icon'>
-                  <UpgradeAppModal plans={plans}/>
-                </Button>
+                <UpgradeAppModal plans={plans}/>
               )}
-
 
 
             {
