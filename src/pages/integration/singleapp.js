@@ -100,13 +100,14 @@ export default function SingleApp(){
                 </Button>
               ) : (
                 <Button className='btn-with-icon'>
-                  <OpenInNewWindowIcon />Purchase
+                  <UpgradeAppModal plans={plans}/>
                 </Button>
               )}
 
 
 
-{/* 
+            {
+            /* 
               {isInstalled ? (
                 <Button className='btn-with-icon' disabled>
                   <OpenInNewWindowIcon />Installed
@@ -119,7 +120,8 @@ export default function SingleApp(){
                 <SetupAppModal appToInstall={item.name} appImage={<img src={site.backend_url()+item.image} width='52' height='52'/>}/>
               ) : (
                 <UpgradeAppModal />
-              )} */}
+              )} */
+              }
 
 
 
