@@ -13,6 +13,7 @@ import { Link } from "react-router-dom"
 import RecommendedApps from "../../components/apps/recommendedApps"
 import Loading from "src/components/ui/loading"
 import SetupAppModal from "src/components/modals/setupAppModal"
+import RemoveSetupAppModal from "src/components/modals/removeSetupAppModal"
 import UpgradeAppModal from "src/components/modals/upgradeAppModal"
 
 export default function SingleApp(){
@@ -93,10 +94,21 @@ export default function SingleApp(){
               </div>
 
               {HaveFree && HaveFree.length > 0 && !isInstalled ? (
-                <SetupAppModal appToInstall={item.name} appPlan={HaveFree[0]}  appImage={<img src={site.backend_url() + item.image} width='52' height='52' />} />
-              ) : (
-                <UpgradeAppModal plans={plans}/>
-              )}
+                  <SetupAppModal
+                    appToInstall={item.name}
+                    appPlan={HaveFree[0]}
+                    appImage={<img src={site.backend_url() + item.image} width='52' height='52' />}
+                  />
+                ) : (
+                  <>
+                    <RemoveSetupAppModal
+                      appToInstall={item.name}
+                      appPlan={HaveFree[0]}
+                      appImage={<img src={site.backend_url() + item.image} width='52' height='52' />}
+                    />
+                    <UpgradeAppModal plans={plans} />
+                  </>
+                )}
 
 
             {

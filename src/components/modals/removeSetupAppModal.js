@@ -14,7 +14,7 @@ import { Link } from "react-router-dom"
 
 
 
-export default function SetupAppModal({appToInstall, appImage, appPlan}){
+export default function RemoveSetupAppModal({appToInstall, appImage, appPlan}){
   const [open, setOpen] = useState(false)
   const [installStep, setInstallStep] = useState(0)
   const [installingAppPercent, setInstallingAppPercent] = useState(0);
@@ -30,7 +30,6 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
       const res = await refresh_installed_apps_main();
       const isInstalled = res?.data.some(installedApp => installedApp.status === 'Pending');
 
-      console.log(isInstalled);
 
       setInstallingAppPercent(prevPercent => {
         const newPercent = prevPercent + 5;
@@ -45,10 +44,9 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
 
   const { data: siteOverviewQuery, refetch: refreshsiteOverviewQuery } = useQuery(
     ['apptoinstall'],
-    () => site.install_app(
+    () => site.uninstall_app(
       sites.data.site_list[0].name,
       appToInstall,
-      appPlan ? appPlan.name : undefined  // Pass appPlan.name if appPlan has a value, else pass undefined
     ),
     {
       enabled: false,
@@ -74,19 +72,19 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
       <DialogTrigger>
         <Button className='btn-with-icon'>
           <PlusCircle className="h-4 w-4"/>
-          Add to site
+          Uninstall
         </Button>
       </DialogTrigger>
       {installStep === 1 ? (
         <DialogContent className='overflow-hidden max-w-[500px] w-[500px] justify-center px-20' onInteractOutside={(e) => { e.preventDefault(); }}>
           <DialogHeader>
-            <DialogTitle className='text-center'>Installing {appToInstall}</DialogTitle>
+            <DialogTitle className='text-center'>Removing {appToInstall}</DialogTitle>
           </DialogHeader>
           <div className="flex items-center gap-x-[10px] my-4 w-full">
             <Progress value={installingAppPercent}/>
             <span className="text-xs text-[#71717A]">{installingAppPercent}%</span>
           </div>
-          <DialogDescription className='text-center'>Installing app... Please do not close this page until the installation is done.</DialogDescription>
+          <DialogDescription className='text-center'>Removing app... Please do not close this page until the installation is done.</DialogDescription>
         </DialogContent>
       ) : installStep === 2 ? (
         <DialogContent className='p-0 overflow-hidden max-w-[400px] w-[400px]' onInteractOutside={(e) => { e.preventDefault(); }}>
@@ -98,7 +96,7 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
             </section>
 
             <section className="p-6">
-              <DialogTitle>{appToInstall} has been successfully installed</DialogTitle>
+              <DialogTitle>{appToInstall} has been successfully Uninstalled</DialogTitle>
               <DialogDescription className='mt-3'>You can start the application by clicking 'Open'</DialogDescription>
             </section>
           </DialogHeader>
@@ -122,7 +120,7 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
             </section>
 
             <section className="p-6">
-              <DialogTitle>Install {appToInstall} to your workspace</DialogTitle>
+              <DialogTitle>UnInstall {appToInstall} to your workspace</DialogTitle>
               <DialogDescription className='mt-3'>The app will be able to read the email address you use to log in to Zaviago</DialogDescription>
               <Button className='btn-with-icon text-[#006AFF] mt-6' variant='secondary'>
                 <Key className="h-4 w-4 text-[#006AFF]"/>
@@ -135,7 +133,7 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
               <DialogClose>
                 <Button variant='outline'>Cancel</Button>
               </DialogClose>
-              <Button onClick={installThisApp}>Install apps</Button>
+              <Button onClick={installThisApp}>Uninstall app</Button>
             </div>
           </DialogFooter>
         </DialogContent>
