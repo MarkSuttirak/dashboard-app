@@ -90,9 +90,7 @@ const InstanceConfig = () => {
                 </div>
                 <div className="flex flex-1 m-[30px] md:m-2 z-[999] basis-[20%] bg-white absolute md:relative register-screen">
                     <StepMaintainer state={{ site: lsite, setSite }}>
-                        <SiteDomainForm />
-                        <AppsSelectionForm />
-                        <ThemeSelectionForm onSubmit={mutate} />
+                        <SiteDomainForm onSubmit={mutate}/>
                     </StepMaintainer>
                 </div>
             </div>
@@ -295,6 +293,18 @@ export const SiteDomainForm = ({
     initialValues = {
         subdomain: '',
         domain: 'aca.fc.zaviago.com',
+        apps: ["frappe", "erpnext"],
+        group: '',
+        plan: null,
+        cluster: '',
+        selected_app_plans: {},
+        share_details_consent: false,
+        skip_failing_patches: false,
+        files: {
+            database: null,
+            public: null,
+            private: null,
+        }
     },
     validationSchema,
     state: { setSite },
@@ -519,7 +529,18 @@ export const AppsSelectionForm = ({
 export const ThemeSelectionForm = ({
     prev,
     initialValues = {
-        theme: '',
+        apps: ["frappe", "erpnext"],
+        group: '',
+        plan: null,
+        cluster: '',
+        selected_app_plans: {},
+        share_details_consent: false,
+        skip_failing_patches: false,
+        files: {
+            database: null,
+            public: null,
+            private: null,
+        }
     },
     validationSchema,
     onSubmit,
