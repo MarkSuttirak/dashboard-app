@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import SetupBusinessImg from '../icon-menus/SetupBusinessImg'
 
-export default function SidebarSetupBusiness(){
+export default function SidebarUpgrade(){
   const [degree, setDegree] = useState(0);
   const borderStyle = {
     background:"transparent",

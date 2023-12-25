@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
-import SidebarShortcut from "./sidebarShortcut";
 import { PlusCircle, Settings, Search, ChevronsLeft, Users, Zap, UserCircle, LayoutGrid, Layout, ClipboardList, Package, Group, Baseline, Clipboard, CheckCircle, CheckCircle2, UserSquare, Mailbox, Milestone, PackagePlus, ClipboardPaste, PanelLeftClose, PanelLeftOpen, Home, ChevronsRight, Hotel } from "lucide-react";
 import { Button } from "../ui/button";
 import { BellIcon, LightningBoltIcon } from "@radix-ui/react-icons";
@@ -11,15 +10,8 @@ import { Icons } from "../ui/icons";
 import ServiceModals from "./serviceModals";
 import { Dialog, DialogTrigger } from "../ui/dialog";
 import { SearchItem } from "../topbar/searchBar";
-import SidebarSetupBusiness from "./sidebarSetupBusiness";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "src/components/ui/sheet"
+import { Skeleton } from "../ui/skeleton"
+import SidebarUpgrade from "./sidebarUpgrade";
 
 // import TeamModal from "../components/switchTeamModal";
 
@@ -27,7 +19,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   const [active, setActive] = useState('');
   const location = useLocation();
   const { user } = useUser();
-  const [setup, setSetup] = useState(true)
+  const [upgraded, setUpgraded] = useState(false)
 
   const benchApps = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), {enabled: false});
   const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.site_list[0].name), {enabled: false});  
@@ -42,8 +34,6 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
   const { data: sites } = useQuery('sites', site.list, {enabled: false});
 
- 
-
   const { mutate: loginAsAdmin } = useMutation('loginAsAdmin', ({ name, reason }) => site.loginAsAdmin(name, reason), {
     onSuccess: (res) => {
       const { sid, site } = res.data.message;
@@ -55,8 +45,6 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
   const navigation = [
     { name: 'Dashboard', icon: <Hotel viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/app', current: active === '/dashboard/app' ? true : false, id: 'dashboard' },
-    // { name: 'Notifications', icon: <BellIcon viewBox='0 0 15 15' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/settings/notifications', current: active === '/dashboard/settings/notifications' ? true : false, id: 'notifications' },
-    // { name: 'Search', icon: <Search viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' /> },
     { name: 'Settings', icon: <Settings viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/settings/account', current: active == "/dashboard/settings/account" || active == "/dashboard/settings/billing-plans" || active == "/dashboard/settings/notifications" ? true : false, active: active, id: 'settings' },
   ]
 
@@ -85,7 +73,6 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   const yourSites = [
     { name: 'Integration', icon: <Zap className="w-4 h-4 stroke-[1.5] text-[#18181B]" />, id: 'integration', href: '/integration/manage-apps' },
     { name: 'App Store', icon: <UserCircle className="w-4 h-4 stroke-[1.5] text-[#18181B]" />, id: 'app-store', href: '/integration/appstore' },
-    { name: 'Teams', icon: <LayoutGrid className="w-4 h-4 stroke-[1.5] text-[#18181B]" />, href: '/dashboard/teams/team-members', current: active === "/dashboard/teams/team-members" || active === "/dashboard/teams/teams" ? true : false, active: active, id: 'teams' },
   ]
 
   const workspaceApp = [
@@ -103,9 +90,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   }
 
   const [query, setQuery] = useState('')
-
   const [sellingMenus, setSellingMenus] = useState(false)
-
   const [activeSubmenus, setActiveSubmenus] = useState([]);
 
   const handleSubMenuClick = (index) => {
@@ -148,34 +133,6 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
         </div>
 
         <ServiceModals />
-{/* 
-        <Sheet>
-          <SheetTrigger>
-            <div className="nav-btns add">
-              <PlusCircle color='#18181B' viewBox='0 0 24 24' width='16' height='16'/>
-            </div>
-          </SheetTrigger>
-          <SheetContent side='left'>
-            <SheetHeader>
-              <SheetTitle>Apps</SheetTitle>
-              <SheetDescription>
-                All applications you have in your workspace
-                <section className="mt-4 grid grid-cols-2 gap-4">
-                  {installedApps?.data?.length > 1 ? (
-                    <>
-                    {installedApps?.data.map(app => (
-                      <Button key={app} variant='ghost' className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5`}>
-                        <div className="w-5 h-5 rounded-full bg-[#5BB3FF] mr-2" />
-                        {app.title}
-                      </Button>
-                    ))}
-                    </>
-                  ) : <h1 className="px-[6px] text-sm">There are no apps here...</h1>}
-                </section>
-              </SheetDescription>
-            </SheetHeader>
-          </SheetContent>
-        </Sheet> */}
       </nav>
     )
   }
@@ -187,20 +144,27 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
         <div className="flex flex-1 flex-col pt-3">
           <div className="flex flex-shrink-0 items-center px-3">
             <div className="flex items-center w-full">
-              <SidebarShortcut />
+              <div className="flex items-center gap-x-2">
+                <div className="min-w-9 min-h-9">
+                  <Icons.zaviagoApp onClick={() => navigate('/')} className='cursor-pointer w-9 h-9'/>
+                </div>
+                <span className="flex gap-x-2 items-center">
+                  <div className="flex flex-col text-left">
+                    <h2 className="cal-sans text-[17px] font-semibold">zaviago<span className="text-[13px]">.com</span></h2>
+                    <p className={`text-[11px] font-medium tracking-[-0.33px] text-[#5A5A5A] ${sites ? '-mt-1' : 'mt-0'}`}>
+                      {sites ? sites?.site_list[0].name : <Skeleton className='h-3 w-full rounded-sm'/>}
+                    </p>
+                  </div>
+                </span>
+              </div>
 
-              {/* <button className='listminus-btn' variant='secondary' onClick={() => setIsSidebarOpen(false)}>
-                <PanelLeftClose viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5'/>
-              </button> */}
               <button className={`chevron-btn ${!isSidebarOpen ? 'inactive' : ''}`} onClick={() => setIsSidebarOpen(false)}>
                 <ChevronsLeft className="chevron-sidebar" viewBox="0 0 24 24" width='16' height='16' />
               </button>
             </div>
           </div>
 
-          {setup && (
-            <SidebarSetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/>
-          )}
+          {!upgraded && <SidebarUpgrade />}
 
           <nav className="flex bg-white px-3 pt-2 flex-col gap-y-4" aria-label="Sidebar">
             <section className="flex flex-col">

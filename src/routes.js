@@ -12,7 +12,6 @@ import OtherInfo from './pages/register/otherInfo';
 import InstanceConfig from './pages/register/instanceConfig';
 import Dashboard from './pages/dashboard/dashboard';
 import Settings from './pages/settings/settings';
-import Teams from './pages/teams/teams';
 import NotFoundPage from './pages/404';
 import AppStore from './pages/integration/appstore';
 import SingleApp from './pages/integration/singleapp';
@@ -20,7 +19,6 @@ import PaymentPage from './pages/payment/payment';
 import CheckoutPage from './pages/checkout/checkoutPage';
 import CheckoutReceived from './pages/checkout/checkoutReceived';
 import Integration from './pages/integration/integration';
-import QuotaDetail from './pages/integration/quotaDetail';
 import ComparePlan from './pages/compare-plan/comparePlan';
 import AppCategory from './pages/integration/appCategory';
 import { useEffect } from 'react'
@@ -60,7 +58,6 @@ export default function Router() {
                     ],
                 },
                 { path: 'settings/:id', element: <Settings /> },
-                { path: 'teams/:id', element: <Teams /> },
                 { path: 'compare-plan', element: <ComparePlan /> }
             ],
         },
@@ -87,7 +84,6 @@ export default function Router() {
                 { path: ':id', element: <Integration />},
                 { path: 'appstore', element: <AppStore />},
                 { path: 'appstore/:id', element: <SingleApp />},
-                { path: 'quota-detail/:app', element: <QuotaDetail />},
                 { path: 'app-category/:cate', element: <AppCategory />}
             ],
         },

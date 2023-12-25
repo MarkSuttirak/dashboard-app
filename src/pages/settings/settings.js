@@ -3,7 +3,6 @@ import { Separator } from "../../components/ui/separator";
 import AccountForm from "./accountForm";
 import BillingPlan from "./billingPlan";
 import PlanUpgrades from "./planUpgrade";
-import NotificationsForm from "./notifications";
 import DisplayForm from "./display";
 import PagesMenus from "src/components/pagesMenus";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs"
@@ -19,10 +18,6 @@ const sidebarNavItems = [
     title: "Billing & Plans",
     href: "/dashboard/settings/billing-plans",
   },
-  {
-    title: "Notifications",
-    href: "/dashboard/settings/notifications",
-  }
 ]
 
 export default function Settings(){
@@ -69,16 +64,6 @@ export default function Settings(){
                 <BillingPlan />
               </TabsContent>
             </Tabs>
-          </section>
-        )}
-
-        {id === 'notifications' && (
-          <section className="w-[672px]">
-            <h2 className="settings-heading">Notifications</h2>
-            <p className="main-desc">Easily manage notifications according to your preferences</p>
-
-            <Separator className='my-6'/>
-            <NotificationsForm />
           </section>
         )}
 

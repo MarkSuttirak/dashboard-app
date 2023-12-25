@@ -36,13 +36,7 @@ export default function SetupBusiness({sitename}){
 
   return (
     <section className="my-[72px]">
-      <div className="flex justify-between items-center">
-        <h2 className="secondary-heading">Let's set up your business</h2>
-        <div className="flex items-center gap-x-[18px]">
-          <p className="main-desc">0/6 completed</p>
-          <Progress value={50} className='w-[200px] h-[6px]'/>
-        </div>
-      </div>
+      <h2 className="secondary-heading">Let's set up your business</h2>
 
       <div className="flex gap-[15px] mt-6">
         <Card className='p-0 shadow-none overflow-hidden min-w-[400px] w-[400px] relative' style={{background:`url(${unlockMultiplayerBg})`,backgroundSize:'cover'}}>

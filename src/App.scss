@@ -96,6 +96,11 @@ html{scroll-behavior:smooth}
   font-style: normal;
 }
 
+@font-face {
+  font-family:'Cooper Black';
+  src: url('./fonts/Cooper Black/CooperFiveOpti-Black.otf')
+}
+
 body {
   overflow-y:scroll;
   font-family:'Inter', 'Eventpop', sans-serif;
@@ -106,6 +111,7 @@ body {
 .eventpop{font-family:'Eventpop', sans-serif}
 .cal-sans{font-family:'Cal Sans', sans-serif}
 .sukhumvit{font-family:'Sukhumvit Set', sans-serif}
+.cooper-black{font-family:'Cooper Black'}
 
 .see-more {
   opacity:0;

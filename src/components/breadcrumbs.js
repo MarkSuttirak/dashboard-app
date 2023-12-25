@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { appList } from "./apps/appList";
-import { totalAppsQuota } from "src/pages/integration/appQuota";
-import ZaviagoIcon from "./icon-menus/ZaviagoIcon";
 
 export default function Breadcrumbs(){
   const location = useLocation()
@@ -19,23 +17,11 @@ export default function Breadcrumbs(){
       { link: '/integration/manage-apps', title: 'Integration' },
       { link: null, title: 'Upgrade Apps' },
     ],
-    '/integration/apps-quota': [
-      { link: '/integration/manage-apps', title: 'Integration' },
-      { link: null, title: 'Apps Quota' },
-    ],
     '/integration/appstore': [
       { link: null, title: 'App Store' },
     ],
     '/dashboard/compare-plan': [
       { link: null, title: 'Compare Plan' },
-    ],
-    '/dashboard/teams/team-members': [
-      { link: '/dashboard/teams/team-members', title: 'Team' },
-      { link: null, title: 'Team Members' },
-    ],
-    '/dashboard/teams/teams': [
-      { link: '/dashboard/teams/team-members', title: 'Team' },
-      { link: null, title: 'Teams' },
     ],
     '/dashboard/settings/account': [
       { link: '/dashboard/settings/account', title: 'Settings' },
@@ -53,14 +39,6 @@ export default function Breadcrumbs(){
       acc[`/integration/appstore/${app.id}`] = [
         { link: '/integration/appstore', title: 'App Store' },
         { link: null, title: 'App Detail: ' + app.title },
-      ];
-      return acc;
-    }, {}),
-    ...totalAppsQuota.reduce((acc, app) => {
-      acc[`/integration/quota-detail/${app.id}`] = [
-        { link: '/integration/manage-apps', title: 'Integration' },
-        { link: '/integration/apps-quota', title: 'Apps Quota' },
-        { link: null, title: 'Quota Detail: ' + app.title },
       ];
       return acc;
     }, {}),

@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import ServicePrivileges from "./servicePrivileges";
 import { ServiceBadge } from "./serviceBadge";
 import DrawLine from "../drawLine";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { useServiceMenus } from "src/hooks/useServiceMenu";
 import { Icons } from "../ui/icons";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "src/components/ui/tooltip"
@@ -14,6 +14,7 @@ import { useUser } from "../../hooks/useUser";
 import { useMutation, useQuery } from "react-query";
 
 export default function ServiceModals(){
+  const [openDialog, setOpenDialog] = useState(false)
   const icons = [
     {icon:<Icons.crmApp />, title:'CRM'},
     {icon:<Icons.lineCRMApp />, title:'LINEOA CRM'},
@@ -28,20 +29,11 @@ export default function ServiceModals(){
   const services = useServiceMenus()
 
   return (
-    <Dialog>
+    <Dialog open={openDialog} onOpenChange={setOpenDialog}>
       {icons.map((icon) => (
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger>
-              <div className="nav-btns add-ons">
-                <DialogTrigger onClick={() => services.select(icon.title)}>{icon.icon}</DialogTrigger>
-              </div>
-            </TooltipTrigger>
-            <TooltipContent side='right'>
-              {icon.title}
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <div className="nav-btns add-ons">
+          <DialogTrigger onClick={() => services.select(icon.title)}>{icon.icon}</DialogTrigger>
+        </div>
       ))}
       <DialogContent className='p-0 border-0 max-w-5xl'>
         <DialogHeader className='flex-row'>

@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom"
 import PagesMenus from "src/components/pagesMenus"
 import ManageOrUpgradeApps from "./manageOrUpgradeApps"
-import AppsQuota from "./appQuota"
 
 export const sidebarNavItems = [
   {
@@ -11,10 +10,6 @@ export const sidebarNavItems = [
   {
     title: "Upgrade Apps",
     href: "/integration/upgrade-apps",
-  },
-  {
-    title: "Apps Quota",
-    href: "/integration/apps-quota",
   },
 ]
 
@@ -30,14 +25,6 @@ export default function Integration(){
 
         {(id === 'manage-apps' || id === 'upgrade-apps') && (
           <ManageOrUpgradeApps />
-        )}
-
-        {id === 'apps-quota' && (
-          <section className="w-[672px]">
-            <h2 className="settings-heading">Apps Quota</h2>
-            <p className="main-desc">Control upgrades and review limits for each apps on your site</p>
-            <AppsQuota />
-          </section>
         )}
       </main>
     </div>

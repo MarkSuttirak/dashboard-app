@@ -107,9 +107,9 @@ export default function AppStore(){
 
       <div className="flex h-full gap-x-4 mt-6">
         <img src={cybersale} />
-        <div style={{background:`url(${zaviagoDashApp})`,backgroundSize:"cover"}} className="h-auto p-10 w-full flex flex-col justify-evenly items-center text-center rounded-xl">
-          <h1 className="text-5xl font-bold text-[#08003F]">Zaviago Dashboard</h1>
-          <h3 className="text-2xl font-medium">Upgrade package to Pro to enjoy unrestricted access to everything for you and your friends</h3>
+        <div style={{background:`url(${zaviagoDashApp})`,backgroundSize:"cover"}} className="h-auto p-10 w-full max-w-[340px] flex flex-col justify-evenly items-center text-center rounded-xl">
+          <h1 className="text-5xl font-bold text-[#08003F] cooper-black tracking-[-0.96px] leading-[56px]">Zaviago Dashboard</h1>
+          <h3 className="font-medium">Upgrade package to Pro to enjoy unrestricted access to <br/><br/>everything for you and your friends</h3>
           <Link to='/dashboard/compare-plan'>
             <Button className='btn-with-icon'>
               <LightningBoltIcon />

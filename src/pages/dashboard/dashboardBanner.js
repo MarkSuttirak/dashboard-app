@@ -83,9 +83,11 @@ export default function DashboardBanner({sitename}){
               </div>
             )}
           </CardHeader>
-          <CardContent className='text-desc flex items-center justify-start mt-6'>
-            {pendingpayments ? (<>{Number.isInteger(pendingpayments) && pendingpayments > 0 ? <Badge>Waiting for confirmation</Badge> : null}</>) : <Skeleton className='h-4 w-[200px]'/>}         
-          </CardContent>
+          {pendingpayments ? (
+            <CardContent className='text-desc flex items-center justify-start mt-6'>
+              {Number.isInteger(pendingpayments) && pendingpayments > 0 ? <Badge>Waiting for confirmation</Badge> : null}       
+            </CardContent>
+          ): null}
         </Card>
       </div>
     </section>
