@@ -130,6 +130,11 @@ body {
   }
 }
 
+.sidebar-site {
+  overflow:hidden;
+  mask-image:linear-gradient(to right, white 80%, transparent 90%)
+}
+
 .register-formbox {
   margin:auto;
   width:100%;
@@ -316,7 +321,7 @@ body {
   cursor:pointer;
   opacity:0;
   transition:opacity 400ms;
-  margin-top:4px;
+  margin-top:12px;
 }
 
 #sidebar {
