@@ -76,9 +76,9 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   ]
 
   const workspaceApp = [
-    { name: 'Blog & Website', icon: <Icons.blogPostApp width='20' height='20' />, id: 'blog-website' },
-    { name: 'CRM', icon: <Icons.websiteApp width='20' height='20' fill='transparent'/>, id: 'crm' },
-    { name: 'HR & HRM', icon: <Icons.blogAndPagesApp width='20' height='20'/>, id: 'hr-hrm' },
+    { name: 'Manage Business', icon: <Icons.erpApp width='20' height='20'/>, id: 'manage-business', onClick:() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })},
+    { name: 'Builder', icon: <Icons.blogPostApp width='20' height='20' />, id: 'builder', onClick:() => window.open(`https://${sites?.site_list[0].name}/SpaBlogEditor`)},
+    { name: 'Websites', icon: <Icons.websiteApp width='20' height='20' fill='transparent'/>, id: 'websites', onClick:() => window.open(`https://${sites?.site_list[0].name}/builder`)},
   ]
 
   useEffect(() => {
@@ -229,18 +229,11 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
             <section className="flex flex-col">
               <h3 className="text-[#8A8A8A] text-sm font-medium p-4">WorkSpace App</h3>
-              <Button variant='ghost' onClick={() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5`}>
-                {/* <Layout viewBox="0 0 24 24" width='16' height='16' strokeWidth='1.5' color='#18181B' /> */}
-                <Icons.erpApp width='20' height='20'/>
-                Commerce
-              </Button>
               {workspaceApp.map((item) => (
-                <Link to={item.href}>
-                  <Button variant='ghost' onClick={handleMenuClick} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.href === active ? 'bg-zinc-100' : ''}`}>
-                    {item.icon}
-                    {item.name}
-                  </Button>
-                </Link>
+                <Button variant='ghost' onClick={item.onClick} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5`}>
+                  {item.icon}
+                  {item.name}
+                </Button>
               ))}
             </section>
 

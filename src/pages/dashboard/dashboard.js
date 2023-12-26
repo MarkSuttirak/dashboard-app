@@ -139,9 +139,9 @@ export default function Dashboard(){
       {user ? <h1 className="text-3xl text-[#09090B] font-bold tracking-[-0.75px] eventpop leading-8">สวัสดีคุณ {user?.first_name}🙏</h1> : <Skeleton className='h-8 w-[300px]'/>}
 
       <DashboardBanner sitename={sites?.site_list[0].name}/>
-      <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/>
+      {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> */}
 
-      <section className="mt-6">
+      <section className="my-[72px]">
         <h2 className="secondary-heading">Create New or Manage</h2>
         <p className="main-desc">What do you want to do today?</p>
 
