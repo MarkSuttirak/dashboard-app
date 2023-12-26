@@ -118,6 +118,20 @@ body {
   transition:opacity 100ms;
 }
 
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .pro-text {
+    line-height:18px;
+  }
+}
+
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    .pro-text {
+      line-height:14px;
+    }
+  }
+}
+
 .app-card {
   box-shadow:none;
   display:flex;
