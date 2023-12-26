@@ -77,8 +77,8 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
   const workspaceApp = [
     { name: 'Manage Business', icon: <Icons.erpApp width='20' height='20'/>, id: 'manage-business', onClick:() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })},
-    { name: 'Builder', icon: <Icons.blogPostApp width='20' height='20' />, id: 'builder', onClick:() => window.open(`https://${sites?.site_list[0].name}/SpaBlogEditor`)},
-    { name: 'Websites', icon: <Icons.websiteApp width='20' height='20' fill='transparent'/>, id: 'websites', onClick:() => window.open(`https://${sites?.site_list[0].name}/builder`)},
+    { name: 'Blog Editor', icon: <Icons.blogPostApp width='20' height='20' />, id: 'builder', onClick:() => window.open(`https://${sites?.site_list[0].name}/SpaBlogEditor`)},
+    { name: 'Website', icon: <Icons.websiteApp width='20' height='20' fill='transparent'/>, id: 'websites', onClick:() => window.open(`https://${sites?.site_list[0].name}/builder`)},
   ]
 
   useEffect(() => {
