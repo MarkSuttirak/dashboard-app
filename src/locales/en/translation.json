@@ -1,3 +1,5 @@
 {
-    "signin": "Sign in to your account"
+    "signin": "Sign in to your account",
+    "register_for_free": "Or Register for free",
+    "create_text": "Create and deploy your new project in one-click."
 }

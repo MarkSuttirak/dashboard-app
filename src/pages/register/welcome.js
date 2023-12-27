@@ -64,10 +64,10 @@ export default function Welcome(){
               </div>
               <h2 className="main-heading">{t('signin')}</h2>
               <p className="main-desc font-medium">
-                Or Register for free
+                {t('register_for_free')}
               </p>
 
-              <p className="main-desc mt-9">Create and deploy your new project in one-click.</p>
+              <p className="main-desc mt-9">{t('create_text')}</p>
             </div>
 
             <div className={`login-with-sec ${switchSec}`}>
