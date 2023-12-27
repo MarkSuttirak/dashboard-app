@@ -5,13 +5,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ToastProvider } from './hooks/useToast';
+import './i18n'
 
+ 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ToastProvider>
-        <App />
+          <App />
       </ToastProvider>
     </BrowserRouter>
   </React.StrictMode>

@@ -3,8 +3,19 @@ import { useLocation } from "react-router-dom";
 import { AuthContext } from "react-oauth2-code-pkce";
 import { Icons } from "src/components/ui/icons";
 import loginImg from "src/img/login-img.png"
+import { useTranslation } from "react-i18next";
+import { object } from "yup";
+
 
 export default function Welcome(){
+  const {t,i18n} = useTranslation();
+
+  const lngs = {
+    en: {nativeName : "English"},
+    th: {nativeName : "Thai"}
+  }
+
+
   const { login: lineLogin } = useContext(AuthContext);
   const location = useLocation();
 
@@ -31,13 +42,27 @@ export default function Welcome(){
   return (
     <div className="flex min-h-screen z-[999] relative bg-white">
       <div className="flex flex-1 justify-center">
+
+      <div>
+        {Object.keys(lngs).map((lng) => (
+          <button
+            type="button"
+            key={lng}
+            onClick={() => i18n.changeLanguage(lng)}
+            disabled={i18n.resolvedLanguage === lng}
+          >
+            {lngs[lng].nativeName}
+          </button>
+        ))}
+      </div>
+
         {loginSection ? (
           <div className="max-w-sm w-96 flex flex-col justify-center mx-[30px] register-screen">
             <div className={`register-sec ${switchSec}`}>
               <div className="flex gap-x-2 mb-3 items-center">
                 <Icons.zaviagoCom />
               </div>
-              <h2 className="main-heading">Sign in to your account</h2>
+              <h2 className="main-heading">{t('signin')}</h2>
               <p className="main-desc font-medium">
                 Or Register for free
               </p>
