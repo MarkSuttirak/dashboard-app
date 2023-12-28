@@ -63,33 +63,33 @@ export default function UpgradeProModal(){
   const privileges = [
     {
       icon:<PartyPopper className="mt-1 stroke-[1.5] text-[#09090B] h-5 w-5"/>,
-      title:'Everything in Free!',
-      desc:'Unlock every application at once'
+      title:t('pro_privileges.everything_in_free.title'),
+      desc:t('pro_privileges.everything_in_free.desc')
     },
     {
       icon:<LockOpen1Icon className="mt-1 stroke-[1.5] text-[#09090B] h-5 w-5"/>,
-      title:'Unlimited quota',
-      desc:'No limited orders, pages, customers etc.'
+      title:t('pro_privileges.unlimited_quota.title'),
+      desc:t('pro_privileges.unlimited_quota.desc')
     },
     {
       icon:<ThumbsUp className="mt-1 stroke-[1.5] text-[#09090B] h-5 w-5"/>,
-      title:'Collaborative workspace',
-      desc:'Enable team features'
+      title:t('pro_privileges.collaborative_workspace.title'),
+      desc:t('pro_privileges.collaborative_workspace.desc')
     },
     {
       icon:<UserPlus className="mt-1 stroke-[1.5] text-[#09090B] h-5 w-5"/>,
-      title:'1 team member',
-      desc:'Free 1 teammate slot'
+      title:t('pro_privileges.one_team_member.title'),
+      desc:t('pro_privileges.one_team_member.desc')
     },
     {
       icon:<UserCircle className="mt-1 stroke-[1.5] text-[#09090B] h-5 w-5"/>,
-      title:'Super Admin',
-      desc:'Can access billing and members'
+      title:t('pro_privileges.super_admin.title'),
+      desc:t('pro_privileges.super_admin.desc')
     },
     {
       icon:<Heart className="mt-1 stroke-[1.5] text-[#09090B] h-5 w-5"/>,
-      title:'Priority support',
-      desc:'Response within 4 hours'
+      title:t('pro_privileges.priority_support.title'),
+      desc:t('pro_privileges.priority_support.desc')
     },
   ]
 
@@ -112,7 +112,7 @@ export default function UpgradeProModal(){
             <div className="absolute left-5 bottom-5 flex gap-x-2 items-center">
               <Button variant='link' className='text-white text-xs p-0 h-fit'>Support</Button>
               <DrawLine color='#FFF' width='1px' height='14px'/>
-              <Button variant='link' className='text-white text-xs p-0 h-fit'>Contact us</Button>
+              <Button variant='link' className='text-white text-xs p-0 h-fit'>{t('contact_us')}</Button>
             </div>
           </DialogTitle>
           <DialogDescription className='pb-10 shadow-lg'>
@@ -122,12 +122,12 @@ export default function UpgradeProModal(){
                   <h1 className="main-heading tracking-[-0.6px]">Professional</h1>
                   <ServiceBadge text='Recommended'/>
                 </div>
-                <p className='text-[#71717A]'>Say hello to the world and let readers know what your blog is all about.</p>
+                <p className='text-[#71717A]'>{t('pro_privileges.pro_desc')}</p>
 
                 <div className='mt-6 flex flex-col gap-y-[18px]'>
                   <div className='flex gap-x-3 items-center inter'>
                     <Switch onCheckedChange={handlePerYear} />
-                    <Badge variant='outline'>Yearly save - ฿ 1,500</Badge>
+                    <Badge variant='outline'><span className='eventpop'>{t('pro_privileges.yearly_save')}</span> - ฿ 1,500</Badge>
                   </div>
                   <div className='flex gap-x-2'>
                     <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px] inter">{perYear ? '฿ 7,500' : '฿ 750'}</h1>
@@ -145,10 +145,10 @@ export default function UpgradeProModal(){
                 <Link to='/payment/plan/pro'>
                   <Button className='btn-with-icon w-full mb-[7px]'>
                     <LightningBoltIcon />
-                    Upgrade to Pro
+                    {t("upgrade_to_pro")}
                   </Button>
                 </Link>
-                <p className="main-desc">See more details at <Link className="text-[#006AFF]" to='/dashboard/compare-plan'>Compare Plans & Features</Link></p>
+                <p className="main-desc">{t("pro_privileges.see_more_details")} <Link className="text-[#006AFF]" to='/dashboard/compare-plan'>{t("pro_privileges.compare_plans")}</Link></p>
               </section>
             </div>
           </DialogDescription>

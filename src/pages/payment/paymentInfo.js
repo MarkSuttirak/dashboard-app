@@ -12,8 +12,10 @@ import { useQuery } from "react-query";
 import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { useParams } from "react-router"
+import { useTranslation } from "react-i18next";
 
 export default function PaymentInfo(){
+  const { t } = useTranslation()
   const { id } = useParams()
   const { app } = useParams()
   const [addPromo, setAddPromo] = useState(false)
@@ -93,15 +95,15 @@ export default function PaymentInfo(){
         <Link to='/'>
           <ArrowLeft />
         </Link>
-        <h1 className="main-heading">Payment</h1>
+        <h1 className="main-heading">{t('payment.title')}</h1>
       </div>
       <section className="py-10 px-5">
         <h2 className="main-desc font-medium">Subscribe to {app}</h2>
         <div className="mt-3 mb-10 flex gap-x-[10px] items-center">
           <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px] inter">฿ {total()}</h1>
           <div>
-            <p className="main-desc">per</p>
-            <p className="main-desc">month</p>
+            <p className="main-desc">{t('payment.per')}</p>
+            <p className="main-desc">{t('payment.month')}</p>
           </div>
         </div>
         <Card className='p-0 shadow-none'>
@@ -122,7 +124,7 @@ export default function PaymentInfo(){
         <table className="w-[calc(100%_-_74px)] relative left-[74px]">
           <thead>
             <tr className="text-left subheading">
-              <th className="font-medium">Subtotal</th>
+              <th className="font-medium">{t('payment.subtotal')}</th>
               <th className="text-right font-medium inter">฿ {subtotal.toLocaleString()}</th>
             </tr>
           </thead>

@@ -9,12 +9,14 @@ import { useState } from 'react'
 import { provinces } from "src/components/form-controls/provinces";
 import { Loader2 } from "lucide-react";
 import { useToast } from "./ui/use-toast";
+import { useTranslation } from "react-i18next";
 
 export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
   const [isCompany, setIsCompany] = useState(false);
   const [enableTaxID, setEnableTaxID] = useState(false)
   const [saving, setSaving] = useState(false)
   const { toast } = useToast()
+  const { t } = useTranslation()
 
   const appearanceFormSchema = yup.object().shape({
     billing_name: yup.string().required('Company Name is a required field'),
@@ -81,7 +83,7 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
         <div className="space-y-6 w-full">
           <div className="anim-up flex flex-col">
             <label className="subheading mb-2 font-medium">
-              Tax invoice type <span className="required">*</span>
+              {t('tax_invoice_type')} <span className="required">*</span>
             </label>
             <Select className='form-input' name="tax-invoice-type" defaultValue="Personal" onValueChange={e => e === 'Company' ? setIsCompany(true) : setIsCompany(false)}
               // onChange={form.handleChange} defaultValue={preloadedValues.email}
@@ -90,8 +92,8 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
                 <SelectValue defaultValue='Personal'/>
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value='Personal'>Personal</SelectItem>
-                <SelectItem value='Company'>Company</SelectItem>
+                <SelectItem value='Personal'>{t('billing_personal')}</SelectItem>
+                <SelectItem value='Company'>{t('billing_company')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -101,10 +103,10 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
           <div className="space-y-6">
             <div className="anim-up flex flex-col">
               <label className="subheading mb-2 font-medium">
-                Company Name
+                {t('company_name')}
               </label>
               <Input
-                placeholder="Company name"
+                placeholder={t('company_name')}
                 className="form-input"
                 name="company_name"
                 type='text'
@@ -118,10 +120,10 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
             <div className="space-y-6 w-full">
               <div className="anim-up flex flex-col">
                 <label className="subheading mb-2 font-medium">
-                  First name <span className="required">*</span>
+                  {t('first_name')} <span className="required">*</span>
                 </label>
                 <Input
-                  placeholder="First name"
+                  placeholder={t('first_name')}
                   className="form-input"
                   name="firstname"
                   type='text'
@@ -133,10 +135,10 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
             <div className="space-y-6 w-full">
               <div className="anim-up flex flex-col">
                 <label className="subheading mb-2 font-medium">
-                  Last name <span className="required">*</span>
+                  {t('last_name')} <span className="required">*</span>
                 </label>
                 <Input
-                  placeholder="Last name"
+                  placeholder={t('last_name')}
                   className="form-input"
                   name="lastname"
                   type='text'
@@ -152,7 +154,7 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
           <div className="space-y-6">
             <div className="anim-up flex flex-col">
               <label className="subheading mb-2 font-medium">
-                TAX ID.
+                {t('tax_id')}
               </label>
               <Input
                 placeholder={isCompany ? "3-0000-9999-9" : "1-1009-99999-09-9"}
@@ -165,16 +167,16 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
             </div>
           </div>
         ) : (
-          <Button variant='link' onClick={() => setEnableTaxID(true)} className='justify-start p-0 h-fit -mt-6 text-[#71717A] font-medium'>Enter TAX ID. for the tax invoice</Button>
+          <Button variant='link' onClick={() => setEnableTaxID(true)} className='justify-start p-0 h-fit -mt-6 text-[#71717A] font-medium'>{t('enter_tax_id_text')}</Button>
         )}
 
         <div className="space-y-6">
           <div className="anim-up flex flex-col">
             <label className="subheading mb-2 font-medium">
-              Address <span className="required">*</span>
+              {t('address')} <span className="required">*</span>
             </label>
             <Input
-              placeholder="Limited Co 999 99 Rama IX Rd,"
+              placeholder={t('address')}
               className="form-input"
               name="address"
               type='text'
@@ -188,10 +190,10 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
           <div className="space-y-6 w-full">
             <div className="anim-up flex flex-col">
               <label className="subheading mb-2 font-medium">
-                Sub-district <span className="required">*</span>
+                {t('subdistrict')} <span className="required">*</span>
               </label>
               <Input
-                placeholder="Pattanakarn"
+                placeholder={t('subdistrict')}
                 className="form-input"
                 name="subdistrict"
                 type='text'
@@ -203,10 +205,10 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
           <div className="space-y-6 w-full">
             <div className="anim-up flex flex-col">
               <label className="subheading mb-2 font-medium">
-                District <span className="required">*</span>
+                {t('district')} <span className="required">*</span>
               </label>
               <Input
-                placeholder="Suan Luang"
+                placeholder={t('district')}
                 className="form-input"
                 name="district"
                 type='text'
@@ -221,7 +223,7 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
           <div className="space-y-6 w-full">
             <div className="anim-up flex flex-col">
               <label className="subheading mb-2 font-medium">
-                Province <span className="required">*</span>
+                {t('province')} <span className="required">*</span>
               </label>
               <Select className='form-input' name="province" defaultValue="Bangkok"
                 // onChange={form.handleChange} defaultValue={preloadedValues.email}
@@ -240,10 +242,10 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
           <div className="space-y-6 w-full">
             <div className="anim-up flex flex-col">
               <label className="subheading mb-2 font-medium">
-                Postal Code <span className="required">*</span>
+                {t('postal_code')} <span className="required">*</span>
               </label>
               <Input
-                placeholder="10210"
+                placeholder={t('postal_code')}
                 className="form-input"
                 name="postal_code"
                 type='text'
@@ -256,7 +258,7 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
 
         <Button type='button' className='btn-with-icon w-full' onClick={onSubmitForm}>
           {saving ? <Loader2 className="h-4 w-4 animate-spin"/> : null}
-          {saving ? 'Updating...' : submitText}
+          {saving ? t('updating') : submitText}
         </Button>
       </form>
     </>

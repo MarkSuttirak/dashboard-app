@@ -16,7 +16,18 @@
     "fill_info_desc": "Please tell us a little about yourself so that we can provide the best experience.",
     "first_name": "First name",
     "last_name": "Last name",
+    "company_name": "Company name",
+    "tax_id": "TAX ID.",
+    "enter_tax_id_text": "Enter TAX ID. for the tax invoice",
     "date_of_birth": "Date of Birth",
+    "tax_invoice_type": "Tax invoice type",
+    "address": "Address",
+    "subdistrict": "Sub-district",
+    "district": "District",
+    "province": "Province",
+    "postal_code": "Postal Code",
+    "billing_personal": "Personal",
+    "billing_company": "Company",
     "email": "Email",
     "additional_detail": "Additional details about you",
     "entrepreneur_title": "I am a solo entrepreneur",
@@ -36,6 +47,8 @@
     "cancel": "Cancel",
     "upgrade": "Upgrade",
     "pro": "Pro",
+    "upgrade_to_pro": "Upgrade to Pro",
+    "recommended": "Recommended",
     "topbar": {
         "search": "Search",
         "notifications": "Notifications",
@@ -64,6 +77,55 @@
     "menus": {
         "dashboard": "Dashboard",
         "settings": "Settings",
-        "integration": "Integration"
-    }
+        "integration": "Integration",
+        "your_workspace": "Your WorkSpace",
+        "application": "Applications"
+    },
+    "pro_privileges": {
+        "pro_desc": "Say hello to the world and let readers know what your blog is all about.",
+        "see_more_details": "See more details at",
+        "compare_plans": "Compare Plans & Features",
+        "yearly_save": "Yearly save",
+        "continue": "Continue",
+        "everything_in_free": {
+            "title": "Everything in Free!",
+            "desc": "Unlock every application at once"
+        },
+        "unlimited_quota": {
+            "title": "Unlimited quota",
+            "desc": "No limited order, page, customer etc."
+        },
+        "collaborative_workspace": {
+            "title": "Collaborative workspace",
+            "desc": "Enable team features"
+        },
+        "one_team_member": {
+            "title": "1 team member",
+            "desc": "Free 1 teammate slot"
+        },
+        "super_admin": {
+            "title": "Super Admin",
+            "desc": "Can access billing and members"
+        },
+        "priority_support": {
+            "title": "Priority support",
+            "desc": "Response within 4 hours"
+        }
+    },
+    "payment": {
+        "title": "Payment",
+        "subscribe_website": "Subscribe to Website Pro",
+        "per": "per",
+        "month": "month",
+        "year": "year",
+        "subtotal": "Subtotal",
+        "add_promo": "Add promotion code",
+        "total": "Total",
+        "enter_coupon": "Enter your coupon code",
+        "apply": "Apply",
+        "invalid_code": "This coupon is invalid."
+    },
+    "billing_info": "Billing information",
+    "update_form": "Update",
+    "updating": "Updating..."
 }

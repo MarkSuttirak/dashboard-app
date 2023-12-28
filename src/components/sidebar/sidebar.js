@@ -219,7 +219,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
             </section> */}
 
             <section className="flex flex-col">
-              <h3 className="text-[#8A8A8A] text-sm font-medium p-4">WorkSpace App</h3>
+              <h3 className="text-[#8A8A8A] text-sm font-medium p-4">{t('menus.your_workspace')}</h3>
               {workspaceApp.map((item) => (
                 <Button variant='ghost' onClick={item.onClick} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5`}>
                   {item.icon}
@@ -229,7 +229,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
             </section>
 
             <section className="flex flex-col">
-              <h3 className="text-[#8A8A8A] text-sm font-medium p-4">Your sites</h3>
+              <h3 className="text-[#8A8A8A] text-sm font-medium p-4">{t('menus.application')}</h3>
               {yourSites.map((item) => (
                 <Link to={item.href}>
                   <Button variant='ghost' onClick={handleMenuClick} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.href === active ? 'bg-zinc-100' : ''}`}>

@@ -16,7 +16,18 @@
     "fill_info_desc": "บอกเราสักเล็กน้อยว่าคุณเป็นใคร เพื่อให้เราสามารถนำเสนอสิ่งที่ดีที่สุดให้กับคุณ",
     "first_name": "ชื่อ",
     "last_name": "นามสกุล",
+    "company_name": "ชื่อบริษัท",
+    "tax_id": "เลขประจำตัวผู้เสียภาษี",
+    "enter_tax_id_text": "คลิกที่นี่เพื่อระบุหมายเลขประจำตัวผู้เสียภาษี (ถ้ามี)",
     "date_of_birth": "วัน/เดือน/ปีเกิด",
+    "tax_invoice_type": "ประเภทผู้เสียภาษี",
+    "billing_personal": "บุคคลธรรมดา",
+    "billing_company": "นิติบุคคล",
+    "address": "ที่อยู่",
+    "subdistrict": "ตำบล/แขวง",
+    "district": "อำเภอ/เขต",
+    "province": "จังหวัด",
+    "postal_code": "รหัสไปรษณีย์",
     "email": "อีเมล",
     "additional_detail": "รูปแบบธุรกิจของคุณเป็นอย่างไร?",
     "entrepreneur_title": "ธุรกิจของฉันมีแค่ฉันคนเดียว",
@@ -36,6 +47,7 @@
     "cancel": "ยกเลิก",
     "upgrade": "อัปเกรด",
     "pro": "โปร",
+    "upgrade_to_pro": "อัปเกรดเป็น Pro",
     "topbar": {
         "search": "ค้นหา",
         "notifications": "แจ้งเตือน",
@@ -64,6 +76,55 @@
     "menus": {
         "dashboard": "แดชบอร์ด",
         "settings": "ตั้งค่า",
-        "integration": "แอปของคุณ"
-    }
+        "integration": "แอปของคุณ",
+        "your_workspace": "WorkSpace ของคุณ",
+        "application": "แอปพลิเคชัน"
+    },
+    "pro_privileges": {
+        "pro_desc": "อัปเกรดแพคเกจเป็น Pro เพื่อให้คุณและเพื่อนของคุณ ใช้งานทุกอย่างได้อย่างไร้ขีดจำกัด",
+        "see_more_details": "ดูข้อมูลเพิ่มเติมที่",
+        "compare_plans": "เปรียบเทียบแพ็กเกจฟรี & Pro",
+        "yearly_save": "ประหยัดถึง",
+        "continue": "ดำเนินการต่อ",
+        "everything_in_free": {
+            "title": "ทุกอย่างฟรีหมด!",
+            "desc": "ใช้งานทุกแอพพลิเคชันฟรีไม่มีจ่ายเพิ่ม"
+        },
+        "unlimited_quota": {
+            "title": "ปลดล็อกทุกอย่าง",
+            "desc": "ไม่มีจำกัดจำนวนออเดอร์ หน้า หรือลูกค้าอีกต่อไป"
+        },
+        "collaborative_workspace": {
+            "title": "ให้ Workspace คึกคักมากขึ้น",
+            "desc": "เปิดการใช้งาน “ทีม” ฟีเจอร์"
+        },
+        "one_team_member": {
+            "title": "เพื่อนร่วมทีม 1 คน",
+            "desc": "สามารถเชิญเพื่อนเข้าร่วมทีมฟรี 1 คน"
+        },
+        "super_admin": {
+            "title": "Super Admin",
+            "desc": "สามารถเข้าถึงทุกการตั้งค่าได้"
+        },
+        "priority_support": {
+            "title": "บริการช่วยเหลือสำหรับลูกค้าคนพิเศษ",
+            "desc": "ทีมช่วยเหลือจะตอบคำถามคุณภายใน 4 ชม."
+        }
+    },
+    "payment": {
+        "title": "การชำระเงิน",
+        "subscribe_website": "อัปเกรด WorkSpace เป็นแพ็กเกจโปร",
+        "per": "ต่อ",
+        "month": "เดือน",
+        "year": "ปี",
+        "subtotal": "รวม",
+        "add_promo": "เพิ่มโค้ดส่วนลด",
+        "total": "รวมทั้งสิ้น",
+        "enter_coupon": "ระบุโค้ดส่วนลดของคุณ",
+        "apply": "ใช้โค้ด",
+        "invalid_code": "ไม่พบโค้ดส่วนลดนี้"
+    },
+    "billing_info": "ข้อมูลสำหรับออกใบกำกับภาษี",
+    "update_form": "บันทึก",
+    "updating": "กำลังบันทึก..."
 }
