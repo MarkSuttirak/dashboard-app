@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { appList } from "./apps/appList";
+import { useTranslation } from "react-i18next";
 
 export default function Breadcrumbs(){
+  const {t, i18n} = useTranslation()
   const location = useLocation()
   const [currentPage, setCurrentPage] = useState(location.pathname);
   const [breadcrumbList, setBreadcrumbList] = useState([]);
@@ -54,7 +56,7 @@ export default function Breadcrumbs(){
   return (
     <div className="flex items-center gap-x-2">
       <Link to='/'>
-        <h2 className='subheading'>WorkSpace</h2>
+        <h2 className='subheading'>{t('menus.dashboard')}</h2>
       </Link>
       {breadcrumbList.map(p => (
         <>

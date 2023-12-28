@@ -11,8 +11,10 @@ import { Badge } from '../ui/badge'
 import DrawLine from "../drawLine";
 import { Heart, PartyPopper, ThumbsUp, UserCircle, UserPlus } from 'lucide-react'
 import { Icons } from '../ui/icons'
+import { useTranslation } from 'react-i18next'
 
 export default function UpgradeProModal(){
+  const { t } = useTranslation()
   const [openModal, setOpenModal] = useState(false)
   const [perYear, setPerYear] = useState(false);
 
@@ -95,10 +97,10 @@ export default function UpgradeProModal(){
     <Dialog open={openModal} onOpenChange={handleCloseModal}>
       <DialogTrigger className='mr-[19px]'>
         <div className='text-[13px] flex gap-x-[5px] items-center font-medium bg-[#F4F4F5] pl-2 py-1 pr-1 rounded-md h-[34px]'>
-          Upgrade
+          {t('upgrade')}
           <div className='flex bg-black rounded-md text-white cal-sans text-[13px] font-semibold h-full p-[6px] gap-x-[5px]'>
             <UpgradeProIcon />
-            Pro
+            {t('pro')}
           </div>
         </div>
       </DialogTrigger>

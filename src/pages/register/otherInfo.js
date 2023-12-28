@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from 'react'
+import React, { Fragment, useContext, useState, useEffect } from 'react'
 import StepMaintainer from '../../components/StepMaintainer'
 import { useFormik } from 'formik'
 import { RadioGroup, Dialog, Transition } from '@headlessui/react';
@@ -14,6 +14,7 @@ import { Steps } from '../register'
 import Spacer from '../../components/spacer'
 import { Button } from '../../components/ui/button';
 import { Checkbox } from "../../components/ui/checkbox"
+import { Link } from 'react-router-dom';
 import {
     Select,
     SelectContent,
@@ -23,6 +24,7 @@ import {
 } from "../../components/ui/select"
 import { Input } from '../../components/ui/input';
 import { DatePicker } from 'src/components/ui/datepicker';
+import { useTranslation } from "react-i18next";
 
 const OtherInfo = () => {
     const { key } = useParams()
@@ -129,9 +131,10 @@ export const UserInfoForm = ({
     validationSchema,
     state
 }) => {
+    const {t,i18n} = useTranslation();
     const mailingLists = [
-        { id: 1, title: 'I am a solo entrepreneur', description: 'Founder and solo employee until business success' },
-        { id: 2, title: 'I am a business team member', description: 'Individuals contribute to the success of the business' },
+        { id: 1, title: t('entrepreneur_title'), description: t('entrepreneur_desc') },
+        { id: 2, title: t('business_team_title'), description: t('business_team_desc') },
     ]
     const { key } = useParams();
     const { idTokenData } = useContext(AuthContext)
@@ -157,16 +160,16 @@ export const UserInfoForm = ({
         >
             <Steps total={5} step={current} />
             <div className="anim-up">
-                <h2 className="main-heading mt-10">Fill in your information</h2>
-                <p className="subheading">Please tell us a little about yourself so that we can provide the best experience.</p>
+                <h2 className="main-heading mt-10">{t('fill_info_title')}</h2>
+                <p className="subheading">{t('fill_info_desc')}</p>
             </div>
             <div className={`space-y-4 mt-6 anim-up`}>
                 <div className="flex gap-x-3">
                     <div>
-                        <label htmlFor='first_name' className="subheading mb-2 font-medium">First name</label>
+                        <label htmlFor='first_name' className="subheading mb-2 font-medium">{t('first_name')}</label>
                         <Input
                             className="form-input"
-                            placeholder="Name"
+                            placeholder={t('first_name')}
                             name="first_name"
                             onChange={formik.handleChange}
                             value={formik.values.first_name}
@@ -178,10 +181,10 @@ export const UserInfoForm = ({
                         }
                     </div>
                     <div>
-                        <label htmlFor='last_name' className="subheading mb-2 font-medium">Last name</label>
+                        <label htmlFor='last_name' className="subheading mb-2 font-medium">{t('last_name')}</label>
                         <Input
                             className="form-input"
-                            placeholder="Surname"
+                            placeholder={t('last_name')}
                             name="last_name"
                             onChange={formik.handleChange}
                             value={formik.values.last_name}
@@ -195,7 +198,7 @@ export const UserInfoForm = ({
                 </div>
 
                 <div>
-                    <label htmlFor='birth_date' className="subheading mb-2 font-medium">Date of Birth</label>
+                    <label htmlFor='birth_date' className="subheading mb-2 font-medium">{t('date_of_birth')}</label>
                     <Input
                         type="date"
                         name="birth_date"
@@ -208,7 +211,7 @@ export const UserInfoForm = ({
                 </div>
 
                 <div>
-                    <label htmlFor='email' className="subheading mb-2 font-medium">Email</label>
+                    <label htmlFor='email' className="subheading mb-2 font-medium">{t('email')}</label>
                     <Input
                         type="email"
                         name="email"
@@ -221,7 +224,7 @@ export const UserInfoForm = ({
                 </div>
 
                 <div>
-                    <h2 className="subheading">Additional details about you</h2>
+                    <h2 className="subheading">{t('additional_detail')}</h2>
                     <RadioGroup value={null} onChange={null}>
                         <div className="mt-4 grid grid-cols-1 gap-y-3">
                             {mailingLists.map((mailingList) => (
@@ -269,7 +272,7 @@ export const UserInfoForm = ({
 
                     <div className='flex gap-x-2 text-sm mt-6'>
                       <Checkbox id='agree' className='mt-1'/>
-                      <label htmlFor='agree'>By signing up, you agree to our Terms of Use and acknowledge you have read our Privacy Policy</label>
+                      <label htmlFor='agree'>{t('sign_up_agreement_one')} <Link>{t('terms_of_use')}</Link> {t('sign_up_agreement_two')} <Link>{t('privacy_policy')}</Link></label>
                     </div>
 
                     <div className={`anim-up-delay translate-y-[20px] mt-4`}>
@@ -277,7 +280,7 @@ export const UserInfoForm = ({
                             type='submit'
                             className='justify-center w-full'
                             // disabled={!formik.isValid}
-                        >Continue</Button>
+                        >{t('continue')}</Button>
                     </div>
                 </div>
             </div>

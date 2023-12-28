@@ -12,10 +12,13 @@ import { Dialog, DialogTrigger } from "../ui/dialog";
 import { SearchItem } from "../topbar/searchBar";
 import { Skeleton } from "../ui/skeleton"
 import SidebarUpgrade from "./sidebarUpgrade";
+import { useTranslation } from "react-i18next";
+import SidebarWebsite from "./sidebarWebsite";
 
 // import TeamModal from "../components/switchTeamModal";
 
 export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }){
+  const {t, i18n} = useTranslation()
   const [active, setActive] = useState('');
   const location = useLocation();
   const { user } = useUser();
@@ -44,8 +47,8 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   });
 
   const navigation = [
-    { name: 'Dashboard', icon: <Hotel viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/app', current: active === '/dashboard/app' ? true : false, id: 'dashboard' },
-    { name: 'Settings', icon: <Settings viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/settings/account', current: active == "/dashboard/settings/account" || active == "/dashboard/settings/billing-plans" || active == "/dashboard/settings/notifications" ? true : false, active: active, id: 'settings' },
+    { name: t('menus.dashboard'), icon: <Hotel viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/app', current: active === '/dashboard/app' ? true : false, id: 'dashboard' },
+    { name: t('menus.settings'), icon: <Settings viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/settings/account', current: active == "/dashboard/settings/account" || active == "/dashboard/settings/billing-plans" || active == "/dashboard/settings/notifications" ? true : false, active: active, id: 'settings' },
   ]
 
   const settingsMenus = [
@@ -71,14 +74,14 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   ]
 
   const yourSites = [
-    { name: 'Integration', icon: <Zap className="w-4 h-4 stroke-[1.5] text-[#18181B]" />, id: 'integration', href: '/integration/manage-apps' },
+    { name: t('menus.integration'), icon: <Zap className="w-4 h-4 stroke-[1.5] text-[#18181B]" />, id: 'integration', href: '/integration/manage-apps' },
     { name: 'App Store', icon: <UserCircle className="w-4 h-4 stroke-[1.5] text-[#18181B]" />, id: 'app-store', href: '/integration/appstore' },
   ]
 
   const workspaceApp = [
-    { name: 'Manage Business', icon: <Icons.erpApp width='20' height='20'/>, id: 'manage-business', onClick:() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })},
-    { name: 'Blog Creator', icon: <Icons.blogPostApp width='20' height='20' />, id: 'builder', onClick:() => window.open(`https://${sites?.site_list[0].name}/SpaBlogEditor`)},
-    { name: 'Web Pages', icon: <Icons.websiteApp width='20' height='20' fill='transparent'/>, id: 'websites', onClick:() => window.open(`https://${sites?.site_list[0].name}/builder`)},
+    { name: t('workspace_buttons.manage_business'), icon: <Icons.erpApp width='20' height='20'/>, id: 'manage-business', onClick:() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })},
+    { name: t('workspace_buttons.blog_editor'), icon: <Icons.blogPostApp width='20' height='20' />, id: 'builder', onClick:() => window.open(`https://${sites?.site_list[0].name}/SpaBlogEditor`)},
+    { name: t('workspace_buttons.web_pages'), icon: <Icons.websiteApp width='20' height='20' fill='transparent'/>, id: 'websites', onClick:() => window.open(`https://${sites?.site_list[0].name}/builder`)},
   ]
 
   useEffect(() => {
@@ -139,33 +142,21 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
   return (
     <>
-      <IconSidebar />
+      {/* <IconSidebar /> */}
       <div className={`flex flex-1 flex-col border-r border-gray-200 bg-white ${isSidebarOpen ? 'active' : 'inactive'}`} id="sidebar">
         <div className="flex flex-1 flex-col pt-3">
           <div className="flex flex-shrink-0 items-center px-3 sidebar-site">
             <div className="flex items-center w-full">
-              <div className="flex items-center gap-x-2">
-                <div className="min-w-9 min-h-9">
-                  <Icons.zaviagoApp onClick={() => navigate('/')} className='cursor-pointer w-9 h-9'/>
-                </div>
-                <span className="flex gap-x-2 items-center">
-                  <div className="flex flex-col text-left">
-                    <h2 className="cal-sans text-[17px] font-semibold">zaviago<span className="text-[13px]">.com</span></h2>
-                    <p className={`text-[11px] font-medium tracking-[-0.33px] text-[#5A5A5A] ${sites ? '-mt-1' : 'mt-0'}`}>
-                      {sites ? sites?.site_list[0].name : <Skeleton className='h-3 w-full rounded-sm'/>}
-                    </p>
-                  </div>
-                </span>
-              </div>
+              <SidebarWebsite />
             </div>
           </div>
-          <button className={`chevron-btn ${!isSidebarOpen ? 'inactive' : ''}`} onClick={() => setIsSidebarOpen(false)}>
+          {/* <button className={`chevron-btn ${!isSidebarOpen ? 'inactive' : ''}`} onClick={() => setIsSidebarOpen(false)}>
             <ChevronsLeft className="chevron-sidebar" viewBox="0 0 24 24" width='16' height='16' />
-          </button>
+          </button> */}
 
-          {!upgraded && <SidebarUpgrade />}
+          {/* {!upgraded && <SidebarUpgrade />} */}
 
-          <nav className="flex bg-white px-3 pt-2 flex-col gap-y-4" aria-label="Sidebar">
+          <nav className="flex bg-white px-3 pt-2 flex-col gap-y-4 mt-3" aria-label="Sidebar">
             <section className="flex flex-col">
               {navigation.map((item) => (
                 <>

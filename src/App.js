@@ -7,6 +7,7 @@ import { useToast } from './hooks/useToast';
 import { UserProvider } from './hooks/useUser';
 import { ServiceProvider } from "./components/provider/serviceProvider";
 import { MemberProvider } from "./components/provider/memberProvider";
+import { useTranslation } from "react-i18next";
 
 const authConfig = {
   autoLogin: false,
@@ -26,6 +27,7 @@ const authConfig = {
 export const switchContext = createContext();
 
 function App() {
+  const {t,i18n} = useTranslation();
   const { showToast } = useToast();
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -42,6 +44,14 @@ function App() {
       },
     }
   })
+
+  useEffect(() => {
+    if (localStorage.lang === 'th'){
+      i18n.changeLanguage('th')
+    } else {
+      i18n.changeLanguage('en')
+    }
+  }, [])
 
   return (
     <QueryClientProvider client={queryClient}>

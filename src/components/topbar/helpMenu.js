@@ -6,8 +6,10 @@ import { site } from "../../client/api";
 import { useMutation, useQuery } from "react-query";
 import { useUser } from '../../hooks/useUser'
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function HelpMenu(){
+  const { t } = useTranslation()
   const { user, auth, logout } = useUser();
   const { data: sites } = useQuery('sites', site.list, {
     enabled: false
@@ -18,8 +20,8 @@ export default function HelpMenu(){
   const [open, setOpen] = useState(false);
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger className='text-[13px] w-[45px] flex justify-between items-center'>
-        Help
+      <PopoverTrigger className='text-[13px] flex justify-between items-center gap-x-2'>
+        {t('topbar.help')}
         <ChevronDown viewBox='0 0 24 24' width='14' height='14' strokeWidth='1'/>
       </PopoverTrigger>
       <PopoverContent className='p-0 w-[243px]'>
@@ -28,25 +30,25 @@ export default function HelpMenu(){
             <CommandGroup>
               <CommandItem onSelect={() => window.location.href = "https://zaviago-platform-doc.vercel.app/"}>
                 <BookCopy viewBox='0 0 24 24' className='mr-2 h-4 w-4 stroke-[1.5]'/>
-                Documentation
+                {t('topbar.menus.documentation')}
               </CommandItem>
             </CommandGroup>
             <CommandSeparator />
             <CommandGroup>
               <CommandItem>
                 <ClipboardList viewBox='0 0 24 24' className='mr-2 h-4 w-4 stroke-[1.5]'/>
-                Report an Issue
+                {t('topbar.menus.report_issue')}
               </CommandItem>
             </CommandGroup>
             <CommandSeparator />
             <CommandGroup>
               <CommandItem onSelect={() => window.location.href = `http://${sites?.site_list[0].name}`}>
                 <Layout viewBox='0 0 24 24' className='mr-2 h-4 w-4 stroke-[1.5]'/>
-                View Website
+                {t('topbar.menus.view_website')}
               </CommandItem>
               <CommandItem onSelect={() => window.location.href = 'https://page.line.me/zaviago'}>
                 <BadgeHelp viewBox='0 0 24 24' className='mr-2 h-4 w-4 stroke-[1.5]'/>
-                Support
+                {t('topbar.menus.support')}
               </CommandItem>
             </CommandGroup>
           </CommandList>

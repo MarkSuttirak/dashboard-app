@@ -7,8 +7,10 @@ import { User, Keyboard, Layout, LogOut } from 'lucide-react'
 import { useUser } from '../../hooks/useUser'
 import LogoutModal from "./logoutModal";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function AvatarMenu(){
+  const { t } = useTranslation()
   const { user, auth, logout } = useUser();
   const { data: sites } = useQuery('sites', site.list, {
     enabled: false
@@ -30,7 +32,7 @@ export default function AvatarMenu(){
             <CommandGroup>
               <CommandItem onSelect={() => navigate('/dashboard/settings/account')}>
                 <User viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
-                Account settings
+                {t('topbar.menus.my_account')}
               </CommandItem>
             </CommandGroup>
             <CommandSeparator />
@@ -38,7 +40,7 @@ export default function AvatarMenu(){
               <CommandItem className='p-0'>
                 <LogoutModal>
                   <LogOut viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
-                  Logout
+                  {t('topbar.menus.logout')}
                 </LogoutModal>
               </CommandItem>
             </CommandGroup>

@@ -3,6 +3,7 @@ import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, Comma
 import { Search } from 'lucide-react'
 import { useNavigate } from "react-router-dom"
 import { useState } from 'react'
+import { useTranslation } from "react-i18next"
 
 const settingsMenus = [
   {
@@ -60,6 +61,7 @@ export function SearchItem(){
 }
 
 export function SearchBar(){
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
 
   window.onkeydown = (e) => {
@@ -74,7 +76,7 @@ export function SearchBar(){
       <DialogTrigger className='outline-none bg-zinc-100 rounded-full pl-2 pr-4 py-[6px] text-[13px] h-7 flex items-center w-[155px] text-zinc-500 tracking-[0.02em] gap-x-[3px] leading-5'>
         <Search className="h-5 w-5 stroke-[1.5]"/>
         <div className="flex justify-between items-center w-full text-xs">
-          <p>Search</p>
+          <p>{t('topbar.search')}</p>
           <p>(CTRL +G)</p>
         </div>
       </DialogTrigger>

@@ -7,16 +7,6 @@ import { ChatBubbleIcon, CheckboxIcon, LightningBoltIcon, Pencil2Icon } from "@r
 import unlockMultiplayerBg from 'src/img/unlock-multiplayer-bg.png'
 
 export default function SetupBusiness({sitename}){
-  const textGradient = (gradient, fontSize) => {
-    const style = {
-      background:gradient,
-      fontSize:fontSize,
-      WebkitBackgroundClip:"text",
-      WebkitTextFillColor:"transparent"
-    }
-    return style
-  }
-
   function GuideButton({icon, title, buttonText, buttonIcon, isCompleted, slug}){
     return (
       <button className="guide-btn px-[22px] py-2 rounded-xl" onClick={() => sitename(slug)}>

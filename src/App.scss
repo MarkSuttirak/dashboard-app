@@ -41,48 +41,6 @@ html{scroll-behavior:smooth}
 }
 
 @font-face {
-  font-family: Sukhumvit Set;
-  src: url(../src/fonts/Sukhumvit-set/SukhumvitSet-Bold.ttf);
-  font-weight: 700;
-  unicode-range: 'U+0E00–U+0E7F';
-}
-
-@font-face {
-  font-family: Sukhumvit Set;
-  src: url(../src/fonts/Sukhumvit-set/SukhumvitSet-SemiBold.ttf);
-  font-weight: 600;
-  unicode-range: 'U+0E00–U+0E7F';
-}
-
-@font-face {
-  font-family: Sukhumvit Set;
-  src: url(../src/fonts/Sukhumvit-set/SukhumvitSet-Medium.ttf);
-  font-weight: 500;
-  unicode-range: 'U+0E00–U+0E7F';
-}
-
-@font-face {
-  font-family: Sukhumvit Set;
-  src: url(../src/fonts/Sukhumvit-set/SukhumvitSet-Text.ttf);
-  font-weight: 400;
-  unicode-range: 'U+0E00–U+0E7F';
-}
-
-@font-face {
-  font-family: Sukhumvit Set;
-  src: url(../src/fonts/Sukhumvit-set/SukhumvitSet-Light.ttf);
-  font-weight: 300;
-  unicode-range: 'U+0E00–U+0E7F';
-}
-
-@font-face {
-  font-family: Sukhumvit Set;
-  src: url(../src/fonts/Sukhumvit-set/SukhumvitSet-Thin.ttf);
-  font-weight: 200;
-  unicode-range: 'U+0E00–U+0E7F';
-}
-
-@font-face {
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 700;
@@ -109,8 +67,7 @@ body {
 .bg-gradient{background: linear-gradient(50deg, #FFF 78.99%, #D1B5FF 271.14%)}
 .inter{font-family:'Inter'}
 .eventpop{font-family:'Eventpop', sans-serif}
-.cal-sans{font-family:'Cal Sans', sans-serif}
-.sukhumvit{font-family:'Sukhumvit Set', sans-serif}
+.cal-sans{font-family:'Cal Sans', eventpop, sans-serif}
 .cooper-black{font-family:'Cooper Black'}
 
 .see-more {
@@ -332,7 +289,7 @@ body {
   transition:width 300ms;
   position:fixed;
   height:100vh;
-  margin-left:$left-sidebar-width;
+  // margin-left:$left-sidebar-width;
   &.active {
     transform:translateX(0);
     transition:transform 300ms;
@@ -352,13 +309,16 @@ body {
 .page-section {
   padding:84px 40px 160px;
   box-sizing:content-box;
+  // &.active {
+  //   margin-left:$right-sidebar-width + $left-sidebar-width;
+  //   transition:margin-left 300ms;
+  // }
+  // &.inactive {
+  //   margin-left:$left-sidebar-width;
+  //   transition:margin-left 300ms;
+  // }
   &.active {
-    margin-left:$right-sidebar-width + $left-sidebar-width;
-    transition:margin-left 300ms;
-  }
-  &.inactive {
-    margin-left:$left-sidebar-width;
-    transition:margin-left 300ms;
+    margin-left:$right-sidebar-width
   }
 }
 
@@ -517,8 +477,12 @@ body {
   align-items:center;
   justify-content:space-between;
   z-index:8;
+  // &.active {
+  //   width:calc(100% - ($right-sidebar-width + $left-sidebar-width));
+  //   transition:width 300ms;
+  // }
   &.active {
-    width:calc(100% - ($right-sidebar-width + $left-sidebar-width));
+    width:calc(100% - ($right-sidebar-width));
     transition:width 300ms;
   }
   &.inactive {
@@ -717,6 +681,24 @@ $gradient-border:linear-gradient(to right, #9A5BFF, #FF9C27);
   animation:fadeIn 1.5s forwards;
   animation-delay:.3s;
   opacity:0;
+}
+
+.workspace-btn {
+  display:flex;
+  align-items:center;
+  background-color:#F7F7F8;
+  padding:8px 16px;
+  border:1px solid transparent;
+  border-radius:10px;
+  font-size:13px;
+  color:#8E8E8F;
+  transition:border 150ms, box-shadow 150ms;
+  gap:8px;
+  &:hover, &.active {
+    color:#09090B;
+    border: 1px solid #B67CFF;
+    box-shadow: 0px 0px 6.199999809265137px 0px #7000FF54;
+  }
 }
 
 @keyframes fadeIn {
