@@ -145,7 +145,7 @@ const GetPhoneNumber = ({
                                     <div className="moving-line" />
                                     <p className="tab-desc text-left font-bold mb-3 flex gap-x-2">
                                         <ChatBubbleBottomCenterTextIcon width='24' />
-                                        Requesting OTP
+                                        {t('creating_status.requesting_otp')}
                                     </p>
                                     {isLoading ? (
                                         <div className="flex items-center justify-between">
@@ -155,13 +155,13 @@ const GetPhoneNumber = ({
                                                 </div>
                                                 <div className="text-left">
                                                     <Dialog.Title as="h3" className="subheading small">
-                                                        Requesting OTP
+                                                    {t('creating_status.requesting_otp')}
                                                     </Dialog.Title>
                                                 </div>
                                             </div>
                                             <div>
                                                 <p className='tab-desc'>
-                                                    In progress
+                                                    {t('in_progress')}
                                                 </p>
                                             </div>
                                         </div>
@@ -171,12 +171,12 @@ const GetPhoneNumber = ({
                                                 <LoadingCheck type='primary' height='20px' />
                                                 <div className="text-left">
                                                     <Dialog.Title as="h3" className="subheading small">
-                                                        Requested OTP
+                                                    {t('creating_status.requested_otp')}
                                                     </Dialog.Title>
                                                 </div>
                                             </div>
                                             <div>
-                                                <p className='text-link'>Done</p>
+                                                <p className='text-link'>{t('done')}</p>
                                             </div>
                                         </div>
                                     )}
@@ -186,11 +186,11 @@ const GetPhoneNumber = ({
                                             <div className="flex gap-x-2 items-center">
                                                 <LoadingCheck type='primary' height='20px' />
                                                 <Dialog.Title as="h3" className="subheading small">
-                                                    Sent OTP
+                                                {t('creating_status.sent_otp')}
                                                 </Dialog.Title>
                                             </div>
                                             <div>
-                                                <p className='text-link'>Done</p>
+                                                <p className='text-link'>{t('done')}</p>
                                             </div>
                                         </div>
                                     ) : (
@@ -200,11 +200,11 @@ const GetPhoneNumber = ({
                                                     <div className="inner-icon"></div>
                                                 </div>
                                                 <Dialog.Title as="h3" className="subheading small">
-                                                    Sending OTP
+                                                {t('creating_status.sending_otp')}
                                                 </Dialog.Title>
                                             </div>
                                             <div>
-                                                <p className='tab-desc'>In progress</p>
+                                                <p className='tab-desc'>I{t('in_progress')}</p>
                                             </div>
                                         </div>
                                     )}
@@ -214,11 +214,11 @@ const GetPhoneNumber = ({
                                             <div className="flex gap-x-2 items-center">
                                                 <LoadingCheck type='primary' height='20px' />
                                                 <Dialog.Title as="h3" className="subheading small">
-                                                    OTP sent to your phone
+                                                {t('creating_status.sent_otp_to_phone')}
                                                 </Dialog.Title>
                                             </div>
                                             <div>
-                                                <p className='text-link'>Done</p>
+                                                <p className='text-link'>{t('done')}</p>
                                             </div>
                                         </div>
                                     )}

@@ -15,6 +15,8 @@ import Spacer from '../../components/spacer'
 import { Button } from '../../components/ui/button';
 import { Checkbox } from "../../components/ui/checkbox"
 import { Link } from 'react-router-dom';
+import dataEng from 'src/locales/en/translation.json'
+import dataThai from 'src/locales/th/translation.json'
 import {
     Select,
     SelectContent,
@@ -27,6 +29,7 @@ import { DatePicker } from 'src/components/ui/datepicker';
 import { useTranslation } from "react-i18next";
 
 const OtherInfo = () => {
+    const { t } = useTranslation()
     const { key } = useParams()
     const navigate = useNavigate()
     const [otherInfo, _] = useState({
@@ -95,14 +98,14 @@ const OtherInfo = () => {
                                                 <div className="inner-icon"></div>
                                             </div>
                                             <div className="text-left">
-                                                <Dialog.Title as="h3" className="subheading small">
-                                                    Building your workspace
+                                                <Dialog.Title as="h3" className="subheading">
+                                                    {t('creating_status.building_workspace')}
                                                 </Dialog.Title>
                                             </div>
                                         </div>
                                         <div>
-                                            <p className='tab-desc'>
-                                                In progress
+                                            <p className='main-desc'>
+                                                {t('in_progress')}
                                             </p>
                                         </div>
                                     </div>
@@ -302,36 +305,8 @@ export const BusinessInfoForm = ({
     state
 }) => {
     const { t } = useTranslation()
-    const checkboxLists = [
-        {title: 'Exceptional Service', key: 'exceptional-service'},
-        {title: 'Sustainability', key: 'sustainability'},
-        {title: 'Innovation', key: 'innovation'},
-        {title: 'Community Engagement', key: 'community-engagement'},
-        {title: 'Affordability', key: 'affordability'},
-        {title: 'Personalized Experience', key: 'personalized-experience'},
-    ]
-    const industryOptions = [
-        {value: 'retail', label: 'Retail'},
-        {value: 'ecommerce', label: 'E-Commerce'},
-        {value: 'manufacturing', label: 'Manufacturing'},
-        {value: 'service-based', label: 'Service-based'},
-        {value: 'hospitality', label: 'Hospitality'},
-        {value: 'consulting', label: 'Consulting'},
-        {value: 'health-wellness', label: 'Health and Wellness'},
-        {value: 'technology', label: 'Technology'},
-        {value: 'real-estate', label: 'Real Estate'},
-        {value: 'food-beverage', label: 'Food and Beverage'},
-        {value: 'financial-services', label: 'Financial Services'},
-        {value: 'education', label: 'Education'},
-        {value: 'transportation-logistics', label: 'Transportation and Logistics'},
-        {value: 'entertainment', label: 'Entertainment'},
-        {value: 'nonprofit', label: 'Nonprofit or Social Enterprise'},
-        {value: 'other', label: 'Other'},
-    ];
-    const checkboxListsT = t('business_type.potential_goals.options')
-    const industryOptionsT = t('business_type.your_business.options')
-
-    console.log(checkboxListsT)
+    const checkboxLists = localStorage.lang === 'th' ? dataThai.business_type.potential_goals.options : dataEng.business_type.potential_goals.options
+    const industryOptions = localStorage.lang === 'th' ? dataThai.business_type.your_business.options : dataEng.business_type.your_business.options
 
     const formik = useFormik({
         initialValues: initialValues,
@@ -347,7 +322,7 @@ export const BusinessInfoForm = ({
         <form className="register-formbox" onSubmit={formik.handleSubmit}>
             <Steps total={5} step={current} />
             <div className="anim-up">
-                <h2 className="main-heading mt-8">Select your type of business</h2>
+                <h2 className="main-heading mt-8">{t('business_type.title')}</h2>
             </div>
             <div className={`space-y-6 mt-6 anim-up`}>
                 {/* <Select options={industryOptions}
@@ -355,7 +330,7 @@ export const BusinessInfoForm = ({
                     onChange={({ value }) => formik.setFieldValue('industry', value)}
                 /> */}
                 <div>
-                  <label htmlFor='your_business' className="subheading mb-2 font-medium">Your business</label>
+                  <label htmlFor='your_business' className="subheading mb-2 font-medium">{t('business_type.your_business.label')}</label>
                   <Select onValueChange={value => {formik.setFieldValue('industry', value)}}>
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder={industryOptions[0].label} defaultValue={industryOptions[0].label} />
@@ -368,13 +343,13 @@ export const BusinessInfoForm = ({
                   </Select>
 
                     {formik.values.industry === 'other' ? (
-                    <Input placeholder='Type another type of business' className='mt-2'/>
+                    <Input placeholder={t('business_type.your_business.other_businesses')} className='mt-2'/>
                     ) : null}
                 </div>
 
                 <div>
-                    <h2 className="secondary-heading">What are your potential goals for this business?</h2>
-                    <p className='main-desc mt-2'>You can select maximum 6 options</p>
+                    <h2 className="secondary-heading">{t('business_type.potential_goals.title')}</h2>
+                    <p className='main-desc mt-2'>{t('business_type.potential_goals.desc')}</p>
 
                     <div className="grid gap-3 mt-4">
                         {/* {checkboxLists.map((checkboxList) => (
@@ -392,7 +367,7 @@ export const BusinessInfoForm = ({
                                     value={checkboxList.key}
                                     checked={formik.values.goal.includes(checkboxList.key)}
                                 />
-                                <span className="tab-desc border checkbox-card">
+                                <span className="main-desc border checkbox-card">
                                     {checkboxList.title}
                                 </span>
                             </label>
@@ -414,11 +389,11 @@ export const BusinessInfoForm = ({
                 </div>
             </div>
             <div className={`anim-up-delay translate-y-[20px] mt-2 flex gap-x-2 justify-between`}>
-                <Button variant='secondary' className={`w-1/4 justify-center`} onClick={prev}>Back</Button>
+                <Button variant='secondary' className={`w-1/4 justify-center`} onClick={prev}>{t('business_type.back')}</Button>
                 <Button
                     className='w-1/4 justify-center'
                     // disabled={!formik.isValid}
-                >Continue</Button>
+                >{t('business_type.continue')}</Button>
             </div>
         </form>
     )
@@ -436,7 +411,8 @@ export const TeamInfoForm = ({
     onSubmit,
     state,
 }) => {
-    const memberOptions = ['Only me', '2-5 people', '6-10 people', '11-20 people', '21-30 people', 'More than 30 people'];
+    const { t } = useTranslation()
+    const memberOptions = localStorage.lang === "th" ? dataThai.members : dataEng.members;
     const formik = useFormik({
         initialValues: initialValues,
         validateOnChange: false,
@@ -456,11 +432,11 @@ export const TeamInfoForm = ({
         >
             <Steps total={5} step={current} />
             <div className="anim-up">
-                <h2 className="main-heading mt-8">How many people are there in your team?</h2>
+                <h2 className="main-heading mt-8">{t('how_many_people')}</h2>
             </div>
             <div className={`space-y-4 mt-6 anim-up`}>
                 <RadioGroup className="mt-2" name='no_of_employees' value={formik.values.no_of_employees} onChange={(value) => formik.setFieldValue('no_of_employees', value)}>
-                    <RadioGroup.Label className="sr-only"> How many people are there in your team? </RadioGroup.Label>
+                    <RadioGroup.Label className="sr-only"> {t('how_many_people')} </RadioGroup.Label>
                     <div className="grid grid-cols-1 gap-3">
                         {memberOptions.map((option) => (
                             <RadioGroup.Option
@@ -482,11 +458,11 @@ export const TeamInfoForm = ({
                     </div>
                 </RadioGroup>
                 <div className={`anim-up-delay translate-y-[20px] mt-2 flex gap-x-2 justify-between`}>
-                    <Button variant='secondary' className={`w-1/4 justify-center`} onClick={prev}>Back</Button>
+                    <Button variant='secondary' className={`w-1/4 justify-center`} onClick={prev}>{t('business_type.back')}</Button>
                     <Button
                         className='w-1/4 justify-center'
                         // disabled={!formik.isValid}
-                    >Continue</Button>
+                    >{t('business_type.continue')}</Button>
                 </div>
             </div>
         </form>

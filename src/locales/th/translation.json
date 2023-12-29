@@ -66,6 +66,47 @@
         "incorrect_otp": "OTP ไม่ถูกต้อง",
         "incorrect_otp_two": "OTP ไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง"
     },
+    "business_type": {
+        "back": "กลับ",
+        "continue": "ต่อไป",
+        "title": "ประเภทธุรกิจของคุณคืออะไร",
+        "your_business": {
+            "label": "ประเภทธุรกิจของคุณ",
+            "options": [
+                { "value": "retail", "label": "การค้าปลีก" },
+                { "value": "ecommerce", "label": "อี-คอมเมิร์ซ" },
+                { "value": "manufacturing", "label": "อุตสาหกรรมการผลิต" },
+                { "value": "service-based", "label": "ธุรกิจบริการ" },
+                { "value": "hospitality", "label": "โรงแรมและการท่องเที่ยว" },
+                { "value": "consulting", "label": "บริการให้คำปรึกษา" },
+                { "value": "health-wellness", "label": "สุขภาพและความงาม" },
+                { "value": "technology", "label": "เทคโนโลยีและ IT" },
+                { "value": "real-estate", "label": "อสังหาริมทรัพย์" },
+                { "value": "food-beverage", "label": "อาหารและเครื่องดื่ม" },
+                { "value": "financial-services", "label": "การเงิน" },
+                { "value": "education", "label": "การศึกษา" },
+                { "value": "transportation-logistics", "label": "การขนส่งและโลจิสติก" },
+                { "value": "entertainment", "label": "สื่อและธุรกิจบันเทิง" },
+                { "value": "nonprofit", "label": "องค์กรไม่แสวงหากำไร" },
+                { "value": "other", "label": "อื่นๆ" }
+            ],
+            "other_businesses": "กรุณาระบุประเภทธุรกิจของคุณ"
+        },
+        "potential_goals": {
+            "title": "เป้าหมายของธุรกิจคุณคืออะไร",
+            "desc": "เลือกได้สูงสุด 6 ตัวเลือก",
+            "options": [
+                {"title": "การสร้างบริการที่เป็นเลิศ", "key": "exceptional-service"},
+                {"title": "ความยั่งยืนและเป็นมิตรต่อสิ่งแวดล้อม", "key": "sustainability"},
+                {"title": "การเป็นผู้นำนวัตกรรมในวงการ", "key": "innovation"},
+                {"title": "การเป็นที่รู้จักของคนในสังคม", "key": "community-engagement"},
+                {"title": "ความเข้าถึงง่ายต่อผู้คน", "key": "affordability"},
+                {"title": "เข้าใจและรู้ใจลูกค้าให้มากที่สุด", "key": "personalized-experience"}
+            ]
+        }
+    },
+    "how_many_people": "คุณมีจำนวนสมาชิกในทีมหรือจำนวนพนักงานในองค์กรของคุณกี่คน",
+    "members": ["แค่ฉันคนเดียว", "2-5 คน", "6-10 คน", "11-20 คน", "21-30 คน", "มากกว่า 30 คนขึ้นไป"],
     "topbar": {
         "search": "ค้นหา",
         "notifications": "แจ้งเตือน",
@@ -208,5 +249,51 @@
     "pagination": {
         "page": "หน้าที่",
         "of": "จาก"
-    }
+    },
+    "creating_status": {
+        "building_workspace": "กำลังปรับแต่ง WorkSpace ของคุณ",
+        "built_workspace": "ปรับแต่ง WorkSpace ของคุณแล้ว",
+        "requesting_otp": "กำลังยืนยันตัวตนด้วย OTP",
+        "requested_otp": "ยืนยันตัวตนด้วย OTP แล้ว",
+        "sending_otp": "กำลังส่งคำร้องขอรหัส OTP",
+        "sent_otp": "ส่งคำร้องขอรหัส OTP แล้ว",
+        "sent_otp_to_phone": "ส่ง OTP ไปยัง SMS ของคุณแล้ว",
+        "creating_site": "กำลังสร้างเว็บไซต์ของคุณ",
+        "changing_site_name": "กำลังเปลี่ยนชื่อเว็บไซต์",
+        "changed_site_name": "เปลี่ยนชื่อเว็บไซต์แล้ว",
+        "preparing_dashboard": "กำลังเตรียมหน้าแดชบอร์ด",
+        "prepared_dashboard": "เตรียมหน้าแดชบอร์ดแล้ว",
+        "registered_successfully": "สร้างบัญชีเรียบร้อยแล้ว",
+        "registered_text": "กรุณาคลิกที่ปุ่ม 'ไปที่หน้าแดชบอร์ด' เพื่อเริ่มต้นใช้งาน",
+        "go_to_dashboard": "ไปที่หน้าแดชบอร์ด"
+    },
+    "setup_site": {
+        "call_your_site": "อยากให้เราเรียกเว็บไซต์ของคุณว่าอะไร",
+        "call_your_site_desc": "สร้างเว็บไซต์ของตัวเองง่ายๆ เพียงไม่กี่คลิก",
+        "call_your_site_warning": "สามารถใช้ A-Z, a-z และ 0-9 ได้เท่านั้น",
+        "already_taken": "subdomain นี้ถูกใช้แล้ว"
+    },
+    "steps": {
+        "phone_number": {
+            "title": "ยืนยันตัวตน",
+            "desc": "ยืนยันตัวตนผ่านเบอร์มือถือแล้ว"
+        },
+        "register": {
+            "title": "ลงทะเบียน",
+            "desc": "ระบุข้อมูลส่วนตัวของคุณและธุรกิจ"
+        }
+    },
+    "integration": {
+        "manage_apps": "จัดการแอปพลิเคชัน",
+        "manage_apps_desc": "จัดการแอปพลิเคชันทั้งหมดใน WorkSpace ของคุณ หรือไปยัง App Store เพื่อติดตั้งแอปพลิเคชันใหม่ๆ ให้กับธุรกิจของคุณ",
+        "upgrade_apps": "อัปเกรดแอปพลิเคชัน",
+        "upgrade_apps_desc": "อัปเกรดแอปพลิเคชันใน WorkSpace ของคุณ",
+        "open": "เปิด",
+        "no_apps": "ไม่พบแอปพลิเคชั่นใน WorkSpace ของคุณ",
+        "search_apps": "ค้นหาแอปพลิเคชันของฉัน"
+    },
+    "in_progress": "กำลังดำเนินการ",
+    "done": "สำเร็จ",
+    "reset": "รีเซ็ต",
+    "apps": "แอปพลิเคชัน"
 }

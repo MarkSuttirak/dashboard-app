@@ -24,8 +24,10 @@ import crm from 'src/img/crm-selectapp.svg'
 import onlineStore from 'src/img/onlinestore-selectapp.svg'
 import untitled from 'src/img/untitled-selectapp.svg'
 import marketConnect from 'src/img/marketconnect-selectapp.svg'
+import { useTranslation } from 'react-i18next';
 
 const InstanceConfig = () => {
+    const { t } = useTranslation()
     const { auth } = useUser();
     const [status, setStatus] = useState(null)
     const [lsite, _] = useState({})
@@ -126,11 +128,11 @@ const InstanceConfig = () => {
                                         </div>
                                         <div className="mt-3 text-center sm:mt-5">
                                             <Dialog.Title as="h3" className="main-heading">
-                                                Registered successfully
+                                            {t('creating_status.registered_successfully')}
                                             </Dialog.Title>
                                             <div className="mt-2">
                                                 <p className="subheading">
-                                                    Please click 'Go to dashboard' to start working.
+                                                {t('creating_status.registered_text')}
                                                 </p>
                                             </div>
                                         </div>
@@ -141,7 +143,7 @@ const InstanceConfig = () => {
                                             className="w-full justify-center"
                                             onClick={() => window.location.href = "/dashboard/app"}
                                         >
-                                            Go to dashboard
+                                            {t('creating_status.go_to_dashboard')}
                                         </Button>
                                     </div>
                                 </Dialog.Panel>
@@ -178,9 +180,9 @@ const InstanceConfig = () => {
                             >
                                 <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white p-8 shadow-xl transition-all w-full max-w-[400px] flex flex-col gap-y-4">
                                     <div className="moving-line" />
-                                    <p className="tab-desc text-left font-bold mb-3 flex gap-x-2">
+                                    <p className="main-desc text-left font-bold mb-3 flex gap-x-2">
                                         <ArrowDownOnSquareStackIcon width='24' />
-                                        Creating your site
+                                        {t('creating_status.creating_site')}
                                     </p>
                                     {status === 1 && (
                                         <div className="flex items-center justify-between">
@@ -190,13 +192,13 @@ const InstanceConfig = () => {
                                                 </div>
                                                 <div className="text-left">
                                                     <Dialog.Title as="h3" className="subheading small">
-                                                        Building your workspace
+                                                    {t('creating_status.building_workspace')}
                                                     </Dialog.Title>
                                                 </div>
                                             </div>
                                             <div>
-                                                <p className='tab-desc'>
-                                                    In progress
+                                                <p className='main-desc'>
+                                                {t('in_progress')}
                                                 </p>
                                             </div>
                                         </div>
@@ -208,12 +210,12 @@ const InstanceConfig = () => {
                                                 <LoadingCheck type='primary' height='20px' />
                                                 <div className="text-left">
                                                     <Dialog.Title as="h3" className="subheading small">
-                                                        Built your workspace
+                                                    {t('creating_status.built_workspace')}
                                                     </Dialog.Title>
                                                 </div>
                                             </div>
                                             <div>
-                                                <p className='text-link'>Done</p>
+                                                <p className='text-link'>{t('done')}</p>
                                             </div>
                                         </div>
                                     )}
@@ -225,11 +227,11 @@ const InstanceConfig = () => {
                                                     <div className="inner-icon"></div>
                                                 </div>
                                                 <Dialog.Title as="h3" className="subheading small">
-                                                    Changing your site name
+                                                {t('creating_status.changing_site_name')}
                                                 </Dialog.Title>
                                             </div>
                                             <div>
-                                                <p className='tab-desc'>In progress</p>
+                                                <p className='main-desc'>{t('in_progress')}</p>
                                             </div>
                                         </div>
                                     )}
@@ -238,11 +240,11 @@ const InstanceConfig = () => {
                                             <div className="flex gap-x-2 items-center">
                                                 <LoadingCheck type='primary' height='20px' />
                                                 <Dialog.Title as="h3" className="subheading small">
-                                                    Changed your site name
+                                                {t('creating_status.changed_site_name')}
                                                 </Dialog.Title>
                                             </div>
                                             <div>
-                                                <p className='text-link'>Done</p>
+                                                <p className='text-link'>{t('done')}</p>
                                             </div>
                                         </div>
                                     )}
@@ -254,11 +256,11 @@ const InstanceConfig = () => {
                                                     <div className="inner-icon"></div>
                                                 </div>
                                                 <Dialog.Title as="h3" className="subheading small">
-                                                    Preparing dashboard
+                                                {t('creating_status.preparing_dashboard')}
                                                 </Dialog.Title>
                                             </div>
                                             <div>
-                                                <p className='tab-desc'>In progress</p>
+                                                <p className='main-desc'>{t('in_progress')}</p>
                                             </div>
                                         </div>
                                     )}
@@ -267,11 +269,11 @@ const InstanceConfig = () => {
                                             <div className="flex gap-x-2 items-center">
                                                 <LoadingCheck type='primary' height='20px' />
                                                 <Dialog.Title as="h3" className="subheading small">
-                                                    Prepared dashboard
+                                                {t('creating_status.prepared_dashboard')}
                                                 </Dialog.Title>
                                             </div>
                                             <div>
-                                                <p className='text-link'>Done</p>
+                                                <p className='text-link'>{t('done')}</p>
                                             </div>
                                         </div>
                                     )}
@@ -310,6 +312,7 @@ export const SiteDomainForm = ({
     state: { setSite },
     onSubmit,
 }) => {
+    const { t } = useTranslation()
     const [exists, setExists] = useState(false)
     const navigate = useNavigate()
 
@@ -334,8 +337,8 @@ export const SiteDomainForm = ({
         <form className="register-formbox" onSubmit={formik.handleSubmit}>
             <Steps total={5} step={3} />
             <div className={`anim-up`}>
-                <h2 className="main-heading mt-8">What would you like to call your site?</h2>
-                <p className="subheading mt-2">Create your awesome name site in a few clicks.</p>
+                <h2 className="main-heading mt-8">{t('setup_site.call_your_site')}</h2>
+                <p className="subheading mt-2">{t('setup_site.call_your_site_desc')}</p>
             </div>
             <div className={`space-y-4 mt-10 anim-up`}>
                 <div className="relative mt-1 rounded-md shadow-sm">
@@ -354,17 +357,17 @@ export const SiteDomainForm = ({
                         .{formik.values.domain}
                     </div>
                 </div>
-                <p className='text-desc'>Only A-Z, a-z and numbers are allowed.</p>
-                <p className='error'>{exists ? "This subdomain is already taken" : formik.errors.subdomain}</p>
+                <p className='text-desc'>{t('setup_site.call_your_site_warning')}</p>
+                <p className='error'>{exists ? t('setup_site.already_taken') : formik.errors.subdomain}</p>
             </div>
 
             <div className={`flex gap-x-2 anim-up-delay translate-y-[20px] justify-between`}>
-                <Button variant='secondary' className='w-1/4 justify-center' onClick={() => navigate(-1)}>Back</Button>
+                <Button variant='secondary' className='w-1/4 justify-center' onClick={() => navigate(-1)}>{t('business_type.back')}</Button>
                 <Button
                     type='submit'
                     className='justify-center'
                     // disabled={!formik.isValid}
-                >Continue</Button>
+                >{t('business_type.continue')}</Button>
             </div>
         </form>
     )
@@ -589,7 +592,7 @@ export const ThemeSelectionForm = ({
             <Steps total={6} step={5} />
             <div className="anim-up">
                 <h2 className="main-title mt-8">Select a designed theme</h2>
-                <p className="tab-desc mt-2">Choose from plenty of designs for your site</p>
+                <p className="main-desc mt-2">Choose from plenty of designs for your site</p>
             </div>
             <div className={`space-y-4 mt-10 anim-up`}>
                 <RadioGroup

@@ -12,6 +12,7 @@ import DeleteAppModal from "src/components/modals/deleteAppModal"
 import { useQuery } from "react-query";
 import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
+import { useTranslation } from "react-i18next"
 
 const appsToUpgrade = [
   {
@@ -31,6 +32,7 @@ const appsToUpgrade = [
 ]
 
 export default function ManageOrUpgradeApps(){
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const appsPerPage = 6
   const [search, setSearch] = useState('');
@@ -56,18 +58,18 @@ export default function ManageOrUpgradeApps(){
 
   return (
     <section className="w-[672px]">
-      <h2 className="settings-heading">{id === 'manage-apps' ? 'Manage Apps' : 'Upgrade Apps'}</h2>
-      <p className="main-desc">{id === 'manage-apps' ? 'Manage all apps on your site, or visit the App Store to add new features for your business' : 'Upgrade the apps on your site'}</p>
+      <h2 className="settings-heading">{id === 'manage-apps' ? t('integration.manage_apps') : t('integration.upgrade_apps')}</h2>
+      <p className="main-desc">{id === 'manage-apps' ? t('integration.manage_apps_desc') : t('integration.upgrade_apps_desc')}</p>
       <div className="mt-6 mb-4 flex gap-x-2">
-        <Input placeholder='Search App' className='w-[250px]' onChange={e => {setSearch(e.target.value)}} value={search}/>
+        <Input placeholder={t('integration.search_apps')} className='w-[250px]' onChange={e => {setSearch(e.target.value)}} value={search}/>
         <Button variant='ghost' className={`flex items-center gap-x-2 ${search !== '' ? 'visible opacity-1' : 'invisible opacity-0'} transition duration-200`} onClick={() => {setSearch('')}}>
-          Reset
+          {t('reset')}
           <X viewBox="0 0 24 24" width='16' height='16'/>
         </Button>
       </div>
 
       <section>
-        <h3 className="subheading font-medium">Apps</h3>
+        <h3 className="subheading font-medium">{t('apps')}</h3>
 
         <div className="mt-[10px] flex flex-col gap-y-6">
         <DataList pagination={appData?.length > appsPerPage ? true : false} listPerPage={appsPerPage}>
@@ -82,11 +84,11 @@ export default function ManageOrUpgradeApps(){
             <div className="flex items-center gap-x-3">
               {id === 'manage-apps' ? (
                 <Link to={`/integration/appstore/${app.title}`}>
-                  <Button variant='outline'>Open</Button>
+                  <Button variant='outline'>{t('open')}</Button>
                 </Link>
               ) : (
                 <Link to={`/integration/appstore/${app.title}`}>
-                  <Button variant='outline'>Upgrade</Button>
+                  <Button variant='outline'>{t('upgrade')}</Button>
                 </Link>
               )}
               <Popover>

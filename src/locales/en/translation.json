@@ -67,6 +67,8 @@
         "incorrect_otp_two": "OTP is incorrect, please try again."
     },
     "business_type": {
+        "back": "Back",
+        "continue": "Continue",
         "title": "Select your type of business",
         "your_business": {
             "label": "Your business",
@@ -87,10 +89,12 @@
                 { "value": "entertainment", "label": "Entertainment" },
                 { "value": "nonprofit", "label": "Nonprofit or Social Enterprise" },
                 { "value": "other", "label": "Other" }
-            ]
+            ],
+            "other_businesses": "Type another type of business"
         },
         "potential_goals": {
             "title": "What are your potential goals for this business?",
+            "desc": "You can select maximum 6 options",
             "options": [
                 {"title": "Exceptional Service", "key": "exceptional-service"},
                 {"title": "Sustainability", "key": "sustainability"},
@@ -101,6 +105,8 @@
             ]
         }
     },
+    "how_many_people": "How many people are there in your team?",
+    "members": ["Only me", "2-5 people", "6-10 people", "11-20 people", "21-30 people", "More than 30 people"],
     "topbar": {
         "search": "Search",
         "notifications": "Notifications",
@@ -243,5 +249,51 @@
     "pagination": {
         "page": "Page",
         "of": "of"
-    }
+    },
+    "creating_status": {
+        "building_workspace": "Building your workspace",
+        "built_workspace": "Built your workspace",
+        "requesting_otp": "Requesting OTP",
+        "requested_otp": "Requested OTP",
+        "sending_otp": "Sending OTP",
+        "sent_otp": "Sent OTP",
+        "sent_otp_to_phone": "OTP sent to your phone",
+        "creating_site": "Creating your site",
+        "changing_site_name": "Changing your site name",
+        "changed_site_name": "Changed your site name",
+        "preparing_dashboard": "Preparing dashboard",
+        "prepared_dashboard": "Prepared dashboard",
+        "registered_successfully": "Registered successfully",
+        "registered_text": "Please click 'Go to dashboard' to start working.",
+        "go_to_dashboard": "Go to dashboard"
+    },
+    "setup_site": {
+        "call_your_site": "What would you like to call your site?",
+        "call_your_site_desc": "Create your awesome name site in a few clicks.",
+        "call_your_site_warning": "Only A-Z, a-z and numbers are allowed",
+        "already_taken": "This subdomain is already taken"
+    },
+    "steps": {
+        "phone_number": {
+            "title": "Phone Number",
+            "desc": "Enter your phone number to receive an OTP to verify your identity."
+        },
+        "register": {
+            "title": "Register",
+            "desc": "Fill in the denominator information for your business."
+        }
+    },
+    "integration": {
+        "manage_apps": "Manage Apps",
+        "manage_apps_desc": "Manage all apps on your site, or visit the App Store to add new features for your business",
+        "upgrade_apps": "Upgrade Apps",
+        "upgrade_apps_desc": "Upgrade the apps on your site",
+        "open": "Open",
+        "no_apps": "There is no app you are looking for.",
+        "search_apps": "Search my apps"
+    },
+    "in_progress": "In progress",
+    "done": "Done",
+    "reset": "Reset",
+    "apps": "Apps"
 }

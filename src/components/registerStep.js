@@ -1,9 +1,11 @@
 import { CheckIcon } from '@heroicons/react/24/solid'
+import { useTranslation } from 'react-i18next'
 
 export default function RegisterStep({active}){
+  const { t } = useTranslation()
   const steps = [
-    { id: '01', name: 'Phone Number', description: 'Enter your phone number to receive an OTP to verify your identity.', status: active},
-    { id: '02', name: 'Register', description: 'Fill in the denominator information for your business.', status: active},
+    { id: '01', name: t('steps.phone_number.title'), description: t('steps.phone_number.desc'), status: active},
+    { id: '02', name: t('steps.register.title'), description: t('steps.register.desc'), status: active},
     // { id: '03', name: 'Preview', description: 'Penatibus eu quis ante.', status: 'upcoming' },
   ]
 
