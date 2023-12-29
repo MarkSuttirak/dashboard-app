@@ -8,6 +8,7 @@ import { user as user_api } from "src/client/api";
 import { BillingAddressForm } from "../../components/billingAddressForm"
 import { Loader2 } from "lucide-react";
 import Loading from "src/components/ui/loading";
+import { useTranslation } from "react-i18next";
 
 // This can come from your database or API.
 const defaultValues = {
@@ -15,6 +16,7 @@ const defaultValues = {
 }
 
 export default function BillingPlan() {
+  const { t } = useTranslation()
   const [billingAddress,setbilligAddress]=useState(null)
   const fetchBilling = async()=> {
     console.log( )
@@ -27,10 +29,10 @@ export default function BillingPlan() {
 
   return (
     <>
-      <h1 className="secondary-heading">Billing information</h1>
+      <h1 className="secondary-heading">{t('billing_info')}</h1>
 
       {billingAddress ? (
-        <BillingAddressForm billingAddress={billingAddress.message} submitText="Update"/>
+        <BillingAddressForm billingAddress={billingAddress.message} submitText={t('update_form')}/>
       ) : (
         <Loading />
       )}

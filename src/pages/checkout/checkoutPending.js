@@ -8,8 +8,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
+import { useTranslation } from "react-i18next";
 
 export default function CheckoutPending(){
+  const { t } = useTranslation()
   const { id } = useParams()
   const memberStatus = useContext(MemberContext)
   const navigate = useNavigate()
@@ -55,32 +57,32 @@ export default function CheckoutPending(){
     <div className="page-section max-w-[580px] mx-auto">
       <Card className='justify-center p-0'>
         <CardHeader className='p-10'>
-          <h1 className="text-[36px] font-extrabold tracking-[-0.9px] leading-[40px] text-center text-[#09090B]">We have sent a link for the payment verification to your LINE account.</h1>
+          <h1 className="text-[36px] font-extrabold tracking-[-0.9px] leading-[40px] text-center text-[#09090B]">{t('payment.payment_notifications.to_line_account')}</h1>
           <p className="main-desc mt-[24px!important] text-center">
-            You can go to "Zaviago Line OA" to verify the payment. If the status is not updated, please <a className="text-[#006AFF]" href='https://page.line.me/zaviago'>contact us</a>
+            {t('payment.payment_notifications.line_desc')}<a className="text-[#006AFF]" href='https://page.line.me/zaviago'>{t('contact_us')}</a>
           </p>
         </CardHeader>
 
         <Separator />
 
         <CardContent className='p-10'>
-          <h2 className="domain-heading mb-4">Invoice detail</h2>
+          <h2 className="domain-heading mb-4">{t("payment.payment_notifications.invoice_detail")}</h2>
           <table className="w-full table-invoice-detail">
             <tbody>
               <tr className="main-desc my-4">
-                <td className="text-[#424242]">Invoice No.</td>
+                <td className="text-[#424242">{t("payment.payment_notifications.invoice_number")}</td>
                 <td className="text-right">INV001</td>
               </tr>
               <tr className="main-desc">
-                <td className="text-[#424242]">Date</td>
+                <td className="text-[#424242]">{t("payment.payment_notifications.date")}</td>
                 <td className="text-right">24-07-23</td>
               </tr>
               <tr className="main-desc">
-                <td className="text-[#424242]">Status</td>
-                <td className="text-right">In progress</td>
+                <td className="text-[#424242]">{t("payment.payment_notifications.status")}</td>
+                <td className="text-right">{t("payment.payment_notifications.in_progress")}</td>
               </tr>
               <tr className="main-desc">
-                <td className="text-[#424242]">Amount</td>
+                <td className="text-[#424242]">{t("payment.payment_notifications.amount")}</td>
                 <td className="text-right">฿{total()}</td>
               </tr>
             </tbody>
@@ -90,7 +92,7 @@ export default function CheckoutPending(){
         <CardFooter className='pb-10 px-10'>
           <Button className='btn-with-icon w-full' onClick={confirm}>
             <BadgeCheck viewBox="0 0 24 24" width='16' height='16'/>
-            Back to Workspace
+            {t('back_to_workspace')}
           </Button>
         </CardFooter>
       </Card>

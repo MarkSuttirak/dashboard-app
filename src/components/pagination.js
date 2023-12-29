@@ -2,8 +2,10 @@ import { Button } from "src/components/ui/button"
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react"
 import { Separator } from "./ui/separator"
 import { useState } from 'react'
+import { useTranslation } from "react-i18next"
 
 export function Pagination({data, currentPage, setCurrentPage, listPerPage}){
+  const { t } = useTranslation
   const totalPage = Math.ceil(data.length / listPerPage)
 
   const click = {
@@ -22,7 +24,7 @@ export function Pagination({data, currentPage, setCurrentPage, listPerPage}){
 
   return (
     <section className="flex gap-x-4 items-center justify-end">
-      <h2 className="subheading font-medium">Page {currentPage} of {totalPage}</h2>
+      <h2 className="subheading font-medium">{t('pagination.page')} {currentPage} {t('pagination.of')} {totalPage}</h2>
 
       <div className="flex gap-x-2">
         {buttons.map(b => (

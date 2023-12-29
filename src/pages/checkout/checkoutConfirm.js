@@ -19,8 +19,10 @@ import krungsri from 'src/img/krungsri.svg'
 import scb from 'src/img/scb.svg'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "src/components/ui/dialog"
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm, totalPrice}){
+  const { t } = useTranslation()
   const { id } = useParams()
   const { app } = useParams()
   const [date, setDate] = useState()
@@ -88,7 +90,7 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm, tota
         <button onClick={() => setPaymentConfirm(false)}>
           <ArrowLeft />
         </button>
-        <h1 className="main-heading">Payment</h1>
+        <h1 className="main-heading">{t('payment.title')}</h1>
       </div>
       <h2 className="secondary-heading">Verify the payment</h2>
       <p className="main-desc">Please attach the transfer receipt. The image of the transfer receipt should not have anything obstructing the QR code. If your transfer receipt does not have a QR code, we will verify your payment within 6 hours.</p>

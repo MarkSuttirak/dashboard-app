@@ -2,8 +2,10 @@ import { DataList, Pagination } from "./pagination";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "./ui/table"
 import React, { useState,useEffect  } from 'react';
 import { Separator } from "./ui/separator";
+import { useTranslation } from "react-i18next";
 
 export default function InvoiceTable({invoices_props}) {
+  const { t } = useTranslation()
   const [currentPage, setCurrentPage] = useState(1)
   const listPerPage = 6
    
@@ -24,17 +26,17 @@ export default function InvoiceTable({invoices_props}) {
 
   return (
     <>
-      <h2 className="secondary-heading">Purchase history</h2>
-      <p className="main-desc">Review your billing statements and payment status</p>
+      <h2 className="secondary-heading">{t('settings.purchase_history.title')}</h2>
+      <p className="main-desc">{t('settings.purchase_history.desc')}</p>
       
       <section  className="mt-8">
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[240px]">Invoice</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Method</TableHead>
-              <TableHead className="text-right">Amount</TableHead>
+              <TableHead className="w-[240px]">{t('settings.purchase_history.invoice')}</TableHead>
+              <TableHead>{t('settings.purchase_history.status')}</TableHead>
+              <TableHead>{t('settings.purchase_history.method')}</TableHead>
+              <TableHead className="text-right">{t('settings.purchase_history.amount')}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

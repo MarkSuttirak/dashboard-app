@@ -38,7 +38,7 @@ export default function PaymentForm(){
   return (
     <section className="w-full h-screen p-[60px] overflow-auto" style={{boxShadow:"-20px 0px 30px -4px rgba(0, 0, 0, 0.04)"}}>
       <h2 className="secondary-heading">{t('billing_info')}</h2>
-      <p className="main-desc">Please ensure that the entered information is correct. Once the system is in progress, you will not be able to edit any information on the tax invoice.</p>
+      <p className="main-desc">{t('billing_info_desc')}</p>
 
       <Separator className='my-6'/>
 

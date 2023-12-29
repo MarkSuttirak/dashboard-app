@@ -10,8 +10,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
+import { useTranslation } from "react-i18next";
 
 export default function CheckoutReceived(){
+  const { t } = useTranslation()
   const { id } = useParams()
   const memberStatus = useContext(MemberContext)
   const navigate = useNavigate()
@@ -70,23 +72,23 @@ export default function CheckoutReceived(){
         <Separator />
 
         <CardContent className='p-10'>
-          <h2 className="domain-heading mb-4">Invoice detail</h2>
+        <h2 className="domain-heading mb-4">{t("payment.payment_notifications.invoice_detail")}</h2>
           <table className="w-full table-invoice-detail">
             <tbody>
               <tr className="main-desc my-4">
-                <td className="text-[#424242]">Invoice No.</td>
+                <td className="text-[#424242">{t("payment.payment_notifications.invoice_number")}</td>
                 <td className="text-right">INV001</td>
               </tr>
               <tr className="main-desc">
-                <td className="text-[#424242]">Date</td>
+                <td className="text-[#424242]">{t("payment.payment_notifications.date")}</td>
                 <td className="text-right">24-07-23</td>
               </tr>
               <tr className="main-desc">
-                <td className="text-[#424242]">Status</td>
-                <td className="text-right">In progress</td>
+                <td className="text-[#424242]">{t("payment.payment_notifications.status")}</td>
+                <td className="text-right">{t("payment.payment_notifications.in_progress")}</td>
               </tr>
               <tr className="main-desc">
-                <td className="text-[#424242]">Amount</td>
+                <td className="text-[#424242]">{t("payment.payment_notifications.amount")}</td>
                 <td className="text-right">฿{total()}</td>
               </tr>
             </tbody>

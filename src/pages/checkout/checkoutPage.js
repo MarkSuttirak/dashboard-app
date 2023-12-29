@@ -53,10 +53,7 @@ export default function CheckoutPage(){
           <CheckoutConfirm paymentConfirm={paymentConfirm} setPaymentConfirm={setPaymentConfirm} totalPrice={`฿ ${total()}`}/>
         </div>
       ) : (
-        <>
-          <CheckoutScan />
-          <CheckoutInfo paymentConfirm={paymentConfirm} setPaymentConfirm={setPaymentConfirm} totalPrice={total()} discount={discount} vat={vat} subtotal={subtotal}/>
-        </>
+        <CheckoutInfo paymentConfirm={paymentConfirm} setPaymentConfirm={setPaymentConfirm} totalPrice={total()} discount={discount} vat={vat} subtotal={subtotal}/>
       )}
     </div>
   )

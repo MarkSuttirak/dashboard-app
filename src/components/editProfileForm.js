@@ -10,8 +10,10 @@ import { useFormik } from 'formik';
 import { Toaster } from "./ui/toaster";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export function EditProfileForm({preloadedValues}) {
+  const { t } = useTranslation();
   const [saving, setSaving] = useState(false);
   const { toast } = useToast();
 
@@ -33,16 +35,12 @@ export function EditProfileForm({preloadedValues}) {
             description: "Profile is updated successfully",
           })
           setSaving(false)
-          // document.getElementById("success-save").style.display="block"
-          // document.getElementById("success-save").innerHTML="Profile is updated successfully"
         }else{
           toast({
             title: "Something went wrong",
             description: "Please refresh the page or contact the support.",
           })
           setSaving(false)
-          // document.getElementById("success-save").innerHTML = "Something went wrong"
-          // document.getElementById("success-save").style.display="block"
         }
       })
     }else{
@@ -81,10 +79,10 @@ function onError(e) {
             <div className="space-y-6">
               <div className="anim-up flex flex-col">
                 <label className="subheading mb-2 font-medium">
-                  First Name
+                  {t("first_name")}
                 </label>
                 <Input
-                  placeholder="First Name"
+                  placeholder={t("first_name")}
                   className="form-input"
                   name="first_name"
                   type='text'
@@ -96,10 +94,10 @@ function onError(e) {
             <div className="space-y-6">
               <div className="anim-up flex flex-col">
                 <label className="subheading mb-2 font-medium">
-                  Last Name
+                  {t("last_name")}
                 </label>
                 <Input
-                  placeholder="First Name"
+                  placeholder={t("last_name")}
                   className="form-input"
                   name="last_name"
                   onChange={form.handleChange}
@@ -127,10 +125,10 @@ function onError(e) {
             <div className="space-y-6">
               <div className="anim-up flex flex-col">
                 <label className="subheading mb-2 font-medium">
-                  Email
+                  {t("email")}
                 </label>
                 <Input
-                  placeholder="Email"
+                  placeholder={t("email")}
                   className="form-input"
                   name="email"
                   type='text'
@@ -190,10 +188,10 @@ function onError(e) {
                 {saving ? (
                   <>
                     <Loader2 className="h-4 w-4 animate-spin"/>
-                    Updating...
+                    {t("updating")}
                   </>
                 ) : (
-                  <>Update Profile</>
+                  <>{t("update_profile")}</>
                 )}
               </Button>
             </div>

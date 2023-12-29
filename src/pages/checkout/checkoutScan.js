@@ -6,8 +6,10 @@ import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useToast } from "../../components/ui/use-toast";
 import { Toaster } from "../../components/ui/toaster"
+import { useTranslation } from "react-i18next";
 
-export default function CheckoutScan(){
+export default function CheckoutScan({verifiedPayment}){
+  const { t } = useTranslation()
   const { toast } = useToast()
 
   const accNum = '215-0-91844-5'
@@ -21,10 +23,12 @@ export default function CheckoutScan(){
   return (
     <section className="w-full pt-[60px]">
       <div className="flex items-center gap-x-3 px-6">
-        <Link to={-1}>
-          <ArrowLeft />
-        </Link>
-        <h1 className="main-heading">Payment</h1>
+        {!verifiedPayment ? (
+          <Link to={-1}>
+            <ArrowLeft />
+          </Link>
+        ) : null}
+        <h1 className="main-heading">{t('payment.title')}</h1>
       </div>
       <div className="p-6 md:p-10 mt-10">
         <div className="flex gap-x-4 items-center justify-center mb-6">
@@ -42,7 +46,7 @@ export default function CheckoutScan(){
 
         <img src={promptpayqr} className="m-auto"/>
 
-        <p className="main-desc text-center mt-6">Scan to pay</p>
+        <p className="main-desc text-center mt-6">{t('payment.scan_to_pay')}</p>
 
         <Button className='md:hidden flex items-center gap-x-2 w-full mt-6' variant='secondary'>
           <Download className="h-4 w-4"/>

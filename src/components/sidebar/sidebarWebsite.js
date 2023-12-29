@@ -18,9 +18,20 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "src/components/ui/command"
+import { Check, PlusCircle } from "lucide-react";
 
 export default function SidebarWebsite(){
   const { data: sites } = useQuery('sites', site.list, {enabled: false});
+
+  const workspaceMenus = [
+    {title:'WorkSpace', icon:<Icons.zaviagoApp />, desc:'ระบบจัดการธุรกิจและขายสินค้า', enabled:<Check className="h-4 w-4"/>},
+    {title:'จัดการธุรกิจ', icon:<Icons.erpApp />, desc:'ระบบจัดการธุรกิจและขายสินค้า'},
+    {title:'บล็อกและบทความ', icon:<Icons.blogPostApp />, desc:'สร้างข่าวสารและเขียนบทความ'},
+    {title:'CRM', icon:<Icons.posApp />, desc:'จัดการและดูข้อมูลลูกค้าต่างๆ'},
+    {title:'เว็บไซต์', icon:<Icons.websiteApp fill='white' />, desc:'สร้างและออกแบบเว็บไซต์'},
+    {title:'Project Manager', icon:<Icons.inbioApp />, desc:'จัดการงานและโปรเจกต์'},
+    {title:'Canvas', icon:<Icons.blogAndPagesApp />, desc:'ระบบออกแบบ Graphics'}
+  ]
 
   return (
     <Popover>
@@ -41,13 +52,32 @@ export default function SidebarWebsite(){
       </PopoverTrigger>
       <PopoverContent className='p-0'>
         <Command>
-          <CommandList>
+          <CommandList className='max-h-full'>
             <CommandGroup>
-              <CommandItem>Calendar</CommandItem>
-              <CommandItem>Search Emoji</CommandItem>
-              <CommandItem>Calculator</CommandItem>
+              {workspaceMenus.map(menu => (
+                <CommandItem>
+                  <div className="flex items-center justify-between w-full">
+                    <div className="flex items-center gap-x-2">
+                      {menu.icon}
+                      <div>
+                        <h2 className="text-sm text-[#09090B]">{menu.title}</h2>
+                        <p className="text-[13px] text-[#565656]">{menu.desc}</p>
+                      </div>
+                    </div>
+                    {menu.enabled}
+                  </div>
+                </CommandItem>
+              ))}
             </CommandGroup>
             <CommandSeparator />
+            <CommandGroup>
+              <CommandItem className='flex items-center gap-x-2'>
+                <div className="bg-[#F4F4F5] rounded-md p-[10px]">
+                  <PlusCircle className="h-4 w-4"/>
+                </div>
+                เพิ่มหรือหาแอปใช้งานเพิ่มเติม
+              </CommandItem>
+            </CommandGroup>
           </CommandList>
         </Command>
       </PopoverContent>

@@ -1,4 +1,5 @@
 {
+    "loading": "Loading...",
     "signin_title": "Sign in to your account",
     "signin": "Sign in",
     "signup": "Sign up",
@@ -123,9 +124,64 @@
         "total": "Total",
         "enter_coupon": "Enter your coupon code",
         "apply": "Apply",
-        "invalid_code": "This coupon is invalid."
+        "invalid_code": "This coupon is invalid.",
+        "scan_to_pay": "Please scan QR code through Mobile Banking or copy the Promptpay number to complete the payment.",
+        "payment_made_text": "If the payment has been made, please click the 'Continue' button below to proceed.",
+        "payment_notifications": {
+            "to_line_account": "We have sent a link for the payment verification to your LINE account.",
+            "line_desc": "You can go to \"Zaviago Line OA\" to verify the payment. If the status is not updated, please ",
+            "in_progress": "In progress",
+            "invoice_detail": "Invoice detail",
+            "invoice_number": "Invoice No.",
+            "date": "Date",
+            "status": "Status",
+            "amount": "Amount"
+        }
     },
+    "settings": {
+        "account": "Account",
+        "account_desc": "Update / Edit your personal information",
+        "billing_plans": "Billing & Plans",
+        "overview": {
+            "title": "Overview",
+            "desc": "Subscription for your team",
+            "current_plan": "Current plan",
+            "free_forever": "Free forever",
+            "up_to_pro": "Up to pro in 750/m",
+            "now_in_pro": "Now you pay in 750/m",
+            "renewal": "Your plan will renew on ",
+            "manage_team": "Manage Team",
+            "manage_app": "Manage App",
+            "pay_now": "Pay now"
+        },
+        "purchase_history": {
+            "title": "Purchase history",
+            "desc": "Review your billing statements and payment status",
+            "invoice": "Invoice",
+            "status": "Status",
+            "method": "Method",
+            "amount": "Amount"
+        },
+        "billing": "Billing"
+    },
+    "purchase_detail": "Purchase detail",
+    "purchase_detail_desc": "If you need to edit billing information of tax invoice issuance or modify your order, please press the 'Back' button to cancel the current order.",
     "billing_info": "Billing information",
+    "billing_info_desc": "Please ensure that the entered information is correct. Once the system is in progress, you will not be able to edit any information on the tax invoice.",
     "update_form": "Update",
-    "updating": "Updating..."
+    "update_profile": "Update profile",
+    "updating": "Updating...",
+    "back_to_workspace": "Back to WorkSpace",
+    "plan_usage": {
+        "title": "Plan usage",
+        "updated_on": "Updated on ",
+        "admin_user": "admin user",
+        "admin_users": "admin users",
+        "installed_app": "installed app",
+        "installed_apps": "installed apps"
+    },
+    "pagination": {
+        "page": "Page",
+        "of": "of"
+    }
 }

@@ -8,23 +8,26 @@ import PagesMenus from "src/components/pagesMenus";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs"
 import Invoices from "./invoices";
 import Subscription from "./subscription";
-
-const sidebarNavItems = [
-  {
-    title: "Account",
-    href: "/dashboard/settings/account",
-  },
-  {
-    title: "Billing & Plans",
-    href: "/dashboard/settings/billing-plans",
-  },
-]
+import { useTranslation } from "react-i18next";
 
 export default function Settings(){
+  const { t } = useTranslation()
+
+  const sidebarNavItems = [
+    {
+      title: t('settings.account'),
+      href: "/dashboard/settings/account",
+    },
+    {
+      title: t('settings.billing_plans'),
+      href: "/dashboard/settings/billing-plans",
+    },
+  ]
+
   const { id } = useParams()
   return (
     <div className="dashboard-container">
-      <h1 className="main-heading">Settings</h1>
+      <h1 className="main-heading">{t('menus.settings')}</h1>
 
       <main className="flex gap-x-[72px] mt-8">
         <PagesMenus menus={sidebarNavItems} />
@@ -37,8 +40,8 @@ export default function Settings(){
 
         {id === 'account' && (
           <section className="w-[672px]">
-            <h2 className="settings-heading">Account</h2>
-            <p className="main-desc">Update / Edit your personal information</p>
+            <h2 className="settings-heading">{t('settings.account')}</h2>
+            <p className="main-desc">{t('settings.account_desc')}</p>
 
             <Separator className='my-6'/>
             <AccountForm />
@@ -49,9 +52,9 @@ export default function Settings(){
           <section className="w-[672px]">
             <Tabs defaultValue="overview">
               <TabsList>
-                <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="purchase-history">Purchase history</TabsTrigger>
-                <TabsTrigger value="billing">Billing</TabsTrigger>
+                <TabsTrigger value="overview">{t('settings.overview.title')}</TabsTrigger>
+                <TabsTrigger value="purchase-history">{t('settings.purchase_history.title')}</TabsTrigger>
+                <TabsTrigger value="billing">{t('settings.billing')}</TabsTrigger>
               </TabsList>
               <Separator className='my-6'/>
               <TabsContent value="overview">

@@ -13,8 +13,10 @@ import DrawLine from "src/components/drawLine";
 import { Progress } from "src/components/ui/progress";
 import Loading from "src/components/ui/loading";
 import { Skeleton } from "src/components/ui/skeleton";
+import { useTranslation } from "react-i18next";
 
 export default function Subscription(){
+  const { t } = useTranslation()
   const [numOfAdmin, setNumOfAdmin] = useState(3)
 
   const { user, auth, logout } = useUser();
@@ -65,12 +67,12 @@ export default function Subscription(){
 
   return (
     <>
-      <h2 className="secondary-heading">Subscription for your team</h2>
+      <h2 className="secondary-heading">{t('settings.overview.desc')}</h2>
       <section className="mt-10">
         <div className="flex items-center justify-between">
           {plan ? (
             <div>
-              <h1 className="text-[39px] font-semibold text-[#151515] capitalize">{plan?.name}</h1>
+              <h1 className="text-[39px] font-semibold text-[#151515] capitalize">{plan?.name === 'pro' ? 'Pro' : t('free')}</h1>
               <p className="secondary-heading">{sites?.site_list[0].name}</p>
             </div>
           ) : (
@@ -85,12 +87,12 @@ export default function Subscription(){
             {plan?.name === 'pro' ? (
              <Button variant='secondary' className='btn-with-icon leading-5 rounded-r-none' onClick={() => window.location.href = `/dashboard/settings/plan-upgrade`}>
               <Zap viewBox='0 0 24 24' width='16' height='16'/>
-              Manage Team
+              {t('settings.overview.manage_team')}
             </Button>
             ) : (
               <Button variant='secondary' className='btn-with-icon leading-5 rounded-r-none' onClick={() => window.location.href = `/payment/plan/pro`}>
                 <Zap viewBox='0 0 24 24' width='16' height='16'/>
-                Upgrade to Pro
+                {t('upgrade_to_pro')}
               </Button>
             )}
             <Popover>
@@ -100,17 +102,17 @@ export default function Subscription(){
                   <ChevronDownIcon />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className='p-0 w-[160px]'>
+              <PopoverContent className='p-0 w-fit'>
                 <Command>
                   <CommandList>
                     <CommandGroup>
                       <CommandItem className='flex gap-x-2' onSelect={() => navigate('/dashboard/teams/team-members')}>
                         <Users viewBox="0 0 24 24" width='16' height='16'/>
-                        Manage Team
+                        {t('settings.overview.manage_team')}
                       </CommandItem>
                       <CommandItem className='flex gap-x-2' onSelect={() => navigate('/integration/manage-apps')}>
                         <Layers viewBox="0 0 24 24" width='16' height='16'/>
-                        Manage App
+                        {t('settings.overview.manage_app')}
                       </CommandItem>
                     </CommandGroup>
                   </CommandList>
@@ -126,8 +128,8 @@ export default function Subscription(){
         <div className="text-desc flex gap-x-4 items-center mt-10">
           {plan ? (
             <>
-              <p className="flex items-center gap-x-1 text-sm"><CheckCircledIcon className="h-3 w-3"/> Current plan</p>
-              <p className="flex items-center gap-x-1 text-sm"><MagicWandIcon className="h-3 w-3"/>{plan?.name === 'Pro' ? 'Now you pay in 750/m' : 'Up to pro in 750/m'}</p>
+              <p className="flex items-center gap-x-1 text-sm"><CheckCircledIcon className="h-3 w-3"/> {t('settings.overview.current_plan')}</p>
+              <p className="flex items-center gap-x-1 text-sm"><MagicWandIcon className="h-3 w-3"/>{plan?.name === 'Pro' ? t('settings.overview.now_in_pro') : t('settings.overview.up_to_pro')}</p>
             </>
           ) : (
             <Skeleton className='h-3 w-full'/>
@@ -144,7 +146,7 @@ export default function Subscription(){
             <h1 className="text-3xl font-semibold inter">฿ {plan?.price_usd}</h1>
             <div className="flex items-center gap-x-[6px]">
               <p className="text-base leading-7 text-[#71717A]">
-                {plan?.name === 'pro' ? 'Your plan will renew on 2 December 2023.' : 'Free forever'}
+                {plan?.name === 'pro' ? t('settings.overview.renewal') + '2 December 2023' : t('settings.overview.free_forever')}
               </p>
               <AlertCircle className="h-4 w-4"/>
             </div>
@@ -158,7 +160,7 @@ export default function Subscription(){
           {plan ? (
             <Button className='btn-with-icon' disabled={plan?.name === 'pro' ? false : true}>
               <Wallet viewBox="0 0 24 24" width='16' height='16'/>
-              Pay now
+              {t('settings.overview.pay_now')}
             </Button>
           ) : (
             <Skeleton className='h-9 w-[200px]'/>
@@ -170,12 +172,27 @@ export default function Subscription(){
 
       {plan ? (
         <section>
-          <h1 className="secondary-heading">Plan usage</h1>
-          <p className="main-desc">Updated on {plan?.modified}</p>
+          <h1 className="secondary-heading">{t('plan_usage.title')}</h1>
+          <p className="main-desc">{t('plan_usage.updated_on')} {plan?.modified}</p>
 
           <div className="text-desc flex gap-x-4 items-center my-6">
-            <p className="flex items-center gap-x-1 text-sm"><Users viewBox="0 0 24 24" width='16' height='16' /> {numOfAdmin} {numOfAdmin === 1 ? 'admin user' : 'admin users'}</p>
-            <p className="flex items-center gap-x-1 text-sm"><LayoutGrid viewBox="0 0 24 24" width='16' height='16'/> {installedApps?.data?.length || 0} {installedApps?.data?.length === 1 ? 'installed app' : 'installed apps'}</p>
+            <p className="flex items-center gap-x-1 text-sm">
+              <Users viewBox="0 0 24 24" width='16' height='16' /> 
+              {localStorage.lang === "th" ? (
+                <>{t('plan_usage.admin_user_prefix')} {numOfAdmin} {t('plan_usage.admin_user_suffix')}</>
+              ) : (
+                <>{numOfAdmin} {numOfAdmin === 1 ? t('plan_usage.admin_user') : t('plan_usage.admin_users')}</>
+              )}
+            </p>
+            <p className="flex items-center gap-x-1 text-sm">
+              <LayoutGrid viewBox="0 0 24 24" width='16' height='16'/> 
+              {localStorage.lang === "th" ? (
+                <>{t('plan_usage.installed_app_prefix')} {numOfAdmin} {t('plan_usage.installed_app_suffix')}</>
+              ) : (
+                <>{installedApps?.data?.length || 0} {installedApps?.data?.length === 1 ? t('plan_usage.installed_app') : t('plan_usage.installed_apps')}</>
+              )}
+              
+            </p>
           </div>
 
           <div className="flex flex-col gap-y-4">
