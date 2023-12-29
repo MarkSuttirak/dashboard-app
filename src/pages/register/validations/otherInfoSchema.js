@@ -11,10 +11,10 @@ export const userInfoSchema = yup.object().shape({
 export const businessInfoSchema = yup.object().shape({
     // company: yup.string().required('Company name is required'),
     company: yup.string(),
-    industry: yup.string().required('Industry is required'),
-    goal: yup.array().of(yup.string()).min(1, 'Goal is required'),
+    industry: yup.string().required(localStorage.lang === "th" ? 'จำเป็นต้องใส่อุตสาหกรรม' : 'Industry is required'),
+    goal: yup.array().of(yup.string()).min(1, localStorage.lang === "th" ? 'จำเป็นต้องใส่เป้าหมาย' : 'Goal is required'),
 });
 
 export const teamInfoSchema = yup.object().shape({
-    no_of_employees: yup.string().required('Number of employees is required'),
+    no_of_employees: yup.string().required(localStorage.lang === "th" ? 'จำเป็นต้องใส่จำนวนพนักงาน' : 'Number of employees is required'),
 });

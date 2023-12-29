@@ -1,5 +1,6 @@
 {
     "loading": "Loading...",
+    "confirm": "Confirm",
     "signin_title": "Sign in to your account",
     "signin": "Sign in",
     "signup": "Sign up",
@@ -50,6 +51,56 @@
     "pro": "Pro",
     "upgrade_to_pro": "Upgrade to Pro",
     "recommended": "Recommended",
+    "phone_verify": {
+        "enter_phone": "Enter your phone number to receive an OTP. An OTP will be sent to your phone number.",
+        "enter_phone_label": "Enter your phone number",
+        "get_otp": "Get OTP",
+        "request_otp": "Request a new OTP code again in ",
+        "resend_otp": "Resend OTP",
+        "confirm_otp": "Confirm OTP",
+        "confirmed_otp": "OTP Confirmed",
+        "confirm_otp_desc": "Enter the OTP you received via SMS",
+        "confirm_otp_label": "Enter your OTP",
+        "enter_wrong_number": "Enter the wrong phone number? ",
+        "change_phone": "Click here to change the phone number",
+        "incorrect_otp": "OTP is incorrect",
+        "incorrect_otp_two": "OTP is incorrect, please try again."
+    },
+    "business_type": {
+        "title": "Select your type of business",
+        "your_business": {
+            "label": "Your business",
+            "options": [
+                { "value": "retail", "label": "Retail" },
+                { "value": "ecommerce", "label": "E-Commerce" },
+                { "value": "manufacturing", "label": "Manufacturing" },
+                { "value": "service-based", "label": "Service-based" },
+                { "value": "hospitality", "label": "Hospitality" },
+                { "value": "consulting", "label": "Consulting" },
+                { "value": "health-wellness", "label": "Health and Wellness" },
+                { "value": "technology", "label": "Technology" },
+                { "value": "real-estate", "label": "Real Estate" },
+                { "value": "food-beverage", "label": "Food and Beverage" },
+                { "value": "financial-services", "label": "Financial Services" },
+                { "value": "education", "label": "Education" },
+                { "value": "transportation-logistics", "label": "Transportation and Logistics" },
+                { "value": "entertainment", "label": "Entertainment" },
+                { "value": "nonprofit", "label": "Nonprofit or Social Enterprise" },
+                { "value": "other", "label": "Other" }
+            ]
+        },
+        "potential_goals": {
+            "title": "What are your potential goals for this business?",
+            "options": [
+                {"title": "Exceptional Service", "key": "exceptional-service"},
+                {"title": "Sustainability", "key": "sustainability"},
+                {"title": "Innovation", "key": "innovation"},
+                {"title": "Community Engagement", "key": "community-engagement"},
+                {"title": "Affordability", "key": "affordability"},
+                {"title": "Personalized Experience", "key": "personalized-experience"}
+            ]
+        }
+    },
     "topbar": {
         "search": "Search",
         "notifications": "Notifications",
@@ -136,6 +187,13 @@
             "date": "Date",
             "status": "Status",
             "amount": "Amount"
+        },
+        "verify_payment": "Verify the payment",
+        "verify_payment_desc": "Please attach the transfer receipt. The image of the transfer receipt should not have anything obstructing the QR code. If your transfer receipt does not have a QR code, we will verify your payment within 6 hours.",
+        "payment_successful": {
+            "title": "We have received your information",
+            "desc": "Thank you for notifying us of your payment. We will investigate quickly within 6 hours.",
+            "go_to_settings": "You can go to \"Setting / Billing & Plan / Invoice\" to track status your order. If the status is not updated, please "
         }
     },
     "settings": {
@@ -172,6 +230,8 @@
     "update_profile": "Update profile",
     "updating": "Updating...",
     "back_to_workspace": "Back to WorkSpace",
+    "upload_slip": "Click to upload slip",
+    "upload_slip_limit": "PNG or JPG (max 1MB)",
     "plan_usage": {
         "title": "Plan usage",
         "updated_on": "Updated on ",

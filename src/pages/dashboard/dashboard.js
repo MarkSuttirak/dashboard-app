@@ -150,10 +150,10 @@ export default function Dashboard(){
   const workspaceMenus = [
     {title:'จัดการธุรกิจ', icon:<Icons.erpApp className='h-4 w-4'/>},
     {title:'บล็อกและบทความ', icon:<Icons.blogPostApp className='h-4 w-4'/>},
-    {title:'จัดการข้อมูลลูกค้า', icon:<Icons.posApp className='h-4 w-4'/>},
+    {title:'CRM', icon:<Icons.posApp className='h-4 w-4'/>},
     {title:'เว็บไซต์', icon:<Icons.websiteApp fill='white' className='h-4 w-4'/>},
-    {title:'ตามงานและดูโปรเจ็ค', icon:<Icons.inbioApp className='h-4 w-4'/>},
-    {title:'ออกแบบ Graphic', icon:<Icons.blogAndPagesApp className='h-4 w-4'/>}
+    {title:'Project Manager', icon:<Icons.inbioApp className='h-4 w-4'/>},
+    {title:'Canvas', icon:<Icons.blogAndPagesApp className='h-4 w-4'/>}
   ]
 
   return (

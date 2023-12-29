@@ -92,8 +92,8 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm, tota
         </button>
         <h1 className="main-heading">{t('payment.title')}</h1>
       </div>
-      <h2 className="secondary-heading">Verify the payment</h2>
-      <p className="main-desc">Please attach the transfer receipt. The image of the transfer receipt should not have anything obstructing the QR code. If your transfer receipt does not have a QR code, we will verify your payment within 6 hours.</p>
+      <h2 className="secondary-heading">{t('payment.verify_payment')}</h2>
+      <p className="main-desc">{t('payment.verify_payment_desc')}</p>
 
       <Separator className='my-6'/>
 
@@ -101,19 +101,19 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm, tota
         <table className="w-full table-invoice-detail">
           <tbody>
             <tr className="main-desc my-4">
-              <td className="text-[#424242]">Invoice No.</td>
+              <td className="text-[#424242">{t("payment.payment_notifications.invoice_number")}</td>
               <td className="text-right">INV001</td>
             </tr>
             <tr className="main-desc">
-              <td className="text-[#424242]">Date</td>
+              <td className="text-[#424242]">{t("payment.payment_notifications.date")}</td>
               <td className="text-right">24-07-23</td>
             </tr>
             <tr className="main-desc">
-              <td className="text-[#424242]">Status</td>
-              <td className="text-right">In progress</td>
+              <td className="text-[#424242]">{t("payment.payment_notifications.status")}</td>
+              <td className="text-right">{t("payment.payment_notifications.in_progress")}</td>
             </tr>
             <tr className="main-desc">
-              <td className="text-[#424242]">Amount</td>
+              <td className="text-[#424242]">{t("payment.payment_notifications.amount")}</td>
               <td className="text-right">{totalPrice}</td>
             </tr>
           </tbody>
@@ -147,8 +147,8 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm, tota
                       <UploadCloud viewBox="0 0 24 24" width='20' height='20'/>
                     </div>
                     <div className="text-center">
-                      <h2 className="subheading font-medium">Click to upload slip</h2>
-                      <p className="main-desc">PNG or JPG (max. 800x400px)</p>
+                      <h2 className="subheading font-medium">{t('upload_slip')}</h2>
+                      <p className="main-desc">{t('upload_slip_limit')}</p>
                     </div>
                   </Card>
                 </>
@@ -158,7 +158,7 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm, tota
         </div>
         <Button type='submit' className='btn-with-icon w-full' onClick={() => window.location.href=`/checkout-received/${app}/${id}`}>
           <Wallet color='#FFF' viewBox='0 0 24 24' height='16' width='16'/>
-          Confirm
+          {t('confirm')}
         </Button>
       </main>
     </section>

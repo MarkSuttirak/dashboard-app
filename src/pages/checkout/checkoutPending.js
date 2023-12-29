@@ -59,7 +59,7 @@ export default function CheckoutPending(){
         <CardHeader className='p-10'>
           <h1 className="text-[36px] font-extrabold tracking-[-0.9px] leading-[40px] text-center text-[#09090B]">{t('payment.payment_notifications.to_line_account')}</h1>
           <p className="main-desc mt-[24px!important] text-center">
-            {t('payment.payment_notifications.line_desc')}<a className="text-[#006AFF]" href='https://page.line.me/zaviago'>{t('contact_us')}</a>
+            {t('payment.payment_notifications.line_desc')}<a className="text-[#006AFF]" href='https://page.line.me/zaviago'>{t('contact_us').toLowerCase()}</a>
           </p>
         </CardHeader>
 

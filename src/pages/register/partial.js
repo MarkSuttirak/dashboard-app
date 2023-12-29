@@ -14,6 +14,7 @@ import Spacer from '../../components/spacer';
 import { useState } from 'react';
 import { Input } from '../../components/ui/input';
 import { Button } from '../../components/ui/button';
+import { useTranslation } from 'react-i18next';
 
 export default function Partial(){
     return (
@@ -50,6 +51,7 @@ const GetPhoneNumber = ({
     validationSchema,
     onSubmit,
 }) => {
+    const { t } = useTranslation()
     const { key } = useParams();
 
     const { mutate, isLoading, isSuccess } = useMutation((data) => partial.requestOtp(key, `${data.countryCode}${data.phoneNumber}`), {
@@ -66,13 +68,13 @@ const GetPhoneNumber = ({
     return (
         <form className="m-auto w-full max-w-sm w-96" onSubmit={formik.handleSubmit}>
             <h2 className="text-3xl font-semibold tracking-[-0.75px]">{false ? "Resend OTP" : "Let's get started"}</h2>
-            <p className="text-[#71717A] mt-3">Enter your phone number to receive an OTP. An OTP will be sent to your phone number.</p>
+            <p className="text-[#71717A] mt-3">{t('phone_verify.enter_phone')}</p>
 
             <Spacer size={36} />
             <div className="space-y-8">
                 <div className="anim-up">
                     <label htmlFor="otp" className="subheading font-medium">
-                        Enter your phone number
+                        {t('phone_verify.enter_phone_label')}
                     </label>
                     <div className="relative mt-1 rounded-md shadow-sm">
                         <div className="absolute inset-y-0 left-0 flex items-center">
@@ -111,7 +113,7 @@ const GetPhoneNumber = ({
                         type='submit'
                         className='w-full justify-center'
                         disabled={formik.isSubmitting || !formik.isValid}
-                    >Get OTP</Button>
+                    >{t('phone_verify.get_otp')}</Button>
                 </div>
             </div>
             <Transition.Root show={isLoading} as={Fragment}>
@@ -238,6 +240,7 @@ const VerifyOTP = ({
     validationSchema,
     onSubmit,
 }) => {
+    const { t } = useTranslation()
     const [show, setShow] = useState(false);
     const [requestNewOTP, setRequestNewOTP] = useState(false)
     const { key } = useParams();
@@ -261,13 +264,13 @@ const VerifyOTP = ({
 
     return (
         <form className="m-auto w-full max-w-sm w-96" onSubmit={formik.handleSubmit}>
-            <h2 className="text-3xl font-semibold tracking-[-0.75px]">6-digit code</h2>
-            <p className="text-[#71717A] mt-3">Enter the 6-digit code you received via SMS via number {formik.values.phoneNumber}</p>
+            <h2 className="text-3xl font-semibold tracking-[-0.75px]">{t('phone_verify.confirm_otp')}</h2>
+            <p className="text-[#71717A] mt-3">{t('phone_verify.confirm_otp_desc')} {formik.values.phoneNumber}</p>
             <Spacer size={36} />
             <div className="space-y-8">
                 <div className="anim-up">
                     <label htmlFor="otp" className="subheading font-medium">
-                        Enter your OTP
+                        {t('phone_verify.confirm_otp_label')}
                     </label>
                     <Input
                         className="form-input mt-1"
@@ -277,9 +280,9 @@ const VerifyOTP = ({
                         onChange={formik.handleChange}
                     />
                     {!requestNewOTP ? (
-                        <p className="text-[#71717A] text-sm mt-1">Request a new OTP code again in 00:30</p>
+                        <p className="text-[#71717A] text-sm mt-1">{t('phone_verify.request_otp')} 00:30</p>
                     ) : (
-                        <p className="text-[#0788F5] text-sm mt-1" onClick={prev}>Resend code</p>
+                        <p className="text-[#0788F5] text-sm mt-1" onClick={prev}>{t('phone_verify.resend_otp')}</p>
                     )}
                 </div>
 
@@ -288,9 +291,9 @@ const VerifyOTP = ({
                         type='submit'
                         className='w-full justify-center'
                         disabled={!formik.isValid}
-                    >Confirm OTP</Button>
-                    <p className="text-[#71717A] text-sm mt-3">Entered the wrong phone number? <span onClick={prev} className='text-[#0788F5] cursor-pointer'>Change phone number</span></p>
-                    {isError && (<p className="error">OTP is incorrect</p>)}
+                    >{t('phone_verify.confirm_otp')}</Button>
+                    <p className="text-[#71717A] text-sm mt-3">{t('phone_verify.enter_wrong_number')} <span onClick={prev} className='text-[#0788F5] cursor-pointer'>{t('phone_verify.change_phone')}</span></p>
+                    {isError && (<p className="error">{t('phone_verify.incorrect_otp')}</p>)}
                 </div>
             </div>
 
@@ -324,7 +327,7 @@ const VerifyOTP = ({
                                         <div className="moving-line" />
                                         <LoadingCheck type='success' />
                                         <p className="tab-desc justify-center font-bold flex">
-                                            OTP confirmed
+                                            {t('phone_verify.confirmed_otp')}
                                         </p>
                                     </Dialog.Panel>
                                 ) : (
@@ -333,7 +336,7 @@ const VerifyOTP = ({
                                             <XMarkIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
                                         </div>
                                         <p className="tab-desc justify-center font-bold flex">
-                                            OTP is incorrect, please try again
+                                            {t('phone_verify.incorrect_otp_two')}
                                         </p>
                                     </Dialog.Panel>
                                 )}

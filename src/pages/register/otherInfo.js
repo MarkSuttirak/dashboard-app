@@ -301,6 +301,7 @@ export const BusinessInfoForm = ({
     validationSchema,
     state
 }) => {
+    const { t } = useTranslation()
     const checkboxLists = [
         {title: 'Exceptional Service', key: 'exceptional-service'},
         {title: 'Sustainability', key: 'sustainability'},
@@ -327,6 +328,10 @@ export const BusinessInfoForm = ({
         {value: 'nonprofit', label: 'Nonprofit or Social Enterprise'},
         {value: 'other', label: 'Other'},
     ];
+    const checkboxListsT = t('business_type.potential_goals.options')
+    const industryOptionsT = t('business_type.your_business.options')
+
+    console.log(checkboxListsT)
 
     const formik = useFormik({
         initialValues: initialValues,

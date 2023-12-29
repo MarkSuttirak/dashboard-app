@@ -17,7 +17,7 @@ export default function CheckoutInfo({paymentConfirm, setPaymentConfirm, totalPr
   const { app } = useParams()
   const [makePayment, setMakePayment] = useState(false)
   const [couponExplanation, setCouponExplanation] = useState('Discount 10%');
-  const [verifiedPayment, setVerifiedPayment] = useState(false)
+  const [verifiedPayment, setVerifiedPayment] = useState(true)
 
   return (
     <>
