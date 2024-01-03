@@ -156,7 +156,7 @@ export default function Subscription(){
           {plan ? (
             <>
               <p className="flex items-center gap-x-1 text-sm"><CheckCircledIcon className="h-3 w-3"/> {t('settings.overview.current_plan')}</p>
-              <p className="flex items-center gap-x-1 text-sm"><MagicWandIcon className="h-3 w-3"/>{plan?.name === 'Pro' ? t('settings.overview.now_in_pro') : t('settings.overview.up_to_pro')}</p>
+              <p className="flex items-center gap-x-1 text-sm"><MagicWandIcon className="h-3 w-3"/>{plan?.name === 'pro' ? t('settings.overview.now_in_pro') : t('settings.overview.up_to_pro')}</p>
             </>
           ) : (
             <Skeleton className='h-3 w-full'/>
@@ -173,7 +173,7 @@ export default function Subscription(){
             <h1 className="text-3xl font-semibold inter">฿ {plan?.price_usd}</h1>
             <div className="flex items-center gap-x-[6px]">
               <p className="text-base leading-7 text-[#71717A]">
-                {plan?.name === 'Pro' ? t('settings.overview.renewal') + '2 December 2023' : t('settings.overview.free_forever')}
+                {plan?.name === 'pro' ? t('settings.overview.renewal') + '2 December 2023' : t('settings.overview.free_forever')}
               </p>
               <AlertCircle className="h-4 w-4"/>
             </div>
@@ -185,7 +185,7 @@ export default function Subscription(){
             </div>
           )}
           {plan ? (
-            <Button className='btn-with-icon' disabled={plan?.name === 'Pro' ? false : true}>
+            <Button className='btn-with-icon' disabled={plan?.name === 'pro' ? false : true}>
               <Wallet viewBox="0 0 24 24" width='16' height='16'/>
               {t('settings.overview.pay_now')}
             </Button>
