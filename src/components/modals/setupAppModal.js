@@ -6,15 +6,14 @@ import installAppBg from 'src/img/install-app-bg.png'
 import { Icons } from "src/components/ui/icons"
 import { Progress } from "src/components/ui/progress"
 
-
 import { useQuery } from "react-query";
 import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { Link } from "react-router-dom"
-
-
+import { useTranslation } from "react-i18next"
 
 export default function SetupAppModal({appToInstall, appImage, appPlan}){
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const [installStep, setInstallStep] = useState(0)
   const [installingAppPercent, setInstallingAppPercent] = useState(0);
@@ -23,7 +22,6 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
   const sites = useQuery('sites', () => site.list(), {enabled: false});
 
   const { data: installed_apps_main, refetch: refresh_installed_apps_main } = useQuery('installed_apps_main', () => site.get_agent_jobs(sites.data.site_list[0].name), {enabled: false});  
-
 
   const installingApp = () => {
     const intervalId = setInterval(async () => {
@@ -60,8 +58,6 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
     }
   );
 
-
-
   const installThisApp = () => {
     refreshsiteOverviewQuery();
     setOpen(true);
@@ -74,19 +70,19 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
       <DialogTrigger>
         <Button className='btn-with-icon'>
           <PlusCircle className="h-4 w-4"/>
-          Add to site
+          {t('add_to_site')}
         </Button>
       </DialogTrigger>
       {installStep === 1 ? (
         <DialogContent className='overflow-hidden max-w-[500px] w-[500px] justify-center px-20' onInteractOutside={(e) => { e.preventDefault(); }}>
           <DialogHeader>
-            <DialogTitle className='text-center'>Installing {appToInstall}</DialogTitle>
+            <DialogTitle className='text-center'>{t('install_app_modal.installing')} {appToInstall}</DialogTitle>
           </DialogHeader>
           <div className="flex items-center gap-x-[10px] my-4 w-full">
             <Progress value={installingAppPercent}/>
             <span className="text-xs text-[#71717A]">{installingAppPercent}%</span>
           </div>
-          <DialogDescription className='text-center'>Installing app... Please do not close this page until the installation is done.</DialogDescription>
+          <DialogDescription className='text-center'>{t('install_app_modal.installing_warning')}</DialogDescription>
         </DialogContent>
       ) : installStep === 2 ? (
         <DialogContent className='p-0 overflow-hidden max-w-[400px] w-[400px]' onInteractOutside={(e) => { e.preventDefault(); }}>
@@ -98,14 +94,14 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
             </section>
 
             <section className="p-6">
-              <DialogTitle>{appToInstall} has been successfully installed</DialogTitle>
-              <DialogDescription className='mt-3'>You can start the application by clicking 'Open'</DialogDescription>
+              <DialogTitle>{appToInstall} {t('install_app_modal.installed_successfully')}</DialogTitle>
+              <DialogDescription className='mt-3'>{t('install_app_modal.installed_successfully_desc')}</DialogDescription>
             </section>
           </DialogHeader>
           <DialogFooter className='p-6 pt-0'>
             <Button className='btn-with-icon w-full' onClick={window.location.reload()}>
               <BadgeCheck className="w-4 h-4"/>
-              Open
+              {t('install_app_modal.open')}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -122,20 +118,20 @@ export default function SetupAppModal({appToInstall, appImage, appPlan}){
             </section>
 
             <section className="p-6">
-              <DialogTitle>Install {appToInstall} to your workspace</DialogTitle>
-              <DialogDescription className='mt-3'>The app will be able to read the email address you use to log in to Zaviago</DialogDescription>
+              <DialogTitle>{t('install_app_modal.install')} {appToInstall} {t('install_app_modal.to_your_workspace')}</DialogTitle>
+              <DialogDescription className='mt-3'>{t('install_app_modal.install_desc')}</DialogDescription>
               <Button className='btn-with-icon text-[#006AFF] mt-6' variant='secondary'>
                 <Key className="h-4 w-4 text-[#006AFF]"/>
-                Privacy Policy and Terms of Service
+                {t('install_app_modal.privacy_policy')}
               </Button>
             </section>
           </DialogHeader>
           <DialogFooter className='p-6 pt-0'>
             <div className="flex justify-between w-full">
               <DialogClose>
-                <Button variant='outline'>Cancel</Button>
+                <Button variant='outline'>{t('cancel')}</Button>
               </DialogClose>
-              <Button onClick={installThisApp}>Install apps</Button>
+              <Button onClick={installThisApp}>{t('install_app_modal.install_app')}</Button>
             </div>
           </DialogFooter>
         </DialogContent>

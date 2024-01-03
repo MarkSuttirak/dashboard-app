@@ -5,16 +5,14 @@ import { useState } from 'react'
 import installAppBg from 'src/img/install-app-bg.png'
 import { Icons } from "src/components/ui/icons"
 import { Progress } from "src/components/ui/progress"
-
-
 import { useQuery } from "react-query";
 import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { Link } from "react-router-dom"
-
-
+import { useTranslation } from "react-i18next"
 
 export default function RemoveSetupAppModal({appToInstall, appImage, appPlan}){
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const [installStep, setInstallStep] = useState(0)
   const [installingAppPercent, setInstallingAppPercent] = useState(0);
@@ -24,12 +22,10 @@ export default function RemoveSetupAppModal({appToInstall, appImage, appPlan}){
 
   const { data: installed_apps_main, refetch: refresh_installed_apps_main } = useQuery('installed_apps_main', () => site.get_agent_jobs(sites.data.site_list[0].name), {enabled: false});  
 
-
   const installingApp = () => {
     const intervalId = setInterval(async () => {
       const res = await refresh_installed_apps_main();
       const isInstalled = res?.data.some(installedApp => installedApp.status === 'Pending');
-
 
       setInstallingAppPercent(prevPercent => {
         const newPercent = prevPercent + 5;
@@ -58,8 +54,6 @@ export default function RemoveSetupAppModal({appToInstall, appImage, appPlan}){
     }
   );
 
-
-
   const installThisApp = () => {
     refreshsiteOverviewQuery();
     setOpen(true);
@@ -72,7 +66,7 @@ export default function RemoveSetupAppModal({appToInstall, appImage, appPlan}){
       <DialogTrigger>
         <Button className='btn-with-icon'>
           <PlusCircle className="h-4 w-4"/>
-          Uninstall
+          {t('uninstall')}
         </Button>
       </DialogTrigger>
       {installStep === 1 ? (
@@ -96,7 +90,7 @@ export default function RemoveSetupAppModal({appToInstall, appImage, appPlan}){
             </section>
 
             <section className="p-6">
-              <DialogTitle>{appToInstall} has been successfully Uninstalled</DialogTitle>
+              <DialogTitle>{appToInstall} has been successfully uninstalled</DialogTitle>
               <DialogDescription className='mt-3'>You can start the application by clicking 'Open'</DialogDescription>
             </section>
           </DialogHeader>

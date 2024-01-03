@@ -5,19 +5,19 @@ import { appList } from "./apps/appList";
 import { useTranslation } from "react-i18next";
 
 export default function Breadcrumbs(){
-  const {t, i18n} = useTranslation()
+  const { t } = useTranslation()
   const location = useLocation()
   const [currentPage, setCurrentPage] = useState(location.pathname);
   const [breadcrumbList, setBreadcrumbList] = useState([]);
 
   const breadcrumbMap = {
     '/integration/manage-apps': [
-      { link: '/integration/manage-apps', title: 'Integration' },
-      { link: null, title: 'Manage Apps' },
+      { link: '/integration/manage-apps', title: t('menus.integration') },
+      { link: null, title: t('integration.manage_apps') },
     ],
     '/integration/upgrade-apps': [
-      { link: '/integration/manage-apps', title: 'Integration' },
-      { link: null, title: 'Upgrade Apps' },
+      { link: '/integration/manage-apps', title: t('menus.integration') },
+      { link: null, title: t('integration.upgrade_apps') },
     ],
     '/integration/appstore': [
       { link: null, title: 'App Store' },
@@ -26,16 +26,12 @@ export default function Breadcrumbs(){
       { link: null, title: 'Compare Plan' },
     ],
     '/dashboard/settings/account': [
-      { link: '/dashboard/settings/account', title: 'Settings' },
-      { link: null, title: 'Account' },
+      { link: '/dashboard/settings/account', title: t('menus.settings') },
+      { link: null, title: t('settings.account') },
     ],
     '/dashboard/settings/billing-plans': [
-      { link: '/dashboard/settings/account', title: 'Settings' },
-      { link: null, title: 'Billing & Plans' },
-    ],
-    '/dashboard/settings/notifications': [
-      { link: '/dashboard/settings/account', title: 'Settings' },
-      { link: null, title: 'Notifications' },
+      { link: '/dashboard/settings/account', title: t('menus.settings') },
+      { link: null, title: t('settings.billing_plans') },
     ],
     ...appList.reduce((acc, app) => {
       acc[`/integration/appstore/${app.id}`] = [

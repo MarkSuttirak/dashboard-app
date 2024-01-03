@@ -21,8 +21,10 @@ import discoverSolutions from "src/img/discover_solutions.png"
 import RecommendedApps from "../../components/apps/recommendedApps";
 import AppStoreIcons from "src/components/apps/appStoreIcons";
 import { LightningBoltIcon } from "@radix-ui/react-icons";
+import { useTranslation } from "react-i18next";
 
 export default function AppStore(){
+  const { t } = useTranslation()
   const [isMenuCardHover, setIsMenuCardHover] = useState(false)
   const [menuCardIndex, setMenuCardIndex] = useState(0)
 
@@ -97,11 +99,11 @@ export default function AppStore(){
       <div className="flex items-center justify-between">
         <div>
           <h1 className="main-heading tracking-[-0.6px]">App Store</h1>
-          <p className="secondary-desc">Choose Professional Solutions to Power Your Website</p>
+          <p className="secondary-desc">{t('app_store_desc')}</p>
         </div>
         <div className="flex items-center gap-x-2 bg-[#FEC1D2] px-4 py-2 rounded-full text-sm font-semibold text-[#18181B]">
           <Sparkles className="h-4 w-4" fill='#18181B'/>
-          Free trial on all apps
+          {t('free_trial_all_apps')}
         </div>
       </div>
 
@@ -154,7 +156,7 @@ export default function AppStore(){
 
       {/* <Separator className="my-10"/> */}
       <section className="mt-[52px]">
-        <h2 className="secondary-heading">Recommended Apps</h2>
+        <h2 className="secondary-heading">{t('recommended_apps')}</h2>
         <div className="flex gap-x-6 mt-6">
           <section className="grid grid-cols-6 gap-6">
             <AppStoreIcons />
@@ -163,17 +165,17 @@ export default function AppStore(){
       </section>
 
       <section className="mt-[128px]">
-        <h2 className="secondary-heading">Top Rated Apps</h2>
+        <h2 className="secondary-heading">{t('top_rated_apps')}</h2>
         <div className="flex gap-x-6 mt-6">
           <RecommendedApps />
         </div>
       </section>
 
       <section className="mt-[100px]">
-        <h2 className="secondary-heading">Featured Highlights</h2>
+        <h2 className="secondary-heading">{t('featured_highlights')}</h2>
         <div className="grid grid-cols-2 mt-6 gap-[15px]">
-          <PostInfo title="Smooth and Seemless OnlineStore in your style" desc="Propel your brand to new heights by unveiling a website that outshines the competition" buttonText="More details" image={guideBlog} />
-          <PostInfo title="Discover solutions you're looking for" desc="Search for every feature and function designed to help your business achieve success quickly and efficiently" buttonText="More details" image={discoverSolutions} />
+          <PostInfo title={t('highlight_one_title')} desc={t('highlight_one_desc')} buttonText={t('more_details')} image={guideBlog} />
+          <PostInfo title={t('highlight_two_title')} desc={t('highlight_two_desc')} buttonText={t('more_details')} image={discoverSolutions} />
         </div>
       </section>
     </div>

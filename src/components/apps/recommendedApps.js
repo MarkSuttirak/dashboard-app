@@ -7,8 +7,10 @@ import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { useMutation, useQuery } from "react-query";
 import { useEffect } from 'react'
+import { useTranslation } from "react-i18next"
 
 export default function RecommendedApps(){
+  const { t } = useTranslation()
   const { user, auth, logout } = useUser();
 
   const { data: sites } = useQuery('sites', site.list, {
@@ -27,6 +29,7 @@ export default function RecommendedApps(){
     }
   }, [user, sites,benchApps,installedApps]);
 
+  // This array will be removed after the project is complete.
   const otherapps = [
     {
       icon:<Icons.crmApp width='52' height='52'/>,
@@ -135,14 +138,14 @@ export default function RecommendedApps(){
             </CardHeader>
             <CardFooter className='flex items-center justify-between'>
               <div className="text-sm">
-                {isInstalled ? <span className="text-[#2CB216] inline-flex items-center gap-x-2"><CheckCircle2 className="h-4 w-4 text-[#2CB216]"/>Installed</span> : requiredPro ? <span className="text-[#71717A] inline-flex items-center gap-x-2"><Crown className="h-4 w-4 text-[#71717A]"/>Pro plan</span> : <span className="text-[#71717A]">Free plan available</span>} {/* Render "Installed" if the app is found in installedApps.data */}
+                {isInstalled ? <span className="text-[#2CB216] inline-flex items-center gap-x-2"><CheckCircle2 className="h-4 w-4 text-[#2CB216]"/>{t('installed')}</span> : requiredPro ? <span className="text-[#71717A] inline-flex items-center gap-x-2"><Crown className="h-4 w-4 text-[#71717A]"/>{t('pro_plan')}</span> : <span className="text-[#71717A]">{t('free_plan')}</span>} {/* Render "Installed" if the app is found in installedApps.data */}
               </div>
               <Link to={`/integration/appstore/${app.name}`} className="see-more">
                 {/* Conditionally render Button based on `isInstalled` */}
                 {isInstalled ? (
-                  <Button variant='outline' disabled>Installed</Button>
+                  <Button variant='outline' disabled>{t('installed')}</Button>
                 ): (
-                  <Button variant='outline'>See more</Button>
+                  <Button variant='outline'>{t('see_more')}</Button>
                 )}
               </Link>
             </CardFooter>

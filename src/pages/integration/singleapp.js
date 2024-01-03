@@ -15,19 +15,19 @@ import Loading from "src/components/ui/loading"
 import SetupAppModal from "src/components/modals/setupAppModal"
 import RemoveSetupAppModal from "src/components/modals/removeSetupAppModal"
 import UpgradeAppModal from "src/components/modals/upgradeAppModal"
+import { useTranslation } from "react-i18next"
 
 export default function SingleApp(){
+  const { t } = useTranslation()
   const { id } = useParams()
   const [addAppStatus, setAddAppStatus] = useState('')
 
   const { user, auth, logout } = useUser();
 
-
   const { data: sites, refetch: refreshSite } = useQuery('sites', site.list, {enabled: false});
   const { data: benchApps, refetch: refetchBenchApps } = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), { enabled: false });
   const { data: installedApps, refetch: refetchinstalled_apps } = useQuery('installedApps', () => site.installed_apps(sites.site_list[0].name), {enabled: false});  
   const { data: siteOverview, refetch: refetchsiteOverview } = useQuery(['siteOverview'], () => site.overview(sites?.site_list[0].name), {enabled: false});
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,12 +44,11 @@ export default function SingleApp(){
         await refetchinstalled_apps();
       }
     };
-  
     fetchData();
   }, [user, sites,benchApps, installedApps,refreshSite,refetchBenchApps,refetchsiteOverview,refetchinstalled_apps]);
 
   const appList = benchApps || [];
-  
+
   const webplan = [];
 
   const installApp = () => {
@@ -69,14 +68,14 @@ export default function SingleApp(){
           const HaveFree = plans?.filter(installedApp => installedApp.is_free === 1);
 
           const developerInfo = [
-            {type:app.website, icon:<Globe viewBox="0 0 24 24" width='16' height='16'/>, buttonText:'Visit our Website'},
-            {type:app.custom_app_demo, icon:<Smile viewBox="0 0 24 24" width='16' height='16'/>, buttonText:'Check App Demo'},
-            {type:app.support, icon:<MessageSquare viewBox="0 0 24 24" width='16' height='16'/>, buttonText:'Contact our support'},
-            {type:app.privacy_policy, icon:<Key viewBox="0 0 24 24" width='16' height='16'/>, buttonText:'Privacy policy'}
+            {type:app.website, icon:<Globe viewBox="0 0 24 24" width='16' height='16'/>, buttonText:t('app_details.visit_website')},
+            {type:app.custom_app_demo, icon:<Smile viewBox="0 0 24 24" width='16' height='16'/>, buttonText:t('app_details.check_app_demo')},
+            {type:app.support, icon:<MessageSquare viewBox="0 0 24 24" width='16' height='16'/>, buttonText:t('app_details.contact_support')},
+            {type:app.privacy_policy, icon:<Key viewBox="0 0 24 24" width='16' height='16'/>, buttonText:t('app_details.privacy_policy')}
           ]
           const highlightInfo = [
-            {title:'Launched',desc:app.custom_launch_date},
-            {title:'Categories', desc:app.categories[0]?.category},
+            {title:t('app_details.launched'),desc:app.custom_launch_date},
+            {title:t('app_details.categories'), desc:app.categories[0]?.category},
             {title:'Integrates with', desc:app.custom_integrates}
           ]
         return (
@@ -88,7 +87,7 @@ export default function SingleApp(){
                 </div>
                 <div>
                   <h1 className="main-heading">{item.title}</h1>
-                  <p className="text-sm font-medium text-[#09090B]">By Zaviago</p>
+                  <p className="text-sm font-medium text-[#09090B]">{t('by_zaviago')}</p>
                   <p className="text-sm mt-1">{item.status}</p>
                 </div>
               </div>
@@ -109,8 +108,6 @@ export default function SingleApp(){
                     <UpgradeAppModal plans={plans} />
                   </>
                 )}
-
-
             {
             /* 
               {isInstalled ? (
@@ -128,8 +125,6 @@ export default function SingleApp(){
               )} */
               }
 
-
-
             </section>
 
             <section className="flex gap-x-6 mt-[55px]">
@@ -139,11 +134,11 @@ export default function SingleApp(){
             <section className="flex gap-x-9 mt-[64px]">
               <aside className="border rounded-md p-6 w-1/3">
                 <div className="mb-3">
-                  <h1 className='font-bold text-[#181818] text-base mb-3'>Highlights</h1>
+                  <h1 className='font-bold text-[#181818] text-base mb-3'>{t('app_details.highlights')}</h1>
                 </div>
 
                 <div className="flex flex-col gap-y-3">
-                  <h1 className='font-bold text-[#181818] text-base'>Information</h1>
+                  <h1 className='font-bold text-[#181818] text-base'>{t('app_details.information')}</h1>
                   {highlightInfo.map(info => (
                     <div>
                       <h2 className='subheading font-medium'>{info.title}</h2>
@@ -153,7 +148,7 @@ export default function SingleApp(){
                 </div>
 
                 <div className="mt-[72px]">
-                  <p className="main-desc">App developed by</p>
+                  <p className="main-desc">{t('app_details.app_developed_by')}</p>
                   <h2 className='font-bold text-[#09090B]'>{item.team}</h2>
 
                   <div className="mt-3">

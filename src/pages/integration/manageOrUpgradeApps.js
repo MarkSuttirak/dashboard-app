@@ -73,7 +73,8 @@ export default function ManageOrUpgradeApps(){
 
         <div className="mt-[10px] flex flex-col gap-y-6">
         <DataList pagination={appData?.length > appsPerPage ? true : false} listPerPage={appsPerPage}>
-        {appData?.filter(app => installedApps.data?.some(installedApp => installedApp.title === app.title)).map(app => (
+        {appData?.filter(app => installedApps.data?.some(installedApp => installedApp.title === app.title))
+          .filter(data => data.title.toUpperCase().includes(search.toUpperCase())).map(app => (
           <div className="flex items-center justify-between" key={app.name}>
             <div className="flex items-center gap-x-3">
               {app.image ? <img src={site.backend_url()+app.image} className="h-9 w-9"/> : <Icons.erpApp />}
@@ -84,7 +85,7 @@ export default function ManageOrUpgradeApps(){
             <div className="flex items-center gap-x-3">
               {id === 'manage-apps' ? (
                 <Link to={`/integration/appstore/${app.title}`}>
-                  <Button variant='outline'>{t('open')}</Button>
+                  <Button variant='outline'>{t('integration.open')}</Button>
                 </Link>
               ) : (
                 <Link to={`/integration/appstore/${app.title}`}>
