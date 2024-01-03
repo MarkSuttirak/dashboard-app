@@ -99,7 +99,7 @@ export default function Subscription(){
         <div className="flex items-center justify-between">
           {plan ? (
             <div>
-              <h1 className="text-[39px] font-semibold text-[#151515] capitalize">{plan?.name === 'Pro' ? 'Pro' : 'Free'}</h1>
+              <h1 className="text-[39px] font-semibold text-[#151515] capitalize">{plan?.name === 'pro' ? 'Pro' : 'Free'}</h1>
               <p className="secondary-heading">{sites?.site_list[0].name}</p>
             </div>
           ) : (
@@ -111,7 +111,7 @@ export default function Subscription(){
 
           {plan ? (
             <div className="flex">
-            {plan?.name === 'Pro' ? (
+            {plan?.name === 'pro' ? (
              <Button variant='secondary' className='btn-with-icon leading-5 rounded-r-none' onClick={() => window.location.href = `/dashboard/settings/plan-upgrade`}>
               <Zap viewBox='0 0 24 24' width='16' height='16'/>
               {t('settings.overview.manage_team')}
