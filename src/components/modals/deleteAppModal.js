@@ -4,25 +4,27 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { Textarea } from "../ui/textarea"
 import { Progress } from "../ui/progress"
 import { useState } from 'react'
+import { useTranslation } from "react-i18next"
 
 export default function DeleteAppModal({status, setStatus, title}){
+  const { t } = useTranslation()
   const [installingAppPercent, setInstallingAppPercent] = useState(50)
   const reasons = [
-    "I don't need it anymore.",
-    "It's missing features I need.",
-    "I just wanted to try it out.",
-    "I'm having a technical issue.",
-    "I don't know how to use, it's too complicated."
+    t('delete_app.reason_1'),
+    t('delete_app.reason_2'),
+    t('delete_app.reason_3'),
+    t('delete_app.reason_4'),
+    t('delete_app.reason_5')
   ]
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <p className="w-full px-2 py-1.5">Delete</p>
+        <p className="w-full px-2 py-1.5">{t('uninstall')}</p>
       </DialogTrigger>
       {status === 'deleting' ? (
         <DialogContent className="sm:max-w-md">
           <DialogDescription className='flex flex-col gap-y-4 items-center justify-center'>
-            <h1 className="secondary-heading">Deleting {title}</h1>
+            <h1 className="secondary-heading">{t('uninstalling')} {title}</h1>
 
             <div className="flex gap-x-[10px] w-full items-center">
               <Progress value={installingAppPercent}/>
@@ -35,11 +37,11 @@ export default function DeleteAppModal({status, setStatus, title}){
       ) : (
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Delete {title}?</DialogTitle>
+            <DialogTitle>{t('uninstall')} {title}?</DialogTitle>
             <DialogDescription>
               {status === 'trying-to-delete' ? 
-                'Sorry to see you go. Your feedback will help us improve our apps.'  
-              : 'This app has visual elements on your site. To delete it, go to the Editor. After deleting, publish your site so changes go live.'}
+                t('delete_app.sorry_to_see_you_go')
+              : t('delete_app.are_you_sure')}
             </DialogDescription>
           </DialogHeader>
           {status === 'trying-to-delete' ? (
@@ -48,7 +50,7 @@ export default function DeleteAppModal({status, setStatus, title}){
                 <div className="space-y-5">
                   <div className="anim-up flex flex-col">
                     <label className="subheading mb-2 font-medium">
-                      Why are you deleting this app? <span className="required">*</span>
+                      {t('delete_app.why_delete')} <span className="required">*</span>
                     </label>
                     <Select className='form-input' name="reason-to-delete" defaultValue={reasons[0]}>
                       <SelectTrigger className="w-full">
@@ -63,25 +65,25 @@ export default function DeleteAppModal({status, setStatus, title}){
                   </div>
                   <div className="anim-up flex flex-col">
                     <label className="subheading mb-2 font-medium">
-                      Details
+                      {t('delete_app.details')}
                     </label>
-                    <Textarea className='form-input' name="reason-to-delete" placeholder='Tell us more about your reason for deleting this app.'/>
+                    <Textarea className='form-input' name="reason-to-delete" placeholder={t('delete_app.tell_us')}/>
                   </div>
                 </div>
 
                 <p className="main-desc mt-[18px]">
-                  <strong className="subheading font-medium">Note : </strong> All {title} will be removed from your site and publish changes go live
+                  <strong className="subheading font-medium">{t('delete_app.note')} : </strong> {t('delete_app.note_desc_prefix')} {title} {t('delete_app.note_desc_suffix')}
                 </p>
               </form>
               <DialogFooter>
                 <div className="flex w-full justify-between">
                   <DialogClose asChild>
                     <Button type="button" variant="ghost" onClick={() => setTimeout(() => setStatus(''), 100)}>
-                      Cancel
+                      {t('cancel')}
                     </Button>
                   </DialogClose>
                   <Button type="button" onClick={() => setStatus('deleting')}>
-                    Continue
+                    {t('uninstall')}
                   </Button>
                 </div>
               </DialogFooter>
@@ -90,11 +92,11 @@ export default function DeleteAppModal({status, setStatus, title}){
             <DialogFooter className="justify-end">
               <DialogClose asChild>
                 <Button type="button" variant="outline">
-                  Cancel
+                  {t('cancel')}
                 </Button>
               </DialogClose>
               <Button type="button" onClick={() => setStatus('trying-to-delete')}>
-                Continue
+                {t('uninstall')}
               </Button>
             </DialogFooter>
           )}

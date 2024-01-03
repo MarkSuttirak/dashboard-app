@@ -8,6 +8,7 @@
     "create_text": "Create and deploy your new project in one-click.",
     "create_new_account": "Create new account",
     "or": "OR",
+    "select_plan": "Select plan",
     "dont_have_account":"Don't have an account?",
     "already_have_account": "Already have an account?",
     "need_help": "Need help?",
@@ -51,6 +52,8 @@
     "pro": "Pro",
     "upgrade_to_pro": "Upgrade to Pro",
     "recommended": "Recommended",
+    "play_video": "Play Video",
+    "playing": "Playing...",
     "phone_verify": {
         "enter_phone": "Enter your phone number to receive an OTP. An OTP will be sent to your phone number.",
         "enter_phone_label": "Enter your phone number",
@@ -308,6 +311,7 @@
     "free_trial_all_apps": "Free trial on all apps",
     "installed": "Installed",
     "uninstall": "Uninstall",
+    "uninstalling": "Uninstalling",
     "pro_plan": "Pro plan",
     "free_plan": "Free plan available",
     "see_more": "See more",
@@ -334,6 +338,23 @@
         "visit_website": "Visit our Website",
         "check_app_demo": "Check App Demo",
         "contact_support": "Contact our support",
-        "privacy_policy": "Privacy policy"
+        "privacy_policy": "Privacy policy",
+        "app_info": "App Info",
+        "customer_care": "Customer Care"
+    },
+    "delete_app": {
+        "are_you_sure": "Are you sure you want to uninstall this app?",
+        "sorry_to_see_you_go": "Sorry to see you go. Your feedback will help us import our apps.",
+        "details": "Details (optional)",
+        "tell_us": "Tell us more about your reason for deleting this app.",
+        "why_delete": "Why are you deleting this app?",
+        "reason_1": "I don't need it anymore.",
+        "reason_2": "It's missing features I need.",
+        "reason_3": "I just wanted to try it out.",
+        "reason_4": "I'm having a technical issue.",
+        "reason_5": "I don't know how to use, it's too complicated.",
+        "note": "Note",
+        "note_desc_prefix": "All data from",
+        "note_desc_suffix": "will be removed from your WorkSpace and is not irreversable."
     }
 }

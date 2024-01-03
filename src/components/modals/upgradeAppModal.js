@@ -4,8 +4,10 @@ import { ArrowBigUpDash, BadgeCheck, Key, PlusCircle, CheckCircle2 } from "lucid
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router"
+import { useTranslation } from "react-i18next";
 
 export default function UpgradeAppModal({plans}){
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
   const navigate = useNavigate();
@@ -20,11 +22,11 @@ export default function UpgradeAppModal({plans}){
     <Dialog>
       <DialogTrigger>
         <Button className='btn-with-icon'>
-          <ArrowBigUpDash />Upgrade
+          <ArrowBigUpDash />{t('upgrade')}
         </Button>
       </DialogTrigger>
       <DialogContent className='min-w-[600px]'>
-        <DialogHeader className='secondary-heading'>Select plan</DialogHeader>
+        <DialogHeader className='secondary-heading'>{t('select_plan')}</DialogHeader>
         <section className="grid grid-cols-2 gap-4">
 
 

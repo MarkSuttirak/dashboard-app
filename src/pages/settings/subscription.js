@@ -50,18 +50,45 @@ export default function Subscription(){
 
   const usagePlan = siteOverview?.plan
 
+  // const planUsageData = [
+  //   {
+  //     type:'Database',
+  //     total:usagePlan?.total_database_usage || 0,
+  //     max:usagePlan?.max_database_usage || 200,
+  //     measure:'MB'
+  //   },
+  //   {
+  //     type:'Storage',
+  //     total:usagePlan?.total_storage_usage || 0,
+  //     max:usagePlan?.max_storage_usage || 100,
+  //     measure:'MB'
+  //   },
+  // ]
+
   const planUsageData = [
     {
-      type:'Database',
-      total:usagePlan?.total_database_usage || 0,
-      max:usagePlan?.max_database_usage || 200,
-      measure:'MB'
+      type:'Orders',
+      total:25,
+      max:50,
+      measure:'Orders'
     },
     {
-      type:'Storage',
-      total:usagePlan?.total_storage_usage || 0,
-      max:usagePlan?.max_storage_usage || 100,
-      measure:'MB'
+      type:'Customers',
+      total:174,
+      max:1000,
+      measure:'Customers'
+    },
+    {
+      type:'Posts',
+      total:174,
+      max:1000,
+      measure:'Posts'
+    },
+    {
+      type:'Products',
+      total:15,
+      max:5000,
+      measure:'Products'
     },
   ]
 
@@ -72,7 +99,7 @@ export default function Subscription(){
         <div className="flex items-center justify-between">
           {plan ? (
             <div>
-              <h1 className="text-[39px] font-semibold text-[#151515] capitalize">{plan?.name === 'pro' ? 'Pro' : t('free')}</h1>
+              <h1 className="text-[39px] font-semibold text-[#151515] capitalize">{plan?.name === 'Pro' ? 'Pro' : 'Free'}</h1>
               <p className="secondary-heading">{sites?.site_list[0].name}</p>
             </div>
           ) : (
@@ -84,7 +111,7 @@ export default function Subscription(){
 
           {plan ? (
             <div className="flex">
-            {plan?.name === 'pro' ? (
+            {plan?.name === 'Pro' ? (
              <Button variant='secondary' className='btn-with-icon leading-5 rounded-r-none' onClick={() => window.location.href = `/dashboard/settings/plan-upgrade`}>
               <Zap viewBox='0 0 24 24' width='16' height='16'/>
               {t('settings.overview.manage_team')}
@@ -146,7 +173,7 @@ export default function Subscription(){
             <h1 className="text-3xl font-semibold inter">฿ {plan?.price_usd}</h1>
             <div className="flex items-center gap-x-[6px]">
               <p className="text-base leading-7 text-[#71717A]">
-                {plan?.name === 'pro' ? t('settings.overview.renewal') + '2 December 2023' : t('settings.overview.free_forever')}
+                {plan?.name === 'Pro' ? t('settings.overview.renewal') + '2 December 2023' : t('settings.overview.free_forever')}
               </p>
               <AlertCircle className="h-4 w-4"/>
             </div>
@@ -158,7 +185,7 @@ export default function Subscription(){
             </div>
           )}
           {plan ? (
-            <Button className='btn-with-icon' disabled={plan?.name === 'pro' ? false : true}>
+            <Button className='btn-with-icon' disabled={plan?.name === 'Pro' ? false : true}>
               <Wallet viewBox="0 0 24 24" width='16' height='16'/>
               {t('settings.overview.pay_now')}
             </Button>

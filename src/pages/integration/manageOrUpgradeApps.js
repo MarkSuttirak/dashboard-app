@@ -100,8 +100,8 @@ export default function ManageOrUpgradeApps(){
                   <Command>
                     <CommandList>
                       <CommandGroup>
-                        <CommandItem onSelect={() => navigate(`/integration/appstore/${app.title}`)}>App Info</CommandItem>
-                        <CommandItem>Customer Care</CommandItem>
+                        <CommandItem onSelect={() => navigate(`/integration/appstore/${app.title}`)}>{t('app_details.app_info')}</CommandItem>
+                        <CommandItem>{t('app_details.customer_care')}</CommandItem>
                       </CommandGroup>
                       <CommandSeparator />
                       <CommandGroup>

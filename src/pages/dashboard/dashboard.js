@@ -115,14 +115,14 @@ export default function Dashboard(){
       color:"#EB67FF"
     },
     {
-      title:'ราคาส่งของ',
+      title:'แก้ไขค่าจัดส่ง',
       image:<ButtonImage02 shadow={false}/>,
       background:"#DDFEF4",
       page:"item/new-item-1",
       color:"#01545E"
     },
     {
-      title:'จัดการลูกค้า',
+      title:'เพิ่มรายชื่อลูกค้า',
       image:<ButtonImage03 shadow={false}/>,
       background:"#F5F2FE",
       color:"#4C349F"
@@ -134,13 +134,13 @@ export default function Dashboard(){
       color:"#419CFF"
     },
     {
-      title:'คำสั่งซื้อ',
+      title:'ดูคำสั่งซื้อ',
       image:<ButtonImage05 shadow={false}/>,
       background:"#FFF9E9",
       color:"#FABF20"
     },
     {
-      title:'โปรโมชั่น',
+      title:'สร้างโปรโมชัน',
       image:<ButtonImage06 shadow={false}/>,
       background:"#F5FFE5",
       color:"#174F20"
@@ -215,7 +215,7 @@ export default function Dashboard(){
 
         <div className="mt-6 grid lg:grid-cols-3 gap-[15px]">
           <PostInfo title="สร้างเว็บง่ายเหมือนทำ “Powerpoint”" desc="สร้างเว็บไซต์ใหม่ง่ายๆด้วยฟีเจอร์เปิดเว็บง่ายๆที่คุณก็ทำได้" image={createYourBlog} />
-          <PostInfo title="เปิดร้านขายของออนไลน์" desc="เปิดเว็บแอ๊บและเว็บขายสินค้าง่ายๆเพียง" buttonText="เชื่อมต่อ" image={sellingOnline} imageStyle='px-6'/>
+          <PostInfo title="เปิดร้านขายของออนไลน์" desc="เปิดเว็บแอปและเว็บขายสินค้าง่ายๆเพียง" buttonText="เชื่อมต่อ" image={sellingOnline} imageStyle='px-6'/>
           <PostInfo title="เชื่อมต่อ Shopee & Lazada" desc="Boost customer loyalty and drive repeat business with our tailored Loyalty Program" buttonText="Connect marketplace" image={connectMessage} imageStyle='pl-8 pb-8'/>
         </div>
       </section>

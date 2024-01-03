@@ -1,11 +1,13 @@
 import { PlayCircle } from "lucide-react"
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import videoMock1 from "src/img/videomock1.png"
 import videoMock2 from "src/img/videomock2.png"
 import videoMock3 from "src/img/videomock3.png"
 import videoMock4 from "src/img/videomock4.png"
 
 export default function DashboardVideo(){
+  const { t } = useTranslation()
   const [videoSrc, setVideoSrc] = useState("https://www.youtube.com/embed/G7WVnk2WEIc")
   const [videoTitle, setVideoTitle] = useState("02. Introduction to Frappe Framework &amp; ERPNext")
   const [playing, setPlaying] = useState(0)
@@ -50,7 +52,7 @@ export default function DashboardVideo(){
                 <h2 className='text-[#09090B] text-[13px] eventpop'>{list.title}</h2>
                 <p className="text-[#7009FF] flex items-center gap-x-2 text-[13px] font-bold eventpop">
                   <PlayCircle className="h-4 w-4 text-[#7009FF]"/>
-                  {playing === index ? 'Playing...' : 'Play Video'}
+                  {playing === index ? t('playing') : t('play_video')}
                 </p>
               </div>
             </button>
