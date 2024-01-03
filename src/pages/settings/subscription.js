@@ -92,6 +92,8 @@ export default function Subscription(){
     },
   ]
 
+  console.log(plan)
+
   return (
     <>
       <h2 className="secondary-heading">{t('settings.overview.desc')}</h2>
