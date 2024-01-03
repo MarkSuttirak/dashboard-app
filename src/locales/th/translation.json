@@ -356,5 +356,11 @@
         "note": "หมายเหตุ",
         "note_desc_prefix": "ข้อมูลที่เกี่ยวข้องกับ",
         "note_desc_suffix": "จะถูกลบออกจาก WorkSpace ของคุณและไม่สามารถกู้คืนได้"
+    },
+    "usages": {
+        "orders": "คำสั่งซื้อ",
+        "customers": "ลูกค้า",
+        "posts": "โพสต์",
+        "products": "สินค้า"
     }
 }

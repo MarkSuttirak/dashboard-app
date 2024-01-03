@@ -67,32 +67,30 @@ export default function Subscription(){
 
   const planUsageData = [
     {
-      type:'Orders',
+      type:t('usages.orders'),
       total:25,
       max:50,
-      measure:'Orders'
+      measure:t('usages.orders')
     },
     {
-      type:'Customers',
+      type:t('usages.customers'),
       total:174,
       max:1000,
-      measure:'Customers'
+      measure:t('usages.customers')
     },
     {
-      type:'Posts',
+      type:t('usages.posts'),
       total:174,
       max:1000,
-      measure:'Posts'
+      measure:t('usages.posts')
     },
     {
-      type:'Products',
+      type:t('usages.products'),
       total:15,
       max:5000,
-      measure:'Products'
+      measure:t('usages.products')
     },
   ]
-
-  console.log(plan)
 
   return (
     <>

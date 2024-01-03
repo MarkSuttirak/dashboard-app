@@ -356,5 +356,11 @@
         "note": "Note",
         "note_desc_prefix": "All data from",
         "note_desc_suffix": "will be removed from your WorkSpace and is not irreversable."
+    },
+    "usages": {
+        "orders": "Orders",
+        "customers": "Customers",
+        "posts": "Posts",
+        "products": "Products"
     }
 }
