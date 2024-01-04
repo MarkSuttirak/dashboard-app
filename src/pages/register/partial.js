@@ -68,7 +68,7 @@ const GetPhoneNumber = ({
     return (
         <form className="m-auto w-full max-w-sm w-96" onSubmit={formik.handleSubmit}>
             <h2 className="text-3xl font-semibold tracking-[-0.75px]">{false ? "Resend OTP" : "Let's get started"}</h2>
-            <p className="text-[#71717A] mt-3">{t('phone_verify.enter_phone')}</p>
+            <p className="text-secondary mt-3">{t('phone_verify.enter_phone')}</p>
 
             <Spacer size={36} />
             <div className="space-y-8">
@@ -265,7 +265,7 @@ const VerifyOTP = ({
     return (
         <form className="m-auto w-full max-w-sm w-96" onSubmit={formik.handleSubmit}>
             <h2 className="text-3xl font-semibold tracking-[-0.75px]">{t('phone_verify.confirm_otp')}</h2>
-            <p className="text-[#71717A] mt-3">{t('phone_verify.confirm_otp_desc')} {formik.values.phoneNumber}</p>
+            <p className="text-secondary mt-3">{t('phone_verify.confirm_otp_desc')} {formik.values.phoneNumber}</p>
             <Spacer size={36} />
             <div className="space-y-8">
                 <div className="anim-up">
@@ -280,7 +280,7 @@ const VerifyOTP = ({
                         onChange={formik.handleChange}
                     />
                     {!requestNewOTP ? (
-                        <p className="text-[#71717A] text-sm mt-1">{t('phone_verify.request_otp')} 00:30</p>
+                        <p className="text-secondary text-sm mt-1">{t('phone_verify.request_otp')} 00:30</p>
                     ) : (
                         <p className="text-[#0788F5] text-sm mt-1" onClick={prev}>{t('phone_verify.resend_otp')}</p>
                     )}
@@ -292,7 +292,7 @@ const VerifyOTP = ({
                         className='w-full justify-center'
                         disabled={!formik.isValid}
                     >{t('phone_verify.confirm_otp')}</Button>
-                    <p className="text-[#71717A] text-sm mt-3">{t('phone_verify.enter_wrong_number')} <span onClick={prev} className='text-[#0788F5] cursor-pointer'>{t('phone_verify.change_phone')}</span></p>
+                    <p className="text-secondary text-sm mt-3">{t('phone_verify.enter_wrong_number')} <span onClick={prev} className='text-[#0788F5] cursor-pointer'>{t('phone_verify.change_phone')}</span></p>
                     {isError && (<p className="error">{t('phone_verify.incorrect_otp')}</p>)}
                 </div>
             </div>

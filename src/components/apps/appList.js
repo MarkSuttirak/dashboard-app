@@ -12,17 +12,17 @@ export const appStatus = {
       Installed
     </div>
   </>),
-  pro_plan: (<div className="flex text-[#71717A] items-center gap-x-2">
+  pro_plan: (<div className="flex text-secondary items-center gap-x-2">
     <Crown color='#71717A' viewBox="0 0 24 24" width='16' height='16'/>
     Pro plan
   </div>),
-  free_trial: (<div className="text-[#71717A]">
+  free_trial: (<div className="text-secondary">
     14 days free trial
   </div>),
-  free_plan: (<div className="text-[#71717A]">
+  free_plan: (<div className="text-secondary">
     Free plan available
   </div>),
-  need_upgrade: (<div className="text-[#71717A]">
+  need_upgrade: (<div className="text-secondary">
     Upgrade available
   </div>)
 }
@@ -38,14 +38,14 @@ export const appList = [
     image:<Icons.lineCRMApp />,
     custom_launch_date:'25 Mar 2021',
     long_description:(
-      <div className="text-base flex flex-col gap-y-6 text-[#71717A]">
-        <p>The 'Customer Data Management Program via LINE CRM' is an innovation that transforms the way customer management is conducted in the digital age, making the process more efficient and secure. This program focuses on standardizing communication between customers and businesses through the LINE platform to ensure effective interactions.</p>
+      <div className="text-base flex flex-col gap-y-6 text-secondary">
+        <p>The 'Customer Data Management Program via LINE CRM' is an innovation that transforms the way customer management is conducted in the digital age, making the process more efficient and secure. This program focuses on standardizing communication between customers and businesses through the LINE platform to ensure effective font-interactions.</p>
         <p>By enabling registration through phone numbers and OTP verification, customer data is safeguarded rigorously, enhancing the security of personal information. Working in conjunction with LINE not only streamlines communication but also improves customer service.</p>
         <p>There are many more benefits that our application can deliver to further propel your business to greater heights. Details are as follows:</p>
         <ul className="list-disc ml-4">
           <li>Phone Number and OTP Registration: A fast and secure registration experience allows customers instant access to services.</li>
           <li>Comprehensive Data Storage System: Records all customer information in the CRM system for convenient tracking and management.</li>
-          <li>LINE Integration: Instant communication with customers through the app they use daily ensures smooth interaction.</li>
+          <li>LINE Integration: Instant communication with customers through the app they use daily ensures smooth font-interaction.</li>
           <li>Notification System: Customizable alerts keep customers informed of crucial information, enhancing business efficiency.</li>
           <li>Customer Data Analysis: Utilizes stored data to analyze and predict customer behavior, enabling businesses to adapt to market needs.</li>
           <li>Flexibility and Upgradability: The program offers high flexibility, making it easy to upgrade and adapt to changes in the business environment.</li>
@@ -69,14 +69,14 @@ export const appList = [
     image:<Icons.rewardfulApp />,
     custom_launch_date:'25 Mar 2021',
     long_description:(
-      <div className="text-base flex flex-col gap-y-6 text-[#71717A]">
-        <p>The 'Customer Data Management Program via LINE CRM' is an innovation that transforms the way customer management is conducted in the digital age, making the process more efficient and secure. This program focuses on standardizing communication between customers and businesses through the LINE platform to ensure effective interactions.</p>
+      <div className="text-base flex flex-col gap-y-6 text-secondary">
+        <p>The 'Customer Data Management Program via LINE CRM' is an innovation that transforms the way customer management is conducted in the digital age, making the process more efficient and secure. This program focuses on standardizing communication between customers and businesses through the LINE platform to ensure effective font-interactions.</p>
         <p>By enabling registration through phone numbers and OTP verification, customer data is safeguarded rigorously, enhancing the security of personal information. Working in conjunction with LINE not only streamlines communication but also improves customer service.</p>
         <p>There are many more benefits that our application can deliver to further propel your business to greater heights. Details are as follows:</p>
         <ul className="list-disc ml-4">
           <li>Phone Number and OTP Registration: A fast and secure registration experience allows customers instant access to services.</li>
           <li>Comprehensive Data Storage System: Records all customer information in the CRM system for convenient tracking and management.</li>
-          <li>LINE Integration: Instant communication with customers through the app they use daily ensures smooth interaction.</li>
+          <li>LINE Integration: Instant communication with customers through the app they use daily ensures smooth font-interaction.</li>
           <li>Notification System: Customizable alerts keep customers informed of crucial information, enhancing business efficiency.</li>
           <li>Customer Data Analysis: Utilizes stored data to analyze and predict customer behavior, enabling businesses to adapt to market needs.</li>
           <li>Flexibility and Upgradability: The program offers high flexibility, making it easy to upgrade and adapt to changes in the business environment.</li>

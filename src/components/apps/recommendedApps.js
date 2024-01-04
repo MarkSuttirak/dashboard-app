@@ -110,7 +110,7 @@ export default function RecommendedApps(){
     //       </CardHeader>
     //       <CardFooter className='flex items-center justify-between'>
     //         <div className="text-sm">
-    //           {app.status === 'installed' ? <span className="text-[#2CB216] inline-flex items-center gap-x-2"><CheckCircle2 className="h-4 w-4 text-[#2CB216]"/>Installed</span> : app.status === 'pro' ? <span className="text-[#71717A] inline-flex items-center gap-x-2"><Crown className="h-4 w-4 text-[#71717A]"/>Pro plan</span> : <span className="text-[#71717A]">Free plan available</span>}
+    //           {app.status === 'installed' ? <span className="text-[#2CB216] inline-flex items-center gap-x-2"><CheckCircle2 className="h-4 w-4 text-[#2CB216]"/>Installed</span> : app.status === 'pro' ? <span className="text-secondary inline-flex items-center gap-x-2"><Crown className="h-4 w-4 text-secondary"/>Pro plan</span> : <span className="text-secondary">Free plan available</span>}
     //         </div>
     //         <Link to={`/integration/appstore/${app.id}`} className="see-more">
     //           <Button variant='outline'>See more</Button>
@@ -138,7 +138,7 @@ export default function RecommendedApps(){
             </CardHeader>
             <CardFooter className='flex items-center justify-between'>
               <div className="text-sm">
-                {isInstalled ? <span className="text-[#2CB216] inline-flex items-center gap-x-2"><CheckCircle2 className="h-4 w-4 text-[#2CB216]"/>{t('installed')}</span> : requiredPro ? <span className="text-[#71717A] inline-flex items-center gap-x-2"><Crown className="h-4 w-4 text-[#71717A]"/>{t('pro_plan')}</span> : <span className="text-[#71717A]">{t('free_plan')}</span>} {/* Render "Installed" if the app is found in installedApps.data */}
+                {isInstalled ? <span className="text-[#2CB216] inline-flex items-center gap-x-2"><CheckCircle2 className="h-4 w-4 text-[#2CB216]"/>{t('installed')}</span> : requiredPro ? <span className="text-secondary inline-flex items-center gap-x-2"><Crown className="h-4 w-4 text-secondary"/>{t('pro_plan')}</span> : <span className="text-secondary">{t('free_plan')}</span>} {/* Render "Installed" if the app is found in installedApps.data */}
               </div>
               <Link to={`/integration/appstore/${app.name}`} className="see-more">
                 {/* Conditionally render Button based on `isInstalled` */}

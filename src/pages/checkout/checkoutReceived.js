@@ -60,7 +60,7 @@ export default function CheckoutReceived(){
       <Card className='justify-center p-0'>
         <CardHeader className='p-10'>
           <Lottie animationData={receivedInfo} loop={false} style={{width:"128px",height:"128px",margin:"auto"}}/>
-          <h1 className="text-[36px] font-extrabold tracking-[-0.9px] leading-[40px] text-center text-[#09090B]">{t('payment.payment_successful.title')} 🎉</h1>
+          <h1 className="text-[36px] font-extrabold tracking-[-0.9px] leading-[40px] text-center text-primary">{t('payment.payment_successful.title')} 🎉</h1>
           <p className="mt-[12px!important] secondary-desc text-center">{t('payment.payment_successful.desc')}</p>
           <p className="main-desc mt-[24px!important] text-center">
             {t('payment.payment_successful.go_to_settings')}<a className="text-[#006AFF]" href='https://page.line.me/zaviago'>{t('contact_us').toLowerCase()}</a>

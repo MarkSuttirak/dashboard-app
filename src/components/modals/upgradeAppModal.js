@@ -44,7 +44,7 @@ export default function UpgradeAppModal({plans}){
                   <span className="subheading border checkbox-card py-4 px-6">
                     <div className="w-full">
                       <h2 className='subheading font-bold'>{item.name}</h2>
-                      <p className='text-xs text-[#71717A] tracking-[0.12px] mt-1 mb-3'>{item.price}</p>
+                      <p className='text-xs text-secondary tracking-[0.12px] mt-1 mb-3'>{item.price}</p>
                       {item.features.map((feature, index) => (
                         <div key={index} className='flex gap-x-2 text-sm py-[6px]'>
                           <CheckCircle2 className="h-4 w-4"/>

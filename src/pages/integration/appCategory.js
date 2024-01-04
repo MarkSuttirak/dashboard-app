@@ -90,7 +90,7 @@ export default function AppCategory(){
         <div className="flex flex-col justify-between">
           <article className="mt-4">
             <h1 className="secondary-heading mb-4">Connect Marketing place</h1>
-            <p className="text-[13px] font-medium text-[#71717A] mt-4 mb-6">Say hello to the world and let readers know what your blog is all about.</p>
+            <p className="text-[13px] font-medium text-secondary mt-4 mb-6">Say hello to the world and let readers know what your blog is all about.</p>
           </article>
 
           <Button className='btn-with-icon w-fit bg-white' variant='outline'>

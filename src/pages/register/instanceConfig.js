@@ -508,7 +508,7 @@ export const AppsSelectionForm = ({
                               <img src={app.image} />
                               <div className='px-[6px] pt-3 pb-2 text-center'>
                                 <h2 className='subheading font-bold'>{app.title}</h2>
-                                <p className='text-xs text-[#71717A] tracking-[0.12px] mt-1'>{app.desc}</p>
+                                <p className='text-xs text-secondary tracking-[0.12px] mt-1'>{app.desc}</p>
                               </div>
                             </span>
                         </label>

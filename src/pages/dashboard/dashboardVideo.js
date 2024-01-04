@@ -49,7 +49,7 @@ export default function DashboardVideo(){
             <button key={index} onClick={() => handleChangeVideo(list.src, list.title, index)} className="w-full text-left flex items-center gap-x-4">
               <img src={list.img} className="rounded-sm"/>
               <div className="flex flex-col gap-y-[10px]">
-                <h2 className='text-[#09090B] text-[13px] eventpop'>{list.title}</h2>
+                <h2 className='text-primary text-[13px] eventpop'>{list.title}</h2>
                 <p className="text-[#7009FF] flex items-center gap-x-2 text-[13px] font-bold eventpop">
                   <PlayCircle className="h-4 w-4 text-[#7009FF]"/>
                   {playing === index ? t('playing') : t('play_video')}

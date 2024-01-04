@@ -31,12 +31,12 @@ export default function CheckoutInfo({paymentConfirm, setPaymentConfirm, totalPr
         {verifiedPayment && (
           <div className="flex items-center justify-between mb-3">
             <h2 className="subheading font-medium">{t("payment.payment_notifications.invoice_number")}</h2>
-            <p className="subheading font-medium inter">INV001</p>
+            <p className="subheading font-medium font-inter">INV001</p>
           </div>
         )}
         <h2 className="main-desc font-medium">{t('payment.subscribe_website')}</h2>
         <div className="mt-3 flex gap-x-[10px] items-center">
-          <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px] inter">฿ {totalPrice}</h1>
+          <h1 className="text-[40px] text-primary font-bold tracking-[-1px] font-inter">฿ {totalPrice}</h1>
           <div>
             <p className="main-desc">{t('payment.per')}</p>
             <p className="main-desc">{t('payment.month')}</p>
@@ -49,7 +49,7 @@ export default function CheckoutInfo({paymentConfirm, setPaymentConfirm, totalPr
           <thead>
             <tr className="text-left subheading">
               <th className="font-medium">{t('payment.subtotal')}</th>
-              <th className="text-right font-medium inter">฿ {subtotal}</th>
+              <th className="text-right font-medium font-inter">฿ {subtotal}</th>
             </tr>
           </thead>
           <tbody>
@@ -57,7 +57,7 @@ export default function CheckoutInfo({paymentConfirm, setPaymentConfirm, totalPr
               <tr className="main-desc">
                 <td className="py-2">
                   <div className="flex my-3 flex-col">
-                    <div className="flex gap-x-[10px] items-center text-sm text-[#71717A] p-[10px] bg-zinc-100/80 rounded-sm w-fit">
+                    <div className="flex gap-x-[10px] items-center text-sm text-secondary p-[10px] bg-zinc-100/80 rounded-sm w-fit">
                       <div className="flex gap-x-1 items-center">
                         <Tag color='#71717A' viewBox='0 0 24 24' width='12' height='12'/>
                         SAVE10
@@ -66,12 +66,12 @@ export default function CheckoutInfo({paymentConfirm, setPaymentConfirm, totalPr
                     <p className="text-desc mt-[2px]">{couponExplanation}</p>
                   </div>
                 </td>
-                <td className="text-right inter">- ฿ {discount}</td>
+                <td className="text-right font-inter">- ฿ {discount}</td>
               </tr>
             )}
             <tr className="main-desc">
               <td className="py-2">VAT (7%)</td>
-              <td className="py-2 text-right inter">฿ {vat}</td>
+              <td className="py-2 text-right font-inter">฿ {vat}</td>
             </tr>
           </tbody>
         </table>
@@ -81,7 +81,7 @@ export default function CheckoutInfo({paymentConfirm, setPaymentConfirm, totalPr
         <table className="w-full relative">
           <tr className="text-left subheading">
             <th className="font-bold">{t('payment.total')}</th>
-            <th className="text-right font-bold inter">฿ {totalPrice}</th>
+            <th className="text-right font-bold font-inter">฿ {totalPrice}</th>
           </tr>
         </table>
 

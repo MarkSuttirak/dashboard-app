@@ -327,7 +327,7 @@ export default function CustomPricing(){
         <div>
           <h1 className="text-center text-3xl font-semibold">Create a bundle</h1>
           <div className='flex gap-x-2 items-center justify-center mt-4'>
-            <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px]">฿ {totalPrice.toLocaleString()}</h1>
+            <h1 className="text-[40px] text-primary font-bold tracking-[-1px]">฿ {totalPrice.toLocaleString()}</h1>
             <div>
               <p className="main-desc">per</p>
               <p className="main-desc">month</p>

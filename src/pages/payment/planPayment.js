@@ -94,7 +94,7 @@ export default function PlanPayment(){
         <div className="mt-3 mb-10 flex gap-x-[10px] items-center">
           {subtotal ? (
             <>
-              <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px] inter">฿ {total()}</h1>
+              <h1 className="text-[40px] text-primary font-bold tracking-[-1px] font-inter">฿ {total()}</h1>
               <div>
                 <p className="main-desc">{t('payment.per')}</p>
                 <p className="main-desc">{t('payment.month')}</p>
@@ -113,7 +113,7 @@ export default function PlanPayment(){
                 <CardDescription>Discount 10%</CardDescription>
               </div>
             </div>
-            {subtotal ? <p className="subheading inter">฿ {subtotal.toLocaleString()}</p> : <Skeleton className='h-3 w-[100px]'/>}
+            {subtotal ? <p className="subheading font-inter">฿ {subtotal.toLocaleString()}</p> : <Skeleton className='h-3 w-[100px]'/>}
           </CardHeader>
         </Card>
 
@@ -124,7 +124,7 @@ export default function PlanPayment(){
           <thead>
             <tr className="text-left subheading">
               <th className="font-medium">{t('payment.subtotal')}</th>
-              <th className="text-right font-medium inter">฿ {subtotal.toLocaleString()}</th>
+              <th className="text-right font-medium font-inter">฿ {subtotal.toLocaleString()}</th>
             </tr>
           </thead>
           <tbody>
@@ -132,7 +132,7 @@ export default function PlanPayment(){
               <tr className="main-desc">
                 <td>
                   <div className="flex my-3 flex-col">
-                    <div className="flex gap-x-[10px] items-center text-sm text-[#71717A] p-[10px] bg-zinc-100/80 rounded-sm w-fit">
+                    <div className="flex gap-x-[10px] items-center text-sm text-secondary p-[10px] bg-zinc-100/80 rounded-sm w-fit">
                       <div className="flex gap-x-1 items-center">
                         <Tag color='#71717A' viewBox='0 0 24 24' width='12' height='12'/>
                         {couponCode}
@@ -142,7 +142,7 @@ export default function PlanPayment(){
                     <p className="text-desc mt-[2px]">{couponExplanation}</p>
                   </div>
                 </td>
-                <td className="text-right inter">- ฿ {discount.toLocaleString()}</td>
+                <td className="text-right font-inter">- ฿ {discount.toLocaleString()}</td>
               </tr>
             ) : (
               <tr>
@@ -160,7 +160,7 @@ export default function PlanPayment(){
             )}
             <tr className="main-desc">
               <td>VAT (7%)</td>
-              <td className="text-right inter">฿ {vat}</td>
+              <td className="text-right font-inter">฿ {vat}</td>
             </tr>
           </tbody>
         </table>
@@ -178,7 +178,7 @@ export default function PlanPayment(){
           <table className="w-[calc(100%_-_74px)] relative left-[74px]">
             <tr className="text-left subheading">
               <th className="font-bold">{t('payment.total')}</th>
-              <th className="text-right font-bold inter">฿ {total()}</th>
+              <th className="text-right font-bold font-inter">฿ {total()}</th>
             </tr>
           </table>
         ) : (

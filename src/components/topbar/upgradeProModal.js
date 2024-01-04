@@ -62,32 +62,32 @@ export default function UpgradeProModal(){
 
   const privileges = [
     {
-      icon:<PartyPopper className="mt-1 stroke-[1.5] text-[#09090B] h-5 w-5"/>,
+      icon:<PartyPopper className="mt-1 stroke-[1.5] text-primary h-5 w-5"/>,
       title:t('pro_privileges.everything_in_free.title'),
       desc:t('pro_privileges.everything_in_free.desc')
     },
     {
-      icon:<LockOpen1Icon className="mt-1 stroke-[1.5] text-[#09090B] h-5 w-5"/>,
+      icon:<LockOpen1Icon className="mt-1 stroke-[1.5] text-primary h-5 w-5"/>,
       title:t('pro_privileges.unlimited_quota.title'),
       desc:t('pro_privileges.unlimited_quota.desc')
     },
     {
-      icon:<ThumbsUp className="mt-1 stroke-[1.5] text-[#09090B] h-5 w-5"/>,
+      icon:<ThumbsUp className="mt-1 stroke-[1.5] text-primary h-5 w-5"/>,
       title:t('pro_privileges.collaborative_workspace.title'),
       desc:t('pro_privileges.collaborative_workspace.desc')
     },
     {
-      icon:<UserPlus className="mt-1 stroke-[1.5] text-[#09090B] h-5 w-5"/>,
+      icon:<UserPlus className="mt-1 stroke-[1.5] text-primary h-5 w-5"/>,
       title:t('pro_privileges.one_team_member.title'),
       desc:t('pro_privileges.one_team_member.desc')
     },
     {
-      icon:<UserCircle className="mt-1 stroke-[1.5] text-[#09090B] h-5 w-5"/>,
+      icon:<UserCircle className="mt-1 stroke-[1.5] text-primary h-5 w-5"/>,
       title:t('pro_privileges.super_admin.title'),
       desc:t('pro_privileges.super_admin.desc')
     },
     {
-      icon:<Heart className="mt-1 stroke-[1.5] text-[#09090B] h-5 w-5"/>,
+      icon:<Heart className="mt-1 stroke-[1.5] text-primary h-5 w-5"/>,
       title:t('pro_privileges.priority_support.title'),
       desc:t('pro_privileges.priority_support.desc')
     },
@@ -122,16 +122,16 @@ export default function UpgradeProModal(){
                   <h1 className="main-heading tracking-[-0.6px]">Professional</h1>
                   <ServiceBadge text='Recommended'/>
                 </div>
-                <p className='text-[#71717A]'>{t('pro_privileges.pro_desc')}</p>
+                <p className='text-secondary'>{t('pro_privileges.pro_desc')}</p>
 
                 <div className='mt-6 flex flex-col gap-y-[18px]'>
-                  <div className='flex gap-x-3 items-center inter'>
+                  <div className='flex gap-x-3 items-center font-inter'>
                     <Switch onCheckedChange={handlePerYear} />
                     <Badge variant='outline'><span className='eventpop'>{t('pro_privileges.yearly_save')}</span> - ฿ 1,500</Badge>
                   </div>
                   <div className='flex gap-x-2'>
-                    <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px] inter">{perYear ? '฿ 7,500' : '฿ 750'}</h1>
-                    <p className='text-[#71717A] text-base'>{perYear ? 'Year / User' : 'Month / User'}</p>
+                    <h1 className="text-[40px] text-primary font-bold tracking-[-1px] font-inter">{perYear ? '฿ 7,500' : '฿ 750'}</h1>
+                    <p className='text-secondary text-base'>{perYear ? 'Year / User' : 'Month / User'}</p>
                   </div>
                 </div>
 

@@ -50,7 +50,7 @@ export default function ServiceModals(){
               <section>
                 <ServiceBadge text={services.require_pro_text}/>
                 <h1 className="main-heading tracking-[-0.6px] mt-3 mb-2">{services.title}</h1>
-                <p className="text-[#71717A]">{services.desc}</p>
+                <p className="text-secondary">{services.desc}</p>
                 <ul className="mt-6 pb-10 gap-y-[17px] flex flex-col px-2 h-[300px] overflow-auto">
                   {services.privilege.map((p, index) => {
                     return (<ServicePrivileges key={index} icon={p.icon} title={p.title} desc={p.desc}/>)

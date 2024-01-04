@@ -16,6 +16,11 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        'inter': 'Inter, sans-serif',
+        'eventpop': 'Eventpop, sans-serif',
+        'calsans': 'Cal Sans, sans-serif'
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -23,12 +28,18 @@ module.exports = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "#09090B", // hsl(var(--primary))
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
+          DEFAULT: "#71717A", // hsl(var(--secondary))
           foreground: "hsl(var(--secondary-foreground))",
+        },
+        tertiary: {
+          DEFAULT: "#E4E4E7"
+        },
+        lightgray: {
+          DEFAULT: "#8A8A8A"
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",

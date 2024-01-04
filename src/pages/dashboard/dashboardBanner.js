@@ -39,9 +39,9 @@ export default function DashboardBanner({sitename}){
         <div className="flex bg-[#F7F7F8] p-6 rounded-xl gap-x-6 w-full">
           <div className="flex flex-col justify-between h-full gap-y-[10px]">
             {plan?.name === 'pro' ? (
-              <h2 className='text-[#09090B] text-[13px]'>Pro Plan</h2>
+              <h2 className='text-primary text-[13px]'>Pro Plan</h2>
             ) : plan?.name === 'free' ? (
-              <h2 className='text-[#09090B] text-[13px]'>ฟรี ตลอดชีพ</h2>
+              <h2 className='text-primary text-[13px]'>ฟรี ตลอดชีพ</h2>
             ) : (
               <div className="flex flex-col gap-y-2 w-full">
                 <Skeleton className='h-5'/>

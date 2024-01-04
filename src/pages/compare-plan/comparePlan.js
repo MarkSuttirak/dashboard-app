@@ -15,7 +15,7 @@ export default function ComparePlan(){
   return (
     <div className="dashboard-container">
       <div className="text-center">
-        <h1 className="text-4xl text-[#09090B] font-extrabold tracking-[-0.9px] mb-3">Pricing built for businesses of all sizes</h1>
+        <h1 className="text-4xl text-primary font-extrabold tracking-[-0.9px] mb-3">Pricing built for businesses of all sizes</h1>
         <p className="secondary-desc">Zaviago offers more than 10 functions and management applications so that you can</p>
       </div>
 
@@ -63,7 +63,7 @@ export default function ComparePlan(){
         </div>
         <div className="w-1/3">
           <div className='flex gap-x-2 items-center'>
-            <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px]">Free</h1>
+            <h1 className="text-[40px] text-primary font-bold tracking-[-1px]">Free</h1>
             <div>
               <p className="main-desc">per</p>
               <p className="main-desc">month</p>
@@ -79,7 +79,7 @@ export default function ComparePlan(){
         </div>
         <div className="w-1/3">
           <div className='flex gap-x-2 items-center'>
-            <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px] inter">฿ 750</h1>
+            <h1 className="text-[40px] text-primary font-bold tracking-[-1px] font-inter">฿ 750</h1>
             <div>
               <p className="main-desc">per</p>
               <p className="main-desc">month</p>

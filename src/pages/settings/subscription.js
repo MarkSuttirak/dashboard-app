@@ -170,9 +170,9 @@ export default function Subscription(){
         <div className="flex justify-between">
           {plan ? (
             <div>
-            <h1 className="text-3xl font-semibold inter">฿ {plan?.price_usd}</h1>
+            <h1 className="text-3xl font-semibold font-inter">฿ {plan?.price_usd}</h1>
             <div className="flex items-center gap-x-[6px]">
-              <p className="text-base leading-7 text-[#71717A]">
+              <p className="text-base leading-7 text-secondary">
                 {plan?.name === 'pro' ? t('settings.overview.renewal') + '2 December 2023' : t('settings.overview.free_forever')}
               </p>
               <AlertCircle className="h-4 w-4"/>

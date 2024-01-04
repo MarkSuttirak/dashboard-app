@@ -165,8 +165,8 @@ export default function Dashboard(){
             <AvatarFallback>{user?.first_name[0]}</AvatarFallback>
           </Avatar>
           <div>
-            {user ? <h1 className="text-3xl text-[#09090B] font-bold tracking-[-0.75px] eventpop leading-8">สวัสดีคุณ <span style={textGradient("linear-gradient(92.12deg, #7900FF -2.04%, #006AFF 89.63%)", "30px")}>{user?.first_name}</span>🙏</h1> : <Skeleton className='h-8 w-[300px]'/>}
-            <p className="text-sm text-[#71717A]">สร้างและขยายธุรกิจด้วยแอปพลิเคชันต่าง</p>
+            {user ? <h1 className="text-3xl text-primary font-bold tracking-[-0.75px] eventpop leading-8">สวัสดีคุณ <span style={textGradient("linear-gradient(92.12deg, #7900FF -2.04%, #006AFF 89.63%)", "30px")}>{user?.first_name}</span>🙏</h1> : <Skeleton className='h-8 w-[300px]'/>}
+            <p className="text-sm text-secondary">สร้างและขยายธุรกิจด้วยแอปพลิเคชันต่าง</p>
           </div>
         </div>
         <Button className='rounded-full btn-with-icon'>
@@ -216,7 +216,7 @@ export default function Dashboard(){
         <div className="mt-6 grid lg:grid-cols-3 gap-[15px]">
           <PostInfo title="สร้างเว็บง่ายเหมือนทำ “Powerpoint”" desc="สร้างเว็บไซต์ใหม่ง่ายๆด้วยฟีเจอร์เปิดเว็บง่ายๆที่คุณก็ทำได้" image={createYourBlog} />
           <PostInfo title="เปิดร้านขายของออนไลน์" desc="เปิดเว็บแอปและเว็บขายสินค้าง่ายๆเพียง" buttonText="เชื่อมต่อ" image={sellingOnline} imageStyle='px-6'/>
-          <PostInfo title="เชื่อมต่อ Shopee & Lazada" desc="Boost customer loyalty and drive repeat business with our tailored Loyalty Program" buttonText="Connect marketplace" image={connectMessage} imageStyle='pl-8 pb-8'/>
+          <PostInfo title="เชื่อมต่อ Shopee & Lazada" desc="จัดการออเดอร์อย่างมีประสิทธิภาพด้วยการเชื่อมต่อกับช่องทางการขายหลากหลายแพลตฟอร์ม" buttonText="เชื่อมต่อช่องทางการขาย" image={connectMessage} imageStyle='pl-8 pb-8'/>
         </div>
       </section>
     </div>

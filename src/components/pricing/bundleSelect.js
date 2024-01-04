@@ -6,10 +6,10 @@ export default function BundleSelect({id, title, price, checked, onCheckedChange
   const [showFullDesc, setShowFullDesc] = useState(false)
   const numOfTextLength = 120;
   return (
-    <div className={`border rounded-lg ${checked === true ? 'border-[#09090B]' : 'border-[#E4E4E7]'}`} style={{width:width}}>
+    <div className={`border rounded-lg ${checked === true ? 'border-primary' : 'border-tertiary'}`} style={{width:width}}>
       <label htmlFor={id} name={id} className={`flex justify-between p-4`}>
         <div className="pr-4">
-          <h2 className={`${size === 'large' ? 'text-xl font-semibold text-[#09090B]' : 'text-base font-medium'}`}>{title}</h2>
+          <h2 className={`${size === 'large' ? 'text-xl font-semibold text-primary' : 'text-base font-medium'}`}>{title}</h2>
           <p className="subheading mt-1 font-medium">{price}</p>
           {desc && <p className="main-desc mt-2">{!showFullDesc ? `${desc?.length > numOfTextLength ? desc?.slice(0, numOfTextLength) + '...' : desc || ''}` : desc}</p>}
         </div>

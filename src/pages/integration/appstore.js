@@ -148,7 +148,7 @@ export default function AppStore(){
             <article className="p-6">
               <Icons.erpApp />
               <h2 className="text-sm font-semibold tracking-[-0.35px] my-[11px]">Create project</h2>
-              <p className="text-[#71717A] text-sm">Deploy your new project in one-click.</p>
+              <p className="text-secondary text-sm">Deploy your new project in one-click.</p>
             </article>
           </div>
         </aside>

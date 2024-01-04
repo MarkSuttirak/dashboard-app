@@ -87,7 +87,7 @@ export default function SingleApp(){
                 </div>
                 <div>
                   <h1 className="main-heading">{item.title}</h1>
-                  <p className="text-sm font-medium text-[#09090B]">{t('by_zaviago')}</p>
+                  <p className="text-sm font-medium text-primary">{t('by_zaviago')}</p>
                   <p className="text-sm mt-1">{item.status}</p>
                 </div>
               </div>
@@ -149,7 +149,7 @@ export default function SingleApp(){
 
                 <div className="mt-[72px]">
                   <p className="main-desc">{t('app_details.app_developed_by')}</p>
-                  <h2 className='font-bold text-[#09090B]'>{item.team}</h2>
+                  <h2 className='font-bold text-primary'>{item.team}</h2>
 
                   <div className="mt-3">
                     {developerInfo.map(info => (
@@ -166,20 +166,20 @@ export default function SingleApp(){
                 </div>
               </aside>
               <article className="w-2/3">
-                <div className="text-[#71717A]" dangerouslySetInnerHTML={{__html:app.long_description}}/>
+                <div className="text-secondary" dangerouslySetInnerHTML={{__html:app.long_description}}/>
               </article>
             </section>
 
             <section className="flex flex-col mt-20">
               <div>
-                <h1 className="text-xl font-semibold tracking-[-0.5px] text-[#09090B]">Pricing</h1>
+                <h1 className="text-xl font-semibold tracking-[-0.5px] text-primary">Pricing</h1>
                 <p className="main-desc">All charges are billed in Baht. Recurring and usage-based charges are billed every 30 days.</p>
               </div>
               <div className="flex gap-x-6 mt-6">
                 {plans?.map((plan, index) => (
                   <aside className="border rounded-md p-6">
-                    <h2 className='font-medium text-[#71717A] text-sm mb-3'>{plan.plan}</h2>
-                    <h1 className='font-bold text-[#181818] text-base mb-3 inter'>{plan.price_usd == 0 ? 'Free' : `฿ ${plan.price_usd} / mo`}</h1>
+                    <h2 className='font-medium text-secondary text-sm mb-3'>{plan.plan}</h2>
+                    <h1 className='font-bold text-[#181818] text-base mb-3 font-inter'>{plan.price_usd == 0 ? 'Free' : `฿ ${plan.price_usd} / mo`}</h1>
 
                     {plan.is_free === 1 ? (
                       <div className="flex flex-col">

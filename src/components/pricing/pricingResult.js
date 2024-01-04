@@ -8,7 +8,7 @@ export default function PricingResult({totalCost, commitments, estimated, estima
     return (
       <div className="mt-[14px] mb-6">
         <h2 className="text-[13px] font-medium">Estimated cost to get started:</h2>
-        <h2 className="text-base inter">฿ {typeof estimated !== 'number' ? estimated : estimated.toLocaleString()}</h2>
+        <h2 className="text-base font-inter">฿ {typeof estimated !== 'number' ? estimated : estimated.toLocaleString()}</h2>
       </div>
     )
   }
@@ -30,19 +30,19 @@ export default function PricingResult({totalCost, commitments, estimated, estima
                   </TabsTrigger>
                 </TabsList>
                 <TabsContent value='monthly' className='text-[27px] text-center'>
-                  <span className="text-[40px] inter">฿{totalCost.toLocaleString()}</span>/month
+                  <span className="text-[40px] font-inter">฿{totalCost.toLocaleString()}</span>/month
                   <EstimatedCost />
                 </TabsContent>
                 <TabsContent value='annually' className='text-[27px] text-center'>
-                  <span className="text-[40px] inter">฿{(totalCost * 0.9).toLocaleString()}</span>/month
+                  <span className="text-[40px] font-inter">฿{(totalCost * 0.9).toLocaleString()}</span>/month
                   <div className="mt-3">
                     <h2 className="text-base text-[#18181B]">Billed annually</h2>
                     <p className="text-base text-[#18181B] font-semibold">at 
-                      <span className="line-through text-[#71717A]"> ฿{(totalCost * 12).toLocaleString()}</span> 
+                      <span className="line-through text-secondary"> ฿{(totalCost * 12).toLocaleString()}</span> 
                       <span className="text-[#EF4444]"> ฿{((totalCost * 12) * 0.9).toLocaleString()}/year</span>
                     </p>
 
-                    <p className="text-sm text-[#71717A] font-normal my-2">With an annual commitment</p>
+                    <p className="text-sm text-secondary font-normal my-2">With an annual commitment</p>
                   </div>
                   <EstimatedCost />
                 </TabsContent>

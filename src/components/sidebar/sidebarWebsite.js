@@ -60,7 +60,7 @@ export default function SidebarWebsite(){
                     <div className="flex items-center gap-x-2">
                       {menu.icon}
                       <div>
-                        <h2 className="text-sm text-[#09090B]">{menu.title}</h2>
+                        <h2 className="text-sm text-primary">{menu.title}</h2>
                         <p className="text-[13px] text-[#565656]">{menu.desc}</p>
                       </div>
                     </div>

@@ -236,7 +236,7 @@ export default function Packages(){
             <><Separator className='my-10'/>
               <CardFooter className='flex flex-col items-start p-0'>
                 {packageTypeMarketConnect !== 'Starter' && (
-                  <div className="border border-[#E4E4E7] py-2 px-3 rounded-md w-full mb-6">
+                  <div className="border border-tertiary py-2 px-3 rounded-md w-full mb-6">
                     <p className="subheading">{packageTypeMarketConnect === 'Professional' ? 'MarketConnect Professional provide the market channel integration 2 channels included.' : packageTypeMarketConnect === 'Enterprise' ? 'MarketConnect Enterprise provides the market channel integration 4 channels included.' : ''}</p>
                   </div>
                 )}
@@ -266,7 +266,7 @@ export default function Packages(){
           } footer={<>{packageTypeOnlineStore ? (
             <><Separator className='my-10'/>
               <CardFooter className='flex flex-col items-start gap-y-9 p-0'>
-                <div className="border border-[#E4E4E7] py-2 px-3 rounded-md w-full">
+                <div className="border border-tertiary py-2 px-3 rounded-md w-full">
                   <p className="subheading">{packageTypeOnlineStore === 'Professional' ? 'Online Store Professional will provide up to 10,000 products library.' : packageTypeOnlineStore === 'Enterprise' ? 'Online Store Enterprise will provide up to 100,000 products library.' : 'Online Store Starter will provide 5,000 products library.'}</p>
                 </div>
               </CardFooter></>) : null}</>}/>
@@ -301,7 +301,7 @@ export default function Packages(){
           } footer={<>{packageTypeRewardful ? (
             <><Separator className='my-10'/>
               <CardFooter className='flex flex-col items-start gap-y-9 p-0'>
-                <div className="border border-[#E4E4E7] py-2 px-3 rounded-md w-full">
+                <div className="border border-tertiary py-2 px-3 rounded-md w-full">
                   <p className="subheading">{packageTypeRewardful === 'Professional' ? 'Professional will include a customized function with 5 conditions and 5 tier levels.' : packageTypeRewardful === 'Enterprise' ? 'Enterprise will include a customized function with 10 conditions and 5 tier levels.' : 'Starter will include a standard function with 1 condition and 3 tier levels.'}</p>
                 </div>
               </CardFooter></>) : null}</>}/>

@@ -76,7 +76,7 @@ export default function RemoveSetupAppModal({appToInstall, appImage, appPlan}){
           </DialogHeader>
           <div className="flex items-center gap-x-[10px] my-4 w-full">
             <Progress value={installingAppPercent}/>
-            <span className="text-xs text-[#71717A]">{installingAppPercent}%</span>
+            <span className="text-xs text-secondary">{installingAppPercent}%</span>
           </div>
           <DialogDescription className='text-center'>Removing app... Please do not close this page until the installation is done.</DialogDescription>
         </DialogContent>

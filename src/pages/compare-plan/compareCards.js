@@ -51,7 +51,7 @@ export default function CompareCards(){
             <Badge variant='outline' className='inter'>Yearly save - ฿ 1,500</Badge>
           </div>
           <div className='flex gap-x-2 items-center'>
-            <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px] inter">{perYear ? '฿ 7,500' : '฿ 750'}</h1>
+            <h1 className="text-[40px] text-primary font-bold tracking-[-1px] font-inter">{perYear ? '฿ 7,500' : '฿ 750'}</h1>
             <div>
               <p className="main-desc">per</p>
               <p className="main-desc">{perYear ? 'year' : 'month'}</p>
@@ -75,7 +75,7 @@ export default function CompareCards(){
           ))}
         </div>
       </div>
-      <div className="px-10 py-6 bg-white border border-[#E4E4E7] rounded-xl w-[340px] h-fit">
+      <div className="px-10 py-6 bg-white border border-tertiary rounded-xl w-[340px] h-fit">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl tracking-[-0.6px] text-[#18181B] font-semibold">General</h1>
           <Badge className='bg-[#ECFDF3] hover:bg-[#ECFDF3] text-[#2CB216] rounded-full shadow-none font-normal text-xs'>
@@ -85,13 +85,13 @@ export default function CompareCards(){
         <p className="main-desc mt-4">Package for small businesses or personal use.</p>
 
         <div className='flex gap-x-2 items-center mt-6 mb-5'>
-          <h1 className="text-[40px] text-[#09090B] font-bold tracking-[-1px]">Free</h1>
+          <h1 className="text-[40px] text-primary font-bold tracking-[-1px]">Free</h1>
           <p className="main-desc">Forever</p>
         </div>
 
         <div className="flex flex-col gap-y-4">
           {freePrivileges.map(p => (
-            <div className={`flex items-center gap-x-2 text-sm font-medium ${p.available === 'limited' ? 'text-[#71717A]' : p.available === 'none' ? 'text-[#EF4444]' : 'text-[#18181B]'}`}>
+            <div className={`flex items-center gap-x-2 text-sm font-medium ${p.available === 'limited' ? 'text-secondary' : p.available === 'none' ? 'text-[#EF4444]' : 'text-[#18181B]'}`}>
               {p.available !== 'none' ? (
                 <CheckCircledIcon color={p.available === 'full' ? '#2CB216' : '#71717A'}/>
               ) : (
