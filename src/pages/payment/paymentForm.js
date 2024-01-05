@@ -47,7 +47,7 @@ export default function PaymentForm(){
         {t('pro_privileges.continue')}
       </>)}/>
 
-      <p className="main-desc mt-6">By clicking 'Continue' you agree to authorize payments pursuant to <Link className="text-[#006AFF]">Privacy Policy</Link>.</p>
+      <p className="text-desc mt-6">By clicking 'Continue' you agree to authorize payments pursuant to <Link className="text-[#006AFF]">Privacy Policy</Link>.</p>
     </section>
   )
 }

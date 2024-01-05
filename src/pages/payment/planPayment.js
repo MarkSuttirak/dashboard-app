@@ -104,16 +104,16 @@ export default function PlanPayment(){
             <Skeleton className='h-9 w-1/2 my-3'/>
           )}
         </div>
-        <Card className='p-0 shadow-none'>
+        <Card className='p-0 shadow-none rounded-md'>
           <CardHeader className='flex flex-row justify-between px-3 py-6 items-center'>
             <div className="flex gap-x-3 items-center">
               <div className="bg-[#27272A] w-[50px] h-[50px] rounded-md"/>
               <div>
-                <CardTitle>{plan_details?.plan}</CardTitle>
-                <CardDescription>{t('upgrade_to_pro')}</CardDescription>
+                <CardTitle>{plan_details?.plan_title}</CardTitle>
+                <CardDescription>Discount 10%</CardDescription>
               </div>
             </div>
-            {subtotal ? <p className="subheading font-inter">฿ {subtotal.toLocaleString()}</p> : <Skeleton className='h-3 w-[100px]'/>}
+            {subtotal ? <p className="subheading font-inter font-medium">฿ {subtotal.toLocaleString()}</p> : <Skeleton className='h-3 w-[100px]'/>}
           </CardHeader>
         </Card>
 
@@ -178,7 +178,7 @@ export default function PlanPayment(){
           <table className="w-[calc(100%_-_74px)] relative left-[74px]">
             <tr className="text-left subheading">
               <th className="font-bold">{t('payment.total')}</th>
-              <th className="text-right font-bold font-inter">฿ {total()}</th>
+              <th className="text-right font-bold font-inter text-base">฿ {total()}</th>
             </tr>
           </table>
         ) : (

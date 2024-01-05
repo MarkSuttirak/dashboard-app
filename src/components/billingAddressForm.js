@@ -167,7 +167,7 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
             </div>
           </div>
         ) : (
-          <Button variant='link' onClick={() => setEnableTaxID(true)} className='justify-start p-0 h-fit -mt-6 text-secondary font-medium'>{t('enter_tax_id_text')}</Button>
+          <Button variant='link' onClick={() => setEnableTaxID(true)} className='justify-start p-0 h-fit -mt-6 text-secondary font-medium text-xs underline'>{t('enter_tax_id_text')}</Button>
         )}
 
         <div className="space-y-6">
