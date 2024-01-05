@@ -57,7 +57,7 @@ export default function CheckoutReceived(){
 
   return (
     <div className="page-section max-w-[580px] mx-auto">
-      <Card className='justify-center p-0'>
+      <Card className='justify-center p-0 shadow-none border-0'>
         <CardHeader className='p-10'>
           <Lottie animationData={receivedInfo} loop={false} style={{width:"128px",height:"128px",margin:"auto"}}/>
           <h1 className="text-[36px] font-extrabold tracking-[-0.9px] leading-[40px] text-center text-primary">{t('payment.payment_successful.title')} 🎉</h1>
@@ -74,20 +74,20 @@ export default function CheckoutReceived(){
           <table className="w-full table-invoice-detail">
             <tbody>
               <tr className="main-desc my-4">
-                <td className="text-[#424242">{t("payment.payment_notifications.invoice_number")}</td>
-                <td className="text-right">INV001</td>
+                <td className="text-[#424242]">{t("payment.payment_notifications.invoice_number")}</td>
+                <td className="text-right text-darkergray">INV001</td>
               </tr>
               <tr className="main-desc">
                 <td className="text-[#424242]">{t("payment.payment_notifications.date")}</td>
-                <td className="text-right">24-07-23</td>
+                <td className="text-right text-darkergray">24-07-23</td>
               </tr>
               <tr className="main-desc">
                 <td className="text-[#424242]">{t("payment.payment_notifications.status")}</td>
-                <td className="text-right">{t("payment.payment_notifications.in_progress")}</td>
+                <td className="text-right text-darkergray">{t("payment.payment_notifications.in_progress")}</td>
               </tr>
               <tr className="main-desc">
                 <td className="text-[#424242]">{t("payment.payment_notifications.amount")}</td>
-                <td className="text-right">฿{total()}</td>
+                <td className="text-right text-darkergray">฿{total()}</td>
               </tr>
             </tbody>
           </table>

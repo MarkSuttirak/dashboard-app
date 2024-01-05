@@ -34,7 +34,7 @@ export const appList = [
     id:'line-crm',
     custom_integrates:'Facebook',
     category:'Marketing and conversion',
-    description_title:(<div className="text-[#18181B] text-xl font-semibold mb-2">Unlock your bizs to the next level with <span className="text-[#2CB216] font-bold">Line CRM</span></div>),
+    description_title:(<div className="text-darkergray text-xl font-semibold mb-2">Unlock your bizs to the next level with <span className="text-[#2CB216] font-bold">Line CRM</span></div>),
     image:<Icons.lineCRMApp />,
     custom_launch_date:'25 Mar 2021',
     long_description:(
@@ -65,7 +65,7 @@ export const appList = [
     id:'rewardful',
     custom_integrates:'Facebook',
     category:'Marketing and conversion',
-    description_title:(<div className="text-[#18181B] text-xl font-semibold mb-2">Unlock your bizs to the next level with <span className="text-[#2CB216] font-bold">Line CRM</span></div>),
+    description_title:(<div className="text-darkergray text-xl font-semibold mb-2">Unlock your bizs to the next level with <span className="text-[#2CB216] font-bold">Line CRM</span></div>),
     image:<Icons.rewardfulApp />,
     custom_launch_date:'25 Mar 2021',
     long_description:(

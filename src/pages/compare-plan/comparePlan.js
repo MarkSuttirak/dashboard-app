@@ -28,7 +28,7 @@ export default function ComparePlan(){
             Recommended
           </Badge>
 
-          <h1 className="text-3xl tracking-[-0.75px] text-[#18181B] font-semibold mt-[6px] mb-3">Pick the plan that works best for you</h1>
+          <h1 className="text-3xl tracking-[-0.75px] text-darkergray font-semibold mt-[6px] mb-3">Pick the plan that works best for you</h1>
           <p className="secondary-desc">You can compare between a 'Professional' and 'General (Free)' plan in the table below to find the best package that suits you. But if you are still unsure, feel free to contact us!</p>
 
           <Button className='btn-with-icon mt-[60px]' onClick={() => window.location.href = 'https://page.line.me/zaviago'}>
@@ -43,7 +43,7 @@ export default function ComparePlan(){
 
       <section className="mt-10 flex flex-col gap-y-20">
         <div>
-          <h1 className="text-3xl tracking-[-0.75px] text-[#18181B] font-semibold mt-[6px] mb-3">Compare plans & features</h1>
+          <h1 className="text-3xl tracking-[-0.75px] text-darkergray font-semibold mt-[6px] mb-3">Compare plans & features</h1>
           <p className="secondary-desc">Our Zaviago offers more than 10 functions and management applications so that you can<br/> manage and develop businesses along with your own domain as well as many other systems</p>
         </div>
 
@@ -57,7 +57,7 @@ export default function ComparePlan(){
 
       <section className="flex py-6 items-center">
         <div className="w-1/3">
-          <h1 className="text-3xl tracking-[-0.75px] text-[#18181B] font-semibold mt-[6px] mb-3">Custom</h1>
+          <h1 className="text-3xl tracking-[-0.75px] text-darkergray font-semibold mt-[6px] mb-3">Custom</h1>
           <p className="main-desc">Design a custom package <br/>available for businesses or</p>
           <a href='https://page.line.me/zaviago' className="text-sm text-[#006AFF]">Contact Sales</a>
         </div>
@@ -96,14 +96,14 @@ export default function ComparePlan(){
       </section>
 
       <section className="mt-[120px] px-[60px] py-[34px] bg-[#F2F5FF] rounded-lg">
-        <h1 className="text-3xl tracking-[-0.75px] text-[#18181B] font-semibold mt-[6px] mb-3 text-center">Questions & Answers</h1>
+        <h1 className="text-3xl tracking-[-0.75px] text-darkergray font-semibold mt-[6px] mb-3 text-center">Questions & Answers</h1>
         <QuestionsAnswers />
       </section>
 
       <section className="mt-[120px] flex flex-col gap-y-10">
         <div className="flex flex-col gap-y-[18px] items-center">
           <ZaviagoIcon width='72' height='72'/>
-          <h1 className="text-3xl tracking-[-0.75px] text-[#18181B] font-semibold">Start your journey today</h1>
+          <h1 className="text-3xl tracking-[-0.75px] text-darkergray font-semibold">Start your journey today</h1>
           <p className="main-desc">Our Zaviago offers more than 10 functions and management applications so that you can</p>
         </div>
         <div className="flex flex-col items-center gap-y-3">

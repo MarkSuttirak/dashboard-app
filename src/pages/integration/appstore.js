@@ -101,7 +101,7 @@ export default function AppStore(){
           <h1 className="main-heading tracking-[-0.6px]">App Store</h1>
           <p className="secondary-desc">{t('app_store_desc')}</p>
         </div>
-        <div className="flex items-center gap-x-2 bg-[#FEC1D2] px-4 py-2 rounded-full text-sm font-semibold text-[#18181B]">
+        <div className="flex items-center gap-x-2 bg-[#FEC1D2] px-4 py-2 rounded-full text-sm font-semibold text-darkergray">
           <Sparkles className="h-4 w-4" fill='#18181B'/>
           {t('free_trial_all_apps')}
         </div>

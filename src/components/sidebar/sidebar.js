@@ -53,29 +53,29 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
   const settingsMenus = [
     { name: 'Inventory', icon: <LightningBoltIcon />, submenus: [
-      { title:'Items',icon:<Package className="w-4 h-4 stroke-[1.5] text-[#18181B]"/> },
-      { title:'Item Group', icon:<Group className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>},
-      { title:'Brand', icon:<Baseline className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>}
+      { title:'Items',icon:<Package className="w-4 h-4 stroke-[1.5] text-darkergray"/> },
+      { title:'Item Group', icon:<Group className="w-4 h-4 stroke-[1.5] text-darkergray"/>},
+      { title:'Brand', icon:<Baseline className="w-4 h-4 stroke-[1.5] text-darkergray"/>}
     ]},
-    { name: 'Orders', icon: <ClipboardList className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>, submenus: [
-      { title:'Sales Invoice', icon:<Clipboard className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>},
-      { title:'Payment Entry', icon:<CheckCircle2 className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>}
+    { name: 'Orders', icon: <ClipboardList className="w-4 h-4 stroke-[1.5] text-darkergray"/>, submenus: [
+      { title:'Sales Invoice', icon:<Clipboard className="w-4 h-4 stroke-[1.5] text-darkergray"/>},
+      { title:'Payment Entry', icon:<CheckCircle2 className="w-4 h-4 stroke-[1.5] text-darkergray"/>}
     ]},
-    { name: 'Customers', icon: <UserCircle className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>, submenus: [
-      { title:'Customer', icon: <UserSquare className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>},
-      { title:'Customers Group', icon: <Users className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>},
-      { title:'Contact', icon: <Mailbox className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>},
-      { title:'Address', icon: <Milestone className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>}
+    { name: 'Customers', icon: <UserCircle className="w-4 h-4 stroke-[1.5] text-darkergray"/>, submenus: [
+      { title:'Customer', icon: <UserSquare className="w-4 h-4 stroke-[1.5] text-darkergray"/>},
+      { title:'Customers Group', icon: <Users className="w-4 h-4 stroke-[1.5] text-darkergray"/>},
+      { title:'Contact', icon: <Mailbox className="w-4 h-4 stroke-[1.5] text-darkergray"/>},
+      { title:'Address', icon: <Milestone className="w-4 h-4 stroke-[1.5] text-darkergray"/>}
     ]},
-    { name: 'Stock', icon: <LayoutGrid className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>, submenus: [
-      { title:'Stock Entry', icon: <PackagePlus className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>},
-      { title:'Delivery Note', icon: <ClipboardPaste className="w-4 h-4 stroke-[1.5] text-[#18181B]"/>}
+    { name: 'Stock', icon: <LayoutGrid className="w-4 h-4 stroke-[1.5] text-darkergray"/>, submenus: [
+      { title:'Stock Entry', icon: <PackagePlus className="w-4 h-4 stroke-[1.5] text-darkergray"/>},
+      { title:'Delivery Note', icon: <ClipboardPaste className="w-4 h-4 stroke-[1.5] text-darkergray"/>}
     ]},
   ]
 
   const yourSites = [
-    { name: t('menus.integration'), icon: <Zap className="w-4 h-4 stroke-[1.5] text-[#18181B]" />, id: 'integration', href: '/integration/manage-apps' },
-    { name: 'App Store', icon: <UserCircle className="w-4 h-4 stroke-[1.5] text-[#18181B]" />, id: 'app-store', href: '/integration/appstore' },
+    { name: t('menus.integration'), icon: <Zap className="w-4 h-4 stroke-[1.5] text-darkergray" />, id: 'integration', href: '/integration/manage-apps' },
+    { name: 'App Store', icon: <UserCircle className="w-4 h-4 stroke-[1.5] text-darkergray" />, id: 'app-store', href: '/integration/appstore' },
   ]
 
   const workspaceApp = [

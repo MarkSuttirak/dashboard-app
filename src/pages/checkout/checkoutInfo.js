@@ -81,7 +81,7 @@ export default function CheckoutInfo({paymentConfirm, setPaymentConfirm, totalPr
         <table className="w-full relative">
           <tr className="text-left subheading">
             <th className="font-bold">{t('payment.total')}</th>
-            <th className="text-right font-bold font-inter">฿ {totalPrice}</th>
+            <th className="text-right font-bold font-inter text-base">฿ {totalPrice}</th>
           </tr>
         </table>
 

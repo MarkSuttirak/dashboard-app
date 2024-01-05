@@ -40,9 +40,9 @@ export default function CompareCards(){
 
   return (
     <section className="flex gap-x-6 justify-center mt-[44px] items-center">
-      <div className="px-10 py-6 bg-white border-[3px] border-[#18181B] rounded-xl w-[400px] h-fit">
+      <div className="px-10 py-6 bg-white border-[3px] border-darkergray rounded-xl w-[400px] h-fit">
         <ServiceBadge text='Recommended'/>
-        <h1 className="text-3xl tracking-[-0.75px] text-[#18181B] font-semibold mt-[6px]">Professional</h1>
+        <h1 className="text-3xl tracking-[-0.75px] text-darkergray font-semibold mt-[6px]">Professional</h1>
         <p className="main-desc mt-4">Upgrade package to Pro to enjoy unrestricted access to everything for you and your friends you and your friends</p>
 
         <div className='mt-6 flex flex-col gap-y-[18px]'>
@@ -77,7 +77,7 @@ export default function CompareCards(){
       </div>
       <div className="px-10 py-6 bg-white border border-tertiary rounded-xl w-[340px] h-fit">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl tracking-[-0.6px] text-[#18181B] font-semibold">General</h1>
+          <h1 className="text-2xl tracking-[-0.6px] text-darkergray font-semibold">General</h1>
           <Badge className='bg-[#ECFDF3] hover:bg-[#ECFDF3] text-[#2CB216] rounded-full shadow-none font-normal text-xs'>
             Your Plan Now
           </Badge>
@@ -91,7 +91,7 @@ export default function CompareCards(){
 
         <div className="flex flex-col gap-y-4">
           {freePrivileges.map(p => (
-            <div className={`flex items-center gap-x-2 text-sm font-medium ${p.available === 'limited' ? 'text-secondary' : p.available === 'none' ? 'text-[#EF4444]' : 'text-[#18181B]'}`}>
+            <div className={`flex items-center gap-x-2 text-sm font-medium ${p.available === 'limited' ? 'text-secondary' : p.available === 'none' ? 'text-[#EF4444]' : 'text-darkergray'}`}>
               {p.available !== 'none' ? (
                 <CheckCircledIcon color={p.available === 'full' ? '#2CB216' : '#71717A'}/>
               ) : (

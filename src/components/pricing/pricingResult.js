@@ -36,8 +36,8 @@ export default function PricingResult({totalCost, commitments, estimated, estima
                 <TabsContent value='annually' className='text-[27px] text-center'>
                   <span className="text-[40px] font-inter">฿{(totalCost * 0.9).toLocaleString()}</span>/month
                   <div className="mt-3">
-                    <h2 className="text-base text-[#18181B]">Billed annually</h2>
-                    <p className="text-base text-[#18181B] font-semibold">at 
+                    <h2 className="text-base text-darkergray">Billed annually</h2>
+                    <p className="text-base text-darkergray font-semibold">at 
                       <span className="line-through text-secondary"> ฿{(totalCost * 12).toLocaleString()}</span> 
                       <span className="text-[#EF4444]"> ฿{((totalCost * 12) * 0.9).toLocaleString()}/year</span>
                     </p>

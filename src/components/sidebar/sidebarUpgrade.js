@@ -28,7 +28,7 @@ export default function SidebarUpgrade(){
   return (
     <div style={borderStyle}>
       <div>
-        <h2 className='text-[13px] leading-4 tracking-[-0.52px] font-medium text-[#18181B] text-center'>Enjoy premium growing library of template and more</h2>
+        <h2 className='text-[13px] leading-4 tracking-[-0.52px] font-medium text-darkergray text-center'>Enjoy premium growing library of template and more</h2>
         <SetupBusinessImg className='m-auto'/>
         <Link to='/payment/plan/pro'>
           <Button className='btn-with-icon w-full'>
