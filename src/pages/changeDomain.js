@@ -161,7 +161,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                   {isProVersion ? (
                     <th className="text-left text-[#505A62] font-normal"></th>
                   ) : (
-                    <th className="text-left text-[#505A62] font-normal text-[13px]">ลบ <span className="text-[#1D1D1F] eventpop">/ac.fc zaviago.com</span> ออกจากลิงก์</th>
+                    <th className="text-left text-[#505A62] font-normal text-[13px]">ลบ <span className="text-[#1D1D1F] font-eventpop">/ac.fc zaviago.com</span> ออกจากลิงก์</th>
                   )}
                 </tr>
               </thead>
@@ -252,11 +252,11 @@ const ChangeDomain = ({ loadingLogo }) => {
                     </div>
                     <div>
                       <div className="mt-3 text-center">
-                        <Dialog.Title as="h3" className="text-[29px] font-bold leading-6 text-[#1F272E] eventpop mb-[19px]">
+                        <Dialog.Title as="h3" className="text-[29px] font-bold leading-6 text-[#1F272E] font-eventpop mb-[19px]">
                           {changingDomain ? (<p>กำลังเปลี่ยนชื่อโดเมน 🛠</p>) : domainChanged ? (<p>เปลี่ยนชื่อโดเมนแล้ว 🎉</p>) : (<p>เปลี่ยนชื่อโดเมน</p>)}
                         </Dialog.Title>
                         <div className="mt-2">
-                          <p className="text-md paras eventpop text-[13px]">
+                          <p className="text-md paras font-eventpop text-[13px]">
                             {changingDomain ? (<>ระบบกำลังเปลี่ยนชื่อโดเมนให้กับเว็บไซต์ของคุณ <br/>กรุณารอสักครู่...</>) : domainChanged ? (<>เปลี่ยนโดเมนเรียบร้อยแล้ว <br/>คุณสามารถแชร์ลิงก์ของเว็บไซต์ให้ลูกค้าหรือทีมของคุณเพื่อเข้าใช้งานได้ทันที</>) : (<>โดเมนคือชื่อของเว็บไซต์ที่อยู่หลัง www.<br/>ซึ่งคุณสามารถเปลี่ยนชื่อโดเมนของคุณหรือใช้โดเมนที่คุณเป็นเจ้าของอยู่แล้วได้</>)}
                           </p>
                         </div>
@@ -373,8 +373,8 @@ const ChangeDomain = ({ loadingLogo }) => {
                       </table>
                     </div>
                     {changingDomain || domainChanged ? (
-                      <div className="mt-[30px] text-[#687178] text-[13px] text-center eventpop">
-                        หากคุณไม่ต้องการใช้โดเมนฟรีจาก zaviago <span className="font-bold eventpop">(.ac.fc.zaviago.com)</span><br/>
+                      <div className="mt-[30px] text-[#687178] text-[13px] text-center font-eventpop">
+                        หากคุณไม่ต้องการใช้โดเมนฟรีจาก zaviago <span className="font-bold font-eventpop">(.ac.fc.zaviago.com)</span><br/>
                         ‘เพียงสมัคร Pro Package เริ่มต้นเพียงเดือนละ 750 บาท’ <br/>คุณก็สามารถใช้ชื่อโดเมนที่คุณต้องการได้ทันที<br/>
                         ติดต่อทีมงานเพื่อสอบถามรายละเอียดเพิ่มเติม
                       </div>
@@ -471,7 +471,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                     </div>
                     <div>
                       <div className="mt-3 text-center">
-                        <Dialog.Title as="h3" className="text-[29px] font-bold leading-6 text-[#1F272E] eventpop mb-[19px] flex items-center justify-center gap-x-4">
+                        <Dialog.Title as="h3" className="text-[29px] font-bold leading-6 text-[#1F272E] font-eventpop mb-[19px] flex items-center justify-center gap-x-4">
                           {changingDomainPro ? (<p>ตั้งค่าระบบโดเมน</p>) : domainVerifiedPro ? (<p>ยืนยันโดเมนแล้ว</p>) : (<p>เปลี่ยนชื่อโดเมน</p>)}
                           <span className="rounded-full bg-[#E5F5FF] px-2.5 py-0.5 text-xs font-medium text-[#0099FF]">Pro</span>
                         </Dialog.Title>
@@ -658,7 +658,7 @@ const ChangeDomain = ({ loadingLogo }) => {
                       )}
                     </div>
                     {changingDomainPro ? (
-                      <div className="mt-[30px] text-[#687178] text-[13px] eventpop flex flex-col gap-y-1">
+                      <div className="mt-[30px] text-[#687178] text-[13px] font-eventpop flex flex-col gap-y-1">
                         <p className="leading-[140%]">See guide for <strong>Google domain</strong> <a href="https://support.google.com/domains/answer/3453651" target="_blank" className="text-[#0066CC]">here</a></p>
                         <p className="leading-[140%]">See guide for <strong>Host Never Die</strong> <a href="https://support.hostneverdie.com/index.php/knowledgebase/125/%E0%B8%A7%E0%B8%98%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%94%E0%B9%82%E0%B8%94%E0%B9%80%E0%B8%A1%E0%B8%99%E0%B9%83%E0%B8%AB%E0%B8%A1-%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%A5%E0%B8%B0%E0%B9%80%E0%B8%AD%E0%B8%A2%E0%B8%94.html" target="_blank" className="text-[#0066CC]">here</a></p>
                         <p className="leading-[140%]">See guide for <strong>Cloudflare</strong> <a href="#" className="text-[#0066CC]">here</a></p>

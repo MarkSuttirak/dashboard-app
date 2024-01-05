@@ -127,7 +127,7 @@ export default function UpgradeProModal(){
                 <div className='mt-6 flex flex-col gap-y-[18px]'>
                   <div className='flex gap-x-3 items-center font-inter'>
                     <Switch onCheckedChange={handlePerYear} />
-                    <Badge variant='outline'><span className='eventpop'>{t('pro_privileges.yearly_save')}</span> - ฿ 1,500</Badge>
+                    <Badge variant='outline'><span className='font-eventpop'>{t('pro_privileges.yearly_save')}</span> - ฿ 1,500</Badge>
                   </div>
                   <div className='flex gap-x-2'>
                     <h1 className="text-[40px] text-primary font-bold tracking-[-1px] font-inter">{perYear ? '฿ 7,500' : '฿ 750'}</h1>

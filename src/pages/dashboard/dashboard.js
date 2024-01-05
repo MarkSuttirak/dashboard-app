@@ -165,7 +165,7 @@ export default function Dashboard(){
             <AvatarFallback>{user?.first_name[0]}</AvatarFallback>
           </Avatar>
           <div>
-            {user ? <h1 className="text-3xl text-primary font-bold tracking-[-0.75px] eventpop leading-8">สวัสดีคุณ <span style={textGradient("linear-gradient(92.12deg, #7900FF -2.04%, #006AFF 89.63%)", "30px")}>{user?.first_name}</span>🙏</h1> : <Skeleton className='h-8 w-[300px]'/>}
+            {user ? <h1 className="text-3xl text-primary font-bold tracking-[-0.75px] font-eventpop leading-8">สวัสดีคุณ <span style={textGradient("linear-gradient(92.12deg, #7900FF -2.04%, #006AFF 89.63%)", "30px")}>{user?.first_name}</span>🙏</h1> : <Skeleton className='h-8 w-[300px]'/>}
             <p className="text-sm text-secondary">สร้างและขยายธุรกิจด้วยแอปพลิเคชันต่าง</p>
           </div>
         </div>

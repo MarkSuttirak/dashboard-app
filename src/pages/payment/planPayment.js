@@ -110,7 +110,7 @@ export default function PlanPayment(){
               <div className="bg-[#27272A] w-[50px] h-[50px] rounded-md"/>
               <div>
                 <CardTitle>{plan_details?.plan}</CardTitle>
-                <CardDescription>Discount 10%</CardDescription>
+                <CardDescription>{t('upgrade_to_pro')}</CardDescription>
               </div>
             </div>
             {subtotal ? <p className="subheading font-inter">฿ {subtotal.toLocaleString()}</p> : <Skeleton className='h-3 w-[100px]'/>}
