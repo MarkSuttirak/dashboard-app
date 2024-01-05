@@ -111,8 +111,8 @@ export default function PaymentInfo(){
             <div className="flex gap-x-3 items-center">
               <div className="bg-[#27272A] w-[50px] h-[50px] rounded-md"/>
               <div>
-                <CardTitle>{plan_details?.plan}</CardTitle>
-                <CardDescription>Discount 10%</CardDescription>
+                <CardTitle>{plan_details?.plan_title}</CardTitle>
+                {/* <CardDescription>Discount 10%</CardDescription> */}
               </div>
             </div>
             <p className="subheading font-inter">฿ {subtotal.toLocaleString()}</p>
