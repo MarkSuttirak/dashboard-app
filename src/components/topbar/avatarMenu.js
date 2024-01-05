@@ -3,18 +3,30 @@ import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, Comma
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { site } from "../../client/api";
 import { useMutation, useQuery } from "react-query";
-import { User, Keyboard, Layout, LogOut } from 'lucide-react'
+import { User, Keyboard, Layout, LogOut, Globe } from 'lucide-react'
 import { useUser } from '../../hooks/useUser'
 import LogoutModal from "./logoutModal";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 export default function AvatarMenu(){
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { user, auth, logout } = useUser();
   const { data: sites } = useQuery('sites', site.list, {
     enabled: false
   });
+
+  const handleChangeLang = () => {
+    if (localStorage.lang !== null){
+      if (localStorage.lang === 'th'){
+        i18n.changeLanguage('en')
+        localStorage.setItem('lang', 'en')
+      } else {
+        i18n.changeLanguage('th')
+        localStorage.setItem('lang', 'th')
+      }
+    }
+  }
 
   const navigate = useNavigate()
 
@@ -30,8 +42,16 @@ export default function AvatarMenu(){
         <Command>
           <CommandList>
             <CommandGroup>
+              <CommandItem onSelect={handleChangeLang}>
+                <Globe viewBox='0 0 24 24' className="h-4 w-4 mr-2"/>
+                {t('language')}
+                <CommandShortcut className='font-normal flex gap-x-2'>
+                  <span className={`${localStorage.lang !== null && localStorage.lang === 'th' ? 'bg-darkergray px-[5px] text-primary-foreground rounded-[2px]' : 'text-secondary'}`}>TH</span>
+                  <span className={`${localStorage.lang !== null && localStorage.lang === 'en' ? 'bg-darkergray px-[5px] text-primary-foreground rounded-[2px]' : 'text-secondary'}`}>EN</span>
+                </CommandShortcut>
+              </CommandItem>
               <CommandItem onSelect={() => navigate('/dashboard/settings/account')}>
-                <User viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+                <User viewBox='0 0 24 24' className="h-4 w-4 mr-2"/>
                 {t('topbar.menus.my_account')}
               </CommandItem>
             </CommandGroup>
@@ -39,7 +59,7 @@ export default function AvatarMenu(){
             <CommandGroup>
               <CommandItem className='p-0'>
                 <LogoutModal>
-                  <LogOut viewBox='0 0 24 24' width='16' height='16' className='mr-2'/>
+                  <LogOut viewBox='0 0 24 24' className="h-4 w-4 mr-2"/>
                   {t('topbar.menus.logout')}
                 </LogoutModal>
               </CommandItem>
