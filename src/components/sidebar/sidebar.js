@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
-import { PlusCircle, Settings, Search, ChevronsLeft, Users, Zap, UserCircle, LayoutGrid, Layout, ClipboardList, Package, Group, Baseline, Clipboard, CheckCircle, CheckCircle2, UserSquare, Mailbox, Milestone, PackagePlus, ClipboardPaste, PanelLeftClose, PanelLeftOpen, Home, ChevronsRight, Hotel } from "lucide-react";
+import { PlusCircle, Settings, Search, ChevronsLeft, Users, Zap, UserCircle, LayoutGrid, Layout, ClipboardList, Package, Group, Baseline, Clipboard, CheckCircle, CheckCircle2, UserSquare, Mailbox, Milestone, PackagePlus, ClipboardPaste, PanelLeftClose, PanelLeftOpen, Home, ChevronsRight, Hotel, Unplug } from "lucide-react";
 import { Button } from "../ui/button";
 import { BellIcon, LightningBoltIcon } from "@radix-ui/react-icons";
 import { useMutation, useQuery } from "react-query";
@@ -48,7 +48,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
   const navigation = [
     { name: t('menus.dashboard'), icon: <Hotel viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/app', current: active === '/dashboard/app' ? true : false, id: 'dashboard' },
-    { name: t('menus.settings'), icon: <Settings viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/settings/account', current: active == "/dashboard/settings/account" || active == "/dashboard/settings/billing-plans" || active == "/dashboard/settings/notifications" ? true : false, active: active, id: 'settings' },
+    { name: t('menus.settings'), icon: <Settings viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/settings/account', current: active == "/dashboard/settings/account" || active == "/dashboard/settings/billing-plans" ? true : false, active: active, id: 'settings' },
   ]
 
   const settingsMenus = [
@@ -74,8 +74,8 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   ]
 
   const yourSites = [
-    { name: t('menus.integration'), icon: <Zap className="w-4 h-4 stroke-[1.5] text-darkergray" />, id: 'integration', href: '/integration/manage-apps' },
-    { name: 'App Store', icon: <UserCircle className="w-4 h-4 stroke-[1.5] text-darkergray" />, id: 'app-store', href: '/integration/appstore' },
+    { name: t('menus.integration'), icon: <Zap className="w-4 h-4 stroke-[1.5] text-darkergray" />, id: 'integration', href: '/integration/manage-apps', current: active === '/integration/manage-apps' || active === '/integration/upgrade-apps' ? true : false },
+    { name: 'App Store', icon: <Unplug className="w-4 h-4 stroke-[1.5] text-darkergray" />, id: 'app-store', href: '/integration/appstore', current: active === '/integration/appstore' ? true : false },
   ]
 
   const workspaceApp = [
@@ -89,7 +89,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
   useEffect(() => {
     setActive(location.pathname);
-  })
+  }, [])
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -164,7 +164,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
               {navigation.map((item) => (
                 <>
                   {item.href ? (
-                    <Button key={item.name} variant='ghost' onClick={() => handleMenuClick(item.current, item.href)} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.href === active ? 'bg-zinc-100' : ''}`}>
+                    <Button key={item.name} variant='ghost' onClick={() => handleMenuClick(item.current, item.href)} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.current ? 'bg-zinc-100' : ''}`}>
                     {item.icon}
                     {item.name}
                   </Button>
@@ -192,14 +192,14 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
                 <div className="mb-6">
                   {settingsMenus.map((item, index) => (
                     <>
-                      <Button variant='ghost' key={index} onClick={() => {handleSubMenuClick(index);console.log(activeSubmenus)}} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.href === active ? 'bg-zinc-100' : ''}`}>
+                      <Button variant='ghost' key={index} onClick={() => {handleSubMenuClick(index);console.log(activeSubmenus)}} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.current ? 'bg-zinc-100' : ''}`}>
                         {item.icon}
                         {item.name}
                       </Button>
                       {activeSubmenus[index] && (
                         <div>
                           {item.submenus.map((submenu, subIndex) => (
-                            <Button variant='ghost' key={subIndex} className={`flex justify-start gap-x-2 text-[13px] items-center leading-5 ml-[15px] w-[calc(100%_-_15px)] ${item.href === active ? 'bg-zinc-100' : ''}`}>
+                            <Button variant='ghost' key={subIndex} className={`flex justify-start gap-x-2 text-[13px] items-center leading-5 ml-[15px] w-[calc(100%_-_15px)] ${item.current ? 'bg-zinc-100' : ''}`}>
                               {submenu.icon}
                               {submenu.title}
                             </Button>
@@ -235,7 +235,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
               <h3 className="text-lightgray text-sm font-medium p-4">{t('menus.application')}</h3>
               {yourSites.map((item) => (
                 <Link to={item.href}>
-                  <Button variant='ghost' onClick={handleMenuClick} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.href === active ? 'bg-zinc-100' : ''}`}>
+                  <Button variant='ghost' onClick={() => handleMenuClick(item.current, item.href)} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.current ? 'bg-zinc-100' : ''}`}>
                     {item.icon}
                     {item.name}
                   </Button>

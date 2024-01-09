@@ -32,13 +32,13 @@ export default function AvatarMenu(){
 
   return (
     <Popover>
-      <PopoverTrigger>
+      <PopoverTrigger className="relative">
         <Avatar className='w-8 h-8 text-sm'>
           <AvatarImage src="" />
           <AvatarFallback>{user?.first_name[0]}</AvatarFallback>
         </Avatar>
       </PopoverTrigger>
-      <PopoverContent className='p-0 w-[243px]'>
+      <PopoverContent className='p-0 w-[243px] absolute -right-4'>
         <Command>
           <CommandList>
             <CommandGroup>
@@ -46,8 +46,8 @@ export default function AvatarMenu(){
                 <Globe viewBox='0 0 24 24' className="h-4 w-4 mr-2"/>
                 {t('language')}
                 <CommandShortcut className='font-normal flex gap-x-2'>
-                  <span className={`${localStorage.lang !== null && localStorage.lang === 'th' ? 'bg-darkergray px-[5px] text-primary-foreground rounded-[2px]' : 'text-secondary'}`}>TH</span>
-                  <span className={`${localStorage.lang !== null && localStorage.lang === 'en' ? 'bg-darkergray px-[5px] text-primary-foreground rounded-[2px]' : 'text-secondary'}`}>EN</span>
+                  <span className={`${localStorage.lang !== null && localStorage.lang === 'th' ? 'bg-darkergray px-[5px] text-primary-foreground rounded-sm' : 'text-secondary'}`}>TH</span>
+                  <span className={`${localStorage.lang !== null && localStorage.lang === 'en' ? 'bg-darkergray px-[5px] text-primary-foreground rounded-sm' : 'text-secondary'}`}>EN</span>
                 </CommandShortcut>
               </CommandItem>
               <CommandItem onSelect={() => navigate('/dashboard/settings/account')}>

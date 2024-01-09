@@ -41,6 +41,9 @@ module.exports = {
         lightgray: {
           DEFAULT: "#8A8A8A"
         },
+        lightergray: {
+          DEFAULT:"#E2E2E2"
+        },
         darkergray: {
           DEFAULT: "#18181B"
         },

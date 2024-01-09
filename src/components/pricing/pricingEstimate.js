@@ -65,7 +65,7 @@ export default function PricingEstimate({recurringFee, oneTimeFee, totalCost, es
         <Separator className='my-6'/>
         <DialogFooter>
           <div className='flex flex-col w-full gap-y-6'>
-            <div className="flex justify-between items-center bg-[#F4F4F5] px-6 py-3 rounded-md">
+            <div className="flex justify-between items-center bg-accent px-6 py-3 rounded-md">
               <h2 className="text-base font-semibold text-primary">Monthly cost:</h2>
               {isAnnual ? (
                 <div className="flex gap-x-2 items-center">
@@ -74,7 +74,7 @@ export default function PricingEstimate({recurringFee, oneTimeFee, totalCost, es
                 </div>
               ) : <p className="main-desc">฿{(totalCost).toLocaleString() || 0}/month</p>}
             </div>
-            <div className="flex justify-between items-center bg-[#F4F4F5] px-6 py-3 rounded-md">
+            <div className="flex justify-between items-center bg-accent px-6 py-3 rounded-md">
               <h2 className="text-base font-semibold text-primary">Estimated cost to get started:</h2>
               <p className="inter main-desc">฿{estimatedCost.toLocaleString() || 0}</p>
             </div>

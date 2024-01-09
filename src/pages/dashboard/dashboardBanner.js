@@ -12,6 +12,7 @@ import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { Skeleton } from "src/components/ui/skeleton";
 import { useTranslation } from "react-i18next";
+import DrawLine from "src/components/drawLine";
 
 export default function DashboardBanner({sitename}){
   const {t,i18n} = useTranslation();
@@ -37,7 +38,7 @@ export default function DashboardBanner({sitename}){
     <section className="mt-6">
       <div className="grid grid-cols-1 lg:flex gap-6 md:gap-x-[15px]">
         <div className="flex bg-[#F7F7F8] p-6 rounded-xl gap-x-6 w-full">
-          <div className="flex flex-col justify-between h-full gap-y-[10px]">
+          <div className="flex flex-col justify-between h-full gap-y-[6px]">
             {plan?.name === 'pro' ? (
               <h2 className='text-primary text-[13px]'>Pro Plan</h2>
             ) : plan?.name === 'free' ? (
@@ -51,10 +52,11 @@ export default function DashboardBanner({sitename}){
               {t('compare_plan')}
             </Link>
           </div>
-          <div className="flex flex-col justify-between h-full gap-y-[10px]">
+          <DrawLine color='#E5E6E8' width='1px' height="100%"/>
+          <div className="flex flex-col justify-between h-full gap-y-[6px]">
             {sitename ? (
               <>
-                <h2 className="text-[#8F8F8F] text-[11px]">{sitename}</h2>
+                <h2 className="text-[#8F8F8F] text-[11px] leading-5">{sitename}</h2>
                 <Link className="text-[#474747] text-[13px] font-bold leading-4">{t('change_domain')}</Link>
               </>
             ) : (

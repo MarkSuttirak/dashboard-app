@@ -143,7 +143,7 @@ export default function CheckoutConfirm({paymentConfirm, setPaymentConfirm, tota
                     onChange={handleImageChange}
                   />
                   <Card className='rounded-md p-8 flex items-center flex-col gap-y-3 cursor-pointer'>
-                    <div className="h-10 w-10 flex items-center justify-center bg-[#F4F4F5] rounded-full">
+                    <div className="h-10 w-10 flex items-center justify-center bg-accent rounded-full">
                       <UploadCloud viewBox="0 0 24 24" width='20' height='20'/>
                     </div>
                     <div className="text-center">

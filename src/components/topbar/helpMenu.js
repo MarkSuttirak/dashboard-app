@@ -20,11 +20,11 @@ export default function HelpMenu(){
   const [open, setOpen] = useState(false);
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger className='text-[13px] flex justify-between items-center gap-x-2'>
+      <PopoverTrigger className='text-[13px] flex justify-between items-center gap-x-2 relative'>
         {t('topbar.help')}
         <ChevronDown viewBox='0 0 24 24' width='14' height='14' strokeWidth='1'/>
       </PopoverTrigger>
-      <PopoverContent className='p-0 w-[243px]'>
+      <PopoverContent className='p-0 w-[243px] absolute -right-10'>
         <Command>
           <CommandList>
             <CommandGroup>

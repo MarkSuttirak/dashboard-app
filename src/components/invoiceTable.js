@@ -15,7 +15,7 @@ export default function InvoiceTable({invoices_props}) {
 
   const TableData = ({name, status, formatted_total}) => {
     return (
-      <TableRow key={name}>
+      <TableRow key={name} className="hover:bg-transparent">
         <TableCell className="font-medium">{name}</TableCell>
         <TableCell>{status}</TableCell>
         <TableCell>method</TableCell>
@@ -32,7 +32,7 @@ export default function InvoiceTable({invoices_props}) {
       <section  className="mt-8">
         <Table>
           <TableHeader>
-            <TableRow>
+            <TableRow className="hover:bg-transparent">
               <TableHead className="w-[240px]">{t('settings.purchase_history.invoice')}</TableHead>
               <TableHead>{t('settings.purchase_history.status')}</TableHead>
               <TableHead>{t('settings.purchase_history.method')}</TableHead>

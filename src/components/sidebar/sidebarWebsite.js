@@ -50,7 +50,7 @@ export default function SidebarWebsite(){
           </span>
         </div>
       </PopoverTrigger>
-      <PopoverContent className='p-0'>
+      <PopoverContent className='p-0 relative left-4'>
         <Command>
           <CommandList className='max-h-full'>
             <CommandGroup>
@@ -72,7 +72,7 @@ export default function SidebarWebsite(){
             <CommandSeparator />
             <CommandGroup>
               <CommandItem className='flex items-center gap-x-2'>
-                <div className="bg-[#F4F4F5] rounded-md p-[10px]">
+                <div className="bg-accent rounded-md p-[10px]">
                   <PlusCircle className="h-4 w-4"/>
                 </div>
                 เพิ่มหรือหาแอปใช้งานเพิ่มเติม

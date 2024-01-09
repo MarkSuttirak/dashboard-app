@@ -19,10 +19,10 @@ export default function NotificationsTopbar(){
   ]
   return (
     <Popover>
-      <PopoverTrigger>
+      <PopoverTrigger className='relative'>
         <BellIcon color='#7D7D7D' width='17' height='17'/>
       </PopoverTrigger>
-      <PopoverContent className='w-[400px]'>
+      <PopoverContent className='w-[400px] absolute -right-2'>
         <h2 className='settings-heading'>{t('topbar.notifications')}</h2>
 
         {notices.length > 0 ? (

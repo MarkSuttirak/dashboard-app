@@ -112,7 +112,7 @@ export default function Subscription(){
           {plan ? (
             <div className="flex">
             {plan?.name === 'pro' ? (
-             <Button variant='secondary' className='btn-with-icon leading-5 rounded-r-none' onClick={() => window.location.href = `/dashboard/settings/plan-upgrade`}>
+             <Button variant='secondary' className='btn-with-icon leading-5 rounded-r-none hover:bg-[#E2E2E2]' onClick={() => window.location.href = `/dashboard/settings/plan-upgrade`}>
               <Zap viewBox='0 0 24 24' width='16' height='16'/>
               {t('settings.overview.manage_team')}
             </Button>

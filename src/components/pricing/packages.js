@@ -243,7 +243,7 @@ export default function Packages(){
                 <h2 className="settings-heading text-left">How many sale users do I need?</h2>
                 <SelectInput label='900 Baht/month per additional user' lists={packageTypeMarketConnect === 'Professional' ? paidUsersList.filter(value => value >= 5) : packageTypeMarketConnect === 'Enterprise' ? paidUsersList.filter(value => value >= 10) : paidUsersList} onValueChange={handlePackage.paidUser} defaultValue={paidUsers} name='paid-users'/>
 
-                <div className="w-full mt-9 bg-[#F4F4F5] rounded-xl p-5">
+                <div className="w-full mt-9 bg-accent rounded-xl p-5">
                   <div className="flex items-center justify-between">
                     <h2 className="settings-heading text-left">Do you need marketplace or social media API integration?</h2>
                     <Switch onCheckedChange={handleCheckChannel} checked={needSocialMedia}/>
@@ -283,7 +283,7 @@ export default function Packages(){
                 <h2 className="settings-heading text-left">Do you need the custom field?</h2>
                 <SelectInput label='Increase your capabilities to collect and connect particular data points to contacts, businesses, and transactions. 10 custom fields included' lists={packageTypeLineCRM === 'Professional' ? customFieldList.filter(value => value >= 25) : packageTypeLineCRM === 'Enterprise' ? customFieldList.filter(value => value >= 50) : customFieldList} onValueChange={handlePackage.customField} defaultValue={customField} name='custom-field' />
 
-                <div className="w-full mt-9 bg-[#F4F4F5] rounded-xl p-5">
+                <div className="w-full mt-9 bg-accent rounded-xl p-5">
                   <div className="flex items-center justify-between mb-5">
                     <h2 className="settings-heading text-left">Do you need phone SMS OTP?</h2>
                     <Switch onCheckedChange={() => setNeedSMSOTP(!needSMSOTP)} checked={needSMSOTP}/>
