@@ -79,7 +79,7 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
 
   return (
     <>
-      <form className="flex flex-col gap-y-8 mt-4" onSubmit={onSubmitForm}>
+      <form className="flex flex-col gap-y-8 mt-8" onSubmit={onSubmitForm}>
         <div className="space-y-6 w-full">
           <div className="anim-up flex flex-col">
             <label className="subheading mb-2 font-medium">
@@ -256,7 +256,7 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
           </div>
         </div>
 
-        <Button type='button' className='btn-with-icon w-full' onClick={onSubmitForm}>
+        <Button type='button' className='btn-with-icon w-fit' onClick={onSubmitForm}>
           {saving ? <Loader2 className="h-4 w-4 animate-spin"/> : null}
           {saving ? t('updating') : submitText}
         </Button>

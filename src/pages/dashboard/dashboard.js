@@ -214,9 +214,9 @@ export default function Dashboard(){
         <h2 className="secondary-heading">{t('discover_what_you_can_do')}</h2>
 
         <div className="mt-6 grid lg:grid-cols-3 gap-[15px]">
-          <PostInfo title="สร้างเว็บง่ายเหมือนทำ “Powerpoint”" desc="สร้างเว็บไซต์ใหม่ง่ายๆด้วยฟีเจอร์เปิดเว็บง่ายๆที่คุณก็ทำได้" image={createYourBlog} />
-          <PostInfo title="เปิดร้านขายของออนไลน์" desc="เปิดเว็บแอปและเว็บขายสินค้าง่ายๆเพียง" buttonText="เชื่อมต่อ" image={sellingOnline} imageStyle='px-6'/>
-          <PostInfo title="เชื่อมต่อ Shopee & Lazada" desc="จัดการออเดอร์อย่างมีประสิทธิภาพด้วยการเชื่อมต่อกับช่องทางการขายหลากหลายแพลตฟอร์ม" buttonText="เชื่อมต่อช่องทางการขาย" image={connectMessage} imageStyle='pl-8 pb-8'/>
+          <PostInfo title="สร้างเว็บง่ายเหมือนทำ “Powerpoint”" desc="สร้างเว็บไซต์ใหม่ง่ายๆด้วยฟีเจอร์เปิดเว็บง่ายๆที่คุณก็ทำได้" image={createYourBlog} buttonText="เร็วๆ นี้"/>
+          <PostInfo title="ขายสินค้าออนไลน์" desc="ขยายฐานลูกค้าแบบก้าวกระะโดดด้วยการทำโปรแกรมสะสมคะแนนและแลกของรางวัล" buttonText="เชื่อมต่อ" image={sellingOnline} imageStyle='px-6'/>
+          <PostInfo title="เชื่อมต่อทุกช่องทางการขาย" desc="จัดการออเดอร์อย่างมีประสิทธิภาพด้วยการเชื่อมต่อกับช่องทางการขายหลากหลายแพลตฟอร์ม" buttonText="เชื่อมต่อช่องทางการขาย" image={connectMessage} imageStyle='pl-8 pb-8'/>
         </div>
       </section>
     </div>

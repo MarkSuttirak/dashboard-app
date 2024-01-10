@@ -40,10 +40,11 @@ export default function Settings(){
 
         {id === 'account' && (
           <section className="w-[672px]">
-            <h2 className="settings-heading">{t('settings.account')}</h2>
-            <p className="main-desc">{t('settings.account_desc')}</p>
+            <div className="mb-8">
+              <h2 className="settings-heading">{t('settings.account')}</h2>
+              <p className="main-desc">{t('settings.account_desc')}</p>
+            </div>
 
-            <Separator className='my-6'/>
             <AccountForm />
           </section>
         )}
