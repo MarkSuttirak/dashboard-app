@@ -45,7 +45,9 @@ export default function PaymentForm(){
       <BillingAddressForm onSubmitForm={() => onPaymentSubmit()} submitText={(<>
         <Wallet color='#FFF' viewBox='0 0 24 24' height='16' width='16'/>
         {t('pro_privileges.continue')}
-      </>)}/>
+      </>)}
+        onSettings={false}
+      />
 
       <p className="text-desc mt-6">By clicking 'Continue' you agree to authorize payments pursuant to <Link className="text-[#006AFF]">Privacy Policy</Link>.</p>
     </section>

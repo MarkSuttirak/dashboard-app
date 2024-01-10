@@ -32,7 +32,7 @@ export default function BillingPlan() {
       <h1 className="secondary-heading">{t('billing_info')}</h1>
 
       {billingAddress ? (
-        <BillingAddressForm billingAddress={billingAddress.message} submitText={t('update_form')}/>
+        <BillingAddressForm billingAddress={billingAddress.message} submitText={t('update_form')} onSettings={true}/>
       ) : (
         <Loading />
       )}

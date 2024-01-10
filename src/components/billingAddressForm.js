@@ -11,9 +11,9 @@ import { Loader2 } from "lucide-react";
 import { useToast } from "./ui/use-toast";
 import { useTranslation } from "react-i18next";
 
-export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
+export function BillingAddressForm({billingAddress, onSubmitForm, submitText, onSettings}) {
   const [isCompany, setIsCompany] = useState(false);
-  const [enableTaxID, setEnableTaxID] = useState(false)
+  const [enableTaxID, setEnableTaxID] = useState(onSettings ? true : false)
   const [saving, setSaving] = useState(false)
   const { toast } = useToast()
   const { t } = useTranslation()
@@ -256,7 +256,7 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText}) {
           </div>
         </div>
 
-        <Button type='button' className='btn-with-icon w-fit' onClick={onSubmitForm}>
+        <Button type='button' className={`btn-with-icon ${onSettings ? 'w-fit' : 'w-full'}`} onClick={onSubmitForm}>
           {saving ? <Loader2 className="h-4 w-4 animate-spin"/> : null}
           {saving ? t('updating') : submitText}
         </Button>

@@ -58,7 +58,7 @@ export default function DeleteAppModal({status, setStatus, title}){
                       </SelectTrigger>
                       <SelectContent>
                         {reasons.map(r => 
-                          <SelectItem value={r}>{r}</SelectItem>
+                          <SelectItem value={r} key={r} className='hover:bg-accent'>{r}</SelectItem>
                         )}
                       </SelectContent>
                     </Select>
@@ -78,7 +78,7 @@ export default function DeleteAppModal({status, setStatus, title}){
               <DialogFooter>
                 <div className="flex w-full justify-between">
                   <DialogClose asChild>
-                    <Button type="button" variant="ghost" onClick={() => setTimeout(() => setStatus(''), 100)}>
+                    <Button type="button" variant="outline" onClick={() => setTimeout(() => setStatus(''), 100)}>
                       {t('cancel')}
                     </Button>
                   </DialogClose>

@@ -60,7 +60,7 @@ export default function ManageOrUpgradeApps(){
     <section className="w-[672px]">
       <h2 className="settings-heading">{id === 'manage-apps' ? t('integration.manage_apps') : t('integration.upgrade_apps')}</h2>
       <p className="main-desc">{id === 'manage-apps' ? t('integration.manage_apps_desc') : t('integration.upgrade_apps_desc')}</p>
-      <div className="mt-6 mb-4 flex gap-x-2">
+      <div className="mt-8 mb-4 flex gap-x-2">
         <Input placeholder={t('integration.search_apps')} className='w-[250px]' onChange={e => {setSearch(e.target.value)}} value={search}/>
         <Button variant='ghost' className={`flex items-center gap-x-2 ${search !== '' ? 'visible opacity-1' : 'invisible opacity-0'} transition duration-200`} onClick={() => {setSearch('')}}>
           {t('reset')}
@@ -77,7 +77,7 @@ export default function ManageOrUpgradeApps(){
           .filter(data => data.title.toUpperCase().includes(search.toUpperCase())).map(app => (
           <div className="flex items-center justify-between" key={app.name}>
             <div className="flex items-center gap-x-3">
-              {app.image ? <img src={site.backend_url()+app.image} className="h-9 w-9"/> : <Icons.erpApp />}
+              {app.image ? <img src={site.backend_url()+app.image} className="h-9 w-9 rounded-lg"/> : <Icons.erpApp />}
               <div>
                 <h2 className="subheading font-medium">{app.title}</h2>
               </div>
@@ -93,10 +93,10 @@ export default function ManageOrUpgradeApps(){
                 </Link>
               )}
               <Popover>
-                <PopoverTrigger>
+                <PopoverTrigger className="relative">
                   <Button variant='outline' className='w-9 px-0'><MoreHorizontal className="h-4 w-4"/></Button>
                 </PopoverTrigger>
-                <PopoverContent className='p-0 w-[160px]'>
+                <PopoverContent className='p-0 w-[160px] absolute -right-4'>
                   <Command>
                     <CommandList>
                       <CommandGroup>

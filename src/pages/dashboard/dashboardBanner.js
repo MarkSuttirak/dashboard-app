@@ -57,7 +57,7 @@ export default function DashboardBanner({sitename}){
             {sitename ? (
               <>
                 <h2 className="text-[#8F8F8F] text-[11px] leading-5">{sitename}</h2>
-                <Link className="text-[#474747] text-[13px] font-bold leading-4">{t('change_domain')}</Link>
+                <Link className="text-[#474747] text-[13px] font-bold leading-4">{t('manage_domain')}</Link>
               </>
             ) : (
               <Skeleton className='h-5 mt-2 w-1/2'/>

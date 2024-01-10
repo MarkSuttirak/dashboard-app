@@ -123,20 +123,20 @@ export default function Subscription(){
               </Button>
             )}
             <Popover>
-              <PopoverTrigger>
+              <PopoverTrigger className="relative">
                 <Button variant='secondary' className='btn-with-icon leading-5 rounded-l-none pl-0'>
                   <DrawLine color='#E4E4E7' height="80%" width='1px'/>
                   <ChevronDownIcon />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className='p-0 w-fit'>
+              <PopoverContent className='p-0 w-max absolute -right-5'>
                 <Command>
                   <CommandList>
                     <CommandGroup>
-                      <CommandItem className='flex gap-x-2' onSelect={() => navigate('/dashboard/teams/team-members')}>
+                      {/* <CommandItem className='flex gap-x-2' onSelect={() => navigate('/dashboard/teams/team-members')}>
                         <Users viewBox="0 0 24 24" width='16' height='16'/>
                         {t('settings.overview.manage_team')}
-                      </CommandItem>
+                      </CommandItem> */}
                       <CommandItem className='flex gap-x-2' onSelect={() => navigate('/integration/manage-apps')}>
                         <Layers viewBox="0 0 24 24" width='16' height='16'/>
                         {t('settings.overview.manage_app')}

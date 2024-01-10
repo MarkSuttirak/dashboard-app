@@ -15,7 +15,7 @@ export default function InvoiceTable({invoices_props}) {
 
   const TableData = ({name, status, formatted_total}) => {
     return (
-      <TableRow key={name} className="hover:bg-transparent">
+      <TableRow key={name}>
         <TableCell className="font-medium">{name}</TableCell>
         <TableCell>{status}</TableCell>
         <TableCell>method</TableCell>
