@@ -18,8 +18,8 @@ export default function InvoiceTable({invoices_props}) {
       <TableRow key={name}>
         <TableCell className="font-medium">{name}</TableCell>
         <TableCell>{status}</TableCell>
-        <TableCell>method</TableCell>
-        <TableCell className="text-right">{formatted_total}</TableCell>
+        <TableCell>{t('paid_via_qr')}</TableCell>
+        <TableCell className="text-right">฿{formatted_total}</TableCell>
       </TableRow>
     )
   }
@@ -41,7 +41,7 @@ export default function InvoiceTable({invoices_props}) {
           </TableHeader>
           <TableBody>
             {invoices_props.message.map((invoice) => (
-              <TableData status={invoice.status} name={invoice.name} formatted_total={invoice.formatted_total}/>
+              <TableData status={invoice.status} name={invoice.name} formatted_total={invoice.total}/>
             )).slice((currentPage - 1) * listPerPage, currentPage * listPerPage)}
           </TableBody>
         </Table>

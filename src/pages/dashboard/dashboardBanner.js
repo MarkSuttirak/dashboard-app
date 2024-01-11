@@ -42,7 +42,7 @@ export default function DashboardBanner({sitename}){
             {plan?.name === 'pro' ? (
               <h2 className='text-primary text-[13px]'>Pro Plan</h2>
             ) : plan?.name === 'free' ? (
-              <h2 className='text-primary text-[13px]'>ฟรี ตลอดชีพ</h2>
+              <h2 className='text-primary text-[13px]'>ฟรีตลอดชีพ</h2>
             ) : (
               <div className="flex flex-col gap-y-2 w-full">
                 <Skeleton className='h-5'/>

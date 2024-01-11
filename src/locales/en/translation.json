@@ -55,6 +55,10 @@
     "recommended": "Recommended",
     "play_video": "Play Video",
     "playing": "Playing...",
+    "month_per_user": "Month / User",
+    "year_per_user": "Year / User",
+    "professional": "Professional",
+    "paid_via_qr": "Payment via QR Code",
     "phone_verify": {
         "enter_phone": "Enter your phone number to receive an OTP. An OTP will be sent to your phone number.",
         "enter_phone_label": "Enter your phone number",
@@ -220,7 +224,9 @@
             "renewal": "Your plan will renew on ",
             "manage_team": "Manage Team",
             "manage_app": "Manage App",
-            "pay_now": "Pay now"
+            "pay_now": "Pay now",
+            "plan_pro_desc": "Zaviago.com shows the payment amount and due date so that customers can pay by the due date. The payment due date depends on the conditions set by the company and cannot be changed.",
+            "plan_free_desc": "Enjoy great features at no cost! Access essential features with just basic usage limitations."
         },
         "purchase_history": {
             "title": "Purchase history",

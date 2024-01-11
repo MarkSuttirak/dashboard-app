@@ -119,7 +119,7 @@ export default function UpgradeProModal(){
             <div className="flex flex-col justify-between h-full px-10 pt-6">
               <section>
                 <div className='flex items-center justify-between mb-2'>
-                  <h1 className="main-heading tracking-[-0.6px]">Professional</h1>
+                  <h1 className="main-heading tracking-[-0.6px]">{t('professional')}</h1>
                   <ServiceBadge text='Recommended'/>
                 </div>
                 <p className='text-secondary'>{t('pro_privileges.pro_desc')}</p>
@@ -131,7 +131,7 @@ export default function UpgradeProModal(){
                   </div>
                   <div className='flex gap-x-2'>
                     <h1 className="text-[40px] text-primary font-bold tracking-[-1px] font-inter">{perYear ? '฿ 7,500' : '฿ 750'}</h1>
-                    <p className='text-secondary text-base'>{perYear ? 'Year / User' : 'Month / User'}</p>
+                    <p className='text-secondary text-base'>{perYear ? t('year_per_user') : t('month_per_user')}</p>
                   </div>
                 </div>
 

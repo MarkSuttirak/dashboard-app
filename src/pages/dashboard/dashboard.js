@@ -122,13 +122,13 @@ export default function Dashboard(){
       color:"#01545E"
     },
     {
-      title:'เพิ่มรายชื่อลูกค้า',
+      title:'จัดการลูกค้า',
       image:<ButtonImage03 shadow={false}/>,
       background:"#F5F2FE",
       color:"#4C349F"
     },
     {
-      title:'การชำระเงิน',
+      title:'ตั้งค่าการชำระเงิน',
       image:<ButtonImage04 shadow={false}/>,
       background:"#E5F5FF",
       color:"#419CFF"
@@ -215,7 +215,7 @@ export default function Dashboard(){
 
         <div className="mt-6 grid lg:grid-cols-3 gap-[15px]">
           <PostInfo title="สร้างเว็บง่ายเหมือนทำ “Powerpoint”" desc="สร้างเว็บไซต์ใหม่สุดเก๋ แสดงความเป็นคุณ ที่คุณเองก็ทำได้ ด้วยฟีเจอร์ที่เรียบง่ายแต่สุดจะทรงพลัง" image={createYourBlog} buttonText="เร็วๆ นี้"/>
-          <PostInfo title="ขายสินค้าออนไลน์" desc="ขยายฐานลูกค้าแบบก้าวกระะโดดด้วยการทำโปรแกรมสะสมคะแนนและแลกของรางวัล" buttonText="เพิ่มสินค้าใหม่" image={sellingOnline} imageStyle='px-6'/>
+          <PostInfo title="ขายสินค้าออนไลน์" desc="ขยายฐานลูกค้าแบบก้าวกระโดดด้วยการทำโปรแกรมสะสมคะแนนและแลกของรางวัล" buttonText="เริ่มต้นขายสินค้าออนไลน์" image={sellingOnline} imageStyle='px-6'/>
           <PostInfo title="เชื่อมต่อทุกช่องทางการขาย" desc="จัดการออเดอร์อย่างมีประสิทธิภาพด้วยการเชื่อมต่อกับช่องทางการขายหลากหลายแพลตฟอร์ม" buttonText="เชื่อมต่อช่องทางการขาย" image={connectMessage} imageStyle='pl-8 pb-8'/>
         </div>
       </section>

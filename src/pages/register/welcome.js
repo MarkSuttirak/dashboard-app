@@ -11,8 +11,8 @@ export default function Welcome(){
   const {t,i18n} = useTranslation();
 
   const lngs = {
-    en: {nativeName : "English"},
-    th: {nativeName : "Thai"}
+    en: {nativeName : "EN"},
+    th: {nativeName : "TH"}
   }
 
   const { login: lineLogin } = useContext(AuthContext);
@@ -41,20 +41,19 @@ export default function Welcome(){
   return (
     <div className="flex min-h-screen z-[999] relative bg-white">
       <div className="flex flex-1 justify-center">
-
-      <div>
-        {Object.keys(lngs).map((lng) => (
-          <button
-            type="button"
-            key={lng}
-            onClick={() => {i18n.changeLanguage(lng);localStorage.setItem('lang', lng)}}
-            disabled={i18n.resolvedLanguage === lng}
-          >
-            {lngs[lng].nativeName}
-          </button>
-        ))}
-      </div>
-
+        <div className="inline-flex gap-x-2 absolute top-4 left-4">
+          {Object.keys(lngs).map((lng) => (
+            <button
+              type="button"
+              key={lng}
+              onClick={() => {i18n.changeLanguage(lng);localStorage.setItem('lang', lng)}}
+              disabled={i18n.resolvedLanguage === lng}
+              className={`px-2 py-1 text-sm hover:bg-darkergray hover:text-white cursor-pointer rounded-md ${i18n.resolvedLanguage === lng ? 'bg-darkergray text-white' : ''}`}
+            >
+              {lngs[lng].nativeName}
+            </button>
+          ))}
+        </div>
         {loginSection ? (
           <div className="max-w-sm w-96 flex flex-col justify-center mx-[30px] register-screen">
             <div className={`register-sec ${switchSec}`}>

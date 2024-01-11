@@ -14,6 +14,7 @@ import { Progress } from "src/components/ui/progress";
 import Loading from "src/components/ui/loading";
 import { Skeleton } from "src/components/ui/skeleton";
 import { useTranslation } from "react-i18next";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "src/components/ui/tooltip"
 
 export default function Subscription(){
   const { t } = useTranslation()
@@ -175,7 +176,17 @@ export default function Subscription(){
               <p className="text-base leading-7 text-secondary">
                 {plan?.name === 'pro' ? t('settings.overview.renewal') + '2 December 2023' : t('settings.overview.free_forever')}
               </p>
-              <AlertCircle className="h-4 w-4"/>
+
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <AlertCircle className="h-4 w-4"/>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    {plan?.name === 'pro' ? t('settings.overview.plan_pro_desc') + '2 December 2023' : t('settings.overview.plan_free_desc')}
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
           </div>
           ) : (
