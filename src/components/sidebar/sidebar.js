@@ -79,12 +79,12 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   ]
 
   const workspaceApp = [
-    {name: t('workspace_buttons.manage_business'), icon:<Icons.erpApp className='h-5 w-5'/>, id: 'manage-business', onClick:() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })},
-    {name: t('workspace_buttons.blog_editor'), icon:<Icons.blogPostApp className='h-5 w-5'/>, id: 'builder', onClick:() => window.open(`https://${sites?.site_list[0].name}/SpaBlogEditor`)},
-    {name:'CRM', icon:<Icons.posApp className='h-5 w-5'/>},
-    {name:t('workspace_buttons.web_pages'), icon:<Icons.websiteApp fill='white' className='h-5 w-5'/>, id: 'websites', onClick:() => window.open(`https://${sites?.site_list[0].name}/builder`)},
-    {name:'Project Manager', icon:<Icons.inbioApp className='h-5 w-5'/>},
-    {name:'Canvas', icon:<Icons.blogAndPagesApp className='h-5 w-5'/>}
+    {name: t('workspace_buttons.manage_business'), icon:<Icons.erpApp className='h-5 w-5'/>, id: 'manage-business', onClick:() => window.open('https://www.zaviago.com/manage', '_self')}, // loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })
+    {name: t('workspace_buttons.blog_editor'), icon:<Icons.blogPostApp className='h-5 w-5'/>, id: 'builder', onClick:() => window.open('/coming-soon', '_blank')}, // window.open(`https://${sites?.site_list[0].name}/SpaBlogEditor`)
+    {name:'CRM', icon:<Icons.posApp className='h-5 w-5'/>, onClick:() => window.open('https://www.zaviago.com/crm', '_self')},
+    {name:t('workspace_buttons.web_pages'), icon:<Icons.websiteApp fill='white' className='h-5 w-5'/>, id: 'websites', onClick:() => window.open('/coming-soon', '_blank')}, // window.open(`https://${sites?.site_list[0].name}/builder`)
+    {name:'MarketConnect', icon:<Icons.inbioApp className='h-5 w-5'/>, onClick:() => window.open('https://www.zaviago.com/marketplace', '_self')},
+    {name:'Canvas', icon:<Icons.blogAndPagesApp className='h-5 w-5'/>, onClick:() => window.open('/coming-soon', '_blank')}
   ]
 
   useEffect(() => {

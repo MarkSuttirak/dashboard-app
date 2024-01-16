@@ -42,7 +42,7 @@ export default function HelpMenu(){
             </CommandGroup>
             <CommandSeparator />
             <CommandGroup>
-              <CommandItem onSelect={() => window.location.href = `www.zaviago.com`}>
+              <CommandItem onSelect={() => window.location.href = `https://www.zaviago.com/`}>
                 <Layout viewBox='0 0 24 24' className='mr-2 h-4 w-4 stroke-[1.5]'/>
                 {t('topbar.menus.view_website')}
               </CommandItem>

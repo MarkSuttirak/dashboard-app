@@ -149,11 +149,11 @@ export default function Dashboard(){
 
   const workspaceMenus = [
     {title:'จัดการธุรกิจ', icon:<Icons.erpApp className='h-4 w-4'/>, link:'https://www.zaviago.com/manage'},
-    {title:'บล็อกและบทความ', icon:<Icons.blogPostApp className='h-4 w-4'/>, link:'/coming_soon'},
+    {title:'บล็อกและบทความ', icon:<Icons.blogPostApp className='h-4 w-4'/>, link:'/coming-soon'},
     {title:'CRM', icon:<Icons.posApp className='h-4 w-4'/>, link:'https://www.zaviago.com/crm'},
-    {title:'เว็บไซต์', icon:<Icons.websiteApp fill='white' className='h-4 w-4'/>, link:'/coming_soon'},
+    {title:'เว็บไซต์', icon:<Icons.websiteApp fill='white' className='h-4 w-4'/>, link:'/coming-soon'},
     {title:'MarketConnect', icon:<Icons.inbioApp className='h-4 w-4'/>, link:'https://www.zaviago.com/marketplace'},
-    {title:'Canvas', icon:<Icons.blogAndPagesApp className='h-4 w-4'/>, link:'/coming_soon'}
+    {title:'Canvas', icon:<Icons.blogAndPagesApp className='h-4 w-4'/>, link:'/coming-soon'}
   ]
 
   return (
