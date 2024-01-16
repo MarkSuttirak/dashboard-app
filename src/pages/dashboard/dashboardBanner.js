@@ -48,7 +48,7 @@ export default function DashboardBanner({sitename}){
                 <Skeleton className='h-5'/>
               </div>
             )}
-            <Link to='/coming_soon' target='_blank' className="text-[#474747] text-[13px] font-bold leading-4">
+            <Link to='/coming-soon' target='_blank' className="text-[#474747] text-[13px] font-bold leading-4">
               {t('compare_plan')}
             </Link>
           </div>
