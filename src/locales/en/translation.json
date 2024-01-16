@@ -122,7 +122,7 @@
         "menus": {
             "documentation": "Documentation",
             "report_issue": "Report an issue",
-            "view_website": "View website",
+            "view_website": "Go to zaviago.com",
             "support": "Support",
             "my_account": "My account",
             "logout": "Log out"
@@ -369,5 +369,10 @@
         "customers": "Customers",
         "posts": "Posts",
         "products": "Products"
+    },
+    "coming_soon": {
+        "title": "Coming soon",
+        "desc1": "Our solution is scheduled for imminent launch,",
+        "desc2": "our features are poised to contribute significantly to the growth of your business."
     }
 }

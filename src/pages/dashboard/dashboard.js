@@ -148,12 +148,12 @@ export default function Dashboard(){
   ]
 
   const workspaceMenus = [
-    {title:'จัดการธุรกิจ', icon:<Icons.erpApp className='h-4 w-4'/>},
-    {title:'บล็อกและบทความ', icon:<Icons.blogPostApp className='h-4 w-4'/>},
-    {title:'CRM', icon:<Icons.posApp className='h-4 w-4'/>},
-    {title:'เว็บไซต์', icon:<Icons.websiteApp fill='white' className='h-4 w-4'/>},
-    {title:'Project Manager', icon:<Icons.inbioApp className='h-4 w-4'/>},
-    {title:'Canvas', icon:<Icons.blogAndPagesApp className='h-4 w-4'/>}
+    {title:'จัดการธุรกิจ', icon:<Icons.erpApp className='h-4 w-4'/>, link:'https://www.zaviago.com/manage'},
+    {title:'บล็อกและบทความ', icon:<Icons.blogPostApp className='h-4 w-4'/>, link:'/coming_soon'},
+    {title:'CRM', icon:<Icons.posApp className='h-4 w-4'/>, link:'https://www.zaviago.com/crm'},
+    {title:'เว็บไซต์', icon:<Icons.websiteApp fill='white' className='h-4 w-4'/>, link:'/coming_soon'},
+    {title:'MarketConnect', icon:<Icons.inbioApp className='h-4 w-4'/>, link:'https://www.zaviago.com/marketplace'},
+    {title:'Canvas', icon:<Icons.blogAndPagesApp className='h-4 w-4'/>, link:'/coming_soon'}
   ]
 
   return (
@@ -169,14 +169,16 @@ export default function Dashboard(){
             <p className="text-sm text-secondary">จัดการและขยายธุรกิจด้วย Zaviago WorkSpace</p>
           </div>
         </div>
-        <Button className='rounded-full btn-with-icon'>
-          <Edit3 className="w-4 h-4"/>
-          ออกแบบเว็บ
-        </Button>
+        <Link to='/coming-soon' target='_blank'>
+          <Button className='rounded-full btn-with-icon'>
+            <Edit3 className="w-4 h-4"/>
+            ออกแบบเว็บ
+          </Button>
+        </Link>
       </div>
 
       <DashboardBanner sitename={sites?.site_list[0].name}/>
-      <DashboardVideo />
+      {/* <DashboardVideo /> */}
       {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> */}
 
       <section className="my-[72px]">
@@ -184,10 +186,10 @@ export default function Dashboard(){
 
         <div className="flex flex-wrap gap-[15px] mt-6">
           {workspaceMenus.map(menu => (
-            <button className="workspace-btn">
+            <a className="workspace-btn" href={menu.link} target={menu.link === '/coming_soon' ? "_blank" : null}>
               {menu.icon}
               {menu.title}
-            </button>
+            </a>
           ))}
         </div>
 
@@ -214,9 +216,9 @@ export default function Dashboard(){
         <h2 className="secondary-heading">{t('discover_what_you_can_do')}</h2>
 
         <div className="mt-6 grid lg:grid-cols-3 gap-[15px]">
-          <PostInfo title="สร้างเว็บง่ายเหมือนทำ “Powerpoint”" desc="สร้างเว็บไซต์ใหม่สุดเก๋ แสดงความเป็นคุณ ที่คุณเองก็ทำได้ ด้วยฟีเจอร์ที่เรียบง่ายแต่สุดจะทรงพลัง" image={createYourBlog} buttonText="เร็วๆ นี้"/>
-          <PostInfo title="ขายสินค้าออนไลน์" desc="ขยายฐานลูกค้าแบบก้าวกระโดดด้วยการทำโปรแกรมสะสมคะแนนและแลกของรางวัล" buttonText="เริ่มต้นขายสินค้าออนไลน์" image={sellingOnline} imageStyle='px-6'/>
-          <PostInfo title="เชื่อมต่อทุกช่องทางการขาย" desc="จัดการออเดอร์อย่างมีประสิทธิภาพด้วยการเชื่อมต่อกับช่องทางการขายหลากหลายแพลตฟอร์ม" buttonText="เชื่อมต่อช่องทางการขาย" image={connectMessage} imageStyle='pl-8 pb-8'/>
+          <PostInfo title="สร้างเว็บง่ายเหมือนทำ “Powerpoint”" desc="สร้างเว็บไซต์ใหม่สุดเก๋ แสดงความเป็นคุณ ที่คุณเองก็ทำได้ ด้วยฟีเจอร์ที่เรียบง่ายแต่สุดจะทรงพลัง" image={createYourBlog} buttonText="เร็วๆ นี้" onClick={() => window.open("/coming-soon",'_blank')}/>
+          <PostInfo title="ขายสินค้าออนไลน์" desc="ขยายฐานลูกค้าแบบก้าวกระโดดด้วยการทำโปรแกรมสะสมคะแนนและแลกของรางวัล" buttonText="เริ่มต้นขายสินค้าออนไลน์" image={sellingOnline} imageStyle='px-6' onClick={() => window.open("/coming-soon",'_blank')}/>
+          <PostInfo title="เชื่อมต่อทุกช่องทางการขาย" desc="จัดการออเดอร์อย่างมีประสิทธิภาพด้วยการเชื่อมต่อกับช่องทางการขายหลากหลายแพลตฟอร์ม" buttonText="เชื่อมต่อช่องทางการขาย" image={connectMessage} imageStyle='pl-8 pb-8' onClick={() => window.open("/coming-soon",'_blank')}/>
         </div>
       </section>
     </div>

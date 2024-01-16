@@ -25,6 +25,7 @@ import { useEffect } from 'react'
 import Pricing from './pages/pricing';
 import PricingTablePage from './pages/pricingTable';
 import CheckoutPending from './pages/checkout/checkoutPending';
+import ComingSoonPage from './pages/coming-soon';
 
 // ----------------------------------------------------------------------
 
@@ -43,6 +44,10 @@ export default function Router() {
     })
 
     const routes = [
+        {
+            path: '/coming-soon',
+            element: <ComingSoonPage />
+        },
         {
             path: '/dashboard',
             element: withAuthenticationRequired(DashboardLayout),

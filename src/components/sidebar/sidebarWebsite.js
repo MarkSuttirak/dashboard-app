@@ -25,12 +25,12 @@ export default function SidebarWebsite(){
 
   const workspaceMenus = [
     {title:'WorkSpace', icon:<Icons.zaviagoApp />, desc:'ระบบจัดการธุรกิจและขายสินค้า', enabled:<Check className="h-4 w-4"/>},
-    {title:'จัดการธุรกิจ', icon:<Icons.erpApp />, desc:'ระบบจัดการธุรกิจและขายสินค้า'},
-    {title:'บล็อกและบทความ', icon:<Icons.blogPostApp />, desc:'สร้างข่าวสารและเขียนบทความ'},
-    {title:'CRM', icon:<Icons.posApp />, desc:'จัดการและดูข้อมูลลูกค้าต่างๆ'},
-    {title:'เว็บไซต์', icon:<Icons.websiteApp fill='white' />, desc:'สร้างและออกแบบเว็บไซต์'},
-    {title:'Project Manager', icon:<Icons.inbioApp />, desc:'จัดการงานและโปรเจกต์'},
-    {title:'Canvas', icon:<Icons.blogAndPagesApp />, desc:'ระบบออกแบบ Graphics'}
+    {title:'จัดการธุรกิจ', icon:<Icons.erpApp />, desc:'ระบบจัดการธุรกิจและขายสินค้า', link:'https://www.zaviago.com/manage'},
+    {title:'บล็อกและบทความ', icon:<Icons.blogPostApp />, desc:'สร้างข่าวสารและเขียนบทความ', link:'/coming-soon'},
+    {title:'CRM', icon:<Icons.posApp />, desc:'จัดการและดูข้อมูลลูกค้าต่างๆ', link:'https://www.zaviago.com/crm'},
+    {title:'เว็บไซต์', icon:<Icons.websiteApp fill='white' />, desc:'สร้างและออกแบบเว็บไซต์', link:'/coming-soon'},
+    {title:'MarketConnect', icon:<Icons.inbioApp />, desc:'จัดการออเดอร์จาก eCommerce Platform', link:'https://www.zaviago.com/marketplace'},
+    {title:'Canvas', icon:<Icons.blogAndPagesApp />, desc:'ระบบออกแบบ Graphics', link:'/coming-soon'}
   ]
 
   return (
@@ -50,12 +50,12 @@ export default function SidebarWebsite(){
           </span>
         </div>
       </PopoverTrigger>
-      <PopoverContent className='p-0 relative left-4'>
+      <PopoverContent className='p-0 relative left-4 w-full'>
         <Command>
-          <CommandList className='max-h-full'>
+          <CommandList className='max-h-full w-full'>
             <CommandGroup>
-              {workspaceMenus.map(menu => (
-                <CommandItem>
+              {workspaceMenus.map((menu, index) => (
+                <CommandItem onSelect={() => {menu.link === '/coming-soon' ? window.open("/coming-soon",'_blank') : window.open(menu.link, '_self')}}>
                   <div className="flex items-center justify-between w-full">
                     <div className="flex items-center gap-x-2">
                       {menu.icon}

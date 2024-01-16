@@ -112,7 +112,7 @@ export default function UpgradeProModal(){
             <div className="absolute left-5 bottom-5 flex gap-x-2 items-center">
               <Button variant='link' className='text-white text-xs p-0 h-fit'>Support</Button>
               <DrawLine color='#FFF' width='1px' height='14px'/>
-              <Button variant='link' className='text-white text-xs p-0 h-fit'>{t('contact_us')}</Button>
+              <Button variant='link' className='text-white text-xs p-0 h-fit' onClick={() => window.location.href = 'https://page.line.me/zaviago'}>{t('contact_us')}</Button>
             </div>
           </DialogTitle>
           <DialogDescription className='pb-10 shadow-lg'>
@@ -142,13 +142,14 @@ export default function UpgradeProModal(){
                 </ul>
               </section>
               <section>
-                <Link to='/payment/plan/pro'>
-                  <Button className='btn-with-icon w-full mb-[7px]'>
+                {/* <Link to='/payment/plan/pro'>
+
+                </Link> */}
+                  <Button className='btn-with-icon w-full mb-[7px]' disabled>
                     <LightningBoltIcon />
                     {t("upgrade_to_pro")}
                   </Button>
-                </Link>
-                <p className="main-desc">{t("pro_privileges.see_more_details")} <Link className="text-[#006AFF]" to='/dashboard/compare-plan'>{t("pro_privileges.compare_plans")}</Link></p>
+                <p className="main-desc">{t("pro_privileges.see_more_details")} <span className="text-[#006AFF]">{t("pro_privileges.compare_plans")}</span></p> {/* link to='/dashboard/compare-plan' */}
               </section>
             </div>
           </DialogDescription>
