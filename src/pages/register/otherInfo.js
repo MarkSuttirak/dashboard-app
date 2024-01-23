@@ -143,8 +143,7 @@ export const UserInfoForm = ({
     const formik = useFormik({
         initialValues: {
             ...initialValues,
-            key,
-            email: idTokenData?.email,
+            key
         },
         validateOnChange: false,
         onSubmit: (data) => {
