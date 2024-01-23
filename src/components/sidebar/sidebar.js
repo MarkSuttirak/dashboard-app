@@ -231,7 +231,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
               ))}
             </section>
 
-            <section className="flex flex-col">
+            {/* <section className="flex flex-col">
               <h3 className="text-lightgray text-sm font-medium p-4">{t('menus.application')}</h3>
               {yourSites.map((item) => (
                 <Link to={item.href}>
@@ -241,7 +241,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
                   </Button>
                 </Link>
               ))}
-            </section>
+            </section> */}
           </nav>
         </div>
       </div>
