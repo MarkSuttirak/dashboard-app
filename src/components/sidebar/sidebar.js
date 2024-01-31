@@ -147,11 +147,14 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
     <>
       {/* <IconSidebar /> */}
       <div className={`flex flex-1 flex-col border-r border-gray-200 bg-white ${isSidebarOpen ? 'active' : 'inactive'}`} id="sidebar">
-        <div className="flex flex-1 flex-col pt-4">
-          <div className="flex flex-shrink-0 items-center px-4 sidebar-site">
-            <div className="flex items-center w-full">
-              <SidebarWebsite />
+        <div className="flex flex-1 flex-col pt-[18px]">
+          <div className="relative sidebar-top">
+            <div className="flex flex-shrink-0 items-center px-[14px] sidebar-site relative z-[4]">
+              <div className="flex items-center w-full relative">
+                <SidebarWebsite />
+              </div>
             </div>
+            <div className="w-8 h-8 absolute top-2.5 rounded-[5px] left-4 bg-[#0000000F] border border-[#00000029] square-shadow"/>
           </div>
           {/* <button className={`chevron-btn ${!isSidebarOpen ? 'inactive' : ''}`} onClick={() => setIsSidebarOpen(false)}>
             <ChevronsLeft className="chevron-sidebar" viewBox="0 0 24 24" width='16' height='16' />

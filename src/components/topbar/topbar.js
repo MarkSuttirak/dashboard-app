@@ -15,14 +15,14 @@ export default function Topbar({isSidebarOpen, hasNoLeftSidebar}){
       <section className='flex items-center'>
         <UpgradeProModal />
 
-        <div className='pr-3 flex gap-x-5 items-center'>
+        <div className='pr-3 flex gap-x-[30px] items-center'>
           <SearchBar />
           <NotificationsTopbar />
         </div>
 
-        <DrawLine color='#E4E4E7' width='1px' height="32px"/>
+        <DrawLine color='#E4E4E7' width='1px' height="24px"/>
 
-        <div className='pl-7 pr-4 flex gap-x-5 items-center'>
+        <div className='px-4 flex gap-x-5 items-center'>
           <HelpMenu />
         </div>
 

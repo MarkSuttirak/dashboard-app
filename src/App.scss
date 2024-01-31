@@ -87,9 +87,20 @@ body {
   }
 }
 
+.square-shadow {
+  top:10px;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px -1px rgba(0, 0, 0, 0.10);
+  transition:top 150ms;
+}
+
+.sidebar-top:hover .square-shadow {
+  top:14px;
+  transition:top 150ms;
+}
+
 .sidebar-site {
   overflow:hidden;
-  mask-image:linear-gradient(to right, white 80%, transparent 90%)
+  mask-image:linear-gradient(to right, white 80%, transparent 90%);
 }
 
 .register-formbox {
