@@ -59,7 +59,9 @@ const OtherInfo = () => {
                         otherInfo,
                         setOtherInfo
                     }}>
-                        <UserInfoForm onSubmit={mutate}/>
+                        <UserInfoForm />
+                        <BusinessInfoForm />
+                        <TeamInfoForm onSubmit={mutate} />
                     </StepMaintainer>
                 </div>
             </div>
@@ -119,6 +121,7 @@ const OtherInfo = () => {
 
 export default OtherInfo
 
+
 export const UserInfoForm = ({
     next,
     current,
@@ -129,7 +132,6 @@ export const UserInfoForm = ({
         email: '',
     },
     validationSchema,
-    onSubmit,
     state
 }) => {
     const {t,i18n} = useTranslation();
@@ -146,14 +148,11 @@ export const UserInfoForm = ({
             key
         },
         validateOnChange: false,
+        validationSchema: validationSchema ?? userInfoSchema,
         onSubmit: (data) => {
-            return onSubmit({
-                ...state.otherInfo,
-                ...data
-            })
-        },
-
-
+            state.setOtherInfo(data)
+            next();
+        }
     })
 
     return (
@@ -167,8 +166,51 @@ export const UserInfoForm = ({
                 <p className="subheading">{t('fill_info_desc')}</p>
             </div>
             <div className={`space-y-4 mt-6 anim-up`}>
-             
+                <div className="flex gap-x-3">
+                    <div>
+                        <label htmlFor='first_name' className="subheading mb-2 font-medium">{t('first_name')}</label>
+                        <Input
+                            className="form-input"
+                            placeholder={t('first_name')}
+                            name="first_name"
+                            onChange={formik.handleChange}
+                            value={formik.values.first_name}
+                        />
+                        {
+                            formik.errors.first_name && (
+                                <p className="error">{formik.errors.first_name}</p>
+                            )
+                        }
+                    </div>
+                    <div>
+                        <label htmlFor='last_name' className="subheading mb-2 font-medium">{t('last_name')}</label>
+                        <Input
+                            className="form-input"
+                            placeholder={t('last_name')}
+                            name="last_name"
+                            onChange={formik.handleChange}
+                            value={formik.values.last_name}
+                        />
+                        {
+                            formik.errors.last_name && (
+                                <p className="error">{formik.errors.last_name}</p>
+                            )
+                        }
+                    </div>
+                </div>
 
+                <div>
+                    <label htmlFor='birth_date' className="subheading mb-2 font-medium">{t('date_of_birth')}</label>
+                    <Input
+                        type="date"
+                        name="birth_date"
+                        onChange={formik.handleChange}
+                        value={formik.values.birth_date}
+                        className="form-input"
+                        placeholder="25/12/1999"
+                    />
+                    {formik.errors.birth_date && (<p className="error">{formik.errors.birth_date}</p>)}
+                </div>
 
                 <div>
                     <label htmlFor='email' className="subheading mb-2 font-medium">{t('email')}</label>
@@ -182,15 +224,67 @@ export const UserInfoForm = ({
                     />
                     {formik.errors.email && (<p className="error">{formik.errors.email}</p>)}
                 </div>
-                <div className={`anim-up-delay translate-y-[20px] mt-4`}>
+
+                <div>
+                    <h2 className="subheading">{t('additional_detail')}</h2>
+                    <RadioGroup value={null} onChange={null}>
+                        <div className="mt-4 grid grid-cols-1 gap-y-3">
+                            {mailingLists.map((mailingList) => (
+                                <RadioGroup.Option
+                                    key={mailingList.id}
+                                    value={mailingList}
+                                    className={({ checked, active }) =>
+                                        classNames(
+                                            checked ? 'border-[#0788F5]' : 'border-gray-300',
+                                            active ? 'border-[#0788F5] ring-2 ring-[#0788F5]' : '',
+                                            'relative flex cursor-pointer rounded-lg border bg-white p-4 outline-none'
+                                        )
+                                    }
+                                >
+                                    {({ checked, active }) => (
+                                        <>
+                                            <span className="flex flex-1">
+                                                <span className="flex flex-col">
+                                                    <RadioGroup.Label as="span" className="subheading font-medium">
+                                                        {mailingList.title}
+                                                    </RadioGroup.Label>
+                                                    <RadioGroup.Description as="span" className="main-desc">
+                                                        {mailingList.description}
+                                                    </RadioGroup.Description>
+                                                </span>
+                                            </span>
+                                            <CheckCircleIcon
+                                                className={classNames(!checked ? 'invisible' : '', 'h-5 w-5 text-[#0788F5]')}
+                                                aria-hidden="true"
+                                            />
+                                            <span
+                                                className={classNames(
+                                                    active ? 'border' : 'border-2',
+                                                    checked ? 'border-[#0788F5]' : 'border-transparent',
+                                                    'pointer-events-none absolute -inset-px rounded-lg'
+                                                )}
+                                                aria-hidden="true"
+                                            />
+                                        </>
+                                    )}
+                                </RadioGroup.Option>
+                            ))}
+                        </div>
+                    </RadioGroup>
+
+                    <div className='flex gap-x-2 text-sm mt-6'>
+                      <Checkbox id='agree' className='mt-1'/>
+                      <label htmlFor='agree'>{t('sign_up_agreement_one')} <Link>{t('terms_of_use')}</Link> {t('sign_up_agreement_two')} <Link>{t('privacy_policy')}</Link></label>
+                    </div>
+
+                    <div className={`anim-up-delay translate-y-[20px] mt-4`}>
                         <Button
                             type='submit'
                             className='justify-center w-full'
                             // disabled={!formik.isValid}
                         >{t('continue')}</Button>
+                    </div>
                 </div>
-
-               
             </div>
         </form>
     )
