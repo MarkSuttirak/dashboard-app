@@ -41,12 +41,15 @@ const OtherInfo = () => {
         ...data
     })
 
-    const { mutate, isLoading } = useMutation((data) => partial.setupOauthAccount(data), {
+    const { mutate:registernow, isLoading } = useMutation((data) => partial.setupOauthAccount(data), {
         onSuccess: (res) => {
-            setToken(res.token)
-            navigate('/dashboard/instance-configuration')
+            //setToken(res.token)
+            //navigate('/dashboard/instance-configuration');
+            console.log(res);
         }
     })
+
+    
 
     return (
         <>
@@ -55,14 +58,7 @@ const OtherInfo = () => {
                     <RegisterStep active={1} />
                 </div>
                 <div className="flex flex-1 m-[30px] md:m-2 z-[999] basis-[20%] bg-white absolute md:relative register-screen">
-                    <StepMaintainer state={{
-                        otherInfo,
-                        setOtherInfo
-                    }}>
-                        <UserInfoForm />
-                        <BusinessInfoForm />
-                        <TeamInfoForm onSubmit={mutate} />
-                    </StepMaintainer>
+                        <UserInfoForm registernow={registernow}/>
                 </div>
             </div>
             <Transition.Root show={isLoading} as={Fragment}>
@@ -124,6 +120,7 @@ export default OtherInfo
 
 export const UserInfoForm = ({
     next,
+    registernow,
     current,
     initialValues = {
         first_name: '',
@@ -148,10 +145,11 @@ export const UserInfoForm = ({
             key
         },
         validateOnChange: false,
-        validationSchema: validationSchema ?? userInfoSchema,
+        validationSchema: userInfoSchema,
         onSubmit: (data) => {
-            state.setOtherInfo(data)
-            next();
+            //state.setOtherInfo(data)
+            registernow(data);
+            //next();
         }
     })
 
@@ -199,18 +197,7 @@ export const UserInfoForm = ({
                     </div>
                 </div>
 
-                <div>
-                    <label htmlFor='birth_date' className="subheading mb-2 font-medium">{t('date_of_birth')}</label>
-                    <Input
-                        type="date"
-                        name="birth_date"
-                        onChange={formik.handleChange}
-                        value={formik.values.birth_date}
-                        className="form-input"
-                        placeholder="25/12/1999"
-                    />
-                    {formik.errors.birth_date && (<p className="error">{formik.errors.birth_date}</p>)}
-                </div>
+              
 
                 <div>
                     <label htmlFor='email' className="subheading mb-2 font-medium">{t('email')}</label>
@@ -226,52 +213,6 @@ export const UserInfoForm = ({
                 </div>
 
                 <div>
-                    <h2 className="subheading">{t('additional_detail')}</h2>
-                    <RadioGroup value={null} onChange={null}>
-                        <div className="mt-4 grid grid-cols-1 gap-y-3">
-                            {mailingLists.map((mailingList) => (
-                                <RadioGroup.Option
-                                    key={mailingList.id}
-                                    value={mailingList}
-                                    className={({ checked, active }) =>
-                                        classNames(
-                                            checked ? 'border-[#0788F5]' : 'border-gray-300',
-                                            active ? 'border-[#0788F5] ring-2 ring-[#0788F5]' : '',
-                                            'relative flex cursor-pointer rounded-lg border bg-white p-4 outline-none'
-                                        )
-                                    }
-                                >
-                                    {({ checked, active }) => (
-                                        <>
-                                            <span className="flex flex-1">
-                                                <span className="flex flex-col">
-                                                    <RadioGroup.Label as="span" className="subheading font-medium">
-                                                        {mailingList.title}
-                                                    </RadioGroup.Label>
-                                                    <RadioGroup.Description as="span" className="main-desc">
-                                                        {mailingList.description}
-                                                    </RadioGroup.Description>
-                                                </span>
-                                            </span>
-                                            <CheckCircleIcon
-                                                className={classNames(!checked ? 'invisible' : '', 'h-5 w-5 text-[#0788F5]')}
-                                                aria-hidden="true"
-                                            />
-                                            <span
-                                                className={classNames(
-                                                    active ? 'border' : 'border-2',
-                                                    checked ? 'border-[#0788F5]' : 'border-transparent',
-                                                    'pointer-events-none absolute -inset-px rounded-lg'
-                                                )}
-                                                aria-hidden="true"
-                                            />
-                                        </>
-                                    )}
-                                </RadioGroup.Option>
-                            ))}
-                        </div>
-                    </RadioGroup>
-
                     <div className='flex gap-x-2 text-sm mt-6'>
                       <Checkbox id='agree' className='mt-1'/>
                       <label htmlFor='agree'>{t('sign_up_agreement_one')} <Link>{t('terms_of_use')}</Link> {t('sign_up_agreement_two')} <Link>{t('privacy_policy')}</Link></label>
