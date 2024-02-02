@@ -26,6 +26,7 @@ import Pricing from './pages/pricing';
 import PricingTablePage from './pages/pricingTable';
 import CheckoutPending from './pages/checkout/checkoutPending';
 import ComingSoonPage from './pages/coming-soon';
+import Teams from './pages/teams/teams';
 
 // ----------------------------------------------------------------------
 
@@ -63,6 +64,7 @@ export default function Router() {
                     ],
                 },
                 { path: 'settings/:id', element: <Settings /> },
+                { path: 'teams/:id', element: <Teams /> },
                 { path: 'compare-plan', element: <ComparePlan /> }
             ],
         },
