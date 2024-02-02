@@ -29,27 +29,44 @@ import { DatePicker } from 'src/components/ui/datepicker';
 import { useTranslation } from "react-i18next";
 
 const OtherInfo = () => {
-    const { t } = useTranslation()
-    const { key } = useParams()
-    const navigate = useNavigate()
-    const [otherInfo, _] = useState({
-        key
-    })
+    const { t } = useTranslation();
+    const { key } = useParams();
+    const navigate = useNavigate();
+    const [otherInfo, setOtherInfo] = useState({
+        key,
+    });
+    const [siteError, setSiteError] = useState(false);
 
-    const setOtherInfo = (data) => _({
-        ...otherInfo,
-        ...data
-    })
-
-    const { mutate:registernow, isLoading } = useMutation((data) => partial.setupOauthAccount(data), {
+    const { mutate: registernow, isLoading } = useMutation((data) => partial.setupOauthAccount(data), {
         onSuccess: (res) => {
-            //setToken(res.token)
-            //navigate('/dashboard/instance-configuration');
+            // setToken(res.token);
+            // navigate('/dashboard/instance-configuration');
             console.log(res);
-        }
-    })
+        },
+    });
 
-    
+    const mailingLists = [
+        { id: 1, title: t('entrepreneur_title'), description: t('entrepreneur_desc') },
+        { id: 2, title: t('business_team_title'), description: t('business_team_desc') },
+    ];
+    const { idTokenData } = useContext(AuthContext);
+
+    const formik = useFormik({
+        initialValues: {
+            first_name: '',
+            last_name: '',
+            email: '',
+            key,
+        },
+        validateOnChange: false,
+        validationSchema: userInfoSchema,
+        onSubmit: (data) => {
+            // Move the logic from the original onSubmit in UserInfoForm here
+            // state.setOtherInfo(data);
+            registernow(data);
+            // next();
+        },
+    });
 
     return (
         <>
@@ -58,11 +75,115 @@ const OtherInfo = () => {
                     <RegisterStep active={1} />
                 </div>
                 <div className="flex flex-1 m-[30px] md:m-2 z-[999] basis-[20%] bg-white absolute md:relative register-screen">
-                        <UserInfoForm registernow={registernow}/>
+                    <form
+                        className="register-formbox"
+                        onSubmit={formik.handleSubmit}
+                    >
+                        <div className="anim-up">
+                            <h2 className="main-heading mt-10">{t('fill_info_title')}</h2>
+                            <p className="subheading">{t('fill_info_desc')}</p>
+                        </div>
+                        <div className={`space-y-4 mt-6 anim-up`}>
+                            <div className="flex gap-x-3">
+
+
+
+                                <div>
+                                    <label htmlFor='first_name' className="subheading mb-2 font-medium">{t('first_name')}</label>
+                                    <Input
+                                        className="form-input"
+                                        placeholder={t('first_name')}
+                                        name="first_name"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.first_name}
+                                    />
+                                    {
+                                        formik.errors.first_name && (
+                                            <p className="error">{formik.errors.first_name}</p>
+                                        )
+                                    }
+                                </div>
+                                <div>
+                                    <label htmlFor='last_name' className="subheading mb-2 font-medium">{t('last_name')}</label>
+                                    <Input
+                                        className="form-input"
+                                        placeholder={t('last_name')}
+                                        name="last_name"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.last_name}
+                                    />
+                                    {
+                                        formik.errors.last_name && (
+                                            <p className="error">{formik.errors.last_name}</p>
+                                        )
+                                    }
+                                </div>
+                            </div>
+
+                            <div>
+                                <label htmlFor='email' className="subheading mb-2 font-medium">{t('email')}</label>
+                                <Input
+                                    type="email"
+                                    name="email"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.email}
+                                    className='form-input'
+                                    placeholder="mail@example.com"
+                                />
+                                {formik.errors.email && (<p className="error">{formik.errors.email}</p>)}
+                            </div>
+
+                            <div>
+                                <div>
+                                    <h2 className="main-title mt-8">What would you like to call your site?</h2>
+                                    <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
+                                </div>
+
+                                <div>
+                                    <div className="relative mt-1 rounded-md shadow-sm">
+                                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 tab-desc">
+                                        http://
+                                    </div>
+                                        <input
+                                            type="text"
+                                            name="site"
+                                            id="site"
+                                            className={`form-input ${siteError ? 'error' : ''}`}
+                                            placeholder="example"
+                                            style={{ paddingRight: "140px", paddingLeft: "60px" }}
+                                        
+                                        />
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 tab-desc">
+                                        .zaviago.com
+                                    </div>
+                                    </div>
+                                </div>
+
+
+                            </div>         
+
+
+
+
+                            <div>
+                                <div className='flex gap-x-2 text-sm mt-6'>
+                                    <Checkbox id='agree' className='mt-1' />
+                                    <label htmlFor='agree'>{t('sign_up_agreement_one')} <Link>{t('terms_of_use')}</Link> {t('sign_up_agreement_two')} <Link>{t('privacy_policy')}</Link></label>
+                                </div>
+
+                                <div className={`anim-up-delay translate-y-[20px] mt-4`}>
+                                    <Button
+                                        type='submit'
+                                        className='justify-center w-full'
+                                    >{t('continue')}</Button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
             <Transition.Root show={isLoading} as={Fragment}>
-                <Dialog as="div" className="relative z-[999]" onClose={() => { }}>
+            <Dialog as="div" className="relative z-[999]" onClose={() => { }}>
                     <Transition.Child
                         as={Fragment}
                         enter="ease-out duration-300"
@@ -112,299 +233,7 @@ const OtherInfo = () => {
                 </Dialog>
             </Transition.Root>
         </>
-    )
-}
+    );
+};
 
-export default OtherInfo
-
-
-export const UserInfoForm = ({
-    next,
-    registernow,
-    current,
-    initialValues = {
-        first_name: '',
-        last_name: '',
-        birth_date: '',
-        email: '',
-    },
-    validationSchema,
-    state
-}) => {
-    const {t,i18n} = useTranslation();
-    const mailingLists = [
-        { id: 1, title: t('entrepreneur_title'), description: t('entrepreneur_desc') },
-        { id: 2, title: t('business_team_title'), description: t('business_team_desc') },
-    ]
-    const { key } = useParams();
-    const { idTokenData } = useContext(AuthContext)
-
-    const formik = useFormik({
-        initialValues: {
-            ...initialValues,
-            key
-        },
-        validateOnChange: false,
-        validationSchema: userInfoSchema,
-        onSubmit: (data) => {
-            //state.setOtherInfo(data)
-            registernow(data);
-            //next();
-        }
-    })
-
-    return (
-        <form
-            className="register-formbox"
-            onSubmit={formik.handleSubmit}
-        >
-            <Steps total={5} step={current} />
-            <div className="anim-up">
-                <h2 className="main-heading mt-10">{t('fill_info_title')}</h2>
-                <p className="subheading">{t('fill_info_desc')}</p>
-            </div>
-            <div className={`space-y-4 mt-6 anim-up`}>
-                <div className="flex gap-x-3">
-                    <div>
-                        <label htmlFor='first_name' className="subheading mb-2 font-medium">{t('first_name')}</label>
-                        <Input
-                            className="form-input"
-                            placeholder={t('first_name')}
-                            name="first_name"
-                            onChange={formik.handleChange}
-                            value={formik.values.first_name}
-                        />
-                        {
-                            formik.errors.first_name && (
-                                <p className="error">{formik.errors.first_name}</p>
-                            )
-                        }
-                    </div>
-                    <div>
-                        <label htmlFor='last_name' className="subheading mb-2 font-medium">{t('last_name')}</label>
-                        <Input
-                            className="form-input"
-                            placeholder={t('last_name')}
-                            name="last_name"
-                            onChange={formik.handleChange}
-                            value={formik.values.last_name}
-                        />
-                        {
-                            formik.errors.last_name && (
-                                <p className="error">{formik.errors.last_name}</p>
-                            )
-                        }
-                    </div>
-                </div>
-
-              
-
-                <div>
-                    <label htmlFor='email' className="subheading mb-2 font-medium">{t('email')}</label>
-                    <Input
-                        type="email"
-                        name="email"
-                        onChange={formik.handleChange}
-                        value={formik.values.email}
-                        className='form-input'
-                        placeholder="mail@example.com"
-                    />
-                    {formik.errors.email && (<p className="error">{formik.errors.email}</p>)}
-                </div>
-
-                <div>
-                    <div className='flex gap-x-2 text-sm mt-6'>
-                      <Checkbox id='agree' className='mt-1'/>
-                      <label htmlFor='agree'>{t('sign_up_agreement_one')} <Link>{t('terms_of_use')}</Link> {t('sign_up_agreement_two')} <Link>{t('privacy_policy')}</Link></label>
-                    </div>
-
-                    <div className={`anim-up-delay translate-y-[20px] mt-4`}>
-                        <Button
-                            type='submit'
-                            className='justify-center w-full'
-                            // disabled={!formik.isValid}
-                        >{t('continue')}</Button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    )
-}
-
-export const BusinessInfoForm = ({
-    current,
-    prev,
-    next,
-    initialValues = {
-        company: `Zaviago ${Math.floor(Math.random() * 1000)}`,
-        industry: 'retail',
-        goal: [],
-        country: 'Thailand',
-    },
-    validationSchema,
-    state
-}) => {
-    const { t } = useTranslation()
-    const checkboxLists = localStorage.lang === 'th' ? dataThai.business_type.potential_goals.options : dataEng.business_type.potential_goals.options
-    const industryOptions = localStorage.lang === 'th' ? dataThai.business_type.your_business.options : dataEng.business_type.your_business.options
-
-    const formik = useFormik({
-        initialValues: initialValues,
-        validateOnChange: false,
-        validationSchema: validationSchema ?? businessInfoSchema,
-        onSubmit: (data) => {
-            state.setOtherInfo(data)
-            next();
-        }
-    })
-
-    return (
-        <form className="register-formbox" onSubmit={formik.handleSubmit}>
-            <Steps total={5} step={current} />
-            <div className="anim-up">
-                <h2 className="main-heading mt-8">{t('business_type.title')}</h2>
-            </div>
-            <div className={`space-y-6 mt-6 anim-up`}>
-                {/* <Select options={industryOptions}
-                    value={industryOptions.find((option) => option.value === formik.values.industry)}
-                    onChange={({ value }) => formik.setFieldValue('industry', value)}
-                /> */}
-                <div>
-                  <label htmlFor='your_business' className="subheading mb-2 font-medium">{t('business_type.your_business.label')}</label>
-                  <Select onValueChange={value => {formik.setFieldValue('industry', value)}}>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder={industryOptions[0].label} defaultValue={industryOptions[0].label} />
-                    </SelectTrigger>
-                    <SelectContent className='z-[999]'>
-                      {industryOptions.map(option => (
-                        <SelectItem value={option.value}>{option.label}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-
-                    {formik.values.industry === 'other' ? (
-                    <Input placeholder={t('business_type.your_business.other_businesses')} className='mt-2'/>
-                    ) : null}
-                </div>
-
-                <div>
-                    <h2 className="secondary-heading">{t('business_type.potential_goals.title')}</h2>
-                    <p className='main-desc mt-2'>{t('business_type.potential_goals.desc')}</p>
-
-                    <div className="grid gap-3 mt-4">
-                        {/* {checkboxLists.map((checkboxList) => (
-                            <label htmlFor={checkboxList.key} onClick={(e) => {
-                                if (!formik.values.goal.includes(checkboxList.key)) {
-                                    formik.setFieldValue('goal', [...formik.values.goal, checkboxList.key])
-                                } else {
-                                    formik.setFieldValue('goal', formik.values.goal.filter((item) => item !== checkboxList.key))
-                                }
-                            }}>
-                                <input
-                                    type="checkbox"
-                                    className={`checkbox-card-input ${formik.values.goal.includes(checkboxList.key) ? 'active' : ''}`}
-                                    name={checkboxList.key}
-                                    value={checkboxList.key}
-                                    checked={formik.values.goal.includes(checkboxList.key)}
-                                />
-                                <span className="main-desc border checkbox-card">
-                                    {checkboxList.title}
-                                </span>
-                            </label>
-                        ))} */}
-                        {checkboxLists.map(checkboxList => (
-                            <div className='flex items-center gap-x-2'>
-                            <Checkbox id={checkboxList.key} checked={formik.values.goal.includes(checkboxList.key)} value={checkboxList.key} name={checkboxList.key} onCheckedChange={(e) => {
-                                if (!formik.values.goal.includes(checkboxList.key)) {
-                                    formik.setFieldValue('goal', [...formik.values.goal, checkboxList.key])
-                                } else {
-                                    formik.setFieldValue('goal', formik.values.goal.filter((item) => item !== checkboxList.key))
-                                }
-                            }}/>
-                            <label htmlFor={checkboxList.key} className='text-sm'>{checkboxList.title}</label>
-                            </div>
-                        ))}
-                        {formik.errors.goal && (<p className="error">{formik.errors.goal}</p>)}
-                    </div>
-                </div>
-            </div>
-            <div className={`anim-up-delay translate-y-[20px] mt-2 flex gap-x-2 justify-between`}>
-                <Button variant='secondary' className={`w-1/4 justify-center`} onClick={prev}>{t('business_type.back')}</Button>
-                <Button
-                    className='w-1/4 justify-center'
-                    // disabled={!formik.isValid}
-                >{t('business_type.continue')}</Button>
-            </div>
-        </form>
-    )
-}
-
-export const TeamInfoForm = ({
-    current,
-    prev,
-    next,
-    initialValues = {
-        no_of_employees: '2-5 people',
-        accepted_user_terms: true,
-    },
-    validationSchema,
-    onSubmit,
-    state,
-}) => {
-    const { t } = useTranslation()
-    const memberOptions = localStorage.lang === "th" ? dataThai.members : dataEng.members;
-    const formik = useFormik({
-        initialValues: initialValues,
-        validateOnChange: false,
-        validationSchema: validationSchema ?? teamInfoSchema,
-        onSubmit: (data) => {
-            return onSubmit({
-                ...state.otherInfo,
-                ...data
-            })
-        },
-    })
-
-    return (
-        <form
-            className="register-formbox"
-            onSubmit={formik.handleSubmit}
-        >
-            <Steps total={5} step={current} />
-            <div className="anim-up">
-                <h2 className="main-heading mt-8">{t('how_many_people')}</h2>
-            </div>
-            <div className={`space-y-4 mt-6 anim-up`}>
-                <RadioGroup className="mt-2" name='no_of_employees' value={formik.values.no_of_employees} onChange={(value) => formik.setFieldValue('no_of_employees', value)}>
-                    <RadioGroup.Label className="sr-only"> {t('how_many_people')} </RadioGroup.Label>
-                    <div className="grid grid-cols-1 gap-3">
-                        {memberOptions.map((option) => (
-                            <RadioGroup.Option
-                                key={option}
-                                value={option}
-                                className={({ active, checked }) =>
-                                    classNames(
-                                        active ? 'ring-2 ring-offset-2 ring-[#0F172A]' : '',
-                                        checked
-                                            ? 'bg-[#0F172A] border-transparent text-white'
-                                            : 'bg-white border-gray-200 text-gray-900',
-                                        'border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium cursor-pointer'
-                                    )
-                                }
-                            >
-                                <RadioGroup.Label as="span">{option}</RadioGroup.Label>
-                            </RadioGroup.Option>
-                        ))}
-                    </div>
-                </RadioGroup>
-                <div className={`anim-up-delay translate-y-[20px] mt-2 flex gap-x-2 justify-between`}>
-                    <Button variant='secondary' className={`w-1/4 justify-center`} onClick={prev}>{t('business_type.back')}</Button>
-                    <Button
-                        className='w-1/4 justify-center'
-                        // disabled={!formik.isValid}
-                    >{t('business_type.continue')}</Button>
-                </div>
-            </div>
-        </form>
-    )
-}
+export default OtherInfo;
