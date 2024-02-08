@@ -9,6 +9,7 @@ api.interceptors.request.use(
     async (config) => {
         if (process.env.REACT_APP_TOKEN || getToken()) {
             config.headers['Authorization'] = `Bearer ${process.env.REACT_APP_TOKEN || getToken()}`;
+            config.headers['X-Press-Team'] = localStorage.getItem('current_team') || null;
         }
         return config;
     },

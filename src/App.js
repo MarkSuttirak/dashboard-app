@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 const authConfig = {
   autoLogin: false,
   decodeToken: false,
+  clearURL: false,
   clientId: '2000074326',
   authorizationEndpoint: 'https://access.line.me/oauth2/v2.1/authorize',
   tokenEndpoint: 'https://api.line.me/oauth2/v2.1/token',
@@ -27,7 +28,7 @@ const authConfig = {
 export const switchContext = createContext();
 
 function App() {
-  const {t,i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
   const { showToast } = useToast();
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -46,7 +47,7 @@ function App() {
   })
 
   useEffect(() => {
-    if (localStorage.lang === 'th'){
+    if (localStorage.lang === 'th') {
       i18n.changeLanguage('th')
     } else {
       i18n.changeLanguage('en')

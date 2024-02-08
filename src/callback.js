@@ -11,21 +11,24 @@ const Callback = ({
     const { token, idToken } = useContext(AuthContext)
     const { login } = useUser();
     const navigate = useNavigate();
-
+    const state = searchParams.has("state") ? JSON.parse(searchParams.get("state")) : {};
 
     useEffect(() => {
         if (token && idToken) {
             login(provider, { token, idToken }).then(res => {
                 // handle registeration (if key is in res & token is not in res)
-                if (res?.message.hasOwnProperty("key")) {
-                    navigate(`/partial/${res.message.key}/phone-verification`);
+                if ("key" in res?.message) {
+                    navigate(`/partial/${res.message.key}/phone-verification`, { state });
+                } else if ("inviteCode" in state) {
+                    navigate(`/invite/${state.inviteCode}`);
                 } else {
-                    navigate("/");
+                    navigate("/dashboard/app");
                 }
             })
         }
+        // if no code, redirect to login
         if (!searchParams.has("code")) {
-            navigate("/");
+            navigate("/login", { state });
         }
     }, [token, idToken, searchParams.size])
 

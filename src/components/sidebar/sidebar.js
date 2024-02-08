@@ -17,15 +17,15 @@ import SidebarWebsite from "./sidebarWebsite";
 
 // import TeamModal from "../components/switchTeamModal";
 
-export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }){
-  const {t, i18n} = useTranslation()
+export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }) {
+  const { t, i18n } = useTranslation()
   const [active, setActive] = useState('');
   const location = useLocation();
   const { user } = useUser();
   const [upgraded, setUpgraded] = useState(false)
 
-  const benchApps = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), {enabled: false});
-  const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.site_list[0].name), {enabled: false});  
+  const benchApps = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), { enabled: false });
+  const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.site_list[0].name), { enabled: false });
   const appslists = benchApps.data || [];
 
   const navigate = useNavigate();
@@ -35,9 +35,9 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
     setActive(menu);
   }
 
-  const { data: sites } = useQuery('sites', site.list, {enabled: false});
+  const { data: sites } = useQuery('sites', site.list, { enabled: false });
 
-  const { mutate: loginAsAdmin } = useMutation('loginAsAdmin', ({ name, reason }) => site.loginAsAdmin(name, reason), {
+  const { mutate: loginAsAdmin } = useMutation('loginAsAdmin', ({ name, reason }) => site.login(name, reason), {
     onSuccess: (res) => {
       const { sid, site } = res.data.message;
       if (sid && site) {
@@ -52,25 +52,33 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   ]
 
   const settingsMenus = [
-    { name: 'Inventory', icon: <LightningBoltIcon />, submenus: [
-      { title:'Items',icon:<Package className="w-4 h-4 stroke-[1.5] text-darkergray"/> },
-      { title:'Item Group', icon:<Group className="w-4 h-4 stroke-[1.5] text-darkergray"/>},
-      { title:'Brand', icon:<Baseline className="w-4 h-4 stroke-[1.5] text-darkergray"/>}
-    ]},
-    { name: 'Orders', icon: <ClipboardList className="w-4 h-4 stroke-[1.5] text-darkergray"/>, submenus: [
-      { title:'Sales Invoice', icon:<Clipboard className="w-4 h-4 stroke-[1.5] text-darkergray"/>},
-      { title:'Payment Entry', icon:<CheckCircle2 className="w-4 h-4 stroke-[1.5] text-darkergray"/>}
-    ]},
-    { name: 'Customers', icon: <UserCircle className="w-4 h-4 stroke-[1.5] text-darkergray"/>, submenus: [
-      { title:'Customer', icon: <UserSquare className="w-4 h-4 stroke-[1.5] text-darkergray"/>},
-      { title:'Customers Group', icon: <Users className="w-4 h-4 stroke-[1.5] text-darkergray"/>},
-      { title:'Contact', icon: <Mailbox className="w-4 h-4 stroke-[1.5] text-darkergray"/>},
-      { title:'Address', icon: <Milestone className="w-4 h-4 stroke-[1.5] text-darkergray"/>}
-    ]},
-    { name: 'Stock', icon: <LayoutGrid className="w-4 h-4 stroke-[1.5] text-darkergray"/>, submenus: [
-      { title:'Stock Entry', icon: <PackagePlus className="w-4 h-4 stroke-[1.5] text-darkergray"/>},
-      { title:'Delivery Note', icon: <ClipboardPaste className="w-4 h-4 stroke-[1.5] text-darkergray"/>}
-    ]},
+    {
+      name: 'Inventory', icon: <LightningBoltIcon />, submenus: [
+        { title: 'Items', icon: <Package className="w-4 h-4 stroke-[1.5] text-darkergray" /> },
+        { title: 'Item Group', icon: <Group className="w-4 h-4 stroke-[1.5] text-darkergray" /> },
+        { title: 'Brand', icon: <Baseline className="w-4 h-4 stroke-[1.5] text-darkergray" /> }
+      ]
+    },
+    {
+      name: 'Orders', icon: <ClipboardList className="w-4 h-4 stroke-[1.5] text-darkergray" />, submenus: [
+        { title: 'Sales Invoice', icon: <Clipboard className="w-4 h-4 stroke-[1.5] text-darkergray" /> },
+        { title: 'Payment Entry', icon: <CheckCircle2 className="w-4 h-4 stroke-[1.5] text-darkergray" /> }
+      ]
+    },
+    {
+      name: 'Customers', icon: <UserCircle className="w-4 h-4 stroke-[1.5] text-darkergray" />, submenus: [
+        { title: 'Customer', icon: <UserSquare className="w-4 h-4 stroke-[1.5] text-darkergray" /> },
+        { title: 'Customers Group', icon: <Users className="w-4 h-4 stroke-[1.5] text-darkergray" /> },
+        { title: 'Contact', icon: <Mailbox className="w-4 h-4 stroke-[1.5] text-darkergray" /> },
+        { title: 'Address', icon: <Milestone className="w-4 h-4 stroke-[1.5] text-darkergray" /> }
+      ]
+    },
+    {
+      name: 'Stock', icon: <LayoutGrid className="w-4 h-4 stroke-[1.5] text-darkergray" />, submenus: [
+        { title: 'Stock Entry', icon: <PackagePlus className="w-4 h-4 stroke-[1.5] text-darkergray" /> },
+        { title: 'Delivery Note', icon: <ClipboardPaste className="w-4 h-4 stroke-[1.5] text-darkergray" /> }
+      ]
+    },
   ]
 
   const yourSites = [
@@ -79,12 +87,12 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   ]
 
   const workspaceApp = [
-    {name: t('workspace_buttons.manage_business'), icon:<Icons.erpApp className='h-5 w-5'/>, id: 'manage-business', onClick:() => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })}, // loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })
-    {name: t('workspace_buttons.blog_editor'), icon:<Icons.blogPostApp className='h-5 w-5'/>, id: 'builder', onClick:() => window.open('/coming-soon', '_blank')}, // window.open(`https://${sites?.site_list[0].name}/SpaBlogEditor`)
-    {name:'CRM', icon:<Icons.posApp className='h-5 w-5'/>, onClick:() => window.open('https://www.zaviago.com/crm', '_self')},
-    {name:t('workspace_buttons.web_pages'), icon:<Icons.websiteApp fill='white' className='h-5 w-5'/>, id: 'websites', onClick:() => window.open('/coming-soon', '_blank')}, // window.open(`https://${sites?.site_list[0].name}/builder`)
-    {name:'MarketConnect', icon:<Icons.inbioApp className='h-5 w-5'/>, onClick:() => window.open('https://www.zaviago.com/marketplace', '_self')},
-    {name:'Canvas', icon:<Icons.blogAndPagesApp className='h-5 w-5'/>, onClick:() => window.open('/coming-soon', '_blank')}
+    { name: t('workspace_buttons.manage_business'), icon: <Icons.erpApp className='h-5 w-5' />, id: 'manage-business', onClick: () => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" }) }, // loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })
+    { name: t('workspace_buttons.blog_editor'), icon: <Icons.blogPostApp className='h-5 w-5' />, id: 'builder', onClick: () => window.open('/coming-soon', '_blank') }, // window.open(`https://${sites?.site_list[0].name}/SpaBlogEditor`)
+    { name: 'CRM', icon: <Icons.posApp className='h-5 w-5' />, onClick: () => window.open('https://www.zaviago.com/crm', '_self') },
+    { name: t('workspace_buttons.web_pages'), icon: <Icons.websiteApp fill='white' className='h-5 w-5' />, id: 'websites', onClick: () => window.open('/coming-soon', '_blank') }, // window.open(`https://${sites?.site_list[0].name}/builder`)
+    { name: 'MarketConnect', icon: <Icons.inbioApp className='h-5 w-5' />, onClick: () => window.open('https://www.zaviago.com/marketplace', '_self') },
+    { name: 'Canvas', icon: <Icons.blogAndPagesApp className='h-5 w-5' />, onClick: () => window.open('/coming-soon', '_blank') }
   ]
 
   useEffect(() => {
@@ -107,7 +115,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
     });
   };
 
-  const { data: loadAdmin, refetch } = useQuery('loadAdmin', () => site.loginAsAdmin(sites?.site_list[0].name, 'Admin'), {
+  const { data: loadAdmin, refetch } = useQuery('loadAdmin', () => site.login(sites?.site_list[0].name, 'Admin'), {
     enabled: false,
     onSuccess: (res) => {
       //console.log(res);
@@ -117,7 +125,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   const loginNow = (page) => {
     var sid = loadAdmin?.data?.message.sid;
     var sitetoview = sites?.site_list[0].name;
-    if(sid){
+    if (sid) {
       window.open(`https://${sitetoview}/app/${page}?sid=${sid}`, '_blank');
     }
   }
@@ -135,7 +143,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
           </div>
         )} */}
         <div className={`nav-btns ${!isSidebarOpen ? 'show' : 'hide'}`} id="home-btn" onClick={() => setIsSidebarOpen(true)}>
-          <ChevronsRight color='#18181B' viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5'/>
+          <ChevronsRight color='#18181B' viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' />
         </div>
 
         <ServiceModals />
@@ -154,7 +162,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
                 <SidebarWebsite />
               </div>
             </div>
-            <div className="w-8 h-8 absolute top-2.5 rounded-[5px] left-4 bg-[#0000000F] border border-[#00000029] square-shadow"/>
+            <div className="w-8 h-8 absolute top-2.5 rounded-[5px] left-4 bg-[#0000000F] border border-[#00000029] square-shadow" />
           </div>
           {/* <button className={`chevron-btn ${!isSidebarOpen ? 'inactive' : ''}`} onClick={() => setIsSidebarOpen(false)}>
             <ChevronsLeft className="chevron-sidebar" viewBox="0 0 24 24" width='16' height='16' />
@@ -168,9 +176,9 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
                 <>
                   {item.href ? (
                     <Button key={item.name} variant='ghost' onClick={() => handleMenuClick(item.current, item.href)} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.current ? 'bg-zinc-100' : ''}`}>
-                    {item.icon}
-                    {item.name}
-                  </Button>
+                      {item.icon}
+                      {item.name}
+                    </Button>
                   ) : (
                     <Dialog key={item.name}>
                       <DialogTrigger>

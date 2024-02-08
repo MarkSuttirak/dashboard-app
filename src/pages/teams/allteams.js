@@ -3,32 +3,31 @@ import { Button } from "../../components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../../components/ui/avatar"
 import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "../../components/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "../../components/ui/popover"
-import { useState } from "react";
 import { DataList } from "src/components/pagination";
 import { useUser } from "../../hooks/useUser";
 import Loading from "src/components/ui/loading";
+import { team } from "src/client/api";
 
-export default function AllTeams(){
+export default function AllTeams() {
   const { auth } = useUser();
   const teamnames = auth?.teams
-  // const teamnames = ['Zaviago','Intergoods','Line','Testbrand','Guten Tag','Frappe','Django', 'Bonjour']
 
-  const TeamCard = ({teamname, avatar}) => {
+  const TeamCard = (lteam) => {
     return (
       <div className="flex items-center justify-between space-x-4">
         <div className="flex items-center space-x-4">
           <Avatar>
-            <AvatarImage src={avatar} />
-            <AvatarFallback>{teamname[0]}</AvatarFallback>
+            <AvatarImage />
+            {/* <AvatarFallback>{teamname[0]}</AvatarFallback> */}
           </Avatar>
           <div>
-            <p className="text-sm font-medium leading-none">{teamname}</p>
+            <p className="text-sm font-medium leading-none">{lteam.user}</p>
           </div>
         </div>
         <Popover>
           <PopoverTrigger asChild>
             <Button variant="outline" className="ml-auto">
-              Switch{" "}
+              {lteam.name === auth.team.name ? "Current" : "Switch"}
               <ChevronDownIcon className="ml-2 h-4 w-4 text-muted-foreground" />
             </Button>
           </PopoverTrigger>
@@ -36,8 +35,17 @@ export default function AllTeams(){
             <Command>
               <CommandList>
                 <CommandGroup className="p-1.5">
-                  <CommandItem>Switch</CommandItem>
-                  <CommandItem>View member</CommandItem>
+                  {
+                    lteam.name !== auth.team.name && (
+                      <CommandItem>
+                        <Button
+                          variant="soft"
+                          onClick={() => team.switch_team(lteam.name).then(() => window.location.reload())}
+                        >Switch</Button>
+                      </CommandItem>
+                    )
+                  }
+                  <CommandItem><Button variant="soft">View members</Button></CommandItem>
                 </CommandGroup>
               </CommandList>
             </Command>
@@ -53,14 +61,14 @@ export default function AllTeams(){
           <div>
             <h1 className="subheading font-medium my-6">Current team</h1>
             <div className="flex flex-col gap-y-6 mt-[10px]">
-              <TeamCard teamname={auth?.team.team_title} />
+              <TeamCard {...auth.team} />
             </div>
           </div>
           <div>
             <h1 className="subheading font-medium my-6">Teams</h1>
             <div className="flex flex-col gap-y-6 mt-[10px]">
               <DataList pagination={teamnames.length > 6 ? true : false} listPerPage={6}>
-                {teamnames.map(t => <TeamCard teamname={t.team_title} />)}
+                {teamnames.map(t => <TeamCard key={t.name} {...t} />)}
               </DataList>
             </div>
           </div>

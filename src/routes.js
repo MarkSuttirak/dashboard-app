@@ -27,6 +27,7 @@ import PricingTablePage from './pages/pricingTable';
 import CheckoutPending from './pages/checkout/checkoutPending';
 import ComingSoonPage from './pages/coming-soon';
 import Teams from './pages/teams/teams';
+import JoinTeam from './pages/teams/joinTeam';
 
 // ----------------------------------------------------------------------
 
@@ -37,7 +38,7 @@ export default function Router() {
     const appCategory = pathParts[1] === 'integration' && pathParts[2] === 'app-category' && pathParts[3] !== '';
 
     useEffect(() => {
-        if (location.pathname === '/dashboard/app' || location.pathname === '/integration/appstore' || appCategory){
+        if (location.pathname === '/dashboard/app' || location.pathname === '/integration/appstore' || appCategory) {
             document.body.classList.add('bg-gradient')
         } else {
             document.body.classList.remove('bg-gradient')
@@ -64,7 +65,13 @@ export default function Router() {
                     ],
                 },
                 { path: 'settings/:id', element: <Settings /> },
-                { path: 'teams/:id', element: <Teams /> },
+                {
+                    path: 'teams', children: [
+                        { path: '/dashboard/teams', element: <Teams /> },
+                        { path: 'invite/:inviteCode', element: <JoinTeam /> },
+                        { path: ':id', element: <Teams /> }
+                    ]
+                },
                 { path: 'compare-plan', element: <ComparePlan /> }
             ],
         },
@@ -88,10 +95,10 @@ export default function Router() {
             path: '/integration',
             element: withAuthenticationRequired(DashboardLayout),
             children: [
-                { path: ':id', element: <Integration />},
-                { path: 'appstore', element: <AppStore />},
-                { path: 'appstore/:id', element: <SingleApp />},
-                { path: 'app-category/:cate', element: <AppCategory />}
+                { path: ':id', element: <Integration /> },
+                { path: 'appstore', element: <AppStore /> },
+                { path: 'appstore/:id', element: <SingleApp /> },
+                { path: 'app-category/:cate', element: <AppCategory /> }
             ],
         },
         {
@@ -109,12 +116,13 @@ export default function Router() {
                         { path: 'other-info', element: <OtherInfo /> },
                     ]
                 },
+                { path: 'invite/:inviteCode', element: <Navigate to={`/dashboard/teams/invite/${location.pathname.split('/')[2]}`} /> },
                 { path: '*', element: <NotFoundPage /> },
             ],
         },
         { path: '*', element: <NotFoundPage replace /> },
-        { path: '/pricing', element: <Pricing />},
-        { path: '/pricing-table', element: <PricingTablePage />}
+        { path: '/pricing', element: <Pricing /> },
+        { path: '/pricing-table', element: <PricingTablePage /> }
     ]
     return useRoutes(routes);
 }

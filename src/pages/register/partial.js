@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Dialog, Transition } from '@headlessui/react';
 import { ChatBubbleBottomCenterTextIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import LoadingCheck from "../../components/loadingcheck";
@@ -16,9 +16,10 @@ import { Input } from '../../components/ui/input';
 import { Button } from '../../components/ui/button';
 import { useTranslation } from 'react-i18next';
 
-export default function Partial(){
+export default function Partial() {
+    const location = useLocation();
     return (
-        <SignupProvider>
+        <SignupProvider state={location.state}>
             <Outlet />
         </SignupProvider>
     )
@@ -155,7 +156,7 @@ const GetPhoneNumber = ({
                                                 </div>
                                                 <div className="text-left">
                                                     <Dialog.Title as="h3" className="subheading small">
-                                                    {t('creating_status.requesting_otp')}
+                                                        {t('creating_status.requesting_otp')}
                                                     </Dialog.Title>
                                                 </div>
                                             </div>
@@ -171,7 +172,7 @@ const GetPhoneNumber = ({
                                                 <LoadingCheck type='primary' height='20px' />
                                                 <div className="text-left">
                                                     <Dialog.Title as="h3" className="subheading small">
-                                                    {t('creating_status.requested_otp')}
+                                                        {t('creating_status.requested_otp')}
                                                     </Dialog.Title>
                                                 </div>
                                             </div>
@@ -186,7 +187,7 @@ const GetPhoneNumber = ({
                                             <div className="flex gap-x-2 items-center">
                                                 <LoadingCheck type='primary' height='20px' />
                                                 <Dialog.Title as="h3" className="subheading small">
-                                                {t('creating_status.sent_otp')}
+                                                    {t('creating_status.sent_otp')}
                                                 </Dialog.Title>
                                             </div>
                                             <div>
@@ -200,7 +201,7 @@ const GetPhoneNumber = ({
                                                     <div className="inner-icon"></div>
                                                 </div>
                                                 <Dialog.Title as="h3" className="subheading small">
-                                                {t('creating_status.sending_otp')}
+                                                    {t('creating_status.sending_otp')}
                                                 </Dialog.Title>
                                             </div>
                                             <div>
@@ -214,7 +215,7 @@ const GetPhoneNumber = ({
                                             <div className="flex gap-x-2 items-center">
                                                 <LoadingCheck type='primary' height='20px' />
                                                 <Dialog.Title as="h3" className="subheading small">
-                                                {t('creating_status.sent_otp_to_phone')}
+                                                    {t('creating_status.sent_otp_to_phone')}
                                                 </Dialog.Title>
                                             </div>
                                             <div>

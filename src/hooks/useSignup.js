@@ -2,9 +2,10 @@ import { createContext, useContext, useState } from 'react';
 
 const signupContext = createContext();
 
-export const SignupProvider = ({ children }) => {
+export const SignupProvider = ({ children, state }) => {
     const [current, setCurrent] = useState(0);
     const [key, setKey] = useState("sjdkbjdbjk")
+    const [istate, _] = useState(state)
 
     const next = () => {
         if (current < children.length) {
@@ -26,6 +27,7 @@ export const SignupProvider = ({ children }) => {
                 prev,
                 key,
                 setKey,
+                state: istate,
             }}
         >
             {children}

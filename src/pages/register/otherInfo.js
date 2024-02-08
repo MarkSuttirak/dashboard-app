@@ -3,7 +3,7 @@ import StepMaintainer from '../../components/StepMaintainer'
 import { useFormik } from 'formik'
 import { RadioGroup, Dialog, Transition } from '@headlessui/react';
 import { businessInfoSchema, teamInfoSchema, userInfoSchema } from './validations/otherInfoSchema'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useOutletContext, useParams } from 'react-router-dom'
 import { AuthContext } from 'react-oauth2-code-pkce'
 import { partial } from '../../client/api'
 import { useMutation } from 'react-query'
@@ -27,10 +27,12 @@ import {
 import { Input } from '../../components/ui/input';
 import { DatePicker } from 'src/components/ui/datepicker';
 import { useTranslation } from "react-i18next";
+import useSignup from 'src/hooks/useSignup';
 
 const OtherInfo = () => {
     const { t } = useTranslation();
     const { key } = useParams();
+    const { state } = useSignup();
     const navigate = useNavigate();
     const [otherInfo, setOtherInfo] = useState({
         key,
@@ -39,9 +41,13 @@ const OtherInfo = () => {
 
     const { mutate: registernow, isLoading } = useMutation((data) => partial.setupOauthAccount(data), {
         onSuccess: (res) => {
-            // setToken(res.token);
-            // navigate('/dashboard/instance-configuration');
-            console.log(res);
+            setToken(res.token);
+            if ("inviteCode" in state) {
+                navigate(`/invite/${state.inviteCode}`);
+            } else {
+                // navigate('/dashboard/instance-configuration');
+                console.log(res);
+            }
         },
     });
 
@@ -55,7 +61,7 @@ const OtherInfo = () => {
         initialValues: {
             first_name: '',
             last_name: '',
-            email: '',
+            email: idTokenData.email ?? '',
             key,
         },
         validateOnChange: false,
@@ -133,37 +139,36 @@ const OtherInfo = () => {
                                 {formik.errors.email && (<p className="error">{formik.errors.email}</p>)}
                             </div>
 
-                            <div>
-                                <div>
-                                    <h2 className="main-title mt-8">What would you like to call your site?</h2>
-                                    <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
-                                </div>
+                            {
+                                !state?.inviteCode && (
+                                    <div>
+                                        <div>
+                                            <h2 className="main-title mt-8">What would you like to call your site?</h2>
+                                            <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
+                                        </div>
 
-                                <div>
-                                    <div className="relative mt-1 rounded-md shadow-sm">
-                                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 tab-desc">
-                                        http://
+                                        <div>
+                                            <div className="relative mt-1 rounded-md shadow-sm">
+                                                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 tab-desc">
+                                                    http://
+                                                </div>
+                                                <input
+                                                    type="text"
+                                                    name="site"
+                                                    id="site"
+                                                    className={`form-input ${siteError ? 'error' : ''}`}
+                                                    placeholder="example"
+                                                    style={{ paddingRight: "140px", paddingLeft: "60px" }}
+
+                                                />
+                                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 tab-desc">
+                                                    .zaviago.com
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                        <input
-                                            type="text"
-                                            name="site"
-                                            id="site"
-                                            className={`form-input ${siteError ? 'error' : ''}`}
-                                            placeholder="example"
-                                            style={{ paddingRight: "140px", paddingLeft: "60px" }}
-                                        
-                                        />
-                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 tab-desc">
-                                        .zaviago.com
-                                    </div>
-                                    </div>
-                                </div>
-
-
-                            </div>         
-
-
-
+                                )
+                            }
 
                             <div>
                                 <div className='flex gap-x-2 text-sm mt-6'>
@@ -183,7 +188,7 @@ const OtherInfo = () => {
                 </div>
             </div>
             <Transition.Root show={isLoading} as={Fragment}>
-            <Dialog as="div" className="relative z-[999]" onClose={() => { }}>
+                <Dialog as="div" className="relative z-[999]" onClose={() => { }}>
                     <Transition.Child
                         as={Fragment}
                         enter="ease-out duration-300"

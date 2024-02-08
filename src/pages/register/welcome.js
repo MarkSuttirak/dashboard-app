@@ -4,15 +4,13 @@ import { AuthContext } from "react-oauth2-code-pkce";
 import { Icons } from "src/components/ui/icons";
 import loginImg from "src/img/login-img.png"
 import { useTranslation } from "react-i18next";
-import { object } from "yup";
 
-
-export default function Welcome(){
-  const {t,i18n} = useTranslation();
+export default function Welcome() {
+  const { t, i18n } = useTranslation();
 
   const lngs = {
-    en: {nativeName : "EN"},
-    th: {nativeName : "TH"}
+    en: { nativeName: "EN" },
+    th: { nativeName: "TH" }
   }
 
   const { login: lineLogin } = useContext(AuthContext);
@@ -46,7 +44,7 @@ export default function Welcome(){
             <button
               type="button"
               key={lng}
-              onClick={() => {i18n.changeLanguage(lng);localStorage.setItem('lang', lng)}}
+              onClick={() => { i18n.changeLanguage(lng); localStorage.setItem('lang', lng) }}
               disabled={i18n.resolvedLanguage === lng}
               className={`px-2 py-1 text-sm hover:bg-darkergray hover:text-white cursor-pointer rounded-md ${i18n.resolvedLanguage === lng ? 'bg-darkergray text-white' : ''}`}
             >
@@ -73,7 +71,7 @@ export default function Welcome(){
                 <div className="mt-1 gap-3">
                   <div>
                     <button
-                      onClick={lineLogin}
+                      onClick={() => lineLogin(JSON.stringify(location.state))}
                       className="login-line-btn"
                     >
                       <span className="sr-only">Login with Line</span>
