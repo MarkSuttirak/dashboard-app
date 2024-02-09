@@ -12,9 +12,10 @@ import { CheckCircle2 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogClose, DialogFooter } from "src/components/ui/dialog"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "src/components/ui/select"
 import { useMutation, useQuery } from "react-query";
-import { site } from "../../client/api";
+import { site, team } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { Skeleton } from "src/components/ui/skeleton";
+import { useFormik } from "formik";
 
 const sidebarNavItems = [
   {
@@ -27,11 +28,11 @@ const sidebarNavItems = [
   }
 ]
 
-const expireAfter = ['12 hours', '1 day', '3 days', '7 days']
-const maximumUses = ['1 use', '5 uses', '10 uses', '20 uses', '30 uses', 'Unlimited']
+const expireAfter = ['12 Hours', '1 Day', '3 Days', '7 Days']
+const maximumUses = ['1 use', '5 uses', '10 uses', '20 uses', '30 uses', 'No Limit']
 
 export default function Teams() {
-  const { user, auth } = useUser();
+  const { user, auth, getUser } = useUser();
 
   const { data: sites } = useQuery('sites', site.list, {
     enabled: !!user,
@@ -59,6 +60,8 @@ export default function Teams() {
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState(0)
 
+
+
   const copyLink = () => {
     inviteLinkRef.current.select()
     document.execCommand('copy')
@@ -68,19 +71,6 @@ export default function Teams() {
         <div className="flex flex-col gap-y-1">
           <h3>Link copied</h3>
           <p className="font-normal">You can send the link to new teammates</p>
-        </div>
-      </div>),
-    })
-  }
-
-  const generateLink = () => {
-    setOpen(false)
-    toast({
-      title: (<div className="flex gap-x-3">
-        <CheckCircle2 className="h-4 w-4 mt-1" />
-        <div className="flex flex-col gap-y-1">
-          <h3>Link generated</h3>
-          <p className="font-normal">The information has been updated</p>
         </div>
       </div>),
     })
@@ -107,59 +97,20 @@ export default function Teams() {
             <Toaster />
 
             <p className="main-desc">
-              Your invitation link will expire in {expireAfter[selected]}.{" "}
+              Your invitation link will expire after every {auth?.team?.invite_code_rotation_interval}.{" "}
               <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger className="text-[#006AFF]">Edit invitation link</DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Edit invitation link</DialogTitle>
-                    <DialogDescription className='flex flex-col gap-y-6 py-6'>
-                      <div className="anim-up flex flex-col">
-                        <label className="subheading mb-2 font-medium">
-                          Expire after
-                        </label>
-                        <Select className='form-input' name="expire-after" defaultValue={expireAfter[0]}>
-                          <SelectTrigger className="w-full">
-                            <SelectValue defaultValue={expireAfter[0]} />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {expireAfter.map(r =>
-                              <SelectItem value={r}>{r}</SelectItem>
-                            )}
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      <div className="anim-up flex flex-col">
-                        <label className="subheading mb-2 font-medium">
-                          Maximum number of uses
-                        </label>
-                        <Select className='form-input' name="expire-after" defaultValue={maximumUses[0]}>
-                          <SelectTrigger className="w-full">
-                            <SelectValue defaultValue={maximumUses[0]} />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {maximumUses.map(m =>
-                              <SelectItem value={m}>{m}</SelectItem>
-                            )}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </DialogDescription>
-                  </DialogHeader>
-                  <DialogFooter>
-                    <div className="flex w-full justify-between">
-                      <DialogClose asChild>
-                        <Button type="button" variant="ghost">
-                          Cancel
-                        </Button>
-                      </DialogClose>
-                      <Button type="button" onClick={generateLink}>
-                        Generate a new link
-                      </Button>
-                    </div>
-                  </DialogFooter>
-                </DialogContent>
+                {
+                  auth?.team && (
+                    <SettingsDialogContent
+                      setOpen={setOpen}
+                      open={open}
+                      initialValues={{
+                        invite_code_rotation_interval: auth.team.invite_code_rotation_interval,
+                        invite_code_usage_limit: auth.team.invite_code_usage_limit
+                      }} />
+                  )
+                }
               </Dialog>
             </p>
 
@@ -179,5 +130,125 @@ export default function Teams() {
         )}
       </main>
     </div>
+  )
+}
+
+export const SettingsDialogContent = ({ ...props }) => {
+  const { getUser } = useUser()
+  const { toast } = useToast()
+
+  const formik = useFormik({
+    initialValues: props.initialValues,
+    onSubmit: (values) => team.change_team_settings(values).then(() => {
+      getUser()
+      generateLink()
+    })
+  });
+
+  const generateLink = () => {
+    props.setOpen(false)
+    toast({
+      title: (<div className="flex gap-x-3">
+        <CheckCircle2 className="h-4 w-4 mt-1" />
+        <div className="flex flex-col gap-y-1">
+          <h3>Link generated</h3>
+          <p className="font-normal">The information has been updated</p>
+        </div>
+      </div>),
+    })
+  }
+  return (
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Edit invitation link</DialogTitle>
+        <DialogDescription className='flex flex-col gap-y-6 py-6'>
+          <div className="anim-up flex flex-col">
+            <label className="subheading mb-2 font-medium">
+              Expire after
+            </label>
+            <select className='form-input'
+              name="invite_code_rotation_interval"
+              value={formik.values.invite_code_rotation_interval}
+              onChange={formik.handleChange}
+            >
+              {expireAfter.map(r =>
+                <option value={r} key={r}>{r}</option>
+              )}
+            </select>
+          </div>
+
+          <div className="anim-up flex flex-col">
+            <label className="subheading mb-2 font-medium">
+              Maximum number of uses
+            </label>
+            <select
+              className='form-input'
+              name="invite_code_usage_limit"
+              value={formik.values.invite_code_usage_limit}
+              onChange={formik.handleChange}
+            >
+              {maximumUses.map(m =>
+                <option value={m} key={m}>{m}</option>
+              )}
+            </select>
+          </div>
+
+          {/* <div className="anim-up flex flex-col"> 
+          {/* <label className="subheading mb-2 font-medium">
+            Expire after
+          </label>
+          <Select className='form-input'
+            name="invite_code_rotation_interval"
+            defaultValue={expireAfter[0]}
+            value={formik.values.invite_code_rotation_interval}
+            onchange={opt => formik.setFieldValue('invite_code_rotation_interval', opt)}
+          >
+            <SelectTrigger className="w-full">
+              <SelectValue defaultValue={expireAfter[0]} />
+            </SelectTrigger>
+            <SelectContent>
+              {expireAfter.map(r =>
+                <SelectItem value={r}>{r}</SelectItem>
+              )}
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="anim-up flex flex-col">
+          <label className="subheading mb-2 font-medium">
+            Maximum number of uses
+          </label>
+          <Select
+            className='form-input'
+            name="invite_code_usage_limit"
+            value={formik.values.invite_code_usage_limit}
+            onchange={opt => console.log(opt)}
+          >
+            <SelectTrigger className="w-full">
+              <SelectValue defaultValue={maximumUses[0]} />
+            </SelectTrigger>
+            <SelectContent>
+              {maximumUses.map(m =>
+                <SelectItem value={m}>{m}</SelectItem>
+              )}
+            </SelectContent>
+          </Select>
+        </div> */}
+        </DialogDescription>
+      </DialogHeader>
+      <DialogFooter>
+        <div className="flex w-full justify-between">
+          <DialogClose asChild>
+            <Button type="button" variant="ghost">
+              Cancel
+            </Button>
+          </DialogClose>
+          <Button type="button" onClick={formik.handleSubmit}>
+            Generate a new link
+          </Button>
+        </div>
+      </DialogFooter>
+    </DialogContent>
+
   )
 }

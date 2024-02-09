@@ -51,6 +51,7 @@ export const site = {
 export const team = {
     get_invite: (code) => api.get('/method/press.api.team.get_invite', { params: { invite_code: code } }).then((response) => response.data.message),
     join_team: ({ invite_code, accepted_user_terms }) => api.post('/method/press.api.team.join_team', { invite_code, accepted_user_terms }).then((response) => response.data.message),
+    change_team_settings: (data) => api.post('/method/press.api.team.change_team_settings', data).then((response) => response.data.message),
     switch_team: (team) => api.post('/method/press.api.account.switch_team', { team }).then((response) => {
         localStorage.setItem('current_team', response.data.message.team.name);
         return response.data.message;
