@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useFormik } from 'formik';
 import { useQuery, useMutation } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import StepMaintainer from 'src/components/StepMaintainer';
 import { team } from 'src/client/api';
 import { useToast } from 'src/components/ui/use-toast';
@@ -79,8 +79,9 @@ export const ConfirmJoin = ({
         accepted_user_terms: false
     }
 }) => {
+    const { navigate } = useNavigate();
     const { mutate } = useMutation('joinTeam', team.join_team, {
-        onSuccess: () => console.log("joined"),
+        onSuccess: () => navigate('/dashboard/teams/teams'),
         onError: (err) => console.log("err", err)
     });
 
