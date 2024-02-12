@@ -145,7 +145,8 @@
         "settings": "ตั้งค่า",
         "integration": "แอปของคุณ",
         "your_workspace": "WorkSpace ของคุณ",
-        "application": "แอปพลิเคชัน"
+        "application": "แอปพลิเคชัน",
+        "teams": "ทีมงาน"
     },
     "pro_privileges": {
         "pro_desc": "อัปเกรดแพคเกจเป็นโปรเพื่อให้คุณและเพื่อนของคุณ ใช้งานทุกอย่างได้อย่างไร้ขีดจำกัด",

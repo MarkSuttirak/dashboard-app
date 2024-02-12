@@ -145,7 +145,8 @@
         "settings": "Settings",
         "integration": "Integration",
         "your_workspace": "Your WorkSpace",
-        "application": "Applications"
+        "application": "Applications",
+        "teams": "Teams"
     },
     "pro_privileges": {
         "pro_desc": "Say hello to the world and let readers know what your blog is all about.",
