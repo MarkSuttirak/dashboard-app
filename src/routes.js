@@ -54,6 +54,7 @@ export default function Router() {
             path: '/dashboard',
             element: withAuthenticationRequired(DashboardLayout),
             children: [
+                { path: 'instance-configuration/:site', element: <InstanceConfig /> },
                 { path: 'instance-configuration', element: <InstanceConfig /> },
                 { path: 'app', element: <Dashboard /> },
                 {

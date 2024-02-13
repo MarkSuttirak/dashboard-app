@@ -335,7 +335,6 @@ export const SiteDomainForm = ({
 
     return (
         <form className="register-formbox" onSubmit={formik.handleSubmit}>
-            <Steps total={5} step={3} />
             <div className={`anim-up`}>
                 <h2 className="main-heading mt-8">{t('setup_site.call_your_site')}</h2>
                 <p className="subheading mt-2">{t('setup_site.call_your_site_desc')}</p>

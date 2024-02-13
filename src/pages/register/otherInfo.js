@@ -42,12 +42,13 @@ const OtherInfo = () => {
     const { mutate: registernow, isLoading } = useMutation((data) => partial.setupOauthAccount(data), {
         onSuccess: (res) => {
             setToken(res.token);
-            if ("inviteCode" in state) {
-                navigate(`/invite/${state.inviteCode}`);
-            } else {
-                // navigate('/dashboard/instance-configuration');
-                console.log(res);
-            }
+            //if ("inviteCode" in state) {
+            //    navigate(`/invite/${state.inviteCode}`);
+            //} else {
+               
+                navigate('/dashboard/instance-configuration');
+              
+            //}
         },
     });
 
@@ -63,6 +64,7 @@ const OtherInfo = () => {
             last_name: '',
             email: idTokenData.email ?? '',
             key,
+            site: ''
         },
         validateOnChange: false,
         validationSchema: userInfoSchema,
@@ -136,39 +138,39 @@ const OtherInfo = () => {
                                     className='form-input'
                                     placeholder="mail@example.com"
                                 />
+                               
                                 {formik.errors.email && (<p className="error">{formik.errors.email}</p>)}
                             </div>
 
-                            {
-                                !state?.inviteCode && (
-                                    <div>
-                                        <div>
-                                            <h2 className="main-title mt-8">What would you like to call your site?</h2>
-                                            <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
+                           
+                            <div>
+                                <div>
+                                    <h2 className="main-title mt-8">What would you like to call your site?</h2>
+                                    <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
+                                </div>
+
+                                <div>
+                                    <div className="relative mt-1 rounded-md shadow-sm">
+                                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 tab-desc">
+                                            http://
                                         </div>
+                                        <Input
+                                            type="text"
+                                            name="site"
+                                            onChange={formik.handleChange}
+                                            id="site"
+                                            className={`form-input ${siteError ? 'error' : ''}`}
+                                            placeholder="example"
+                                            style={{ paddingRight: "140px", paddingLeft: "60px" }}
 
-                                        <div>
-                                            <div className="relative mt-1 rounded-md shadow-sm">
-                                                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 tab-desc">
-                                                    http://
-                                                </div>
-                                                <input
-                                                    type="text"
-                                                    name="site"
-                                                    id="site"
-                                                    className={`form-input ${siteError ? 'error' : ''}`}
-                                                    placeholder="example"
-                                                    style={{ paddingRight: "140px", paddingLeft: "60px" }}
-
-                                                />
-                                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 tab-desc">
-                                                    .zaviago.com
-                                                </div>
-                                            </div>
+                                        />
+                                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 tab-desc">
+                                            .zaviago.com
                                         </div>
                                     </div>
-                                )
-                            }
+                                </div>
+                            </div>
+                               
 
                             <div>
                                 <div className='flex gap-x-2 text-sm mt-6'>
