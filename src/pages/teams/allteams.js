@@ -7,10 +7,12 @@ import { DataList } from "src/components/pagination";
 import { useUser } from "../../hooks/useUser";
 import Loading from "src/components/ui/loading";
 import { team } from "src/client/api";
+import { useTranslation } from "react-i18next";
 
 export default function AllTeams() {
   const { auth } = useUser();
   const teamnames = auth?.teams
+  const { t } = useTranslation()
 
   const TeamCard = (lteam) => {
     return (
@@ -27,7 +29,7 @@ export default function AllTeams() {
         <Popover>
           <PopoverTrigger asChild>
             <Button variant="outline" className="ml-auto">
-              {lteam.name === auth.team.name ? "Current" : "Switch"}
+              {lteam.name === auth.team.name ? t('teams.current') : t('teams.switch')}
               <ChevronDownIcon className="ml-2 h-4 w-4 text-muted-foreground" />
             </Button>
           </PopoverTrigger>
@@ -35,17 +37,12 @@ export default function AllTeams() {
             <Command>
               <CommandList>
                 <CommandGroup className="p-1.5">
-                  {
-                    lteam.name !== auth.team.name && (
-                      <CommandItem>
-                        <Button
-                          variant="soft"
-                          onClick={() => team.switch_team(lteam.name).then(() => window.location.reload())}
-                        >Switch</Button>
-                      </CommandItem>
-                    )
-                  }
-                  <CommandItem><Button variant="soft">View members</Button></CommandItem>
+                  {lteam.name !== auth.team.name && (
+                    <CommandItem onSelect={() => team.switch_team(lteam.name).then(() => window.location.reload())}>
+                      {t('teams.switch')}
+                    </CommandItem>
+                  )}
+                  <CommandItem>{t('teams.view_members')}</CommandItem>
                 </CommandGroup>
               </CommandList>
             </Command>
@@ -59,13 +56,13 @@ export default function AllTeams() {
       {auth ? (
         <>
           <div>
-            <h1 className="subheading font-medium my-6">Current team</h1>
+            <h1 className="subheading font-medium my-6">{t('teams.current_team')}</h1>
             <div className="flex flex-col gap-y-6 mt-[10px]">
               <TeamCard {...auth.team} />
             </div>
           </div>
           <div>
-            <h1 className="subheading font-medium my-6">Teams</h1>
+            <h1 className="subheading font-medium my-6">{t('teams.teams')}</h1>
             <div className="flex flex-col gap-y-6 mt-[10px]">
               <DataList pagination={teamnames.length > 6 ? true : false} listPerPage={6}>
                 {teamnames.map(t => <TeamCard key={t.name} {...t} />)}

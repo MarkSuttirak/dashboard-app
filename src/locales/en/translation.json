@@ -49,6 +49,7 @@
     "what_you_want_to_do": "What do you want to do today?",
     "discover_what_you_can_do": "Discover what you can do with Zaviago",
     "cancel": "Cancel",
+    "remove":"Remove",
     "upgrade": "Upgrade",
     "pro": "Pro",
     "upgrade_to_pro": "Upgrade to Pro",
@@ -238,6 +239,44 @@
             "amount": "Amount"
         },
         "billing": "Billing"
+    },
+    "teams": {
+        "teammembers": "Team Members",
+        "my_teams":"Teams",
+        "current_team":"Current Team",
+        "teams":"Teams",
+        "manage_members": {
+            "title": "Manage Members",
+            "desc": "You can invite team members and control their positions."
+        },
+        "copy_link":"Copy Link",
+        "invitation_desc":"Your invitation link will expire after every",
+        "edit_invitation": "Edit invitation link",
+        "expire_after":"Expire after",
+        "maximum_uses":"Maximum number of uses",
+        "12 Hours":"12 Hours",
+        "1 Day":"1 Day",
+        "3 Days":"3 Days",
+        "7 Days":"7 Days",
+        "people_with_access":"People with access",
+        "search_user":"Search User",
+        "role":"Role",
+        "super_admin":"Super Admin",
+        "member":"Member",
+        "1 use":"1 use",
+        "5 uses":"5 uses",
+        "10 uses":"10 uses",
+        "20 uses":"20 uses",
+        "30 uses":"30 uses",
+        "No Limit":"No Limit",
+        "generate_link":"Generate a new link",
+        "all_teams": {
+            "title":"All your teams",
+            "desc":"You can promptly switch to other teams upon receiving an invitation to join them."
+        },
+        "current":"Current",
+        "switch":"Switch",
+        "view_members":"View members"
     },
     "purchase_detail": "Purchase detail",
     "purchase_detail_desc": "If you need to edit billing information of tax invoice issuance or modify your order, please press the 'Back' button to cancel the current order.",

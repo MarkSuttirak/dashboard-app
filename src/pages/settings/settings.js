@@ -29,17 +29,17 @@ export default function Settings(){
     <div className="dashboard-container">
       <h1 className="main-heading">{t('menus.settings')}</h1>
 
-      <main className="flex gap-x-[72px] mt-8">
+      <main className="flex flex-col lg:flex-row gap-y-8 gap-x-[72px] mt-8">
         <PagesMenus menus={sidebarNavItems} />
 
         {id === 'plan-upgrade' && (
-          <section className="w-[672px]">
+          <section className="max-w-[672px] w-full">
             <PlanUpgrades />
           </section>
         )}
 
         {id === 'account' && (
-          <section className="w-[672px]">
+          <section className="max-w-[672px] w-full">
             <div className="mb-8">
               <h2 className="settings-heading">{t('settings.account')}</h2>
               <p className="main-desc">{t('settings.account_desc')}</p>
@@ -50,7 +50,7 @@ export default function Settings(){
         )}
 
         {id === 'billing-plans' && (
-          <section className="w-[672px]">
+          <section className="max-w-[672px] w-full">
             <Tabs defaultValue="overview">
               <TabsList>
                 <TabsTrigger value="overview">{t('settings.overview.title')}</TabsTrigger>
@@ -72,7 +72,7 @@ export default function Settings(){
         )}
 
         {id === 'display' && (
-          <section className="w-[672px]">
+          <section className="max-w-[672px] w-full">
             <h2 className="settings-heading">Display</h2>
             <p className="main-desc">Turn items on or off to control what's displayed in the app.</p>
 

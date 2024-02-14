@@ -22,7 +22,7 @@ export default function Integration(){
     <div className="dashboard-container">
       <h1 className="main-heading tracking-[-0.6px]">{t('menus.integration')}</h1>
 
-      <main className="flex gap-x-[72px] mt-8">
+      <main className="flex flex-col lg:flex-row gap-y-8 gap-x-[72px] mt-8">
         <PagesMenus menus={sidebarNavItems} />
 
         {(id === 'manage-apps' || id === 'upgrade-apps') && (

@@ -16,22 +16,10 @@ import { site, team } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { Skeleton } from "src/components/ui/skeleton";
 import { useFormik } from "formik";
-
-const sidebarNavItems = [
-  {
-    title: "Team Members",
-    href: "/dashboard/teams",
-  },
-  {
-    title: "Teams",
-    href: "/dashboard/teams/teams",
-  }
-]
-
-const expireAfter = ['12 Hours', '1 Day', '3 Days', '7 Days']
-const maximumUses = ['1 use', '5 uses', '10 uses', '20 uses', '30 uses', 'No Limit']
+import { useTranslation } from "react-i18next";
 
 export default function Teams() {
+  const { t } = useTranslation()
   const { user, auth, getUser } = useUser();
 
   const { data: sites } = useQuery('sites', site.list, {
@@ -60,7 +48,16 @@ export default function Teams() {
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState(0)
 
-
+  const sidebarNavItems = [
+    {
+      title: t('teams.teammembers'),
+      href: "/dashboard/teams",
+    },
+    {
+      title: t('teams.my_teams'),
+      href: "/dashboard/teams/teams",
+    }
+  ]
 
   const copyLink = () => {
     inviteLinkRef.current.select()
@@ -78,28 +75,28 @@ export default function Teams() {
 
   return (
     <div className="dashboard-container">
-      <h1 className="main-heading">Teams</h1>
+      <h1 className="main-heading">{t('menus.teams')}</h1>
 
-      <main className="flex gap-x-[72px] mt-8">
+      <main className="flex flex-col lg:flex-row gap-y-8 gap-x-[72px] mt-8">
         <PagesMenus menus={sidebarNavItems} />
         {!id && (
-          <section className="w-[672px]">
-            <h2 className="settings-heading">Manage Members</h2>
-            <p className="main-desc">You can invite team members and control their positions.</p>
+          <section className="max-max-w-[672px] w-full w-full">
+            <h2 className="settings-heading">{t('teams.manage_members.title')}</h2>
+            <p className="main-desc">{t('teams.manage_members.desc')}</p>
 
             {auth?.team?.invite_code ? (
               <div className="flex w-full items-center space-x-2 mt-6 mb-[10px]">
                 <Input type="link" value={`https://${window.location.host}/invite/${auth.team.invite_code}`} ref={inviteLinkRef} />
-                <Button variant='secondary' onClick={copyLink}>Copy Link</Button>
+                <Button variant='secondary' onClick={copyLink}>{t('teams.copy_link')}</Button>
               </div>
             ) : <Skeleton className='h-9 w-full mt-6 mb-[10px]' />}
 
             <Toaster />
 
             <p className="main-desc">
-              Your invitation link will expire after every {auth?.team?.invite_code_rotation_interval}.{" "}
+              {t('teams.invitation_desc')} {t(`teams.${auth?.team?.invite_code_rotation_interval}`)}.{" "}
               <Dialog open={open} onOpenChange={setOpen}>
-                <DialogTrigger className="text-[#006AFF]">Edit invitation link</DialogTrigger>
+                <DialogTrigger className="text-[#006AFF]">{t('teams.edit_invitation')}</DialogTrigger>
                 {
                   auth?.team && (
                     <SettingsDialogContent
@@ -121,9 +118,9 @@ export default function Teams() {
         )}
 
         {id === 'teams' && (
-          <section className="w-[672px]">
-            <h2 className="settings-heading">All your teams</h2>
-            <p className="main-desc">You can promptly switch to other teams upon receiving an invitation to join there them.</p>
+          <section className="max-w-[672px] w-full">
+            <h2 className="settings-heading">{t('teams.all_teams.title')}</h2>
+            <p className="main-desc">{t('teams.all_teams.desc')}</p>
 
             <AllTeams />
           </section>
@@ -136,6 +133,11 @@ export default function Teams() {
 export const SettingsDialogContent = ({ ...props }) => {
   const { getUser } = useUser()
   const { toast } = useToast()
+
+  const { t } = useTranslation()
+
+  const expireAfter = [t('teams.12 Hours'), t('teams.1 Day'), t('teams.3 Days'), t('teams.7 Days')]
+  const maximumUses = [t('teams.1 use'), t('teams.5 uses'), t('teams.10 uses'), t('teams.20 uses'), t('teams.30 uses'), t('teams.No Limit')]
 
   const formik = useFormik({
     initialValues: props.initialValues,
@@ -160,11 +162,11 @@ export const SettingsDialogContent = ({ ...props }) => {
   return (
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>Edit invitation link</DialogTitle>
+        <DialogTitle>{t('teams.edit_invitation')}</DialogTitle>
         <DialogDescription className='flex flex-col gap-y-6 py-6'>
           <div className="anim-up flex flex-col">
             <label className="subheading mb-2 font-medium">
-              Expire after
+              {t('teams.expire_after')}
             </label>
             <select className='form-input'
               name="invite_code_rotation_interval"
@@ -179,7 +181,7 @@ export const SettingsDialogContent = ({ ...props }) => {
 
           <div className="anim-up flex flex-col">
             <label className="subheading mb-2 font-medium">
-              Maximum number of uses
+              {t('teams.maximum_uses')}
             </label>
             <select
               className='form-input'
@@ -240,15 +242,14 @@ export const SettingsDialogContent = ({ ...props }) => {
         <div className="flex w-full justify-between">
           <DialogClose asChild>
             <Button type="button" variant="ghost">
-              Cancel
+              {t('cancel')}
             </Button>
           </DialogClose>
           <Button type="button" onClick={formik.handleSubmit}>
-            Generate a new link
+            {t('teams.generate_link')}
           </Button>
         </div>
       </DialogFooter>
     </DialogContent>
-
   )
 }

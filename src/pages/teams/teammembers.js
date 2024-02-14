@@ -13,17 +13,19 @@ import { Checkbox } from "src/components/ui/checkbox";
 import { useUser } from "src/hooks/useUser";
 import Loading from "src/components/ui/loading";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "src/components/ui/dialog"
+import { useTranslation } from "react-i18next";
 
 export default function TeamMembers(){
   const { user, auth } = useUser();
+  const { t } = useTranslation()
   const userRoles = [
     {
-      role:'Super Admin',
+      role:t('teams.super_admin'),
       ability:'Can access billing and add members',
       icon:<PersonIcon className="mt-1"/>
     },
     {
-      role:'Member',
+      role:t('teams.member'),
       ability:'Can edit',
       icon:<Pencil1Icon className="mt-1"/>
     }
@@ -86,7 +88,7 @@ export default function TeamMembers(){
                       <DialogTrigger className="flex items-start gap-x-4 text-start">
                         <EyeNoneIcon className="mt-1"/>
                         <div className="flex flex-col">
-                          <h3 className="subheading font-medium">Remove</h3>
+                          <h3 className="subheading font-medium">{t('remove')}</h3>
                           <p className="text-sm text-muted-foreground">
                             Remove from the team
                           </p>
@@ -100,7 +102,7 @@ export default function TeamMembers(){
                           </DialogDescription>
                           <DialogFooter>
                             <DialogClose>
-                              <Button variant='outline'>Cancel</Button>
+                              <Button variant='outline'>{t('cancel')}</Button>
                             </DialogClose>
                             <Button type="submit">Continue</Button>
                           </DialogFooter>
@@ -118,15 +120,15 @@ export default function TeamMembers(){
   }
   return (
     <div>
-      <h1 className="subheading font-medium">People with access</h1>
+      <h1 className="subheading font-medium">{t('teams.people_with_access')}</h1>
       <div className="mt-[10px] flex gap-x-2">
-        <Input className='max-w-[300px]' placeholder='Search User' value={search} onChange={(e) => setSearch(e.target.value)}/>
+        <Input className='max-w-[300px]' placeholder={t('teams.search_user')} value={search} onChange={(e) => setSearch(e.target.value)}/>
         <Popover>
           <PopoverTrigger>
             <Button variant='outline' className='border border-dashed flex items-center gap-x-2'>
               <div className="flex items-center gap-x-2">
                 <PlusCircle viewBox='0 0 24 24' width='16' height='16'/>
-                Role
+                {t('teams.role')}
               </div>
               {checkedFilter.length > 0 && (
                 <>
@@ -168,7 +170,7 @@ export default function TeamMembers(){
           </PopoverContent>
         </Popover>
         <Button variant='ghost' className={`flex items-center gap-x-2 ${search !== '' || checkedFilter.length > 0 ? 'visible opacity-1' : 'invisible opacity-0'} transition duration-200`} onClick={() => {setSearch('');setCheckedFilter([])}}> 
-          Reset
+          {t('reset')}
           <X viewBox="0 0 24 24" width='16' height='16'/>
         </Button>
       </div>
