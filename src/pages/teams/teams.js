@@ -80,7 +80,7 @@ export default function Teams() {
       <main className="flex flex-col lg:flex-row gap-y-8 gap-x-[72px] mt-8">
         <PagesMenus menus={sidebarNavItems} />
         {!id && (
-          <section className="max-max-w-[672px] w-full w-full">
+          <section className="max-w-[672px] w-full">
             <h2 className="settings-heading">{t('teams.manage_members.title')}</h2>
             <p className="main-desc">{t('teams.manage_members.desc')}</p>
 
