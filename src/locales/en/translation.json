@@ -262,7 +262,10 @@
         "search_user":"Search User",
         "role":"Role",
         "super_admin":"Super Admin",
+        "super_admin_desc":"Can access billing and add members",
         "member":"Member",
+        "member_desc":"Can edit",
+        "remove_desc":"Remove from the team",
         "1 use":"1 use",
         "5 uses":"5 uses",
         "10 uses":"10 uses",
@@ -276,7 +279,21 @@
         },
         "current":"Current",
         "switch":"Switch",
-        "view_members":"View members"
+        "view_members":"View members",
+        "clear_filters":"Clear filters",
+        "link_copied": {
+            "title":"Link copied",
+            "desc":"You can send the link to new teammates"
+        },
+        "link_generated": {
+            "title":"Link generated",
+            "desc":"The information has been updated"
+        },
+        "remove_team": {
+            "title": "Are you absolutely sure?",
+            "desc": "Removing team members will affect billing and some actions. Please check carefully.",
+            "continue": "Continue"
+        }
     },
     "purchase_detail": "Purchase detail",
     "purchase_detail_desc": "If you need to edit billing information of tax invoice issuance or modify your order, please press the 'Back' button to cancel the current order.",

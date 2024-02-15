@@ -66,8 +66,8 @@ export default function Teams() {
       title: (<div className="flex gap-x-3">
         <CheckCircle2 className="h-4 w-4 mt-1" />
         <div className="flex flex-col gap-y-1">
-          <h3>Link copied</h3>
-          <p className="font-normal">You can send the link to new teammates</p>
+          <h3>{t('teams.link_copied.title')}</h3>
+          <p className="font-normal">{t('teams.link_copied.desc')}</p>
         </div>
       </div>),
     })
@@ -153,8 +153,8 @@ export const SettingsDialogContent = ({ ...props }) => {
       title: (<div className="flex gap-x-3">
         <CheckCircle2 className="h-4 w-4 mt-1" />
         <div className="flex flex-col gap-y-1">
-          <h3>Link generated</h3>
-          <p className="font-normal">The information has been updated</p>
+          <h3>{t('teams.link_generated.title')}</h3>
+          <p className="font-normal">{t('teams.link_generated.desc')}</p>
         </div>
       </div>),
     })

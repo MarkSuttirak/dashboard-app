@@ -21,12 +21,12 @@ export default function TeamMembers(){
   const userRoles = [
     {
       role:t('teams.super_admin'),
-      ability:'Can access billing and add members',
+      ability:t('teams.super_admin_desc'),
       icon:<PersonIcon className="mt-1"/>
     },
     {
       role:t('teams.member'),
-      ability:'Can edit',
+      ability:t('teams.member_desc'),
       icon:<Pencil1Icon className="mt-1"/>
     }
   ]
@@ -90,21 +90,21 @@ export default function TeamMembers(){
                         <div className="flex flex-col">
                           <h3 className="subheading font-medium">{t('remove')}</h3>
                           <p className="text-sm text-muted-foreground">
-                            Remove from the team
+                            {t('teams.remove_desc')}
                           </p>
                         </div>
                       </DialogTrigger>
                       <DialogContent>
                         <DialogHeader>
-                          <DialogTitle>Are you absolutely sure?</DialogTitle>
+                          <DialogTitle>{t('teams.remove_team.title')}</DialogTitle>
                           <DialogDescription>
-                            Removing team members will affect billing and some actions. Please check carefully.
+                            {t('teams.remove_team.desc')}
                           </DialogDescription>
                           <DialogFooter>
                             <DialogClose>
                               <Button variant='outline'>{t('cancel')}</Button>
                             </DialogClose>
-                            <Button type="submit">Continue</Button>
+                            <Button type="submit">{t('teams.remove_team.continue')}</Button>
                           </DialogFooter>
                         </DialogHeader>
                       </DialogContent>
@@ -163,7 +163,7 @@ export default function TeamMembers(){
               <>
                 <DrawLine width='100%' height='1px' color='#E4E4E7'/>
                 <div className="p-1">
-                  <Button className='w-full font-normal' variant='ghost' onClick={() => setCheckedFilter([])}>Clear filters</Button>
+                  <Button className='w-full font-normal' variant='ghost' onClick={() => setCheckedFilter([])}>{t('teams.clear_filters')}</Button>
                 </div>
               </>
             )}
