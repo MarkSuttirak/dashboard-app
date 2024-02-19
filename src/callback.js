@@ -11,7 +11,19 @@ const Callback = ({
     const { token, idToken } = useContext(AuthContext)
     const { login } = useUser();
     const navigate = useNavigate();
-    const state = searchParams.has("state") && searchParams.has("state") !== "null" ? JSON.parse(searchParams.get("state")) : {};
+    const stateParam = searchParams.get("state");
+    let state;
+
+    if (stateParam && stateParam !== "null") {
+        try {
+            state = JSON.parse(stateParam);
+        } catch (error) {
+            console.error("Error parsing state parameter as JSON:", error);
+            state = {};
+        }
+    } else {
+        state = {};
+    }
 
     useEffect(() => {
         if (token && idToken) {

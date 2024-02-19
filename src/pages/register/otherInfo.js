@@ -158,36 +158,6 @@ const OtherInfo = () => {
 
                            
                             <div>
-                                <div>
-                                    <h2 className="main-title mt-8">What would you like to call your site?</h2>
-                                    <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
-                                </div>
-
-                                <div>
-                                    <div className="relative mt-1 rounded-md shadow-sm">
-                                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 tab-desc">
-                                            http://
-                                        </div>
-                                        <Input
-                                            type="text"
-                                            name="site"
-                                            onChange={formik.handleChange}
-                                            id="site"
-                                            value={formik.values.site}
-                                            className={`form-input ${siteError ? 'error' : ''}`}
-                                            placeholder="example"
-                                            style={{ paddingRight: "140px", paddingLeft: "60px" }}
-
-                                        />
-                                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 tab-desc">
-                                            .zaviago.com
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                               
-
-                            <div>
                                 <div className='flex gap-x-2 text-sm mt-6'>
                                     <Checkbox id='agree' className='mt-1' />
                                     <label htmlFor='agree'>{t('sign_up_agreement_one')} <Link>{t('terms_of_use')}</Link> {t('sign_up_agreement_two')} <Link>{t('privacy_policy')}</Link></label>
