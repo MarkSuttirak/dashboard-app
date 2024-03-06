@@ -155,8 +155,8 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   return (
     <>
       {/* <IconSidebar /> */}
-      <div className={`flex flex-1 flex-col border-r border-gray-200 bg-white ${isSidebarOpen ? 'active' : 'inactive'}`} id="sidebar">
-        <div className="flex flex-1 flex-col pt-[18px]">
+      <div className={`flex flex-1 flex-col border-t lg:border-r lg:border-t-0 border-gray-200 bg-white ${isSidebarOpen ? 'active' : 'inactive'}`} id="sidebar">
+        <div className="flex flex-1 flex-col md:pt-[18px]">
           <div className="relative sidebar-top">
             <div className="flex flex-shrink-0 items-center px-[14px] sidebar-site relative z-[4]">
               <div className="flex items-center w-full relative">
@@ -171,12 +171,12 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
           {/* {!upgraded && <SidebarUpgrade />} */}
 
-          <nav className="flex bg-white px-3 pt-2 flex-col gap-y-4 mt-3" aria-label="Sidebar">
-            <section className="flex flex-col">
+          <nav className="flex bg-white px-3 py-2 justify-center flex-col gap-y-4 md:mt-3" aria-label="Sidebar">
+            <section className="flex md:flex-col gap-x-2">
               {navigation.map((item) => (
                 <>
                   {item.href ? (
-                    <Button key={item.name} variant='ghost' onClick={() => handleMenuClick(item.current, item.href)} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.current ? 'bg-zinc-100' : ''}`}>
+                    <Button key={item.name} variant='ghost' onClick={() => handleMenuClick(item.current, item.href)} className={`w-full flex flex-col md:flex-row h-full justify-start gap-2 text-[13px] items-center leading-5 ${item.current ? 'bg-zinc-100' : ''}`}>
                       {item.icon}
                       {item.name}
                     </Button>
@@ -233,7 +233,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
               </Button>
             </section> */}
 
-            <section className="flex flex-col">
+            <section className="hidden md:flex flex-col">
               <h3 className="text-lightgray text-sm font-medium p-4">{t('menus.your_workspace')}</h3>
               {workspaceApp.map((item) => (
                 <Button variant='ghost' onClick={item.onClick} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5`}>

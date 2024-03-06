@@ -10,7 +10,6 @@ import { useToast } from "src/components/ui/use-toast";
 import { Toaster } from "src/components/ui/toaster"
 import { CheckCircle2 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogClose, DialogFooter } from "src/components/ui/dialog"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "src/components/ui/select"
 import { useMutation, useQuery } from "react-query";
 import { site, team } from "../../client/api";
 import { useUser } from "../../hooks/useUser";

@@ -158,7 +158,7 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row items-center md:justify-between gap-y-4">
         <div className="flex gap-x-[10px] items-center">
           <Avatar className='w-[49px] h-[49px] text-sm'>
             <AvatarImage src="" />
@@ -181,10 +181,10 @@ export default function Dashboard() {
       {/* <DashboardVideo /> */}
       {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> */}
 
-      <section className="my-[72px]">
+      <section className="my-6 lg:my-[72px]">
         <h2 className="secondary-heading">{t('what_you_want_to_do')}</h2>
 
-        <div className="flex flex-wrap gap-[15px] mt-6">
+        <div className="flex lg:flex-wrap gap-[15px] mt-6 overflow-scroll lg:overflow-visible">
           {workspaceMenus.map(menu => (
             <a className="workspace-btn" href={menu.link} target={menu.link === '/coming_soon' ? "_blank" : null}>
               {menu.icon}
@@ -193,7 +193,7 @@ export default function Dashboard() {
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-[15px] mt-6">
+        <div className="flex lg:flex-wrap gap-[15px] mt-6 overflow-scroll lg:overflow-visible">
           {newOrManageMenus.map((n, index) => (
             <div onClick={() => n.page !== undefined && loginNow(n.page)} className="menu-card" key={index} style={{ backgroundColor: n.background, color: n.color, boxShadow: isMenuCardHover && menuCardIndex === index ? `0 0 3px ${n.color}` : null }} onMouseEnter={() => handleCardHover(index)} onMouseLeave={handleCardHoverLeave}>
               {n.image}

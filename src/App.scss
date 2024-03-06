@@ -7,7 +7,7 @@ $primary-color: #09090B;
 $secondary-color: #71717A;
 
 $left-sidebar-width: 60px;
-$right-sidebar-width: 256px;
+$right-sidebar-width: 16rem;
 
 $mobile-header-size: 60px;
 $mobile-footer-size: 60px;
@@ -17,7 +17,7 @@ html{scroll-behavior:smooth}
 
 @mixin check-sidebar($active: true){
   @if $active {
-    $right-sidebar-width: 256px;
+    $right-sidebar-width: 16rem;
   }
   @else {
     $right-sidebar-width: 0px;
@@ -236,6 +236,8 @@ body {
   cursor:pointer;
   overflow:hidden;
   border-radius:10px;
+  min-width:164px;
+  min-height:174px;
   width:164px;
   height:174px;
   font-size:14px;
@@ -296,7 +298,7 @@ body {
   width:$right-sidebar-width;
   border-right:1px solid #F4F4F4;
   z-index:4;
-  display:block !important;
+  display:block;
   transition:width 300ms;
   position:fixed;
   height:100vh;
@@ -320,14 +322,6 @@ body {
 .page-section {
   padding:84px 40px 160px;
   box-sizing:content-box;
-  // &.active {
-  //   margin-left:$right-sidebar-width + $left-sidebar-width;
-  //   transition:margin-left 300ms;
-  // }
-  // &.inactive {
-  //   margin-left:$left-sidebar-width;
-  //   transition:margin-left 300ms;
-  // }
   &.active {
     margin-left:$right-sidebar-width
   }
@@ -698,6 +692,7 @@ $gradient-border:linear-gradient(to right, #9A5BFF, #FF9C27);
 .workspace-btn {
   display:flex;
   align-items:center;
+  white-space:pre;
   background-color:#F7F7F8;
   padding:8px 16px;
   border:1px solid transparent;
@@ -830,7 +825,19 @@ $gradient-border:linear-gradient(to right, #9A5BFF, #FF9C27);
   .register-screen {
     width:calc(100% - 60px)
   }
-  ::-webkit-scrollbar {
+  ::-webkit-scrollbar, .topbar, .sidebar-top {
     display:none
+  }
+  .page-section {
+    padding:20px 12px 100px;
+    &.active {
+      margin-left:0;
+    }
+  }
+  #sidebar {
+    width:100%;
+    left:0;
+    bottom:0;
+    height:fit-content;
   }
 }

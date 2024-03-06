@@ -63,7 +63,7 @@ export default function TeamMembers(){
         </div>
         <Popover>
           <PopoverTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button variant="outline" className="m-0 lg:ml-auto">
               {role}{" "}
               <ChevronDownIcon className="ml-2 h-4 w-4 text-muted-foreground" />
             </Button>
