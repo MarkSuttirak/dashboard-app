@@ -5,7 +5,7 @@ import Topbar from "src/components/topbar/topbar";
 
 export default function DashboardLayout() {
   const location = useLocation()
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
     <>
       {location.pathname !== '/dashboard/instance-configuration' ? (

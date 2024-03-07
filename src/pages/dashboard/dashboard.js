@@ -26,10 +26,9 @@ export default function Dashboard() {
   const [menuCardIndex, setMenuCardIndex] = useState(0)
   const [websiteSid, setwebsiteSid] = useState(false)
 
-  const textGradient = (gradient, fontSize) => {
+  const textGradient = (gradient) => {
     const style = {
       background: gradient,
-      fontSize: fontSize,
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent"
     }
@@ -158,18 +157,18 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      <div className="flex flex-col md:flex-row items-center md:justify-between gap-y-4">
-        <div className="flex gap-x-[10px] items-center">
+      <div className="flex items-center justify-between gap-y-4">
+        <div className="flex gap-x-[10px] items-center mb-6 md:mb-0">
           <Avatar className='w-[49px] h-[49px] text-sm'>
             <AvatarImage src="" />
             <AvatarFallback>{user?.first_name[0]}</AvatarFallback>
           </Avatar>
           <div>
-            {user ? <h1 className="text-3xl text-primary font-bold tracking-[-0.75px] font-eventpop leading-8">สวัสดีคุณ <span style={textGradient("linear-gradient(92.12deg, #7900FF -2.04%, #006AFF 89.63%)", "30px")}>{user?.first_name}</span>🙏</h1> : <Skeleton className='h-8 w-[300px]' />}
+            {user ? <h1 className="text-xl md:text-3xl text-primary font-bold tracking-[-0.75px] font-eventpop leading-8">สวัสดีคุณ <span style={textGradient("linear-gradient(92.12deg, #7900FF -2.04%, #006AFF 89.63%)")} className="text-xl md:text-3xl">{user?.first_name}</span>🙏</h1> : <Skeleton className='h-8 w-[300px]' />}
             <p className="text-sm text-secondary">จัดการและขยายธุรกิจด้วย Zaviago WorkSpace</p>
           </div>
         </div>
-        <Link to='/coming-soon' target='_blank'>
+        <Link to='/coming-soon' target='_blank' className="hidden lg:block">
           <Button className='rounded-full btn-with-icon'>
             <Edit3 className="w-4 h-4" />
             ออกแบบเว็บ
@@ -181,10 +180,10 @@ export default function Dashboard() {
       {/* <DashboardVideo /> */}
       {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> */}
 
-      <section className="my-6 lg:my-[72px]">
+      <section className="pt-6 lg:py-[72px]">
         <h2 className="secondary-heading">{t('what_you_want_to_do')}</h2>
 
-        <div className="flex lg:flex-wrap gap-[15px] mt-6 overflow-scroll lg:overflow-visible">
+        <div className="flex lg:flex-wrap gap-[15px] pt-6 pb-3 overflow-scroll lg:overflow-visible">
           {workspaceMenus.map(menu => (
             <a className="workspace-btn" href={menu.link} target={menu.link === '/coming_soon' ? "_blank" : null}>
               {menu.icon}
@@ -193,7 +192,7 @@ export default function Dashboard() {
           ))}
         </div>
 
-        <div className="flex lg:flex-wrap gap-[15px] mt-6 overflow-scroll lg:overflow-visible">
+        <div className="flex lg:flex-wrap gap-[15px] pt-3 pb-6 overflow-scroll lg:overflow-visible">
           {newOrManageMenus.map((n, index) => (
             <div onClick={() => n.page !== undefined && loginNow(n.page)} className="menu-card" key={index} style={{ backgroundColor: n.background, color: n.color, boxShadow: isMenuCardHover && menuCardIndex === index ? `0 0 3px ${n.color}` : null }} onMouseEnter={() => handleCardHover(index)} onMouseLeave={handleCardHoverLeave}>
               {n.image}

@@ -50,18 +50,20 @@ export default function Breadcrumbs(){
   }, [currentPage]);
 
   return (
-    <div className="flex items-center gap-x-2">
-      <Link to='/'>
-        <h2 className='subheading'>{t('menus.dashboard')}</h2>
-      </Link>
-      {breadcrumbList.map(p => (
-        <>
-          <h2 className='subheading font-medium'>/</h2>
-          <Link to={p.link}>
-            <h2 className='subheading font-medium'>{p.title}</h2>
-          </Link>
-        </>
-      ))}
-    </div>
+    <>
+      <div className="hidden md:flex items-center gap-x-2">
+        <Link to='/'>
+          <h2 className='subheading'>{t('menus.dashboard')}</h2>
+        </Link>
+        {breadcrumbList.map(p => (
+          <>
+            <h2 className='subheading font-medium'>/</h2>
+            <Link to={p.link}>
+              <h2 className='subheading font-medium'>{p.title}</h2>
+            </Link>
+          </>
+        ))}
+      </div>
+    </>
   )
 }

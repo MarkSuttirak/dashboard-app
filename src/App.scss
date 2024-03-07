@@ -303,28 +303,12 @@ body {
   position:fixed;
   height:100vh;
   // margin-left:$left-sidebar-width;
-  &.active {
-    transform:translateX(0);
-    transition:transform 300ms;
-  }
-  &.inactive {
-    transform:translateX(-100%);
-    transition:transform 300ms;
-  }
-  &:hover {
-    .chevron-btn {
-      opacity:0.5;
-      transition:opacity 400ms;
-    }
-  }
 }
 
 .page-section {
   padding:84px 40px 160px;
   box-sizing:content-box;
-  &.active {
-    margin-left:$right-sidebar-width
-  }
+  margin-left:$right-sidebar-width
 }
 
 .dashboard-container {
@@ -471,7 +455,6 @@ body {
 
 .topbar {
   box-sizing:border-box;
-  width:100%;
   position:fixed;
   height:53px;
   top:0;
@@ -483,21 +466,7 @@ body {
   justify-content:space-between;
   border-bottom:1px solid #F4F4F4;
   z-index:8;
-  // &.active {
-  //   width:calc(100% - ($right-sidebar-width + $left-sidebar-width));
-  //   transition:width 300ms;
-  // }
-  &.active {
-    width:calc(100% - ($right-sidebar-width));
-    transition:width 300ms;
-  }
-  &.inactive {
-    width:calc(100% - $left-sidebar-width);
-    transition:width 300ms;
-  }
-  &.no-sidebar {
-    width:100%;
-  }
+  width:calc(100% - ($right-sidebar-width))
 }
 
 $gradient-border-size:3px;
@@ -821,23 +790,30 @@ $gradient-border:linear-gradient(to right, #9A5BFF, #FF9C27);
   }
 }
 
+@media (max-width:1023px){
+  #sidebar {
+    &.active {
+      transform:translateX(0);
+      transition:transform 300ms;
+    }
+    &.inactive {
+      transform:translateX(-100%);
+      transition:transform 300ms;
+    }
+    z-index:1111;
+  }
+  .page-section {
+    padding:80px 20px 100px;
+    margin-left:0;
+  }
+  .topbar {
+    width:100%;
+    z-index:3;
+  }
+}
+
 @media (max-width:767px){
   .register-screen {
     width:calc(100% - 60px)
-  }
-  ::-webkit-scrollbar, .topbar, .sidebar-top {
-    display:none
-  }
-  .page-section {
-    padding:20px 12px 100px;
-    &.active {
-      margin-left:0;
-    }
-  }
-  #sidebar {
-    width:100%;
-    left:0;
-    bottom:0;
-    height:fit-content;
   }
 }

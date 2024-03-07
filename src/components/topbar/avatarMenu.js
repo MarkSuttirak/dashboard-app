@@ -3,11 +3,12 @@ import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, Comma
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { site } from "../../client/api";
 import { useMutation, useQuery } from "react-query";
-import { User, Keyboard, Layout, LogOut, Globe } from 'lucide-react'
+import { User, Keyboard, Layout, LogOut, Globe, MoreHorizontal } from 'lucide-react'
 import { useUser } from '../../hooks/useUser'
 import LogoutModal from "./logoutModal";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { HelpMenuList } from "./helpMenu";
 
 export default function AvatarMenu(){
   const { t, i18n } = useTranslation()
@@ -33,10 +34,15 @@ export default function AvatarMenu(){
   return (
     <Popover>
       <PopoverTrigger className="relative">
-        <Avatar className='w-8 h-8 text-sm'>
-          <AvatarImage src="" />
-          <AvatarFallback>{user?.first_name[0]}</AvatarFallback>
-        </Avatar>
+        <div className="hidden md:block">
+          <Avatar className='w-8 h-8 text-sm'>
+            <AvatarImage src="" />
+            <AvatarFallback>{user?.first_name[0]}</AvatarFallback>
+          </Avatar>
+        </div>
+        <div className='md:hidden w-8 h-8 text-sm bg-[#F5F6F8] rounded-full flex items-center justify-center'>
+          <MoreHorizontal class="h-5 w-5 text-[#7D7D7D]"/>
+        </div>
       </PopoverTrigger>
       <PopoverContent className='p-0 w-[243px] absolute -right-4'>
         <Command>
@@ -56,6 +62,12 @@ export default function AvatarMenu(){
               </CommandItem>
             </CommandGroup>
             <CommandSeparator />
+
+            <div className="md:hidden">
+              <HelpMenuList />
+              <CommandSeparator />
+            </div>
+
             <CommandGroup>
               <CommandItem className='p-0'>
                 <LogoutModal>
