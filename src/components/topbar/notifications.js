@@ -66,7 +66,7 @@ export default function NotificationsTopbar(){
       <div class="md:hidden z-[99]">
         <BellIcon color='#7D7D7D' width='17' height='17' onClick={() => setIsMobileNotiOpen(true)}/>
 
-        <div className={`fixed bg-white h-screen w-full top-0 px-4 py-6 ${isMobileNotiOpen ? 'left-0' : 'left-full'}`}>
+        <div className={`fixed bg-white h-screen w-full top-0 px-4 py-6 ${isMobileNotiOpen ? 'left-0' : 'left-full'} transition-all duration-300`}>
           <Noti />
         </div>
       </div>

@@ -18,6 +18,7 @@ import { Edit3 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import DashboardVideo from "./dashboardVideo";
 import { Icons } from "src/components/ui/icons";
+import DashboardTeam from "./dashboardTeam";
 
 export default function Dashboard() {
   const { t, i18n } = useTranslation();
@@ -202,6 +203,7 @@ export default function Dashboard() {
         </div>
       </section>
 
+      <DashboardTeam />
       {/* <section className="my-[76px]">
         <h2 className="secondary-heading">App Store</h2>
         <p className="main-desc">You have got much more than just a website.<br/>Build and expand your digital business with application</p>
@@ -214,10 +216,10 @@ export default function Dashboard() {
       <section>
         <h2 className="secondary-heading">{t('discover_what_you_can_do')}</h2>
 
-        <div className="mt-6 grid lg:grid-cols-3 gap-[15px]">
-          <PostInfo title="สร้างเว็บง่ายเหมือนทำ “Powerpoint”" desc="สร้างเว็บไซต์ใหม่สุดเก๋ แสดงความเป็นคุณ ที่คุณเองก็ทำได้ ด้วยฟีเจอร์ที่เรียบง่ายแต่สุดจะทรงพลัง" image={createYourBlog} buttonText="เร็วๆ นี้" onClick={() => window.open("/coming-soon", '_blank')} />
-          <PostInfo title="ขายสินค้าออนไลน์" desc="ขยายฐานลูกค้าแบบก้าวกระโดดด้วยการทำโปรแกรมสะสมคะแนนและแลกของรางวัล" buttonText="เริ่มต้นขายสินค้าออนไลน์" image={sellingOnline} imageStyle='px-6' onClick={() => window.open("/coming-soon", '_blank')} />
-          <PostInfo title="เชื่อมต่อทุกช่องทางการขาย" desc="จัดการออเดอร์อย่างมีประสิทธิภาพด้วยการเชื่อมต่อกับช่องทางการขายหลากหลายแพลตฟอร์ม" buttonText="เชื่อมต่อช่องทางการขาย" image={connectMessage} imageStyle='pl-8 pb-8' onClick={() => window.open("/coming-soon", '_blank')} />
+        <div className="mt-6 grid md:grid-cols-3 gap-[15px]">
+          <PostInfo title="สร้าง Post และการตลาดออนไลน์" desc="สร้าง Brander หรือ Post ได้ง่าย ๆ พร้อมกับ เทมเพลตสุดปัง" image={createYourBlog} buttonText="เร็วๆ นี้" onClick={() => window.open("/coming-soon", '_blank')} />
+          <PostInfo title="วางแผนและจัดการงานของทีม" desc="วางแผนและจัดชีวิตให้ง่ายขึ้นด้วย เทมเพลต Projects Manager " buttonText="เร็วๆ นี้" image={sellingOnline} imageStyle='px-6' onClick={() => window.open("/coming-soon", '_blank')} />
+          <PostInfo title="เชื่อมต่อ Shopee & Lazada" desc="จัดการออเดอร์อย่างมีประสิทธิภาพด้วยการเชื่อมต่อกับช่องทางการขายหลากหลายแพลตฟอร์ม" buttonText="เชื่อมต่อช่องทางการขาย" image={connectMessage} imageStyle='pl-8 pb-8' onClick={() => window.open("/coming-soon", '_blank')} />
         </div>
       </section>
     </div>

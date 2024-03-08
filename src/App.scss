@@ -41,6 +41,27 @@ html{scroll-behavior:smooth}
 }
 
 @font-face {
+  font-family: 'SF Pro Display';
+  src: url('../src/fonts/SF Pro/SFProTHDisplay_light.woff2');
+  font-weight: 300;
+  unicode-range: 'U+0E00–U+0E7F';
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('../src/fonts/SF Pro/SFProTHDisplay_regular.woff2');
+  font-weight: 400;
+  unicode-range: 'U+0E00–U+0E7F';
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('../src/fonts/SF Pro/SFProTHDisplay_semibold.woff2');
+  font-weight: 600;
+  unicode-range: 'U+0E00–U+0E7F';
+}
+
+@font-face {
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 700;
@@ -61,10 +82,10 @@ html{scroll-behavior:smooth}
 
 body {
   overflow-y:scroll;
-  font-family:'Inter', 'Eventpop', sans-serif;
+  font-family:'Inter', 'SF Pro Display', sans-serif;
 }
 
-.bg-gradient{background: linear-gradient(50deg, #FFF 78.99%, #D1B5FF 271.14%)}
+.bg-gradient{background: lin ear-gradient(50deg, #FFF 78.99%, #D1B5FF 271.14%)}
 .inter{font-family:'Inter', sans-serif}
 .eventpop{font-family:'Eventpop', sans-serif}
 .cal-sans{font-family:'Cal Sans', Eventpop, sans-serif}
@@ -803,7 +824,7 @@ $gradient-border:linear-gradient(to right, #9A5BFF, #FF9C27);
     z-index:1111;
   }
   .page-section {
-    padding:80px 20px 100px;
+    padding:80px 20px 40px;
     margin-left:0;
   }
   .topbar {
