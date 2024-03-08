@@ -12,7 +12,7 @@ export default function PostInfo({title, desc, buttonText, onClick, image, image
           {buttonText}
         </Button>}
       </div>
-      <img src={image} className={`w-full ${imageStyle}`}/>
+      <img src={image} className={`w-full ${imageStyle || ""}`}/>
     </div>
   )
 }

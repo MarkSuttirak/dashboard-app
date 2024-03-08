@@ -92,7 +92,7 @@ export default function AvatarMenu(){
           <MoreHorizontal class="h-5 w-5 text-[#7D7D7D]"/>
         </button>
         <div className={`fixed left-0 w-full z-[1111] ${isMobileMenuOpen ? 'bottom-0' : '-bottom-full'} transition-all duration-300`}>
-          <div className="px-3 py-4 bg-white rounded-t-lg">
+          <div className="py-4 bg-white rounded-t-lg">
             <MenuList />
           </div>
         </div>
