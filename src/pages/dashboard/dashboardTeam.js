@@ -23,8 +23,8 @@ export default function DashboardTeam(){
   return (
     <section className="bg-[#F7F7F8] mb-[72px] rounded-xl">
       <div className="grid md:grid-cols-2 items-center">
-        <div className="order-last md:order-none md:p-0 md:pl-6 flex flex-col justify-end h-full">
-          <img src={dashTeamImg} />
+        <div className="flex flex-col justify-end h-full pt-6">
+          <img src={dashTeamImg} className="dash-team-img"/>
         </div>
         <div className="p-6 md:py-12">
 

@@ -170,9 +170,9 @@ export default function Dashboard() {
           </div>
         </div>
         <Link to='/coming-soon' target='_blank' className="hidden lg:block">
-          <Button className='rounded-full btn-with-icon'>
+          <Button className='rounded-md btn-with-icon'>
             <Edit3 className="w-4 h-4" />
-            ออกแบบเว็บ
+            ออกแบบเว็บไซต์
           </Button>
         </Link>
       </div>
@@ -216,10 +216,10 @@ export default function Dashboard() {
       <section>
         <h2 className="secondary-heading">{t('discover_what_you_can_do')}</h2>
 
-        <div className="mt-6 grid md:grid-cols-3 gap-[15px]">
-          <PostInfo title="สร้าง Post และการตลาดออนไลน์" desc="สร้าง Brander หรือ Post ได้ง่าย ๆ พร้อมกับ เทมเพลตสุดปัง" image={createYourBlog} buttonText="เร็วๆ นี้" onClick={() => window.open("/coming-soon", '_blank')} />
-          <PostInfo title="วางแผนและจัดการงานของทีม" desc="วางแผนและจัดชีวิตให้ง่ายขึ้นด้วย เทมเพลต Projects Manager " buttonText="เร็วๆ นี้" image={sellingOnline} onClick={() => window.open("/coming-soon", '_blank')} />
-          <PostInfo title="เชื่อมต่อ Shopee & Lazada" desc="จัดการออเดอร์อย่างมีประสิทธิภาพด้วยการเชื่อมต่อกับช่องทางการขายหลากหลายแพลตฟอร์ม" buttonText="เชื่อมต่อช่องทางการขาย" image={connectMessage} imageStyle='pl-8 pb-8' onClick={() => window.open("/coming-soon", '_blank')} />
+        <div className="mt-6 grid md:grid-cols-3 gap-x-[15px] gap-y-5">
+          <PostInfo title="สร้าง Post และการตลาดออนไลน์" desc="สร้าง Brander หรือ Post ได้ง่าย ๆ พร้อมกับ เทมเพลตสุดปัง" image={createYourBlog} imageStyle="pr-2" comingSoon onClick={() => window.open("/coming-soon", '_blank')} />
+          <PostInfo title="วางแผนและจัดการงานของทีม" desc="วางแผนและจัดชีวิตให้ง่ายขึ้นด้วย เทมเพลต Projects Manager" comingSoon image={sellingOnline} onClick={() => window.open("/coming-soon", '_blank')} />
+          <PostInfo title="เชื่อมต่อ Shopee & Lazada" desc="จัดการออเดอร์อย่างมีประสิทธิภาพด้วยการเชื่อมต่อกับช่องทางการขายหลากหลายแพลตฟอร์ม" buttonText="เชื่อมต่อช่องทางการขาย" image={connectMessage} imageStyle='pl-4 pb-4' onClick={() => window.open("/coming-soon", '_blank')} />
         </div>
       </section>
     </div>

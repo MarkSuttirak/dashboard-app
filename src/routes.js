@@ -65,6 +65,7 @@ export default function Router() {
                         { path: 'edit/:id', element: <></> },
                     ],
                 },
+                { path: 'settings/', element: <Settings /> },
                 { path: 'settings/:id', element: <Settings /> },
                 {
                     path: 'teams', children: [

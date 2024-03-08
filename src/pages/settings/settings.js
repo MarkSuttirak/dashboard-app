@@ -9,9 +9,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/ta
 import Invoices from "./invoices";
 import Subscription from "./subscription";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react'
 
 export default function Settings(){
   const { t } = useTranslation()
+  const navigate = useNavigate()
 
   const sidebarNavItems = [
     {

@@ -37,9 +37,9 @@ export default function AvatarMenu(){
   const MenuList = () => {
     return (
       <Command>
-        <CommandList>
-          <CommandGroup>
-            <CommandItem onSelect={handleChangeLang}>
+        <CommandList className="max-h-none md:max-h-[300px]">
+          <CommandGroup className="mx-3 md:mx-0">
+            <CommandItem onSelect={handleChangeLang} className="py-[10px] md:py-1">
               <Globe viewBox='0 0 24 24' className="h-4 w-4 mr-2"/>
               {t('language')}
               <CommandShortcut className='font-normal flex gap-x-2'>
@@ -47,7 +47,7 @@ export default function AvatarMenu(){
                 <span className={`${localStorage.lang !== null && localStorage.lang === 'en' ? 'bg-darkergray px-[5px] text-primary-foreground rounded-sm' : 'text-secondary'}`}>EN</span>
               </CommandShortcut>
             </CommandItem>
-            <CommandItem onSelect={() => navigate('/dashboard/settings/account')}>
+            <CommandItem onSelect={() => navigate('/dashboard/settings/account')} className="py-[10px] md:py-1">
               <User viewBox='0 0 24 24' className="h-4 w-4 mr-2"/>
               {t('topbar.menus.my_account')}
             </CommandItem>
@@ -59,8 +59,8 @@ export default function AvatarMenu(){
             <CommandSeparator />
           </div>
 
-          <CommandGroup>
-            <CommandItem className='p-0'>
+          <CommandGroup className="mx-3 md:mx-0">
+            <CommandItem className="p-0 py-[10px] md:py-0">
               <LogoutModal>
                 <LogOut viewBox='0 0 24 24' className="h-4 w-4 mr-2"/>
                 {t('topbar.menus.logout')}
@@ -92,7 +92,7 @@ export default function AvatarMenu(){
           <MoreHorizontal class="h-5 w-5 text-[#7D7D7D]"/>
         </button>
         <div className={`fixed left-0 w-full z-[1111] ${isMobileMenuOpen ? 'bottom-0' : '-bottom-full'} transition-all duration-300`}>
-          <div className="py-4 bg-white rounded-t-lg">
+          <div className="py-2 bg-white rounded-t-lg">
             <MenuList />
           </div>
         </div>
