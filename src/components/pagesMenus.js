@@ -3,13 +3,13 @@ import { cn } from "../lib/utils"
 import { buttonVariants, Button } from "../components/ui/button"
 import { useLocation } from "react-router-dom"
 
-export default function PagesMenus({menus}) {
+export default function PagesMenus({menus, hiddenOnResponsive}) {
   const location = useLocation()
   const active = location.pathname
 
   return (
     <>
-      <div className="space-y-6">
+      <div className={`space-y-6 ${hiddenOnResponsive ? 'hidden lg:block' : ''}`}>
         <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
           <aside className="w-[250px]">
             <nav

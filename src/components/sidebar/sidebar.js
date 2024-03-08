@@ -49,7 +49,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
   const navigation = [
     { name: t('menus.dashboard'), icon: <Hotel viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/app', current: active === '/dashboard/app' ? true : false, id: 'dashboard' },
-    { name: t('menus.settings'), icon: <Settings viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/settings', current: active == "/dashboard/settings/account" || active == "/dashboard/settings/billing-plans" ? true : false, active: active, id: 'settings' },
+    { name: t('menus.settings'), icon: <Settings viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: window.innerWidth > 768 ? '/dashboard/settings/account' : '/dashboard/settings', current: active == "/dashboard/settings/account" || active == "/dashboard/settings/billing-plans" ? true : false, active: active, id: 'settings' },
     { name: t('menus.teams'), icon: <Users viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/teams', current: active == "/dashboard/teams" ? true : false, active: active, id: 'teams' },
   ]
 

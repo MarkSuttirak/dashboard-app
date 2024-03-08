@@ -11,6 +11,8 @@ import Subscription from "./subscription";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react'
+import { Button } from "src/components/ui/button";
+import { ChevronRight } from "lucide-react";
 
 export default function Settings(){
   const { t } = useTranslation()
@@ -33,7 +35,16 @@ export default function Settings(){
       <h1 className="main-heading">{t('menus.settings')}</h1>
 
       <main className="flex flex-col lg:flex-row gap-y-8 gap-x-[72px] mt-8">
-        <PagesMenus menus={sidebarNavItems} />
+        {id ? <PagesMenus menus={sidebarNavItems} hiddenOnResponsive={true}/> : (
+          <div className="flex flex-col gap-y-4">
+            {sidebarNavItems.map(item => (
+              <Link to={item.href} className='flex items-center justify-between'>
+                {item.title}
+                <ChevronRight class="w-4 h-4"/>
+              </Link>
+            ))}
+          </div>
+        )}
 
         {id === 'plan-upgrade' && (
           <section className="max-w-[672px] w-full">
