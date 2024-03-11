@@ -33,6 +33,14 @@ export default function Breadcrumbs(){
       { link: '/dashboard/settings/account', title: t('menus.settings') },
       { link: null, title: t('settings.billing_plans') },
     ],
+    '/dashboard/teams/members': [
+      { link: '/dashboard/teams/members', title: t('menus.teams') },
+      { link: null, title: t('teams.teammembers') },
+    ],
+    '/dashboard/teams/my-teams': [
+      { link: '/dashboard/teams/my-teams', title: t('menus.teams') },
+      { link: null, title: t('teams.my_teams') },
+    ],
     ...appList.reduce((acc, app) => {
       acc[`/integration/appstore/${app.id}`] = [
         { link: '/integration/appstore', title: 'App Store' },
