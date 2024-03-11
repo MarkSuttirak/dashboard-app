@@ -68,7 +68,7 @@ export default function Router() {
                 { path: 'settings/', element: <Settings /> },
                 { path: 'settings/:id', element: <Settings /> },
                 {
-                    path: 'teams', children: [
+                    path: 'teams', element: <Teams />, children: [
                         { path: '/dashboard/teams', element: <Teams /> },
                         { path: 'invite/:inviteCode', element: <JoinTeam /> },
                         { path: ':id', element: <Teams /> }

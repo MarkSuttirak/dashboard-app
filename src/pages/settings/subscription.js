@@ -51,21 +51,6 @@ export default function Subscription() {
 
   const usagePlan = siteOverview?.plan
 
-  // const planUsageData = [
-  //   {
-  //     type:'Database',
-  //     total:usagePlan?.total_database_usage || 0,
-  //     max:usagePlan?.max_database_usage || 200,
-  //     measure:'MB'
-  //   },
-  //   {
-  //     type:'Storage',
-  //     total:usagePlan?.total_storage_usage || 0,
-  //     max:usagePlan?.max_storage_usage || 100,
-  //     measure:'MB'
-  //   },
-  // ]
-
   const planUsageData = [
     {
       type: t('usages.orders'),

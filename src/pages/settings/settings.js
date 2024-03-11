@@ -4,7 +4,6 @@ import AccountForm from "./accountForm";
 import BillingPlan from "./billingPlan";
 import PlanUpgrades from "./planUpgrade";
 import DisplayForm from "./display";
-import PagesMenus from "src/components/pagesMenus";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs"
 import Invoices from "./invoices";
 import Subscription from "./subscription";
@@ -12,8 +11,8 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react'
 import { Button } from "src/components/ui/button";
-import { ChevronRight } from "lucide-react";
-import SettingsHeading from "src/components/settingsHeading";
+import SettingsHeading from "src/components/settings/settingsHeading";
+import SettingsMenus from "src/components/settings/settingsMenus";
 
 export default function Settings(){
   const { t } = useTranslation()
@@ -36,65 +35,56 @@ export default function Settings(){
       <SettingsHeading text={t('menus.settings')} link={-1}/>
 
       <main className="flex flex-col md:flex-row gap-y-8 gap-x-12 lg:gap-x-[72px] mt-8">
-        {id ? <PagesMenus menus={sidebarNavItems} hiddenOnResponsive={true}/> : (
-          <div className="flex flex-col gap-y-4">
-            {sidebarNavItems.map(item => (
-              <Link to={item.href} className='flex items-center justify-between'>
-                {item.title}
-                <ChevronRight class="w-4 h-4"/>
-              </Link>
-            ))}
-          </div>
-        )}
+        <SettingsMenus id={id} menus={sidebarNavItems} />
 
-        {id === 'plan-upgrade' && (
-          <section className="max-w-[672px] w-full">
+        <section className="max-w-[672px] w-full">
+          {id === 'plan-upgrade' && (
             <PlanUpgrades />
-          </section>
-        )}
+          )}
 
-        {id === 'account' && (
-          <section className="max-w-[672px] w-full">
-            <div className="mb-8">
-              <h2 className="settings-heading">{t('settings.account')}</h2>
-              <p className="main-desc">{t('settings.account_desc')}</p>
-            </div>
+          {id === 'account' && (
+            <>
+              <div className="mb-8">
+                <h2 className="settings-heading">{t('settings.account')}</h2>
+                <p className="main-desc">{t('settings.account_desc')}</p>
+              </div>
 
-            <AccountForm />
-          </section>
-        )}
+              <AccountForm />
+            </>
+          )}
 
-        {id === 'billing-plans' && (
-          <section className="max-w-[672px] w-full">
-            <Tabs defaultValue="overview">
-              <TabsList>
-                <TabsTrigger value="overview">{t('settings.overview.title')}</TabsTrigger>
-                <TabsTrigger value="purchase-history">{t('settings.purchase_history.title')}</TabsTrigger>
-                <TabsTrigger value="billing">{t('settings.billing')}</TabsTrigger>
-              </TabsList>
+          {id === 'billing-plans' && (
+            <>
+              <Tabs defaultValue="overview">
+                <TabsList>
+                  <TabsTrigger value="overview">{t('settings.overview.title')}</TabsTrigger>
+                  <TabsTrigger value="purchase-history">{t('settings.purchase_history.title')}</TabsTrigger>
+                  <TabsTrigger value="billing">{t('settings.billing')}</TabsTrigger>
+                </TabsList>
+                <Separator className='my-6'/>
+                <TabsContent value="overview">
+                  <Subscription />
+                </TabsContent>
+                <TabsContent value="purchase-history">
+                  <Invoices />
+                </TabsContent>
+                <TabsContent value="billing">
+                  <BillingPlan />
+                </TabsContent>
+              </Tabs>
+            </>
+          )}
+
+          {id === 'display' && (
+            <>
+              <h2 className="settings-heading">Display</h2>
+              <p className="main-desc">Turn items on or off to control what's displayed in the app.</p>
+
               <Separator className='my-6'/>
-              <TabsContent value="overview">
-                <Subscription />
-              </TabsContent>
-              <TabsContent value="purchase-history">
-                <Invoices />
-              </TabsContent>
-              <TabsContent value="billing">
-                <BillingPlan />
-              </TabsContent>
-            </Tabs>
-          </section>
-        )}
-
-        {id === 'display' && (
-          <section className="max-w-[672px] w-full">
-            <h2 className="settings-heading">Display</h2>
-            <p className="main-desc">Turn items on or off to control what's displayed in the app.</p>
-
-            <Separator className='my-6'/>
-            <DisplayForm />
-          </section>
-        )}
+              <DisplayForm />
+            </>
+          )}
+        </section>
       </main>
     </div>
   )
