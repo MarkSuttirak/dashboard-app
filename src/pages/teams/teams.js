@@ -1,4 +1,4 @@
-import { Link, useLocation, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { Separator } from "src/components/ui/separator";
 import { useState, useRef } from "react";
 import PagesMenus from "src/components/pagesMenus";
@@ -16,6 +16,7 @@ import { useUser } from "../../hooks/useUser";
 import { Skeleton } from "src/components/ui/skeleton";
 import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
+import SettingsHeading from "src/components/settingsHeading";
 
 export default function Teams() {
   const { t } = useTranslation()
@@ -40,7 +41,6 @@ export default function Teams() {
 
   const { id } = useParams()
   const { toast } = useToast()
-  const location = useLocation()
   console.log("id", id);
   const inviteLinkRef = useRef(null)
 
@@ -74,9 +74,9 @@ export default function Teams() {
 
   return (
     <div className="dashboard-container">
-      <h1 className="main-heading">{t('menus.teams')}</h1>
+      <SettingsHeading text={t('menus.teams')} link={-1}/>
 
-      <main className="flex flex-col lg:flex-row gap-y-8 gap-x-[72px] mt-8">
+      <main className="flex flex-col md:flex-row gap-y-8 gap-x-12 lg:gap-x-[72px] mt-8">
         <PagesMenus menus={sidebarNavItems} />
         {!id && (
           <section className="max-w-[672px] w-full">

@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react'
 import { Button } from "src/components/ui/button";
 import { ChevronRight } from "lucide-react";
+import SettingsHeading from "src/components/settingsHeading";
 
 export default function Settings(){
   const { t } = useTranslation()
@@ -32,9 +33,9 @@ export default function Settings(){
   const { id } = useParams()
   return (
     <div className="dashboard-container">
-      <h1 className="main-heading">{t('menus.settings')}</h1>
+      <SettingsHeading text={t('menus.settings')} link={-1}/>
 
-      <main className="flex flex-col lg:flex-row gap-y-8 gap-x-[72px] mt-8">
+      <main className="flex flex-col md:flex-row gap-y-8 gap-x-12 lg:gap-x-[72px] mt-8">
         {id ? <PagesMenus menus={sidebarNavItems} hiddenOnResponsive={true}/> : (
           <div className="flex flex-col gap-y-4">
             {sidebarNavItems.map(item => (

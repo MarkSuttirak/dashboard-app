@@ -9,12 +9,12 @@ export default function PagesMenus({menus, hiddenOnResponsive}) {
 
   return (
     <>
-      <div className={`space-y-6 ${hiddenOnResponsive ? 'hidden lg:block' : ''}`}>
-        <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
+      <div className={`space-y-6 ${hiddenOnResponsive ? 'hidden md:block' : ''}`}>
+        <div className="flex flex-col space-y-8 md:flex-row md:space-x-12 md:space-y-0">
           <aside className="w-[250px]">
             <nav
               className={cn(
-                "flex space-x-2 lg:flex-col lg:space-x-0 lg:space-y-1",
+                "flex space-x-2 md:flex-col md:space-x-0 md:space-y-1",
               )}
             >
               {menus.map((item) => (
