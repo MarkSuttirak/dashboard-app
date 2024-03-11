@@ -82,7 +82,7 @@ export default function Subscription() {
     <>
       <h2 className="secondary-heading">{t('settings.overview.desc')}</h2>
       <section className="mt-10">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-y-6 md:flex-row md:items-center justify-between">
           {plan ? (
             <div>
               <h1 className="text-[39px] font-semibold text-[#151515] capitalize">{plan?.name === 'pro' ? 'Pro' : 'Free'}</h1>
@@ -96,7 +96,7 @@ export default function Subscription() {
           )}
 
           {plan ? (
-            <div className="flex">
+            <div className="flex md:pl-4">
               {plan?.name === 'pro' ? (
                 <Button variant='secondary' className='btn-with-icon leading-5 rounded-r-none' onClick={() => window.location.href = `/dashboard/settings/plan-upgrade`}>
                   <Zap viewBox='0 0 24 24' width='16' height='16' />
@@ -220,14 +220,28 @@ export default function Subscription() {
 
           <div className="flex flex-col gap-y-4">
             {planUsageData.map(p => (
-              <div className="flex items-center gap-x-4">
-                <h2 className="subheading font-medium w-1/4">{p.type}</h2>
-                <div className="w-full flex gap-x-[11px] items-center">
-                  <Progress value={(p.total / p.max) * 100} />
-                  <span className="text-xs inline-block w-[40px]">({(p.total / p.max) * 100}%)</span>
+              <>
+                <div className="hidden md:flex items-center gap-x-4">
+                  <h2 className="subheading font-medium w-1/4">{p.type}</h2>
+                  <div className="w-full flex gap-x-[11px] items-center">
+                    <Progress value={(p.total / p.max) * 100} />
+                    <span className="text-xs inline-block w-[40px]">({(p.total / p.max) * 100}%)</span>
+                  </div>
+                  <p className="main-desc w-1/4 text-right">{p.total} / {p.max} {p.measure}</p>
                 </div>
-                <p className="main-desc w-1/4 text-right">{p.total} / {p.max} {p.measure}</p>
-              </div>
+
+                <div className="md:hidden flex flex-col items-center gap-x-4 gap-y-2">
+                  <div className="flex items-center w-full justify-between">
+                    <h2 className="subheading font-medium">{p.type}</h2>
+                    <div className="w-fit flex items-center gap-x-2">
+                      <span className="text-xs inline-block w-[40px]">({(p.total / p.max) * 100}%)</span>
+                      <p className="main-desc">{p.total} / {p.max} {p.measure}</p>
+                    </div>
+                  </div>
+                  
+                  <Progress value={(p.total / p.max) * 100} />
+                </div>
+              </>
             ))}
           </div>
         </section>

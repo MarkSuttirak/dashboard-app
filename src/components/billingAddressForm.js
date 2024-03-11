@@ -79,7 +79,7 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText, on
 
   return (
     <>
-      <form className="flex flex-col gap-y-8 mt-8" onSubmit={onSubmitForm}>
+      <form className="flex flex-col gap-y-6 md:gap-y-8 mt-8" onSubmit={onSubmitForm}>
         <div className="space-y-6 w-full">
           <div className="anim-up flex flex-col">
             <label className="subheading mb-2 font-medium">
@@ -116,7 +116,7 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText, on
             </div>
           </div>
         ) : (
-          <div className="flex gap-x-3">
+          <div className="flex flex-col md:flex-row gap-y-6 gap-x-3">
             <div className="space-y-6 w-full">
               <div className="anim-up flex flex-col">
                 <label className="subheading mb-2 font-medium">
@@ -186,7 +186,7 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText, on
           </div>
         </div>
 
-        <div className="flex gap-x-3">
+        <div className="flex flex-col gap-x-3 md:flex-row gap-y-6">
           <div className="space-y-6 w-full">
             <div className="anim-up flex flex-col">
               <label className="subheading mb-2 font-medium">
@@ -219,7 +219,7 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText, on
           </div>
         </div>
 
-        <div className="flex gap-x-3">
+        <div className="flex flex-col gap-x-3 md:flex-row gap-y-6">
           <div className="space-y-6 w-full">
             <div className="anim-up flex flex-col">
               <label className="subheading mb-2 font-medium">
