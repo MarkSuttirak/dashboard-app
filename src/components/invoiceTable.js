@@ -65,7 +65,7 @@ export default function InvoiceTable({invoices_props}) {
       <p className="main-desc">{t('settings.purchase_history.desc')}</p>
       
       <section className="mt-8">
-        <div className="hidden md:block">
+        <div className="table-invoice-desktop">
           <Table>
             <TableHeader>
               <TableRow className="hover:bg-transparent">
@@ -83,7 +83,7 @@ export default function InvoiceTable({invoices_props}) {
           </Table>
         </div>
 
-        <div className="md:hidden flex flex-col">
+        <div className="md:hidden flex flex-col table-invoice-mobile">
           {invoices_props.message.map((invoice) => (
             <TableDataMobile status={invoice.status} name={invoice.name} formatted_total={invoice.total}/>
           ))}

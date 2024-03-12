@@ -223,22 +223,25 @@ export default function Subscription() {
               <>
                 <div className="hidden md:flex items-center gap-x-4">
                   <h2 className="subheading font-medium w-1/4">{p.type}</h2>
+
                   <div className="w-full flex gap-x-[11px] items-center">
                     <Progress value={(p.total / p.max) * 100} />
                     <span className="text-xs inline-block w-[40px]">({(p.total / p.max) * 100}%)</span>
                   </div>
+
                   <p className="main-desc w-1/4 text-right">{p.total} / {p.max} {p.measure}</p>
                 </div>
 
                 <div className="md:hidden flex flex-col items-center gap-x-4 gap-y-2">
                   <div className="flex items-center w-full justify-between">
                     <h2 className="subheading font-medium">{p.type}</h2>
+
                     <div className="w-fit flex items-center gap-x-2">
                       <span className="text-xs inline-block w-[40px]">({(p.total / p.max) * 100}%)</span>
                       <p className="main-desc">{p.total} / {p.max} {p.measure}</p>
                     </div>
                   </div>
-                  
+
                   <Progress value={(p.total / p.max) * 100} />
                 </div>
               </>

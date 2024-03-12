@@ -17,6 +17,7 @@ import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
 import SettingsHeading from "src/components/settings/settingsHeading";
 import SettingsMenus from "src/components/settings/settingsMenus";
+import Bannerteam from "./bannerteam";
 
 export default function Teams() {
   const { t } = useTranslation()
@@ -88,7 +89,7 @@ export default function Teams() {
               {auth?.team?.invite_code ? (
                 <div className="flex w-full items-center space-x-2 mt-6 mb-[10px]">
                   <Input type="link" value={`https://${window.location.host}/invite/${auth.team.invite_code}`} ref={inviteLinkRef} />
-                  <Button variant='secondary' onClick={copyLink}>{t('teams.copy_link')}</Button>
+                  <Button onClick={copyLink}>{t('teams.copy_link')}</Button>
                 </div>
               ) : <Skeleton className='h-9 w-full mt-6 mb-[10px]' />}
 
@@ -115,6 +116,7 @@ export default function Teams() {
               <Separator className='my-6' />
 
               <TeamMembers />
+              <Bannerteam />
             </>
           )}
 

@@ -737,3 +737,30 @@ body {
     mask-image: linear-gradient(black 90%, transparent 100%);
   }
 }
+
+.banner-team {
+  @apply rounded-xl bg-[#F7F7F8] grid grid-cols-2 overflow-hidden
+}
+
+.banner-team-img {
+  @apply w-full h-full object-cover px-0 mx-5 pt-6 min-w-[400px]
+}
+
+.table-invoice-mobile {
+  @apply hidden
+}
+
+@media (max-width:1280px) and (min-width:1024px), (max-width:991px){
+  .banner-team {
+    @apply grid-cols-1
+  }
+  .banner-team-img {
+    @apply px-5 mx-0 min-w-0 object-contain
+  }
+  .table-invoice-desktop {
+    @apply hidden
+  }
+  .table-invoice-mobile {
+    @apply block
+  }
+}
