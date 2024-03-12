@@ -28,7 +28,7 @@ export default function InvoiceTable({invoices_props}) {
 
   const TableDataMobile = ({name, status, formatted_total}) => {
     return (
-      <div className="border-b flex flex-col gap-y-5 py-4">
+      <div className="border-b flex flex-col gap-y-5 pt-12 pb-4">
         <div className="flex flex-col gap-y-3">
           <div className="flex items-center justify-between">
             <h2 className="main-desc">{t('settings.purchase_history.invoice')}</h2>
@@ -64,7 +64,7 @@ export default function InvoiceTable({invoices_props}) {
       <h2 className="secondary-heading">{t('settings.purchase_history.title')}</h2>
       <p className="main-desc">{t('settings.purchase_history.desc')}</p>
       
-      <section className="mt-8">
+      <section className="-mt-4 md:mt-8">
         <div className="table-invoice-desktop">
           <Table>
             <TableHeader>

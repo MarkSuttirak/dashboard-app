@@ -88,7 +88,7 @@ export default function TeamMembers(){
                       <DialogTrigger className="flex items-start gap-x-4 text-start">
                         <EyeNoneIcon className="mt-1"/>
                         <div className="flex flex-col">
-                          <h3 className="subheading font-medium">{t('remove')}</h3>
+                          <h3 className="subheading">{t('remove')}</h3>
                           <p className="text-sm text-muted-foreground">
                             {t('teams.remove_desc')}
                           </p>
@@ -100,7 +100,7 @@ export default function TeamMembers(){
                           <DialogDescription>
                             {t('teams.remove_team.desc')}
                           </DialogDescription>
-                          <DialogFooter>
+                          <DialogFooter className="!mt-8">
                             <DialogClose>
                               <Button variant='outline'>{t('cancel')}</Button>
                             </DialogClose>

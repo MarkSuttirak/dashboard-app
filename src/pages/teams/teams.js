@@ -169,7 +169,7 @@ export const SettingsDialogContent = ({ ...props }) => {
         <DialogTitle>{t('teams.edit_invitation')}</DialogTitle>
         <DialogDescription className='flex flex-col gap-y-6 py-6'>
           <div className="anim-up flex flex-col">
-            <label className="subheading mb-2 font-medium">
+            <label className="subheading mb-2">
               {t('teams.expire_after')}
             </label>
             <select className='form-input'
@@ -184,7 +184,7 @@ export const SettingsDialogContent = ({ ...props }) => {
           </div>
 
           <div className="anim-up flex flex-col">
-            <label className="subheading mb-2 font-medium">
+            <label className="subheading mb-2">
               {t('teams.maximum_uses')}
             </label>
             <select

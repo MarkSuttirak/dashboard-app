@@ -218,7 +218,7 @@ export default function Subscription() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-y-4">
+          <div className="flex flex-col gap-y-8 md:gap-y-4">
             {planUsageData.map(p => (
               <>
                 <div className="hidden md:flex items-center gap-x-4">
@@ -232,7 +232,7 @@ export default function Subscription() {
                   <p className="main-desc w-1/4 text-right">{p.total} / {p.max} {p.measure}</p>
                 </div>
 
-                <div className="md:hidden flex flex-col items-center gap-x-4 gap-y-2">
+                <div className="md:hidden flex flex-col items-center gap-x-4 gap-y-1">
                   <div className="flex items-center w-full justify-between">
                     <h2 className="subheading font-medium">{p.type}</h2>
 
