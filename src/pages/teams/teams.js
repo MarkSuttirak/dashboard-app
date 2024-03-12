@@ -172,7 +172,7 @@ export const SettingsDialogContent = ({ ...props }) => {
             <label className="subheading mb-2 font-medium">
               {t('teams.expire_after')}
             </label>
-            <select className='form-input'
+            <select
               name="invite_code_rotation_interval"
               value={formik.values.invite_code_rotation_interval}
               onChange={formik.handleChange}
@@ -188,7 +188,6 @@ export const SettingsDialogContent = ({ ...props }) => {
               {t('teams.maximum_uses')}
             </label>
             <select
-              className='form-input'
               name="invite_code_usage_limit"
               value={formik.values.invite_code_usage_limit}
               onChange={formik.handleChange}
@@ -203,7 +202,6 @@ export const SettingsDialogContent = ({ ...props }) => {
           {/* <label className="subheading mb-2 font-medium">
             Expire after
           </label>
-          <Select className='form-input'
             name="invite_code_rotation_interval"
             defaultValue={expireAfter[0]}
             value={formik.values.invite_code_rotation_interval}
@@ -225,7 +223,6 @@ export const SettingsDialogContent = ({ ...props }) => {
             Maximum number of uses
           </label>
           <Select
-            className='form-input'
             name="invite_code_usage_limit"
             value={formik.values.invite_code_usage_limit}
             onchange={opt => console.log(opt)}

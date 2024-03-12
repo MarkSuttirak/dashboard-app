@@ -35,7 +35,7 @@ export default function DashboardBanner({sitename}){
   const teamnames = auth?.teams
 
   return (
-    <section className="md:mt-6">
+    <section className="md:mt-6 px-5 lg:px-0">
       <div className="grid grid-cols-1 lg:flex gap-6 md:gap-x-[15px]">
         <div className="flex bg-[#F7F7F8] p-6 rounded-xl gap-x-6 w-full">
           <div className="flex flex-col justify-between h-full gap-y-[6px]">

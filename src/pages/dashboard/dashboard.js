@@ -158,7 +158,7 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      <div className="flex items-center justify-between gap-y-4">
+      <div className="flex items-center justify-between gap-y-4 px-5 lg:px-0">
         <div className="flex gap-x-[10px] items-center mb-6 md:mb-0">
           <Avatar className='w-[49px] h-[49px] text-sm'>
             <AvatarImage src="" />
@@ -182,9 +182,9 @@ export default function Dashboard() {
       {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> */}
 
       <section className="pt-6 lg:py-[72px]">
-        <h2 className="secondary-heading">{t('what_you_want_to_do')}</h2>
+        <h2 className="secondary-heading px-5 lg:px-0">{t('what_you_want_to_do')}</h2>
 
-        <div className="flex lg:flex-wrap gap-[15px] pt-6 pb-3 overflow-scroll lg:overflow-visible">
+        <div className="flex lg:flex-wrap gap-[15px] pt-6 pb-3 overflow-scroll lg:overflow-visible px-5 lg:px-0">
           {workspaceMenus.map(menu => (
             <a className="workspace-btn" href={menu.link} target={menu.link === '/coming_soon' ? "_blank" : null}>
               {menu.icon}
@@ -193,7 +193,7 @@ export default function Dashboard() {
           ))}
         </div>
 
-        <div className="flex lg:flex-wrap gap-[15px] pt-3 pb-6 overflow-scroll lg:overflow-visible">
+        <div className="flex lg:flex-wrap gap-[15px] pt-3 pb-6 overflow-scroll lg:overflow-visible px-5 lg:px-0">
           {newOrManageMenus.map((n, index) => (
             <div onClick={() => n.page !== undefined && loginNow(n.page)} className="menu-card" key={index} style={{ backgroundColor: n.background, color: n.color, boxShadow: isMenuCardHover && menuCardIndex === index ? `0 0 3px ${n.color}` : null }} onMouseEnter={() => handleCardHover(index)} onMouseLeave={handleCardHoverLeave}>
               {n.image}
@@ -213,7 +213,7 @@ export default function Dashboard() {
         </div>
       </section> */}
 
-      <section>
+      <section className="px-5 lg:px-0">
         <h2 className="secondary-heading">{t('discover_what_you_can_do')}</h2>
 
         <div className="mt-6 grid md:grid-cols-3 gap-x-[15px] gap-y-5">

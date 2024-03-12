@@ -113,7 +113,6 @@ const OtherInfo = () => {
                                 <div>
                                     <label htmlFor='first_name' className="subheading mb-2 font-medium">{t('first_name')}</label>
                                     <Input
-                                        className="form-input"
                                         placeholder={t('first_name')}
                                         name="first_name"
                                         onChange={formik.handleChange}
@@ -128,7 +127,6 @@ const OtherInfo = () => {
                                 <div>
                                     <label htmlFor='last_name' className="subheading mb-2 font-medium">{t('last_name')}</label>
                                     <Input
-                                        className="form-input"
                                         placeholder={t('last_name')}
                                         name="last_name"
                                         onChange={formik.handleChange}
@@ -149,7 +147,6 @@ const OtherInfo = () => {
                                     name="email"
                                     onChange={formik.handleChange}
                                     value={formik.values.email}
-                                    className='form-input'
                                     placeholder="mail@example.com"
                                 />
                                

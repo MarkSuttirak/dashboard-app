@@ -97,7 +97,6 @@ const GetPhoneNumber = ({
                         <Input
                             ref={null}
                             placeholder="091-234-5678"
-                            className="form-input"
                             style={{ paddingLeft: "64px" }}
                             name="phoneNumber"
                             type='number'
@@ -274,7 +273,7 @@ const VerifyOTP = ({
                         {t('phone_verify.confirm_otp_label')}
                     </label>
                     <Input
-                        className="form-input mt-1"
+                        className="mt-1"
                         name="otp"
                         type='number'
                         value={formik.values.otp}

@@ -83,7 +83,6 @@ function onError(e) {
                 </label>
                 <Input
                   placeholder={t("first_name")}
-                  className="form-input"
                   name="first_name"
                   type='text'
                   onChange={form.handleChange}
@@ -98,7 +97,6 @@ function onError(e) {
                 </label>
                 <Input
                   placeholder={t("last_name")}
-                  className="form-input"
                   name="last_name"
                   onChange={form.handleChange}
                   type='text'
@@ -113,7 +111,6 @@ function onError(e) {
                 </label>
                 <Input
                   placeholder="First Name"
-                  className="form-input"
                   name="username"
                   type='text'
                   disabled
@@ -129,7 +126,6 @@ function onError(e) {
                 </label>
                 <Input
                   placeholder={t("email")}
-                  className="form-input"
                   name="email"
                   type='text'
                   value={preloadedValues.email}

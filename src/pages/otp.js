@@ -158,7 +158,6 @@ export default function OTP() {
                       type="tel"
                       name="phone"
                       id="phone"
-                      className="form-input"
                       style={{ paddingLeft: "64px" }}
                       placeholder="091-234-5678"
                       ref={phoneRef}
@@ -201,7 +200,6 @@ export default function OTP() {
                     type="text"
                     name="phone"
                     id="phone"
-                    className="form-input"
                     maxLength={6}
                     onInput={(e) => {
                       if (e.target.value === "" || e.target.value.length !== 6) {
