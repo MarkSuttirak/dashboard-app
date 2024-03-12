@@ -169,6 +169,14 @@ body {
   transition:background-color .1s;
 }
 
+.form-input {
+  border-radius:6px;
+  border:1px solid #F4F4F5;
+  background:#F4F4F5;
+  font-size:14px;
+  padding:8px 12px;
+}
+
 .btn-image-shadow {
   box-shadow:0 4px 10px 0 rgba(0, 0, 0, 0.10);
 }
@@ -738,7 +746,7 @@ body {
 }
 
 .banner-team-img {
-  @apply w-full h-full object-cover px-0 mx-5 pt-6 min-w-[400px]
+  @apply w-full h-auto object-cover px-0 mx-5 pt-6 min-w-[400px]
 }
 
 .table-invoice-mobile {

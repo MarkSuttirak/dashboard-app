@@ -267,6 +267,7 @@ export default function Register() {
                     type="text"
                     autoComplete="name"
                     required
+                    className="form-input"
                     placeholder="Name"
                     ref={nameRef}
                     onInput={() => {
@@ -283,6 +284,7 @@ export default function Register() {
                     type="text"
                     autoComplete="surname"
                     required
+                    className="form-input"
                     placeholder="Surname"
                     ref={surnameRef}
                     onInput={() => {
@@ -301,6 +303,7 @@ export default function Register() {
                   type="date"
                   autoComplete="birthdate"
                   required
+                  className="form-input"
                   placeholder="Birthdate"
                   ref={birthdateRef}
                   onInput={() => {
@@ -319,7 +322,7 @@ export default function Register() {
                     type="email"
                     autoComplete="email"
                     required
-                    className={`${emailError ? 'error' : ''}`}
+                    className={`form-input ${emailError ? 'error' : ''}`}
                     placeholder="Email"
                     ref={emailRef}
                     onInput={() => {
@@ -515,7 +518,7 @@ export default function Register() {
                     type="text"
                     name="site"
                     id="site"
-                    className={`${siteError ? 'error' : ''}`}
+                    className={`form-input ${siteError ? 'error' : ''}`}
                     placeholder="example"
                     style={{ paddingRight: "140px", paddingLeft: "60px" }}
                     ref={siteRef}

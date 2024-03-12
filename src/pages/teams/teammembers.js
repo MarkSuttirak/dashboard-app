@@ -177,7 +177,7 @@ export default function TeamMembers(){
         </div>
       </div>
 
-      <div className="flex flex-col gap-y-6 my-6">
+      <div className="flex flex-col gap-y-6 mt-8 mb-9 lg:my-6">
         {/* <DataList pagination={filteredMembers.length > 6 ? true : false} listPerPage={6} emptyText="There is no member you are looking for.">
           {filteredMembers.map(t => (
             <TeamCard firstname={t.first_name} lastname={t.last_name} role={t.roles[0]} email={t.name}/>

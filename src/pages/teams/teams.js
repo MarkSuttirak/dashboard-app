@@ -77,7 +77,7 @@ export default function Teams() {
     <div className="dashboard-container">
       <SettingsHeading text={t('menus.teams')} link={-1}/>
 
-      <main className="flex flex-col md:flex-row gap-y-8 gap-x-12 lg:gap-x-[72px] mt-8">
+      <main className="flex flex-col md:flex-row gap-y-8 gap-x-12 lg:gap-x-[72px] mt-12 lg:mt-8">
         <SettingsMenus id={id} menus={sidebarNavItems} />
 
         <section className="max-w-[672px] w-full">
@@ -172,7 +172,7 @@ export const SettingsDialogContent = ({ ...props }) => {
             <label className="subheading mb-2 font-medium">
               {t('teams.expire_after')}
             </label>
-            <select
+            <select className='form-input'
               name="invite_code_rotation_interval"
               value={formik.values.invite_code_rotation_interval}
               onChange={formik.handleChange}
@@ -188,6 +188,7 @@ export const SettingsDialogContent = ({ ...props }) => {
               {t('teams.maximum_uses')}
             </label>
             <select
+              className='form-input'
               name="invite_code_usage_limit"
               value={formik.values.invite_code_usage_limit}
               onChange={formik.handleChange}
@@ -202,6 +203,7 @@ export const SettingsDialogContent = ({ ...props }) => {
           {/* <label className="subheading mb-2 font-medium">
             Expire after
           </label>
+          <Select className='form-input'
             name="invite_code_rotation_interval"
             defaultValue={expireAfter[0]}
             value={formik.values.invite_code_rotation_interval}
@@ -223,6 +225,7 @@ export const SettingsDialogContent = ({ ...props }) => {
             Maximum number of uses
           </label>
           <Select
+            className='form-input'
             name="invite_code_usage_limit"
             value={formik.values.invite_code_usage_limit}
             onchange={opt => console.log(opt)}

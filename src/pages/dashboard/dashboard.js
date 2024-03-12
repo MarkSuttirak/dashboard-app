@@ -181,16 +181,18 @@ export default function Dashboard() {
       {/* <DashboardVideo /> */}
       {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> */}
 
-      <section className="pt-6 lg:py-[72px]">
-        <h2 className="secondary-heading px-5 lg:px-0">{t('what_you_want_to_do')}</h2>
+      <section className="pt-6 pb-8 lg:py-[72px]">
+        <div className="flex flex-col-reverse lg:flex-col">
+          <h2 className="secondary-heading px-5 lg:px-0">{t('what_you_want_to_do')}</h2>
 
-        <div className="flex lg:flex-wrap gap-[15px] pt-6 pb-3 overflow-scroll lg:overflow-visible px-5 lg:px-0">
-          {workspaceMenus.map(menu => (
-            <a className="workspace-btn" href={menu.link} target={menu.link === '/coming_soon' ? "_blank" : null}>
-              {menu.icon}
-              {menu.title}
-            </a>
-          ))}
+          <div className="flex lg:flex-wrap gap-[15px] lg:pt-6 lg:pb-3 pb-12 overflow-scroll lg:overflow-visible px-5 lg:px-0">
+            {workspaceMenus.map(menu => (
+              <a className="workspace-btn" href={menu.link} target={menu.link === '/coming_soon' ? "_blank" : null}>
+                {menu.icon}
+                {menu.title}
+              </a>
+            ))}
+          </div>
         </div>
 
         <div className="flex lg:flex-wrap gap-[15px] pt-3 pb-6 overflow-scroll lg:overflow-visible px-5 lg:px-0">

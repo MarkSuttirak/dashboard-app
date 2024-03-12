@@ -13,7 +13,9 @@ import { ChevronRight } from 'lucide-react'
 export default function Topbar({isSidebarOpen, setIsSidebarOpen}){
   return (
     <div className={`topbar`}>
-      <Breadcrumbs />
+      <div className='hidden lg:block'>
+        <Breadcrumbs />
+      </div>
       <button className="flex lg:hidden items-center gap-x-2" onClick={setIsSidebarOpen}>
         <Icons.zaviagoApp className='w-9 h-9'/>
         <h2 className='cal-sans text-[17px] font-semibold'>Workspace</h2>

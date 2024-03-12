@@ -10,6 +10,11 @@ export default function Breadcrumbs(){
   const [currentPage, setCurrentPage] = useState(location.pathname);
   const [breadcrumbList, setBreadcrumbList] = useState([]);
 
+  const mobileLink = {
+    settings: window.innerWidth > 1024 ? '/dashboard/settings/account' : '/dashboard/settings',
+    teams: window.innerWidth > 1024 ? '/dashboard/teams/members' : '/dashboard/teams'
+  }
+
   const breadcrumbMap = {
     '/integration/manage-apps': [
       { link: '/integration/manage-apps', title: t('menus.integration') },
@@ -25,20 +30,26 @@ export default function Breadcrumbs(){
     '/dashboard/compare-plan': [
       { link: null, title: 'Compare Plan' },
     ],
+    '/dashboard/settings': [
+      { link: '/dashboard/settings', title: t('menus.settings') }
+    ],
     '/dashboard/settings/account': [
-      { link: '/dashboard/settings/account', title: t('menus.settings') },
+      { link: mobileLink.settings, title: t('menus.settings') },
       { link: null, title: t('settings.account') },
     ],
     '/dashboard/settings/billing-plans': [
-      { link: '/dashboard/settings/account', title: t('menus.settings') },
+      { link: mobileLink.settings, title: t('menus.settings') },
       { link: null, title: t('settings.billing_plans') },
     ],
+    '/dashboard/teams': [
+      { link: '/dashboard/teams', title: t('menus.teams') }
+    ],
     '/dashboard/teams/members': [
-      { link: '/dashboard/teams/members', title: t('menus.teams') },
+      { link: mobileLink.teams, title: t('menus.teams') },
       { link: null, title: t('teams.teammembers') },
     ],
     '/dashboard/teams/my-teams': [
-      { link: '/dashboard/teams/my-teams', title: t('menus.teams') },
+      { link: mobileLink.teams, title: t('menus.teams') },
       { link: null, title: t('teams.my_teams') },
     ],
     ...appList.reduce((acc, app) => {
@@ -59,17 +70,22 @@ export default function Breadcrumbs(){
 
   return (
     <>
-      <div className="hidden lg:flex items-center gap-x-2">
-        <Link to='/'>
-          <h2 className='subheading'>{t('menus.dashboard')}</h2>
-        </Link>
-        {breadcrumbList.map(p => (
-          <>
-            <h2 className='subheading font-medium'>/</h2>
+      <div className="flex items-center gap-x-2 text-secondary md:text-primary">
+        <div className="hidden lg:flex items-center gap-x-2">
+          <Link to='/'>
+            <h2 className='subheading'>{t('menus.dashboard')}</h2>
+          </Link>
+
+          <h2 className='subheading'>/</h2>
+        </div>
+
+        {breadcrumbList.map((p, index) => (
+          <div key={index} className="flex items-center gap-x-2">
+            {index !== 0 && <h2 className='text-secondary lg:text-primary text-base lg:text-sm'>/</h2>}
             <Link to={p.link}>
-              <h2 className='subheading font-medium'>{p.title}</h2>
+              <h2 className='text-secondary lg:text-primary text-base lg:text-sm'>{p.title}</h2>
             </Link>
-          </>
+          </div>
         ))}
       </div>
     </>
