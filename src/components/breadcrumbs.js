@@ -76,7 +76,7 @@ export default function Breadcrumbs(){
             <h2 className='subheading'>{t('menus.dashboard')}</h2>
           </Link>
 
-          <h2 className='subheading'>/</h2>
+          {breadcrumbList.length > 0 ? <h2 className='subheading'>/</h2> : null}
         </div>
 
         {breadcrumbList.map((p, index) => (

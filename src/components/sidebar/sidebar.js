@@ -30,6 +30,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   const appslists = benchApps.data || [];
 
   const navigate = useNavigate();
+  const resize = () => window.innerWidth > 1024 ? setIsMobile(false) : setIsMobile(true)
 
   const handleMenuClick = (menu, href) => {
     navigate(href)
@@ -49,8 +50,8 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
   const navigation = [
     { name: t('menus.dashboard'), icon: <Hotel viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/app', current: active === '/dashboard/app' ? true : false, id: 'dashboard' },
-    { name: t('menus.settings'), icon: <Settings viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: window.innerWidth > 768 ? '/dashboard/settings/account' : '/dashboard/settings', current: active == "/dashboard/settings/account" || active == "/dashboard/settings/billing-plans" ? true : false, active: active, id: 'settings' },
-    { name: t('menus.teams'), icon: <Users viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: window.innerWidth > 768 ? '/dashboard/teams/members' : '/dashboard/teams', current: active == "/dashboard/teams/members" ? true : false, active: active, id: 'teams' },
+    { name: t('menus.settings'), icon: <Settings viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: window.innerWidth > 1024 ? '/dashboard/settings/account' : '/dashboard/settings', current: active == "/dashboard/settings/account" || active == "/dashboard/settings/billing-plans" ? true : false, active: active, id: 'settings' },
+    { name: t('menus.teams'), icon: <Users viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: window.innerWidth > 1024 ? '/dashboard/teams/members' : '/dashboard/teams', current: active == "/dashboard/teams/members" ? true : false, active: active, id: 'teams' },
   ]
 
   const settingsMenus = [
@@ -99,9 +100,8 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
   useEffect(() => {
     setActive(location.pathname);
+    resize()
 
-    const resize = () => window.innerWidth > 1023 ? setIsMobile(false) : setIsMobile(true)
-    window.addEventListener("load", resize)
     window.addEventListener("resize", resize)
   }, [isMobile])
 

@@ -34,7 +34,7 @@ export default function Settings(){
     <div className="dashboard-container">
       <SettingsHeading text={t('menus.settings')} link={-1}/>
 
-      <main className="flex flex-col md:flex-row gap-y-8 gap-x-12 lg:gap-x-[72px] mt-12 lg:mt-8">
+      <main className={`flex flex-col ${id ? 'md:flex-row' : 'lg:flex-row'} gap-y-8 gap-x-12 lg:gap-x-[72px] mt-12 lg:mt-8`}>
         <SettingsMenus id={id} menus={sidebarNavItems} />
 
         <section className="max-w-[672px] w-full">
