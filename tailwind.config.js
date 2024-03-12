@@ -56,7 +56,7 @@ module.exports = {
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
+          DEFAULT: "#F3F3F3", // hsl(var(--accent))
           foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
@@ -67,6 +67,9 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        zinc: {
+          100: "#F3F3F3"
+        }
       },
       borderRadius: {
         lg: "var(--radius)",

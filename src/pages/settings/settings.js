@@ -56,21 +56,21 @@ export default function Settings(){
           {id === 'billing-plans' && (
             <>
               <Tabs defaultValue="overview">
-                <div className="overflow-auto">
-                  <TabsList>
+                <div className="overflow-auto py-1">
+                  <TabsList className="px-5 md:px-1 inline-flex gap-x-4 md:gap-x-0 lg:inline-block">
                     <TabsTrigger value="overview">{t('settings.overview.title')}</TabsTrigger>
                     <TabsTrigger value="purchase-history">{t('settings.purchase_history.title')}</TabsTrigger>
                     <TabsTrigger value="billing">{t('settings.billing')}</TabsTrigger>
                   </TabsList>
                 </div>
-                <Separator className='my-6'/>
-                <TabsContent value="overview">
+                <Separator className='my-4 md:my-6'/>
+                <TabsContent value="overview" className="px-5 md:px-0">
                   <Subscription />
                 </TabsContent>
-                <TabsContent value="purchase-history">
+                <TabsContent value="purchase-history" className="px-5 md:px-0">
                   <Invoices />
                 </TabsContent>
-                <TabsContent value="billing">
+                <TabsContent value="billing" className="px-5 md:px-0">
                   <BillingPlan />
                 </TabsContent>
               </Tabs>
