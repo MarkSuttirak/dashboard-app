@@ -1,7 +1,6 @@
-import { Link, useLocation, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { Separator } from "src/components/ui/separator";
 import { useState, useRef } from "react";
-import PagesMenus from "src/components/pagesMenus";
 import { Input } from "src/components/ui/input";
 import { Button } from "src/components/ui/button";
 import TeamMembers from "./teammembers";
@@ -10,13 +9,15 @@ import { useToast } from "src/components/ui/use-toast";
 import { Toaster } from "src/components/ui/toaster"
 import { CheckCircle2 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogClose, DialogFooter } from "src/components/ui/dialog"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "src/components/ui/select"
 import { useMutation, useQuery } from "react-query";
 import { site, team } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { Skeleton } from "src/components/ui/skeleton";
 import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
+import SettingsHeading from "src/components/settings/settingsHeading";
+import SettingsMenus from "src/components/settings/settingsMenus";
+import Bannerteam from "./bannerteam";
 
 export default function Teams() {
   const { t } = useTranslation()
@@ -41,7 +42,6 @@ export default function Teams() {
 
   const { id } = useParams()
   const { toast } = useToast()
-  const location = useLocation()
   console.log("id", id);
   const inviteLinkRef = useRef(null)
 
@@ -51,11 +51,11 @@ export default function Teams() {
   const sidebarNavItems = [
     {
       title: t('teams.teammembers'),
-      href: "/dashboard/teams",
+      href: "/dashboard/teams/members",
     },
     {
       title: t('teams.my_teams'),
-      href: "/dashboard/teams/teams",
+      href: "/dashboard/teams/my-teams",
     }
   ]
 
@@ -75,56 +75,60 @@ export default function Teams() {
 
   return (
     <div className="dashboard-container">
-      <h1 className="main-heading">{t('menus.teams')}</h1>
+      <SettingsHeading text={t('menus.teams')} link={-1}/>
 
-      <main className="flex flex-col lg:flex-row gap-y-8 gap-x-[72px] mt-8">
-        <PagesMenus menus={sidebarNavItems} />
-        {!id && (
-          <section className="max-w-[672px] w-full">
-            <h2 className="settings-heading">{t('teams.manage_members.title')}</h2>
-            <p className="main-desc">{t('teams.manage_members.desc')}</p>
+      <main className={`flex flex-col ${id ? 'md:flex-row' : 'lg:flex-row'} gap-y-8 gap-x-12 lg:gap-x-[72px] mt-12 lg:mt-8`}>
+        <SettingsMenus id={id} menus={sidebarNavItems} />
 
-            {auth?.team?.invite_code ? (
-              <div className="flex w-full items-center space-x-2 mt-6 mb-[10px]">
-                <Input type="link" value={`https://${window.location.host}/invite/${auth.team.invite_code}`} ref={inviteLinkRef} />
-                <Button variant='secondary' onClick={copyLink}>{t('teams.copy_link')}</Button>
-              </div>
-            ) : <Skeleton className='h-9 w-full mt-6 mb-[10px]' />}
+        <section className="max-w-[672px] w-full">
+          {id === "members" && (
+            <>
+              <h2 className="settings-heading">{t('teams.manage_members.title')}</h2>
+              <p className="main-desc">{t('teams.manage_members.desc')}</p>
 
-            <Toaster />
+              {auth?.team?.invite_code ? (
+                <div className="flex w-full items-center space-x-2 mt-6 mb-[10px]">
+                  <Input type="link" value={`https://${window.location.host}/invite/${auth.team.invite_code}`} ref={inviteLinkRef} />
+                  <Button onClick={copyLink}>{t('teams.copy_link')}</Button>
+                </div>
+              ) : <Skeleton className='h-9 w-full mt-6 mb-[10px]' />}
 
-            <p className="main-desc">
-              {t('teams.invitation_desc')} {t(`teams.${auth?.team?.invite_code_rotation_interval}`)}.{" "}
-              <Dialog open={open} onOpenChange={setOpen}>
-                <DialogTrigger className="text-[#006AFF]">{t('teams.edit_invitation')}</DialogTrigger>
-                {
-                  auth?.team && (
-                    <SettingsDialogContent
-                      setOpen={setOpen}
-                      open={open}
-                      initialValues={{
-                        invite_code_rotation_interval: auth.team.invite_code_rotation_interval,
-                        invite_code_usage_limit: auth.team.invite_code_usage_limit
-                      }} />
-                  )
-                }
-              </Dialog>
-            </p>
+              <Toaster />
 
-            <Separator className='my-6' />
+              <p className="main-desc">
+                {t('teams.invitation_desc')} {t(`teams.${auth?.team?.invite_code_rotation_interval}`)}.{" "}
+                <Dialog open={open} onOpenChange={setOpen}>
+                  <DialogTrigger className="text-[#006AFF]">{t('teams.edit_invitation')}</DialogTrigger>
+                  {
+                    auth?.team && (
+                      <SettingsDialogContent
+                        setOpen={setOpen}
+                        open={open}
+                        initialValues={{
+                          invite_code_rotation_interval: auth.team.invite_code_rotation_interval,
+                          invite_code_usage_limit: auth.team.invite_code_usage_limit
+                        }} />
+                    )
+                  }
+                </Dialog>
+              </p>
 
-            <TeamMembers />
-          </section>
-        )}
+              <Separator className='my-6' />
 
-        {id === 'teams' && (
-          <section className="max-w-[672px] w-full">
-            <h2 className="settings-heading">{t('teams.all_teams.title')}</h2>
-            <p className="main-desc">{t('teams.all_teams.desc')}</p>
+              <TeamMembers />
+              <Bannerteam />
+            </>
+          )}
 
-            <AllTeams />
-          </section>
-        )}
+          {id === 'my-teams' && (
+            <>
+              <h2 className="settings-heading">{t('teams.all_teams.title')}</h2>
+              <p className="main-desc">{t('teams.all_teams.desc')}</p>
+
+              <AllTeams />
+            </>
+          )}
+        </section>
       </main>
     </div>
   )
@@ -165,7 +169,7 @@ export const SettingsDialogContent = ({ ...props }) => {
         <DialogTitle>{t('teams.edit_invitation')}</DialogTitle>
         <DialogDescription className='flex flex-col gap-y-6 py-6'>
           <div className="anim-up flex flex-col">
-            <label className="subheading mb-2 font-medium">
+            <label className="subheading mb-2">
               {t('teams.expire_after')}
             </label>
             <select className='form-input'
@@ -180,7 +184,7 @@ export const SettingsDialogContent = ({ ...props }) => {
           </div>
 
           <div className="anim-up flex flex-col">
-            <label className="subheading mb-2 font-medium">
+            <label className="subheading mb-2">
               {t('teams.maximum_uses')}
             </label>
             <select

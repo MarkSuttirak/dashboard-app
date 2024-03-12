@@ -245,7 +245,7 @@ export default function CustomPricing(){
           <label className="subheading mb-2 font-medium">
             {label}
           </label>
-          <Select className='form-input' name={name} defaultValue={defaultValue} onValueChange={onValueChange}>
+          <Select name={name} defaultValue={defaultValue} onValueChange={onValueChange}>
             <SelectTrigger className="w-full">
               <SelectValue defaultValue={defaultValue}/>
             </SelectTrigger>

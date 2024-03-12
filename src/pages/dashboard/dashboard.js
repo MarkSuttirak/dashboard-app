@@ -18,6 +18,7 @@ import { Edit3 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import DashboardVideo from "./dashboardVideo";
 import { Icons } from "src/components/ui/icons";
+import DashboardTeam from "./dashboardTeam";
 
 export default function Dashboard() {
   const { t, i18n } = useTranslation();
@@ -26,10 +27,9 @@ export default function Dashboard() {
   const [menuCardIndex, setMenuCardIndex] = useState(0)
   const [websiteSid, setwebsiteSid] = useState(false)
 
-  const textGradient = (gradient, fontSize) => {
+  const textGradient = (gradient) => {
     const style = {
       background: gradient,
-      fontSize: fontSize,
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent"
     }
@@ -158,21 +158,21 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      <div className="flex items-center justify-between">
-        <div className="flex gap-x-[10px] items-center">
+      <div className="flex items-center justify-between gap-y-4 px-5 lg:px-0">
+        <div className="flex gap-x-[10px] items-center mb-6 md:mb-0">
           <Avatar className='w-[49px] h-[49px] text-sm'>
             <AvatarImage src="" />
             <AvatarFallback>{user?.first_name[0]}</AvatarFallback>
           </Avatar>
           <div>
-            {user ? <h1 className="text-3xl text-primary font-bold tracking-[-0.75px] font-eventpop leading-8">สวัสดีคุณ <span style={textGradient("linear-gradient(92.12deg, #7900FF -2.04%, #006AFF 89.63%)", "30px")}>{user?.first_name}</span>🙏</h1> : <Skeleton className='h-8 w-[300px]' />}
+            {user ? <h1 className="text-xl md:text-3xl text-primary font-bold tracking-[-0.75px] font-eventpop leading-8">สวัสดีคุณ <span style={textGradient("linear-gradient(92.12deg, #7900FF -2.04%, #006AFF 89.63%)")} className="text-xl md:text-3xl">{user?.first_name}</span>🙏</h1> : <Skeleton className='h-8 w-[300px]' />}
             <p className="text-sm text-secondary">จัดการและขยายธุรกิจด้วย Zaviago WorkSpace</p>
           </div>
         </div>
-        <Link to='/coming-soon' target='_blank'>
-          <Button className='rounded-full btn-with-icon'>
+        <Link to='/coming-soon' target='_blank' className="hidden lg:block">
+          <Button className='rounded-md btn-with-icon'>
             <Edit3 className="w-4 h-4" />
-            ออกแบบเว็บ
+            ออกแบบเว็บไซต์
           </Button>
         </Link>
       </div>
@@ -181,10 +181,10 @@ export default function Dashboard() {
       {/* <DashboardVideo /> */}
       {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> */}
 
-      <section className="my-[72px]">
-        <h2 className="secondary-heading">{t('what_you_want_to_do')}</h2>
+      <section className="pt-6 pb-4 lg:py-[72px]">
+        <h2 className="secondary-heading px-5 lg:px-0">{t('what_you_want_to_do')}</h2>
 
-        <div className="flex flex-wrap gap-[15px] mt-6">
+        <div className="flex lg:flex-wrap gap-[15px] pt-6 pb-3 overflow-scroll lg:overflow-visible px-5 lg:px-0">
           {workspaceMenus.map(menu => (
             <a className="workspace-btn" href={menu.link} target={menu.link === '/coming_soon' ? "_blank" : null}>
               {menu.icon}
@@ -193,7 +193,7 @@ export default function Dashboard() {
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-[15px] mt-6">
+        <div className="flex lg:flex-wrap gap-[15px] pt-3 pb-6 overflow-scroll lg:overflow-visible px-5 lg:px-0">
           {newOrManageMenus.map((n, index) => (
             <div onClick={() => n.page !== undefined && loginNow(n.page)} className="menu-card" key={index} style={{ backgroundColor: n.background, color: n.color, boxShadow: isMenuCardHover && menuCardIndex === index ? `0 0 3px ${n.color}` : null }} onMouseEnter={() => handleCardHover(index)} onMouseLeave={handleCardHoverLeave}>
               {n.image}
@@ -203,6 +203,7 @@ export default function Dashboard() {
         </div>
       </section>
 
+      <DashboardTeam />
       {/* <section className="my-[76px]">
         <h2 className="secondary-heading">App Store</h2>
         <p className="main-desc">You have got much more than just a website.<br/>Build and expand your digital business with application</p>
@@ -212,13 +213,13 @@ export default function Dashboard() {
         </div>
       </section> */}
 
-      <section>
+      <section className="px-5 lg:px-0">
         <h2 className="secondary-heading">{t('discover_what_you_can_do')}</h2>
 
-        <div className="mt-6 grid lg:grid-cols-3 gap-[15px]">
-          <PostInfo title="สร้างเว็บง่ายเหมือนทำ “Powerpoint”" desc="สร้างเว็บไซต์ใหม่สุดเก๋ แสดงความเป็นคุณ ที่คุณเองก็ทำได้ ด้วยฟีเจอร์ที่เรียบง่ายแต่สุดจะทรงพลัง" image={createYourBlog} buttonText="เร็วๆ นี้" onClick={() => window.open("/coming-soon", '_blank')} />
-          <PostInfo title="ขายสินค้าออนไลน์" desc="ขยายฐานลูกค้าแบบก้าวกระโดดด้วยการทำโปรแกรมสะสมคะแนนและแลกของรางวัล" buttonText="เริ่มต้นขายสินค้าออนไลน์" image={sellingOnline} imageStyle='px-6' onClick={() => window.open("/coming-soon", '_blank')} />
-          <PostInfo title="เชื่อมต่อทุกช่องทางการขาย" desc="จัดการออเดอร์อย่างมีประสิทธิภาพด้วยการเชื่อมต่อกับช่องทางการขายหลากหลายแพลตฟอร์ม" buttonText="เชื่อมต่อช่องทางการขาย" image={connectMessage} imageStyle='pl-8 pb-8' onClick={() => window.open("/coming-soon", '_blank')} />
+        <div className="mt-6 grid md:grid-cols-3 gap-x-[15px] gap-y-5">
+          <PostInfo title="สร้าง Post และการตลาดออนไลน์" desc="สร้าง Brander หรือ Post ได้ง่าย ๆ พร้อมกับ เทมเพลตสุดปัง" image={createYourBlog} imageStyle="pr-2" comingSoon onClick={() => window.open("/coming-soon", '_blank')} />
+          <PostInfo title="วางแผนและจัดการงานของทีม" desc="วางแผนและจัดชีวิตให้ง่ายขึ้นด้วย เทมเพลต Projects Manager" comingSoon image={sellingOnline} imageStyle="px-5" onClick={() => window.open("/coming-soon", '_blank')} />
+          <PostInfo title="เชื่อมต่อ Shopee & Lazada" desc="จัดการออเดอร์อย่างมีประสิทธิภาพด้วยการเชื่อมต่อกับช่องทางการขายหลากหลายแพลตฟอร์ม" buttonText="เชื่อมต่อช่องทางการขาย" image={connectMessage} imageStyle='pl-4 pb-4' onClick={() => window.open("/coming-soon", '_blank')} />
         </div>
       </section>
     </div>

@@ -37,7 +37,6 @@ export default function Profile() {
                           id="about"
                           name="about"
                           rows={3}
-                          className="form-input"
                           placeholder="you@example.com"
                           defaultValue={''}
                         />

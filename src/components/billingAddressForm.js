@@ -79,13 +79,13 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText, on
 
   return (
     <>
-      <form className="flex flex-col gap-y-8 mt-8" onSubmit={onSubmitForm}>
+      <form className="flex flex-col gap-y-6 md:gap-y-8 mt-8" onSubmit={onSubmitForm}>
         <div className="space-y-6 w-full">
           <div className="anim-up flex flex-col">
             <label className="subheading mb-2 font-medium">
               {t('tax_invoice_type')} <span className="required">*</span>
             </label>
-            <Select className='form-input' name="tax-invoice-type" defaultValue="Personal" onValueChange={e => e === 'Company' ? setIsCompany(true) : setIsCompany(false)}
+            <Select name="tax-invoice-type" defaultValue="Personal" onValueChange={e => e === 'Company' ? setIsCompany(true) : setIsCompany(false)}
               // onChange={form.handleChange} defaultValue={preloadedValues.email}
             >
               <SelectTrigger className="w-full">
@@ -107,7 +107,6 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText, on
               </label>
               <Input
                 placeholder={t('company_name')}
-                className="form-input"
                 name="company_name"
                 type='text'
                 // onChange={form.handleChange}
@@ -116,7 +115,7 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText, on
             </div>
           </div>
         ) : (
-          <div className="flex gap-x-3">
+          <div className="flex flex-col md:flex-row gap-y-6 gap-x-3">
             <div className="space-y-6 w-full">
               <div className="anim-up flex flex-col">
                 <label className="subheading mb-2 font-medium">
@@ -124,7 +123,6 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText, on
                 </label>
                 <Input
                   placeholder={t('first_name')}
-                  className="form-input"
                   name="firstname"
                   type='text'
                   // onChange={form.handleChange}
@@ -139,7 +137,6 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText, on
                 </label>
                 <Input
                   placeholder={t('last_name')}
-                  className="form-input"
                   name="lastname"
                   type='text'
                   // onChange={form.handleChange}
@@ -158,7 +155,6 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText, on
               </label>
               <Input
                 placeholder={isCompany ? "3-0000-9999-9" : "1-1009-99999-09-9"}
-                className="form-input"
                 name="tax-id"
                 type='tel'
                 // onChange={form.handleChange}
@@ -177,7 +173,6 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText, on
             </label>
             <Input
               placeholder={t('address')}
-              className="form-input"
               name="address"
               type='text'
               // onChange={form.handleChange}
@@ -186,7 +181,7 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText, on
           </div>
         </div>
 
-        <div className="flex gap-x-3">
+        <div className="flex flex-col gap-x-3 md:flex-row gap-y-6">
           <div className="space-y-6 w-full">
             <div className="anim-up flex flex-col">
               <label className="subheading mb-2 font-medium">
@@ -194,7 +189,6 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText, on
               </label>
               <Input
                 placeholder={t('subdistrict')}
-                className="form-input"
                 name="subdistrict"
                 type='text'
                 // onChange={form.handleChange}
@@ -209,7 +203,6 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText, on
               </label>
               <Input
                 placeholder={t('district')}
-                className="form-input"
                 name="district"
                 type='text'
                 // onChange={form.handleChange}
@@ -219,13 +212,13 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText, on
           </div>
         </div>
 
-        <div className="flex gap-x-3">
+        <div className="flex flex-col gap-x-3 md:flex-row gap-y-6">
           <div className="space-y-6 w-full">
             <div className="anim-up flex flex-col">
               <label className="subheading mb-2 font-medium">
                 {t('province')} <span className="required">*</span>
               </label>
-              <Select className='form-input' name="province" defaultValue="Bangkok"
+              <Select name="province" defaultValue="Bangkok"
                 // onChange={form.handleChange} defaultValue={preloadedValues.email}
               >
                 <SelectTrigger className="w-full">
@@ -246,7 +239,6 @@ export function BillingAddressForm({billingAddress, onSubmitForm, submitText, on
               </label>
               <Input
                 placeholder={t('postal_code')}
-                className="form-input"
                 name="postal_code"
                 type='text'
                 // onChange={form.handleChange}

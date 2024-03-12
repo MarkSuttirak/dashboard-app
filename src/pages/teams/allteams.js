@@ -20,7 +20,7 @@ export default function AllTeams() {
         <div className="flex items-center space-x-4">
           <Avatar>
             <AvatarImage />
-            {/* <AvatarFallback>{teamname[0]}</AvatarFallback> */}
+            <AvatarFallback>{lteam.user[0].toUpperCase()}</AvatarFallback>
           </Avatar>
           <div>
             <p className="text-sm font-medium leading-none">{lteam.user}</p>
@@ -28,7 +28,7 @@ export default function AllTeams() {
         </div>
         <Popover>
           <PopoverTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button variant="secondary" className="ml-auto">
               {lteam.name === auth.team.name ? t('teams.current') : t('teams.switch')}
               <ChevronDownIcon className="ml-2 h-4 w-4 text-muted-foreground" />
             </Button>

@@ -23,12 +23,14 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   const location = useLocation();
   const { user } = useUser();
   const [upgraded, setUpgraded] = useState(false)
+  const [isMobile, setIsMobile] = useState()
 
   const benchApps = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), { enabled: false });
   const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.site_list[0].name), { enabled: false });
   const appslists = benchApps.data || [];
 
   const navigate = useNavigate();
+  const resize = () => window.innerWidth > 1024 ? setIsMobile(false) : setIsMobile(true)
 
   const handleMenuClick = (menu, href) => {
     navigate(href)
@@ -48,8 +50,8 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
   const navigation = [
     { name: t('menus.dashboard'), icon: <Hotel viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/app', current: active === '/dashboard/app' ? true : false, id: 'dashboard' },
-    { name: t('menus.settings'), icon: <Settings viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/settings/account', current: active == "/dashboard/settings/account" || active == "/dashboard/settings/billing-plans" ? true : false, active: active, id: 'settings' },
-    { name: t('menus.teams'), icon: <Users viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/teams', current: active == "/dashboard/teams" ? true : false, active: active, id: 'teams' },
+    { name: t('menus.settings'), icon: <Settings viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: window.innerWidth > 1024 ? '/dashboard/settings/account' : '/dashboard/settings', current: active == "/dashboard/settings/account" || active == "/dashboard/settings/billing-plans" ? true : false, active: active, id: 'settings' },
+    { name: t('menus.teams'), icon: <Users viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: window.innerWidth > 1024 ? '/dashboard/teams/members' : '/dashboard/teams', current: active == "/dashboard/teams/members" ? true : false, active: active, id: 'teams' },
   ]
 
   const settingsMenus = [
@@ -98,7 +100,10 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
   useEffect(() => {
     setActive(location.pathname);
-  }, [])
+    resize()
+
+    window.addEventListener("resize", resize)
+  }, [isMobile])
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -155,28 +160,31 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   return (
     <>
       {/* <IconSidebar /> */}
+      <div className={`h-screen w-screen bg-gray-500/50 z-[99] left-0 top-0 fixed ${isSidebarOpen ? 'opacity-1 visible' : 'opacity-0 invisible'} transition duration-300`} onClick={() => setIsSidebarOpen(false)}/>
       <div className={`flex flex-1 flex-col border-r border-gray-200 bg-white ${isSidebarOpen ? 'active' : 'inactive'}`} id="sidebar">
-        <div className="flex flex-1 flex-col pt-[18px]">
-          <div className="relative sidebar-top">
-            <div className="flex flex-shrink-0 items-center px-[14px] sidebar-site relative z-[4]">
-              <div className="flex items-center w-full relative">
-                <SidebarWebsite />
+        <div className="flex flex-1 flex-col pt-3 lg:pt-[18px]">
+          {!isMobile ? (
+            <div className="relative sidebar-top">
+              <div className="flex flex-shrink-0 items-center px-[14px] sidebar-site relative z-[4]">
+                <div className="flex items-center w-full relative">
+                  <SidebarWebsite />
+                </div>
               </div>
+              <div className="w-8 h-8 absolute top-2.5 rounded-[5px] left-4 bg-[#0000000F] border border-[#00000029] square-shadow" />
             </div>
-            <div className="w-8 h-8 absolute top-2.5 rounded-[5px] left-4 bg-[#0000000F] border border-[#00000029] square-shadow" />
-          </div>
+          ) : null}
           {/* <button className={`chevron-btn ${!isSidebarOpen ? 'inactive' : ''}`} onClick={() => setIsSidebarOpen(false)}>
             <ChevronsLeft className="chevron-sidebar" viewBox="0 0 24 24" width='16' height='16' />
           </button> */}
 
           {/* {!upgraded && <SidebarUpgrade />} */}
 
-          <nav className="flex bg-white px-3 pt-2 flex-col gap-y-4 mt-3" aria-label="Sidebar">
+          <nav className="flex bg-white px-3 lg:py-5 justify-center flex-col gap-y-4" aria-label="Sidebar">
             <section className="flex flex-col">
               {navigation.map((item) => (
                 <>
                   {item.href ? (
-                    <Button key={item.name} variant='ghost' onClick={() => handleMenuClick(item.current, item.href)} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.current ? 'bg-zinc-100' : ''}`}>
+                    <Button key={item.name} variant='ghost' onClick={() => handleMenuClick(item.current, item.href)} className={`w-full flex h-full justify-start gap-2 text-[13px] items-center leading-5 ${item.current ? 'bg-zinc-100' : ''}`}>
                       {item.icon}
                       {item.name}
                     </Button>

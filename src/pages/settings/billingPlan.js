@@ -23,16 +23,15 @@ export default function BillingPlan() {
     setbilligAddress( await user_api.getBillingInfo() )
     //setbilligAddress(billingAddress.message)
   }
-  useEffect(()=>{
-    fetchBilling() 
-  },[])
+  useEffect(() => { fetchBilling() },[])
 
   return (
     <>
-      <h1 className="secondary-heading">{t('billing_info')}</h1>
-
       {billingAddress ? (
-        <BillingAddressForm billingAddress={billingAddress.message} submitText={t('update_form')} onSettings={true}/>
+        <>
+          <h1 className="secondary-heading">{t('billing_info')}</h1>
+          <BillingAddressForm billingAddress={billingAddress.message} submitText={t('update_form')} onSettings={true}/>
+        </>
       ) : (
         <Loading />
       )}

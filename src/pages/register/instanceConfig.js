@@ -346,7 +346,6 @@ export const SiteDomainForm = ({
                     </div>
                     <Input
                         style={{ paddingRight: "140px", paddingLeft: "60px" }}
-                        className={`form-input`}
                         placeholder="example"
                         name="subdomain"
                         onChange={formik.handleChange}

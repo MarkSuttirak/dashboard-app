@@ -44,19 +44,31 @@ export default function DashboardVideo(){
     <section className="bg-[#F7F7F8] my-6 rounded-xl">
       <div className="p-6 flex gap-x-12 items-center">
         <iframe width="644" height="384" className="rounded-xl" src={videoSrc} frameborder="0" allowfullscreen title={videoTitle}/>
+
         <div className="w-1/3 flex flex-col gap-y-[31px]">
+
           {videoLists.map((list, index) => (
             <button key={index} onClick={() => handleChangeVideo(list.src, list.title, index)} className="w-full text-left flex items-center gap-x-4">
+              
               <img src={list.img} className="rounded-sm"/>
+
               <div className="flex flex-col gap-y-[10px]">
+
+
                 <h2 className='text-primary text-[13px] font-eventpop'>{list.title}</h2>
+
                 <p className="text-[#7009FF] flex items-center gap-x-2 text-[13px] font-bold font-eventpop">
+
+
                   <PlayCircle className="h-4 w-4 text-[#7009FF]"/>
                   {playing === index ? t('playing') : t('play_video')}
+
+
                 </p>
               </div>
             </button>
           ))}
+
         </div>
       </div>
     </section>
