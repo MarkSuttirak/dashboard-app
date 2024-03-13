@@ -8,7 +8,7 @@ export default function PostInfo({title, desc, buttonText, comingSoon, onClick, 
       <div className="px-6 py-10">
         <h3 className="secondary-heading">{title}</h3>
         <p className="text-sm text-zinc-500 mt-4 mb-6">{desc}</p>
-        {buttonText && <Button className='rounded-md' onClick={onClick}>
+        {buttonText && <Button onClick={onClick}>
           {buttonText}
         </Button>}
         {comingSoon && (
