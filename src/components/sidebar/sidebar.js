@@ -163,23 +163,21 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
       <div className={`h-screen w-screen bg-gray-500/50 z-[99] left-0 top-0 fixed ${isSidebarOpen ? 'opacity-1 visible' : 'opacity-0 invisible'} transition duration-300`} onClick={() => setIsSidebarOpen(false)}/>
       <div className={`flex flex-1 flex-col border-r border-gray-200 bg-white ${isSidebarOpen ? 'active' : 'inactive'}`} id="sidebar">
         <div className="flex flex-1 flex-col pt-3 lg:pt-[18px]">
-          {!isMobile ? (
-            <div className="relative sidebar-top">
-              <div className="flex flex-shrink-0 items-center px-[14px] sidebar-site relative z-[4]">
-                <div className="flex items-center w-full relative">
-                  <SidebarWebsite />
-                </div>
+          <div className="relative sidebar-top">
+            <div className="flex flex-shrink-0 items-center px-[14px] sidebar-site relative z-[4]">
+              <div className="flex items-center w-full relative">
+                <SidebarWebsite />
               </div>
-              <div className="w-8 h-8 absolute top-2.5 rounded-[5px] left-4 bg-[#0000000F] border border-[#00000029] square-shadow" />
             </div>
-          ) : null}
+            <div className="w-8 h-8 absolute top-2.5 rounded-[5px] left-4 bg-[#0000000F] border border-[#00000029] square-shadow" />
+          </div>
           {/* <button className={`chevron-btn ${!isSidebarOpen ? 'inactive' : ''}`} onClick={() => setIsSidebarOpen(false)}>
             <ChevronsLeft className="chevron-sidebar" viewBox="0 0 24 24" width='16' height='16' />
           </button> */}
 
           {/* {!upgraded && <SidebarUpgrade />} */}
 
-          <nav className="flex bg-white px-3 lg:py-5 justify-center flex-col gap-y-4" aria-label="Sidebar">
+          <nav className="flex bg-white px-3 py-5 justify-center flex-col gap-y-4" aria-label="Sidebar">
             <section className="flex flex-col">
               {navigation.map((item) => (
                 <>

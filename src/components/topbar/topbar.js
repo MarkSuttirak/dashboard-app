@@ -17,7 +17,8 @@ export default function Topbar({isSidebarOpen, setIsSidebarOpen}){
         <Breadcrumbs />
       </div>
       <button className="flex lg:hidden items-center gap-x-2" onClick={setIsSidebarOpen}>
-        <Icons.zaviagoApp className='w-9 h-9'/>
+        <Icons.zaviagoApp className='w-9 h-9 z-9'/>
+
         <h2 className='cal-sans text-[17px] font-semibold'>Workspace</h2>
         <ChevronRight class='w-4 h-4'/>
       </button>
