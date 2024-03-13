@@ -742,28 +742,45 @@ body {
 }
 
 .banner-team {
-  @apply rounded-xl bg-[#F7F7F8] grid grid-cols-2 overflow-hidden
+  overflow:hidden;
+  border-radius:12px;
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  background-color:#F7F7F8
 }
 
 .banner-team-img {
-  @apply w-full h-auto object-cover px-0 mx-5 pt-6 min-w-[400px]
+  width:100%;
+  height:auto;
+  object-fit:cover;
+  padding-left:0;
+  padding-right:0;
+  padding-top:24px;
+  margin-left:0;
+  margin-right:0;
+  min-width:400px;
 }
 
 .table-invoice-mobile {
-  @apply hidden
+  display:none
 }
 
 @media (max-width:1280px) and (min-width:1024px), (max-width:991px){
   .banner-team {
-    @apply grid-cols-1
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
   .banner-team-img {
-    @apply px-5 mx-0 min-w-0 object-contain
+    padding-left:20px;
+    padding-right:20px;
+    margin-left:0;
+    margin-right:0;
+    min-width:0;
+    object-fit:contain
   }
   .table-invoice-desktop {
-    @apply hidden
+    display:none
   }
   .table-invoice-mobile {
-    @apply block
+    display:block
   }
 }
