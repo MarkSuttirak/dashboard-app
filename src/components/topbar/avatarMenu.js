@@ -39,15 +39,15 @@ export default function AvatarMenu(){
       <Command>
         <CommandList className="max-h-none md:max-h-[300px]">
           <CommandGroup className="mx-3 md:mx-0">
-            <CommandItem onSelect={handleChangeLang} className="py-[10px] md:py-1">
+            <CommandItem onSelect={handleChangeLang} className="text-base md:text-sm py-[10px] px-3 md:py-1 md:px-2">
               <Globe viewBox='0 0 24 24' className="h-4 w-4 mr-2"/>
               {t('language')}
-              <CommandShortcut className='font-normal flex gap-x-2'>
-                <span className={`${localStorage.lang !== null && localStorage.lang === 'th' ? 'bg-darkergray px-[5px] text-primary-foreground rounded-sm' : 'text-secondary'}`}>TH</span>
-                <span className={`${localStorage.lang !== null && localStorage.lang === 'en' ? 'bg-darkergray px-[5px] text-primary-foreground rounded-sm' : 'text-secondary'}`}>EN</span>
+              <CommandShortcut className='font-normal flex gap-x-3 lg:gap-x-2'>
+                <span className={`py-1 ${localStorage.lang !== null && localStorage.lang === 'th' ? 'bg-darkergray px-[5px] text-primary-foreground rounded-sm' : 'text-secondary'}`}>TH</span>
+                <span className={`py-1 ${localStorage.lang !== null && localStorage.lang === 'en' ? 'bg-darkergray px-[5px] text-primary-foreground rounded-sm' : 'text-secondary'}`}>EN</span>
               </CommandShortcut>
             </CommandItem>
-            <CommandItem onSelect={() => navigate('/dashboard/settings/account')} className="py-[10px] md:py-1">
+            <CommandItem onSelect={() => navigate('/dashboard/settings/account')} className="text-base md:text-sm px-3 md:px-2 py-[10px] md:py-1">
               <User viewBox='0 0 24 24' className="h-4 w-4 mr-2"/>
               {t('topbar.menus.my_account')}
             </CommandItem>
@@ -60,7 +60,7 @@ export default function AvatarMenu(){
           </div>
 
           <CommandGroup className="mx-3 md:mx-0">
-            <CommandItem className="p-0 py-[10px] md:py-0">
+            <CommandItem className="px-1 md:px-0 py-[10px] md:py-0">
               <LogoutModal>
                 <LogOut viewBox='0 0 24 24' className="h-4 w-4 mr-2"/>
                 {t('topbar.menus.logout')}

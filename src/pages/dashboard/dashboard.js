@@ -170,7 +170,7 @@ export default function Dashboard() {
           </div>
         </div>
         <Link to='/coming-soon' target='_blank' className="hidden lg:block">
-          <Button className='rounded-md btn-with-icon'>
+          <Button className='btn-with-icon'>
             <Edit3 className="w-4 h-4" />
             ออกแบบเว็บไซต์
           </Button>

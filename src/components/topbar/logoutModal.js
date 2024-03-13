@@ -21,7 +21,7 @@ export default function LogoutModal({children}){
 
   return (
     <Dialog>
-      <DialogTrigger className="flex items-center w-full py-[6px] px-2">{children}</DialogTrigger>
+      <DialogTrigger className="flex items-center w-full py-[6px] px-2 text-base md:text-sm">{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <h2 className="secondary-heading">{t('topbar.are_you_sure_log_out')}</h2>

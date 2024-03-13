@@ -175,6 +175,12 @@ body {
   background:#F4F4F5;
   font-size:14px;
   padding:8px 12px;
+  &.select-input {
+    appearance:none;
+    background-image:url("../src/img/chevron-input.svg");
+    background-repeat:no-repeat;
+    background-position:right 12px top 50%;
+  }
 }
 
 .btn-image-shadow {
@@ -263,9 +269,16 @@ body {
   color:#EF4444
 }
 
+
 .menu-card {
   &:nth-child(5),&:nth-child(6){
     padding-top:20px;
+  }
+  &:nth-child(4){
+    padding-top:16px;
+    svg {
+      width:240px;
+    }
   }
 }
 
@@ -731,7 +744,11 @@ body {
     font-size:18px;
   }
   .sidebar-top {
-    margin-top:-60px;
+    margin-top:-64px;
+  }
+  .menu-card, .menu-card svg {
+    min-width:280px;
+    width:280px;
   }
 }
 

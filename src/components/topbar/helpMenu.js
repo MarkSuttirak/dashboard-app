@@ -51,9 +51,9 @@ export function HelpMenuList(){
     <>
       {helpMenus.map(menu => (
         <>
-          <CommandGroup className="mx-3 md:mx-0">
+          <CommandGroup className="mx-3 md:mx-0 px-2 md:px-1">
             {menu.menus.map(m => (
-              <CommandItem className="py-[10px] md:py-1" onSelect={() => window.location.href = m.link}>
+              <CommandItem className="text-base md:text-sm py-[10px] md:py-1" onSelect={() => window.location.href = m.link}>
                 {m.icon}
                 {m.title}
               </CommandItem>

@@ -9,6 +9,7 @@ import { useToast } from "src/components/ui/use-toast";
 import { Toaster } from "src/components/ui/toaster"
 import { CheckCircle2 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogClose, DialogFooter } from "src/components/ui/dialog"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "src/components/ui/select"
 import { useMutation, useQuery } from "react-query";
 import { site, team } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
@@ -164,7 +165,7 @@ export const SettingsDialogContent = ({ ...props }) => {
     })
   }
   return (
-    <DialogContent>
+    <DialogContent className="w-[90%] md:w-full">
       <DialogHeader>
         <DialogTitle>{t('teams.edit_invitation')}</DialogTitle>
         <DialogDescription className='flex flex-col gap-y-6 py-6'>
@@ -172,7 +173,7 @@ export const SettingsDialogContent = ({ ...props }) => {
             <label className="subheading mb-2">
               {t('teams.expire_after')}
             </label>
-            <select className='form-input'
+            <select className='form-input select-input'
               name="invite_code_rotation_interval"
               value={formik.values.invite_code_rotation_interval}
               onChange={formik.handleChange}
@@ -188,7 +189,7 @@ export const SettingsDialogContent = ({ ...props }) => {
               {t('teams.maximum_uses')}
             </label>
             <select
-              className='form-input'
+              className='form-input select-input'
               name="invite_code_usage_limit"
               value={formik.values.invite_code_usage_limit}
               onChange={formik.handleChange}

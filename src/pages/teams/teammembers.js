@@ -13,6 +13,7 @@ import { Checkbox } from "src/components/ui/checkbox";
 import { useUser } from "src/hooks/useUser";
 import Loading from "src/components/ui/loading";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "src/components/ui/dialog"
+
 import { useTranslation } from "react-i18next";
 
 export default function TeamMembers(){
@@ -57,8 +58,8 @@ export default function TeamMembers(){
             <AvatarFallback>{firstname[0]}{lastname[0]}</AvatarFallback>
           </Avatar>
           <div>
-            <p className="text-sm font-medium leading-none">{firstname}{" "}{lastname}</p>
-            <p className="text-sm text-muted-foreground mt-[2px]">{email}</p>
+            <p className="text-xs md:text-sm font-medium leading-none">{firstname}{" "}{lastname}</p>
+            <p className="text-[10px] md:text-sm text-muted-foreground mt-[2px]">{email}</p>
           </div>
         </div>
         <Popover>
@@ -147,7 +148,7 @@ export default function TeamMembers(){
                 )}
               </Button>
             </PopoverTrigger>
-            <PopoverContent className='w-[200px] p-0'>
+            <PopoverContent className='w-[200px] p-0 fixed -left-[54px]'>
               <div className="p-1">
                 {userRoles.map(option => (
                   <div className="flex items-center justify-between px-2 py-[6px]">
