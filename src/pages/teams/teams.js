@@ -78,10 +78,10 @@ export default function Teams() {
     <div className="dashboard-container">
       <SettingsHeading text={t('menus.teams')} link={-1}/>
 
-      <main className={`flex flex-col ${id ? 'md:flex-row' : 'lg:flex-row'} gap-y-8 gap-x-12 lg:gap-x-[72px] mt-12 lg:mt-8`}>
+      <main className={`flex flex-col ${id ? 'md:flex-row' : 'lg:flex-row'} gap-y-8 gap-x-12 xl:gap-x-[72px] mt-12 lg:mt-8`}>
         <SettingsMenus id={id} menus={sidebarNavItems} />
 
-        <section className="max-w-[672px] w-full">
+        <section className="md:max-w-[672px] w-full">
           {id === "members" && (
             <>
               <h2 className="settings-heading">{t('teams.manage_members.title')}</h2>

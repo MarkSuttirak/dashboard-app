@@ -245,6 +245,7 @@
         "my_teams":"Teams",
         "current_team":"Current Team",
         "teams":"Teams",
+        "no_members": "There is no member you are looking for.",
         "manage_members": {
             "title": "Manage Members",
             "desc": "You can invite team members and control their positions."

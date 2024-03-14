@@ -184,7 +184,7 @@ export default function TeamMembers(){
             <TeamCard firstname={t.first_name} lastname={t.last_name} role={t.roles[0]} email={t.name}/>
           ))}
         </DataList> */}
-        <DataList listPerPage={6} emptyText="There is no member you are looking for.">
+        <DataList listPerPage={6} emptyText={t("teams.no_members")}>
           {allMembers?.map(t => (
             <TeamCard firstname={t.first_name} lastname={t.last_name} role={t.roles[0]} email={t.name}/>
           )) || <Loading />}
