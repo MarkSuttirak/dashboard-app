@@ -52,7 +52,7 @@ export default function NotificationsTopbar(){
   }
   return (
     <>
-      <div className='hidden md:block'>
+      <div className='hidden md:flex'>
         <Popover>
           <PopoverTrigger className='relative'>
             <BellIcon color='#7D7D7D' width='17' height='17'/>
