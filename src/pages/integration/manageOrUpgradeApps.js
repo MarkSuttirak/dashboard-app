@@ -57,7 +57,7 @@ export default function ManageOrUpgradeApps(){
   const appData = (id === 'manage-apps' ? appList : appsToUpgrade);
 
   return (
-    <section className="w-[672px]">
+    <>
       <h2 className="settings-heading">{id === 'manage-apps' ? t('integration.manage_apps') : t('integration.upgrade_apps')}</h2>
       <p className="main-desc">{id === 'manage-apps' ? t('integration.manage_apps_desc') : t('integration.upgrade_apps_desc')}</p>
       <div className="mt-8 mb-4 flex gap-x-2">
@@ -118,6 +118,6 @@ export default function ManageOrUpgradeApps(){
         </DataList>
         </div>
       </section>
-    </section>
+    </>
   )
 }

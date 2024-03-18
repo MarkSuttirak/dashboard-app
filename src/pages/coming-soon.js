@@ -10,7 +10,7 @@ export default function ComingSoonPage(){
   document.title = t('coming_soon.title')
   const navigate = useNavigate()
   return (
-    <div className="h-screen w-screen flex items-center justify-center flex-col gap-y-9">
+    <div className="h-screen w-screen flex items-center justify-center flex-col gap-y-9 p-4 text-center">
       <Icons.zaviagoTitle />
       <div className="flex flex-col gap-y-4 items-center justify-center">
         <h1 className="text-zinc-900 text-[44px] font-semibold">{t('coming_soon.title')}</h1>
@@ -20,7 +20,7 @@ export default function ComingSoonPage(){
         </div>
       </div>
 
-      <div className="flex gap-x-2 mt-1">
+      <div className="flex flex-col md:flex-row gap-2 mt-1">
         <Button className='w-[246px]' onClick={() => window.location.href = "https://page.line.me/zaviago"}>
           {t('contact_us')}
         </Button>

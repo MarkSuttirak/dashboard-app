@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom"
-import PagesMenus from "src/components/pagesMenus"
 import ManageOrUpgradeApps from "./manageOrUpgradeApps"
 import { useTranslation } from "react-i18next"
+import SettingsHeading from "src/components/settings/settingsHeading"
+import SettingsMenus from "src/components/settings/settingsMenus"
 
 export default function Integration(){
   const { t } = useTranslation()
@@ -20,14 +21,16 @@ export default function Integration(){
 
   return (
     <div className="dashboard-container">
-      <h1 className="main-heading tracking-[-0.6px]">{t('menus.integration')}</h1>
+      <SettingsHeading text={t('menus.integration')} link={-1} />
 
-      <main className="flex flex-col lg:flex-row gap-y-8 gap-x-[72px] mt-8">
-        <PagesMenus menus={sidebarNavItems} />
+      <main className={`flex flex-col ${id ? 'md:flex-row' : 'lg:flex-row'} gap-y-8 gap-x-12 lg:gap-x-[72px] mt-8`}>
+        <SettingsMenus id={id} menus={sidebarNavItems} />
 
-        {(id === 'manage-apps' || id === 'upgrade-apps') && (
-          <ManageOrUpgradeApps />
-        )}
+        <section className="w-full md:max-w-[672px]">
+          {(id === 'manage-apps' || id === 'upgrade-apps') && (
+            <ManageOrUpgradeApps />
+          )}
+        </section>
       </main>
     </div>
   )

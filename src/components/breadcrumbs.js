@@ -12,16 +12,20 @@ export default function Breadcrumbs(){
 
   const mobileLink = {
     settings: window.innerWidth > 1024 ? '/dashboard/settings/account' : '/dashboard/settings',
-    teams: window.innerWidth > 1024 ? '/dashboard/teams/members' : '/dashboard/teams'
+    teams: window.innerWidth > 1024 ? '/dashboard/teams/members' : '/dashboard/teams',
+    integration: window.innerWidth > 1024 ? '/integration/manage-apps' : '/integration'
   }
 
   const breadcrumbMap = {
+    '/integration': [
+      { link: '/integration', title: t('menus.integration') },
+    ],
     '/integration/manage-apps': [
-      { link: '/integration/manage-apps', title: t('menus.integration') },
+      { link: mobileLink.integration, title: t('menus.integration') },
       { link: null, title: t('integration.manage_apps') },
     ],
     '/integration/upgrade-apps': [
-      { link: '/integration/manage-apps', title: t('menus.integration') },
+      { link: mobileLink.integration, title: t('menus.integration') },
       { link: null, title: t('integration.upgrade_apps') },
     ],
     '/integration/appstore': [

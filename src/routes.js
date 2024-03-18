@@ -97,6 +97,7 @@ export default function Router() {
             path: '/integration',
             element: withAuthenticationRequired(DashboardLayout),
             children: [
+                { path: '', element: <Integration /> },
                 { path: ':id', element: <Integration /> },
                 { path: 'appstore', element: <AppStore /> },
                 { path: 'appstore/:id', element: <SingleApp /> },

@@ -6,7 +6,7 @@ export default function NotFoundPage(){
   document.title = "404 - Not Found"
   const navigate = useNavigate()
   return (
-    <div className="h-screen w-screen flex items-center justify-center flex-col gap-y-6">
+    <div className="h-screen w-screen flex items-center justify-center flex-col gap-y-6 p-4 text-center">
       <div className="flex flex-col gap-y-4 items-center justify-center">
         <h1 className="text-zinc-900 text-3xl font-semibold">404 - Page Not Found</h1>
         <p className="text-zinc-500 text-lg font-medium">Sorry, the page you are looking for does not exist.</p>
