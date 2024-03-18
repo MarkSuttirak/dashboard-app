@@ -104,19 +104,19 @@ export default function UpgradeProModal(){
           </div>
         </div>
       </DialogTrigger>
-      <DialogContent className='p-0 border-0 max-w-4xl'>
-        <DialogHeader className='flex-row'>
-          <DialogTitle>
-            <img src={upgradeProBg} className='rounded-l-lg h-full w-[700px] object-cover'/>
+      <DialogContent className='p-0 border-0 max-w-none w-full lg:max-w-4xl h-full lg:h-fit'>
+        <DialogHeader className='overflow-auto flex-col lg:flex-row'>
+          <DialogTitle className='!h-[25vh] lg:!h-full'>
+            <img src={upgradeProBg} className='lg:rounded-l-lg h-full w-full lg:w-[700px] object-cover'/>
 
-            <div className="absolute left-5 bottom-5 flex gap-x-2 items-center">
+            {/* <div className="absolute left-5 bottom-5 flex gap-x-2 items-center">
               <Button variant='link' className='text-white text-xs p-0 h-fit'>Support</Button>
               <DrawLine color='#FFF' width='1px' height='14px'/>
               <Button variant='link' className='text-white text-xs p-0 h-fit' onClick={() => window.location.href = 'https://page.line.me/zaviago'}>{t('contact_us')}</Button>
-            </div>
+            </div> */}
           </DialogTitle>
-          <DialogDescription className='pb-10 shadow-lg'>
-            <div className="flex flex-col justify-between h-full px-10 pt-6">
+          <DialogDescription className='!m-0 lg:!mt-2 pb-10 shadow-lg h-full'>
+            <div className="flex flex-col justify-between h-full px-4 lg:px-10 pt-6">
               <section>
                 <div className='flex items-center justify-between mb-2'>
                   <h1 className="main-heading tracking-[-0.6px]">{t('professional')}</h1>
@@ -135,13 +135,13 @@ export default function UpgradeProModal(){
                   </div>
                 </div>
 
-                <ul className="mt-8 gap-y-[17px] flex flex-col px-2 mb-10 h-[240px] overflow-auto">
+                <ul className="mt-8 gap-y-[17px] flex flex-col px-2 mb-10 h-[25vh] lg:h-[240px] overflow-auto">
                   {privileges.map(p => (
                     <ServicePrivileges icon={p.icon} title={p.title} desc={p.desc}/>
                   ))}
                 </ul>
               </section>
-              <section>
+              <section className='fixed lg:static w-[calc(100%_-_32px)] lg:w-full bottom-4'>
                 {/* <Link to='/payment/plan/pro'>
 
                 </Link> */}
