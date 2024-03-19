@@ -36,7 +36,7 @@ export default function PaymentForm(){
   }
 
   return (
-    <section className="w-full h-screen p-[60px] overflow-auto" style={{boxShadow:"-20px 0px 30px -4px rgba(0, 0, 0, 0.04)"}}>
+    <section className="w-full md:h-screen p-5 md:p-[30px] lg:p-[60px] overflow-auto payment-form">
       <h2 className="secondary-heading">{t('billing_info')}</h2>
       <p className="main-desc">{t('billing_info_desc')}</p>
 
