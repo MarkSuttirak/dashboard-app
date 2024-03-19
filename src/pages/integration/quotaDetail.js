@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { totalAppsQuota } from "./appQuota";
 import { Progress } from "src/components/ui/progress";
 import { Button } from "src/components/ui/button";
-import { LogOut } from "lucide-react";
+import { LogOut, Zap } from "lucide-react";
 import SettingsMenus from "src/components/settings/settingsMenus";
 import { SidebarNavItems } from "./integration";
 import SettingsHeading from "src/components/settings/settingsHeading";
@@ -97,7 +97,7 @@ export default function QuotaDetail(){
                 </Link>
                 <Link to={`/integration/appstore/${i.id}`}>
                   <Button className='btn-with-icon'>
-                    <LogOut viewBox="0 0 24 24" width='16' height='16'/>
+                    <Zap viewBox="0 0 24 24" width='16' height='16'/>
                     Upgrade app
                   </Button>
                 </Link>
