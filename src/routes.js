@@ -28,6 +28,7 @@ import CheckoutPending from './pages/checkout/checkoutPending';
 import ComingSoonPage from './pages/coming-soon';
 import Teams from './pages/teams/teams';
 import JoinTeam from './pages/teams/joinTeam';
+import QuotaDetail from './pages/integration/quotaDetail';
 
 // ----------------------------------------------------------------------
 
@@ -101,7 +102,8 @@ export default function Router() {
                 { path: ':id', element: <Integration /> },
                 { path: 'appstore', element: <AppStore /> },
                 { path: 'appstore/:id', element: <SingleApp /> },
-                { path: 'app-category/:cate', element: <AppCategory /> }
+                { path: 'app-category/:cate', element: <AppCategory /> },
+                { path: 'quota-detail/:app', element: <QuotaDetail />}
             ],
         },
         {

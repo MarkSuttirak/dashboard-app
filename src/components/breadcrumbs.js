@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { appList } from "./apps/appList";
 import { useTranslation } from "react-i18next";
+import { QuotaAppName } from "src/pages/integration/quotaDetail";
 
 export default function Breadcrumbs(){
   const { t } = useTranslation()
@@ -27,6 +28,15 @@ export default function Breadcrumbs(){
     '/integration/upgrade-apps': [
       { link: mobileLink.integration, title: t('menus.integration') },
       { link: null, title: t('integration.upgrade_apps') },
+    ],
+    '/integration/apps-quota': [
+      { link: mobileLink.integration, title: t('menus.integration') },
+      { link: null, title: "Apps Quota" },
+    ],
+    [`/integration/quota-detail/${QuotaAppName()}`]: [
+      { link: mobileLink.integration, title: t('menus.integration') },
+      { link: '/integration/apps-quota', title: "Apps Quota" },
+      { link: null, title: QuotaAppName()}
     ],
     '/integration/appstore': [
       { link: null, title: 'App Store' },
