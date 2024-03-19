@@ -141,7 +141,7 @@ export default function UpgradeProModal(){
                   ))}
                 </ul>
               </section>
-              <section className='fixed w-full bg-white p-4 bottom-0 left-0'>
+              <section className='fixed lg:static w-full bg-white p-4 lg:p-0 bottom-0 left-0'>
                 {/* <Link to='/payment/plan/pro'>
 
                 </Link> */}
