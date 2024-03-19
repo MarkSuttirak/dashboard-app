@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { totalAppsQuota } from "./appQuota";
 import { Progress } from "src/components/ui/progress";
 import { Button } from "src/components/ui/button";
-import { LogOut, Zap } from "lucide-react";
+import { ArrowUpRight, Zap } from "lucide-react";
 import SettingsMenus from "src/components/settings/settingsMenus";
 import { SidebarNavItems } from "./integration";
 import SettingsHeading from "src/components/settings/settingsHeading";
@@ -91,7 +91,7 @@ export default function QuotaDetail(){
               <footer className="flex justify-between md:justify-end mt-[19px] gap-x-[5px] items-center">
                 <Link to={`/integration/appstore/${i.id}`}>
                   <Button className='btn-with-icon' variant='ghost'>
-                    <LogOut viewBox="0 0 24 24" width='16' height='16'/>
+                    <ArrowUpRight viewBox="0 0 24 24" width='16' height='16'/>
                     view app
                   </Button>
                 </Link>
