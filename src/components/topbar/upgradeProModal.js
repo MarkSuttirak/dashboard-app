@@ -115,7 +115,7 @@ export default function UpgradeProModal(){
               <Button variant='link' className='text-white text-xs p-0 h-fit' onClick={() => window.location.href = 'https://page.line.me/zaviago'}>{t('contact_us')}</Button>
             </div> */}
           </DialogTitle>
-          <DialogDescription className='!m-0 lg:!mt-2 pb-16 lg:pb-10 lg:shadow-lg h-full'>
+          <DialogDescription className='!m-0 pb-16 lg:pb-10 lg:shadow-lg h-full'>
             <div className="flex flex-col justify-between h-full px-4 lg:px-10 pt-6">
               <section>
                 <div className='flex items-center justify-between mb-2'>
