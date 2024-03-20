@@ -36,6 +36,23 @@ export default function Welcome() {
     }, 500);
   }
 
+  const RecomService = ({icon, text}) => {
+    return (
+      <div className="rounded-full py-1.5 px-2 border border-white/50 bg-white/20 text-[13px] inline-flex items-center gap-x-2">
+        {icon}
+        {text}
+      </div>
+    )
+  }
+
+  const recommendedServices = [
+    { text:"LINE CRM", icon:<Icons.lineOALogin /> },
+    { text:"ระบบสร้างเว็บไซต์", icon:<Icons.builderOnLogin />},
+    { text:"ร้านค้าออนไลน์", icon:<Icons.onlineStoreOnLogin />},
+    { text:"ระบบสะสมแต้ม", icon:<Icons.pointAndRewardOnLogin />},
+    { text:"เชื่อมต่อ Marketplace", icon:<Icons.marketplaceOnLogin />}
+  ]
+
   return (
     <div className="flex min-h-screen z-[999] relative bg-white">
       <div className="flex flex-1 justify-center">
@@ -157,8 +174,26 @@ export default function Welcome() {
           src={loginImg}
           alt="login-image"
         />
-        <div className="absolute top-10 right-10 fade-in">
-          <Icons.zaviagoTransparent />
+
+        <div className="text-white absolute bottom-10 p-10 fade-in grid grid-cols-2 justify-between items-end">
+
+          <div className="flex flex-col gap-y-3">
+            <h2 className="text-3xl font-semibold">"<br/>เพราะเราต้องการให้ทุกคนเข้าถึงเทคโนโลยีได้ง่าย โดยที่ไม่จำเป็นต้องเสียเงินมากมายมหาศาลเพื่อเข้าถึงมัน<br/>"</h2>
+            <div>
+              <p className="text-xl">Vision and Mission of Zaviago</p>
+              <p>John Persson, CEO and Founder of Zaviago</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-end gap-y-3">
+            <h3 className="text-xl">Recommended services</h3>
+            <div className="flex justify-end gap-x-1 gap-y-1.5 flex-wrap">
+              {recommendedServices.map(service => (
+                <RecomService icon={service.icon} text={service.text}/>
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
