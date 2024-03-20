@@ -26,9 +26,8 @@ export default function Topbar({isSidebarOpen, setIsSidebarOpen}){
       <section className='hidden md:flex items-center'>
         <UpgradeProModal />
 
-        <div className='pr-3 flex gap-x-[30px] items-center'>
+        <div className='pr-4'>
           <SearchBar />
-          <NotificationsTopbar />
         </div>
 
         <div className='flex gap-x-4 items-center'>
