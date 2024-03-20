@@ -22,11 +22,11 @@ export default function CheckoutInfo({paymentConfirm, setPaymentConfirm, totalPr
   return (
     <>
       <CheckoutScan verifiedPayment={verifiedPayment}/>
-      <section className="w-full h-screen p-6 md:p-[60px]" style={{boxShadow:"-20px 0px 30px -4px rgba(0, 0, 0, 0.04)"}}>
+      <section className="w-full h-screen p-5 md:p-[30px] lg:p-[60px] payment-form">
+        <Separator className='md:hidden mb-6'/>
+
         <h2 className="secondary-heading">{t('purchase_detail')}</h2>
         <p className="main-desc">{t('purchase_detail_desc')}</p>
-
-        <Separator className='my-6'/>
 
         {verifiedPayment && (
           <div className="flex items-center justify-between mb-3">
