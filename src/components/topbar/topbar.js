@@ -1,11 +1,10 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import DrawLine from '../drawLine'
 import UpgradeProModal from './upgradeProModal'
 import { SearchBar } from './searchBar'
 import { HelpMenu } from './helpMenu'
 import AvatarMenu from './avatarMenu'
 import Breadcrumbs from '../breadcrumbs'
-import { useEffect } from 'react'
 import NotificationsTopbar from './notifications'
 import { Icons } from '../ui/icons'
 import { ChevronRight } from 'lucide-react'
@@ -38,7 +37,6 @@ export default function Topbar({isSidebarOpen, setIsSidebarOpen}){
       </section>
 
       <section className='flex md:hidden items-center gap-x-5'>
-        <NotificationsTopbar />
         <AvatarMenu />
       </section>
     </div>

@@ -13,11 +13,7 @@ const settingsMenus = [
   {
     link:'/dashboard/settings/billing-plans',
     title:'Billing & Plans'
-  },
-  {
-    link:'/dashboard/settings/notifications',
-    title:'Notifications'
-  },
+  }
 ]
 
 const integrationsMenus = [

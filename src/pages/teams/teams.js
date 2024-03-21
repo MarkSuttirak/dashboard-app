@@ -117,7 +117,7 @@ export default function Teams() {
               <Separator className='my-6' />
 
               <TeamMembers />
-              <Bannerteam />
+              {/* <Bannerteam /> */}
             </>
           )}
 

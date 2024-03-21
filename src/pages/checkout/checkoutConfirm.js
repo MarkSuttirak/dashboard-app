@@ -1,12 +1,9 @@
 import { Separator } from "src/components/ui/separator";
 import { Input } from "src/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "src/components/ui/select"
-import { Popover, PopoverContent, PopoverTrigger } from "src/components/ui/popover"
 import { Button } from "src/components/ui/button"
 import { Calendar } from "src/components/ui/calendar"
 import { cn } from "../../lib/utils"
 import { Plus, Wallet, X } from "lucide-react";
-import { CalendarIcon } from "@radix-ui/react-icons"
 import { Card } from "src/components/ui/card";
 import { UploadCloud } from "lucide-react";
 import { ArrowLeft } from "lucide-react";
