@@ -36,17 +36,17 @@ export function SearchItem(){
   return (
     <Command>
       <CommandInput placeholder="Type a command or search..." />
-      <CommandList>
+      <CommandList className="max-h-none">
         <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup heading="Integrations">
+        <CommandGroup heading="Integrations" className="pt-2 pb-4">
           {integrationsMenus.map(item => (
-            <CommandItem key={item.title} onSelect={() => navigate(item.link)}>{item.title}</CommandItem>
+            <CommandItem className="py-3 md:py-1.5" key={item.title} onSelect={() => navigate(item.link)}>{item.title}</CommandItem>
           ))}
         </CommandGroup>
         <CommandSeparator />
-        <CommandGroup heading="Settings">
+        <CommandGroup heading="Settings" className="pt-2 pb-4">
           {settingsMenus.map(item => (
-            <CommandItem key={item.title} onSelect={() => navigate(item.link)}>{item.title}</CommandItem>
+            <CommandItem className="py-3 md:py-1.5" key={item.title} onSelect={() => navigate(item.link)}>{item.title}</CommandItem>
           ))}
         </CommandGroup>
       </CommandList>
