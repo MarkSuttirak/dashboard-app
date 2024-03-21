@@ -317,7 +317,7 @@ body {
   height:100vh;
 }
 
-.page-section,.page-sec-dashboard {
+.page-section,.page-sec-dashboard,.page-sec-settings {
   padding:84px 40px 160px;
   box-sizing:content-box;
   margin-left:$right-sidebar-width
@@ -725,7 +725,7 @@ body {
     }
     z-index:1111;
   }
-  .page-section {
+  .page-section,.page-sec-settings {
     padding:80px 20px 40px;
     margin-left:0;
   }
@@ -758,6 +758,12 @@ body {
   }
   .dash-team-img {
     mask-image: linear-gradient(black 90%, transparent 100%);
+  }
+  .page-sec-settings {
+    padding:80px 0 40px;
+  }
+  .page-sec-dashboard {
+    padding:53px 0 40px;
   }
 }
 

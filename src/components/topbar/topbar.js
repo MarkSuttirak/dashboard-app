@@ -15,6 +15,7 @@ export default function Topbar({isSidebarOpen, setIsSidebarOpen}){
       <div className='hidden lg:block'>
         <Breadcrumbs />
       </div>
+
       <button className="flex lg:hidden items-center gap-x-2" onClick={setIsSidebarOpen}>
         <Icons.zaviagoApp className='w-9 h-9 z-9'/>
 
@@ -22,21 +23,21 @@ export default function Topbar({isSidebarOpen, setIsSidebarOpen}){
         <ChevronRight class='w-6 h-6'/>
       </button>
 
-      <section className='hidden md:flex items-center'>
-        <UpgradeProModal />
+      <section className='flex items-center gap-x-2 md:gap-x-4'>
 
-        <div className='pr-4'>
-          <SearchBar />
+        {/* Make the upgrade pro button absolute on mobile because I want to hide this button on mobile and show it on the dashboard page, 
+        but the Zaviago icon is disappeared when I use 'hidden' class */}
+        <div className='absolute md:static -top-[1000%]'>
+          <UpgradeProModal />
         </div>
 
-        <div className='flex gap-x-4 items-center'>
+        <SearchBar />
+
+        <div className='hidden md:flex gap-x-4 items-center'>
           <DrawLine color='#E4E4E7' width='1px' height="24px"/>
           <HelpMenu />
-          <AvatarMenu />
         </div>
-      </section>
 
-      <section className='flex md:hidden items-center gap-x-5'>
         <AvatarMenu />
       </section>
     </div>

@@ -8,8 +8,10 @@ export default function DashboardLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const removeHorizontalPaddingOnMobile = 
-    location.pathname !== '/dashboard/app' &&
-    location.pathname !== '/dashboard/settings/billing-plans'
+    location.pathname === '/dashboard/app'
+
+  const removeHorizontalPaddingOnSettings = 
+    location.pathname === '/dashboard/settings/billing-plans'
 
   return (
     <>
@@ -17,7 +19,7 @@ export default function DashboardLayout() {
         <>
           <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen}/>
           <Topbar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} hasNoLeftSidebar={false}/>
-          <div className={`${removeHorizontalPaddingOnMobile ? 'page-section' : 'page-sec-dashboard'} ${isSidebarOpen ? 'active' : 'inactive'}`}>
+          <div className={`${removeHorizontalPaddingOnMobile ? 'page-sec-dashboard' : removeHorizontalPaddingOnSettings ? 'page-sec-settings' : 'page-section'} ${isSidebarOpen ? 'active' : 'inactive'}`}>
             <Outlet />
           </div>
         </>
