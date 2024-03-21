@@ -262,7 +262,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
             </section> */}
           </nav>
 
-          {!upgraded && <SidebarUpgrade />}
+          {!upgraded && <SidebarUpgrade onClick={() => setIsSidebarOpen(false)}/>}
         </div>
       </div>
     </>
