@@ -34,25 +34,23 @@ const integrationsMenus = [
 export function SearchItem(){
   const navigate = useNavigate()
   return (
-    <DialogContent className='p-0'>
-      <Command>
-        <CommandInput placeholder="Type a command or search..." />
-        <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Integrations">
-            {integrationsMenus.map(item => (
-              <CommandItem key={item.title} onSelect={() => navigate(item.link)}>{item.title}</CommandItem>
-            ))}
-          </CommandGroup>
-          <CommandSeparator />
-          <CommandGroup heading="Settings">
-            {settingsMenus.map(item => (
-              <CommandItem key={item.title} onSelect={() => navigate(item.link)}>{item.title}</CommandItem>
-            ))}
-          </CommandGroup>
-        </CommandList>
-      </Command>
-    </DialogContent>
+    <Command>
+      <CommandInput placeholder="Type a command or search..." />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Integrations">
+          {integrationsMenus.map(item => (
+            <CommandItem key={item.title} onSelect={() => navigate(item.link)}>{item.title}</CommandItem>
+          ))}
+        </CommandGroup>
+        <CommandSeparator />
+        <CommandGroup heading="Settings">
+          {settingsMenus.map(item => (
+            <CommandItem key={item.title} onSelect={() => navigate(item.link)}>{item.title}</CommandItem>
+          ))}
+        </CommandGroup>
+      </CommandList>
+    </Command>
   )
 }
 
@@ -76,7 +74,9 @@ export function SearchBar(){
           <p>(CTRL +G)</p>
         </div>
       </DialogTrigger>
-      <SearchItem />
+      <DialogContent className='p-0 translate-y-0 top-0 md:-translate-y-[50%] md:top-[50%]'>
+        <SearchItem />
+      </DialogContent>
     </Dialog>
   )
 }
