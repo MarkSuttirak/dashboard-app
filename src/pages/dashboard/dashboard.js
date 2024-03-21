@@ -19,7 +19,7 @@ import { useTranslation } from "react-i18next";
 import DashboardVideo from "./dashboardVideo";
 import { Icons } from "src/components/ui/icons";
 import DashboardTeam from "./dashboardTeam";
-import UpgradeProModal from "src/components/topbar/upgradeProModal";
+import UpgradeProButton from "src/components/topbar/upgradeProButton";
 
 export default function Dashboard() {
   const { t, i18n } = useTranslation();
@@ -161,7 +161,7 @@ export default function Dashboard() {
     <div className="dashboard-container">
 
       <div className="mb-6 md:hidden">
-        <UpgradeProModal />
+        <UpgradeProButton />
       </div>
 
       <div className="flex items-center justify-between gap-y-4 px-5 lg:px-0">

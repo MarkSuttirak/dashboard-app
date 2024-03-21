@@ -90,12 +90,12 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   ]
 
   const workspaceApp = [
-    { name: t('workspace_buttons.manage_business'), icon: <Icons.erpApp className='h-[30px] w-[30px] lg:h-5 lg:w-5' />, id: 'manage-business', onClick: () => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" }) }, // loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })
-    { name: t('workspace_buttons.blog_editor'), icon: <Icons.blogPostApp className='h-[30px] w-[30px] lg:h-5 lg:w-5' />, id: 'builder', onClick: () => window.open('/coming-soon', '_blank') }, // window.open(`https://${sites?.site_list[0].name}/SpaBlogEditor`)
-    { name: 'CRM', icon: <Icons.posApp className='h-[30px] w-[30px] lg:h-5 lg:w-5' />, onClick: () => window.open('https://www.zaviago.com/crm', '_self') },
-    { name: t('workspace_buttons.web_pages'), icon: <Icons.websiteApp fill='white' className='h-[30px] w-[30px] lg:h-5 lg:w-5' />, id: 'websites', onClick: () => window.open('/coming-soon', '_blank') }, // window.open(`https://${sites?.site_list[0].name}/builder`)
-    { name: 'MarketConnect', icon: <Icons.inbioApp className='h-[30px] w-[30px] lg:h-5 lg:w-5' />, onClick: () => window.open('https://www.zaviago.com/marketplace', '_self') },
-    { name: 'Canvas', icon: <Icons.blogAndPagesApp className='h-[30px] w-[30px] lg:h-5 lg:w-5' />, onClick: () => window.open('/coming-soon', '_blank') }
+    { name: t('workspace_buttons.manage_business'), icon: <Icons.erpApp className='h-5 w-5' />, id: 'manage-business', onClick: () => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" }) }, // loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })
+    { name: t('workspace_buttons.blog_editor'), icon: <Icons.blogPostApp className='h-5 w-5' />, id: 'builder', onClick: () => window.open('/coming-soon', '_blank') }, // window.open(`https://${sites?.site_list[0].name}/SpaBlogEditor`)
+    { name: 'CRM', icon: <Icons.posApp className='h-5 w-5' />, onClick: () => window.open('https://www.zaviago.com/crm', '_self') },
+    { name: t('workspace_buttons.web_pages'), icon: <Icons.websiteApp fill='white' className='h-5 w-5' />, id: 'websites', onClick: () => window.open('/coming-soon', '_blank') }, // window.open(`https://${sites?.site_list[0].name}/builder`)
+    { name: 'MarketConnect', icon: <Icons.inbioApp className='h-5 w-5' />, onClick: () => window.open('https://www.zaviago.com/marketplace', '_self') },
+    { name: 'Canvas', icon: <Icons.blogAndPagesApp className='h-5 w-5' />, onClick: () => window.open('/coming-soon', '_blank') }
   ]
 
   useEffect(() => {
@@ -174,8 +174,6 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
           {/* <button className={`chevron-btn ${!isSidebarOpen ? 'inactive' : ''}`} onClick={() => setIsSidebarOpen(false)}>
             <ChevronsLeft className="chevron-sidebar" viewBox="0 0 24 24" width='16' height='16' />
           </button> */}
-
-          {/* {!upgraded && <SidebarUpgrade />} */}
 
           <nav className="flex bg-white px-3 py-8 lg:py-5 justify-center flex-col gap-y-4" aria-label="Sidebar">
             <section className="flex flex-col gap-y-3 lg:gap-y-0">
@@ -263,6 +261,8 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
               ))}
             </section> */}
           </nav>
+
+          {!upgraded && <SidebarUpgrade />}
         </div>
       </div>
     </>

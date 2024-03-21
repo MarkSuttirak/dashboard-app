@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import DrawLine from '../drawLine'
-import UpgradeProModal from './upgradeProModal'
 import { SearchBar } from './searchBar'
 import { HelpMenu } from './helpMenu'
 import AvatarMenu from './avatarMenu'
@@ -8,8 +7,13 @@ import Breadcrumbs from '../breadcrumbs'
 import NotificationsTopbar from './notifications'
 import { Icons } from '../ui/icons'
 import { ChevronRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
+import UpgradeProButton from './upgradeProButton'
 
 export default function Topbar({isSidebarOpen, setIsSidebarOpen}){
+
+  const { t } = useTranslation()
+
   return (
     <div className={`topbar`}>
       <div className='hidden lg:block'>
@@ -28,7 +32,7 @@ export default function Topbar({isSidebarOpen, setIsSidebarOpen}){
         {/* Make the upgrade pro button absolute on mobile because I want to hide this button on mobile and show it on the dashboard page, 
         but the Zaviago icon is disappeared when I use 'hidden' class */}
         <div className='absolute md:static -top-[1000%]'>
-          <UpgradeProModal />
+          <UpgradeProButton />
         </div>
 
         <SearchBar />
