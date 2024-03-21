@@ -9,18 +9,18 @@ import { useState } from "react"
 const appsQuotaFree = [
   {
     id:'reducoed',
-    icon:<Icons.reducoedApp />,
+    icon:<Icons.reducoedApp className="h-9 w-9"/>,
     title:'Reducoed',
     version:'Version 2.2',
   },
   {
     id:'line-crm',
-    icon:<Icons.lineCRMApp />,
+    icon:<Icons.lineCRMApp className="h-9 w-9"/>,
     title:'Line CRM',
     version:'Version 2.2',
   },
   {
-    icon:<Icons.posApp />,
+    icon:<Icons.posApp className="h-9 w-9"/>,
     title:'Instagram Store',
     version:'Version 2.2',
     link:''
@@ -29,13 +29,13 @@ const appsQuotaFree = [
 
 const appsQuotaPro = [
   {
-    icon:<Icons.posApp />,
+    icon:<Icons.posApp className="h-9 w-9"/>,
     title:'Instagram Store',
     version:'Version 2.2',
     link:''
   },
   {
-    icon:<Icons.erpApp />,
+    icon:<Icons.erpApp className="h-9 w-9"/>,
     title:'Instagram Store',
     version:'Version 2.2',
     link:''

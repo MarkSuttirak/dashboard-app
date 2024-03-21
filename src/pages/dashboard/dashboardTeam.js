@@ -4,6 +4,7 @@ import dashTeamImg from "../../img/dashboard-team.png"
 import { Badge } from "src/components/ui/badge"
 import { Button } from "src/components/ui/button"
 import { EnvelopeOpenIcon } from "@radix-ui/react-icons"
+import { Link } from "react-router-dom"
 
 export default function DashboardTeam(){
   const { t } = useTranslation()
@@ -38,10 +39,12 @@ export default function DashboardTeam(){
             <p className="text-secondary">ไม่ว่าทีมงานของคุณจะอยู่ที่ไหน ทำงานร่วมกันและอัปเดตพร้อมกันได้</p>
           </div>
 
-          <Button className='btn-with-icon'>
-            <EnvelopeOpenIcon className="w-4 h-4"/>
-            เชิญทีมงานของคุณ
-          </Button>
+          <Link to="/dashboard/teams/members">
+            <Button className='btn-with-icon'>
+              <EnvelopeOpenIcon className="w-4 h-4"/>
+              เชิญทีมงานของคุณ
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

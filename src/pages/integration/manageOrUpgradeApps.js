@@ -17,14 +17,14 @@ import { useTranslation } from "react-i18next"
 const appsToUpgrade = [
   {
     id:'reducoed',
-    icon:<Icons.reducoedApp />,
+    icon:<Icons.reducoedApp className="h-9 w-9"/>,
     title:'Reducoed',
     version:'Version 2.2',
     link:''
   },
   {
     id:'pos-store',
-    icon:<Icons.posApp />,
+    icon:<Icons.posApp className="h-9 w-9"/>,
     title:'POS Store',
     version:'Version 2.2',
     link:''
