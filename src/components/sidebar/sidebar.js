@@ -161,7 +161,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
     <>
       {/* <IconSidebar /> */}
       <div className={`h-screen w-screen bg-gray-500/50 z-[99] left-0 top-0 fixed ${isSidebarOpen ? 'opacity-1 visible' : 'opacity-0 invisible'} transition duration-300`} onClick={() => setIsSidebarOpen(false)}/>
-      <div className={`flex flex-1 flex-col border-r border-gray-200 bg-white ${isSidebarOpen ? 'active' : 'inactive'}`} id="sidebar">
+      <div className={`${isSidebarOpen ? 'active' : 'inactive'}`} id="sidebar">
         <div className="flex flex-1 flex-col pt-3 lg:pt-[18px]">
           <div className="relative sidebar-top">
             <div className="flex flex-shrink-0 items-center px-[14px] sidebar-site relative z-[4]">

@@ -310,11 +310,13 @@ body {
 #sidebar {
   width:$right-sidebar-width;
   border-right:1px solid #F4F4F4;
+  background-color:white;
   z-index:4;
-  display:block;
+  display:flex;
   transition:width 300ms;
   position:fixed;
   height:100vh;
+  overflow:auto;
 }
 
 .page-section,.page-sec-dashboard,.page-sec-settings {
