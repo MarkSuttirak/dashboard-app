@@ -9,7 +9,7 @@ export default function SidebarUpgrade(){
   }
 
   return (
-    <div className='m-3 pb-3'>
+    <div className='m-3 pb-3 lg:hidden'>
       <div style={bgStyle} className='p-3 rounded-md border'>
         <h2 className='text-[13px] text-darkergray text-center'>เพลิดเพลินกับการเติบโตทางธุรกิจ อย่างก้าวกระโดด</h2>
         <SetupBusinessImg className='m-auto'/>
