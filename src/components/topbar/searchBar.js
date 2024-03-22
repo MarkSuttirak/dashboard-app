@@ -5,47 +5,67 @@ import { useNavigate } from "react-router-dom"
 import { useState } from 'react'
 import { useTranslation } from "react-i18next"
 
-const settingsMenus = [
-  {
-    link:'/dashboard/settings/account',
-    title:'Account'
-  },
-  {
-    link:'/dashboard/settings/billing-plans',
-    title:'Billing & Plans'
-  }
-]
-
-const integrationsMenus = [
-  {
-    link:'/integration/manage-apps',
-    title:'Manage Apps'
-  },
-  {
-    link:'/integration/upgrade-apps',
-    title:'Upgrade Apps'
-  },
-  {
-    link:'/integration/apps-quota',
-    title:'Apps Quota'
-  },
-]
-
 export function SearchItem(){
+
+  const { t } = useTranslation()
+
+  const settingsMenus = [
+    {
+      link:'/dashboard/settings/account',
+      title: t('settings.account')
+    },
+    {
+      link:'/dashboard/settings/billing-plans',
+      title: t('settings.billing_plans')
+    }
+  ]
+  
+  const teamsMenus = [
+    {
+      link: "/dashboard/teams/members",
+      title: t('teams.teammembers'),
+    },
+    {
+      link: "/dashboard/teams/my-teams",
+      title: t('teams.my_teams'),
+    }
+  ]
+  
+  const integrationsMenus = [
+    {
+      link:'/integration/manage-apps',
+      title: t('integration.manage_apps')
+    },
+    {
+      link:'/integration/upgrade-apps',
+      title: t('integration.upgrade_apps')
+    },
+    {
+      link:'/integration/apps-quota',
+      title:'Apps Quota'
+    },
+  ]
+
   const navigate = useNavigate()
   return (
     <Command>
       <CommandInput placeholder="Type a command or search..." />
       <CommandList className="max-h-none">
         <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup heading="Integrations" className="pt-2 pb-4">
+        <CommandGroup heading={t('menus.integration')} className="pt-2 pb-4">
           {integrationsMenus.map(item => (
             <CommandItem className="py-3 md:py-1.5" key={item.title} onSelect={() => navigate(item.link)}>{item.title}</CommandItem>
           ))}
         </CommandGroup>
         <CommandSeparator />
-        <CommandGroup heading="Settings" className="pt-2 pb-4">
+        <CommandGroup heading={t('menus.settings')} className="pt-2 pb-4">
           {settingsMenus.map(item => (
+            <CommandItem className="py-3 md:py-1.5" key={item.title} onSelect={() => navigate(item.link)}>{item.title}</CommandItem>
+          ))}
+        </CommandGroup>
+        <CommandSeparator />
+        <CommandGroup heading={t('menus.teams')} className="pt-2 pb-4">
+          {teamsMenus.map(item => (
             <CommandItem className="py-3 md:py-1.5" key={item.title} onSelect={() => navigate(item.link)}>{item.title}</CommandItem>
           ))}
         </CommandGroup>
