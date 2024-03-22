@@ -432,5 +432,10 @@
         "title": "Coming soon",
         "desc1": "Our solution is scheduled for imminent launch,",
         "desc2": "our features are poised to contribute significantly to the growth of your business."
+    },
+    "not_found": {
+        "title": "404 - Page Not Found",
+        "desc": "We're sorry, but the page you are looking for does not exist. :(",
+        "go_back": "Go back to Home"
     }
 }
