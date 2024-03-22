@@ -13,7 +13,7 @@ export default function ComingSoonPage(){
     <div className="h-screen w-screen flex items-center justify-center flex-col gap-y-9 p-4 text-center">
       <Icons.zaviagoTitle />
       <div className="flex flex-col gap-y-4 items-center justify-center">
-        <h1 className="text-zinc-900 text-[44px] font-semibold">{t('coming_soon.title')}</h1>
+        <h1 className="text-zinc-900 text-3xl md:text-[44px] font-semibold">{t('coming_soon.title')}</h1>
         <div className="flex flex-col items-center justify-center">
           <p className="text-secondary text-sm">{t('coming_soon.desc1')}</p>
           <p className="text-secondary text-sm">{t('coming_soon.desc2')}</p>
