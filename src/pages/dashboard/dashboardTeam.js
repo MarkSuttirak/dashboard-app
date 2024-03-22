@@ -30,19 +30,19 @@ export default function DashboardTeam(){
         <div className="p-6 md:py-12">
 
           <Badge style={badgeStyle}>
-            <div className={`w-1 h-1 rounded-full bg-[${badgeColour}]`} />
+            <div className={`w-1 h-1 rounded-full`} style={{ backgroundColor: badgeColour }}/>
             Recommended
           </Badge>
 
           <div className="flex flex-col gap-y-2 mt-6 mb-10">
-            <h1 className="text-primary text-3xl font-semibold">ปลดล็อกการทำงานร่วมกัน ไม่พลาดทุกการอัปเดต</h1>
-            <p className="text-secondary">ไม่ว่าทีมงานของคุณจะอยู่ที่ไหน ทำงานร่วมกันและอัปเดตพร้อมกันได้</p>
+            <h1 className="text-primary text-3xl font-semibold">{t("dashboard.teams.title")}</h1>
+            <p className="text-secondary">{t("dashboard.teams.desc")}</p>
           </div>
 
           <Link to="/dashboard/teams/members">
             <Button className='btn-with-icon'>
               <EnvelopeOpenIcon className="w-4 h-4"/>
-              เชิญทีมงานของคุณ
+              {t("dashboard.teams.button")}
             </Button>
           </Link>
         </div>

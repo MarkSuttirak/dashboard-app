@@ -437,5 +437,20 @@
         "title": "404 - Page Not Found",
         "desc": "We're sorry, but the page you are looking for does not exist. :(",
         "go_back": "Go back to Home"
+    },
+    "dashboard": {
+        "manage_menus": {
+            "manage_items": "Manage items",
+            "edit_shipping_rates": "Edit shipping rates",
+            "add_new_customers": "Add new customers",
+            "set_up_payments": "Set up payments",
+            "view_orders": "View orders",
+            "create_promotions": "Create promotions"
+        },
+        "teams": {
+            "title": "Say goodbye to the disjointed communication. Next-Level Teamwork Starts Here!",
+            "desc": "Connect everything and everyone together for team synergy.",
+            "button": "Send invitation to your team"
+        }
     }
 }

@@ -109,39 +109,39 @@ export default function Dashboard() {
 
   const newOrManageMenus = [
     {
-      title: 'จัดการสินค้า',
+      title: t('dashboard.manage_menus.manage_items'),
       image: <ButtonImage01 shadow={false} />,
       background: "#EFE3F6",
       page: "item/new-item-1",
       color: "#EB67FF"
     },
     {
-      title: 'แก้ไขค่าจัดส่ง',
+      title: t('dashboard.manage_menus.edit_shipping_rates'),
       image: <ButtonImage02 shadow={false} />,
       background: "#DDFEF4",
       page: "item/new-item-1",
       color: "#01545E"
     },
     {
-      title: 'จัดการลูกค้า',
+      title: t('dashboard.manage_menus.add_new_customers'),
       image: <ButtonImage03 shadow={false} />,
       background: "#F5F2FE",
       color: "#4C349F"
     },
     {
-      title: 'ตั้งค่าการชำระเงิน',
+      title: t('dashboard.manage_menus.set_up_payments'),
       image: <ButtonImage04 shadow={false} />,
       background: "#E5F5FF",
       color: "#419CFF"
     },
     {
-      title: 'ดูคำสั่งซื้อ',
+      title: t('dashboard.manage_menus.view_orders'),
       image: <ButtonImage05 shadow={false} />,
       background: "#FFF9E9",
       color: "#FABF20"
     },
     {
-      title: 'สร้างโปรโมชัน',
+      title: t('dashboard.manage_menus.create_promotions'),
       image: <ButtonImage06 shadow={false} />,
       background: "#F5FFE5",
       color: "#174F20"
@@ -149,10 +149,10 @@ export default function Dashboard() {
   ]
 
   const workspaceMenus = [
-    { title: 'จัดการธุรกิจ', icon: <Icons.erpApp className='h-4 w-4' />, link: 'https://www.zaviago.com/manage' },
-    { title: 'บล็อกและบทความ', icon: <Icons.blogPostApp className='h-4 w-4' />, link: '/coming-soon' },
+    { title: t('workspace_buttons.manage_business'), icon: <Icons.erpApp className='h-4 w-4' />, link: 'https://www.zaviago.com/manage' },
+    { title: t('workspace_buttons.blog_editor'), icon: <Icons.blogPostApp className='h-4 w-4' />, link: '/coming-soon' },
     { title: 'CRM', icon: <Icons.posApp className='h-4 w-4' />, link: 'https://www.zaviago.com/crm' },
-    { title: 'เว็บไซต์', icon: <Icons.websiteApp fill='white' className='h-4 w-4' />, link: '/coming-soon' },
+    { title: t('workspace_buttons.web_pages'), icon: <Icons.websiteApp fill='white' className='h-4 w-4' />, link: '/coming-soon' },
     { title: 'MarketConnect', icon: <Icons.inbioApp className='h-4 w-4' />, link: 'https://www.zaviago.com/marketplace' },
     { title: 'Canvas', icon: <Icons.blogAndPagesApp className='h-4 w-4' />, link: '/coming-soon' }
   ]
