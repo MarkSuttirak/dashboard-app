@@ -63,15 +63,13 @@ export default function ManageOrUpgradeApps(){
       <h2 className="settings-heading">{id === 'manage-apps' ? t('integration.manage_apps') : t('integration.upgrade_apps')}</h2>
       <p className="main-desc">{id === 'manage-apps' ? t('integration.manage_apps_desc') : t('integration.upgrade_apps_desc')}</p>
 
-      {appLength?.length > 0 && (
-        <div className="mt-8 flex gap-x-2">
-          <Input placeholder={t('integration.search_apps')} className='w-[250px]' onChange={e => {setSearch(e.target.value)}} value={search}/>
-          <Button variant='ghost' className={`flex items-center gap-x-2 ${search !== '' ? 'visible opacity-1' : 'invisible opacity-0'} transition duration-200`} onClick={() => {setSearch('')}}>
-            {t('reset')}
-            <X viewBox="0 0 24 24" width='16' height='16'/>
-          </Button>
-        </div>
-      )}
+      <div className="mt-8 flex gap-x-2">
+        <Input placeholder={t('integration.search_apps')} className='w-[250px]' onChange={e => {setSearch(e.target.value)}} value={search}/>
+        <Button variant='ghost' className={`flex items-center gap-x-2 ${search !== '' ? 'visible opacity-1' : 'invisible opacity-0'} transition duration-200`} onClick={() => {setSearch('')}}>
+          {t('reset')}
+          <X viewBox="0 0 24 24" width='16' height='16'/>
+        </Button>
+      </div>
 
       <section className={`${appLength?.length > 0 ? 'mt-4' : 'mt-8'}`}>
         {appLength?.length > 0 && <h3 className="subheading font-medium">{t('apps')}</h3>}
