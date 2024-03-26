@@ -17,7 +17,7 @@ import DashboardVideo from "./dashboardVideo";
 import { Icons } from "src/components/ui/icons";
 import DashboardTeam from "./dashboardTeam";
 import UpgradeProButton from "src/components/topbar/upgradeProButton";
-import { blogAndNews, customerDataSystem, graphicDesign, hrspace, linecrm, mainIcon, manageBusiness, manageWebsite, pos, projectManagement, salesteam, whiteboard } from "src/components/icon-menus/workspace-images";
+import { dashboardActivities, workspaceImages } from "src/components/icon-menus/workspace-images";
 
 export default function Dashboard() {
   const { t, i18n } = useTranslation();
@@ -107,58 +107,40 @@ export default function Dashboard() {
 
   const newOrManageMenus = [
     {
-      title: t('dashboard.manage_menus.manage_items'),
-      image: <ButtonImage01 shadow={false} />,
-      background: "#EFE3F6",
-      page: "item/new-item-1",
-      color: "#EB67FF"
+      title: 'สร้างและออกแบบเว็บไซต์',
+      image: dashboardActivities.createWebsites
     },
     {
-      title: t('dashboard.manage_menus.edit_shipping_rates'),
-      image: <ButtonImage02 shadow={false} />,
-      background: "#DDFEF4",
-      page: "item/new-item-1",
-      color: "#01545E"
+      title: 'ไวท์บอร์ด',
+      image: dashboardActivities.createWhiteboard
     },
     {
-      title: t('dashboard.manage_menus.add_new_customers'),
-      image: <ButtonImage03 shadow={false} />,
-      background: "#F5F2FE",
-      color: "#4C349F"
+      title: 'จัดการ LineOA',
+      image: dashboardActivities.manageOA
     },
     {
-      title: t('dashboard.manage_menus.set_up_payments'),
-      image: <ButtonImage04 shadow={false} />,
-      background: "#E5F5FF",
-      color: "#419CFF"
+      title: 'สร้างพรีเซ็นเทชั่น',
+      image: dashboardActivities.presentation
     },
     {
-      title: t('dashboard.manage_menus.view_orders'),
-      image: <ButtonImage05 shadow={false} />,
-      background: "#FFF9E9",
-      color: "#FABF20"
-    },
-    {
-      title: t('dashboard.manage_menus.create_promotions'),
-      image: <ButtonImage06 shadow={false} />,
-      background: "#F5FFE5",
-      color: "#174F20"
-    },
+      title: 'Banner',
+      image: dashboardActivities.banner
+    }
   ]
 
   const workspaceMenus = [
-    { title: t('workspace_buttons.manage_business'), icon: manageBusiness, link: 'https://www.zaviago.com/manage' },
-    { title: t('workspace_buttons.blog_editor'), icon: blogAndNews, link: '/coming-soon' },
-    { title: 'ระบบข้อมูลลูกค้า', icon: customerDataSystem, link: 'https://www.zaviago.com/crm' },
-    { title: 'จัดการเว็บไซต์', icon: manageWebsite, link: '/coming-soon' },
-    { title: 'ตามงานและดูโปรเจ็ค', icon: projectManagement, link: 'https://www.zaviago.com/marketplace' },
-    { title: 'ออกแบบ Graphic', icon: graphicDesign, link: '/coming-soon' },
-    { title: 'WhiteBoard', icon:whiteboard, link: '/coming-soon' },
-    { title: 'SalesTeam', icon: salesteam, link: '/coming-soon' },
-    { title: 'HRSpace', icon: hrspace, link: '/coming-soon' },
-    { title: 'เว็บไซต์', icon: manageWebsite, link: '/coming-soon' },
-    { title: 'Line CRM', icon: linecrm, link: '/coming-soon' },
-    { title: 'แคชเชียร์ - POS', icon: pos, link: '/coming-soon' },
+    { title: t('workspace_buttons.manage_business'), icon: workspaceImages.manageBusiness, link: 'https://www.zaviago.com/manage' },
+    { title: t('workspace_buttons.blog_editor'), icon: workspaceImages.blogAndNews, link: '/coming-soon' },
+    { title: 'ระบบข้อมูลลูกค้า', icon: workspaceImages.customerDataSystem, link: 'https://www.zaviago.com/crm' },
+    { title: 'จัดการเว็บไซต์', icon: workspaceImages.manageWebsite, link: '/coming-soon' },
+    { title: 'ตามงานและดูโปรเจ็ค', icon: workspaceImages.projectManagement, link: 'https://www.zaviago.com/marketplace' },
+    { title: 'ออกแบบ Graphic', icon: workspaceImages.graphicDesign, link: '/coming-soon' },
+    { title: 'WhiteBoard', icon: workspaceImages.whiteboard, link: '/coming-soon' },
+    { title: 'SalesTeam', icon: workspaceImages.salesteam, link: '/coming-soon' },
+    { title: 'HRSpace', icon: workspaceImages.hrspace, link: '/coming-soon' },
+    { title: 'เว็บไซต์', icon: workspaceImages.manageWebsite, link: '/coming-soon' },
+    { title: 'Line CRM', icon: workspaceImages.linecrm, link: '/coming-soon' },
+    { title: 'แคชเชียร์ - POS', icon: workspaceImages.pos, link: '/coming-soon' },
   ]
 
   return (
@@ -166,9 +148,9 @@ export default function Dashboard() {
       <div className="mb-6 md:hidden">
         <UpgradeProButton />
       </div>
-      <div className="rounded-xl p-12" style={{ background:"linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 0.02%, #DDD5FF 228.01%)"}}>
+      <div className="rounded-xl p-12 mx-5" style={{ background:"linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 0.02%, #DDD5FF 228.01%)"}}>
         <div className="flex flex-col items-center gap-y-3 max-w-5xl m-auto">
-          <img src={mainIcon} />
+          <img src={workspaceImages.mainIcon} />
 
           <div className="flex flex-col items-center gap-y-1">
             {user ? 
@@ -180,7 +162,7 @@ export default function Dashboard() {
             <p className="text-sm text-secondary">ใช้ประโยชน์ต่างๆ ได้มากขึ้นจาก แอปที่คุณรู้จักและชื่นชอบ</p>
           </div>
 
-          <div className="flex lg:flex-wrap gap-x-3 gap-y-2 overflow-scroll lg:overflow-visible mt-5 justify-center">
+          <div className="flex lg:flex-wrap gap-x-3 gap-y-2 mt-5 justify-center">
             {workspaceMenus.map(menu => (
               <a className="workspace-btn" href={menu.link} target={menu.link === '/coming_soon' ? "_blank" : null}>
                 <img src={menu.icon} className="h-4 w-4"/>
@@ -192,13 +174,13 @@ export default function Dashboard() {
       </div>
 
       <section>
-        <h2 className="secondary-heading px-5 lg:px-0">{t('what_you_want_to_do')}</h2>
+        <h2 className="secondary-heading px-5">{t('what_you_want_to_do')}</h2>
 
-        <div className="flex">
+        <div className="flex gap-x-4 mt-6 overflow-scroll px-5">
           {newOrManageMenus.map((n, index) => (
-            <div>
-              {n.image}
-              <span>{n.title}</span>
+            <div className="flex flex-col gap-y-4">
+              <img src={n.image} className="rounded-lg max-h-[188px] object-cover min-w-[334px] w-[334px]"/>
+              <span className="text-sm">{n.title}</span>
             </div>
           ))}
         </div>
@@ -208,16 +190,8 @@ export default function Dashboard() {
       {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> */}
 
       <DashboardTeam />
-      {/* <section className="my-[76px]">
-        <h2 className="secondary-heading">App Store</h2>
-        <p className="main-desc">You have got much more than just a website.<br/>Build and expand your digital business with application</p>
 
-        <div className="flex flex-wrap gap-4 mt-6">
-          <AppStoreIcons />
-        </div>
-      </section> */}
-
-      <section className="px-5 lg:px-0">
+      <section className="px-5">
         <h2 className="secondary-heading">{t('discover_what_you_can_do')}</h2>
 
         <div className="mt-6 grid md:grid-cols-3 gap-x-[15px] gap-y-5">

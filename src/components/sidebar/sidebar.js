@@ -12,19 +12,7 @@ import { SearchItem } from "../topbar/searchBar";
 import SidebarUpgrade from "./sidebarUpgrade";
 import { useTranslation } from "react-i18next";
 import SidebarWebsite from "./sidebarWebsite";
-import { 
-  manageBusiness, 
-  manageWebsite,
-  blogAndNews,
-  customerDataSystem,
-  hrspace,
-  linecrm,
-  salesteam,
-  whiteboard,
-  pos,
-  projectManagement,
-  graphicDesign
-} from "../icon-menus/workspace-images";
+import { workspaceImages } from "../icon-menus/workspace-images";
 
 // import TeamModal from "../components/switchTeamModal";
 
@@ -101,16 +89,16 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   ]
 
   const workspaceApp = [
-    { name: t('workspace_buttons.manage_business'), icon: manageBusiness, id: 'manage-business', onClick: () => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" }) }, // loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })
-    { name: t('workspace_buttons.blog_editor'), icon: blogAndNews, id: 'builder', onClick: () => window.open('/coming-soon', '_blank') }, // window.open(`https://${sites?.site_list[0].name}/SpaBlogEditor`)
-    { name: 'CRM', icon: customerDataSystem, onClick: () => window.open('https://www.zaviago.com/crm', '_self') },
-    { name: t('workspace_buttons.web_pages'), icon: manageWebsite, id: 'websites', onClick: () => window.open('/coming-soon', '_blank') }, // window.open(`https://${sites?.site_list[0].name}/builder`)
-    { name: 'Projects Manager', icon: projectManagement, onClick: () => window.open('/coming-soon', '_blank') },
-    { name: 'Line CRM', icon: linecrm, onClick: () => window.open('/coming-soon', '_blank') },
-    { name: 'Canvas', icon: graphicDesign, onClick: () => window.open('/coming-soon', '_blank') },
-    { name: 'WhiteBoard', icon: whiteboard, onClick: () => window.open('/coming-soon', '_blank') },
-    { name: 'SalesTeam', icon: salesteam, onClick: () => window.open('/coming-soon', '_blank') },
-    { name: 'HRSpace', icon: hrspace, onClick: () => window.open('/coming-soon', '_blank') }
+    { name: t('workspace_buttons.manage_business'), icon: workspaceImages.manageBusiness, id: 'manage-business', onClick: () => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" }) }, // loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })
+    { name: t('workspace_buttons.blog_editor'), icon: workspaceImages.blogAndNews, id: 'builder', onClick: () => window.open('/coming-soon', '_blank') }, // window.open(`https://${sites?.site_list[0].name}/SpaBlogEditor`)
+    { name: 'CRM', icon: workspaceImages.customerDataSystem, onClick: () => window.open('https://www.zaviago.com/crm', '_self') },
+    { name: t('workspace_buttons.web_pages'), icon: workspaceImages.manageWebsite, id: 'websites', onClick: () => window.open('/coming-soon', '_blank') }, // window.open(`https://${sites?.site_list[0].name}/builder`)
+    { name: 'Projects Manager', icon: workspaceImages.projectManagement, onClick: () => window.open('/coming-soon', '_blank') },
+    { name: 'Line CRM', icon: workspaceImages.linecrm, onClick: () => window.open('/coming-soon', '_blank') },
+    { name: 'Canvas', icon: workspaceImages.graphicDesign, onClick: () => window.open('/coming-soon', '_blank') },
+    { name: 'WhiteBoard', icon: workspaceImages.whiteboard, onClick: () => window.open('/coming-soon', '_blank') },
+    { name: 'SalesTeam', icon: workspaceImages.salesteam, onClick: () => window.open('/coming-soon', '_blank') },
+    { name: 'HRSpace', icon: workspaceImages.hrspace, onClick: () => window.open('/coming-soon', '_blank') }
   ]
 
   useEffect(() => {

@@ -11,7 +11,13 @@ import projectManagement from "src/img/workspace-icons/project-management.svg"
 import graphicDesign from "src/img/workspace-icons/graphic-design.svg"
 import mainIcon from "src/img/workspace-icons/main-icon.svg"
 
-export { 
+import banner from "src/img/dashboard-activities/banner.svg"
+import createWebsites from "src/img/dashboard-activities/create-websites.svg"
+import createWhiteboard from "src/img/dashboard-activities/create-whiteboard.svg"
+import manageOA from "src/img/dashboard-activities/manage-oa.svg"
+import presentation from "src/img/dashboard-activities/presentation.svg"
+
+export const workspaceImages = { 
   manageBusiness, 
   manageWebsite,
   blogAndNews,
@@ -24,4 +30,12 @@ export {
   projectManagement,
   graphicDesign,
   mainIcon
+}
+
+export const dashboardActivities = {
+  banner,
+  createWebsites,
+  createWhiteboard,
+  manageOA,
+  presentation
 }
