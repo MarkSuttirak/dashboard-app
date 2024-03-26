@@ -1,7 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { Separator } from "../../components/ui/separator";
-import { ButtonImage01, ButtonImage02, ButtonImage03, ButtonImage04, ButtonImage05, ButtonImage06 } from "../../components/buttonImage";
 import sellingOnline from 'src/img/selling-online.png'
 import connectMessage from 'src/img/connect-message.png'
 import createYourBlog from 'src/img/create-your-blog.png'
@@ -18,12 +17,12 @@ import { Icons } from "src/components/ui/icons";
 import DashboardTeam from "./dashboardTeam";
 import UpgradeProButton from "src/components/topbar/upgradeProButton";
 import { dashboardActivities, workspaceImages } from "src/components/icon-menus/workspace-images";
+import { ChevronRight } from "lucide-react";
+import ManageBusinessBanner from "./manageBusinessBanner";
 
 export default function Dashboard() {
   const { t, i18n } = useTranslation();
   const location = useLocation()
-  const [isMenuCardHover, setIsMenuCardHover] = useState(false)
-  const [menuCardIndex, setMenuCardIndex] = useState(0)
   const [websiteSid, setwebsiteSid] = useState(false)
 
   const textGradient = (gradient) => {
@@ -33,15 +32,6 @@ export default function Dashboard() {
       WebkitTextFillColor: "transparent"
     }
     return style
-  }
-
-  const handleCardHover = (index) => {
-    setIsMenuCardHover(true)
-    setMenuCardIndex(index)
-  }
-
-  const handleCardHoverLeave = () => {
-    setIsMenuCardHover(false)
   }
 
   const { user, auth, logout } = useUser();
@@ -106,26 +96,11 @@ export default function Dashboard() {
   }
 
   const newOrManageMenus = [
-    {
-      title: 'สร้างและออกแบบเว็บไซต์',
-      image: dashboardActivities.createWebsites
-    },
-    {
-      title: 'ไวท์บอร์ด',
-      image: dashboardActivities.createWhiteboard
-    },
-    {
-      title: 'จัดการ LineOA',
-      image: dashboardActivities.manageOA
-    },
-    {
-      title: 'สร้างพรีเซ็นเทชั่น',
-      image: dashboardActivities.presentation
-    },
-    {
-      title: 'Banner',
-      image: dashboardActivities.banner
-    }
+    { title: 'สร้างและออกแบบเว็บไซต์', image: dashboardActivities.createWebsites },
+    { title: 'ไวท์บอร์ด', image: dashboardActivities.createWhiteboard },
+    { title: 'จัดการ LineOA', image: dashboardActivities.manageOA },
+    { title: 'สร้างพรีเซ็นเทชั่น', image: dashboardActivities.presentation },
+    { title: 'Banner', image: dashboardActivities.banner }
   ]
 
   const workspaceMenus = [
@@ -141,6 +116,12 @@ export default function Dashboard() {
     { title: 'เว็บไซต์', icon: workspaceImages.manageWebsite, link: '/coming-soon' },
     { title: 'Line CRM', icon: workspaceImages.linecrm, link: '/coming-soon' },
     { title: 'แคชเชียร์ - POS', icon: workspaceImages.pos, link: '/coming-soon' },
+  ]
+
+  const actionMenus = [
+    { title: 'Stand out online with website', image: dashboardActivities.startOnlineWebsite },
+    { title: 'Get custom domain', image: dashboardActivities.customDomain },
+    { title: 'Responsive design', image: dashboardActivities.responsiveDesign },
   ]
 
   return (
@@ -186,9 +167,26 @@ export default function Dashboard() {
         </div>
       </section>
 
+      <section className="mb-10">
+        <div className="grid grid-cols-3 gap-4 mt-6 px-5">
+          {actionMenus.map((n, index) => (
+            <div className="flex justify-between bg-[#F7F7F8] rounded-xl overflow-hidden">
+              <div className="flex flex-col justify-between p-4 pb-3">
+                <h2 className="text-[15px] font-medium">{n.title}</h2>
+                <p className="text-sm flex items-center gap-x-1">
+                  Start designing
+                  <ChevronRight className="w-4 h-4"/>
+                </p>
+              </div>
+              <img src={n.image}/>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <DashboardVideo />
       {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> */}
-
+      <ManageBusinessBanner />
       <DashboardTeam />
 
       <section className="px-5">

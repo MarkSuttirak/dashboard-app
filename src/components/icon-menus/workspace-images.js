@@ -16,6 +16,10 @@ import createWebsites from "src/img/dashboard-activities/create-websites.svg"
 import createWhiteboard from "src/img/dashboard-activities/create-whiteboard.svg"
 import manageOA from "src/img/dashboard-activities/manage-oa.svg"
 import presentation from "src/img/dashboard-activities/presentation.svg"
+import startOnlineWebsite from "src/img/dashboard-activities/start-online-website.svg"
+import customDomain from "src/img/dashboard-activities/custom-domain.svg"
+import responsiveDesign from "src/img/dashboard-activities/responsive-design.svg"
+import manageYourBusiness from "src/img/dashboard-activities/manage-your-business.svg"
 
 export const workspaceImages = { 
   manageBusiness, 
@@ -37,5 +41,9 @@ export const dashboardActivities = {
   createWebsites,
   createWhiteboard,
   manageOA,
-  presentation
+  presentation,
+  startOnlineWebsite,
+  customDomain,
+  responsiveDesign,
+  manageYourBusiness
 }
