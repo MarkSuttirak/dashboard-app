@@ -1,19 +1,31 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
-import { PlusCircle, Settings, Search, ChevronsLeft, Users, Zap, UserCircle, LayoutGrid, Layout, ClipboardList, Package, Group, Baseline, Clipboard, CheckCircle, CheckCircle2, UserSquare, Mailbox, Milestone, PackagePlus, ClipboardPaste, PanelLeftClose, PanelLeftOpen, Home, ChevronsRight, Hotel, Unplug } from "lucide-react";
+import { Settings, Users, Zap, UserCircle, LayoutGrid, ClipboardList, Package, Group, Baseline, Clipboard, CheckCircle2, UserSquare, Mailbox, Milestone, PackagePlus, ClipboardPaste, ChevronsRight, Hotel, Unplug } from "lucide-react";
 import { Button } from "../ui/button";
-import { BellIcon, LightningBoltIcon } from "@radix-ui/react-icons";
+import { LightningBoltIcon } from "@radix-ui/react-icons";
 import { useMutation, useQuery } from "react-query";
 import { site } from "../../client/api";
 import { Icons } from "../ui/icons";
 import ServiceModals from "./serviceModals";
 import { Dialog, DialogTrigger } from "../ui/dialog";
 import { SearchItem } from "../topbar/searchBar";
-import { Skeleton } from "../ui/skeleton"
 import SidebarUpgrade from "./sidebarUpgrade";
 import { useTranslation } from "react-i18next";
 import SidebarWebsite from "./sidebarWebsite";
+import { 
+  manageBusiness, 
+  manageWebsite,
+  blogAndNews,
+  customerDataSystem,
+  hrspace,
+  linecrm,
+  salesteam,
+  whiteboard,
+  pos,
+  projectManagement,
+  graphicDesign
+} from "../icon-menus/workspace-images";
 
 // import TeamModal from "../components/switchTeamModal";
 
@@ -90,12 +102,13 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   ]
 
   const workspaceApp = [
-    { name: t('workspace_buttons.manage_business'), icon: <Icons.erpApp className='h-5 w-5' />, id: 'manage-business', onClick: () => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" }) }, // loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })
-    { name: t('workspace_buttons.blog_editor'), icon: <Icons.blogPostApp className='h-5 w-5' />, id: 'builder', onClick: () => window.open('/coming-soon', '_blank') }, // window.open(`https://${sites?.site_list[0].name}/SpaBlogEditor`)
-    { name: 'CRM', icon: <Icons.posApp className='h-5 w-5' />, onClick: () => window.open('https://www.zaviago.com/crm', '_self') },
-    { name: t('workspace_buttons.web_pages'), icon: <Icons.websiteApp fill='white' className='h-5 w-5' />, id: 'websites', onClick: () => window.open('/coming-soon', '_blank') }, // window.open(`https://${sites?.site_list[0].name}/builder`)
-    { name: 'MarketConnect', icon: <Icons.inbioApp className='h-5 w-5' />, onClick: () => window.open('https://www.zaviago.com/marketplace', '_self') },
-    { name: 'Canvas', icon: <Icons.blogAndPagesApp className='h-5 w-5' />, onClick: () => window.open('/coming-soon', '_blank') }
+    { name: t('workspace_buttons.manage_business'), icon: manageBusiness, id: 'manage-business', onClick: () => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" }) }, // loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })
+    { name: t('workspace_buttons.blog_editor'), icon: blogAndNews, id: 'builder', onClick: () => window.open('/coming-soon', '_blank') }, // window.open(`https://${sites?.site_list[0].name}/SpaBlogEditor`)
+    { name: 'CRM', icon: customerDataSystem, onClick: () => window.open('https://www.zaviago.com/crm', '_self') },
+    { name: t('workspace_buttons.web_pages'), icon: manageWebsite, id: 'websites', onClick: () => window.open('/coming-soon', '_blank') }, // window.open(`https://${sites?.site_list[0].name}/builder`)
+    { name: 'Projects Manager', icon: projectManagement, onClick: () => window.open('/coming-soon', '_blank') },
+    { name: 'Line CRM', icon: linecrm, onClick: () => window.open('/coming-soon', '_blank') },
+    { name: 'Canvas', icon: graphicDesign, onClick: () => window.open('/coming-soon', '_blank') },
   ]
 
   useEffect(() => {
@@ -242,7 +255,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
               <div className="flex flex-col gap-y-4 lg:gap-y-0">
                 {workspaceApp.map((item) => (
                   <Button variant='ghost' onClick={item.onClick} className={`w-full flex justify-start gap-x-2 text-base lg:text-[13px] items-center leading-5`}>
-                    {item.icon}
+                    <img src={item.icon} className="h-5 w-5"/>
                     {item.name}
                   </Button>
                 ))}
