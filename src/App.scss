@@ -320,12 +320,12 @@ body {
 }
 
 .page-section,.page-sec-dashboard,.page-sec-settings {
-  padding:84px 40px 160px;
+  padding:84px 20px 160px;
   box-sizing:content-box;
   margin-left:$right-sidebar-width
 }
 
-.dashboard-container {
+.page-container {
   max-width:1100px;
   margin:auto;
 }
@@ -587,12 +587,12 @@ body {
   display:flex;
   align-items:center;
   white-space:pre;
-  background-color:#F7F7F8;
+  background-color:white;
   padding:8px 16px;
   border:1px solid transparent;
-  border-radius:10px;
+  border-radius:9999px;
   font-size:13px;
-  color:#8E8E8F;
+  color:#394047;
   transition:border 150ms, box-shadow 150ms;
   gap:8px;
   &:hover, &.active {

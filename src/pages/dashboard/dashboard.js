@@ -1,9 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Button } from "../../components/ui/button"
 import { useState, useEffect, useContext } from "react";
 import { Separator } from "../../components/ui/separator";
 import { ButtonImage01, ButtonImage02, ButtonImage03, ButtonImage04, ButtonImage05, ButtonImage06 } from "../../components/buttonImage";
-import { Avatar, AvatarFallback, AvatarImage } from "src/components/ui/avatar"
 import sellingOnline from 'src/img/selling-online.png'
 import connectMessage from 'src/img/connect-message.png'
 import createYourBlog from 'src/img/create-your-blog.png'
@@ -14,12 +12,12 @@ import PostInfo from "src/components/postInfo";
 import DashboardBanner from "./dashboardBanner";
 import SetupBusiness from "./setUpBusiness";
 import { Skeleton } from "src/components/ui/skeleton";
-import { Edit3 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import DashboardVideo from "./dashboardVideo";
 import { Icons } from "src/components/ui/icons";
 import DashboardTeam from "./dashboardTeam";
 import UpgradeProButton from "src/components/topbar/upgradeProButton";
+import { blogAndNews, customerDataSystem, graphicDesign, hrspace, linecrm, mainIcon, manageBusiness, manageWebsite, pos, projectManagement, salesteam, whiteboard } from "src/components/icon-menus/workspace-images";
 
 export default function Dashboard() {
   const { t, i18n } = useTranslation();
@@ -149,65 +147,65 @@ export default function Dashboard() {
   ]
 
   const workspaceMenus = [
-    { title: t('workspace_buttons.manage_business'), icon: <Icons.erpApp className='h-4 w-4' />, link: 'https://www.zaviago.com/manage' },
-    { title: t('workspace_buttons.blog_editor'), icon: <Icons.blogPostApp className='h-4 w-4' />, link: '/coming-soon' },
-    { title: 'CRM', icon: <Icons.posApp className='h-4 w-4' />, link: 'https://www.zaviago.com/crm' },
-    { title: t('workspace_buttons.web_pages'), icon: <Icons.websiteApp fill='white' className='h-4 w-4' />, link: '/coming-soon' },
-    { title: 'MarketConnect', icon: <Icons.inbioApp className='h-4 w-4' />, link: 'https://www.zaviago.com/marketplace' },
-    { title: 'Canvas', icon: <Icons.blogAndPagesApp className='h-4 w-4' />, link: '/coming-soon' }
+    { title: t('workspace_buttons.manage_business'), icon: manageBusiness, link: 'https://www.zaviago.com/manage' },
+    { title: t('workspace_buttons.blog_editor'), icon: blogAndNews, link: '/coming-soon' },
+    { title: 'ระบบข้อมูลลูกค้า', icon: customerDataSystem, link: 'https://www.zaviago.com/crm' },
+    { title: 'จัดการเว็บไซต์', icon: manageWebsite, link: '/coming-soon' },
+    { title: 'ตามงานและดูโปรเจ็ค', icon: projectManagement, link: 'https://www.zaviago.com/marketplace' },
+    { title: 'ออกแบบ Graphic', icon: graphicDesign, link: '/coming-soon' },
+    { title: 'WhiteBoard', icon:whiteboard, link: '/coming-soon' },
+    { title: 'SalesTeam', icon: salesteam, link: '/coming-soon' },
+    { title: 'HRSpace', icon: hrspace, link: '/coming-soon' },
+    { title: 'เว็บไซต์', icon: manageWebsite, link: '/coming-soon' },
+    { title: 'Line CRM', icon: linecrm, link: '/coming-soon' },
+    { title: 'แคชเชียร์ - POS', icon: pos, link: '/coming-soon' },
   ]
 
   return (
-    <div className="dashboard-container">
-
+    <div className="flex flex-col gap-y-6">
       <div className="mb-6 md:hidden">
         <UpgradeProButton />
       </div>
+      <div className="rounded-xl p-12" style={{ background:"linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 0.02%, #DDD5FF 228.01%)"}}>
+        <div className="flex flex-col items-center gap-y-3 max-w-5xl m-auto">
+          <img src={mainIcon} />
 
-      <div className="flex items-center justify-between gap-y-4 px-5 lg:px-0">
-        <div className="flex gap-x-[10px] items-center mb-6 md:mb-0">
-          <Avatar className='w-[49px] h-[49px] text-sm'>
-            <AvatarImage src="" />
-            <AvatarFallback>{user?.first_name[0]}</AvatarFallback>
-          </Avatar>
-          <div>
-            {user ? <h1 className="text-xl md:text-3xl text-primary font-bold tracking-[-0.75px] font-eventpop leading-8">สวัสดีคุณ <span style={textGradient("linear-gradient(92.12deg, #7900FF -2.04%, #006AFF 89.63%)")} className="text-xl md:text-3xl">{user?.first_name}</span>🙏</h1> : <Skeleton className='h-8 w-[300px]' />}
-            <p className="text-sm text-secondary">จัดการและขยายธุรกิจด้วย Zaviago WorkSpace</p>
+          <div className="flex flex-col items-center gap-y-1">
+            {user ? 
+              <h1 className="text-xl md:text-3xl text-primary font-bold tracking-[-0.75px] font-eventpop leading-8">
+                สวัสดีคุณ 
+                <span style={textGradient("linear-gradient(92.12deg, #7900FF -2.04%, #006AFF 89.63%)")} className="text-xl md:text-3xl ml-2">{user?.first_name}</span>🙏
+              </h1> : <Skeleton className='h-8 w-[300px]' />
+            }
+            <p className="text-sm text-secondary">ใช้ประโยชน์ต่างๆ ได้มากขึ้นจาก แอปที่คุณรู้จักและชื่นชอบ</p>
+          </div>
+
+          <div className="flex lg:flex-wrap gap-x-3 gap-y-2 overflow-scroll lg:overflow-visible mt-5 justify-center">
+            {workspaceMenus.map(menu => (
+              <a className="workspace-btn" href={menu.link} target={menu.link === '/coming_soon' ? "_blank" : null}>
+                <img src={menu.icon} className="h-4 w-4"/>
+                {menu.title}
+              </a>
+            ))}
           </div>
         </div>
-        <Link to='/coming-soon' target='_blank' className="hidden lg:block">
-          <Button className='btn-with-icon'>
-            <Edit3 className="w-4 h-4" />
-            ออกแบบเว็บไซต์
-          </Button>
-        </Link>
       </div>
 
-      <DashboardBanner sitename={sites?.site_list[0].name} />
-      {/* <DashboardVideo /> */}
-      {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> */}
-
-      <section className="pt-6 pb-4 lg:py-[72px]">
+      <section>
         <h2 className="secondary-heading px-5 lg:px-0">{t('what_you_want_to_do')}</h2>
 
-        <div className="flex lg:flex-wrap gap-[15px] pt-6 pb-3 overflow-scroll lg:overflow-visible px-5 lg:px-0">
-          {workspaceMenus.map(menu => (
-            <a className="workspace-btn" href={menu.link} target={menu.link === '/coming_soon' ? "_blank" : null}>
-              {menu.icon}
-              {menu.title}
-            </a>
-          ))}
-        </div>
-
-        <div className="flex lg:flex-wrap gap-[15px] pt-3 pb-6 overflow-scroll lg:overflow-visible px-5 lg:px-0">
+        <div className="flex">
           {newOrManageMenus.map((n, index) => (
-            <div onClick={() => n.page !== undefined && loginNow(n.page)} className="menu-card" key={index} style={{ backgroundColor: n.background, color: n.color, boxShadow: isMenuCardHover && menuCardIndex === index ? `0 0 3px ${n.color}` : null }} onMouseEnter={() => handleCardHover(index)} onMouseLeave={handleCardHoverLeave}>
+            <div>
               {n.image}
-              <span className="absolute bottom-4">{n.title}</span>
+              <span>{n.title}</span>
             </div>
           ))}
         </div>
       </section>
+
+      <DashboardVideo />
+      {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> */}
 
       <DashboardTeam />
       {/* <section className="my-[76px]">

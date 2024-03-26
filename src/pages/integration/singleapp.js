@@ -217,7 +217,7 @@ export default function SingleApp(){
   }
 
   return (
-    <div className="dashboard-container">
+    <div className="page-container">
 
 
       {appList?.length > 0 ? (

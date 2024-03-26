@@ -52,7 +52,7 @@ export default function AppCategory(){
   }
 
   return (
-    <div className="dashboard-container">
+    <div className="page-container">
       <h1 className="main-heading tracking-[-0.6px]">Social Media</h1>
       <p>Choose Professional Solutions to Power Your Website</p>
 

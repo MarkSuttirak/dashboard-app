@@ -31,7 +31,7 @@ export default function Settings(){
 
   const { id } = useParams()
   return (
-    <div className="dashboard-container">
+    <div className="page-container">
       <SettingsHeading text={t('menus.settings')} link={-1}/>
 
       <main className={`flex flex-col ${id ? 'md:flex-row' : 'lg:flex-row'} gap-y-8 gap-x-12 xl:gap-x-[72px] mt-12 lg:mt-8`}>

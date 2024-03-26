@@ -9,6 +9,7 @@ import whiteboard from "src/img/workspace-icons/whiteboard.svg"
 import pos from "src/img/workspace-icons/pos.svg"
 import projectManagement from "src/img/workspace-icons/project-management.svg"
 import graphicDesign from "src/img/workspace-icons/graphic-design.svg"
+import mainIcon from "src/img/workspace-icons/main-icon.svg"
 
 export { 
   manageBusiness, 
@@ -21,5 +22,6 @@ export {
   whiteboard,
   pos,
   projectManagement,
-  graphicDesign
+  graphicDesign,
+  mainIcon
 }

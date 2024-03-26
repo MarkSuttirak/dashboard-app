@@ -6,7 +6,6 @@ import { Button } from "../ui/button";
 import { LightningBoltIcon } from "@radix-ui/react-icons";
 import { useMutation, useQuery } from "react-query";
 import { site } from "../../client/api";
-import { Icons } from "../ui/icons";
 import ServiceModals from "./serviceModals";
 import { Dialog, DialogTrigger } from "../ui/dialog";
 import { SearchItem } from "../topbar/searchBar";
@@ -109,6 +108,9 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
     { name: 'Projects Manager', icon: projectManagement, onClick: () => window.open('/coming-soon', '_blank') },
     { name: 'Line CRM', icon: linecrm, onClick: () => window.open('/coming-soon', '_blank') },
     { name: 'Canvas', icon: graphicDesign, onClick: () => window.open('/coming-soon', '_blank') },
+    { name: 'WhiteBoard', icon: whiteboard, onClick: () => window.open('/coming-soon', '_blank') },
+    { name: 'SalesTeam', icon: salesteam, onClick: () => window.open('/coming-soon', '_blank') },
+    { name: 'HRSpace', icon: hrspace, onClick: () => window.open('/coming-soon', '_blank') }
   ]
 
   useEffect(() => {
@@ -147,27 +149,6 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
     if (sid) {
       window.open(`https://${sitetoview}/app/${page}?sid=${sid}`, '_blank');
     }
-  }
-
-  const IconSidebar = () => {
-    return (
-      <nav className={`nav-left-side`}>
-        {/* {isSidebarOpen ? (
-          <div className="nav-btns" id="home-btn" onClick={() => navigate('/')}>
-            <Home color='#18181B' viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5'/>
-          </div>
-        ) : (
-          <div className="nav-btns" id="home-btn" onClick={() => setIsSidebarOpen(true)}>
-            <PanelLeftOpen color='#18181B' viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5'/>
-          </div>
-        )} */}
-        <div className={`nav-btns ${!isSidebarOpen ? 'show' : 'hide'}`} id="home-btn" onClick={() => setIsSidebarOpen(true)}>
-          <ChevronsRight color='#18181B' viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' />
-        </div>
-
-        <ServiceModals />
-      </nav>
-    )
   }
 
   return (
@@ -252,7 +233,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
             <section className="flex flex-col">
               <h3 className="text-lightgray text-sm font-medium p-4">{t('menus.your_workspace')}</h3>
-              <div className="flex flex-col gap-y-4 lg:gap-y-0">
+              <div className="flex flex-col gap-y-4 lg:gap-y-0 ml-2">
                 {workspaceApp.map((item) => (
                   <Button variant='ghost' onClick={item.onClick} className={`w-full flex justify-start gap-x-2 text-base lg:text-[13px] items-center leading-5`}>
                     <img src={item.icon} className="h-5 w-5"/>

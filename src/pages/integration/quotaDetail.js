@@ -37,7 +37,7 @@ export default function QuotaDetail(){
   ]
 
   return (
-    <div className="dashboard-container">
+    <div className="page-container">
       <SettingsHeading text="Integration" link={-1} />
 
       <main className="flex gap-x-12 mt-8">
