@@ -157,7 +157,7 @@ export default function Dashboard() {
       <section>
         <h2 className="secondary-heading px-5">{t('what_you_want_to_do')}</h2>
 
-        <div className="flex gap-x-4 py-6 overflow-auto px-5 manage-menus">
+        <div className="flex gap-x-4 py-6 overflow-auto px-5">
           {newOrManageMenus.map((n, index) => (
             <div className="flex flex-col gap-y-4">
               <img src={n.image} className="rounded-lg max-h-[188px] object-cover min-w-[334px] w-[334px]"/>
