@@ -17,7 +17,7 @@ import { Icons } from "src/components/ui/icons";
 import DashboardTeam from "./dashboardTeam";
 import UpgradeProButton from "src/components/topbar/upgradeProButton";
 import { dashboardActivities, workspaceImages } from "src/components/icon-menus/workspace-images";
-import { ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import ManageBusinessBanner from "./manageBusinessBanner";
 
 export default function Dashboard() {
@@ -124,6 +124,16 @@ export default function Dashboard() {
     { title: 'Responsive design', image: dashboardActivities.responsiveDesign },
   ]
 
+  const handleSlideActivities = (side, y) => {
+    const manageMenus = document.getElementById("manage-menus")
+
+    manageMenus.scrollBy({
+      top: 0,
+      left: side === "left" ? -y : y,
+      behavior: 'smooth'
+    })
+  }
+
   return (
     <div className="flex flex-col gap-y-6">
       <div className="mb-6 md:hidden">
@@ -157,14 +167,24 @@ export default function Dashboard() {
       <section>
         <h2 className="secondary-heading px-5">{t('what_you_want_to_do')}</h2>
 
-        <div className="flex gap-x-4 py-6 overflow-auto px-5">
-          {newOrManageMenus.map((n, index) => (
-            <div className="flex flex-col gap-y-4">
-              <img src={n.image} className="rounded-lg max-h-[188px] object-cover min-w-[334px] w-[334px]"/>
-              <span className="text-sm">{n.title}</span>
-            </div>
-          ))}
+        <div className="relative">
+          <div className="flex gap-x-4 py-6 overflow-auto px-5 relative" id="manage-menus">
+            {newOrManageMenus.map((n, index) => (
+              <div className="flex flex-col gap-y-4">
+                <img src={n.image} className="rounded-lg max-h-[188px] object-cover min-w-[334px] w-[334px]"/>
+                <span className="text-sm">{n.title}</span>
+              </div>
+            ))}
+          </div>
+
+          <button onClick={() => handleSlideActivities("left", 200)} className="rounded-full bg-white h-9 w-9 absolute flex items-center justify-center left-2 top-[37.5%] shadow-md">
+            <ChevronLeft />
+          </button>
+          <button onClick={() => handleSlideActivities("right", 200)} className="rounded-full bg-white h-9 w-9 absolute flex items-center justify-center right-2 top-[37.5%] shadow-md">
+            <ChevronRight />
+          </button>
         </div>
+
       </section>
 
       <section className="mb-10">

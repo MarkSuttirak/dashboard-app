@@ -13,24 +13,7 @@ $mobile-header-size: 60px;
 $mobile-footer-size: 60px;
 
 html{scroll-behavior:smooth}
-
-::-webkit-scrollbar {
-  width:10px;
-  height:10px;
-}
-
-::-webkit-scrollbar-track {
-  background:white
-}
-
-::-webkit-scrollbar-thumb {
-  background:#F4F4F5;
-  border-radius:9999px;
-}
-
-body::-webkit-scrollbar {
-  display:none;
-}
+::-webkit-scrollbar {display:none}
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
 
