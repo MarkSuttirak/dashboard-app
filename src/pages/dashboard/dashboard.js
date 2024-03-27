@@ -184,9 +184,9 @@ export default function Dashboard() {
         </div>
       </section>
 
+      <ManageBusinessBanner />
       <DashboardVideo />
       {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> */}
-      <ManageBusinessBanner />
       <DashboardTeam />
 
       <section className="px-5">

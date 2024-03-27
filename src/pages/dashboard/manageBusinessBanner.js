@@ -15,12 +15,12 @@ const ManageBusinessBanner = () => {
   ]
 
   return (
-    <section className="bg-[#F7F7F8] mb-8 lg:mb-[72px] rounded-xl mx-5 flex items-center">
-      <div className="flex flex-col gap-y-8 p-[100px]">
+    <section className="bg-[#F7F7F8] mb-8 rounded-xl mx-5 flex items-center">
+      <div className="flex flex-col gap-y-8 p-[7.5%]">
         <div className="flex items-center gap-x-5">
           {icons.map(icon => <img src={icon} className="w-5 h-5"/>)}
         </div>
-        <h1 className="text-4xl font-semibold text-[#363636]">บริหารและต่อยอดธุรกิจของคุณ</h1>
+        <h1 className="text-4xl font-semibold text-[#363636] whitespace-pre">บริหารและต่อยอด<br/>ธุรกิจของคุณ</h1>
         <p className="text-sm text-[#AAAAAA]">เพิ่มประสิทธิภาพให้กับธุรกิจของคุณด้วยเครื่องมือที่จะช่วยอำนวยความสะดวกในการจัดการงานประจำวันต่างๆ</p>
 
         <Button className='w-fit !bg-white shadow-none rounded-full text-[#8E8E8F]'>อ่านข้อมูลเพิ่มเติม</Button>
