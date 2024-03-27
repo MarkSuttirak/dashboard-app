@@ -178,7 +178,7 @@ export default function Dashboard() {
                   <ChevronRight className="w-4 h-4"/>
                 </p>
               </div>
-              <img src={n.image}/>
+              <img src={n.image} />
             </div>
           ))}
         </div>
