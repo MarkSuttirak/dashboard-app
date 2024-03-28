@@ -20,6 +20,11 @@ import startOnlineWebsite from "src/img/dashboard-activities/start-online-websit
 import customDomain from "src/img/dashboard-activities/custom-domain.svg"
 import responsiveDesign from "src/img/dashboard-activities/responsive-design.svg"
 import manageYourBusiness from "src/img/dashboard-activities/manage-your-business.svg"
+import manageProducts from "src/img/dashboard-activities/manage-products.png"
+import manageOrders from "src/img/dashboard-activities/manage-orders.png"
+import otherCategories from "src/img/dashboard-activities/other-categories.png"
+import checkSales from "src/img/dashboard-activities/check-sales.png"
+import warehouses from "src/img/dashboard-activities/warehouses.png"
 
 export const workspaceImages = { 
   manageBusiness, 
@@ -36,7 +41,7 @@ export const workspaceImages = {
   mainIcon
 }
 
-export const dashboardActivities = {
+export const dashboardActivitiesImages = {
   banner,
   createWebsites,
   createWhiteboard,
@@ -45,5 +50,10 @@ export const dashboardActivities = {
   startOnlineWebsite,
   customDomain,
   responsiveDesign,
-  manageYourBusiness
+  manageYourBusiness,
+  manageProducts,
+  manageOrders,
+  otherCategories,
+  checkSales,
+  warehouses
 }

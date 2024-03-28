@@ -16,14 +16,17 @@ import DashboardVideo from "./dashboardVideo";
 import { Icons } from "src/components/ui/icons";
 import DashboardTeam from "./dashboardTeam";
 import UpgradeProButton from "src/components/topbar/upgradeProButton";
-import { dashboardActivities, workspaceImages } from "src/components/icon-menus/workspace-images";
+import { dashboardActivitiesImages, workspaceImages } from "src/components/icon-menus/workspace-images";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ManageBusinessBanner from "./manageBusinessBanner";
+import useChangeMenuActivities from "src/hooks/useChangeMenuActivities";
 
 export default function Dashboard() {
   const { t, i18n } = useTranslation();
   const location = useLocation()
   const [websiteSid, setwebsiteSid] = useState(false)
+  const [menuTitle, setMenuTitle] = useState("จัดการธุรกิจ")
+  const { menuActivities, workspaceMenus } = useChangeMenuActivities(menuTitle)
 
   const textGradient = (gradient) => {
     const style = {
@@ -43,7 +46,6 @@ export default function Dashboard() {
       navigate('/dashboard/instance-configuration');
     }
   }, [auth?.onboarding.site_created]);
-
 
   const { data: sites } = useQuery('sites', site.list, {
     enabled: !!user,
@@ -95,33 +97,10 @@ export default function Dashboard() {
     }
   }
 
-  const newOrManageMenus = [
-    { title: 'สร้างและออกแบบเว็บไซต์', image: dashboardActivities.createWebsites },
-    { title: 'ไวท์บอร์ด', image: dashboardActivities.createWhiteboard },
-    { title: 'จัดการ LineOA', image: dashboardActivities.manageOA },
-    { title: 'สร้างพรีเซ็นเทชั่น', image: dashboardActivities.presentation },
-    { title: 'Banner', image: dashboardActivities.banner }
-  ]
-
-  const workspaceMenus = [
-    { title: t('workspace_buttons.manage_business'), icon: workspaceImages.manageBusiness, link: 'https://www.zaviago.com/manage' },
-    { title: t('workspace_buttons.blog_editor'), icon: workspaceImages.blogAndNews, link: '/coming-soon' },
-    { title: 'ระบบข้อมูลลูกค้า', icon: workspaceImages.customerDataSystem, link: 'https://www.zaviago.com/crm' },
-    { title: 'จัดการเว็บไซต์', icon: workspaceImages.manageWebsite, link: '/coming-soon' },
-    { title: 'ตามงานและดูโปรเจ็ค', icon: workspaceImages.projectManagement, link: 'https://www.zaviago.com/marketplace' },
-    { title: 'ออกแบบ Graphic', icon: workspaceImages.graphicDesign, link: '/coming-soon' },
-    { title: 'WhiteBoard', icon: workspaceImages.whiteboard, link: '/coming-soon' },
-    { title: 'SalesTeam', icon: workspaceImages.salesteam, link: '/coming-soon' },
-    { title: 'HRSpace', icon: workspaceImages.hrspace, link: '/coming-soon' },
-    { title: 'เว็บไซต์', icon: workspaceImages.manageWebsite, link: '/coming-soon' },
-    { title: 'Line CRM', icon: workspaceImages.linecrm, link: '/coming-soon' },
-    { title: 'แคชเชียร์ - POS', icon: workspaceImages.pos, link: '/coming-soon' },
-  ]
-
   const actionMenus = [
-    { title: 'Stand out online with website', image: dashboardActivities.startOnlineWebsite },
-    { title: 'Get custom domain', image: dashboardActivities.customDomain },
-    { title: 'Responsive design', image: dashboardActivities.responsiveDesign },
+    { title: 'Stand out online with website', image: dashboardActivitiesImages.startOnlineWebsite },
+    { title: 'Get custom domain', image: dashboardActivitiesImages.customDomain },
+    { title: 'Responsive design', image: dashboardActivitiesImages.responsiveDesign },
   ]
 
   const handleSlideActivities = (side, y) => {
@@ -155,10 +134,14 @@ export default function Dashboard() {
 
           <div className="flex lg:flex-wrap gap-x-3 gap-y-2 mt-5 justify-center">
             {workspaceMenus.map(menu => (
-              <a className="workspace-btn" href={menu.link} target={menu.link === '/coming_soon' ? "_blank" : null}>
+              // <a className="workspace-btn" href={menu.link} target={menu.link === '/coming_soon' ? "_blank" : null}>
+              //   <img src={menu.icon} className="h-4 w-4"/>
+              //   {menu.title}
+              // </a>
+              <button className="workspace-btn" onClick={() => setMenuTitle(menu.title)}>
                 <img src={menu.icon} className="h-4 w-4"/>
                 {menu.title}
-              </a>
+              </button>
             ))}
           </div>
         </div>
@@ -169,8 +152,8 @@ export default function Dashboard() {
 
         <div className="relative">
           <div className="flex gap-x-4 py-6 overflow-auto px-5 relative" id="manage-menus">
-            {newOrManageMenus.map((n, index) => (
-              <div className="flex flex-col gap-y-4">
+            {menuActivities.map((n, index) => (
+              <div className="flex flex-col gap-y-4" key={n.title}>
                 <img src={n.image} className="rounded-lg max-h-[188px] object-cover min-w-[334px] w-[334px]"/>
                 <span className="text-sm">{n.title}</span>
               </div>

@@ -1,5 +1,4 @@
-import { workspaceImages } from "src/components/icon-menus/workspace-images"
-import { dashboardActivities } from "src/components/icon-menus/workspace-images"
+import { dashboardActivitiesImages, workspaceImages } from "src/components/icon-menus/workspace-images"
 import { Button } from "src/components/ui/button"
 
 const ManageBusinessBanner = () => {
@@ -26,7 +25,7 @@ const ManageBusinessBanner = () => {
         <Button className='w-fit !bg-white shadow-none rounded-full text-[#8E8E8F]'>อ่านข้อมูลเพิ่มเติม</Button>
       </div>
       <div className="w-full">
-        <img src={dashboardActivities.manageYourBusiness}/>
+        <img src={dashboardActivitiesImages.manageYourBusiness}/>
       </div>
     </section>
   )
