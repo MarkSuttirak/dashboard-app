@@ -13,10 +13,9 @@ import SetupBusiness from "./setUpBusiness";
 import { Skeleton } from "src/components/ui/skeleton";
 import { useTranslation } from "react-i18next";
 import DashboardVideo from "./dashboardVideo";
-import { Icons } from "src/components/ui/icons";
 import DashboardTeam from "./dashboardTeam";
 import UpgradeProButton from "src/components/topbar/upgradeProButton";
-import { dashboardActivitiesImages, workspaceImages } from "src/components/icon-menus/workspace-images";
+import { workspaceImages } from "src/components/icon-menus/workspace-images";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ManageBusinessBanner from "./manageBusinessBanner";
 import useChangeMenuActivities from "src/hooks/useChangeMenuActivities";
@@ -25,8 +24,18 @@ export default function Dashboard() {
   const { t, i18n } = useTranslation();
   const location = useLocation()
   const [websiteSid, setwebsiteSid] = useState(false)
-  const [menuTitle, setMenuTitle] = useState("จัดการธุรกิจ")
-  const { menuActivities, workspaceMenus } = useChangeMenuActivities(menuTitle)
+  const [menuActivity, setMenuActivity] = useState({
+    title: "จัดการธุรกิจ",
+    isChanging: false
+  })
+  const { menuActivities, workspaceMenus, actionMenus } = useChangeMenuActivities(menuActivity.title)
+
+  const handleChangeActivities = (title) => {
+    setMenuActivity(act => ({...act, isChanging: true}))
+    setTimeout(() => {
+      setMenuActivity({title: title, isChanging: false})
+    }, 300)
+  }
 
   const textGradient = (gradient) => {
     const style = {
@@ -97,12 +106,6 @@ export default function Dashboard() {
     }
   }
 
-  const actionMenus = [
-    { title: 'Stand out online with website', image: dashboardActivitiesImages.startOnlineWebsite },
-    { title: 'Get custom domain', image: dashboardActivitiesImages.customDomain },
-    { title: 'Responsive design', image: dashboardActivitiesImages.responsiveDesign },
-  ]
-
   const handleSlideActivities = (side, y) => {
     const manageMenus = document.getElementById("manage-menus")
 
@@ -138,7 +141,7 @@ export default function Dashboard() {
               //   <img src={menu.icon} className="h-4 w-4"/>
               //   {menu.title}
               // </a>
-              <button className="workspace-btn" onClick={() => setMenuTitle(menu.title)}>
+              <button className="workspace-btn" onClick={() => handleChangeActivities(menu.title)}>
                 <img src={menu.icon} className="h-4 w-4"/>
                 {menu.title}
               </button>
@@ -147,44 +150,49 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <section>
-        <h2 className="secondary-heading px-5">{t('what_you_want_to_do')}</h2>
+      <section className={`${menuActivity.isChanging ? 'opacity-0' : 'opacity-1'} transition-all duration-300`}>
+        {menuActivities.length > 0 && 
+          <section>
+            <h2 className="secondary-heading px-5">{t('what_you_want_to_do')}</h2>
 
-        <div className="relative">
-          <div className="flex gap-x-4 py-6 overflow-auto px-5 relative" id="manage-menus">
-            {menuActivities.map((n, index) => (
-              <div className="flex flex-col gap-y-4" key={n.title}>
-                <img src={n.image} className="rounded-lg max-h-[188px] object-cover min-w-[334px] w-[334px]"/>
-                <span className="text-sm">{n.title}</span>
+            <div className="relative">
+              <div className="flex gap-x-4 py-6 overflow-auto px-5 relative" id="manage-menus">
+                {menuActivities.map((n, index) => (
+                  <div className="flex flex-col gap-y-4" key={n.title}>
+                    <img src={n.image} className="rounded-lg max-h-[188px] object-cover min-w-[334px] w-[334px]"/>
+                    <span className="text-sm">{n.title}</span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-
-          <button onClick={() => handleSlideActivities("left", 200)} className="rounded-full bg-white h-9 w-9 absolute flex items-center justify-center left-2 top-[37.5%] shadow-md">
-            <ChevronLeft />
-          </button>
-          <button onClick={() => handleSlideActivities("right", 200)} className="rounded-full bg-white h-9 w-9 absolute flex items-center justify-center right-2 top-[37.5%] shadow-md">
-            <ChevronRight />
-          </button>
-        </div>
-
-      </section>
-
-      <section className="mb-10">
-        <div className="grid grid-cols-3 gap-4 mt-6 px-5">
-          {actionMenus.map((n, index) => (
-            <div className="flex justify-between bg-[#F7F7F8] rounded-xl overflow-hidden">
-              <div className="flex flex-col justify-between p-4 pb-3">
-                <h2 className="text-[15px] font-medium">{n.title}</h2>
-                <p className="text-sm flex items-center gap-x-1">
-                  Start designing
-                  <ChevronRight className="w-4 h-4"/>
-                </p>
-              </div>
-              <img src={n.image} />
+    
+              <button onClick={() => handleSlideActivities("left", 200)} className="rounded-full bg-white h-9 w-9 absolute flex items-center justify-center left-2 top-[37.5%] shadow-md">
+                <ChevronLeft />
+              </button>
+              <button onClick={() => handleSlideActivities("right", 200)} className="rounded-full bg-white h-9 w-9 absolute flex items-center justify-center right-2 top-[37.5%] shadow-md">
+                <ChevronRight />
+              </button>
             </div>
-          ))}
-        </div>
+          </section>
+        }
+
+        {actionMenus.length > 0 && 
+          <section className="mb-10">
+            <div className="grid grid-cols-3 gap-4 mt-6 px-5">
+              {actionMenus.map((n, index) => (
+                <div className="flex justify-between bg-[#F7F7F8] rounded-xl overflow-hidden">
+                  <div className="flex flex-col justify-between p-4 pb-3">
+                    <h2 className="text-[15px] font-medium">{n.title}</h2>
+                    <p className="text-sm flex items-center gap-x-1">
+                      Start designing
+                      <ChevronRight className="w-4 h-4"/>
+                    </p>
+                  </div>
+                  <img src={n.image} />
+                </div>
+              ))}
+            </div>
+          </section>
+        }
       </section>
 
       <ManageBusinessBanner />

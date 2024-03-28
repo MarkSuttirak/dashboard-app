@@ -20,21 +20,30 @@ const useChangeMenuActivities = (menu) => {
     { title: 'แคชเชียร์ - POS', icon: workspaceImages.pos, link: '/coming-soon' },
   ]
 
+  const actionMenus = menu === t('workspace_buttons.manage_business') ? [
+    { title: 'Stand out online with website', image: dashboardActivitiesImages.startOnlineWebsite },
+    { title: 'Get custom domain', image: dashboardActivitiesImages.customDomain },
+    { title: 'Responsive design', image: dashboardActivitiesImages.responsiveDesign },
+  ]
+  : []
+
   const menuActivities = menu === t('workspace_buttons.manage_business') ? [
     { title: 'สร้างและออกแบบเว็บไซต์', image: dashboardActivitiesImages.createWebsites },
     { title: 'ไวท์บอร์ด', image: dashboardActivitiesImages.createWhiteboard },
     { title: 'จัดการ LineOA', image: dashboardActivitiesImages.manageOA },
     { title: 'สร้างพรีเซ็นเทชั่น', image: dashboardActivitiesImages.presentation },
     { title: 'Banner', image: dashboardActivitiesImages.banner }
-  ] : menu = t('workspace_buttons.blog_editor') ? [
+  ] 
+  : menu = t('workspace_buttons.blog_editor') ? [
     { title: 'จัดการสินค้า', image: dashboardActivitiesImages.manageProducts },
     { title: 'จัดการคำสั่งซื้อ', image: dashboardActivitiesImages.manageOrders },
     { title: 'หมวดหมู่สินค้าต่างๆ', image: dashboardActivitiesImages.otherCategories },
     { title: 'เช็คยอดขาย', image: dashboardActivitiesImages.checkSales },
     { title: 'โกดังสินค้า', image: dashboardActivitiesImages.warehouses },
-  ] : []
+  ] 
+  : []
 
-  return { menuActivities, workspaceMenus }
+  return { menuActivities, workspaceMenus, actionMenus }
 }
 
 export default useChangeMenuActivities
