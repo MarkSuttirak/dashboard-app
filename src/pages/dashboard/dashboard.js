@@ -106,9 +106,9 @@ export default function Dashboard() {
     }
   }
 
-  const handleSlideActivities = (side, y) => {
-    const manageMenus = document.getElementById("manage-menus")
+  const manageMenus = document.getElementById("manage-menus")
 
+  const handleSlideActivities = (side, y) => {
     manageMenus.scrollBy({
       top: 0,
       left: side === "left" ? -y : y,
@@ -164,11 +164,17 @@ export default function Dashboard() {
                   </div>
                 ))}
               </div>
-    
-              <button onClick={() => handleSlideActivities("left", 200)} className="rounded-full bg-white h-9 w-9 absolute flex items-center justify-center left-2 top-[37.5%] shadow-md">
+
+              <button 
+                onClick={() => handleSlideActivities("left", 200)} 
+                className={`rounded-full bg-white h-9 w-9 absolute flex items-center justify-center left-2 top-[37.5%] shadow-md`}
+              >
                 <ChevronLeft />
               </button>
-              <button onClick={() => handleSlideActivities("right", 200)} className="rounded-full bg-white h-9 w-9 absolute flex items-center justify-center right-2 top-[37.5%] shadow-md">
+              <button 
+                onClick={() => handleSlideActivities("right", 200)} 
+                className={`rounded-full bg-white h-9 w-9 absolute flex items-center justify-center right-2 top-[37.5%] shadow-md`}
+              >
                 <ChevronRight />
               </button>
             </div>

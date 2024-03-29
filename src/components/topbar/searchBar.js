@@ -49,9 +49,9 @@ export function SearchItem(){
   const navigate = useNavigate()
   return (
     <Command>
-      <CommandInput placeholder="Type a command or search..." />
+      <CommandInput placeholder={t('topbar.search')} />
       <CommandList className="max-h-none">
-        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandEmpty>{t('topbar.no_results')}</CommandEmpty>
         <CommandGroup heading={t('menus.integration')} className="pt-2 pb-4">
           {integrationsMenus.map(item => (
             <CommandItem className="py-3 md:py-1.5" key={item.title} onSelect={() => navigate(item.link)}>{item.title}</CommandItem>
