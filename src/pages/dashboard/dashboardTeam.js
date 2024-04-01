@@ -22,7 +22,7 @@ export default function DashboardTeam(){
   }
 
   return (
-    <section className="bg-[#F7F7F8] mb-8 lg:mb-[72px] rounded-xl mx-5">
+    <section className="bg-[#F7F7F8] rounded-3xl min-w-[1100px]">
       <div className="grid md:grid-cols-2 items-center">
         <div className="p-12">
 

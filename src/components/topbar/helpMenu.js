@@ -76,7 +76,7 @@ export function HelpMenu(){
   const [open, setOpen] = useState(false);
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger className='text-[13px] flex justify-between items-center gap-x-2 relative'>
+      <PopoverTrigger className='text-[13px] flex justify-between items-center gap-x-2 relative font-semibold'>
         {t('topbar.help')}
         <ChevronDown viewBox='0 0 24 24' width='14' height='14' strokeWidth='1'/>
       </PopoverTrigger>

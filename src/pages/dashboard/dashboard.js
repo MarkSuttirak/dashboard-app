@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next";
 import DashboardVideo from "./dashboardVideo";
 import DashboardTeam from "./dashboardTeam";
 import UpgradeProButton from "src/components/topbar/upgradeProButton";
-import { workspaceImages } from "src/components/icon-menus/workspace-images";
+import { dashboardActivitiesImages, workspaceImages } from "src/components/icon-menus/workspace-images";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ManageBusinessBanner from "./manageBusinessBanner";
 import useChangeMenuActivities from "src/hooks/useChangeMenuActivities";
@@ -120,8 +120,8 @@ export default function Dashboard() {
       <div className="mb-6 md:hidden">
         <UpgradeProButton />
       </div>
-      <div className="rounded-xl p-12 mx-5" style={{ background:"linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 0.02%, #DDD5FF 228.01%)"}}>
-        <div className="flex flex-col items-center gap-y-3 max-w-5xl m-auto">
+      <div className="rounded-3xl p-[54px] mx-5" style={{ background:"linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 0.02%, #DDD5FF 228.01%)"}}>
+        <div className="flex flex-col items-center gap-y-3 max-w-6xl m-auto">
           <img src={workspaceImages.mainIcon} />
 
           <div className="flex flex-col items-center gap-y-1">
@@ -131,7 +131,7 @@ export default function Dashboard() {
                 <span style={textGradient("linear-gradient(92.12deg, #7900FF -2.04%, #006AFF 89.63%)")} className="text-xl md:text-3xl ml-2">{user?.first_name}</span>🙏
               </h1> : <Skeleton className='h-8 w-[300px]' />
             }
-            <p className="text-sm text-secondary">ใช้ประโยชน์ต่างๆ ได้มากขึ้นจาก แอปที่คุณรู้จักและชื่นชอบ</p>
+            <p className="text-sm text-secondary font-bold">ใช้ประโยชน์ต่างๆ ได้มากขึ้นจาก แอปที่คุณรู้จักและชื่นชอบ</p>
           </div>
 
           <div className="flex flex-wrap gap-x-3 gap-y-2 mt-5 justify-center">
@@ -141,7 +141,7 @@ export default function Dashboard() {
               //   {menu.title}
               // </a>
               <button className="workspace-btn" onClick={() => handleChangeActivities(menu.title)}>
-                <img src={menu.icon} className="h-4 w-4"/>
+                <img src={menu.icon} className="h-5 w-5"/>
                 {menu.title}
               </button>
             ))}
@@ -158,8 +158,8 @@ export default function Dashboard() {
               <div className="flex gap-x-4 py-6 overflow-auto px-5 relative" id="manage-menus">
                 {menuActivities.map((n, index) => (
                   <div className="flex flex-col gap-y-4" key={n.title}>
-                    <img src={n.image} className="rounded-lg max-h-[188px] object-cover min-w-[334px] w-[334px]"/>
-                    <span className="text-sm">{n.title}</span>
+                    <img src={n.image} className="rounded-xl max-h-[188px] object-cover min-w-[334px] w-[334px]"/>
+                    <span className="text-sm font-bold">{n.title}</span>
                   </div>
                 ))}
               </div>
@@ -186,7 +186,7 @@ export default function Dashboard() {
               {actionMenus.map((n, index) => (
                 <div className="flex justify-between bg-[#F7F7F8] rounded-xl overflow-hidden">
                   <div className="flex flex-col justify-between p-4 pb-3">
-                    <h2 className="text-[15px] font-medium">{n.title}</h2>
+                    <h2 className="text-[15px] font-bold">{n.title}</h2>
                     <p className="text-sm flex items-center gap-x-1">
                       Start designing
                       <ChevronRight className="w-4 h-4"/>
@@ -203,7 +203,12 @@ export default function Dashboard() {
       <ManageBusinessBanner />
       <DashboardVideo />
       {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> */}
-      <DashboardTeam />
+      <div className="flex mb-8 lg:mb-[72px] max-h-[350px] overflow-auto mx-5 gap-x-5">
+        <DashboardTeam />
+        <div style={{background:"linear-gradient(81.11deg, #F0F5FF -1.81%, #D9AEFD 75.87%)"}} className="min-w-[1100px] rounded-3xl flex justify-end">
+          <img src={dashboardActivitiesImages.manageYourBusiness} className="h-full"/>
+        </div>
+      </div>
 
       <section className="px-5">
         <h2 className="secondary-heading">{t('discover_what_you_can_do')}</h2>

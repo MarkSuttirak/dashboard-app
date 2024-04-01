@@ -12,7 +12,8 @@ import { SearchItem } from "../topbar/searchBar";
 import SidebarUpgrade from "./sidebarUpgrade";
 import { useTranslation } from "react-i18next";
 import SidebarWebsite from "./sidebarWebsite";
-import { workspaceImages } from "../icon-menus/workspace-images";
+import { workspaceImages, dashboardActivities } from "../icon-menus/workspace-images";
+import { Separator } from "../ui/separator";
 
 // import TeamModal from "../components/switchTeamModal";
 
@@ -157,8 +158,8 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
             <ChevronsLeft className="chevron-sidebar" viewBox="0 0 24 24" width='16' height='16' />
           </button> */}
 
-          <nav className="flex bg-white px-3 py-8 lg:py-5 justify-center flex-col gap-y-4" aria-label="Sidebar">
-            <section className="flex flex-col gap-y-3 lg:gap-y-0">
+          <nav className="flex bg-white py-8 lg:py-5 justify-center flex-col gap-y-4" aria-label="Sidebar">
+            <section className="flex flex-col gap-y-3 lg:gap-y-0 px-3.5">
               {navigation.map((item) => (
                 <>
                   {item.href ? (
@@ -180,6 +181,8 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
                 </>
               ))}
             </section>
+
+            <Separator className='bg-[#F4F4F4]'/>
 
             {/* <section className="flex flex-col">
               <Button variant='ghost' className="text-[#797979] text-sm font-semibold tracking-[-0.35px] justify-between" onClick={() => setSellingMenus(!sellingMenus)}>
@@ -219,8 +222,8 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
               </Button>
             </section> */}
 
-            <section className="flex flex-col">
-              <h3 className="text-lightgray text-sm font-medium p-4">{t('menus.your_workspace')}</h3>
+            <section className="flex flex-col px-3.5">
+              <h3 className="text-lightgray text-sm font-medium pb-4">{t('menus.your_workspace')}</h3>
               <div className="flex flex-col gap-y-4 lg:gap-y-0 ml-2">
                 {workspaceApp.map((item) => (
                   <Button variant='ghost' onClick={item.onClick} className={`w-full flex justify-start gap-x-2 text-base lg:text-[13px] items-center leading-5`}>
