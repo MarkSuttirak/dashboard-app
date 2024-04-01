@@ -106,9 +106,8 @@ export default function Dashboard() {
     }
   }
 
-  const manageMenus = document.getElementById("manage-menus")
-
   const handleSlideActivities = (side, y) => {
+    const manageMenus = document.getElementById("manage-menus")
     manageMenus.scrollBy({
       top: 0,
       left: side === "left" ? -y : y,
@@ -135,7 +134,7 @@ export default function Dashboard() {
             <p className="text-sm text-secondary">ใช้ประโยชน์ต่างๆ ได้มากขึ้นจาก แอปที่คุณรู้จักและชื่นชอบ</p>
           </div>
 
-          <div className="flex lg:flex-wrap gap-x-3 gap-y-2 mt-5 justify-center">
+          <div className="flex flex-wrap gap-x-3 gap-y-2 mt-5 justify-center">
             {workspaceMenus.map(menu => (
               // <a className="workspace-btn" href={menu.link} target={menu.link === '/coming_soon' ? "_blank" : null}>
               //   <img src={menu.icon} className="h-4 w-4"/>
