@@ -106,13 +106,32 @@ export default function Dashboard() {
     }
   }
 
-  const handleSlideActivities = (side, y) => {
-    const manageMenus = document.getElementById("manage-menus")
-    manageMenus.scrollBy({
+  const handleSlideActivities = (id, side, y) => {
+    const menuList = document.getElementById(id)
+    menuList.scrollBy({
       top: 0,
       left: side === "left" ? -y : y,
       behavior: 'smooth'
     })
+  }
+
+  const ScrollArrows = ({ id }) => {
+    return (
+      <>
+        <button 
+          onClick={() => handleSlideActivities(id, "left", 500)} 
+          className={`rounded-full bg-white h-9 w-9 absolute flex items-center justify-center left-2 top-[37.5%] shadow-md`}
+        >
+          <ChevronLeft />
+        </button>
+        <button 
+          onClick={() => handleSlideActivities(id, "right", 500)} 
+          className={`rounded-full bg-white h-9 w-9 absolute flex items-center justify-center right-2 top-[37.5%] shadow-md`}
+        >
+          <ChevronRight />
+        </button>
+      </>
+    )
   }
 
   return (
@@ -131,7 +150,7 @@ export default function Dashboard() {
                 <span style={textGradient("linear-gradient(92.12deg, #7900FF -2.04%, #006AFF 89.63%)")} className="text-xl md:text-3xl ml-2">{user?.first_name}</span>🙏
               </h1> : <Skeleton className='h-8 w-[300px]' />
             }
-            <p className="text-sm text-secondary font-bold">ใช้ประโยชน์ต่างๆ ได้มากขึ้นจาก แอปที่คุณรู้จักและชื่นชอบ</p>
+            <p className="text-sm text-[#A4A4A4] font-bold">ใช้ประโยชน์ต่างๆ ได้มากขึ้นจาก แอปที่คุณรู้จักและชื่นชอบ</p>
           </div>
 
           <div className="flex flex-wrap gap-x-3 gap-y-2 mt-5 justify-center">
@@ -140,7 +159,7 @@ export default function Dashboard() {
               //   <img src={menu.icon} className="h-4 w-4"/>
               //   {menu.title}
               // </a>
-              <button className="workspace-btn" onClick={() => handleChangeActivities(menu.title)}>
+              <button key={menu.title} className={`workspace-btn ${menuActivity.title === menu.title ? 'active' : ''}`} onClick={() => handleChangeActivities(menu.title)}>
                 <img src={menu.icon} className="h-5 w-5"/>
                 {menu.title}
               </button>
@@ -152,7 +171,7 @@ export default function Dashboard() {
       <section className={`${menuActivity.isChanging ? 'opacity-0' : 'opacity-1'} transition-all duration-300`}>
         {menuActivities.length > 0 && 
           <section>
-            <h2 className="secondary-heading px-5">{t('what_you_want_to_do')}</h2>
+            <h2 className="text-[19px] text-[#3D3D3D] px-5 font-bold">{t('what_you_want_to_do')}</h2>
 
             <div className="relative">
               <div className="flex gap-x-4 py-6 overflow-auto px-5 relative" id="manage-menus">
@@ -164,25 +183,14 @@ export default function Dashboard() {
                 ))}
               </div>
 
-              <button 
-                onClick={() => handleSlideActivities("left", 500)} 
-                className={`rounded-full bg-white h-9 w-9 absolute flex items-center justify-center left-2 top-[37.5%] shadow-md`}
-              >
-                <ChevronLeft />
-              </button>
-              <button 
-                onClick={() => handleSlideActivities("right", 500)} 
-                className={`rounded-full bg-white h-9 w-9 absolute flex items-center justify-center right-2 top-[37.5%] shadow-md`}
-              >
-                <ChevronRight />
-              </button>
+              <ScrollArrows id="manage-menus"/>
             </div>
           </section>
         }
 
         {actionMenus.length > 0 && 
-          <section className="mb-10">
-            <div className="grid grid-cols-3 gap-4 mt-6 px-5">
+          <section className="my-12">
+            <div className="grid grid-cols-3 gap-4 px-5">
               {actionMenus.map((n, index) => (
                 <div className="flex justify-between bg-[#F7F7F8] rounded-xl overflow-hidden">
                   <div className="flex flex-col justify-between p-4 pb-3">
@@ -203,17 +211,21 @@ export default function Dashboard() {
       <ManageBusinessBanner />
       <DashboardVideo />
       {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> */}
-      <div className="flex mb-8 lg:mb-[72px] max-h-[350px] overflow-auto mx-5 gap-x-5">
-        <DashboardTeam />
-        <div style={{background:"linear-gradient(81.11deg, #F0F5FF -1.81%, #D9AEFD 75.87%)"}} className="min-w-[1100px] rounded-3xl flex justify-end">
-          <img src={dashboardActivitiesImages.manageYourBusiness} className="h-full"/>
+      <section className="relative">
+        <div className="flex mb-8 lg:mb-[72px] max-h-[350px] overflow-auto px-5 gap-x-5" id="team-menus">
+          <DashboardTeam />
+          <div style={{background:"linear-gradient(81.11deg, #F0F5FF -1.81%, #D9AEFD 75.87%)"}} className="min-w-[1100px] rounded-3xl flex justify-end">
+            <img src={dashboardActivitiesImages.manageYourBusiness} className="h-full"/>
+          </div>
+
+          <ScrollArrows id="team-menus"/>
         </div>
-      </div>
+      </section>
 
       <section className="px-5">
         <h2 className="secondary-heading">{t('discover_what_you_can_do')}</h2>
 
-        <div className="mt-6 grid md:grid-cols-3 gap-x-[15px] gap-y-5">
+        <div className="mt-6 flex flex-col md:flex-row gap-x-[15px] gap-y-5">
           <PostInfo title="สร้าง Post และการตลาดออนไลน์" desc="สร้าง Brander หรือ Post ได้ง่าย ๆ พร้อมกับ เทมเพลตสุดปัง" image={createYourBlog} imageStyle="pr-2" comingSoon onClick={() => window.open("/coming-soon", '_blank')} />
           <PostInfo title="วางแผนและจัดการงานของทีม" desc="วางแผนและจัดชีวิตให้ง่ายขึ้นด้วย เทมเพลต Projects Manager" comingSoon image={sellingOnline} imageStyle="px-5" onClick={() => window.open("/coming-soon", '_blank')} />
           <PostInfo title="เชื่อมต่อ Shopee & Lazada" desc="จัดการออเดอร์อย่างมีประสิทธิภาพด้วยการเชื่อมต่อกับช่องทางการขายหลากหลายแพลตฟอร์ม" buttonText="เชื่อมต่อช่องทางการขาย" image={connectMessage} imageStyle='pl-4 pb-4' onClick={() => window.open("/coming-soon", '_blank')} />
