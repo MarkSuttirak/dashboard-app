@@ -591,7 +591,7 @@ body {
   padding:8px 16px;
   border:1px solid transparent;
   border-radius:9999px;
-  font-size:14px;
+  font-size:13px;
   color:#394047;
   transition:border 150ms, box-shadow 150ms;
   gap:8px;
@@ -601,7 +601,8 @@ body {
     box-shadow: 0 0 6px 0 #7000FF54;
   }
   &.active {
-    font-weight:700
+    font-weight:700;
+    font-size:14px;
   }
 }
 

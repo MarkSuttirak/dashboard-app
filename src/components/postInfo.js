@@ -1,5 +1,4 @@
 import { Button } from "../components/ui/button"
-import { PlusCircledIcon } from "@radix-ui/react-icons";
 import { Badge } from "./ui/badge";
 
 export default function PostInfo({title, desc, buttonText, comingSoon, onClick, image, imageStyle}){
