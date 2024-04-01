@@ -22,12 +22,9 @@ export default function DashboardTeam(){
   }
 
   return (
-    <section className="bg-[#F7F7F8] mb-8 lg:mb-[72px] rounded-xl mx-5 lg:mx-0">
+    <section className="bg-[#F7F7F8] mb-8 lg:mb-[72px] rounded-xl mx-5">
       <div className="grid md:grid-cols-2 items-center">
-        <div className="flex flex-col justify-end h-full pt-6">
-          <img src={dashTeamImg} className="dash-team-img"/>
-        </div>
-        <div className="p-6 md:py-12">
+        <div className="p-12">
 
           <Badge style={badgeStyle}>
             <div className={`w-1 h-1 rounded-full`} style={{ backgroundColor: badgeColour }}/>
@@ -45,6 +42,9 @@ export default function DashboardTeam(){
               {t("dashboard.teams.button")}
             </Button>
           </Link>
+        </div>
+        <div className="flex flex-col justify-end h-full pt-6">
+          <img src={dashTeamImg} className="dash-team-img"/>
         </div>
       </div>
     </section>

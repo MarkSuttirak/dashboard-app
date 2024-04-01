@@ -131,7 +131,8 @@
         "no_notification_title": "No new notifications",
         "no_notification_desc": "Looks like you haven't received any notifications.",
         "are_you_sure_log_out": "Are you sure to log out?",
-        "logout_desc": "When you log out, you will be able to log back in with your intact data."
+        "logout_desc": "When you log out, you will be able to log back in with your intact data.",
+        "no_results": "No results found."
     },
     "workspace_buttons": {
         "manage_business":"Manage Business",

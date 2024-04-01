@@ -13,7 +13,7 @@ export default function PaymentPage(){
   }
 
   return (
-    <div className="dashboard-container flex flex-col md:flex-row md:gap-2.5 lg:gap-10">
+    <div className="page-container flex flex-col md:flex-row md:gap-2.5 lg:gap-10">
       {paymentComponent}
       <PaymentForm />
     </div>

@@ -233,7 +233,7 @@ const Manage = () => {
   return (
     <>
       <div className='page-section'>
-        <header className='dashboard-container mb-5'>
+        <header className='page-container mb-5'>
           <h1 className='main-title mb-4'>Manage</h1>
 
           <InputWithPrefix placeholder='Search' prefix={<MagnifyingGlassIcon width='24'/>} />

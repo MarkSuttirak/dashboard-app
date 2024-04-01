@@ -1,9 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Button } from "../../components/ui/button"
 import { useState, useEffect, useContext } from "react";
 import { Separator } from "../../components/ui/separator";
-import { ButtonImage01, ButtonImage02, ButtonImage03, ButtonImage04, ButtonImage05, ButtonImage06 } from "../../components/buttonImage";
-import { Avatar, AvatarFallback, AvatarImage } from "src/components/ui/avatar"
 import sellingOnline from 'src/img/selling-online.png'
 import connectMessage from 'src/img/connect-message.png'
 import createYourBlog from 'src/img/create-your-blog.png'
@@ -14,19 +11,31 @@ import PostInfo from "src/components/postInfo";
 import DashboardBanner from "./dashboardBanner";
 import SetupBusiness from "./setUpBusiness";
 import { Skeleton } from "src/components/ui/skeleton";
-import { Edit3 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import DashboardVideo from "./dashboardVideo";
-import { Icons } from "src/components/ui/icons";
 import DashboardTeam from "./dashboardTeam";
 import UpgradeProButton from "src/components/topbar/upgradeProButton";
+import { workspaceImages } from "src/components/icon-menus/workspace-images";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import ManageBusinessBanner from "./manageBusinessBanner";
+import useChangeMenuActivities from "src/hooks/useChangeMenuActivities";
 
 export default function Dashboard() {
   const { t, i18n } = useTranslation();
   const location = useLocation()
-  const [isMenuCardHover, setIsMenuCardHover] = useState(false)
-  const [menuCardIndex, setMenuCardIndex] = useState(0)
   const [websiteSid, setwebsiteSid] = useState(false)
+  const [menuActivity, setMenuActivity] = useState({
+    title: "จัดการธุรกิจ",
+    isChanging: false
+  })
+  const { menuActivities, workspaceMenus, actionMenus } = useChangeMenuActivities(menuActivity.title)
+
+  const handleChangeActivities = (title) => {
+    setMenuActivity(act => ({...act, isChanging: true}))
+    setTimeout(() => {
+      setMenuActivity({title: title, isChanging: false})
+    }, 300)
+  }
 
   const textGradient = (gradient) => {
     const style = {
@@ -35,15 +44,6 @@ export default function Dashboard() {
       WebkitTextFillColor: "transparent"
     }
     return style
-  }
-
-  const handleCardHover = (index) => {
-    setIsMenuCardHover(true)
-    setMenuCardIndex(index)
-  }
-
-  const handleCardHoverLeave = () => {
-    setIsMenuCardHover(false)
   }
 
   const { user, auth, logout } = useUser();
@@ -55,7 +55,6 @@ export default function Dashboard() {
       navigate('/dashboard/instance-configuration');
     }
   }, [auth?.onboarding.site_created]);
-
 
   const { data: sites } = useQuery('sites', site.list, {
     enabled: !!user,
@@ -107,119 +106,107 @@ export default function Dashboard() {
     }
   }
 
-  const newOrManageMenus = [
-    {
-      title: t('dashboard.manage_menus.manage_items'),
-      image: <ButtonImage01 shadow={false} />,
-      background: "#EFE3F6",
-      page: "item/new-item-1",
-      color: "#EB67FF"
-    },
-    {
-      title: t('dashboard.manage_menus.edit_shipping_rates'),
-      image: <ButtonImage02 shadow={false} />,
-      background: "#DDFEF4",
-      page: "item/new-item-1",
-      color: "#01545E"
-    },
-    {
-      title: t('dashboard.manage_menus.add_new_customers'),
-      image: <ButtonImage03 shadow={false} />,
-      background: "#F5F2FE",
-      color: "#4C349F"
-    },
-    {
-      title: t('dashboard.manage_menus.set_up_payments'),
-      image: <ButtonImage04 shadow={false} />,
-      background: "#E5F5FF",
-      color: "#419CFF"
-    },
-    {
-      title: t('dashboard.manage_menus.view_orders'),
-      image: <ButtonImage05 shadow={false} />,
-      background: "#FFF9E9",
-      color: "#FABF20"
-    },
-    {
-      title: t('dashboard.manage_menus.create_promotions'),
-      image: <ButtonImage06 shadow={false} />,
-      background: "#F5FFE5",
-      color: "#174F20"
-    },
-  ]
+  const manageMenus = document.getElementById("manage-menus")
 
-  const workspaceMenus = [
-    { title: t('workspace_buttons.manage_business'), icon: <Icons.erpApp className='h-4 w-4' />, link: 'https://www.zaviago.com/manage' },
-    { title: t('workspace_buttons.blog_editor'), icon: <Icons.blogPostApp className='h-4 w-4' />, link: '/coming-soon' },
-    { title: 'CRM', icon: <Icons.posApp className='h-4 w-4' />, link: 'https://www.zaviago.com/crm' },
-    { title: t('workspace_buttons.web_pages'), icon: <Icons.websiteApp fill='white' className='h-4 w-4' />, link: '/coming-soon' },
-    { title: 'MarketConnect', icon: <Icons.inbioApp className='h-4 w-4' />, link: 'https://www.zaviago.com/marketplace' },
-    { title: 'Canvas', icon: <Icons.blogAndPagesApp className='h-4 w-4' />, link: '/coming-soon' }
-  ]
+  const handleSlideActivities = (side, y) => {
+    manageMenus.scrollBy({
+      top: 0,
+      left: side === "left" ? -y : y,
+      behavior: 'smooth'
+    })
+  }
 
   return (
-    <div className="dashboard-container">
-
+    <div className="flex flex-col gap-y-6">
       <div className="mb-6 md:hidden">
         <UpgradeProButton />
       </div>
+      <div className="rounded-xl p-12 mx-5" style={{ background:"linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 0.02%, #DDD5FF 228.01%)"}}>
+        <div className="flex flex-col items-center gap-y-3 max-w-5xl m-auto">
+          <img src={workspaceImages.mainIcon} />
 
-      <div className="flex items-center justify-between gap-y-4 px-5 lg:px-0">
-        <div className="flex gap-x-[10px] items-center mb-6 md:mb-0">
-          <Avatar className='w-[49px] h-[49px] text-sm'>
-            <AvatarImage src="" />
-            <AvatarFallback>{user?.first_name[0]}</AvatarFallback>
-          </Avatar>
-          <div>
-            {user ? <h1 className="text-xl md:text-3xl text-primary font-bold tracking-[-0.75px] font-eventpop leading-8">สวัสดีคุณ <span style={textGradient("linear-gradient(92.12deg, #7900FF -2.04%, #006AFF 89.63%)")} className="text-xl md:text-3xl">{user?.first_name}</span>🙏</h1> : <Skeleton className='h-8 w-[300px]' />}
-            <p className="text-sm text-secondary">จัดการและขยายธุรกิจด้วย Zaviago WorkSpace</p>
+          <div className="flex flex-col items-center gap-y-1">
+            {user ? 
+              <h1 className="text-xl md:text-3xl text-primary font-bold tracking-[-0.75px] font-eventpop leading-8">
+                สวัสดีคุณ 
+                <span style={textGradient("linear-gradient(92.12deg, #7900FF -2.04%, #006AFF 89.63%)")} className="text-xl md:text-3xl ml-2">{user?.first_name}</span>🙏
+              </h1> : <Skeleton className='h-8 w-[300px]' />
+            }
+            <p className="text-sm text-secondary">ใช้ประโยชน์ต่างๆ ได้มากขึ้นจาก แอปที่คุณรู้จักและชื่นชอบ</p>
+          </div>
+
+          <div className="flex lg:flex-wrap gap-x-3 gap-y-2 mt-5 justify-center">
+            {workspaceMenus.map(menu => (
+              // <a className="workspace-btn" href={menu.link} target={menu.link === '/coming_soon' ? "_blank" : null}>
+              //   <img src={menu.icon} className="h-4 w-4"/>
+              //   {menu.title}
+              // </a>
+              <button className="workspace-btn" onClick={() => handleChangeActivities(menu.title)}>
+                <img src={menu.icon} className="h-4 w-4"/>
+                {menu.title}
+              </button>
+            ))}
           </div>
         </div>
-        <Link to='/coming-soon' target='_blank' className="hidden lg:block">
-          <Button className='btn-with-icon'>
-            <Edit3 className="w-4 h-4" />
-            ออกแบบเว็บไซต์
-          </Button>
-        </Link>
       </div>
 
-      <DashboardBanner sitename={sites?.site_list[0].name} />
-      {/* <DashboardVideo /> */}
-      {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> */}
+      <section className={`${menuActivity.isChanging ? 'opacity-0' : 'opacity-1'} transition-all duration-300`}>
+        {menuActivities.length > 0 && 
+          <section>
+            <h2 className="secondary-heading px-5">{t('what_you_want_to_do')}</h2>
 
-      <section className="pt-6 pb-4 lg:py-[72px]">
-        <h2 className="secondary-heading px-5 lg:px-0">{t('what_you_want_to_do')}</h2>
+            <div className="relative">
+              <div className="flex gap-x-4 py-6 overflow-auto px-5 relative" id="manage-menus">
+                {menuActivities.map((n, index) => (
+                  <div className="flex flex-col gap-y-4" key={n.title}>
+                    <img src={n.image} className="rounded-lg max-h-[188px] object-cover min-w-[334px] w-[334px]"/>
+                    <span className="text-sm">{n.title}</span>
+                  </div>
+                ))}
+              </div>
 
-        <div className="flex lg:flex-wrap gap-[15px] pt-6 pb-3 overflow-scroll lg:overflow-visible px-5 lg:px-0">
-          {workspaceMenus.map(menu => (
-            <a className="workspace-btn" href={menu.link} target={menu.link === '/coming_soon' ? "_blank" : null}>
-              {menu.icon}
-              {menu.title}
-            </a>
-          ))}
-        </div>
-
-        <div className="flex lg:flex-wrap gap-[15px] pt-3 pb-6 overflow-scroll lg:overflow-visible px-5 lg:px-0">
-          {newOrManageMenus.map((n, index) => (
-            <div onClick={() => n.page !== undefined && loginNow(n.page)} className="menu-card" key={index} style={{ backgroundColor: n.background, color: n.color, boxShadow: isMenuCardHover && menuCardIndex === index ? `0 0 3px ${n.color}` : null }} onMouseEnter={() => handleCardHover(index)} onMouseLeave={handleCardHoverLeave}>
-              {n.image}
-              <span className="absolute bottom-4">{n.title}</span>
+              <button 
+                onClick={() => handleSlideActivities("left", 500)} 
+                className={`rounded-full bg-white h-9 w-9 absolute flex items-center justify-center left-2 top-[37.5%] shadow-md`}
+              >
+                <ChevronLeft />
+              </button>
+              <button 
+                onClick={() => handleSlideActivities("right", 500)} 
+                className={`rounded-full bg-white h-9 w-9 absolute flex items-center justify-center right-2 top-[37.5%] shadow-md`}
+              >
+                <ChevronRight />
+              </button>
             </div>
-          ))}
-        </div>
+          </section>
+        }
+
+        {actionMenus.length > 0 && 
+          <section className="mb-10">
+            <div className="grid grid-cols-3 gap-4 mt-6 px-5">
+              {actionMenus.map((n, index) => (
+                <div className="flex justify-between bg-[#F7F7F8] rounded-xl overflow-hidden">
+                  <div className="flex flex-col justify-between p-4 pb-3">
+                    <h2 className="text-[15px] font-medium">{n.title}</h2>
+                    <p className="text-sm flex items-center gap-x-1">
+                      Start designing
+                      <ChevronRight className="w-4 h-4"/>
+                    </p>
+                  </div>
+                  <img src={n.image} />
+                </div>
+              ))}
+            </div>
+          </section>
+        }
       </section>
 
+      <ManageBusinessBanner />
+      <DashboardVideo />
+      {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> */}
       <DashboardTeam />
-      {/* <section className="my-[76px]">
-        <h2 className="secondary-heading">App Store</h2>
-        <p className="main-desc">You have got much more than just a website.<br/>Build and expand your digital business with application</p>
 
-        <div className="flex flex-wrap gap-4 mt-6">
-          <AppStoreIcons />
-        </div>
-      </section> */}
-
-      <section className="px-5 lg:px-0">
+      <section className="px-5">
         <h2 className="secondary-heading">{t('discover_what_you_can_do')}</h2>
 
         <div className="mt-6 grid md:grid-cols-3 gap-x-[15px] gap-y-5">

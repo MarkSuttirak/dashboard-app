@@ -47,7 +47,7 @@ export default function CheckoutPage(){
   const [paymentConfirm, setPaymentConfirm] = useState(false)
 
   return (
-    <div className="dashboard-container flex md:gap-x-10 flex-col md:flex-row">
+    <div className="page-container flex md:gap-x-10 flex-col md:flex-row">
       {paymentConfirm ? (
         <div className="max-w-[500px] mx-auto">
           <CheckoutConfirm paymentConfirm={paymentConfirm} setPaymentConfirm={setPaymentConfirm} totalPrice={`฿ ${total()}`}/>

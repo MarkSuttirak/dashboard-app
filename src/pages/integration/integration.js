@@ -11,7 +11,7 @@ export default function Integration(){
   const { id } = useParams()
 
   return (
-    <div className="dashboard-container">
+    <div className="page-container">
       <SettingsHeading text={t('menus.integration')} link={-1} />
 
       <main className={`flex flex-col ${id ? 'md:flex-row' : 'lg:flex-row'} gap-y-8 gap-x-12 lg:gap-x-[72px] mt-8`}>
