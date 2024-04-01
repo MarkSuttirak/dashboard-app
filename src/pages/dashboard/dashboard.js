@@ -166,13 +166,13 @@ export default function Dashboard() {
               </div>
 
               <button 
-                onClick={() => handleSlideActivities("left", 200)} 
+                onClick={() => handleSlideActivities("left", 500)} 
                 className={`rounded-full bg-white h-9 w-9 absolute flex items-center justify-center left-2 top-[37.5%] shadow-md`}
               >
                 <ChevronLeft />
               </button>
               <button 
-                onClick={() => handleSlideActivities("right", 200)} 
+                onClick={() => handleSlideActivities("right", 500)} 
                 className={`rounded-full bg-white h-9 w-9 absolute flex items-center justify-center right-2 top-[37.5%] shadow-md`}
               >
                 <ChevronRight />
