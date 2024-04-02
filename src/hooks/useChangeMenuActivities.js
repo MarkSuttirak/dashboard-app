@@ -6,6 +6,7 @@ const useChangeMenuActivities = (menu) => {
   const { t } = useTranslation()
 
   const workspaceMenus = [
+    { title: 'สำหรับคุณ', icon: workspaceImages.forYou, link: 'https://www.zaviago.com/manage' },
     { title: t('workspace_buttons.manage_business'), icon: workspaceImages.manageBusiness, link: 'https://www.zaviago.com/manage' },
     { title: t('workspace_buttons.blog_editor'), icon: workspaceImages.blogAndNews, link: '/coming-soon' },
     { title: 'ระบบข้อมูลลูกค้า', icon: workspaceImages.customerDataSystem, link: 'https://www.zaviago.com/crm' },

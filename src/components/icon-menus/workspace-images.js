@@ -1,3 +1,4 @@
+import forYou from "src/img/workspace-icons/for-you.png"
 import manageBusiness from "src/img/workspace-icons/manage-business.png"
 import manageWebsite from "src/img/workspace-icons/manage-website.png"
 import blogAndNews from "src/img/workspace-icons/blog-and-news.png"
@@ -26,7 +27,8 @@ import otherCategories from "src/img/dashboard-activities/other-categories.png"
 import checkSales from "src/img/dashboard-activities/check-sales.png"
 import warehouses from "src/img/dashboard-activities/warehouses.png"
 
-export const workspaceImages = { 
+export const workspaceImages = {
+  forYou, 
   manageBusiness, 
   manageWebsite,
   blogAndNews,

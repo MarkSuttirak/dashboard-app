@@ -158,8 +158,8 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
             <ChevronsLeft className="chevron-sidebar" viewBox="0 0 24 24" width='16' height='16' />
           </button> */}
 
-          <nav className="flex bg-white py-8 lg:py-5 justify-center flex-col gap-y-4" aria-label="Sidebar">
-            <section className="flex flex-col gap-y-3 lg:gap-y-0 px-3.5">
+          <nav className="flex bg-white py-7 justify-center flex-col gap-y-3" aria-label="Sidebar">
+            <section className="flex flex-col gap-y-3 lg:gap-y-0 px-3">
               {navigation.map((item) => (
                 <>
                   {item.href ? (
@@ -222,12 +222,12 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
               </Button>
             </section> */}
 
-            <section className="flex flex-col px-3.5">
-              <h3 className="text-lightgray text-sm font-medium py-4">{t('menus.your_workspace')}</h3>
+            <section className="flex flex-col px-4">
+              <h3 className="text-lightgray text-sm font-medium py-3">{t('menus.your_workspace')}</h3>
               <div className="flex flex-col gap-y-4 lg:gap-y-1">
                 {workspaceApp.map((item) => (
                   <Button variant='ghost' onClick={item.onClick} className={`w-full flex justify-start gap-x-2 text-base lg:text-[13px] items-center leading-5`}>
-                    <img src={item.icon} className="h-5 w-5"/>
+                    <img src={item.icon} className="h-[19px] w-[19px]"/>
                     {item.name}
                   </Button>
                 ))}

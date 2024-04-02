@@ -116,16 +116,19 @@ export default function Dashboard() {
   }
 
   const ScrollArrows = ({ id }) => {
+
+    const menuList = document.getElementById(id)
+
     return (
       <>
         <button 
-          onClick={() => handleSlideActivities(id, "left", 500)} 
+          onClick={() => handleSlideActivities(id, "left", menuList.scrollWidth / 4)} 
           className={`rounded-full bg-white h-9 w-9 absolute flex items-center justify-center left-2 top-[37.5%] shadow-md`}
         >
           <ChevronLeft />
         </button>
         <button 
-          onClick={() => handleSlideActivities(id, "right", 500)} 
+          onClick={() => handleSlideActivities(id, "right", menuList.scrollWidth / 4)} 
           className={`rounded-full bg-white h-9 w-9 absolute flex items-center justify-center right-2 top-[37.5%] shadow-md`}
         >
           <ChevronRight />
@@ -140,7 +143,7 @@ export default function Dashboard() {
         <UpgradeProButton />
       </div>
       <div className="rounded-3xl p-[54px] mx-5" style={{ background:"linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 0.02%, #DDD5FF 228.01%)"}}>
-        <div className="flex flex-col items-center gap-y-3 max-w-5xl m-auto">
+        <div className="flex flex-col items-center gap-y-3 max-w-6xl m-auto">
           <img src={workspaceImages.mainIcon} />
 
           <div className="flex flex-col items-center gap-y-1">
@@ -155,14 +158,19 @@ export default function Dashboard() {
 
           <div className="flex flex-wrap gap-x-3 gap-y-2 mt-5 justify-center">
             {workspaceMenus.map(menu => (
-              // <a className="workspace-btn" href={menu.link} target={menu.link === '/coming_soon' ? "_blank" : null}>
-              //   <img src={menu.icon} className="h-4 w-4"/>
-              //   {menu.title}
-              // </a>
-              <button key={menu.title} className={`workspace-btn ${menuActivity.title === menu.title ? 'active' : ''}`} onClick={() => handleChangeActivities(menu.title)}>
-                <img src={menu.icon} className="h-5 w-5"/>
-                {menu.title}
-              </button>
+              <>
+                {menu.link !== '/coming-soon' ? (
+                  <button key={menu.title} className={`workspace-btn ${menuActivity.title === menu.title ? 'active' : ''}`} onClick={() => handleChangeActivities(menu.title)}>
+                    <img src={menu.icon} className="h-5 w-5"/>
+                    {menu.title}
+                  </button>
+                ) : (
+                  <a className="workspace-btn" href={menu.link} target={menu.link === '/coming-soon' ? "_blank" : null}>
+                    <img src={menu.icon} className="h-4 w-4"/>
+                    {menu.title}
+                  </a>
+                )}
+              </>
             ))}
           </div>
         </div>
