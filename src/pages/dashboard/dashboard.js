@@ -161,12 +161,12 @@ export default function Dashboard() {
               <>
                 {menu.link !== '/coming-soon' ? (
                   <button key={menu.title} className={`workspace-btn ${menuActivity.title === menu.title ? 'active' : ''}`} onClick={() => handleChangeActivities(menu.title)}>
-                    <img src={menu.icon} className="h-5 w-5"/>
+                    <img src={menu.icon} className="h-[19px] w-[19px]"/>
                     {menu.title}
                   </button>
                 ) : (
                   <a className="workspace-btn" href={menu.link} target={menu.link === '/coming-soon' ? "_blank" : null}>
-                    <img src={menu.icon} className="h-4 w-4"/>
+                    <img src={menu.icon} className="h-[19px] w-[19px]"/>
                     {menu.title}
                   </a>
                 )}
