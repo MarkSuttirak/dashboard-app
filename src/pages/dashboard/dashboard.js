@@ -140,7 +140,7 @@ export default function Dashboard() {
         <UpgradeProButton />
       </div>
       <div className="rounded-3xl p-[54px] mx-5" style={{ background:"linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 0.02%, #DDD5FF 228.01%)"}}>
-        <div className="flex flex-col items-center gap-y-3 max-w-6xl m-auto">
+        <div className="flex flex-col items-center gap-y-3 max-w-5xl m-auto">
           <img src={workspaceImages.mainIcon} />
 
           <div className="flex flex-col items-center gap-y-1">
