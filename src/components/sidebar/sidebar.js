@@ -92,7 +92,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   const workspaceApp = [
     { name: t('workspace_buttons.manage_business'), icon: workspaceImages.manageBusiness, onClick: () => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" }) },
     { name: 'ระบบข้อมูลลูกค้า', icon: workspaceImages.customerDataSystem, onClick: () => window.open('/coming-soon', '_blank')  },
-    { name: 'จัดการเว็บไซต์', icon: workspaceImages.manageWebsite, onClick: () => window.open('https://www.zaviago.com/crm', '_self') },
+    { name: 'จัดการเว็บไซต์', icon: workspaceImages.manageWebsite, onClick: () => window.open('/coming-soon', '_blank') },
     { name: 'ตามงานและดูโปรเจ็ค', icon: workspaceImages.projectManagement, onClick: () => window.open('/coming-soon', '_blank')  },
     { name: 'รวมแชท', icon: workspaceImages.pos, onClick: () => window.open('/coming-soon', '_blank')  },
     { name: 'WhiteBoard', icon: workspaceImages.whiteboard, onClick: () => window.open('/coming-soon', '_blank')  },
