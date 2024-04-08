@@ -25,10 +25,10 @@ export default function Dashboard() {
   const location = useLocation()
   const [websiteSid, setwebsiteSid] = useState(false)
   const [menuActivity, setMenuActivity] = useState({
-    title: "จัดการธุรกิจ",
+    title: "สำหรับคุณ",
     isChanging: false
   })
-  const { menuActivities, workspaceMenus, actionMenus } = useChangeMenuActivities(menuActivity.title)
+  const { menuActivities, workspaceMenus, actionMenus, activitiesTitle } = useChangeMenuActivities(menuActivity.title)
 
   const handleChangeActivities = (title) => {
     setMenuActivity(act => ({...act, isChanging: true}))
@@ -159,16 +159,16 @@ export default function Dashboard() {
           <div className="flex flex-wrap gap-x-3 gap-y-2 mt-5 justify-center">
             {workspaceMenus.map(menu => (
               <>
-                {menu.link !== '/coming-soon' ? (
+                {menu.isComingSoon ? (
+                  <a className="workspace-btn" href='/coming-soon' target="_blank">
+                    <img src={menu.icon} className="h-[19px] w-[19px]"/>
+                    {menu.title}
+                  </a>
+                ) : (
                   <button key={menu.title} className={`workspace-btn ${menuActivity.title === menu.title ? 'active' : ''}`} onClick={() => handleChangeActivities(menu.title)}>
                     <img src={menu.icon} className="h-[19px] w-[19px]"/>
                     {menu.title}
                   </button>
-                ) : (
-                  <a className="workspace-btn" href={menu.link} target={menu.link === '/coming-soon' ? "_blank" : null}>
-                    <img src={menu.icon} className="h-[19px] w-[19px]"/>
-                    {menu.title}
-                  </a>
                 )}
               </>
             ))}
@@ -179,15 +179,17 @@ export default function Dashboard() {
       <section className={`${menuActivity.isChanging ? 'opacity-0' : 'opacity-1'} transition-all duration-300`}>
         {menuActivities.length > 0 && 
           <section>
-            <h2 className="text-[19px] text-[#3D3D3D] px-5 font-bold">{t('what_you_want_to_do')}</h2>
+            <h2 className="text-[19px] text-[#3D3D3D] px-5 font-bold">{activitiesTitle}</h2>
 
             <div className="relative">
               <div className="flex gap-x-4 py-6 overflow-auto px-5 relative" id="manage-menus">
                 {menuActivities.map((n, index) => (
-                  <div className="flex flex-col gap-y-4" key={n.title}>
-                    <img src={n.image} className="rounded-xl max-h-[188px] object-cover min-w-[334px] w-[334px]"/>
-                    <span className="text-sm font-bold">{n.title}</span>
-                  </div>
+                  <Link to={n.link}>
+                    <div className="flex flex-col gap-y-4" key={n.title}>
+                      <img src={n.image} className="rounded-xl max-h-[188px] object-cover min-w-[334px] w-[334px]"/>
+                      <span className="text-sm font-bold">{n.title}</span>
+                    </div>
+                  </Link>
                 ))}
               </div>
 

@@ -13,6 +13,7 @@ import graphicDesign from "src/img/workspace-icons/graphic-design.png"
 import mainIcon from "src/img/workspace-icons/main-icon.svg"
 
 import banner from "src/img/dashboard-activities/banner.png"
+import whiteboardImg from "src/img/dashboard-activities/whiteboard.png"
 import createWebsites from "src/img/dashboard-activities/create-websites.png"
 import createWhiteboard from "src/img/dashboard-activities/create-whiteboard.png"
 import manageOA from "src/img/dashboard-activities/manage-oa.png"
@@ -26,6 +27,27 @@ import manageOrders from "src/img/dashboard-activities/manage-orders.png"
 import otherCategories from "src/img/dashboard-activities/other-categories.png"
 import checkSales from "src/img/dashboard-activities/check-sales.png"
 import warehouses from "src/img/dashboard-activities/warehouses.png"
+import addProducts from "src/img/dashboard-activities/add-products.png"
+import addOrders from "src/img/dashboard-activities/add-orders.png"
+import checkTransactions from "src/img/dashboard-activities/check-transactions.png"
+import productCategories from "src/img/dashboard-activities/product-categories.png"
+import loyaltyProgram from "src/img/dashboard-activities/loyalty-program.png"
+import loyaltyProgramTwo from "src/img/dashboard-activities/loyalty-program-2.png"
+import projectManagementImg from "src/img/dashboard-activities/project-management.png"
+import customerData from "src/img/dashboard-activities/customer-data.png"
+import addCustomers from "src/img/dashboard-activities/add-customers.png"
+import setCustomerGroups from "src/img/dashboard-activities/set-customer-groups.png"
+import allWhiteboards from "src/img/dashboard-activities/all-whiteboards.png"
+import yourPages from "src/img/dashboard-activities/your-pages.png"
+import newPage from "src/img/dashboard-activities/new-page.png"
+import addDiscounts from "src/img/dashboard-activities/add-discounts.png"
+import bundleDeal from "src/img/dashboard-activities/bundle-deal.png"
+import addOnDeal from "src/img/dashboard-activities/add-on-deal.png"
+import flashSale from "src/img/dashboard-activities/flash-sale.png"
+import rewards from "src/img/dashboard-activities/rewards.png"
+import customerLevels from "src/img/dashboard-activities/customer-levels.png"
+import pointPurchase from "src/img/dashboard-activities/point-purchase.png"
+import salesAnalysis from "src/img/dashboard-activities/sales-analysis.png"
 
 export const workspaceImages = {
   forYou, 
@@ -45,6 +67,7 @@ export const workspaceImages = {
 
 export const dashboardActivitiesImages = {
   banner,
+  whiteboardImg,
   createWebsites,
   createWhiteboard,
   manageOA,
@@ -57,5 +80,26 @@ export const dashboardActivitiesImages = {
   manageOrders,
   otherCategories,
   checkSales,
-  warehouses
+  warehouses,
+  addProducts,
+  addOrders,
+  checkTransactions,
+  productCategories,
+  loyaltyProgram,
+  loyaltyProgramTwo,
+  projectManagementImg,
+  customerData,
+  addCustomers,
+  setCustomerGroups,
+  allWhiteboards,
+  yourPages,
+  newPage,
+  addDiscounts,
+  bundleDeal,
+  addOnDeal,
+  flashSale,
+  rewards,
+  customerLevels,
+  pointPurchase,
+  salesAnalysis
 }
