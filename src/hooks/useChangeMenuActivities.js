@@ -11,17 +11,14 @@ const useChangeMenuActivities = (menu) => {
     { title: 'ระบบข้อมูลลูกค้า', icon: workspaceImages.customerDataSystem, isComingSoon: false },
     { title: 'จัดการเว็บไซต์', icon: workspaceImages.manageWebsite, isComingSoon: false },
     { title: 'ตามงานและดูโปรเจ็ค', icon: workspaceImages.projectManagement, isComingSoon: true },
-    { title: 'Graphic Design', icon: workspaceImages.graphicDesign, isComingSoon: true },
     { title: 'รวมแชท', icon: workspaceImages.pos, isComingSoon: false },
     { title: 'WhiteBoard', icon: workspaceImages.whiteboard, isComingSoon: false },
     { title: 'SalesTeam', icon: workspaceImages.salesteam, isComingSoon: true },
-    { title: 'NoteBoard', icon: workspaceImages.whiteboard, isComingSoon: false },
     { title: 'HRSpace', icon: workspaceImages.hrspace, isComingSoon: false },
     { title: 'การตลาด', icon: workspaceImages.hrspace, isComingSoon: false },
     { title: 'Data (BI)', icon: workspaceImages.manageWebsite, isComingSoon: false },
     { title: 'Line CRM', icon: workspaceImages.linecrm, isComingSoon: false },
     { title: 'แคชเชียร์', icon: workspaceImages.pos, isComingSoon: true },
-    { title: t('workspace_buttons.blog_editor'), icon: workspaceImages.blogAndNews, isComingSoon: true },
   ]
 
   const actionMenus = menu === t('workspace_buttons.manage_business') || menu === "สำหรับคุณ" ? [
@@ -54,6 +51,7 @@ const useChangeMenuActivities = (menu) => {
   : menu === 'จัดการเว็บไซต์' ? [
     { title: 'เพจต่างๆในเว็บไซต์ของคุณ', image: dashboardActivitiesImages.yourPages },
     { title: 'สร้างเพจใหม่', image: dashboardActivitiesImages.newPage },
+    { title: 'บล็อกและบทความทั้งหมด', image: dashboardActivitiesImages.allBlogs },
   ]
   : menu === 'Line CRM' ? [
     { title: 'Loyalty Program', image: dashboardActivitiesImages.loyaltyProgramTwo, link:"https://apps.hosting.zaviago.com/app/loyalty-program" },

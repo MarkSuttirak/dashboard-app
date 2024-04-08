@@ -40,6 +40,7 @@ import setCustomerGroups from "src/img/dashboard-activities/set-customer-groups.
 import allWhiteboards from "src/img/dashboard-activities/all-whiteboards.png"
 import yourPages from "src/img/dashboard-activities/your-pages.png"
 import newPage from "src/img/dashboard-activities/new-page.png"
+import allBlogs from "src/img/dashboard-activities/all-blogs.png"
 import addDiscounts from "src/img/dashboard-activities/add-discounts.png"
 import bundleDeal from "src/img/dashboard-activities/bundle-deal.png"
 import addOnDeal from "src/img/dashboard-activities/add-on-deal.png"
@@ -108,6 +109,7 @@ export const dashboardActivitiesImages = {
   allWhiteboards,
   yourPages,
   newPage,
+  allBlogs,
   addDiscounts,
   bundleDeal,
   addOnDeal,
