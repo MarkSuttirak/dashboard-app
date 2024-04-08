@@ -122,13 +122,13 @@ export default function Dashboard() {
     return (
       <>
         <button 
-          onClick={() => handleSlideActivities(id, "left", menuList.scrollWidth / 2)} 
+          onClick={() => handleSlideActivities(id, "left", menuList.scrollWidth / 3)} 
           className={`rounded-full bg-white h-9 w-9 absolute flex items-center justify-center left-2 top-[37.5%] shadow-md`}
         >
           <ChevronLeft />
         </button>
         <button 
-          onClick={() => handleSlideActivities(id, "right", menuList.scrollWidth / 2)} 
+          onClick={() => handleSlideActivities(id, "right", menuList.scrollWidth / 3)} 
           className={`rounded-full bg-white h-9 w-9 absolute flex items-center justify-center right-2 top-[37.5%] shadow-md`}
         >
           <ChevronRight />
@@ -143,7 +143,7 @@ export default function Dashboard() {
         <UpgradeProButton />
       </div>
       <div className="rounded-3xl p-[54px] mx-5" style={{ background:"linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 0.02%, #DDD5FF 228.01%)"}}>
-        <div className="flex flex-col items-center gap-y-3 max-w-6xl m-auto">
+        <div className="flex flex-col items-center gap-y-3">
           <img src={workspaceImages.mainIcon} />
 
           <div className="flex flex-col items-center gap-y-1">
