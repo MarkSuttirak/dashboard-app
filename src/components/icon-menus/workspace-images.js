@@ -48,6 +48,20 @@ import rewards from "src/img/dashboard-activities/rewards.png"
 import customerLevels from "src/img/dashboard-activities/customer-levels.png"
 import pointPurchase from "src/img/dashboard-activities/point-purchase.png"
 import salesAnalysis from "src/img/dashboard-activities/sales-analysis.png"
+import customerAnalysis from "src/img/dashboard-activities/customer-analysis.png"
+import allDashboardData from "src/img/dashboard-activities/all-dashboard-data.png"
+import yourReportDoc from "src/img/dashboard-activities/your-report-documents.png"
+import newDataDashboard from "src/img/dashboard-activities/new-data-dashboard.png"
+import newDataQuery from "src/img/dashboard-activities/new-data-query.png"
+import chatAndInboxes from "src/img/dashboard-activities/chat-and-inboxes.png"
+import addManageAdmin from "src/img/dashboard-activities/add-manage-admin.png"
+import manageAdminTeam from "src/img/dashboard-activities/manage-admin-team.png"
+import manageTags from "src/img/dashboard-activities/manage-tags.png"
+import chatReports from "src/img/dashboard-activities/chat-reports.png"
+import allEmployees from "src/img/dashboard-activities/all-employees.png"
+import employeeCheckinInfo from "src/img/dashboard-activities/employee-checkin-info.png"
+import allApplicants from "src/img/dashboard-activities/all-applicants.png"
+import employeeLeaves from "src/img/dashboard-activities/employee-leaves.png"
 
 export const workspaceImages = {
   forYou, 
@@ -101,5 +115,19 @@ export const dashboardActivitiesImages = {
   rewards,
   customerLevels,
   pointPurchase,
-  salesAnalysis
+  salesAnalysis,
+  customerAnalysis,
+  allDashboardData,
+  yourReportDoc,
+  newDataDashboard,
+  newDataQuery,
+  chatAndInboxes,
+  addManageAdmin,
+  manageAdminTeam,
+  manageTags,
+  chatReports,
+  allEmployees,
+  employeeCheckinInfo,
+  allApplicants,
+  employeeLeaves
 }

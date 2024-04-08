@@ -14,12 +14,12 @@ const useChangeMenuActivities = (menu) => {
     { title: 'Graphic Design', icon: workspaceImages.graphicDesign, isComingSoon: true },
     { title: 'รวมแชท', icon: workspaceImages.pos, isComingSoon: false },
     { title: 'WhiteBoard', icon: workspaceImages.whiteboard, isComingSoon: false },
-    { title: 'SalesTeam', icon: workspaceImages.salesteam, isComingSoon: false },
+    { title: 'SalesTeam', icon: workspaceImages.salesteam, isComingSoon: true },
     { title: 'NoteBoard', icon: workspaceImages.whiteboard, isComingSoon: false },
     { title: 'HRSpace', icon: workspaceImages.hrspace, isComingSoon: false },
     { title: 'การตลาด', icon: workspaceImages.hrspace, isComingSoon: false },
     { title: 'Data (BI)', icon: workspaceImages.manageWebsite, isComingSoon: false },
-    { title: 'Line CRM', icon: workspaceImages.linecrm, isComingSoon: true },
+    { title: 'Line CRM', icon: workspaceImages.linecrm, isComingSoon: false },
     { title: 'แคชเชียร์', icon: workspaceImages.pos, isComingSoon: true },
     { title: t('workspace_buttons.blog_editor'), icon: workspaceImages.blogAndNews, isComingSoon: true },
   ]
@@ -55,7 +55,7 @@ const useChangeMenuActivities = (menu) => {
     { title: 'เพจต่างๆในเว็บไซต์ของคุณ', image: dashboardActivitiesImages.yourPages },
     { title: 'สร้างเพจใหม่', image: dashboardActivitiesImages.newPage },
   ]
-  : menu === 'SalesTeam' ? [
+  : menu === 'Line CRM' ? [
     { title: 'Loyalty Program', image: dashboardActivitiesImages.loyaltyProgramTwo, link:"https://apps.hosting.zaviago.com/app/loyalty-program" },
     { title: 'ของรางวัล', image: dashboardActivitiesImages.rewards },
     { title: 'ระดับลูกค้า', image: dashboardActivitiesImages.customerLevels },
@@ -72,25 +72,25 @@ const useChangeMenuActivities = (menu) => {
     { title: 'สร้างไวท์บอร์ดใหม่', image: dashboardActivitiesImages.createWhiteboard },
   ]
   : menu === 'HRSpace' ? [
-    { title: 'พนักงานทั้งหมด', image: dashboardActivitiesImages.loyaltyProgramTwo, link:"https://apps.hosting.zaviago.com/app/loyalty-program" },
-    { title: 'ข้อมูลการเช็คอินของพนักงาน', image: dashboardActivitiesImages.rewards },
-    { title: 'ผู้สมัครงานทั้งหมด', image: dashboardActivitiesImages.customerLevels },
-    { title: 'การขอลางานของพนักงาน', image: dashboardActivitiesImages.pointPurchase },
+    { title: 'พนักงานทั้งหมด', image: dashboardActivitiesImages.allEmployees, link:"https://apps.hosting.zaviago.com/app/loyalty-program" },
+    { title: 'ข้อมูลการเช็คอินของพนักงาน', image: dashboardActivitiesImages.employeeCheckinInfo },
+    { title: 'ผู้สมัครงานทั้งหมด', image: dashboardActivitiesImages.allApplicants },
+    { title: 'การขอลางานของพนักงาน', image: dashboardActivitiesImages.employeeLeaves },
   ]
   : menu === 'Data (BI)' ? [
     { title: 'วิเคราะห์การขาย', image: dashboardActivitiesImages.salesAnalysis },
-    { title: 'วิเคราะห์ลูกค้า', image: dashboardActivitiesImages.addDiscounts, link:"https://apps.hosting.zaviago.com/app/coupon-code/new-coupon-code-tldgomkioi" },
-    { title: 'Data Dashboard ทั้งหมด', image: dashboardActivitiesImages.bundleDeal, link:"https://apps.hosting.zaviago.com/app/product-bundle" },
-    { title: 'Data Notebook', image: dashboardActivitiesImages.addOnDeal, link:"https://apps.hosting.zaviago.com/app/pricing-rule" },
-    { title: 'สร้าง Data Dashboard ใหม่', image: dashboardActivitiesImages.flashSale },
-    { title: 'สร้าง Data Query', image: dashboardActivitiesImages.flashSale },
+    { title: 'วิเคราะห์ลูกค้า', image: dashboardActivitiesImages.customerAnalysis, link:"https://apps.hosting.zaviago.com/app/coupon-code/new-coupon-code-tldgomkioi" },
+    { title: 'Data Dashboard ทั้งหมด', image: dashboardActivitiesImages.allDashboardData, link:"https://apps.hosting.zaviago.com/app/product-bundle" },
+    { title: 'Data Notebook', image: dashboardActivitiesImages.yourReportDoc, link:"https://apps.hosting.zaviago.com/app/pricing-rule" },
+    { title: 'สร้าง Data Dashboard ใหม่', image: dashboardActivitiesImages.newDataDashboard },
+    { title: 'สร้าง Data Query', image: dashboardActivitiesImages.newDataQuery },
   ]
   : menu === 'รวมแชท' ? [
-    { title: 'Chat and Inboxes', image: dashboardActivitiesImages.loyaltyProgramTwo, link:"https://apps.hosting.zaviago.com/app/loyalty-program" },
-    { title: 'เพิ่มและจัดการ แอดมินตอบแชท', image: dashboardActivitiesImages.rewards },
-    { title: 'จัดการทีมแอดมิน ของ Inbox ต่างๆ', image: dashboardActivitiesImages.customerLevels },
-    { title: 'จัดการแท็กต่างๆของแชท', image: dashboardActivitiesImages.pointPurchase },
-    { title: 'รีพอร์ตการตอบแชท', image: dashboardActivitiesImages.pointPurchase },
+    { title: 'Chat and Inboxes', image: dashboardActivitiesImages.chatAndInboxes, link:"https://apps.hosting.zaviago.com/app/loyalty-program" },
+    { title: 'เพิ่มและจัดการ แอดมินตอบแชท', image: dashboardActivitiesImages.addManageAdmin },
+    { title: 'จัดการทีมแอดมิน ของ Inbox ต่างๆ', image: dashboardActivitiesImages.manageAdminTeam },
+    { title: 'จัดการแท็กต่างๆของแชท', image: dashboardActivitiesImages.manageTags },
+    { title: 'รีพอร์ตการตอบแชท', image: dashboardActivitiesImages.chatReports },
   ]
   : []
 
@@ -100,7 +100,7 @@ const useChangeMenuActivities = (menu) => {
     menu === 'ระบบข้อมูลลูกค้า' ? "ข้อมูลต่างๆของลูกค้า" : 
     menu === 'จัดการเว็บไซต์' ? "สร้างเว็บและดูแลเพจต่างๆของคุณ" :
     menu === 'WhiteBoard' ? "ระบบไวท์บอร์ด" :
-    menu === 'SalesTeam' ? "ระบบ Point And Rewards" :
+    menu === 'Line CRM' ? "ระบบ Point And Rewards" :
     menu === 'HRSpace' ? "ฝ่ายบุคคล & ทรัพยากรมนุษย์" :
     menu === 'รวมแชท' ? "รวมแชท" :
     menu === 'Data (BI)' ? "Data Dashboard" :
