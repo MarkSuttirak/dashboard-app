@@ -156,7 +156,7 @@ export default function Dashboard() {
             <p className="text-sm text-[#A4A4A4] font-bold">ใช้ประโยชน์ต่างๆ ได้มากขึ้นจาก แอปที่คุณรู้จักและชื่นชอบ</p>
           </div>
 
-          <div className="flex flex-wrap gap-x-3 gap-y-2 mt-5 justify-center max-w-[1200px]">
+          <div className="flex flex-wrap gap-x-3 gap-y-2 mt-5 justify-center max-w-[1000px]">
             {workspaceMenus.map(menu => (
               <>
                 {menu.isComingSoon ? (
@@ -218,17 +218,17 @@ export default function Dashboard() {
         } */}
       </section>
 
-      <ManageBusinessBanner />
+      {/* <ManageBusinessBanner /> */}
       <DashboardVideo />
       {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> */}
       <section className="relative">
-        <div className="flex mb-8 lg:mb-[72px] max-h-[350px] overflow-auto px-5 gap-x-5" id="team-menus">
+        <div className="flex mb-8 lg:mb-[132px] overflow-auto px-5 gap-x-5" id="team-menus">
           <DashboardTeam />
-          <div style={{background:"linear-gradient(81.11deg, #F0F5FF -1.81%, #D9AEFD 75.87%)"}} className="min-w-[1100px] rounded-3xl flex justify-end">
+          {/* <div style={{background:"linear-gradient(81.11deg, #F0F5FF -1.81%, #D9AEFD 75.87%)"}} className="min-w-[1100px] rounded-3xl flex justify-end">
             <img src={dashboardActivitiesImages.manageYourBusiness} className="h-full"/>
           </div>
 
-          <ScrollArrows id="team-menus"/>
+          <ScrollArrows id="team-menus"/> */}
         </div>
       </section>
 
