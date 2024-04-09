@@ -53,9 +53,9 @@ export default function DashboardVideo(){
               <img src={list.img} className="rounded-sm"/>
 
               <div className="flex flex-col gap-y-[10px]">
-                <h2 className='text-primary text-[13px] font-eventpop'>{list.title}</h2>
+                <h2 className='text-primary text-[13px]'>{list.title}</h2>
 
-                <p className="text-[#7009FF] flex items-center gap-x-2 text-[13px] font-bold font-eventpop">
+                <p className="text-[#7009FF] flex items-center gap-x-2 text-[13px] font-semibold">
                   <PlayCircle className="h-4 w-4 text-[#7009FF]"/>
                   {playing === index ? t('playing') : t('play_video')}
                 </p>

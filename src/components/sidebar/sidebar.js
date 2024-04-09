@@ -229,7 +229,7 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
               <h3 className="text-lightgray text-sm font-medium py-3">{t('menus.your_workspace')}</h3>
               <div className="flex flex-col gap-y-4 lg:gap-y-1">
                 {workspaceApp.map((item) => (
-                  <Button variant='ghost' onClick={item.onClick} className={`w-full flex justify-start gap-x-2 text-base lg:text-[13px] items-center leading-5`}>
+                  <Button variant='ghost' onClick={item.onClick} className={`w-full flex justify-start gap-x-2 text-base font-normal lg:text-[13px] items-center leading-5`}>
                     <img src={item.icon} className="h-[19px] w-[19px]"/>
                     {item.name}
                   </Button>

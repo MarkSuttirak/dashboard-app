@@ -148,7 +148,7 @@ export default function Dashboard() {
 
           <div className="flex flex-col items-center gap-y-1">
             {user ? 
-              <h1 className="text-xl md:text-3xl text-primary font-bold tracking-[-0.75px] font-eventpop leading-8">
+              <h1 className="text-xl md:text-3xl text-primary font-semibold tracking-[-0.75px] font-sfpro leading-8">
                 สวัสดีคุณ 
                 <span style={textGradient("linear-gradient(92.12deg, #7900FF -2.04%, #006AFF 89.63%)")} className="text-xl md:text-3xl ml-2">{user?.first_name}</span>🙏
               </h1> : <Skeleton className='h-8 w-[300px]' />
@@ -187,7 +187,7 @@ export default function Dashboard() {
                   <Link to={n.link}>
                     <div className="flex flex-col gap-y-4" key={n.title}>
                       <img src={n.image} className="rounded-xl max-h-[188px] object-cover min-w-[334px] w-[334px]"/>
-                      <span className="text-sm font-bold">{n.title}</span>
+                      <span className="text-sm font-semibold">{n.title}</span>
                     </div>
                   </Link>
                 ))}
