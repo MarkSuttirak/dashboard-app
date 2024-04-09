@@ -63,6 +63,10 @@ import allEmployees from "src/img/dashboard-activities/all-employees.png"
 import employeeCheckinInfo from "src/img/dashboard-activities/employee-checkin-info.png"
 import allApplicants from "src/img/dashboard-activities/all-applicants.png"
 import employeeLeaves from "src/img/dashboard-activities/employee-leaves.png"
+import uploadFiles from "src/img/dashboard-activities/upload-files.png"
+import newDocument from "src/img/dashboard-activities/new-document.png"
+import sharedWithMe from "src/img/dashboard-activities/shared-with-me.png"
+import myDrive from "src/img/dashboard-activities/my-drive.png"
 
 export const workspaceImages = {
   forYou, 
@@ -131,5 +135,9 @@ export const dashboardActivitiesImages = {
   allEmployees,
   employeeCheckinInfo,
   allApplicants,
-  employeeLeaves
+  employeeLeaves,
+  uploadFiles,
+  newDocument,
+  sharedWithMe,
+  myDrive
 }

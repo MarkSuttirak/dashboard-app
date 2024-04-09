@@ -156,7 +156,7 @@ export default function Dashboard() {
             <p className="text-sm text-[#A4A4A4] font-bold">ใช้ประโยชน์ต่างๆ ได้มากขึ้นจาก แอปที่คุณรู้จักและชื่นชอบ</p>
           </div>
 
-          <div className="flex flex-wrap gap-x-3 gap-y-2 mt-5 justify-center max-w-[1000px]">
+          <div className="flex flex-wrap gap-x-3 gap-y-2 mt-5 justify-center max-w-[900px]">
             {workspaceMenus.map(menu => (
               <>
                 {menu.isComingSoon ? (

@@ -93,15 +93,16 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
     { name: t('workspace_buttons.manage_business'), icon: workspaceImages.manageBusiness, onClick: () => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" }) },
     { name: 'ระบบข้อมูลลูกค้า', icon: workspaceImages.customerDataSystem, onClick: () => window.open('/coming-soon', '_blank')  },
     { name: 'จัดการเว็บไซต์', icon: workspaceImages.manageWebsite, onClick: () => window.open('/coming-soon', '_blank') },
-    { name: 'ตามงานและดูโปรเจ็ค', icon: workspaceImages.projectManagement, onClick: () => window.open('/coming-soon', '_blank')  },
+    // { name: 'ตามงานและดูโปรเจ็ค', icon: workspaceImages.projectManagement, onClick: () => window.open('/coming-soon', '_blank')  },
+    { name: 'ไฟล์ทั้งหมด', icon: workspaceImages.projectManagement, onClick: () => window.open('/coming-soon', '_blank')  },
     { name: 'รวมแชท', icon: workspaceImages.pos, onClick: () => window.open('/coming-soon', '_blank')  },
     { name: 'WhiteBoard', icon: workspaceImages.whiteboard, onClick: () => window.open('/coming-soon', '_blank')  },
-    { name: 'SalesTeam', icon: workspaceImages.salesteam, onClick: () => window.open('/coming-soon', '_blank')  },
+    // { name: 'SalesTeam', icon: workspaceImages.salesteam, onClick: () => window.open('/coming-soon', '_blank')  },
     { name: 'HRSpace', icon: workspaceImages.hrspace, onClick: () => window.open('/coming-soon', '_blank')  },
     { name: 'การตลาด', icon: workspaceImages.hrspace, onClick: () => window.open('/coming-soon', '_blank')  },
     { name: 'Data (BI)', icon: workspaceImages.manageWebsite, onClick: () => window.open('/coming-soon', '_blank')  },
     { name: 'Line CRM', icon: workspaceImages.linecrm, onClick: () => window.open('/coming-soon', '_blank')  },
-    { name: 'แคชเชียร์', icon: workspaceImages.pos, onClick: () => window.open('/coming-soon', '_blank')  },
+    // { name: 'แคชเชียร์', icon: workspaceImages.pos, onClick: () => window.open('/coming-soon', '_blank')  },
   ]
 
   useEffect(() => {
