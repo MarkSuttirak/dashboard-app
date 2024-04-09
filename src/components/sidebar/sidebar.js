@@ -90,18 +90,23 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   ]
 
   const workspaceApp = [
-    { name: t('workspace_buttons.manage_business'), icon: workspaceImages.manageBusiness, onClick: () => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" }) },
-    { name: 'ระบบข้อมูลลูกค้า', icon: workspaceImages.customerDataSystem, onClick: () => window.open('/coming-soon', '_blank')  },
-    { name: 'จัดการเว็บไซต์', icon: workspaceImages.manageWebsite, onClick: () => window.open('/coming-soon', '_blank') },
-    { name: 'ตามงานและดูโปรเจ็ค', icon: workspaceImages.projectManagement, onClick: () => window.open('/coming-soon', '_blank')  },
-    { name: 'รวมแชท', icon: workspaceImages.pos, onClick: () => window.open('/coming-soon', '_blank')  },
-    { name: 'WhiteBoard', icon: workspaceImages.whiteboard, onClick: () => window.open('/coming-soon', '_blank')  },
-    { name: 'SalesTeam', icon: workspaceImages.salesteam, onClick: () => window.open('/coming-soon', '_blank')  },
-    { name: 'HRSpace', icon: workspaceImages.hrspace, onClick: () => window.open('/coming-soon', '_blank')  },
-    { name: 'การตลาด', icon: workspaceImages.hrspace, onClick: () => window.open('/coming-soon', '_blank')  },
-    { name: 'Data (BI)', icon: workspaceImages.manageWebsite, onClick: () => window.open('/coming-soon', '_blank')  },
-    { name: 'Line CRM', icon: workspaceImages.linecrm, onClick: () => window.open('/coming-soon', '_blank')  },
-    { name: 'แคชเชียร์', icon: workspaceImages.pos, onClick: () => window.open('/coming-soon', '_blank')  },
+    { name: 'Workspace', icon: workspaceImages.customerDataSystem, onClick: () => window.open('https://apps.hosting.zaviago.com/app/item', '_self') },
+    { name: 'TeamInbox', icon: workspaceImages.pos, onClick: () => window.open('https://chat.zaviago.com/', '_self')  },
+    { name: 'WorkDay', icon: workspaceImages.projectManagement, onClick: () => window.open('https://workday.zaviago.com/', '_self')  },
+    { name: 'LineCRM', icon: workspaceImages.linecrm, onClick: () => window.open('https://apps.hosting.zaviago.com/app/loyalty-program', '_self') },
+    { name: 'SalesTeam', icon: workspaceImages.salesteam, onClick: () => window.open('/coming-soon', '_blank') },
+    { name: 'Zaviago HR', icon: workspaceImages.hrspace, onClick: () => window.open('https://apps.hosting.zaviago.com/app/hr', '_self') },
+  ]
+
+  const workspaceAppTwo = [
+    { name: 'Data Insight', icon: workspaceImages.blogAndNews, onClick: () => window.open('https://apps.hosting.zaviago.com/insights/dashboard', '_self') },
+    { name: 'Drive', icon: workspaceImages.manageWebsite, onClick: () => window.open('https://apps.hosting.zaviago.com/drive/home', '_self') },
+  ]
+
+  const workspaceAppThree = [
+    { name: 'Blogs', icon: workspaceImages.blogAndNews, onClick: () => window.open('https://ghost.zaviago.com/ghost/#/dashboard', '_self') },
+    { name: 'Builder', icon: workspaceImages.manageWebsite, onClick: () => window.open('https://apps.hosting.zaviago.com/builder', '_self') },
+    { name: 'Whiteboard', icon: workspaceImages.whiteboard, onClick: () => window.open('https://affine.zaviago.com/', '_self')  },
   ]
 
   useEffect(() => {
@@ -224,17 +229,45 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
               </Button>
             </section> */}
 
-            <section className="flex flex-col px-4">
-              <h3 className="text-lightgray text-sm font-medium py-3">{t('menus.your_workspace')}</h3>
+            <section className="flex flex-col px-3">
+              <h3 className="text-lightgray text-sm font-semibold py-3 px-4">ระบบงานของคุณ</h3> {/* {t('menus.your_workspace')} */}
               <div className="flex flex-col gap-y-4 lg:gap-y-1">
                 {workspaceApp.map((item) => (
-                  <Button variant='ghost' onClick={item.onClick} className={`w-full flex justify-start gap-x-2 text-base lg:text-[13px] items-center leading-5`}>
+                  <Button variant='ghost' onClick={item.onClick} className={`w-full flex justify-start gap-x-2 text-base font-normal lg:text-[13px] items-center leading-5`}>
                     <img src={item.icon} className="h-[19px] w-[19px]"/>
                     {item.name}
                   </Button>
                 ))}
               </div>
             </section>
+
+            <Separator className='bg-[#F4F4F4]'/>
+
+            <section className="flex flex-col px-3">
+              <div className="flex flex-col gap-y-4 lg:gap-y-1">
+                {workspaceAppTwo.map((item) => (
+                  <Button variant='ghost' onClick={item.onClick} className={`w-full flex justify-start gap-x-2 text-base font-normal lg:text-[13px] items-center leading-5`}>
+                    <img src={item.icon} className="h-[19px] w-[19px]"/>
+                    {item.name}
+                  </Button>
+                ))}
+              </div>
+            </section>
+
+            <Separator className='bg-[#F4F4F4]'/>
+
+            <section className="flex flex-col px-3">
+              <div className="flex flex-col gap-y-4 lg:gap-y-1">
+                {workspaceAppThree.map((item) => (
+                  <Button variant='ghost' onClick={item.onClick} className={`w-full flex justify-start gap-x-2 text-base font-normal lg:text-[13px] items-center leading-5`}>
+                    <img src={item.icon} className="h-[19px] w-[19px]"/>
+                    {item.name}
+                  </Button>
+                ))}
+              </div>
+            </section>
+
+            <Separator className='bg-[#F4F4F4]'/>
 
             {/* <section className="flex flex-col">
               <h3 className="text-lightgray text-sm font-medium p-4">{t('menus.application')}</h3>

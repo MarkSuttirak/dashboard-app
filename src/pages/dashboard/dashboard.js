@@ -148,7 +148,7 @@ export default function Dashboard() {
 
           <div className="flex flex-col items-center gap-y-1">
             {user ? 
-              <h1 className="text-xl md:text-3xl text-primary font-bold tracking-[-0.75px] font-eventpop leading-8">
+              <h1 className="text-xl md:text-3xl text-primary font-semibold tracking-[-0.75px] font-sfpro leading-8">
                 สวัสดีคุณ 
                 <span style={textGradient("linear-gradient(92.12deg, #7900FF -2.04%, #006AFF 89.63%)")} className="text-xl md:text-3xl ml-2">{user?.first_name}</span>🙏
               </h1> : <Skeleton className='h-8 w-[300px]' />
@@ -156,7 +156,7 @@ export default function Dashboard() {
             <p className="text-sm text-[#A4A4A4] font-bold">ใช้ประโยชน์ต่างๆ ได้มากขึ้นจาก แอปที่คุณรู้จักและชื่นชอบ</p>
           </div>
 
-          <div className="flex flex-wrap gap-x-3 gap-y-2 mt-5 justify-center max-w-[1000px]">
+          <div className="flex flex-wrap gap-x-3 gap-y-2 mt-5 justify-center max-w-[900px]">
             {workspaceMenus.map(menu => (
               <>
                 {menu.isComingSoon ? (
@@ -187,7 +187,7 @@ export default function Dashboard() {
                   <Link to={n.link}>
                     <div className="flex flex-col gap-y-4" key={n.title}>
                       <img src={n.image} className="rounded-xl max-h-[188px] object-cover min-w-[334px] w-[334px]"/>
-                      <span className="text-sm font-bold">{n.title}</span>
+                      <span className="text-sm font-semibold">{n.title}</span>
                     </div>
                   </Link>
                 ))}
@@ -220,19 +220,19 @@ export default function Dashboard() {
 
       {/* <ManageBusinessBanner /> */}
       <DashboardVideo />
-      {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> */}
+      {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> 
       <section className="relative">
         <div className="flex mb-8 lg:mb-[132px] overflow-auto px-5 gap-x-5" id="team-menus">
           <DashboardTeam />
-          {/* <div style={{background:"linear-gradient(81.11deg, #F0F5FF -1.81%, #D9AEFD 75.87%)"}} className="min-w-[1100px] rounded-3xl flex justify-end">
+          <div style={{background:"linear-gradient(81.11deg, #F0F5FF -1.81%, #D9AEFD 75.87%)"}} className="min-w-[1100px] rounded-3xl flex justify-end">
             <img src={dashboardActivitiesImages.manageYourBusiness} className="h-full"/>
           </div>
 
-          <ScrollArrows id="team-menus"/> */}
+          <ScrollArrows id="team-menus"/>
         </div>
       </section>
 
-      <section className="px-5">
+      {/* <section className="px-5">
         <h2 className="secondary-heading">{t('discover_what_you_can_do')}</h2>
 
         <div className="mt-6 flex flex-col md:flex-row gap-x-[15px] gap-y-5">
@@ -240,7 +240,7 @@ export default function Dashboard() {
           <PostInfo title="วางแผนและจัดการงานของทีม" desc="วางแผนและจัดชีวิตให้ง่ายขึ้นด้วย เทมเพลต Projects Manager" comingSoon image={sellingOnline} imageStyle="px-5" onClick={() => window.open("/coming-soon", '_blank')} />
           <PostInfo title="เชื่อมต่อ Shopee & Lazada" desc="จัดการออเดอร์อย่างมีประสิทธิภาพด้วยการเชื่อมต่อกับช่องทางการขายหลากหลายแพลตฟอร์ม" buttonText="เชื่อมต่อช่องทางการขาย" image={connectMessage} imageStyle='pl-4 pb-4' onClick={() => window.open("/coming-soon", '_blank')} />
         </div>
-      </section>
+      </section> */}
     </div>
   )
 }

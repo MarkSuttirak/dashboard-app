@@ -42,7 +42,7 @@ export default function DashboardVideo(){
   }
 
   return (
-    <section className="my-6 rounded-xl">
+    <section className="my-6 mx-auto rounded-xl max-w-[1280px] w-full">
       <div className="p-6 grid md:grid-cols-2 xl:grid-cols-3 gap-x-12">
         <iframe className="rounded-xl w-full h-[30vw] xl:col-span-2 rounded-3xl" src={videoSrc} frameborder="0" allowfullscreen title={videoTitle}/>
 
@@ -53,9 +53,9 @@ export default function DashboardVideo(){
               <img src={list.img} className="rounded-sm"/>
 
               <div className="flex flex-col gap-y-[10px]">
-                <h2 className='text-primary text-[13px] font-eventpop'>{list.title}</h2>
+                <h2 className='text-primary text-[13px]'>{list.title}</h2>
 
-                <p className="text-[#7009FF] flex items-center gap-x-2 text-[13px] font-bold font-eventpop">
+                <p className="text-[#7009FF] flex items-center gap-x-2 text-[13px] font-semibold">
                   <PlayCircle className="h-4 w-4 text-[#7009FF]"/>
                   {playing === index ? t('playing') : t('play_video')}
                 </p>

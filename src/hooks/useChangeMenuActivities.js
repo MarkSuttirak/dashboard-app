@@ -10,15 +10,16 @@ const useChangeMenuActivities = (menu) => {
     { title: t('workspace_buttons.manage_business'), icon: workspaceImages.manageBusiness, isComingSoon: false },
     { title: 'ระบบข้อมูลลูกค้า', icon: workspaceImages.customerDataSystem, isComingSoon: false },
     { title: 'จัดการเว็บไซต์', icon: workspaceImages.manageWebsite, isComingSoon: false },
-    { title: 'ตามงานและดูโปรเจ็ค', icon: workspaceImages.projectManagement, isComingSoon: true },
+    // { title: 'ตามงานและดูโปรเจ็ค', icon: workspaceImages.projectManagement, isComingSoon: true },
+    { title: 'ไฟล์ทั้งหมด', icon: workspaceImages.projectManagement, isComingSoon: false },
     { title: 'รวมแชท', icon: workspaceImages.pos, isComingSoon: false },
     { title: 'WhiteBoard', icon: workspaceImages.whiteboard, isComingSoon: false },
-    { title: 'SalesTeam', icon: workspaceImages.salesteam, isComingSoon: true },
+    // { title: 'SalesTeam', icon: workspaceImages.salesteam, isComingSoon: true },
     { title: 'HRSpace', icon: workspaceImages.hrspace, isComingSoon: false },
     { title: 'การตลาด', icon: workspaceImages.hrspace, isComingSoon: false },
     { title: 'Data (BI)', icon: workspaceImages.manageWebsite, isComingSoon: false },
     { title: 'Line CRM', icon: workspaceImages.linecrm, isComingSoon: false },
-    { title: 'แคชเชียร์', icon: workspaceImages.pos, isComingSoon: true },
+    // { title: 'แคชเชียร์', icon: workspaceImages.pos, isComingSoon: true },
   ]
 
   const actionMenus = menu === t('workspace_buttons.manage_business') || menu === "สำหรับคุณ" ? [
@@ -29,8 +30,8 @@ const useChangeMenuActivities = (menu) => {
   : []
 
   const menuActivities = menu === 'สำหรับคุณ' ? [
-    { title: 'สร้างและออกแบบเว็บไซต์', image: dashboardActivitiesImages.createWebsites },
-    { title: 'ไวท์บอร์ด', image: dashboardActivitiesImages.whiteboardImg },
+    { title: 'สร้างและออกแบบเว็บไซต์', image: dashboardActivitiesImages.createWebsites, link:"https://apps.hosting.zaviago.com/builder" },
+    { title: 'ไวท์บอร์ด', image: dashboardActivitiesImages.whiteboardImg, link:"https://affine.zaviago.com/" },
     { title: 'Loyalty Program', image: dashboardActivitiesImages.loyaltyProgram, link:"https://apps.hosting.zaviago.com/app/loyalty-program" },
     { title: 'จัดการ LineOA', image: dashboardActivitiesImages.manageOA, link:"https://apps.hosting.zaviago.com/app/loyalty-program/new-loyalty-program" },
     { title: 'Project Management', image: dashboardActivitiesImages.projectManagementImg }
@@ -42,6 +43,7 @@ const useChangeMenuActivities = (menu) => {
     { title: 'เปิดคำสั่งซื้อใหม่', image: dashboardActivitiesImages.addOrders, link:"https://apps.hosting.zaviago.com/app/sales-invoice/new-sales-invoice" },
     { title: 'เช็คการแจ้งโอน', image: dashboardActivitiesImages.checkTransactions, link:"https://apps.hosting.zaviago.com/app/payment-entry" },
     { title: 'หมวดหมู่สินค้า', image: dashboardActivitiesImages.productCategories, link:"https://apps.hosting.zaviago.com/app/item-group" },
+    { title: 'POS', image: dashboardActivitiesImages.posImg }
   ] 
   : menu === 'ระบบข้อมูลลูกค้า' ? [
     { title: 'ข้อมูลลูกค้าทั้งหมดของคุณ', image: dashboardActivitiesImages.customerData, link:"https://apps.hosting.zaviago.com/app/customer" },
@@ -52,6 +54,12 @@ const useChangeMenuActivities = (menu) => {
     { title: 'เพจต่างๆในเว็บไซต์ของคุณ', image: dashboardActivitiesImages.yourPages, link:"https://apps.hosting.zaviago.com/builder" },
     { title: 'สร้างเพจใหม่', image: dashboardActivitiesImages.newPage, link:"https://apps.hosting.zaviago.com/builder/page/new" },
     { title: 'บล็อกและบทความทั้งหมด', image: dashboardActivitiesImages.allBlogs, link:"https://ghost.zaviago.com/ghost/#/posts" },
+  ]
+  : menu === 'ไฟล์ทั้งหมด' ? [
+    { title: 'MyDrive', image: dashboardActivitiesImages.myDrive, link:"https://apps.hosting.zaviago.com/drive/home" },
+    { title: 'Upload files', image: dashboardActivitiesImages.uploadFiles, link:"https://apps.hosting.zaviago.com/drive/home" },
+    { title: 'New Document', image: dashboardActivitiesImages.newDocument, link:"https://apps.hosting.zaviago.com/drive/home" },
+    { title: 'Shared with me', image: dashboardActivitiesImages.sharedWithMe, link:"https://apps.hosting.zaviago.com/drive/shared" },
   ]
   : menu === 'Line CRM' ? [
     { title: 'Loyalty Program', image: dashboardActivitiesImages.loyaltyProgramTwo, link:"https://apps.hosting.zaviago.com/app/loyalty-program" },
@@ -70,10 +78,10 @@ const useChangeMenuActivities = (menu) => {
     { title: 'สร้างไวท์บอร์ดใหม่', image: dashboardActivitiesImages.createWhiteboard },
   ]
   : menu === 'HRSpace' ? [
-    { title: 'พนักงานทั้งหมด', image: dashboardActivitiesImages.allEmployees, link:"https://apps.hosting.zaviago.com/app/loyalty-program" },
-    { title: 'ข้อมูลการเช็คอินของพนักงาน', image: dashboardActivitiesImages.employeeCheckinInfo },
-    { title: 'ผู้สมัครงานทั้งหมด', image: dashboardActivitiesImages.allApplicants },
-    { title: 'การขอลางานของพนักงาน', image: dashboardActivitiesImages.employeeLeaves },
+    { title: 'พนักงานทั้งหมด', image: dashboardActivitiesImages.allEmployees, link:"https://apps.hosting.zaviago.com/app/employee" },
+    { title: 'ข้อมูลการเช็คอินของพนักงาน', image: dashboardActivitiesImages.employeeCheckinInfo, link:"https://apps.hosting.zaviago.com/app/leave-application/view/list" },
+    { title: 'ผู้สมัครงานทั้งหมด', image: dashboardActivitiesImages.allApplicants, link:"https://apps.hosting.zaviago.com/app/job-applicant" },
+    { title: 'การขอลางานของพนักงาน', image: dashboardActivitiesImages.employeeLeaves, link:"https://apps.hosting.zaviago.com/app/leave-application/view/list?status=Open" },
   ]
   : menu === 'Data (BI)' ? [
     { title: 'Dashboard วิเคราะห์การขาย', image: dashboardActivitiesImages.salesAnalysis, link:"https://apps.hosting.zaviago.com/insights/dashboard/DSH-0003" },
@@ -99,6 +107,7 @@ const useChangeMenuActivities = (menu) => {
     menu === 'จัดการเว็บไซต์' ? "สร้างเว็บและดูแลเพจต่างๆของคุณ" :
     menu === 'WhiteBoard' ? "ระบบไวท์บอร์ด" :
     menu === 'Line CRM' ? "ระบบ Point And Rewards" :
+    menu === 'ไฟล์ทั้งหมด' ? "ไฟล์ทั้งหมด" :
     menu === 'HRSpace' ? "ฝ่ายบุคคล & ทรัพยากรมนุษย์" :
     menu === 'รวมแชท' ? "รวมแชท" :
     menu === 'Data (BI)' ? "Data Dashboard" :
