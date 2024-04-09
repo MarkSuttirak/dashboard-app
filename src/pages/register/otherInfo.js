@@ -42,16 +42,12 @@ const OtherInfo = () => {
 
     const { mutate: registernow, isLoading } = useMutation((data) => partial.setupOauthAccount(data), {
         onSuccess: (res) => {
-                setToken(res.token);
-                //if ("inviteCode" in state) {
-                //    navigate(`/invite/${state.inviteCode}`);
-                //} else {
-                    if (formik.values.site) {
-                        navigate(`/dashboard/instance-configuration/?site=${formik.values.site}`);
-                    } else {
-                        navigate('/dashboard/instance-configuration');
-                    }
-                //}
+            setToken(res.token);
+            if ("inviteCode" in state) {
+                navigate(`/invite/${state.inviteCode}`);
+            } else {
+                navigate('/dashboard/instance-configuration');
+            }
         },
         onError: (err) => {
             setErrors(err.response.data._server_messages);
@@ -90,12 +86,12 @@ const OtherInfo = () => {
                     <RegisterStep active={1} />
                 </div>
                 <div className="flex flex-1 m-[30px] md:m-2 z-[999] basis-[20%] bg-white absolute md:relative register-screen">
-                    
+
                     <form
                         className="register-formbox"
                         onSubmit={formik.handleSubmit}
                     >
-                        
+
                         <div className="anim-up">
                             <h2 className="main-heading mt-10">{t('fill_info_title')}</h2>
                             <p className="subheading">{t('fill_info_desc')}</p>
@@ -103,11 +99,11 @@ const OtherInfo = () => {
                         <div className="anim-up">
                             <p className='error'>{errors}</p>
                         </div>
-                        
+
                         <div className={`space-y-4 mt-6 anim-up`}>
-                        
+
                             <div className="flex gap-x-3">
-                            
+
 
 
                                 <div>
@@ -149,11 +145,11 @@ const OtherInfo = () => {
                                     value={formik.values.email}
                                     placeholder="mail@example.com"
                                 />
-                               
+
                                 {formik.errors.email && (<p className="error">{formik.errors.email}</p>)}
                             </div>
 
-                           
+
                             <div>
                                 <div className='flex gap-x-2 text-sm mt-6'>
                                     <Checkbox id='agree' className='mt-1' />
@@ -167,10 +163,10 @@ const OtherInfo = () => {
                                     >{t('continue')}</Button>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                        </div >
+                    </form >
+                </div >
+            </div >
             <Transition.Root show={isLoading} as={Fragment}>
                 <Dialog as="div" className="relative z-[999]" onClose={() => { }}>
                     <Transition.Child

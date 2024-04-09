@@ -69,9 +69,9 @@ export default function Router() {
                 { path: 'settings/', element: <Settings /> },
                 { path: 'settings/:id', element: <Settings /> },
                 {
-                    path: 'teams', element: <Teams />, children: [
-                        { path: '/dashboard/teams', element: <Teams /> },
+                    path: 'teams', children: [
                         { path: 'invite/:inviteCode', element: <JoinTeam /> },
+                        { path: '/dashboard/teams', element: <Teams /> },
                         { path: ':id', element: <Teams /> }
                     ]
                 },
@@ -103,7 +103,7 @@ export default function Router() {
                 { path: 'appstore', element: <AppStore /> },
                 { path: 'appstore/:id', element: <SingleApp /> },
                 { path: 'app-category/:cate', element: <AppCategory /> },
-                { path: 'quota-detail/:app', element: <QuotaDetail />}
+                { path: 'quota-detail/:app', element: <QuotaDetail /> }
             ],
         },
         {
