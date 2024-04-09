@@ -31,7 +31,7 @@ const useChangeMenuActivities = (menu) => {
 
   const menuActivities = menu === 'สำหรับคุณ' ? [
     { title: 'สร้างและออกแบบเว็บไซต์', image: dashboardActivitiesImages.createWebsites, link:"https://apps.hosting.zaviago.com/builder" },
-    { title: 'ไวท์บอร์ด', image: dashboardActivitiesImages.whiteboardImg },
+    { title: 'ไวท์บอร์ด', image: dashboardActivitiesImages.whiteboardImg, link:"https://affine.zaviago.com/" },
     { title: 'Loyalty Program', image: dashboardActivitiesImages.loyaltyProgram, link:"https://apps.hosting.zaviago.com/app/loyalty-program" },
     { title: 'จัดการ LineOA', image: dashboardActivitiesImages.manageOA, link:"https://apps.hosting.zaviago.com/app/loyalty-program/new-loyalty-program" },
     { title: 'Project Management', image: dashboardActivitiesImages.projectManagementImg }
@@ -43,6 +43,7 @@ const useChangeMenuActivities = (menu) => {
     { title: 'เปิดคำสั่งซื้อใหม่', image: dashboardActivitiesImages.addOrders, link:"https://apps.hosting.zaviago.com/app/sales-invoice/new-sales-invoice" },
     { title: 'เช็คการแจ้งโอน', image: dashboardActivitiesImages.checkTransactions, link:"https://apps.hosting.zaviago.com/app/payment-entry" },
     { title: 'หมวดหมู่สินค้า', image: dashboardActivitiesImages.productCategories, link:"https://apps.hosting.zaviago.com/app/item-group" },
+    { title: 'POS', image: dashboardActivitiesImages.posImg }
   ] 
   : menu === 'ระบบข้อมูลลูกค้า' ? [
     { title: 'ข้อมูลลูกค้าทั้งหมดของคุณ', image: dashboardActivitiesImages.customerData, link:"https://apps.hosting.zaviago.com/app/customer" },

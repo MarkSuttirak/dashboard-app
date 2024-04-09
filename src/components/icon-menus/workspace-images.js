@@ -67,6 +67,7 @@ import uploadFiles from "src/img/dashboard-activities/upload-files.png"
 import newDocument from "src/img/dashboard-activities/new-document.png"
 import sharedWithMe from "src/img/dashboard-activities/shared-with-me.png"
 import myDrive from "src/img/dashboard-activities/my-drive.png"
+import posImg from "src/img/dashboard-activities/manage-pos.png"
 
 export const workspaceImages = {
   forYou, 
@@ -139,5 +140,6 @@ export const dashboardActivitiesImages = {
   uploadFiles,
   newDocument,
   sharedWithMe,
-  myDrive
+  myDrive,
+  posImg
 }

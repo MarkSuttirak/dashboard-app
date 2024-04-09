@@ -220,19 +220,19 @@ export default function Dashboard() {
 
       {/* <ManageBusinessBanner /> */}
       <DashboardVideo />
-      {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> */}
+      {/* <SetupBusiness sitename={(slug) => slug !== undefined && loginNow(slug)}/> 
       <section className="relative">
         <div className="flex mb-8 lg:mb-[132px] overflow-auto px-5 gap-x-5" id="team-menus">
           <DashboardTeam />
-          {/* <div style={{background:"linear-gradient(81.11deg, #F0F5FF -1.81%, #D9AEFD 75.87%)"}} className="min-w-[1100px] rounded-3xl flex justify-end">
+          <div style={{background:"linear-gradient(81.11deg, #F0F5FF -1.81%, #D9AEFD 75.87%)"}} className="min-w-[1100px] rounded-3xl flex justify-end">
             <img src={dashboardActivitiesImages.manageYourBusiness} className="h-full"/>
           </div>
 
-          <ScrollArrows id="team-menus"/> */}
+          <ScrollArrows id="team-menus"/>
         </div>
       </section>
 
-      <section className="px-5">
+      {/* <section className="px-5">
         <h2 className="secondary-heading">{t('discover_what_you_can_do')}</h2>
 
         <div className="mt-6 flex flex-col md:flex-row gap-x-[15px] gap-y-5">
@@ -240,7 +240,7 @@ export default function Dashboard() {
           <PostInfo title="วางแผนและจัดการงานของทีม" desc="วางแผนและจัดชีวิตให้ง่ายขึ้นด้วย เทมเพลต Projects Manager" comingSoon image={sellingOnline} imageStyle="px-5" onClick={() => window.open("/coming-soon", '_blank')} />
           <PostInfo title="เชื่อมต่อ Shopee & Lazada" desc="จัดการออเดอร์อย่างมีประสิทธิภาพด้วยการเชื่อมต่อกับช่องทางการขายหลากหลายแพลตฟอร์ม" buttonText="เชื่อมต่อช่องทางการขาย" image={connectMessage} imageStyle='pl-4 pb-4' onClick={() => window.open("/coming-soon", '_blank')} />
         </div>
-      </section>
+      </section> */}
     </div>
   )
 }

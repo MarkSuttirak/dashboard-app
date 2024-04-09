@@ -42,7 +42,7 @@ export default function DashboardVideo(){
   }
 
   return (
-    <section className="my-6 rounded-xl">
+    <section className="my-6 mx-auto rounded-xl max-w-[1280px] w-full">
       <div className="p-6 grid md:grid-cols-2 xl:grid-cols-3 gap-x-12">
         <iframe className="rounded-xl w-full h-[30vw] xl:col-span-2 rounded-3xl" src={videoSrc} frameborder="0" allowfullscreen title={videoTitle}/>
 
