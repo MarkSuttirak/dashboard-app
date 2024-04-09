@@ -12,7 +12,8 @@ import { SearchItem } from "../topbar/searchBar";
 import SidebarUpgrade from "./sidebarUpgrade";
 import { useTranslation } from "react-i18next";
 import SidebarWebsite from "./sidebarWebsite";
-import { workspaceImages } from "../icon-menus/workspace-images";
+import { workspaceImages, dashboardActivities } from "../icon-menus/workspace-images";
+import { Separator } from "../ui/separator";
 
 // import TeamModal from "../components/switchTeamModal";
 
@@ -89,16 +90,18 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   ]
 
   const workspaceApp = [
-    { name: t('workspace_buttons.manage_business'), icon: workspaceImages.manageBusiness, id: 'manage-business', onClick: () => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" }) }, // loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })
-    { name: t('workspace_buttons.blog_editor'), icon: workspaceImages.blogAndNews, id: 'builder', onClick: () => window.open('/coming-soon', '_blank') }, // window.open(`https://${sites?.site_list[0].name}/SpaBlogEditor`)
-    { name: 'CRM', icon: workspaceImages.customerDataSystem, onClick: () => window.open('https://www.zaviago.com/crm', '_self') },
-    { name: t('workspace_buttons.web_pages'), icon: workspaceImages.manageWebsite, id: 'websites', onClick: () => window.open('/coming-soon', '_blank') }, // window.open(`https://${sites?.site_list[0].name}/builder`)
-    { name: 'Projects Manager', icon: workspaceImages.projectManagement, onClick: () => window.open('/coming-soon', '_blank') },
-    { name: 'Line CRM', icon: workspaceImages.linecrm, onClick: () => window.open('/coming-soon', '_blank') },
-    { name: 'Canvas', icon: workspaceImages.graphicDesign, onClick: () => window.open('/coming-soon', '_blank') },
-    { name: 'WhiteBoard', icon: workspaceImages.whiteboard, onClick: () => window.open('/coming-soon', '_blank') },
-    { name: 'SalesTeam', icon: workspaceImages.salesteam, onClick: () => window.open('/coming-soon', '_blank') },
-    { name: 'HRSpace', icon: workspaceImages.hrspace, onClick: () => window.open('/coming-soon', '_blank') }
+    { name: t('workspace_buttons.manage_business'), icon: workspaceImages.manageBusiness, onClick: () => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" }) },
+    { name: 'ระบบข้อมูลลูกค้า', icon: workspaceImages.customerDataSystem, onClick: () => window.open('/coming-soon', '_blank')  },
+    { name: 'จัดการเว็บไซต์', icon: workspaceImages.manageWebsite, onClick: () => window.open('/coming-soon', '_blank') },
+    { name: 'ตามงานและดูโปรเจ็ค', icon: workspaceImages.projectManagement, onClick: () => window.open('/coming-soon', '_blank')  },
+    { name: 'รวมแชท', icon: workspaceImages.pos, onClick: () => window.open('/coming-soon', '_blank')  },
+    { name: 'WhiteBoard', icon: workspaceImages.whiteboard, onClick: () => window.open('/coming-soon', '_blank')  },
+    { name: 'SalesTeam', icon: workspaceImages.salesteam, onClick: () => window.open('/coming-soon', '_blank')  },
+    { name: 'HRSpace', icon: workspaceImages.hrspace, onClick: () => window.open('/coming-soon', '_blank')  },
+    { name: 'การตลาด', icon: workspaceImages.hrspace, onClick: () => window.open('/coming-soon', '_blank')  },
+    { name: 'Data (BI)', icon: workspaceImages.manageWebsite, onClick: () => window.open('/coming-soon', '_blank')  },
+    { name: 'Line CRM', icon: workspaceImages.linecrm, onClick: () => window.open('/coming-soon', '_blank')  },
+    { name: 'แคชเชียร์', icon: workspaceImages.pos, onClick: () => window.open('/coming-soon', '_blank')  },
   ]
 
   useEffect(() => {
@@ -157,8 +160,8 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
             <ChevronsLeft className="chevron-sidebar" viewBox="0 0 24 24" width='16' height='16' />
           </button> */}
 
-          <nav className="flex bg-white px-3 py-8 lg:py-5 justify-center flex-col gap-y-4" aria-label="Sidebar">
-            <section className="flex flex-col gap-y-3 lg:gap-y-0">
+          <nav className="flex bg-white py-7 justify-center flex-col gap-y-3" aria-label="Sidebar">
+            <section className="flex flex-col gap-y-3 lg:gap-y-0 px-3">
               {navigation.map((item) => (
                 <>
                   {item.href ? (
@@ -180,6 +183,8 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
                 </>
               ))}
             </section>
+
+            <Separator className='bg-[#F4F4F4]'/>
 
             {/* <section className="flex flex-col">
               <Button variant='ghost' className="text-[#797979] text-sm font-semibold tracking-[-0.35px] justify-between" onClick={() => setSellingMenus(!sellingMenus)}>
@@ -219,12 +224,12 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
               </Button>
             </section> */}
 
-            <section className="flex flex-col">
-              <h3 className="text-lightgray text-sm font-medium p-4">{t('menus.your_workspace')}</h3>
-              <div className="flex flex-col gap-y-4 lg:gap-y-0 ml-2">
+            <section className="flex flex-col px-4">
+              <h3 className="text-lightgray text-sm font-medium py-3">{t('menus.your_workspace')}</h3>
+              <div className="flex flex-col gap-y-4 lg:gap-y-1">
                 {workspaceApp.map((item) => (
                   <Button variant='ghost' onClick={item.onClick} className={`w-full flex justify-start gap-x-2 text-base lg:text-[13px] items-center leading-5`}>
-                    <img src={item.icon} className="h-5 w-5"/>
+                    <img src={item.icon} className="h-[19px] w-[19px]"/>
                     {item.name}
                   </Button>
                 ))}

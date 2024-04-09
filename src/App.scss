@@ -595,10 +595,13 @@ body {
   color:#394047;
   transition:border 150ms, box-shadow 150ms;
   gap:8px;
-  &:hover, &.active {
+  &:hover {
     color:#09090B;
     border: 1px solid #B67CFF;
     box-shadow: 0 0 6px 0 #7000FF54;
+  }
+  &.active {
+    border: 1px solid #B67CFF;
   }
 }
 

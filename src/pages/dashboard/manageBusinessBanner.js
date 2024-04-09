@@ -14,8 +14,8 @@ const ManageBusinessBanner = () => {
   ]
 
   return (
-    <section className="bg-[#F7F7F8] mb-8 rounded-xl mx-5 flex items-center">
-      <div className="flex flex-col gap-y-8 p-[7.5%]">
+    <section className="bg-[#F7F7F8] mb-8 rounded-3xl mx-5 flex items-center overflow-hidden">
+      <div className="flex flex-col gap-y-8 p-[5.5%]">
         <div className="flex items-center gap-x-5">
           {icons.map(icon => <img src={icon} className="w-5 h-5"/>)}
         </div>
