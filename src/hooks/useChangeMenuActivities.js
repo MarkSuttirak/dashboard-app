@@ -37,33 +37,33 @@ const useChangeMenuActivities = (menu) => {
   ] 
   : menu === t('workspace_buttons.manage_business') ? [
     { title: 'จัดการสินค้าของคุณ', image: dashboardActivitiesImages.manageProducts, link:"https://apps.hosting.zaviago.com/app/item" },
-    { title: 'เพิ่มสินค้าใหม่', image: dashboardActivitiesImages.addProducts, link:"https://apps.hosting.zaviago.com/app/item/new-item-bwetebxyis" },
+    { title: 'เพิ่มสินค้าใหม่', image: dashboardActivitiesImages.addProducts, link:"https://apps.hosting.zaviago.com/app/item/new-item" },
     { title: 'จัดการคำสั่งซื้อ', image: dashboardActivitiesImages.manageOrders, link:"https://apps.hosting.zaviago.com/app/sales-invoice" },
-    { title: 'เปิดคำสั่งซื้อใหม่', image: dashboardActivitiesImages.addOrders, link:"https://apps.hosting.zaviago.com/app/sales-invoice/new-sales-invoice-oxxryhfmpw" },
+    { title: 'เปิดคำสั่งซื้อใหม่', image: dashboardActivitiesImages.addOrders, link:"https://apps.hosting.zaviago.com/app/sales-invoice/new-sales-invoice" },
     { title: 'เช็คการแจ้งโอน', image: dashboardActivitiesImages.checkTransactions, link:"https://apps.hosting.zaviago.com/app/payment-entry" },
     { title: 'หมวดหมู่สินค้า', image: dashboardActivitiesImages.productCategories, link:"https://apps.hosting.zaviago.com/app/item-group" },
   ] 
   : menu === 'ระบบข้อมูลลูกค้า' ? [
     { title: 'ข้อมูลลูกค้าทั้งหมดของคุณ', image: dashboardActivitiesImages.customerData, link:"https://apps.hosting.zaviago.com/app/customer" },
-    { title: 'เพิ่มลูกค้าใหม่', image: dashboardActivitiesImages.addCustomers },
+    { title: 'เพิ่มลูกค้าใหม่', image: dashboardActivitiesImages.addCustomers, link:"https://apps.hosting.zaviago.com/app/customer/new-customer" },
     { title: 'ตั้งค่ากลุ่มลูกค้า', image: dashboardActivitiesImages.setCustomerGroups, link:"https://apps.hosting.zaviago.com/app/customer-group" },
   ] 
   : menu === 'จัดการเว็บไซต์' ? [
-    { title: 'เพจต่างๆในเว็บไซต์ของคุณ', image: dashboardActivitiesImages.yourPages },
-    { title: 'สร้างเพจใหม่', image: dashboardActivitiesImages.newPage },
-    { title: 'บล็อกและบทความทั้งหมด', image: dashboardActivitiesImages.allBlogs },
+    { title: 'เพจต่างๆในเว็บไซต์ของคุณ', image: dashboardActivitiesImages.yourPages, link:"https://apps.hosting.zaviago.com/builder" },
+    { title: 'สร้างเพจใหม่', image: dashboardActivitiesImages.newPage, link:"https://apps.hosting.zaviago.com/builder/page/new" },
+    { title: 'บล็อกและบทความทั้งหมด', image: dashboardActivitiesImages.allBlogs, link:"https://ghost.zaviago.com/ghost/#/posts" },
   ]
   : menu === 'Line CRM' ? [
     { title: 'Loyalty Program', image: dashboardActivitiesImages.loyaltyProgramTwo, link:"https://apps.hosting.zaviago.com/app/loyalty-program" },
-    { title: 'ของรางวัล', image: dashboardActivitiesImages.rewards },
-    { title: 'ระดับลูกค้า', image: dashboardActivitiesImages.customerLevels },
+    { title: 'ของรางวัล', image: dashboardActivitiesImages.rewards, link:"https://apps.hosting.zaviago.com/app/item" },
+    { title: 'ระดับลูกค้า', image: dashboardActivitiesImages.customerLevels, link:"https://apps.hosting.zaviago.com/app/loyalty-program" },
     { title: 'การแลกซื้อผ่านแต้ม', image: dashboardActivitiesImages.pointPurchase },
   ]
   : menu === 'การตลาด' ? [
-    { title: 'สร้างโค้ดส่วนลด', image: dashboardActivitiesImages.addDiscounts, link:"https://apps.hosting.zaviago.com/app/coupon-code/new-coupon-code-tldgomkioi" },
+    { title: 'สร้างโค้ดส่วนลด', image: dashboardActivitiesImages.addDiscounts, link:"https://apps.hosting.zaviago.com/app/coupon-code" },
     { title: 'สร้าง Bundle Deal', image: dashboardActivitiesImages.bundleDeal, link:"https://apps.hosting.zaviago.com/app/product-bundle" },
     { title: 'สร้าง Add-on Deal', image: dashboardActivitiesImages.addOnDeal, link:"https://apps.hosting.zaviago.com/app/pricing-rule" },
-    { title: 'สร้าง Flash Sale', image: dashboardActivitiesImages.flashSale },
+    { title: 'สร้าง Flash Sale', image: dashboardActivitiesImages.flashSale, link:"https://apps.hosting.zaviago.com/app/pricing-rule" },
   ]
   : menu === 'WhiteBoard' ? [
     { title: 'ดูไวท์บอร์ดทั้งหมดของคุณ', image: dashboardActivitiesImages.allWhiteboards },
@@ -76,19 +76,19 @@ const useChangeMenuActivities = (menu) => {
     { title: 'การขอลางานของพนักงาน', image: dashboardActivitiesImages.employeeLeaves },
   ]
   : menu === 'Data (BI)' ? [
-    { title: 'วิเคราะห์การขาย', image: dashboardActivitiesImages.salesAnalysis },
-    { title: 'วิเคราะห์ลูกค้า', image: dashboardActivitiesImages.customerAnalysis, link:"https://apps.hosting.zaviago.com/app/coupon-code/new-coupon-code-tldgomkioi" },
-    { title: 'Data Dashboard ทั้งหมด', image: dashboardActivitiesImages.allDashboardData, link:"https://apps.hosting.zaviago.com/app/product-bundle" },
-    { title: 'Data Notebook', image: dashboardActivitiesImages.yourReportDoc, link:"https://apps.hosting.zaviago.com/app/pricing-rule" },
-    { title: 'สร้าง Data Dashboard ใหม่', image: dashboardActivitiesImages.newDataDashboard },
-    { title: 'สร้าง Data Query', image: dashboardActivitiesImages.newDataQuery },
+    { title: 'Dashboard วิเคราะห์การขาย', image: dashboardActivitiesImages.salesAnalysis, link:"https://apps.hosting.zaviago.com/insights/dashboard/DSH-0003" },
+    { title: 'Dashboard วิเคราะห์ลูกค้า', image: dashboardActivitiesImages.customerAnalysis, link:"https://apps.hosting.zaviago.com/app/coupon-code/new-coupon-code-tldgomkioi" },
+    { title: 'Data Dashboard ทั้งหมด', image: dashboardActivitiesImages.allDashboardData, link:"https://apps.hosting.zaviago.com/insights/dashboard" },
+    { title: 'Data Notebook', image: dashboardActivitiesImages.yourReportDoc, link:"https://apps.hosting.zaviago.com/insights/notebook" },
+    { title: 'สร้าง Data Dashboard ใหม่', image: dashboardActivitiesImages.newDataDashboard, link:"https://apps.hosting.zaviago.com/insights/dashboard" },
+    { title: 'สร้าง Data Query', image: dashboardActivitiesImages.newDataQuery, link:"https://apps.hosting.zaviago.com/insights/query" },
   ]
   : menu === 'รวมแชท' ? [
-    { title: 'Chat and Inboxes', image: dashboardActivitiesImages.chatAndInboxes, link:"https://apps.hosting.zaviago.com/app/loyalty-program" },
-    { title: 'เพิ่มและจัดการ แอดมินตอบแชท', image: dashboardActivitiesImages.addManageAdmin },
-    { title: 'จัดการทีมแอดมิน ของ Inbox ต่างๆ', image: dashboardActivitiesImages.manageAdminTeam },
-    { title: 'จัดการแท็กต่างๆของแชท', image: dashboardActivitiesImages.manageTags },
-    { title: 'รีพอร์ตการตอบแชท', image: dashboardActivitiesImages.chatReports },
+    { title: 'Chat and Inboxes', image: dashboardActivitiesImages.chatAndInboxes, link:"https://chat.zaviago.com/app/accounts/6/dashboard" },
+    { title: 'เพิ่มและจัดการ แอดมินตอบแชท', image: dashboardActivitiesImages.addManageAdmin, link:"https://chat.zaviago.com/app/accounts/6/settings/agents/list" },
+    { title: 'จัดการทีมแอดมิน ของ Inbox ต่างๆ', image: dashboardActivitiesImages.manageAdminTeam, link:"https://chat.zaviago.com/app/accounts/6/settings/teams/list" },
+    { title: 'จัดการแท็กต่างๆของแชท', image: dashboardActivitiesImages.manageTags, link:"https://chat.zaviago.com/app/accounts/6/settings/labels/list" },
+    { title: 'รีพอร์ตการตอบแชท', image: dashboardActivitiesImages.chatReports, link:"https://chat.zaviago.com/app/accounts/6/reports/overview" },
   ]
   : []
 
