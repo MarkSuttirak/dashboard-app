@@ -28,7 +28,7 @@ export default function Dashboard() {
     title: "สำหรับคุณ",
     isChanging: false
   })
-  const { menuActivities, workspaceMenus, actionMenus, activitiesTitle } = useChangeMenuActivities(menuActivity.title)
+  const { menuActivities, workspaceMenus, activitiesTitle } = useChangeMenuActivities(menuActivity.title)
 
   const handleChangeActivities = (title) => {
     setMenuActivity(act => ({...act, isChanging: true}))
@@ -198,7 +198,7 @@ export default function Dashboard() {
           </section>
         }
 
-        {actionMenus.length > 0 && 
+        {/* {actionMenus.length > 0 && 
           <section className="my-12">
             <div className="grid grid-cols-3 gap-4 px-5">
               {actionMenus.map((n, index) => (
@@ -215,7 +215,7 @@ export default function Dashboard() {
               ))}
             </div>
           </section>
-        }
+        } */}
       </section>
 
       <ManageBusinessBanner />

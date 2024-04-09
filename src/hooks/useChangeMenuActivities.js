@@ -31,8 +31,8 @@ const useChangeMenuActivities = (menu) => {
   const menuActivities = menu === 'สำหรับคุณ' ? [
     { title: 'สร้างและออกแบบเว็บไซต์', image: dashboardActivitiesImages.createWebsites },
     { title: 'ไวท์บอร์ด', image: dashboardActivitiesImages.whiteboardImg },
-    { title: 'Loyalty Program', image: dashboardActivitiesImages.loyaltyProgram },
-    { title: 'จัดการ LineOA', image: dashboardActivitiesImages.manageOA },
+    { title: 'Loyalty Program', image: dashboardActivitiesImages.loyaltyProgram, link:"https://apps.hosting.zaviago.com/app/loyalty-program" },
+    { title: 'จัดการ LineOA', image: dashboardActivitiesImages.manageOA, link:"https://apps.hosting.zaviago.com/app/loyalty-program/new-loyalty-program" },
     { title: 'Project Management', image: dashboardActivitiesImages.projectManagementImg }
   ] 
   : menu === t('workspace_buttons.manage_business') ? [
