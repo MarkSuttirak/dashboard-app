@@ -52,7 +52,7 @@ export default function DeleteAppModal({status, setStatus, title}){
                     <label className="subheading mb-2 font-medium">
                       {t('delete_app.why_delete')} <span className="required">*</span>
                     </label>
-                    <Select className='form-input' name="reason-to-delete" defaultValue={reasons[0]}>
+                    <Select name="reason-to-delete" defaultValue={reasons[0]}>
                       <SelectTrigger className="w-full">
                         <SelectValue defaultValue={reasons[0]} />
                       </SelectTrigger>
@@ -67,7 +67,7 @@ export default function DeleteAppModal({status, setStatus, title}){
                     <label className="subheading mb-2 font-medium">
                       {t('delete_app.details')}
                     </label>
-                    <Textarea className='form-input' name="reason-to-delete" placeholder={t('delete_app.tell_us')}/>
+                    <Textarea name="reason-to-delete" placeholder={t('delete_app.tell_us')}/>
                   </div>
                 </div>
 

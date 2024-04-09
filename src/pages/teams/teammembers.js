@@ -13,6 +13,7 @@ import { Checkbox } from "src/components/ui/checkbox";
 import { useUser } from "src/hooks/useUser";
 import Loading from "src/components/ui/loading";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "src/components/ui/dialog"
+
 import { useTranslation } from "react-i18next";
 
 export default function TeamMembers(){
@@ -57,13 +58,13 @@ export default function TeamMembers(){
             <AvatarFallback>{firstname[0]}{lastname[0]}</AvatarFallback>
           </Avatar>
           <div>
-            <p className="text-sm font-medium leading-none">{firstname}{" "}{lastname}</p>
-            <p className="text-sm text-muted-foreground mt-[2px]">{email}</p>
+            <p className="text-xs md:text-sm font-medium leading-none">{firstname}{" "}{lastname}</p>
+            <p className="text-[10px] md:text-sm text-muted-foreground mt-[2px]">{email}</p>
           </div>
         </div>
         <Popover>
           <PopoverTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button variant="secondary" className="m-0 lg:ml-auto">
               {role}{" "}
               <ChevronDownIcon className="ml-2 h-4 w-4 text-muted-foreground" />
             </Button>
@@ -88,7 +89,7 @@ export default function TeamMembers(){
                       <DialogTrigger className="flex items-start gap-x-4 text-start">
                         <EyeNoneIcon className="mt-1"/>
                         <div className="flex flex-col">
-                          <h3 className="subheading font-medium">{t('remove')}</h3>
+                          <h3 className="subheading">{t('remove')}</h3>
                           <p className="text-sm text-muted-foreground">
                             {t('teams.remove_desc')}
                           </p>
@@ -100,7 +101,7 @@ export default function TeamMembers(){
                           <DialogDescription>
                             {t('teams.remove_team.desc')}
                           </DialogDescription>
-                          <DialogFooter>
+                          <DialogFooter className="!mt-8">
                             <DialogClose>
                               <Button variant='outline'>{t('cancel')}</Button>
                             </DialogClose>
@@ -121,67 +122,69 @@ export default function TeamMembers(){
   return (
     <div>
       <h1 className="subheading font-medium">{t('teams.people_with_access')}</h1>
-      <div className="mt-[10px] flex gap-x-2">
-        <Input className='max-w-[300px]' placeholder={t('teams.search_user')} value={search} onChange={(e) => setSearch(e.target.value)}/>
-        <Popover>
-          <PopoverTrigger>
-            <Button variant='outline' className='border border-dashed flex items-center gap-x-2'>
-              <div className="flex items-center gap-x-2">
-                <PlusCircle viewBox='0 0 24 24' width='16' height='16'/>
-                {t('teams.role')}
+      <div className="mt-[10px] flex flex-col md:flex-row gap-2">
+        <Input className='w-full md:max-w-[300px]' placeholder={t('teams.search_user')} value={search} onChange={(e) => setSearch(e.target.value)}/>
+        <div className="flex items-center gap-x-2">
+          <Popover>
+            <PopoverTrigger>
+              <Button variant='outline' className='border border-dashed flex items-center gap-x-2'>
+                <div className="flex items-center gap-x-2">
+                  <PlusCircle viewBox='0 0 24 24' width='16' height='16'/>
+                  {t('teams.role')}
+                </div>
+                {checkedFilter.length > 0 && (
+                  <>
+                    <DrawLine color='#E4E4E7' height="80%" width="1px"/>
+                    {checkedFilter.length < 3 ? (
+                      <>
+                        {checkedFilter.map(c => (
+                          <Badge variant="secondary" className='rounded-md'>{c}</Badge>
+                        ))}
+                      </>
+                    ) : (
+                      <Badge variant="secondary" className='rounded-md'>{checkedFilter.length} selected</Badge>
+                    )}
+                  </>
+                )}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className='w-[200px] p-0 fixed -left-[54px]'>
+              <div className="p-1">
+                {userRoles.map(option => (
+                  <div className="flex items-center justify-between px-2 py-[6px]">
+                    <div className="flex items-center gap-x-2">
+                      <Checkbox id={`filter-${option.role}`} checked={checkedFilter.includes(option.role)} onCheckedChange={() => handleCheckFilter(option.role)}/>
+                      <label htmlFor={`filter-${option.role}`} className="subheading">{option.role}</label>
+                    </div>
+                    {/* <span className="text-xs">{allMembers.filter(item => item.role === option.role).length}</span> */}
+                  </div>
+                ))}
               </div>
+
               {checkedFilter.length > 0 && (
                 <>
-                  <DrawLine color='#E4E4E7' height="80%" width="1px"/>
-                  {checkedFilter.length < 3 ? (
-                    <>
-                      {checkedFilter.map(c => (
-                        <Badge variant="secondary" className='rounded-md'>{c}</Badge>
-                      ))}
-                    </>
-                  ) : (
-                    <Badge variant="secondary" className='rounded-md'>{checkedFilter.length} selected</Badge>
-                  )}
+                  <DrawLine width='100%' height='1px' color='#E4E4E7'/>
+                  <div className="p-1">
+                    <Button className='w-full font-normal' variant='ghost' onClick={() => setCheckedFilter([])}>{t('teams.clear_filters')}</Button>
+                  </div>
                 </>
               )}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className='w-[200px] p-0'>
-            <div className="p-1">
-              {userRoles.map(option => (
-                <div className="flex items-center justify-between px-2 py-[6px]">
-                  <div className="flex items-center gap-x-2">
-                    <Checkbox id={`filter-${option.role}`} checked={checkedFilter.includes(option.role)} onCheckedChange={() => handleCheckFilter(option.role)}/>
-                    <label htmlFor={`filter-${option.role}`} className="subheading">{option.role}</label>
-                  </div>
-                  {/* <span className="text-xs">{allMembers.filter(item => item.role === option.role).length}</span> */}
-                </div>
-              ))}
-            </div>
-
-            {checkedFilter.length > 0 && (
-              <>
-                <DrawLine width='100%' height='1px' color='#E4E4E7'/>
-                <div className="p-1">
-                  <Button className='w-full font-normal' variant='ghost' onClick={() => setCheckedFilter([])}>{t('teams.clear_filters')}</Button>
-                </div>
-              </>
-            )}
-          </PopoverContent>
-        </Popover>
-        <Button variant='ghost' className={`flex items-center gap-x-2 ${search !== '' || checkedFilter.length > 0 ? 'visible opacity-1' : 'invisible opacity-0'} transition duration-200`} onClick={() => {setSearch('');setCheckedFilter([])}}> 
-          {t('reset')}
-          <X viewBox="0 0 24 24" width='16' height='16'/>
-        </Button>
+            </PopoverContent>
+          </Popover>
+          <Button variant='ghost' className={`flex items-center gap-x-2 ${search !== '' || checkedFilter.length > 0 ? 'visible opacity-1' : 'invisible opacity-0'} transition duration-200`} onClick={() => {setSearch('');setCheckedFilter([])}}> 
+            {t('reset')}
+            <X viewBox="0 0 24 24" width='16' height='16'/>
+          </Button>
+        </div>
       </div>
 
-      <div className="flex flex-col gap-y-6 my-6">
+      <div className="flex flex-col gap-y-6 mt-8 mb-9 lg:my-6">
         {/* <DataList pagination={filteredMembers.length > 6 ? true : false} listPerPage={6} emptyText="There is no member you are looking for.">
           {filteredMembers.map(t => (
             <TeamCard firstname={t.first_name} lastname={t.last_name} role={t.roles[0]} email={t.name}/>
           ))}
         </DataList> */}
-        <DataList listPerPage={6} emptyText="There is no member you are looking for.">
+        <DataList listPerPage={6} emptyText={t("teams.no_members")}>
           {allMembers?.map(t => (
             <TeamCard firstname={t.first_name} lastname={t.last_name} role={t.roles[0]} email={t.name}/>
           )) || <Loading />}

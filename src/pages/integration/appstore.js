@@ -95,7 +95,7 @@ export default function AppStore(){
   ]
 
   return (
-    <div className="dashboard-container">
+    <div className="page-container">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="main-heading tracking-[-0.6px]">App Store</h1>

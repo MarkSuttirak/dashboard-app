@@ -36,9 +36,26 @@ export default function Welcome() {
     }, 500);
   }
 
+  const RecomService = ({icon, text}) => {
+    return (
+      <div className="rounded-full py-1.5 px-2 border border-white/50 bg-white/20 text-[13px] inline-flex items-center gap-x-2">
+        {icon}
+        {text}
+      </div>
+    )
+  }
+
+  const recommendedServices = [
+    { text:"LINE CRM", icon:<Icons.lineOALogin /> },
+    { text:"ระบบสร้างเว็บไซต์", icon:<Icons.builderOnLogin />},
+    { text:"ร้านค้าออนไลน์", icon:<Icons.onlineStoreOnLogin />},
+    { text:"ระบบสะสมแต้ม", icon:<Icons.pointAndRewardOnLogin />},
+    { text:"เชื่อมต่อ Marketplace", icon:<Icons.marketplaceOnLogin />}
+  ]
+
   return (
     <div className="flex min-h-screen z-[999] relative bg-white">
-      <div className="flex flex-1 justify-center">
+      <div className="flex w-full md:w-[40%] justify-center">
         <div className="inline-flex gap-x-2 absolute top-4 left-4">
           {Object.keys(lngs).map((lng) => (
             <button
@@ -151,14 +168,32 @@ export default function Welcome() {
           </div>
         )}
       </div>
-      <div className="relative hidden w-0 flex-1 m-[30px] md:block">
+      <div className="relative hidden md:w-[60%] m-[30px] md:block">
         <img
           className="absolute inset-0 h-full w-full object-cover rounded-[30px]"
           src={loginImg}
           alt="login-image"
         />
-        <div className="absolute top-10 right-10 fade-in">
-          <Icons.zaviagoTransparent />
+
+        <div className="text-white absolute bottom-0 p-10 fade-in grid grid-cols-1 xl:grid-cols-2 gap-y-10 justify-between items-end">
+
+          <div className="flex flex-col gap-y-3">
+            <h2 className="text-2xl xl:text-3xl font-semibold">"<br/>เพราะเราต้องการให้ทุกคนเข้าถึงเทคโนโลยีได้ง่าย โดยที่ไม่จำเป็นต้องเสียเงินมากมายมหาศาลเพื่อเข้าถึงมัน<br/>"</h2>
+            <div>
+              <p className="text-base">Vision and Mission of Zaviago</p>
+              <p className="text-sm">John Persson, CEO and Founder of Zaviago</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col xl:items-end gap-y-3">
+            <h3 className="text-base xl:text-right">Recommended services</h3>
+            <div className="flex xl:justify-end gap-x-1 gap-y-1.5 flex-wrap">
+              {recommendedServices.map(service => (
+                <RecomService icon={service.icon} text={service.text}/>
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

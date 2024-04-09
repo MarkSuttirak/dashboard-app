@@ -36,11 +36,10 @@ export default function PaymentForm(){
   }
 
   return (
-    <section className="w-full h-screen p-[60px] overflow-auto" style={{boxShadow:"-20px 0px 30px -4px rgba(0, 0, 0, 0.04)"}}>
+    <section className="w-full md:h-screen p-5 md:p-[30px] lg:p-[60px] overflow-auto payment-form">
+      <Separator className='mb-6 md:hidden'/>
       <h2 className="secondary-heading">{t('billing_info')}</h2>
       <p className="main-desc">{t('billing_info_desc')}</p>
-
-      <Separator className='my-6'/>
 
       <BillingAddressForm onSubmitForm={() => onPaymentSubmit()} submitText={(<>
         <Wallet color='#FFF' viewBox='0 0 24 24' height='16' width='16'/>

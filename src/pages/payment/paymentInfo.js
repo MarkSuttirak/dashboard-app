@@ -13,6 +13,7 @@ import { site } from "../../client/api";
 import { useUser } from "../../hooks/useUser";
 import { useParams } from "react-router"
 import { useTranslation } from "react-i18next";
+import PaymentMobileSheet from "./paymentMobileSheet";
 
 export default function PaymentInfo(){
   const { t } = useTranslation()
@@ -32,9 +33,7 @@ export default function PaymentInfo(){
     enabled: !!user,
   });
 
-
   const checkout_info = useQuery('checkout_info', () => site.get_app_plans(app), {enabled: !!user});
-
 
   useEffect(() => {
     if (user && sites?.site_list[0]?.name && !checkout_info.data) {
@@ -43,9 +42,6 @@ export default function PaymentInfo(){
   }, [user, sites,checkout_info]);
 
   const plan_details = checkout_info?.data && checkout_info?.data.find(item => item.name === id);
-
-  
-
   
   if(!subtotal){
     if(plan_details?.price_usd){
@@ -53,9 +49,7 @@ export default function PaymentInfo(){
     }
   }
 
-
   const vat = Math.floor(subtotal * 0.07)
-
 
   const setCoupon = (coupon) => {
     setPromoAdded(true);
@@ -89,23 +83,9 @@ export default function PaymentInfo(){
     setDiscount(0)
   }
 
-  return (
-    <section className="w-full pt-[60px]">
-      <div className="flex items-center gap-x-3">
-        <Link to='/'>
-          <ArrowLeft />
-        </Link>
-        <h1 className="main-heading">{t('payment.title')}</h1>
-      </div>
-      <section className="py-10 px-5">
-        <h2 className="main-desc font-medium">Subscribe to {app}</h2>
-        <div className="mt-3 mb-10 flex gap-x-[10px] items-center">
-          <h1 className="text-[40px] text-primary font-bold tracking-[-1px] font-inter">฿ {total()}</h1>
-          <div>
-            <p className="main-desc">{t('payment.per')}</p>
-            <p className="main-desc">{t('payment.month')}</p>
-          </div>
-        </div>
+  const ProductInfo = () => {
+    return (
+      <>
         <Card className='p-0 shadow-none'>
           <CardHeader className='flex flex-row justify-between px-3 py-6'>
             <div className="flex gap-x-3 items-center">
@@ -121,7 +101,7 @@ export default function PaymentInfo(){
 
         <Separator className='my-6'/>
 
-        <table className="w-[calc(100%_-_74px)] relative left-[74px]">
+        <table className="w-full md:w-[calc(100%_-_74px)] relative md:left-[74px]">
           <thead>
             <tr className="text-left subheading">
               <th className="font-medium">{t('payment.subtotal')}</th>
@@ -168,12 +148,44 @@ export default function PaymentInfo(){
 
         <Separator className='my-6'/>
 
-        <table className="w-[calc(100%_-_74px)] relative left-[74px]">
+        <table className="w-full md:w-[calc(100%_-_74px)] relative md:left-[74px]">
           <tr className="text-left subheading">
             <th className="font-bold">Total</th>
             <th className="text-right font-bold font-inter">฿ {total()}</th>
           </tr>
         </table>
+      </>
+    )
+  }
+
+  return (
+    <section className="w-full pt-5 md:pt-[60px]">
+      <div className="flex items-center justify-between px-5 lg:px-0">
+        <div className="flex items-center gap-x-3">
+          <Link to='/'>
+            <ArrowLeft />
+          </Link>
+          <h1 className="main-heading">{t('payment.title')}</h1>
+        </div>
+        <div className="md:hidden">
+          <PaymentMobileSheet>
+            <ProductInfo />
+          </PaymentMobileSheet>
+        </div>
+      </div>
+      <section className="pt-10 pb-0 md:py-10 px-5">
+        <h2 className="main-desc text-center md:text-left">Subscribe to {app}</h2>
+        <div className="mt-3 md:mb-10 flex flex-col md:flex-row gap-x-[10px] items-center justify-center md:justify-start">
+          <h1 className="text-[40px] text-primary font-bold tracking-[-1px] font-inter">฿ {total()}</h1>
+          <div className="flex gap-x-1 md:flex-col">
+            <p className="main-desc">{t('payment.per')}</p>
+            <p className="main-desc">{t('payment.month')}</p>
+          </div>
+        </div>
+
+        <div className="hidden md:block">
+          <ProductInfo />
+        </div>
       </section>
     </section>
   )

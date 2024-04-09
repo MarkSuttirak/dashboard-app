@@ -21,8 +21,8 @@ export default function CheckoutScan({verifiedPayment}){
   }
 
   return (
-    <section className="w-full pt-[60px]">
-      <div className="flex items-center gap-x-3 px-6">
+    <section className="w-full pt-5 md:pt-[60px]">
+      <div className="flex items-center gap-x-3 px-5">
         {!verifiedPayment ? (
           <Link to={-1}>
             <ArrowLeft />
@@ -30,7 +30,7 @@ export default function CheckoutScan({verifiedPayment}){
         ) : null}
         <h1 className="main-heading">{t('payment.title')}</h1>
       </div>
-      <div className="p-6 md:p-10 mt-10">
+      <div className="p-6 md:p-10 md:mt-10">
         <div className="flex gap-x-4 items-center justify-center mb-6">
           <img src={thaiqrpayment} className="w-fit"/>
           <div>

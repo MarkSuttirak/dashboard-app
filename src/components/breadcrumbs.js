@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { appList } from "./apps/appList";
 import { useTranslation } from "react-i18next";
+import { QuotaAppName } from "src/pages/integration/quotaDetail";
 
 export default function Breadcrumbs(){
   const { t } = useTranslation()
@@ -10,14 +11,32 @@ export default function Breadcrumbs(){
   const [currentPage, setCurrentPage] = useState(location.pathname);
   const [breadcrumbList, setBreadcrumbList] = useState([]);
 
+  const mobileLink = {
+    settings: window.innerWidth > 1024 ? '/dashboard/settings/account' : '/dashboard/settings',
+    teams: window.innerWidth > 1024 ? '/dashboard/teams/members' : '/dashboard/teams',
+    integration: window.innerWidth > 1024 ? '/integration/manage-apps' : '/integration'
+  }
+
   const breadcrumbMap = {
+    '/integration': [
+      { link: '/integration', title: t('menus.integration') },
+    ],
     '/integration/manage-apps': [
-      { link: '/integration/manage-apps', title: t('menus.integration') },
+      { link: mobileLink.integration, title: t('menus.integration') },
       { link: null, title: t('integration.manage_apps') },
     ],
     '/integration/upgrade-apps': [
-      { link: '/integration/manage-apps', title: t('menus.integration') },
+      { link: mobileLink.integration, title: t('menus.integration') },
       { link: null, title: t('integration.upgrade_apps') },
+    ],
+    '/integration/apps-quota': [
+      { link: mobileLink.integration, title: t('menus.integration') },
+      { link: null, title: "Apps Quota" },
+    ],
+    [`/integration/quota-detail/${QuotaAppName()}`]: [
+      { link: mobileLink.integration, title: t('menus.integration') },
+      { link: '/integration/apps-quota', title: "Apps Quota" },
+      { link: null, title: QuotaAppName()}
     ],
     '/integration/appstore': [
       { link: null, title: 'App Store' },
@@ -25,13 +44,27 @@ export default function Breadcrumbs(){
     '/dashboard/compare-plan': [
       { link: null, title: 'Compare Plan' },
     ],
+    '/dashboard/settings': [
+      { link: '/dashboard/settings', title: t('menus.settings') }
+    ],
     '/dashboard/settings/account': [
-      { link: '/dashboard/settings/account', title: t('menus.settings') },
+      { link: mobileLink.settings, title: t('menus.settings') },
       { link: null, title: t('settings.account') },
     ],
     '/dashboard/settings/billing-plans': [
-      { link: '/dashboard/settings/account', title: t('menus.settings') },
+      { link: mobileLink.settings, title: t('menus.settings') },
       { link: null, title: t('settings.billing_plans') },
+    ],
+    '/dashboard/teams': [
+      { link: '/dashboard/teams', title: t('menus.teams') }
+    ],
+    '/dashboard/teams/members': [
+      { link: mobileLink.teams, title: t('menus.teams') },
+      { link: null, title: t('teams.teammembers') },
+    ],
+    '/dashboard/teams/my-teams': [
+      { link: mobileLink.teams, title: t('menus.teams') },
+      { link: null, title: t('teams.my_teams') },
     ],
     ...appList.reduce((acc, app) => {
       acc[`/integration/appstore/${app.id}`] = [
@@ -50,18 +83,25 @@ export default function Breadcrumbs(){
   }, [currentPage]);
 
   return (
-    <div className="flex items-center gap-x-2">
-      <Link to='/'>
-        <h2 className='subheading'>{t('menus.dashboard')}</h2>
-      </Link>
-      {breadcrumbList.map(p => (
-        <>
-          <h2 className='subheading font-medium'>/</h2>
-          <Link to={p.link}>
-            <h2 className='subheading font-medium'>{p.title}</h2>
+    <>
+      <div className="flex items-center gap-x-2 text-secondary md:text-primary">
+        <div className="hidden lg:flex items-center gap-x-2">
+          <Link to='/'>
+            <h2 className='subheading'>{t('menus.dashboard')}</h2>
           </Link>
-        </>
-      ))}
-    </div>
+
+          {breadcrumbList.length > 0 ? <h2 className='subheading'>/</h2> : null}
+        </div>
+
+        {breadcrumbList.map((p, index) => (
+          <div key={index} className="flex items-center gap-x-2">
+            {index !== 0 && <h2 className='text-secondary lg:text-primary text-base lg:text-sm'>/</h2>}
+            <Link to={p.link}>
+              <h2 className='text-secondary lg:text-primary text-base lg:text-sm'>{p.title}</h2>
+            </Link>
+          </div>
+        ))}
+      </div>
+    </>
   )
 }

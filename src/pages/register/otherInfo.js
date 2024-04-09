@@ -37,6 +37,7 @@ const OtherInfo = () => {
     const [otherInfo, setOtherInfo] = useState({
         key,
     });
+    const [errors, setErrors] = useState("")
     const [siteError, setSiteError] = useState(false);
 
     const { mutate: registernow, isLoading } = useMutation((data) => partial.setupOauthAccount(data), {
@@ -48,6 +49,10 @@ const OtherInfo = () => {
                 navigate('/dashboard/instance-configuration');
             }
         },
+        onError: (err) => {
+            setErrors(err.response.data._server_messages);
+        }
+
     });
 
     const mailingLists = [
@@ -81,15 +86,22 @@ const OtherInfo = () => {
                     <RegisterStep active={1} />
                 </div>
                 <div className="flex flex-1 m-[30px] md:m-2 z-[999] basis-[20%] bg-white absolute md:relative register-screen">
+
                     <form
                         className="register-formbox"
                         onSubmit={formik.handleSubmit}
                     >
+
                         <div className="anim-up">
                             <h2 className="main-heading mt-10">{t('fill_info_title')}</h2>
                             <p className="subheading">{t('fill_info_desc')}</p>
                         </div>
+                        <div className="anim-up">
+                            <p className='error'>{errors}</p>
+                        </div>
+
                         <div className={`space-y-4 mt-6 anim-up`}>
+
                             <div className="flex gap-x-3">
 
 
@@ -97,7 +109,6 @@ const OtherInfo = () => {
                                 <div>
                                     <label htmlFor='first_name' className="subheading mb-2 font-medium">{t('first_name')}</label>
                                     <Input
-                                        className="form-input"
                                         placeholder={t('first_name')}
                                         name="first_name"
                                         onChange={formik.handleChange}
@@ -112,7 +123,6 @@ const OtherInfo = () => {
                                 <div>
                                     <label htmlFor='last_name' className="subheading mb-2 font-medium">{t('last_name')}</label>
                                     <Input
-                                        className="form-input"
                                         placeholder={t('last_name')}
                                         name="last_name"
                                         onChange={formik.handleChange}
@@ -133,40 +143,10 @@ const OtherInfo = () => {
                                     name="email"
                                     onChange={formik.handleChange}
                                     value={formik.values.email}
-                                    className='form-input'
                                     placeholder="mail@example.com"
                                 />
 
                                 {formik.errors.email && (<p className="error">{formik.errors.email}</p>)}
-                            </div>
-
-
-                            <div>
-                                <div>
-                                    <h2 className="main-title mt-8">What would you like to call your site?</h2>
-                                    <p className="tab-desc mt-2">It was popularised in the 1960s with the release of Letraset.</p>
-                                </div>
-
-                                <div>
-                                    <div className="relative mt-1 rounded-md shadow-sm">
-                                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 tab-desc">
-                                            http://
-                                        </div>
-                                        <Input
-                                            type="text"
-                                            name="site"
-                                            onChange={formik.handleChange}
-                                            id="site"
-                                            className={`form-input ${siteError ? 'error' : ''}`}
-                                            placeholder="example"
-                                            style={{ paddingRight: "140px", paddingLeft: "60px" }}
-
-                                        />
-                                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 tab-desc">
-                                            .zaviago.com
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
 
@@ -183,10 +163,10 @@ const OtherInfo = () => {
                                     >{t('continue')}</Button>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                        </div >
+                    </form >
+                </div >
+            </div >
             <Transition.Root show={isLoading} as={Fragment}>
                 <Dialog as="div" className="relative z-[999]" onClose={() => { }}>
                     <Transition.Child

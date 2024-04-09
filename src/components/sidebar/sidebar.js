@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
-import { PlusCircle, Settings, Search, ChevronsLeft, Users, Zap, UserCircle, LayoutGrid, Layout, ClipboardList, Package, Group, Baseline, Clipboard, CheckCircle, CheckCircle2, UserSquare, Mailbox, Milestone, PackagePlus, ClipboardPaste, PanelLeftClose, PanelLeftOpen, Home, ChevronsRight, Hotel, Unplug } from "lucide-react";
+import { Settings, Users, Zap, UserCircle, LayoutGrid, ClipboardList, Package, Group, Baseline, Clipboard, CheckCircle2, UserSquare, Mailbox, Milestone, PackagePlus, ClipboardPaste, ChevronsRight, Hotel, Unplug } from "lucide-react";
 import { Button } from "../ui/button";
-import { BellIcon, LightningBoltIcon } from "@radix-ui/react-icons";
+import { LightningBoltIcon } from "@radix-ui/react-icons";
 import { useMutation, useQuery } from "react-query";
 import { site } from "../../client/api";
-import { Icons } from "../ui/icons";
 import ServiceModals from "./serviceModals";
 import { Dialog, DialogTrigger } from "../ui/dialog";
 import { SearchItem } from "../topbar/searchBar";
-import { Skeleton } from "../ui/skeleton"
 import SidebarUpgrade from "./sidebarUpgrade";
 import { useTranslation } from "react-i18next";
 import SidebarWebsite from "./sidebarWebsite";
+import { workspaceImages, dashboardActivities } from "../icon-menus/workspace-images";
+import { Separator } from "../ui/separator";
 
 // import TeamModal from "../components/switchTeamModal";
 
@@ -23,12 +23,14 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   const location = useLocation();
   const { user } = useUser();
   const [upgraded, setUpgraded] = useState(false)
+  const [isMobile, setIsMobile] = useState()
 
   const benchApps = useQuery('benchApps', () => site.appslist(sites.site_list[0].name), { enabled: false });
   const installedApps = useQuery('installed_apps', () => site.installed_apps(sites.site_list[0].name), { enabled: false });
   const appslists = benchApps.data || [];
 
   const navigate = useNavigate();
+  const resize = () => window.innerWidth > 1024 ? setIsMobile(false) : setIsMobile(true)
 
   const handleMenuClick = (menu, href) => {
     navigate(href)
@@ -48,8 +50,8 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
 
   const navigation = [
     { name: t('menus.dashboard'), icon: <Hotel viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/app', current: active === '/dashboard/app' ? true : false, id: 'dashboard' },
-    { name: t('menus.settings'), icon: <Settings viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/settings/account', current: active == "/dashboard/settings/account" || active == "/dashboard/settings/billing-plans" ? true : false, active: active, id: 'settings' },
-    { name: t('menus.teams'), icon: <Users viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: '/dashboard/teams', current: active == "/dashboard/teams" ? true : false, active: active, id: 'teams' },
+    { name: t('menus.settings'), icon: <Settings viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: window.innerWidth > 1024 ? '/dashboard/settings/account' : '/dashboard/settings', current: active == "/dashboard/settings/account" || active == "/dashboard/settings/billing-plans" ? true : false, active: active, id: 'settings' },
+    { name: t('menus.teams'), icon: <Users viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' color='#18181B' />, href: window.innerWidth > 1024 ? '/dashboard/teams/members' : '/dashboard/teams', current: active == "/dashboard/teams/members" ? true : false, active: active, id: 'teams' },
   ]
 
   const settingsMenus = [
@@ -88,17 +90,31 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
   ]
 
   const workspaceApp = [
-    { name: t('workspace_buttons.manage_business'), icon: <Icons.erpApp className='h-5 w-5' />, id: 'manage-business', onClick: () => loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" }) }, // loginAsAdmin({ name: sites?.site_list[0].name, reason: "Login as admin" })
-    { name: t('workspace_buttons.blog_editor'), icon: <Icons.blogPostApp className='h-5 w-5' />, id: 'builder', onClick: () => window.open('/coming-soon', '_blank') }, // window.open(`https://${sites?.site_list[0].name}/SpaBlogEditor`)
-    { name: 'CRM', icon: <Icons.posApp className='h-5 w-5' />, onClick: () => window.open('https://www.zaviago.com/crm', '_self') },
-    { name: t('workspace_buttons.web_pages'), icon: <Icons.websiteApp fill='white' className='h-5 w-5' />, id: 'websites', onClick: () => window.open('/coming-soon', '_blank') }, // window.open(`https://${sites?.site_list[0].name}/builder`)
-    { name: 'MarketConnect', icon: <Icons.inbioApp className='h-5 w-5' />, onClick: () => window.open('https://www.zaviago.com/marketplace', '_self') },
-    { name: 'Canvas', icon: <Icons.blogAndPagesApp className='h-5 w-5' />, onClick: () => window.open('/coming-soon', '_blank') }
+    { name: 'Workspace', icon: workspaceImages.customerDataSystem, onClick: () => window.open('https://apps.hosting.zaviago.com/app/item', '_self') },
+    { name: 'TeamInbox', icon: workspaceImages.pos, onClick: () => window.open('https://chat.zaviago.com/', '_self')  },
+    { name: 'WorkDay', icon: workspaceImages.projectManagement, onClick: () => window.open('https://workday.zaviago.com/', '_self')  },
+    { name: 'LineCRM', icon: workspaceImages.linecrm, onClick: () => window.open('https://apps.hosting.zaviago.com/app/loyalty-program', '_self') },
+    { name: 'SalesTeam', icon: workspaceImages.salesteam, onClick: () => window.open('/coming-soon', '_blank') },
+    { name: 'Zaviago HR', icon: workspaceImages.hrspace, onClick: () => window.open('https://apps.hosting.zaviago.com/app/hr', '_self') },
+  ]
+
+  const workspaceAppTwo = [
+    { name: 'Data Insight', icon: workspaceImages.blogAndNews, onClick: () => window.open('https://apps.hosting.zaviago.com/insights/dashboard', '_self') },
+    { name: 'Drive', icon: workspaceImages.manageWebsite, onClick: () => window.open('https://apps.hosting.zaviago.com/drive/home', '_self') },
+  ]
+
+  const workspaceAppThree = [
+    { name: 'Blogs', icon: workspaceImages.blogAndNews, onClick: () => window.open('https://ghost.zaviago.com/ghost/#/dashboard', '_self') },
+    { name: 'Builder', icon: workspaceImages.manageWebsite, onClick: () => window.open('https://apps.hosting.zaviago.com/builder', '_self') },
+    { name: 'Whiteboard', icon: workspaceImages.whiteboard, onClick: () => window.open('https://affine.zaviago.com/', '_self')  },
   ]
 
   useEffect(() => {
     setActive(location.pathname);
-  }, [])
+    resize()
+
+    window.addEventListener("resize", resize)
+  }, [isMobile])
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -131,32 +147,12 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
     }
   }
 
-  const IconSidebar = () => {
-    return (
-      <nav className={`nav-left-side`}>
-        {/* {isSidebarOpen ? (
-          <div className="nav-btns" id="home-btn" onClick={() => navigate('/')}>
-            <Home color='#18181B' viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5'/>
-          </div>
-        ) : (
-          <div className="nav-btns" id="home-btn" onClick={() => setIsSidebarOpen(true)}>
-            <PanelLeftOpen color='#18181B' viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5'/>
-          </div>
-        )} */}
-        <div className={`nav-btns ${!isSidebarOpen ? 'show' : 'hide'}`} id="home-btn" onClick={() => setIsSidebarOpen(true)}>
-          <ChevronsRight color='#18181B' viewBox='0 0 24 24' width='16' height='16' strokeWidth='1.5' />
-        </div>
-
-        <ServiceModals />
-      </nav>
-    )
-  }
-
   return (
     <>
       {/* <IconSidebar /> */}
-      <div className={`flex flex-1 flex-col border-r border-gray-200 bg-white ${isSidebarOpen ? 'active' : 'inactive'}`} id="sidebar">
-        <div className="flex flex-1 flex-col pt-[18px]">
+      <div className={`h-screen w-screen bg-gray-500/50 z-[99] left-0 top-0 fixed ${isSidebarOpen ? 'opacity-1 visible' : 'opacity-0 invisible'} transition duration-300`} onClick={() => setIsSidebarOpen(false)}/>
+      <div className={`${isSidebarOpen ? 'active' : 'inactive'}`} id="sidebar">
+        <div className="flex flex-1 flex-col pt-3 lg:pt-[18px]">
           <div className="relative sidebar-top">
             <div className="flex flex-shrink-0 items-center px-[14px] sidebar-site relative z-[4]">
               <div className="flex items-center w-full relative">
@@ -169,14 +165,12 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
             <ChevronsLeft className="chevron-sidebar" viewBox="0 0 24 24" width='16' height='16' />
           </button> */}
 
-          {/* {!upgraded && <SidebarUpgrade />} */}
-
-          <nav className="flex bg-white px-3 pt-2 flex-col gap-y-4 mt-3" aria-label="Sidebar">
-            <section className="flex flex-col">
+          <nav className="flex bg-white py-7 justify-center flex-col gap-y-3" aria-label="Sidebar">
+            <section className="flex flex-col gap-y-3 lg:gap-y-0 px-3">
               {navigation.map((item) => (
                 <>
                   {item.href ? (
-                    <Button key={item.name} variant='ghost' onClick={() => handleMenuClick(item.current, item.href)} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5 ${item.current ? 'bg-zinc-100' : ''}`}>
+                    <Button key={item.name} variant='ghost' onClick={() => handleMenuClick(item.current, item.href)} className={`w-full flex h-full justify-start gap-2 text-base lg:text-[13px] items-center leading-5 ${item.current ? 'bg-zinc-100' : ''}`}>
                       {item.icon}
                       {item.name}
                     </Button>
@@ -194,6 +188,8 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
                 </>
               ))}
             </section>
+
+            <Separator className='bg-[#F4F4F4]'/>
 
             {/* <section className="flex flex-col">
               <Button variant='ghost' className="text-[#797979] text-sm font-semibold tracking-[-0.35px] justify-between" onClick={() => setSellingMenus(!sellingMenus)}>
@@ -233,15 +229,45 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
               </Button>
             </section> */}
 
-            <section className="flex flex-col">
-              <h3 className="text-lightgray text-sm font-medium p-4">{t('menus.your_workspace')}</h3>
-              {workspaceApp.map((item) => (
-                <Button variant='ghost' onClick={item.onClick} className={`w-full flex justify-start gap-x-2 text-[13px] items-center leading-5`}>
-                  {item.icon}
-                  {item.name}
-                </Button>
-              ))}
+            <section className="flex flex-col px-3">
+              <h3 className="text-lightgray text-sm font-semibold py-3 px-4">ระบบงานของคุณ</h3> {/* {t('menus.your_workspace')} */}
+              <div className="flex flex-col gap-y-4 lg:gap-y-1">
+                {workspaceApp.map((item) => (
+                  <Button variant='ghost' onClick={item.onClick} className={`w-full flex justify-start gap-x-2 text-base font-normal lg:text-[13px] items-center leading-5`}>
+                    <img src={item.icon} className="h-[19px] w-[19px]"/>
+                    {item.name}
+                  </Button>
+                ))}
+              </div>
             </section>
+
+            <Separator className='bg-[#F4F4F4]'/>
+
+            <section className="flex flex-col px-3">
+              <div className="flex flex-col gap-y-4 lg:gap-y-1">
+                {workspaceAppTwo.map((item) => (
+                  <Button variant='ghost' onClick={item.onClick} className={`w-full flex justify-start gap-x-2 text-base font-normal lg:text-[13px] items-center leading-5`}>
+                    <img src={item.icon} className="h-[19px] w-[19px]"/>
+                    {item.name}
+                  </Button>
+                ))}
+              </div>
+            </section>
+
+            <Separator className='bg-[#F4F4F4]'/>
+
+            <section className="flex flex-col px-3">
+              <div className="flex flex-col gap-y-4 lg:gap-y-1">
+                {workspaceAppThree.map((item) => (
+                  <Button variant='ghost' onClick={item.onClick} className={`w-full flex justify-start gap-x-2 text-base font-normal lg:text-[13px] items-center leading-5`}>
+                    <img src={item.icon} className="h-[19px] w-[19px]"/>
+                    {item.name}
+                  </Button>
+                ))}
+              </div>
+            </section>
+
+            <Separator className='bg-[#F4F4F4]'/>
 
             {/* <section className="flex flex-col">
               <h3 className="text-lightgray text-sm font-medium p-4">{t('menus.application')}</h3>
@@ -255,6 +281,8 @@ export default function Sidebar({ loadingLogo, isSidebarOpen, setIsSidebarOpen }
               ))}
             </section> */}
           </nav>
+
+          {!upgraded && <SidebarUpgrade onClick={() => setIsSidebarOpen(false)}/>}
         </div>
       </div>
     </>

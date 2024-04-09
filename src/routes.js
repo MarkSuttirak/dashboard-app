@@ -28,6 +28,7 @@ import CheckoutPending from './pages/checkout/checkoutPending';
 import ComingSoonPage from './pages/coming-soon';
 import Teams from './pages/teams/teams';
 import JoinTeam from './pages/teams/joinTeam';
+import QuotaDetail from './pages/integration/quotaDetail';
 
 // ----------------------------------------------------------------------
 
@@ -65,9 +66,10 @@ export default function Router() {
                         { path: 'edit/:id', element: <></> },
                     ],
                 },
+                { path: 'settings/', element: <Settings /> },
                 { path: 'settings/:id', element: <Settings /> },
                 {
-                    path: 'teams', children: [
+                    path: 'teams', element: <Teams />, children: [
                         { path: '/dashboard/teams', element: <Teams /> },
                         { path: 'invite/:inviteCode', element: <JoinTeam /> },
                         { path: ':id', element: <Teams /> }
@@ -96,10 +98,12 @@ export default function Router() {
             path: '/integration',
             element: withAuthenticationRequired(DashboardLayout),
             children: [
+                { path: '', element: <Integration /> },
                 { path: ':id', element: <Integration /> },
                 { path: 'appstore', element: <AppStore /> },
                 { path: 'appstore/:id', element: <SingleApp /> },
-                { path: 'app-category/:cate', element: <AppCategory /> }
+                { path: 'app-category/:cate', element: <AppCategory /> },
+                { path: 'quota-detail/:app', element: <QuotaDetail />}
             ],
         },
         {

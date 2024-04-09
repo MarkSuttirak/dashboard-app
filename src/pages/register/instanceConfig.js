@@ -346,7 +346,6 @@ export const SiteDomainForm = ({
                     </div>
                     <Input
                         style={{ paddingRight: "140px", paddingLeft: "60px" }}
-                        className={`form-input`}
                         placeholder="example"
                         name="subdomain"
                         onChange={formik.handleChange}
@@ -361,7 +360,6 @@ export const SiteDomainForm = ({
             </div>
 
             <div className={`flex gap-x-2 anim-up-delay translate-y-[20px] justify-between`}>
-                <Button variant='secondary' className='w-1/4 justify-center' onClick={() => navigate(-1)}>{t('business_type.back')}</Button>
                 <Button
                     type='submit'
                     className='justify-center'
