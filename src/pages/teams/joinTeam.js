@@ -58,16 +58,26 @@ export const TeamForm = ({
             team.get_invite(invite_code).then((team) => {
                 setTargetTeam(team);
                 next();
+                toast({
+                    title: "Success",
+                    description: "You have joined the team",
+                });
             }).catch((error) => {
                 // TODO: show error message about invalid or expired invite code
+                toast({
+                    title: "Error",
+                    description: "Invalid or Expired Invite Code",
+                })
             })
         }
     });
 
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <input name='invite_code' value={formik.values.invite_code} onChange={formik.handleChange} />
-            <button type='submit'>Continue</button>
+        <form onSubmit={formik.handleSubmit} className='flex flex-col  w-[300px] mx-auto bg-neutral-100 p-4 rounded-md'>
+            <input
+                className='w-full p-2 border border-gray-300 rounded-md'
+                name='invite_code' value={formik.values.invite_code} onChange={formik.handleChange} />
+            <button type='submit' className='mt-2 px-4 py-2 bg-blue-500 text-white rounded-md'>Continue</button>
         </form>
     )
 }
@@ -79,10 +89,23 @@ export const ConfirmJoin = ({
         accepted_user_terms: false
     }
 }) => {
+    const { toast } = useToast();
     const { navigate } = useNavigate();
     const { mutate } = useMutation('joinTeam', team.join_team, {
-        onSuccess: () => navigate('/dashboard/teams/teams'),
-        onError: (err) => console.log("err", err)
+        onSuccess: () => {
+            navigate('/dashboard/teams/teams')
+            toast({
+                title: "Success",
+                description: "You have joined the team",
+            });
+        },
+        onError: (err) => {
+            toast({
+                title: "Error",
+                description: "An error occurred",
+            });
+            console.log("err", err)
+        }
     });
 
     const formik = useFormik({
@@ -95,11 +118,13 @@ export const ConfirmJoin = ({
     });
 
     return (
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={formik.handleSubmit} className='flex flex-col w-[450px] mx-auto bg-neutral-100 p-4 rounded-md'>
             <p>You are about to join {targetTeam.team_name} team</p>
-            <input type="checkbox" name='accepted_user_terms' value={formik.values.accepted_user_terms} onChange={formik.handleChange} /> I accept the terms and conditions
+            <input
+                className='w-full p-2 border border-gray-300 rounded-md'
+                type="checkbox" name='accepted_user_terms' value={formik.values.accepted_user_terms} onChange={formik.handleChange} /> I accept the terms and conditions
             <br />
-            <button type='submit'>Join</button>
+            <button type='submit' className='px-4 py-2 bg-blue-500 text-white rounded-md'>Join Team</button>
         </form>
     )
 }

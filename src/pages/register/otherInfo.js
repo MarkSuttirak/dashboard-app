@@ -42,13 +42,11 @@ const OtherInfo = () => {
     const { mutate: registernow, isLoading } = useMutation((data) => partial.setupOauthAccount(data), {
         onSuccess: (res) => {
             setToken(res.token);
-            //if ("inviteCode" in state) {
-            //    navigate(`/invite/${state.inviteCode}`);
-            //} else {
-               
+            if ("inviteCode" in state) {
+                navigate(`/invite/${state.inviteCode}`);
+            } else {
                 navigate('/dashboard/instance-configuration');
-              
-            //}
+            }
         },
     });
 
@@ -138,11 +136,11 @@ const OtherInfo = () => {
                                     className='form-input'
                                     placeholder="mail@example.com"
                                 />
-                               
+
                                 {formik.errors.email && (<p className="error">{formik.errors.email}</p>)}
                             </div>
 
-                           
+
                             <div>
                                 <div>
                                     <h2 className="main-title mt-8">What would you like to call your site?</h2>
@@ -170,7 +168,7 @@ const OtherInfo = () => {
                                     </div>
                                 </div>
                             </div>
-                               
+
 
                             <div>
                                 <div className='flex gap-x-2 text-sm mt-6'>
